@@ -30,3 +30,15 @@
 *.exe
 *.out
 *.app
+
+# vscode settings
+.vscode
+
+# Apple stuff
+.DS_Store
+
+# Directories
+build/
+CMakeFiles/
+
+CMakeCache.txt
