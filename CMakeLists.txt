@@ -6,8 +6,8 @@ include( CTest )
 set( PROJECT_SOURCE_DIR /Users/longhornbuckle/Documents/linalg )
 
 # Select Compilers
-set( CMAKE_C_COMPILER /usr/bin/clang )
-set( CMAKE_C++_COMPILER /usr/bin/clang++ )
+set( CMAKE_C_COMPILER /usr/bin/g++ )
+set( CMAKE_C++_COMPILER /usr/bin/g++ )
 
 set( CMAKE_VERBOSE_MAKEFILE ON )
 
