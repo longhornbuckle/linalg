@@ -1,18 +1,40 @@
-cmake_minimum_required( VERSION 3.14 )
-project( Playground VERSION 0.1.0 )
+cmake_minimum_required( VERSION 3.15 )
+project( LIN_ALG VERSION 0.1.0 )
 include( CTest )
-set( PROJECT_SOURCE_DIR CMAKE_CURRENT_LIST_DIR )
-set( CMAKE_C_COMPILER /usr/local/bin/gcc-12 )
-set( CMAKE_C++_COMPILER /usr/local/bin/g++-12 )
-add_compile_options( -fconcepts-diagnostics-depth=2 )
+
+# Project Directory
+set( PROJECT_SOURCE_DIR /Users/longhornbuckle/Documents/linalg )
+
+# Select Compilers
+set( CMAKE_C_COMPILER /usr/bin/clang )
+set( CMAKE_C++_COMPILER /usr/bin/clang++ )
+
+set( CMAKE_VERBOSE_MAKEFILE ON )
+
+# Compiler specific settings
+if ( CMAKE_CXX_COMPILER_ID STREQUAL "AppleClang" )
+  add_compile_options( -fpermissive )
+elseif ( CMAKE_CXX_COMPILER_ID STREQUAL "Clang" )
+  add_compile_options( -fpermissive )
+elseif (CMAKE_CXX_COMPILER_ID STREQUAL "GNU")
+  add_compile_options( -fpermissive )
+elseif (CMAKE_CXX_COMPILER_ID STREQUAL "Intel")
+  # using Intel C++
+elseif (CMAKE_CXX_COMPILER_ID STREQUAL "MSVC")
+  # using Visual Studio C++
+endif()
+
+# Google Test stuff
 include_directories( ${PROJECT_SOURCE_DIR} )
 include_directories( ${PROJECT_SOURCE_DIR}/experimental ) #include experimental STL
 include( FetchContent )
-FetchContent_Declare( googletest URL https://github.com/google/googletest/archive/03597a01ee50ed33e9dfd640b249b4be3799d395.zip )
+FetchContent_Declare( gtest GIT_REPOSITORY https://github.com/google/googletest.git  GIT_TAG v1.13.0 )
 # For Windows: Prevent overriding the parent project's compiler/linker settings
 set( gtest_force_shared_crt ON CACHE BOOL "" FORCE )
-FetchContent_MakeAvailable( googletest )
+FetchContent_MakeAvailable( gtest )
 enable_testing()
+
+# Vector / Matrix / Tensor Unit Tests
 add_executable( vector_test tests/vector_test.cpp ) # add this executable
 add_executable( matrix_test tests/matrix_test.cpp ) # add this executable
 add_executable( tensor_test tests/tensor_test.cpp ) # add this executable
@@ -26,6 +48,7 @@ include( GoogleTest )
 gtest_discover_tests( vector_test )
 gtest_discover_tests( matrix_test )
 gtest_discover_tests( tensor_test )
+
 set( CPACK_PROJECT_NAME ${PROJECT_NAME} )
 set( CPACK_PROJECT_VERSION ${PROJECT_VERSION} )
 include( CPack )

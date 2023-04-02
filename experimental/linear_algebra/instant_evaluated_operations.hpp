@@ -558,11 +558,11 @@ class conjugate_matrix
     [[nodiscard]] static constexpr auto conj( const matrix_type& m )
       noexcept( noexcept( detail::make_from_tuple< result_matrix_type >(
         collect_ctor_args( m, [&m]< class IndexType1, class IndexType2 >( IndexType1 index1, IndexType2 index2 ) constexpr noexcept
-          { return std::conj( m[ index2, index1 ] ); } ) ) ) )
+          { return ::std::conj( m[ index2, index1 ] ); } ) ) ) )
     {
       // Define negation operation on each element
       auto conjugate_lambda = [&m]< class IndexType1, class IndexType2 >( IndexType1 index1, IndexType2 index2 ) constexpr noexcept
-        { return std::conj( m[ index2, index1 ] ); };
+        { return ::std::conj( m[ index2, index1 ] ); };
       // Construct conjugate transpose matrix
       return detail::make_from_tuple<result_matrix_type>( collect_ctor_args( m, conjugate_lambda ) );
     }
@@ -616,12 +616,12 @@ class conjugate_vector
       noexcept( !detail::is_complex_v<typename vector_type::value_type> ||
                 noexcept( detail::make_from_tuple< result_vector_type >(
                   collect_ctor_args( v,
-                                     [&v]< class ... IndexType >( IndexType ... indices ) constexpr noexcept { return std::conj( v[ indices ... ] ); } ) ) ) )
+                                     [&v]< class ... IndexType >( IndexType ... indices ) constexpr noexcept { return ::std::conj( v[ indices ... ] ); } ) ) ) )
     {
       if constexpr ( detail::is_complex_v<typename vector_type::value_type> )
       {
         // Define conjugate transpose operation on each element
-        auto conj_lambda = [&v]< class ... IndexType >( IndexType ... indices ) constexpr noexcept { return std::conj( v[ indices ... ] ); };
+        auto conj_lambda = [&v]< class ... IndexType >( IndexType ... indices ) constexpr noexcept { return ::std::conj( v[ indices ... ] ); };
         // Construct negated vector
         return detail::make_from_tuple<result_vector_type>( collect_ctor_args( v, conj_lambda ) );
       }
