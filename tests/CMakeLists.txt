@@ -2,8 +2,8 @@ macro( linalg_add_test name )
   if( LINALG_TEST_LANGUAGE )
     set_source_files_properties( ${name} PROPERTIES LANGUAGE ${LINALG_TEST_LANGUAGE} )
   endif()
-  set_property( TARGET ${name} PROPERTY CXX_STANDARD 23 ) # set c++ version
   add_executable( ${name} ${name}.cpp )
+  set_property( TARGET ${name} PROPERTY CXX_STANDARD 23 ) # set c++ version
   target_link_libraries( ${name} linalg gtest_main )
   add_test( ${name} ${name} )
 endmacro()
