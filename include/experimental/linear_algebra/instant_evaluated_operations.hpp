@@ -555,7 +555,7 @@ class conjugate_matrix
     //- Operations
 
     /// @brief Returns transpose conjugate( matrix )
-    [[nodiscard]] static constexpr auto conj( const matrix_type& m )
+    [[nodiscard]] static constexpr auto conjugate( const matrix_type& m )
       noexcept( noexcept( detail::make_from_tuple< result_matrix_type >(
         collect_ctor_args( m, [&m]< class IndexType1, class IndexType2 >( IndexType1 index1, IndexType2 index2 ) constexpr noexcept
           { return ::std::conj( m[ index2, index1 ] ); } ) ) ) )
@@ -612,7 +612,7 @@ class conjugate_vector
     //- Operations
 
     /// @brief Returns conjugate( vector )
-    [[nodiscard]] static constexpr auto conj( const vector_type& v )
+    [[nodiscard]] static constexpr auto conjugate( const vector_type& v )
       noexcept( !detail::is_complex_v<typename vector_type::value_type> ||
                 noexcept( detail::make_from_tuple< result_vector_type >(
                   collect_ctor_args( v,
