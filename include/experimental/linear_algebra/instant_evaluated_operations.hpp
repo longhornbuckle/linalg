@@ -8,7 +8,7 @@
 #ifndef LINEAR_ALGEBRA_INSTANT_EVALUATED_OPERATIONS_HPP
 #define LINEAR_ALGEBRA_INSTANT_EVALUATED_OPERATIONS_HPP
 
-#include <linear_algebra.hpp>
+#include <experimental/linear_algebra.hpp>
 
 namespace std
 {

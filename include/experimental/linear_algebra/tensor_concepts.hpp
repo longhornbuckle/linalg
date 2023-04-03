@@ -1,7 +1,7 @@
 #ifndef LINEAR_ALGEBRA_TENSOR_CONCEPTS_HPP
 #define LINEAR_ALGEBRA_TENSOR_CONCEPTS_HPP
 
-#include <linear_algebra.hpp>
+#include <experimental/linear_algebra.hpp>
 
 namespace std
 {

@@ -8,7 +8,7 @@
 #ifndef LINEAR_ALGEBRA_TENSOR_VIEW_HPP
 #define LINEAR_ALGEBRA_TENSOR_VIEW_HPP
 
-#include <linear_algebra.hpp>
+#include <experimental/linear_algebra.hpp>
 
 namespace std
 {
