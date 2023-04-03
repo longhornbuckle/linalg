@@ -1,0 +1,63 @@
+name: CMake
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+env:
+  # Customize the CMake build type here (Release, Debug, RelWithDebInfo, etc.)
+  BUILD_TYPE: Release
+  CXX_STANDARD: 23
+
+jobs:
+  linalg-build:
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+        - compiler_driver: g++-13
+          compiler_prefix: /usr/bin
+        - compiler_driver: clang++-16
+          compiler_prefix: /usr/bin
+    name: ${{ matrix.compiler_driver }}
+    steps:
+    
+    - name: Install gtest manually
+      run: sudo apt-get install libgtest-dev &&
+           cd /usr/src/gtest &&
+           sudo cmake CMakeLists.txt &&
+           sudo make &&
+           sudo cp lib/*.a /usr/lib &&
+           sudo ln -s /usr/lib/libgtest.a /usr/local/lib/libgtest.a &&
+           sudo ln -s /usr/lib/libgtest_main.a /usr/local/lib/libgtest_main.a
+           
+    - name: Create Build Environment
+      run: cmake -E make_directory ${{github.workspace}}/linalg-build
+      
+    - name: Check Out
+      uses: actions/checkout@v3
+      with:
+        path: ${{github.workspace}}/linalg-src
+        
+    - name: Configure CMake
+      shell: bash
+      working-directory: ${{github.workspace}}/linalg-build
+      run: CXX=${{ matrix.compiler_prefix}}/${{ matrix.compiler_driver }} cmake $GITHUB_WORKSPACE/linalg-src -DCMAKE_BUILD_TYPE=$BUILD_TYPE -DCMAKE_INSTALL_PREFIX=$GITHUB_WORKSPACE/linalg-install
+
+    - name: Build
+      shell: bash
+      working-directory: ${{github.workspace}}/linalg-build
+      run: make -j
+    
+    - name: Test
+      working-directory: ${{github.workspace}}/linalg-build
+      shell: bash
+      run: ctest
+            
+    - name: Install
+      shell: bash
+      working-directory: ${{github.workspace}}/linalg-build
+      run: make install
