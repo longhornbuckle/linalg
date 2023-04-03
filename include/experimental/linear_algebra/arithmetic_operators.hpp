@@ -198,6 +198,9 @@ operator * ( const V& v, const M& m )
   return operations::template vector_matrix_product<V,M>::prod(v,m);
 }
 
+//=================================================================================================
+//  Vector Matrix multiplication assignment
+//=================================================================================================
 template < concepts::vector_data V, concepts::matrix_data M >
 [[nodiscard]] inline constexpr V&
 operator *= ( V& v, const M& m )
@@ -208,7 +211,7 @@ operator *= ( V& v, const M& m )
 }
 
 //=================================================================================================
-//  Vector Matrix multiplication assignment
+//  Matrix Vector product
 //=================================================================================================
 template < concepts::matrix_data M, concepts::vector_data V >
 [[nodiscard]] inline constexpr decltype(auto)

@@ -764,7 +764,7 @@ class vector_matrix_product
                                result_value_type result = 0;
                                for_each( execution::unseq,
                                          detail::faux_index_iterator<typename vector_type::index_type>( 0 ),
-                                         detail::faux_index_iterator<typename vector_type::index_type>( m.size().extent(1) ),
+                                         detail::faux_index_iterator<typename vector_type::index_type>( v.size().extent(0) ),
                                          [ &v, &m, &index, &result ] ( typename vector_type::index_type index2 ) constexpr noexcept
                                            { result += v[index2] * m[index2,index]; } );
                                return result;
@@ -791,7 +791,7 @@ class vector_matrix_product
         result_value_type result = 0;
         for_each( execution::unseq,
                   detail::faux_index_iterator<typename vector_type::index_type>( 0 ),
-                  detail::faux_index_iterator<typename vector_type::index_type>( m.size().extent(1) ),
+                  detail::faux_index_iterator<typename vector_type::index_type>( v.size().extent(0) ),
                   [ &v, &m, &index, &result ] ( typename vector_type::index_type index2 ) constexpr noexcept
                     { result += v[index2] * m[index2,index]; } );
         return result;
@@ -819,7 +819,7 @@ class vector_matrix_product
                                result_value_type result = 0;
                                for_each( execution::unseq,
                                          detail::faux_index_iterator<typename vector_type::index_type>( 0 ),
-                                         detail::faux_index_iterator<typename vector_type::index_type>( m.size().extent(1) ),
+                                         detail::faux_index_iterator<typename vector_type::index_type>( v.size().extent(0) ),
                                          [ &v, &m, &index, &result ] ( typename vector_type::index_type index2 ) constexpr noexcept
                                            { result += m[index,index2] * v[index2]; } );
                                return result;
@@ -846,7 +846,7 @@ class vector_matrix_product
         result_value_type result = 0;
         for_each( execution::unseq,
                   detail::faux_index_iterator<typename vector_type::index_type>( 0 ),
-                  detail::faux_index_iterator<typename vector_type::index_type>( m.size().extent(1) ),
+                  detail::faux_index_iterator<typename vector_type::index_type>( v.size().extent(0) ),
                   [ &v, &m, &index, &result ] ( typename vector_type::index_type index2 ) constexpr noexcept
                     { result += m[index,index2] * v[index2]; } );
         return result;
