@@ -36,7 +36,7 @@ configure_package_config_file( cmake/linalgConfig.cmake.in
   ${CMAKE_CURRENT_BINARY_DIR}/linalgConfig.cmake
   INSTALL_DESTINATION ${CMAKE_INSTALL_LIBDIR}/cmake/linalg
 )
-write_basic_package_version_file($ {CMAKE_CURRENT_BINARY_DIR}/linalgConfigVersion.cmake
+write_basic_package_version_file( ${CMAKE_CURRENT_BINARY_DIR}/linalgConfigVersion.cmake
   COMPATIBILITY SameMajorVersion
   ARCH_INDEPENDENT
 )
