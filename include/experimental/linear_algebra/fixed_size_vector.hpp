@@ -142,18 +142,8 @@ class fs_vector : public fs_tensor<T,L,A,N>
 
     //- Size / Capacity
 
-    /// @brief Returns current number of elements
-    /// @return number of elements
-    [[nodiscard]] constexpr size_type size() const noexcept;
-    /// @brief Returns the number of elements allocated for
-    /// @return number of elements allocated for
-    [[nodiscard]] constexpr size_type capacity() const noexcept;
-    /// @brief Resizes the vector to the input size
-    /// @param size number of elements to be resized to
-    constexpr void resize( size_type s );
-    /// @brief Reserves the capacity specified by input
-    /// @param cap number of elements reserved
-    constexpr void reserve( size_type cap );
+    using base_type::size;
+    using base_type::capacity;
 
     //- Const views
 
@@ -229,34 +219,6 @@ constexpr fs_vector<T,N,L,A>& fs_vector<T,N,L,A>::operator = ( const MDS& view )
 {
   static_cast<void>( this->base_type::operator=(view) );
   return *this;
-}
-
-//- Size / Capacity
-
-template < class T, size_t N, class L, class A > requires ( N >= 0 )
-[[nodiscard]] constexpr typename fs_vector<T,N,L,A>::size_type
-fs_vector<T,N,L,A>::size() const noexcept
-{
-  return this->base_type::size().extent(0);
-}
-
-template < class T, size_t N, class L, class A > requires ( N >= 0 )
-[[nodiscard]] constexpr typename fs_vector<T,N,L,A>::size_type
-fs_vector<T,N,L,A>::capacity() const noexcept
-{
-  return this->base_type::capacity().extent(0);
-}
-
-template < class T, size_t N, class L, class A > requires ( N >= 0 )
-constexpr void fs_vector<T,N,L,A>::resize( size_type s )
-{
-  this->base_type::resize( extents_type( s ) );
-}
-
-template < class T, size_t N, class L, class A > requires ( N >= 0 )
-constexpr void fs_vector<T,N,L,A>::reserve( size_type cap )
-{
-  this->base_type::reserve( extents_type( cap ) );
 }
 
 //- Const views
