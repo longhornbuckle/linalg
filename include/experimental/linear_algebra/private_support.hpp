@@ -481,7 +481,7 @@ constexpr void apply_all_impl2( View&&              view,
                                 BeforeIndexType ... before_indices )
   noexcept( noexcept( lambda( before_indices ..., declval<typename decay_t<View>::size_type>() ) ) )
 {
-  static const bool is_noexcept = noexcept( lambda( before_indices ..., declval<typename decay_t<View>::size_type>() ) );
+  constexpr bool is_noexcept = noexcept( lambda( before_indices ..., declval<typename decay_t<View>::size_type>() ) );
   // If lambda expression is noexcept, then just attempt to call using whatever execution policy
   if constexpr ( is_noexcept )
   {
@@ -556,7 +556,7 @@ constexpr void apply_all_impl( View&&            view,
   else
   {
     // Determines if the following lambda expression is noexcept
-    static const bool is_noexcept =
+    constexpr bool is_noexcept =
       noexcept( apply_all_impl( forward<View>( view ),
                                 forward<Lambda>( lambda ),
                                 forward<ExecutionPolicy>( execution_policy ),
