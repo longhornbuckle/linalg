@@ -728,7 +728,7 @@ assign_view( ToView& to_view, const FromView& from_view )
     apply_all( from_view,
                [ &to_view, &from_view ]< class ... Indices >( Indices ... indices )
                  constexpr noexcept( is_nothrow_convertible_v<typename decay_t<FromView>::reference,typename decay_t<ToView>::reference> )
-                 { to_view[ indices, ... ] = from_view[ indices, ... ]; },
+                 { to_view[ indices ... ] = from_view[ indices ... ]; },
                execution::unseq );
   }
   else
@@ -738,7 +738,7 @@ assign_view( ToView& to_view, const FromView& from_view )
       apply_all( from_view,
                  [ &to_view, &from_view ]< class ... Indices >( Indices ... indices )
                    constexpr noexcept( is_nothrow_convertible_v<typename decay_t<FromView>::reference,typename decay_t<ToView>::reference> )
-                   { to_view[ indices, ... ] = from_view[ indices, ... ]; },
+                   { to_view[ indices ... ] = from_view[ indices ... ]; },
                  execution::unseq );
     }
     else [[unlikely]]
@@ -766,7 +766,7 @@ copy_view( ToView& to_view, const FromView& from_view )
     apply_all( forward<ToView>( to_view ),
               [ &to_view, &from_view ]< class ... Indices >( Indices ... indices )
                 constexpr noexcept( is_nothrow_convertible_v<typename decay_t<FromView>::reference,typename decay_t<ToView>::reference> )
-                { ::new ( addressof( to_view[ indices, ... ] ) ) typename ToView::element_type( from_view[ indices, ... ] ); },
+                { ::new ( addressof( to_view[ indices ... ] ) ) typename ToView::element_type( from_view[ indices ... ] ); },
               execution::unseq );
   }
   else
@@ -776,7 +776,7 @@ copy_view( ToView& to_view, const FromView& from_view )
       apply_all( forward<ToView>( to_view ),
                 [ &to_view, &from_view ]< class ... Indices >( Indices ... indices )
                   constexpr noexcept( is_nothrow_convertible_v<typename decay_t<FromView>::reference,typename decay_t<ToView>::reference> )
-                  { ::new ( addressof( to_view[ indices, ... ] ) ) typename ToView::element_type( from_view[ indices, ... ] ); },
+                  { ::new ( addressof( to_view[ indices ... ] ) ) typename ToView::element_type( from_view[ indices ... ] ); },
                 execution::unseq );
     }
     else [[unlikely]]
