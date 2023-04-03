@@ -61,7 +61,7 @@ add_subdirectory(tests)
 # set( CMAKE_C_COMPILER /usr/bin/g++ )
 # set( CMAKE_C++_COMPILER /usr/bin/g++ )
 
-set( CMAKE_VERBOSE_MAKEFILE ON )
+# set( CMAKE_VERBOSE_MAKEFILE ON )
 
 # # Compiler specific settings
 # if ( CMAKE_CXX_COMPILER_ID STREQUAL "AppleClang" )
