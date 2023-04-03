@@ -42,6 +42,6 @@ else()
 endif()
 
 # Add vector / matrix / tensor tests
-linalg_add_test(test_vector)
-linalg_add_test(test_matrix)
-linalg_add_test(test_tensor)
+linalg_add_test( vector_test )
+linalg_add_test( matrix_test )
+linalg_add_test( tensor_test )
