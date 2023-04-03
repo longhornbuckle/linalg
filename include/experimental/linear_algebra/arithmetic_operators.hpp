@@ -47,16 +47,16 @@ trans( const V& v ) noexcept( noexcept( operations::template transpose_vector<V>
 //=================================================================================================
 template < concepts::matrix_data M >
 [[nodiscard]] inline constexpr decltype(auto)
-conj( const M& m ) noexcept( noexcept( operations::template conjugate_matrix<M>::conj( m ) ) )
+conj( const M& m ) noexcept( noexcept( operations::template conjugate_matrix<M>::conjugate( m ) ) )
 {
-  return operations::template conjugate_matrix<M>::conj( m );
+  return operations::template conjugate_matrix<M>::conjugate( m );
 }
 
 template < concepts::vector_data V >
 [[nodiscard]] inline constexpr decltype(auto)
-conj( const V& v ) noexcept( noexcept( operations::template conjugate_vector<V>::conj( v ) ) )
+conj( const V& v ) noexcept( noexcept( operations::template conjugate_vector<V>::conjugate( v ) ) )
 {
-  return operations::template conjugate_vector<V>::conj( v );
+  return operations::template conjugate_vector<V>::conjugate( v );
 }
 
 //=================================================================================================
