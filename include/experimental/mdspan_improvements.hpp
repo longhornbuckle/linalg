@@ -428,7 +428,7 @@ public:  // (but not really)
   // Comparison operators
   template < class OtherIndexType >
   MDSPAN_INLINE_FUNCTION
-  constexpr bool operator==( OtherIndexType const& rhs ) noexcept {
+  constexpr bool operator==( OtherIndexType const& rhs ) noexcept requires ( !detail::__is_extents_v<OtherIndexType> ) {
     return this->extent(0) == rhs;
   }
   
