@@ -8,7 +8,7 @@ In Work
 
 Requirements
 ------------
-- C++23 Support for multidimensional subscript operator
+- C++23 support for multidimensional subscript operator
 - P0009 reference implementation for mdspan
 - P2630 reference implementation for submdspan (same repo as P0009)
 
@@ -31,24 +31,45 @@ Capabilities
 Critical Design Decisions
 -------------------------
 - fs_vector and fs_matrix inherit from fs_tensor. dr_vector and dr_matrix inherit from dr_tensor.
+
   *Rationale*: I felt like it was important to establish the relationship between a vector and a matrix. The tensor is a rank-N abstraction for which a base set of functionality is defined (add/subtract/negate/scalar multiply/scalar divide/...). However, some functionality (like matrix multiply) only makes sense for matrices. Other functionality (like inner or outer product) only makes sense for vectors.
 - size zero extent for a tensor is not ill-formed. Use of a tensor with a size 0 extent - other than size, capacity, resize, reserve, and special member functions is undefined behavior.
+
   *Rationale*: There were a couple motivating factors: I felt default construction of a dynamically allocated tensor should be supported; however, should    not require immediate allocation. Additionally, resizing to zero is itself informative. Not allowing such would require additional special logic and code bloat for conveying the same information.
 - Construction from constrained lambda expression
+
   *Rationale*: Allows for in-place construction of elements for a wide variety of use cases. Addition, subtraction, multiplication, etc. simply require the right lambda expression.
 - Construction from mdspan - not from initializer lists
+
   *Rationale*: Construction from initializer lists could lead to easily misunderstood behavior. The client should be more explicit in how it casts data into a multidimensional space and then the tensor constructor may handle the mapping from the input mdspan to the native form of the tensor.
 - If explicitly calling default construction of elements on resize can be avoided, then it is.
+
   *Rationale*: Efficiency. It can be awkard and difficult to read to shove all the desired element values into a constructor. Instead, the more natural syntax is to construct and then assign elements.
 - operator == is not defined
+
   *Rationale*: vectors and matrices are generally compared under some kind of *norm* like magnitude or largest eigenvalue. Equality compare on floating types should generally be avoided.
 - iterators are not provided
+
   *Rationale*: Vectors, matrices, and tensors provide mathematical context and definition to an underlying multidimension data structure. Iterator support is the responsibility of the underlying data structure.
 - concept usage
-  *Rationale* Concepts are used to help define appropriate implementation of relatively generic functions (like when an allocator is or is not needed). Part of this effort is to motivate more discussion on which concepts are useful and which are overly verbose.
+
+  *Rationale*: Concepts are used to help define appropriate implementation of relatively generic functions (like when an allocator is or is not needed). Part of this effort is to motivate more discussion on which concepts are useful and which are overly verbose.
+- No formal relationship between fixed size and dynamic size math objects
+
+  *Rationale* With appropriately defined concepts, there didn't seem to be a real need to do so.
 
 In Regards To Existing Proposals
 --------------------------------
 - P2630: submdspan: submdspan is heavily used and this implementation does not work without it.
 - P1385: linear algebra support: In conflict / competition with. This effort really started out as what might P1385 look like with mdspan and concepts. Pretty quickly I realized a lot would change and mostly started over, but kept some of the naming convention.
 - P1684: mdarray: I'm not yet sure I fully appreciate the motivating use cases. I could easily see adding explicit constructors and assignment operators which used an mdarray; however, I do not think I would implement a tensor in terms of an mdarray. I'm not sure there is a motivating use case for non-contiguous memory for a tensor. And, if there was such, one would likely want to use block implementation along those discontinuities.
+- P0478: non-terminal parameter packs (rejected): The natural syntax for a fixed size tensor is fs_tensor<T,N1,N2,N3,...,Layout,Accessor> where Layout and Accessor have defaults. Lacking this proposal, the syntax is fs_tensor<T,Layout,Accessor,N1,N2,N3,...>. This does not allowed for desired defaults. Another approach would be to use an extents parameter (not unlike mdspan) though a syntax which simply expands on the fs_vector and fs_matrix syntax seems most natrual.
+
+Desired mdspan Improvements
+---------------------------
+- submdspan: submdpsan is a critical component used for creating vector, matrix, and tensor views.
+- (Implemented here) Specialization for rank one extents: Rank one extents should support implicit conversion to and from integer types. This is needed to support more natural syntax for a vector without overriding functionality in the base tensor. Vector's size and capacity functions should return values which are assignable to integer types.
+- mdspan iterators: Iterators should provide more efficient implementation than index accessing.
+- submdspan should preserve compile-time knowledge of stride order: Generic functions on tensors (in particular functions which may perform on each element in any order) should be most efficient when iterating from largest to smallest stride and thus this information is useful to preserve. For example, any submdspan of an mdspan with layout_left must maintain the same stride order.
+- mdspan of uninitialized data and pointer to element access: The current implementation assumes the reference type returned from operator[](...) points to the appropriate memory and thus can be used construct elements in place.
+- mdspan to linear layout: A fixed size tensor has an array with a number of elements known at compile time. Being able to map the mdspan elements into the underlying array during the initialization of a fixed size tensor would improve performance.
