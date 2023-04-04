@@ -40,7 +40,7 @@ jobs:
       uses: actions/checkout@v3
       with:
         repository: kokkos/mdspan
-        path: ${{github.workspace}}/mdspan-src
+        path: ${{github.workspace}}/linalg-src/mdspan
 
     - name: Check Out
       uses: actions/checkout@v3
@@ -52,7 +52,6 @@ jobs:
       working-directory: ${{github.workspace}}/linalg-build
       run: CMAKE_CXX_COMPILER=${{ matrix.compiler_prefix}}/${{ matrix.compiler_driver }}
            CXX=${{ matrix.compiler_prefix}}/${{ matrix.compiler_driver }} 
-           LINALG_MDSPAN_DIR=${{github.workspace}}/mdspan-src
            cmake $GITHUB_WORKSPACE/linalg-src -DCMAKE_BUILD_TYPE=$BUILD_TYPE -DCMAKE_INSTALL_PREFIX=$GITHUB_WORKSPACE/linalg-install
 
     - name: Build
