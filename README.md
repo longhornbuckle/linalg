@@ -63,6 +63,10 @@ Critical Design Decisions
 - concept usage
 
   *Rationale*: Concepts are used to help define appropriate implementation of relatively generic functions (like when an allocator is or is not needed). Part of this effort is to motivate more discussion on which concepts are useful and which are overly verbose.
+- negate, transpose, and conjugate *do not* produce views.
+
+  *Rationale*: Without better understanding some of the motivating use cases, this seemed like it would be confusing for non-const views and const-views really seem like expression types for unary operations that perhaps are better tackled in the context of explicitly adding expression type capabilities.
+  
 - No formal relationship between fixed size and dynamic size math objects
 
   *Rationale*: With appropriately defined concepts, there didn't seem to be a real need to do so.
