@@ -49,7 +49,7 @@ Critical Design Decisions
   *Rationale*: Construction from initializer lists could lead to easily misunderstood behavior. The client should be more explicit in how it casts data into a multidimensional space and then the tensor constructor may handle the mapping from the input mdspan to the native form of the tensor.
 - If explicitly calling default construction of elements on resize can be avoided, then it is.
 
-  *Rationale*: Efficiency. It can be awkard and difficult to read to shove all the desired element values into a constructor. Instead, the more natural syntax is to construct and then assign elements.
+  *Rationale*: Efficiency. It can be awkard and difficult to read to shove all the desired element values into a constructor. Instead, the more natural syntax is to construct and then assign elements. If the element type has trivial special member functions (essentially POD), then the construction calls generally should be optimized away anyway.
 - operator == is not defined
 
   *Rationale*: vectors and matrices are generally compared under some kind of *norm* like magnitude or largest eigenvalue. Equality compare on floating types should generally be avoided.
