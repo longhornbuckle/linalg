@@ -1,6 +1,6 @@
 Linear Algebra implementation
 ==========================================
-This repository is intended to explore a possible implementation of a math vector, matrix, and tensor using [P0009](https://github.com/kokkos/mdspan)'s reference implementation for C++23 mdspan and incorporating C++20 concepts and constraints.
+This repository is intended to explore a possible implementation of a math vector, matrix, and tensor using [P0009](https://github.com/kokkos/mdspan)'s reference implementation for C++23 mdspan and incorporating C++20 concepts.
 
 In Work
 -------
@@ -16,6 +16,10 @@ Requirements
 - C++23 support for multidimensional subscript operator
 - P0009 reference implementation for mdspan
 - P2630 reference implementation for submdspan (same repo as P0009)
+
+Acknowledgements
+----------------
+This work essentially started out by examining what P1673 might look like if it incorporated mdspan and concepts. Along the way, I started to take very different directions and pretty much started over; however, some of the terminology is kept.
 
 Capabilities
 ------------
@@ -69,11 +73,11 @@ Critical Design Decisions
 
 In Regards To Existing Proposals
 --------------------------------
-- **P2630**: submdspan: submdspan is heavily used and this implementation does not work without it.
-- **P1385**: linear algebra support: In conflict / competition with. This effort really started out as what might P1385 look like with mdspan and concepts. Pretty quickly I realized a lot would change and mostly started over, but kept some of the naming convention.
-- **P1684**: mdarray: I'm not yet sure I fully appreciate the motivating use cases. I could easily see adding explicit constructors and assignment operators which used an mdarray; however, I do not think I would implement a tensor in terms of an mdarray. I'm not sure there is a motivating use case for non-contiguous memory for a tensor. And, if there was such, one would likely want to use block implementation along those discontinuities.
+- **[P2630](https://github.com/kokkos/mdspan)**: submdspan: submdspan is heavily used and this implementation does not work without it.
+- **[P1385](https://github.com/BobSteagall/wg21)**: linear algebra support: In conflict / competition with. This effort really started out as what might P1385 look like with mdspan and concepts. Pretty quickly I realized a lot would change and mostly started over, but kept some of the naming convention.
+- **[P1684](https://github.com/kokkos/mdspan)**: mdarray: I'm not yet sure I fully appreciate the motivating use cases. I could easily see adding explicit constructors and assignment operators which used an mdarray; however, I do not think I would implement a tensor in terms of an mdarray. I'm not sure there is a motivating use case for non-contiguous memory for a tensor. And, if there was such, one would likely want to use block implementation along those discontinuities.
 - **P0478**: non-terminal parameter packs (rejected): The natural syntax for a fixed size tensor is fs_tensor<T,N1,N2,N3,...,Layout,Accessor> where Layout and Accessor have defaults. Lacking this proposal, the syntax is fs_tensor<T,Layout,Accessor,N1,N2,N3,...>. This does not allowed for desired defaults. Another approach would be to use an extents parameter (not unlike mdspan) though a syntax which simply expands on the fs_vector and fs_matrix syntax seems most natrual. It seems like absent P0478, whatever the choice - the end user will be motivated to create aliases that allow for the more natural syntax.
-- **P1673**: As their proposal points out P1673 and P1385 don't collide, neither should this. More so, as P1673 has heavily integrated P0009's mdspan, I would think P1673 would dovetail nicely as a backend implementation. I've yet to critically review the proposal to figure out how best to do so.
+- **[P1673](https://github.com/kokkos/stdBLAS)**: As their proposal points out P1673 and P1385 don't collide, neither should this. More so, as P1673 has heavily integrated P0009's mdspan, I would think P1673 would dovetail nicely as a backend implementation. I've yet to critically review the proposal to figure out how best to do so.
 
 Desired mdspan Improvements
 ---------------------------
