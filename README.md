@@ -38,9 +38,9 @@ Critical Design Decisions
 - fs_vector and fs_matrix inherit from fs_tensor. dr_vector and dr_matrix inherit from dr_tensor.
 
   *Rationale*: I felt like it was important to establish the relationship between a vector and a matrix. The tensor is a rank-N abstraction for which a base set of functionality is defined (add/subtract/negate/scalar multiply/scalar divide/...). However, some functionality (like matrix multiply) only makes sense for matrices. Other functionality (like inner or outer product) only makes sense for vectors.
-- size zero extent for a tensor is not ill-formed. Use of a tensor with a size 0 extent - other than size, capacity, resize, reserve, and special member functions is undefined behavior.
+- size zero extent for a tensor is not ill-formed. Use of a tensor with a size zero extent - other than size, capacity, resize, reserve, and special member functions is undefined behavior.
 
-  *Rationale*: There were a couple motivating factors: I felt default construction of a dynamically allocated tensor should be supported; however, should    not require immediate allocation. Additionally, resizing to zero is itself informative. Not allowing such would require additional special logic and code bloat for conveying the same information.
+  *Rationale*: There were a couple motivating factors: I felt default construction of a dynamically allocated tensor should be supported; however, should not require immediate allocation. Additionally, resizing to zero is itself informative. Not allowing such would require additional special logic and code bloat for conveying the same information.
 - Construction from constrained lambda expression
 
   *Rationale*: Allows for in-place construction of elements for a wide variety of use cases. Addition, subtraction, multiplication, etc. simply require the right lambda expression.
