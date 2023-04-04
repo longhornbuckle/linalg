@@ -1,6 +1,6 @@
 Linear Algebra implementation
 ==========================================
-This repository is intended to explore a possible implementation of a math vector, matrix, and tensor using [P0009](https://github.com/kokkos/mdspan)'s reference implementation for C++23 mdspan and incorporating C++20 concepts.
+This repository is intended to explore a possible implementation of a math vector, matrix, and tensor using [P0009](https://github.com/kokkos/mdspan)'s reference implementation for C++23 mdspan and incorporating C++20 concepts. Hopefully, this motivates further discussion and collaboration on the right direction to go.
 
 In Work
 -------
@@ -89,6 +89,6 @@ Desired mdspan Improvements
 - (Implemented here) Specialization for rank one extents: Rank one extents should support implicit conversion to and from integer types. This is needed to support more natural syntax for a vector without overriding functionality in the base tensor. Vector's size and capacity functions should return values which are assignable to integer types.
 - mdspan iterators: Iterators should provide more efficient implementation than index accessing.
 - submdspan should preserve compile-time knowledge of stride order: Generic functions on tensors (in particular functions which may perform on each element in any order) should be most efficient when iterating from largest to smallest stride and thus this information is useful to preserve. For example, any submdspan of an mdspan with layout_left must maintain the same stride order.
-- mdspan of uninitialized data and pointer to element access: The current implementation assumes addressof( reference ) returned from operator[](...) points to the appropriate memory and thus can be used construct elements in place.
+- mdspan of uninitialized data and pointer to element access: The current implementation assumes addressof( reference ) returned from operator\[\](...) points to the appropriate memory and thus can be used construct elements in place.
 - mdspan to linear layout: A fixed size tensor has an array with a number of elements known at compile time. Being able to map the mdspan elements into the underlying array during the initialization of a fixed size tensor would improve performance.
-- mdspan::at(...): Frankly, I don't have a strong use case for this; however, it seemed natural for a container which provides operator[](...) to also provide at(...) which performs additional index bound checking.
+- mdspan::at(...): Frankly, I don't have a strong use case for this; however, it seemed natural for a container which provides operator\[\](...) to also provide at(...) which performs additional index bound checking.
