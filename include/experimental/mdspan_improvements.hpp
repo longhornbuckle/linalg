@@ -200,7 +200,7 @@ public:
   // Implicit conversion to underlying index type
   MDSPAN_FORCE_INLINE_FUNCTION
   constexpr
-  operator IndexType() noexcept { return __extent<0>(); }
+  operator IndexType() noexcept { return this->extent(0); }
 
   // Comparison operators
   template < class OtherIndexType >
