@@ -65,6 +65,6 @@ jobs:
   doxygen-generation:
     runs-on: ubuntu-latest
     steps:
-    - uses: DenverCoder1/doxygen-github-pages-action@v1.2
+    - uses: DenverCoder1/doxygen-github-pages-action@v1.2.0
       with:
         github_token: ${{ secrets.GITHUB_TOKEN }}
