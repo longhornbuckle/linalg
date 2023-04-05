@@ -2,9 +2,7 @@ name: CMake
 
 on:
   push:
-    branches: [ "main" ]
   pull_request:
-    branches: [ "main" ]
 
 env:
   # Customize the CMake build type here (Release, Debug, RelWithDebInfo, etc.)
@@ -36,16 +34,11 @@ jobs:
     - name: Create Build Environment
       run: cmake -E make_directory ${{github.workspace}}/linalg-build
 
-    - name: Check Out mdspan
-      uses: actions/checkout@v3
-      with:
-        repository: kokkos/mdspan
-        path: ${{github.workspace}}/mdspan-src
-
     - name: Check Out
       uses: actions/checkout@v3
       with:
         path: ${{github.workspace}}/linalg-src
+        submodules: recursive
         
     - name: Configure CMake
       shell: bash
