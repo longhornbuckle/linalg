@@ -7,8 +7,7 @@ var indexSectionsWithContent =
   4: "acdegimoprstuvz~",
   5: "_acdefhilmnrtvw",
   6: "acdefilmprstuv",
-  7: "o",
-  8: "s"
+  7: "o"
 };
 
 var indexSectionNames =
@@ -20,8 +19,7 @@ var indexSectionNames =
   4: "functions",
   5: "variables",
   6: "typedefs",
-  7: "related",
-  8: "defines"
+  7: "related"
 };
 
 var indexSectionLabels =
@@ -33,7 +31,6 @@ var indexSectionLabels =
   4: "Functions",
   5: "Variables",
   6: "Typedefs",
-  7: "Friends",
-  8: "Macros"
+  7: "Friends"
 };
 
