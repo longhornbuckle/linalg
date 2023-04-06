@@ -5,10 +5,8 @@
 //              defined by the library.
 //==================================================================================================
 //
-#ifndef LINEAR_ALGEBRA_HPP_DEFINED
-#define LINEAR_ALGEBRA_HPP_DEFINED
-
-#define STD_MATH std::math
+#ifndef LINEAR_ALGEBRA_HPP
+#define LINEAR_ALGEBRA_HPP
 
 #include <algorithm>
 #include <array>
@@ -67,7 +65,7 @@ using std::experimental::dynamic_extent;
 #include "linear_algebra/fixed_size_vector.hpp"
 #include "linear_algebra/dynamic_vector.hpp"
 #include "linear_algebra/instant_evaluated_operations.hpp"
-namespace STD_MATH::operations { using namespace STD_MATH::instant_evaluated_operations; }
+namespace std::math::operations { using namespace std::math::instant_evaluated_operations; }
 #include "linear_algebra/arithmetic_operators.hpp"
 
-#endif  //- LINEAR_ALGEBRA_HPP_DEFINED
+#endif  //- LINEAR_ALGEBRA_HPP
