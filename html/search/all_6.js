@@ -1,0 +1,5 @@
+var searchData=
+[
+  ['get_5fallocator_96',['get_allocator',['../classstd_1_1math_1_1dr__tensor.html#a415ed8cb234067f8df482febfedd7015',1,'std::math::dr_tensor::get_allocator() &amp;&amp;noexcept'],['../classstd_1_1math_1_1dr__tensor.html#af79fce3cd09de0d0021ad1731b29b33d',1,'std::math::dr_tensor::get_allocator() const &amp;noexcept']]],
+  ['get_5fnth_5flargest_5fstride_5findex_97',['get_nth_largest_stride_index',['../structstd_1_1math_1_1detail_1_1stride__order_3_01experimental_1_1mdspan_3_01_element_type_00_01_f8f73e2541c2dcaca10d4553c112e1f6.html#abf07f615a5380b54603734e8b9fb5574',1,'std::math::detail::stride_order&lt; experimental::mdspan&lt; ElementType, Extents, experimental::layout_left, AccessorPolicy &gt; &gt;::get_nth_largest_stride_index()'],['../structstd_1_1math_1_1detail_1_1stride__order_3_01experimental_1_1mdspan_3_01_element_type_00_01_03d1e1065c63c901ab9987119b89c53f.html#a92f13b8f454b6086fd2b2bfae20c128e',1,'std::math::detail::stride_order&lt; experimental::mdspan&lt; ElementType, Extents, experimental::layout_right, AccessorPolicy &gt; &gt;::get_nth_largest_stride_index()']]]
+];

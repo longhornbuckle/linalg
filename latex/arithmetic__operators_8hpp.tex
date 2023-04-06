@@ -1,0 +1,63 @@
+\hypertarget{arithmetic__operators_8hpp}{}\doxysection{include/experimental/linear\+\_\+algebra/arithmetic\+\_\+operators.hpp File Reference}
+\label{arithmetic__operators_8hpp}\index{include/experimental/linear\_algebra/arithmetic\_operators.hpp@{include/experimental/linear\_algebra/arithmetic\_operators.hpp}}
+{\ttfamily \#include $<$experimental/linear\+\_\+algebra.\+hpp$>$}\newline
+Include dependency graph for arithmetic\+\_\+operators.\+hpp\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{arithmetic__operators_8hpp__incl}
+\end{center}
+\end{figure}
+This graph shows which files directly or indirectly include this file\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{arithmetic__operators_8hpp__dep__incl}
+\end{center}
+\end{figure}
+\doxysubsection*{Namespaces}
+\begin{DoxyCompactItemize}
+\item 
+ \mbox{\hyperlink{namespacestd}{std}}
+\item 
+ \mbox{\hyperlink{namespacestd_1_1math}{std\+::math}}
+\end{DoxyCompactItemize}
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+{\footnotesize template$<$concepts\+::tensor\+\_\+data T$>$ }\\constexpr decltype(auto) \mbox{\hyperlink{namespacestd_1_1math_ae0ebbca9368067db0126a9ebbfa28040}{std\+::math\+::operator-\/}} (const T \&t) noexcept(noexcept(operations\+::template negation$<$ T $>$\+::negate(t)))
+\item 
+{\footnotesize template$<$concepts\+::matrix\+\_\+data M$>$ }\\constexpr decltype(auto) \mbox{\hyperlink{namespacestd_1_1math_aad19d9284c196e0f59cf9a4e03794b99}{std\+::math\+::trans}} (const M \&m) noexcept(noexcept(operations\+::template transpose\+\_\+matrix$<$ M $>$\+::trans(m)))
+\item 
+{\footnotesize template$<$concepts\+::vector\+\_\+data V$>$ }\\constexpr decltype(auto) \mbox{\hyperlink{namespacestd_1_1math_abda6cbd6bfc2db633b23c3be56c2657c}{std\+::math\+::trans}} (const V \&v) noexcept(noexcept(operations\+::template transpose\+\_\+vector$<$ V $>$\+::trans(v)))
+\item 
+{\footnotesize template$<$concepts\+::matrix\+\_\+data M$>$ }\\constexpr decltype(auto) \mbox{\hyperlink{namespacestd_1_1math_a381ab766e72b583fd5859302b2c643b2}{std\+::math\+::conj}} (const M \&m) noexcept(noexcept(operations\+::template conjugate\+\_\+matrix$<$ M $>$\+::conjugate(m)))
+\item 
+{\footnotesize template$<$concepts\+::vector\+\_\+data V$>$ }\\constexpr decltype(auto) \mbox{\hyperlink{namespacestd_1_1math_a0837991426dc71210aea26716a4a32c4}{std\+::math\+::conj}} (const V \&v) noexcept(noexcept(operations\+::template conjugate\+\_\+vector$<$ V $>$\+::conjugate(v)))
+\item 
+{\footnotesize template$<$concepts\+::tensor\+\_\+data T1, concepts\+::tensor\+\_\+data T2$>$ }\\constexpr decltype(auto) \mbox{\hyperlink{namespacestd_1_1math_a0396356ee67b1983e87decdf75e74917}{std\+::math\+::operator+}} (const T1 \&t1, const T2 \&t2) noexcept(noexcept(operations\+::template addition$<$ T1, T2 $>$\+::add(t1, t2)))
+\item 
+{\footnotesize template$<$concepts\+::tensor\+\_\+data T1, concepts\+::tensor\+\_\+data T2$>$ }\\constexpr T1 \& \mbox{\hyperlink{namespacestd_1_1math_a137f3e3e3397561fa5f2e9a4775bf26a}{std\+::math\+::operator+=}} (T1 \&t1, const T2 \&t2) noexcept(noexcept(operations\+::template addition$<$ T1, T2 $>$\+::add(t1, t2))) requires is\+\_\+convertible\+\_\+v$<$ decltype(declval$<$ typename T1
+\item 
+{\footnotesize template$<$concepts\+::tensor\+\_\+data T1, concepts\+::tensor\+\_\+data T2$>$ }\\constexpr T1 \& \mbox{\hyperlink{namespacestd_1_1math_a125d6e852557b79b0b33eb1d2b3dc167}{std\+::math\+::operator-\/=}} (T1 \&t1, const T2 \&t2) noexcept(noexcept(operations\+::template subtraction$<$ T1, T2 $>$\+::subtract(t1, t2))) requires is\+\_\+convertible\+\_\+v$<$ decltype(declval$<$ typename T1
+\item 
+{\footnotesize template$<$concepts\+::tensor\+\_\+data T, class S $>$ }\\constexpr decltype(auto) \mbox{\hyperlink{namespacestd_1_1math_ab5bc66a3683a0227bc33459b4a37bdad}{std\+::math\+::operator$\ast$}} (const T \&t, const S \&s) noexcept(noexcept(operations\+::template scalar\+\_\+product$<$ S, T $>$\+::prod(t, s))) requires requires
+\item 
+{\footnotesize template$<$concepts\+::tensor\+\_\+data T, class S $>$ }\\constexpr T \& \mbox{\hyperlink{namespacestd_1_1math_ad849e07d240f8950fc8349c162e31294}{std\+::math\+::operator$\ast$=}} (T \&t, const S \&s) noexcept(noexcept(operations\+::template scalar\+\_\+product$<$ S, T $>$\+::prod(t, s))) requires requires
+\item 
+{\footnotesize template$<$concepts\+::tensor\+\_\+data T, class S $>$ }\\constexpr decltype(auto) \mbox{\hyperlink{namespacestd_1_1math_a6fba4c921e2dc317387f2f0d8eb1f828}{std\+::math\+::operator/}} (const T \&t, const S \&s) noexcept(noexcept(operations\+::template scalar\+\_\+division$<$ T, S $>$\+::divide(t, s))) requires requires
+\item 
+{\footnotesize template$<$concepts\+::tensor\+\_\+data T, class S $>$ }\\constexpr T \& \mbox{\hyperlink{namespacestd_1_1math_a1815325bba1c222186bc522ed16084d3}{std\+::math\+::operator/=}} (T \&t, const S \&s) noexcept(noexcept(operations\+::template scalar\+\_\+division$<$ T, S $>$\+::divide(t, s))) requires requires
+\item 
+{\footnotesize template$<$concepts\+::vector\+\_\+data V1, concepts\+::vector\+\_\+data V2$>$ }\\constexpr decltype(auto) \mbox{\hyperlink{namespacestd_1_1math_ae595d72c25d55b2d8d8086ef2b65bfe2}{std\+::math\+::inner\+\_\+prod}} (const V1 \&v1, const V2 \&v2) noexcept(noexcept(operations\+::template inner\+\_\+product$<$ V1, V2 $>$\+::prod(v1, v2)))
+\item 
+{\footnotesize template$<$concepts\+::vector\+\_\+data V1, concepts\+::vector\+\_\+data V2$>$ }\\constexpr decltype(auto) \mbox{\hyperlink{namespacestd_1_1math_a16d9bb61f2dd78e168c6318baed2625b}{std\+::math\+::outer\+\_\+prod}} (const V1 \&v1, const V2 \&v2) noexcept(noexcept(operations\+::template outer\+\_\+product$<$ V1, V2 $>$\+::prod(v1, v2)))
+\item 
+{\footnotesize template$<$concepts\+::vector\+\_\+data V, concepts\+::matrix\+\_\+data M$>$ }\\constexpr decltype(auto) \mbox{\hyperlink{namespacestd_1_1math_adf64b13ce0bd2e7f0d73fb960d419b8e}{std\+::math\+::operator$\ast$}} (const V \&v, const M \&m) noexcept(noexcept(operations\+::template vector\+\_\+matrix\+\_\+product$<$ V, M $>$\+::prod(v, m)))
+\item 
+{\footnotesize template$<$concepts\+::vector\+\_\+data V, concepts\+::matrix\+\_\+data M$>$ }\\constexpr V \& \mbox{\hyperlink{namespacestd_1_1math_a1289e50a0256f02ec74aa0b0659bd340}{std\+::math\+::operator$\ast$=}} (V \&v, const M \&m) noexcept(noexcept(operations\+::template vector\+\_\+matrix\+\_\+product$<$ V, M $>$\+::prod(v, m))) requires detail
+\item 
+{\footnotesize template$<$concepts\+::matrix\+\_\+data M1, concepts\+::matrix\+\_\+data M2$>$ }\\constexpr decltype(auto) \mbox{\hyperlink{namespacestd_1_1math_a06371be2fd0c2fdccebac1af1fb800a9}{std\+::math\+::operator$\ast$}} (const M1 \&m1, const M2 \&m2) noexcept(noexcept(operations\+::template matrix\+\_\+matrix\+\_\+product$<$ M1, M2 $>$\+::prod(m1, m2)))
+\end{DoxyCompactItemize}

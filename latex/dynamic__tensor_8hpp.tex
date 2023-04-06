@@ -1,0 +1,78 @@
+\hypertarget{dynamic__tensor_8hpp}{}\doxysection{include/experimental/linear\+\_\+algebra/dynamic\+\_\+tensor.hpp File Reference}
+\label{dynamic__tensor_8hpp}\index{include/experimental/linear\_algebra/dynamic\_tensor.hpp@{include/experimental/linear\_algebra/dynamic\_tensor.hpp}}
+{\ttfamily \#include $<$experimental/linear\+\_\+algebra.\+hpp$>$}\newline
+Include dependency graph for dynamic\+\_\+tensor.\+hpp\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{dynamic__tensor_8hpp__incl}
+\end{center}
+\end{figure}
+This graph shows which files directly or indirectly include this file\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{dynamic__tensor_8hpp__dep__incl}
+\end{center}
+\end{figure}
+\doxysubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+class \mbox{\hyperlink{classstd_1_1math_1_1dr__tensor}{std\+::math\+::dr\+\_\+tensor$<$ T, R, Alloc, L, Access $>$}}
+\begin{DoxyCompactList}\small\item\em Dynamic-\/size, dynamic-\/capacity tensor. \end{DoxyCompactList}\item 
+class \mbox{\hyperlink{classstd_1_1math_1_1dr__tensor_1_1rebind}{std\+::math\+::dr\+\_\+tensor$<$ T, R, Alloc, L, Access $>$\+::rebind$<$ Value\+Type, Layout\+Type, Accessor\+Type $>$}}
+\begin{DoxyCompactList}\small\item\em Rebind defines a type for a rebinding a dynamic tensor to the new type parameters. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Namespaces}
+\begin{DoxyCompactItemize}
+\item 
+ \mbox{\hyperlink{namespacestd}{std}}
+\item 
+ \mbox{\hyperlink{namespacestd_1_1math}{std\+::math}}
+\end{DoxyCompactItemize}
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+constexpr Access \mbox{\hyperlink{namespacestd_1_1math_a39f52c16036f51ca651f8cf88cffbead}{std\+::math\+::\+Access}} (view, allocator\+\_\+type())
+\item 
+constexpr Access \mbox{\hyperlink{namespacestd_1_1math_ae348888ab0b8e8f95625d7e408212ae0}{std\+::math\+::\+Access}} (s, allocator\+\_\+type())
+\item 
+constexpr Access \mbox{\hyperlink{namespacestd_1_1math_a93770f7edba9e696fdb1280271cb68cf}{std\+::math\+::\+Access}} (s, cap, allocator\+\_\+type())
+\item 
+constexpr Access \+::allocator\+\_\+type \mbox{\hyperlink{namespacestd_1_1math_afa858da473bdb5c62b426813e775025b}{std\+::math\+::\+Access}} (s, lambda, allocator\+\_\+type())
+\item 
+constexpr Access \+::allocator\+\_\+type \mbox{\hyperlink{namespacestd_1_1math_a470cafc86b0c49b8fe614da51fd7efa0}{std\+::math\+::\+Access}} (s, cap, lambda, allocator\+\_\+type())
+\item 
+constexpr \mbox{\hyperlink{namespacestd_1_1math_aa0b66cc956c8d528a37dd5fa7e3f1ece}{std\+::math\+::cap\+\_\+}} (s)
+\item 
+constexpr \mbox{\hyperlink{namespacestd_1_1math_a3034fc7b0fe9007e97ffd25827391eae}{std\+::math\+::elems\+\_\+}} (allocator\+\_\+traits$<$ typename dr\+\_\+tensor$<$ T, R, Alloc, L, Access $>$\+::allocator\+\_\+type $>$\+::allocate(this-\/$>$alloc\+\_\+, this-\/$>$linear\+\_\+capacity()))
+\item 
+constexpr \mbox{\hyperlink{namespacestd_1_1math_a684453cb5990601008c3a24f6fe6413f}{std\+::math\+::view\+\_\+}} (this-\/$>$create\+\_\+view(this-\/$>$cap\+\_\+))
+\item 
+constexpr \mbox{\hyperlink{namespacestd_1_1math_ae1ad599421fe8416b1eb822d05347c42}{std\+::math\+::cap\+\_\+}} (cap)
+\item 
+constexpr \mbox{\hyperlink{namespacestd_1_1math_a3a55e3fe5a34b1a59d7fbdeaa66a263b}{std\+::math\+::view\+\_\+}} (this-\/$>$create\+\_\+view(s))
+\item 
+return this \mbox{\hyperlink{dynamic__tensor_8hpp_a656066318a49f8eaf777493886f26a2c}{underlying\+\_\+span}} ()\mbox{[}indices ...\mbox{]}
+\item 
+\mbox{\hyperlink{classstd_1_1math_1_1dr__tensor}{std\+::math\+::dr\+\_\+tensor}}$<$ T, R, Alloc, L, Access $>$ value\+\_\+type dr\+\_\+tensor \+::at Index\+Type indices const requires sizeof Index\+Type R is\+\_\+convertible\+\_\+v \mbox{\hyperlink{namespacestd_1_1math_afb774a78b33e4013a8c453dd5a2bf789}{std\+::math\+::subvector}} (Slice\+Args ... args) const requires(decltype(experimental
+\end{DoxyCompactItemize}
+\doxysubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+constexpr \mbox{\hyperlink{namespacestd_1_1math_ad69af7dc6d02afb275a8d32b5a1c5c5e}{std\+::math\+::R}}
+\item 
+constexpr \mbox{\hyperlink{namespacestd_1_1math_ac0bd025457e9ad925acc5bf1c9c2470c}{std\+::math\+::make\+\_\+integer\+\_\+sequence$<$ index\+\_\+type, R $>$}}
+\item 
+\mbox{\hyperlink{classstd_1_1math_1_1dr__tensor}{std\+::math\+::dr\+\_\+tensor}}$<$ T, R, Alloc, L, Access $>$ \mbox{\hyperlink{namespacestd_1_1math_a53983004b9afa750d13aff5975152bf2}{std\+::math\+::T}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{dynamic__tensor_8hpp_a656066318a49f8eaf777493886f26a2c}\label{dynamic__tensor_8hpp_a656066318a49f8eaf777493886f26a2c}} 
+\index{dynamic\_tensor.hpp@{dynamic\_tensor.hpp}!underlying\_span@{underlying\_span}}
+\index{underlying\_span@{underlying\_span}!dynamic\_tensor.hpp@{dynamic\_tensor.hpp}}
+\doxysubsubsection{\texorpdfstring{underlying\_span()}{underlying\_span()}}
+{\footnotesize\ttfamily return this underlying\+\_\+span (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+

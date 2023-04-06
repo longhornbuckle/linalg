@@ -1,0 +1,12 @@
+var searchData=
+[
+  ['set_5fallocator_426',['set_allocator',['../classstd_1_1math_1_1dr__tensor.html#a01da7670cc51bd510d91ce9f98601f11',1,'std::math::dr_tensor']]],
+  ['size_427',['size',['../classstd_1_1math_1_1dr__tensor.html#a275d3bd7235f3837cb98ba1c8a867396',1,'std::math::dr_tensor::size()'],['../classstd_1_1math_1_1detail_1_1extents__helper__impl_3_01integer__sequence_3_01_u_00_01_indices_8_8_8_01_4_01_4.html#ac288500535e29ff6137e1808bb8c40fd',1,'std::math::detail::extents_helper_impl&lt; integer_sequence&lt; U, Indices... &gt; &gt;::size()'],['../classstd_1_1math_1_1dr__matrix.html#a275d3bd7235f3837cb98ba1c8a867396',1,'std::math::dr_matrix::size()'],['../classstd_1_1math_1_1dr__vector.html#a275d3bd7235f3837cb98ba1c8a867396',1,'std::math::dr_vector::size()']]],
+  ['span_428',['span',['../classstd_1_1math_1_1dr__tensor.html#a81dac913f117d1276b494f62a758df89',1,'std::math::dr_tensor::span()'],['../classstd_1_1math_1_1dr__matrix.html#a81dac913f117d1276b494f62a758df89',1,'std::math::dr_matrix::span()'],['../classstd_1_1math_1_1dr__vector.html#a81dac913f117d1276b494f62a758df89',1,'std::math::dr_vector::span()']]],
+  ['static_5fextent_429',['static_extent',['../classstd_1_1experimental_1_1extents_3_01_index_type_00_01_extent_01_4.html#a8ef7a6a74d721bd9781c33a6cc825a63',1,'std::experimental::extents&lt; IndexType, Extent &gt;']]],
+  ['submatrix_430',['submatrix',['../classstd_1_1math_1_1dr__matrix.html#a408177961c27faafc5f9580a15140f3f',1,'std::math::dr_matrix::submatrix(tuple_type start, tuple_type end) const'],['../classstd_1_1math_1_1dr__matrix.html#a2267a50a9c50121e170be7e1939c9b35',1,'std::math::dr_matrix::submatrix(tuple_type start, tuple_type end)']]],
+  ['submdspan_431',['submdspan',['../namespacestd_1_1math_1_1detail.html#a539c3b8a18138b315e1af489c693bc38',1,'std::math::detail']]],
+  ['submdspan_5fimpl_432',['submdspan_impl',['../namespacestd_1_1math_1_1detail.html#a4006258a7bd699b778e9095a5c1d7ded',1,'std::math::detail']]],
+  ['subvector_433',['subvector',['../classstd_1_1math_1_1dr__vector.html#a9b0f4314cf99d0e8a21cb827ef730efd',1,'std::math::dr_vector::subvector(index_type start, index_type end) const'],['../classstd_1_1math_1_1dr__vector.html#aad15d25d355e83f8357249d4c7a8fd53',1,'std::math::dr_vector::subvector(index_type start, index_type end)'],['../namespacestd_1_1math.html#afb774a78b33e4013a8c453dd5a2bf789',1,'std::math::subvector()']]],
+  ['sufficient_5fextents_434',['sufficient_extents',['../namespacestd_1_1math_1_1detail.html#a08b4685ca9c41024caf8b371b0c2c88b',1,'std::math::detail']]]
+];

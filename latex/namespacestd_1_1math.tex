@@ -1,0 +1,999 @@
+\hypertarget{namespacestd_1_1math}{}\doxysection{std\+::math Namespace Reference}
+\label{namespacestd_1_1math}\index{std::math@{std::math}}
+\doxysubsection*{Namespaces}
+\begin{DoxyCompactItemize}
+\item 
+ \mbox{\hyperlink{namespacestd_1_1math_1_1concepts}{concepts}}
+\item 
+ \mbox{\hyperlink{namespacestd_1_1math_1_1detail}{detail}}
+\item 
+ \mbox{\hyperlink{namespacestd_1_1math_1_1instant__evaluated__operations}{instant\+\_\+evaluated\+\_\+operations}}
+\end{DoxyCompactItemize}
+\doxysubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+class \mbox{\hyperlink{classstd_1_1math_1_1dr__matrix}{dr\+\_\+matrix}}
+\begin{DoxyCompactList}\small\item\em Dynamic-\/size, dynamic-\/capacity matrix. \end{DoxyCompactList}\item 
+class \mbox{\hyperlink{classstd_1_1math_1_1dr__tensor}{dr\+\_\+tensor}}
+\begin{DoxyCompactList}\small\item\em Dynamic-\/size, dynamic-\/capacity tensor. \end{DoxyCompactList}\item 
+class \mbox{\hyperlink{classstd_1_1math_1_1dr__vector}{dr\+\_\+vector}}
+\begin{DoxyCompactList}\small\item\em Dynamic-\/size, dynamic-\/capacity vector. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+{\footnotesize template$<$concepts\+::tensor\+\_\+data T$>$ }\\constexpr decltype(auto) \mbox{\hyperlink{namespacestd_1_1math_ae0ebbca9368067db0126a9ebbfa28040}{operator-\/}} (const \mbox{\hyperlink{namespacestd_1_1math_a53983004b9afa750d13aff5975152bf2}{T}} \&t) noexcept(noexcept(operations\+::template negation$<$ \mbox{\hyperlink{namespacestd_1_1math_a53983004b9afa750d13aff5975152bf2}{T}} $>$\+::negate(t)))
+\item 
+{\footnotesize template$<$concepts\+::matrix\+\_\+data M$>$ }\\constexpr decltype(auto) \mbox{\hyperlink{namespacestd_1_1math_aad19d9284c196e0f59cf9a4e03794b99}{trans}} (const M \&m) noexcept(noexcept(operations\+::template transpose\+\_\+matrix$<$ M $>$\+::trans(m)))
+\item 
+{\footnotesize template$<$concepts\+::vector\+\_\+data V$>$ }\\constexpr decltype(auto) \mbox{\hyperlink{namespacestd_1_1math_abda6cbd6bfc2db633b23c3be56c2657c}{trans}} (const V \&v) noexcept(noexcept(operations\+::template transpose\+\_\+vector$<$ V $>$\+::trans(v)))
+\item 
+{\footnotesize template$<$concepts\+::matrix\+\_\+data M$>$ }\\constexpr decltype(auto) \mbox{\hyperlink{namespacestd_1_1math_a381ab766e72b583fd5859302b2c643b2}{conj}} (const M \&m) noexcept(noexcept(operations\+::template conjugate\+\_\+matrix$<$ M $>$\+::conjugate(m)))
+\item 
+{\footnotesize template$<$concepts\+::vector\+\_\+data V$>$ }\\constexpr decltype(auto) \mbox{\hyperlink{namespacestd_1_1math_a0837991426dc71210aea26716a4a32c4}{conj}} (const V \&v) noexcept(noexcept(operations\+::template conjugate\+\_\+vector$<$ V $>$\+::conjugate(v)))
+\item 
+{\footnotesize template$<$concepts\+::tensor\+\_\+data T1, concepts\+::tensor\+\_\+data T2$>$ }\\constexpr decltype(auto) \mbox{\hyperlink{namespacestd_1_1math_a0396356ee67b1983e87decdf75e74917}{operator+}} (const T1 \&t1, const T2 \&t2) noexcept(noexcept(operations\+::template addition$<$ T1, T2 $>$\+::add(t1, t2)))
+\item 
+{\footnotesize template$<$concepts\+::tensor\+\_\+data T1, concepts\+::tensor\+\_\+data T2$>$ }\\constexpr T1 \& \mbox{\hyperlink{namespacestd_1_1math_a137f3e3e3397561fa5f2e9a4775bf26a}{operator+=}} (T1 \&t1, const T2 \&t2) noexcept(noexcept(operations\+::template addition$<$ T1, T2 $>$\+::add(t1, t2))) \mbox{\hyperlink{namespacestd_1_1math_a99301a8e16b7c6c884465173b22852a5}{requires}} is\+\_\+convertible\+\_\+v$<$ decltype(declval$<$ typename T1
+\item 
+{\footnotesize template$<$concepts\+::tensor\+\_\+data T1, concepts\+::tensor\+\_\+data T2$>$ }\\constexpr T1 \& \mbox{\hyperlink{namespacestd_1_1math_a125d6e852557b79b0b33eb1d2b3dc167}{operator-\/=}} (T1 \&t1, const T2 \&t2) noexcept(noexcept(operations\+::template subtraction$<$ T1, T2 $>$\+::subtract(t1, t2))) \mbox{\hyperlink{namespacestd_1_1math_a99301a8e16b7c6c884465173b22852a5}{requires}} is\+\_\+convertible\+\_\+v$<$ decltype(declval$<$ typename T1
+\item 
+{\footnotesize template$<$concepts\+::tensor\+\_\+data T, class S $>$ }\\constexpr decltype(auto) \mbox{\hyperlink{namespacestd_1_1math_ab5bc66a3683a0227bc33459b4a37bdad}{operator$\ast$}} (const \mbox{\hyperlink{namespacestd_1_1math_a53983004b9afa750d13aff5975152bf2}{T}} \&t, const S \&s) noexcept(noexcept(operations\+::template scalar\+\_\+product$<$ S, \mbox{\hyperlink{namespacestd_1_1math_a53983004b9afa750d13aff5975152bf2}{T}} $>$\+::prod(t, s))) \mbox{\hyperlink{namespacestd_1_1math_a99301a8e16b7c6c884465173b22852a5}{requires}} \mbox{\hyperlink{namespacestd_1_1math_a99301a8e16b7c6c884465173b22852a5}{requires}}
+\item 
+{\footnotesize template$<$concepts\+::tensor\+\_\+data T, class S $>$ }\\constexpr \mbox{\hyperlink{namespacestd_1_1math_a53983004b9afa750d13aff5975152bf2}{T}} \& \mbox{\hyperlink{namespacestd_1_1math_ad849e07d240f8950fc8349c162e31294}{operator$\ast$=}} (\mbox{\hyperlink{namespacestd_1_1math_a53983004b9afa750d13aff5975152bf2}{T}} \&t, const S \&s) noexcept(noexcept(operations\+::template scalar\+\_\+product$<$ S, \mbox{\hyperlink{namespacestd_1_1math_a53983004b9afa750d13aff5975152bf2}{T}} $>$\+::prod(t, s))) \mbox{\hyperlink{namespacestd_1_1math_a99301a8e16b7c6c884465173b22852a5}{requires}} \mbox{\hyperlink{namespacestd_1_1math_a99301a8e16b7c6c884465173b22852a5}{requires}}
+\item 
+{\footnotesize template$<$concepts\+::tensor\+\_\+data T, class S $>$ }\\constexpr decltype(auto) \mbox{\hyperlink{namespacestd_1_1math_a6fba4c921e2dc317387f2f0d8eb1f828}{operator/}} (const \mbox{\hyperlink{namespacestd_1_1math_a53983004b9afa750d13aff5975152bf2}{T}} \&t, const S \&s) noexcept(noexcept(operations\+::template scalar\+\_\+division$<$ \mbox{\hyperlink{namespacestd_1_1math_a53983004b9afa750d13aff5975152bf2}{T}}, S $>$\+::divide(t, s))) \mbox{\hyperlink{namespacestd_1_1math_a99301a8e16b7c6c884465173b22852a5}{requires}} \mbox{\hyperlink{namespacestd_1_1math_a99301a8e16b7c6c884465173b22852a5}{requires}}
+\item 
+{\footnotesize template$<$concepts\+::tensor\+\_\+data T, class S $>$ }\\constexpr \mbox{\hyperlink{namespacestd_1_1math_a53983004b9afa750d13aff5975152bf2}{T}} \& \mbox{\hyperlink{namespacestd_1_1math_a1815325bba1c222186bc522ed16084d3}{operator/=}} (\mbox{\hyperlink{namespacestd_1_1math_a53983004b9afa750d13aff5975152bf2}{T}} \&t, const S \&s) noexcept(noexcept(operations\+::template scalar\+\_\+division$<$ \mbox{\hyperlink{namespacestd_1_1math_a53983004b9afa750d13aff5975152bf2}{T}}, S $>$\+::divide(t, s))) \mbox{\hyperlink{namespacestd_1_1math_a99301a8e16b7c6c884465173b22852a5}{requires}} \mbox{\hyperlink{namespacestd_1_1math_a99301a8e16b7c6c884465173b22852a5}{requires}}
+\item 
+{\footnotesize template$<$concepts\+::vector\+\_\+data V1, concepts\+::vector\+\_\+data V2$>$ }\\constexpr decltype(auto) \mbox{\hyperlink{namespacestd_1_1math_ae595d72c25d55b2d8d8086ef2b65bfe2}{inner\+\_\+prod}} (const V1 \&v1, const V2 \&v2) noexcept(noexcept(operations\+::template inner\+\_\+product$<$ V1, V2 $>$\+::prod(v1, v2)))
+\item 
+{\footnotesize template$<$concepts\+::vector\+\_\+data V1, concepts\+::vector\+\_\+data V2$>$ }\\constexpr decltype(auto) \mbox{\hyperlink{namespacestd_1_1math_a16d9bb61f2dd78e168c6318baed2625b}{outer\+\_\+prod}} (const V1 \&v1, const V2 \&v2) noexcept(noexcept(operations\+::template outer\+\_\+product$<$ V1, V2 $>$\+::prod(v1, v2)))
+\item 
+{\footnotesize template$<$concepts\+::vector\+\_\+data V, concepts\+::matrix\+\_\+data M$>$ }\\constexpr decltype(auto) \mbox{\hyperlink{namespacestd_1_1math_adf64b13ce0bd2e7f0d73fb960d419b8e}{operator$\ast$}} (const V \&v, const M \&m) noexcept(noexcept(operations\+::template vector\+\_\+matrix\+\_\+product$<$ V, M $>$\+::prod(v, m)))
+\item 
+{\footnotesize template$<$concepts\+::vector\+\_\+data V, concepts\+::matrix\+\_\+data M$>$ }\\constexpr V \& \mbox{\hyperlink{namespacestd_1_1math_a1289e50a0256f02ec74aa0b0659bd340}{operator$\ast$=}} (V \&v, const M \&m) noexcept(noexcept(operations\+::template vector\+\_\+matrix\+\_\+product$<$ V, M $>$\+::prod(v, m))) \mbox{\hyperlink{namespacestd_1_1math_a99301a8e16b7c6c884465173b22852a5}{requires}} detail
+\item 
+{\footnotesize template$<$concepts\+::matrix\+\_\+data M1, concepts\+::matrix\+\_\+data M2$>$ }\\constexpr decltype(auto) \mbox{\hyperlink{namespacestd_1_1math_a06371be2fd0c2fdccebac1af1fb800a9}{operator$\ast$}} (const M1 \&m1, const M2 \&m2) noexcept(noexcept(operations\+::template matrix\+\_\+matrix\+\_\+product$<$ M1, M2 $>$\+::prod(m1, m2)))
+\item 
+constexpr Access \mbox{\hyperlink{namespacestd_1_1math_a39f52c16036f51ca651f8cf88cffbead}{Access}} (view, allocator\+\_\+type())
+\item 
+constexpr Access \mbox{\hyperlink{namespacestd_1_1math_ae348888ab0b8e8f95625d7e408212ae0}{Access}} (s, allocator\+\_\+type())
+\item 
+constexpr Access \mbox{\hyperlink{namespacestd_1_1math_a93770f7edba9e696fdb1280271cb68cf}{Access}} (s, cap, allocator\+\_\+type())
+\item 
+constexpr Access \+::allocator\+\_\+type \mbox{\hyperlink{namespacestd_1_1math_afa858da473bdb5c62b426813e775025b}{Access}} (s, lambda, allocator\+\_\+type())
+\item 
+constexpr Access \+::allocator\+\_\+type \mbox{\hyperlink{namespacestd_1_1math_a470cafc86b0c49b8fe614da51fd7efa0}{Access}} (s, cap, lambda, allocator\+\_\+type())
+\item 
+constexpr \mbox{\hyperlink{namespacestd_1_1math_aa0b66cc956c8d528a37dd5fa7e3f1ece}{cap\+\_\+}} (s)
+\item 
+constexpr \mbox{\hyperlink{namespacestd_1_1math_a3034fc7b0fe9007e97ffd25827391eae}{elems\+\_\+}} (allocator\+\_\+traits$<$ typename \mbox{\hyperlink{classstd_1_1math_1_1dr__tensor}{dr\+\_\+tensor}}$<$ \mbox{\hyperlink{namespacestd_1_1math_a53983004b9afa750d13aff5975152bf2}{T}}, \mbox{\hyperlink{namespacestd_1_1math_ad69af7dc6d02afb275a8d32b5a1c5c5e}{R}}, \mbox{\hyperlink{namespacestd_1_1math_a597a66936269f36c2b022a726d9f82a0}{Alloc}}, \mbox{\hyperlink{namespacestd_1_1math_a1575e00678072847b093ec1a603697d1}{L}}, \mbox{\hyperlink{namespacestd_1_1math_a39f52c16036f51ca651f8cf88cffbead}{Access}} $>$\+::allocator\+\_\+type $>$\+::allocate(this-\/$>$alloc\+\_\+, this-\/$>$linear\+\_\+capacity()))
+\item 
+constexpr \mbox{\hyperlink{namespacestd_1_1math_a684453cb5990601008c3a24f6fe6413f}{view\+\_\+}} (this-\/$>$create\+\_\+view(this-\/$>$\mbox{\hyperlink{namespacestd_1_1math_aa0b66cc956c8d528a37dd5fa7e3f1ece}{cap\+\_\+}}))
+\item 
+constexpr \mbox{\hyperlink{namespacestd_1_1math_ae1ad599421fe8416b1eb822d05347c42}{cap\+\_\+}} (cap)
+\item 
+constexpr \mbox{\hyperlink{namespacestd_1_1math_a3a55e3fe5a34b1a59d7fbdeaa66a263b}{view\+\_\+}} (this-\/$>$create\+\_\+view(s))
+\item 
+\mbox{\hyperlink{classstd_1_1math_1_1dr__tensor}{std\+::math\+::dr\+\_\+tensor}}$<$ \mbox{\hyperlink{namespacestd_1_1math_a53983004b9afa750d13aff5975152bf2}{T}}, \mbox{\hyperlink{namespacestd_1_1math_ad69af7dc6d02afb275a8d32b5a1c5c5e}{R}}, \mbox{\hyperlink{namespacestd_1_1math_a597a66936269f36c2b022a726d9f82a0}{Alloc}}, \mbox{\hyperlink{namespacestd_1_1math_a1575e00678072847b093ec1a603697d1}{L}}, \mbox{\hyperlink{namespacestd_1_1math_a39f52c16036f51ca651f8cf88cffbead}{Access}} $>$ value\+\_\+type \mbox{\hyperlink{classstd_1_1math_1_1dr__tensor}{dr\+\_\+tensor}} \+::at Index\+Type indices const \mbox{\hyperlink{namespacestd_1_1math_a99301a8e16b7c6c884465173b22852a5}{requires}} sizeof Index\+Type \mbox{\hyperlink{namespacestd_1_1math_ad69af7dc6d02afb275a8d32b5a1c5c5e}{R}} is\+\_\+convertible\+\_\+v \mbox{\hyperlink{namespacestd_1_1math_afb774a78b33e4013a8c453dd5a2bf789}{subvector}} (Slice\+Args ... args) const \mbox{\hyperlink{namespacestd_1_1math_a99301a8e16b7c6c884465173b22852a5}{requires}}(decltype(experimental
+\item 
+{\footnotesize template$<$class T , size\+\_\+t R, size\+\_\+t C, class L , class A $>$ }\\requires((\mbox{\hyperlink{namespacestd_1_1math_ad69af7dc6d02afb275a8d32b5a1c5c5e}{R}} $>$=0) \&\&(\mbox{\hyperlink{namespacestd_1_1math_a8c735c3d5e54895143b53108bce94db1}{C}} $>$=0)) class fs\+\_\+matrix \mbox{\hyperlink{namespacestd_1_1math_a54934c3124920b8de72805e41c41b54c}{requires}} ((\mbox{\hyperlink{namespacestd_1_1math_ad69af7dc6d02afb275a8d32b5a1c5c5e}{R}} $>$=0) \&\&(\mbox{\hyperlink{namespacestd_1_1math_a8c735c3d5e54895143b53108bce94db1}{C}} $>$=0)) template$<$ concepts
+\begin{DoxyCompactList}\small\item\em Fixed-\/size, fixed-\/capacity matrix. \end{DoxyCompactList}\item 
+{\footnotesize template$<$class T , size\+\_\+t R, size\+\_\+t C, class L , class A $>$ }\\\mbox{\hyperlink{namespacestd_1_1math_a5f626a1e3803d0c0fab85f17a652afdf}{requires}} ((\mbox{\hyperlink{namespacestd_1_1math_ad69af7dc6d02afb275a8d32b5a1c5c5e}{R}} $>$=0) \&\&(\mbox{\hyperlink{namespacestd_1_1math_a8c735c3d5e54895143b53108bce94db1}{C}} $>$=0)) template$<$ concepts
+\item 
+{\footnotesize template$<$class T , class L , class A , size\+\_\+t ... Ds$>$ }\\\mbox{\hyperlink{namespacestd_1_1math_a05c21a980b5b76e44c3fdadd1c74e487}{requires}} ((Ds $>$=0) \&\&...) class fs\+\_\+tensor
+\begin{DoxyCompactList}\small\item\em Fixed-\/size, fixed-\/capacity tensor. \end{DoxyCompactList}\item 
+constexpr \mbox{\hyperlink{namespacestd_1_1math_a3095cbc38a8658d81f691563a31096af}{if}} (lambda\+\_\+is\+\_\+noexcept)
+\item 
+\mbox{\hyperlink{namespacestd_1_1math_a8f1f50a23105434cfa385299f27c0fe5}{if}} (eptr)
+\item 
+{\footnotesize template$<$class T , size\+\_\+t N, class L , class A $>$ }\\requires(\mbox{\hyperlink{namespacestd_1_1math_a5e61c4699154de320e85e7a1148e3b81}{N}} $>$=0) class fs\+\_\+vector \mbox{\hyperlink{namespacestd_1_1math_a480ffe329f3de686b3da9bbf9a8045c4}{requires}} (\mbox{\hyperlink{namespacestd_1_1math_a5e61c4699154de320e85e7a1148e3b81}{N}} $>$=0) template$<$ concepts
+\begin{DoxyCompactList}\small\item\em Fixed-\/size, fixed-\/capacity vector. \end{DoxyCompactList}\item 
+{\footnotesize template$<$class T , size\+\_\+t N, class L , class A $>$ }\\\mbox{\hyperlink{namespacestd_1_1math_a58cab628ee4c0da63b7c5ded36ff1e7c}{requires}} (\mbox{\hyperlink{namespacestd_1_1math_a5e61c4699154de320e85e7a1148e3b81}{N}} $>$=0) template$<$ concepts
+\item 
+{\footnotesize template$<$class MDS $>$ }\\\mbox{\hyperlink{namespacestd_1_1math_a92b9b451191cfc215b3fe106371d27eb}{requires}} (\mbox{\hyperlink{namespacestd_1_1math_1_1detail_a25550b69c908000165785e0db4b8d3bf}{detail\+::is\+\_\+mdspan\+\_\+v}}$<$ MDS $>$ \&\&(MDS\+::extents\+\_\+type\+::rank()==2) \&\&MDS\+::is\+\_\+always\+\_\+unique()) const expr matrix\+\_\+view$<$ MDS $>$ \&matrix\+\_\+view$<$ MDS $>$
+\item 
+{\footnotesize template$<$class MDS $>$ }\\\mbox{\hyperlink{namespacestd_1_1math_a833a9f77e17ddda50f441337daa66c52}{requires}} (\mbox{\hyperlink{namespacestd_1_1math_1_1detail_a25550b69c908000165785e0db4b8d3bf}{detail\+::is\+\_\+mdspan\+\_\+v}}$<$ MDS $>$ \&\&(MDS\+::extents\+\_\+type\+::rank()==2) \&\&MDS\+::is\+\_\+always\+\_\+unique()) const expr typename matrix\+\_\+view$<$ MDS $>$
+\begin{DoxyCompactList}\small\item\em Matrix view. \end{DoxyCompactList}\item 
+{\footnotesize template$<$class MDS $>$ }\\\mbox{\hyperlink{namespacestd_1_1math_ac7f68f8e37e3a02eb3dc485c01691b99}{requires}} (\mbox{\hyperlink{namespacestd_1_1math_1_1detail_a25550b69c908000165785e0db4b8d3bf}{detail\+::is\+\_\+mdspan\+\_\+v}}$<$ MDS $>$ \&\&MDS\+::is\+\_\+always\+\_\+unique()) class tensor\+\_\+view
+\begin{DoxyCompactList}\small\item\em Tensor view. \end{DoxyCompactList}\item 
+{\footnotesize template$<$class MDS $>$ }\\\mbox{\hyperlink{namespacestd_1_1math_aedde45f730f0ba98e60f9a3f8711b54a}{requires}} (\mbox{\hyperlink{namespacestd_1_1math_1_1detail_a25550b69c908000165785e0db4b8d3bf}{detail\+::is\+\_\+mdspan\+\_\+v}}$<$ MDS $>$ \&\&MDS\+::is\+\_\+always\+\_\+unique()) const expr tensor\+\_\+view$<$ MDS $>$ \&tensor\+\_\+view$<$ MDS $>$
+\item 
+{\footnotesize template$<$class MDS $>$ }\\\mbox{\hyperlink{namespacestd_1_1math_aed065ecd643353dbe56a10f250edd082}{requires}} (\mbox{\hyperlink{namespacestd_1_1math_1_1detail_a25550b69c908000165785e0db4b8d3bf}{detail\+::is\+\_\+mdspan\+\_\+v}}$<$ MDS $>$ \&\&(MDS\+::extents\+\_\+type\+::rank()==1) \&\&MDS\+::is\+\_\+always\+\_\+unique()) const expr vector\+\_\+view$<$ MDS $>$ \&vector\+\_\+view$<$ MDS $>$
+\item 
+{\footnotesize template$<$class MDS $>$ }\\\mbox{\hyperlink{namespacestd_1_1math_a7dcb6143a01d5b65ee47e923ca7c552c}{requires}} (\mbox{\hyperlink{namespacestd_1_1math_1_1detail_a25550b69c908000165785e0db4b8d3bf}{detail\+::is\+\_\+mdspan\+\_\+v}}$<$ MDS $>$ \&\&(MDS\+::extents\+\_\+type\+::rank()==1) \&\&MDS\+::is\+\_\+always\+\_\+unique()) const expr typename vector\+\_\+view$<$ MDS $>$
+\begin{DoxyCompactList}\small\item\em Vector view. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+constexpr \mbox{\hyperlink{namespacestd_1_1math_a597a66936269f36c2b022a726d9f82a0}{Alloc}}
+\item 
+constexpr \mbox{\hyperlink{namespacestd_1_1math_a1575e00678072847b093ec1a603697d1}{L}}
+\item 
+constexpr \mbox{\hyperlink{namespacestd_1_1math_a39f52c16036f51ca651f8cf88cffbead}{Access}} \+::allocator\+\_\+type \&\& \mbox{\hyperlink{namespacestd_1_1math_a99301a8e16b7c6c884465173b22852a5}{requires}}
+\begin{DoxyCompactList}\small\item\em Matrix view. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{namespacestd_1_1math_ac0d063c758dec5487937bacbf92c3b51}{\+\_\+\+\_\+pad0\+\_\+\+\_\+}}
+\item 
+\mbox{\hyperlink{namespacestd_1_1math_ad78bff74a4eb2941aeeff67e7fc0b7e3}{\+\_\+\+\_\+pad1\+\_\+\+\_\+}}
+\item 
+\mbox{\hyperlink{namespacestd_1_1math_ae980c721f2e9e690b55c4a717116d108}{\+\_\+\+\_\+pad2\+\_\+\+\_\+}}
+\item 
+\mbox{\hyperlink{namespacestd_1_1math_a1d863f98fd39f1caaa7200e593184c83}{\+\_\+\+\_\+pad3\+\_\+\+\_\+}}
+\item 
+constexpr \mbox{\hyperlink{namespacestd_1_1math_ad69af7dc6d02afb275a8d32b5a1c5c5e}{R}}
+\item 
+constexpr \mbox{\hyperlink{namespacestd_1_1math_ac0bd025457e9ad925acc5bf1c9c2470c}{make\+\_\+integer\+\_\+sequence$<$ index\+\_\+type, R $>$}}
+\item 
+\mbox{\hyperlink{classstd_1_1math_1_1dr__tensor}{std\+::math\+::dr\+\_\+tensor}}$<$ T, \mbox{\hyperlink{namespacestd_1_1math_ad69af7dc6d02afb275a8d32b5a1c5c5e}{R}}, \mbox{\hyperlink{namespacestd_1_1math_a597a66936269f36c2b022a726d9f82a0}{Alloc}}, \mbox{\hyperlink{namespacestd_1_1math_a1575e00678072847b093ec1a603697d1}{L}}, \mbox{\hyperlink{namespacestd_1_1math_a39f52c16036f51ca651f8cf88cffbead}{Access}} $>$ \mbox{\hyperlink{namespacestd_1_1math_a53983004b9afa750d13aff5975152bf2}{T}}
+\item 
+\mbox{\hyperlink{namespacestd_1_1math_a8c735c3d5e54895143b53108bce94db1}{C}}
+\item 
+\mbox{\hyperlink{namespacestd_1_1math_aec36a4ff94b66aff54672870305664a3}{A}}
+\item 
+\mbox{\hyperlink{namespacestd_1_1math_a6e31b51db9a866353d094a3111e3c188}{else}}
+\item 
+auto \mbox{\hyperlink{namespacestd_1_1math_a62cb5abd4d6c70b634fe480d563f86fd}{ctor}}
+\item 
+\mbox{\hyperlink{namespacestd_1_1math_a5e61c4699154de320e85e7a1148e3b81}{N}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{namespacestd_1_1math_ae348888ab0b8e8f95625d7e408212ae0}\label{namespacestd_1_1math_ae348888ab0b8e8f95625d7e408212ae0}} 
+\index{std::math@{std::math}!Access@{Access}}
+\index{Access@{Access}!std::math@{std::math}}
+\doxysubsubsection{\texorpdfstring{Access()}{Access()}\hspace{0.1cm}{\footnotesize\ttfamily [1/5]}}
+{\footnotesize\ttfamily constexpr Access std\+::math\+::\+Access (\begin{DoxyParamCaption}\item[{s}]{,  }\item[{allocator\+\_\+type()}]{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{namespacestd_1_1math_a93770f7edba9e696fdb1280271cb68cf}\label{namespacestd_1_1math_a93770f7edba9e696fdb1280271cb68cf}} 
+\index{std::math@{std::math}!Access@{Access}}
+\index{Access@{Access}!std::math@{std::math}}
+\doxysubsubsection{\texorpdfstring{Access()}{Access()}\hspace{0.1cm}{\footnotesize\ttfamily [2/5]}}
+{\footnotesize\ttfamily constexpr Access std\+::math\+::\+Access (\begin{DoxyParamCaption}\item[{s}]{,  }\item[{cap}]{,  }\item[{allocator\+\_\+type()}]{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{namespacestd_1_1math_a470cafc86b0c49b8fe614da51fd7efa0}\label{namespacestd_1_1math_a470cafc86b0c49b8fe614da51fd7efa0}} 
+\index{std::math@{std::math}!Access@{Access}}
+\index{Access@{Access}!std::math@{std::math}}
+\doxysubsubsection{\texorpdfstring{Access()}{Access()}\hspace{0.1cm}{\footnotesize\ttfamily [3/5]}}
+{\footnotesize\ttfamily constexpr Access \+::allocator\+\_\+type std\+::math\+::\+Access (\begin{DoxyParamCaption}\item[{s}]{,  }\item[{cap}]{,  }\item[{lambda}]{,  }\item[{allocator\+\_\+type()}]{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{namespacestd_1_1math_afa858da473bdb5c62b426813e775025b}\label{namespacestd_1_1math_afa858da473bdb5c62b426813e775025b}} 
+\index{std::math@{std::math}!Access@{Access}}
+\index{Access@{Access}!std::math@{std::math}}
+\doxysubsubsection{\texorpdfstring{Access()}{Access()}\hspace{0.1cm}{\footnotesize\ttfamily [4/5]}}
+{\footnotesize\ttfamily constexpr Access \+::allocator\+\_\+type std\+::math\+::\+Access (\begin{DoxyParamCaption}\item[{s}]{,  }\item[{lambda}]{,  }\item[{allocator\+\_\+type()}]{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{namespacestd_1_1math_a39f52c16036f51ca651f8cf88cffbead}\label{namespacestd_1_1math_a39f52c16036f51ca651f8cf88cffbead}} 
+\index{std::math@{std::math}!Access@{Access}}
+\index{Access@{Access}!std::math@{std::math}}
+\doxysubsubsection{\texorpdfstring{Access()}{Access()}\hspace{0.1cm}{\footnotesize\ttfamily [5/5]}}
+{\footnotesize\ttfamily constexpr Access std\+::math\+::\+Access (\begin{DoxyParamCaption}\item[{view}]{,  }\item[{allocator\+\_\+type()}]{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{namespacestd_1_1math_ae1ad599421fe8416b1eb822d05347c42}\label{namespacestd_1_1math_ae1ad599421fe8416b1eb822d05347c42}} 
+\index{std::math@{std::math}!cap\_@{cap\_}}
+\index{cap\_@{cap\_}!std::math@{std::math}}
+\doxysubsubsection{\texorpdfstring{cap\_()}{cap\_()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily constexpr std\+::math\+::cap\+\_\+ (\begin{DoxyParamCaption}\item[{cap}]{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{namespacestd_1_1math_aa0b66cc956c8d528a37dd5fa7e3f1ece}\label{namespacestd_1_1math_aa0b66cc956c8d528a37dd5fa7e3f1ece}} 
+\index{std::math@{std::math}!cap\_@{cap\_}}
+\index{cap\_@{cap\_}!std::math@{std::math}}
+\doxysubsubsection{\texorpdfstring{cap\_()}{cap\_()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily constexpr std\+::math\+::cap\+\_\+ (\begin{DoxyParamCaption}\item[{s}]{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{namespacestd_1_1math_a381ab766e72b583fd5859302b2c643b2}\label{namespacestd_1_1math_a381ab766e72b583fd5859302b2c643b2}} 
+\index{std::math@{std::math}!conj@{conj}}
+\index{conj@{conj}!std::math@{std::math}}
+\doxysubsubsection{\texorpdfstring{conj()}{conj()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily template$<$concepts\+::matrix\+\_\+data M$>$ \\
+constexpr decltype(auto) std\+::math\+::conj (\begin{DoxyParamCaption}\item[{const M \&}]{m }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [constexpr]}, {\ttfamily [noexcept]}}
+
+\mbox{\Hypertarget{namespacestd_1_1math_a0837991426dc71210aea26716a4a32c4}\label{namespacestd_1_1math_a0837991426dc71210aea26716a4a32c4}} 
+\index{std::math@{std::math}!conj@{conj}}
+\index{conj@{conj}!std::math@{std::math}}
+\doxysubsubsection{\texorpdfstring{conj()}{conj()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily template$<$concepts\+::vector\+\_\+data V$>$ \\
+constexpr decltype(auto) std\+::math\+::conj (\begin{DoxyParamCaption}\item[{const V \&}]{v }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [constexpr]}, {\ttfamily [noexcept]}}
+
+\mbox{\Hypertarget{namespacestd_1_1math_a3034fc7b0fe9007e97ffd25827391eae}\label{namespacestd_1_1math_a3034fc7b0fe9007e97ffd25827391eae}} 
+\index{std::math@{std::math}!elems\_@{elems\_}}
+\index{elems\_@{elems\_}!std::math@{std::math}}
+\doxysubsubsection{\texorpdfstring{elems\_()}{elems\_()}}
+{\footnotesize\ttfamily constexpr std\+::math\+::elems\+\_\+ (\begin{DoxyParamCaption}\item[{allocator\+\_\+traits$<$ typename \mbox{\hyperlink{classstd_1_1math_1_1dr__tensor}{dr\+\_\+tensor}}$<$ \mbox{\hyperlink{namespacestd_1_1math_a53983004b9afa750d13aff5975152bf2}{T}}, \mbox{\hyperlink{namespacestd_1_1math_ad69af7dc6d02afb275a8d32b5a1c5c5e}{R}}, \mbox{\hyperlink{namespacestd_1_1math_a597a66936269f36c2b022a726d9f82a0}{Alloc}}, \mbox{\hyperlink{namespacestd_1_1math_a1575e00678072847b093ec1a603697d1}{L}}, \mbox{\hyperlink{namespacestd_1_1math_a39f52c16036f51ca651f8cf88cffbead}{Access}} $>$\+::allocator\+\_\+type $>$}]{\+::allocatethis-\/$>$alloc\+\_\+, this-\/$>$linear\+\_\+capacity() }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{namespacestd_1_1math_a8f1f50a23105434cfa385299f27c0fe5}\label{namespacestd_1_1math_a8f1f50a23105434cfa385299f27c0fe5}} 
+\index{std::math@{std::math}!if@{if}}
+\index{if@{if}!std::math@{std::math}}
+\doxysubsubsection{\texorpdfstring{if()}{if()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily std\+::math\+::if (\begin{DoxyParamCaption}\item[{eptr}]{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{namespacestd_1_1math_a3095cbc38a8658d81f691563a31096af}\label{namespacestd_1_1math_a3095cbc38a8658d81f691563a31096af}} 
+\index{std::math@{std::math}!if@{if}}
+\index{if@{if}!std::math@{std::math}}
+\doxysubsubsection{\texorpdfstring{if()}{if()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily constexpr std\+::math\+::if (\begin{DoxyParamCaption}\item[{lambda\+\_\+is\+\_\+noexcept}]{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [constexpr]}}
+
+\mbox{\Hypertarget{namespacestd_1_1math_ae595d72c25d55b2d8d8086ef2b65bfe2}\label{namespacestd_1_1math_ae595d72c25d55b2d8d8086ef2b65bfe2}} 
+\index{std::math@{std::math}!inner\_prod@{inner\_prod}}
+\index{inner\_prod@{inner\_prod}!std::math@{std::math}}
+\doxysubsubsection{\texorpdfstring{inner\_prod()}{inner\_prod()}}
+{\footnotesize\ttfamily template$<$concepts\+::vector\+\_\+data V1, concepts\+::vector\+\_\+data V2$>$ \\
+constexpr decltype(auto) std\+::math\+::inner\+\_\+prod (\begin{DoxyParamCaption}\item[{const V1 \&}]{v1,  }\item[{const V2 \&}]{v2 }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [constexpr]}, {\ttfamily [noexcept]}}
+
+\mbox{\Hypertarget{namespacestd_1_1math_a06371be2fd0c2fdccebac1af1fb800a9}\label{namespacestd_1_1math_a06371be2fd0c2fdccebac1af1fb800a9}} 
+\index{std::math@{std::math}!operator$\ast$@{operator$\ast$}}
+\index{operator$\ast$@{operator$\ast$}!std::math@{std::math}}
+\doxysubsubsection{\texorpdfstring{operator$\ast$()}{operator*()}\hspace{0.1cm}{\footnotesize\ttfamily [1/3]}}
+{\footnotesize\ttfamily template$<$concepts\+::matrix\+\_\+data M1, concepts\+::matrix\+\_\+data M2$>$ \\
+constexpr decltype(auto) std\+::math\+::operator$\ast$ (\begin{DoxyParamCaption}\item[{const M1 \&}]{m1,  }\item[{const M2 \&}]{m2 }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [constexpr]}, {\ttfamily [noexcept]}}
+
+\mbox{\Hypertarget{namespacestd_1_1math_ab5bc66a3683a0227bc33459b4a37bdad}\label{namespacestd_1_1math_ab5bc66a3683a0227bc33459b4a37bdad}} 
+\index{std::math@{std::math}!operator$\ast$@{operator$\ast$}}
+\index{operator$\ast$@{operator$\ast$}!std::math@{std::math}}
+\doxysubsubsection{\texorpdfstring{operator$\ast$()}{operator*()}\hspace{0.1cm}{\footnotesize\ttfamily [2/3]}}
+{\footnotesize\ttfamily template$<$concepts\+::tensor\+\_\+data T, class S $>$ \\
+constexpr decltype(auto) std\+::math\+::operator$\ast$ (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{namespacestd_1_1math_a53983004b9afa750d13aff5975152bf2}{T}} \&}]{t,  }\item[{const S \&}]{s }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [constexpr]}, {\ttfamily [noexcept]}}
+
+\mbox{\Hypertarget{namespacestd_1_1math_adf64b13ce0bd2e7f0d73fb960d419b8e}\label{namespacestd_1_1math_adf64b13ce0bd2e7f0d73fb960d419b8e}} 
+\index{std::math@{std::math}!operator$\ast$@{operator$\ast$}}
+\index{operator$\ast$@{operator$\ast$}!std::math@{std::math}}
+\doxysubsubsection{\texorpdfstring{operator$\ast$()}{operator*()}\hspace{0.1cm}{\footnotesize\ttfamily [3/3]}}
+{\footnotesize\ttfamily template$<$concepts\+::vector\+\_\+data V, concepts\+::matrix\+\_\+data M$>$ \\
+constexpr decltype(auto) std\+::math\+::operator$\ast$ (\begin{DoxyParamCaption}\item[{const V \&}]{v,  }\item[{const M \&}]{m }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [constexpr]}, {\ttfamily [noexcept]}}
+
+\mbox{\Hypertarget{namespacestd_1_1math_ad849e07d240f8950fc8349c162e31294}\label{namespacestd_1_1math_ad849e07d240f8950fc8349c162e31294}} 
+\index{std::math@{std::math}!operator$\ast$=@{operator$\ast$=}}
+\index{operator$\ast$=@{operator$\ast$=}!std::math@{std::math}}
+\doxysubsubsection{\texorpdfstring{operator$\ast$=()}{operator*=()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily template$<$concepts\+::tensor\+\_\+data T, class S $>$ \\
+constexpr \mbox{\hyperlink{namespacestd_1_1math_a53983004b9afa750d13aff5975152bf2}{T}}\& std\+::math\+::operator$\ast$= (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{namespacestd_1_1math_a53983004b9afa750d13aff5975152bf2}{T}} \&}]{t,  }\item[{const S \&}]{s }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [constexpr]}, {\ttfamily [noexcept]}}
+
+\mbox{\Hypertarget{namespacestd_1_1math_a1289e50a0256f02ec74aa0b0659bd340}\label{namespacestd_1_1math_a1289e50a0256f02ec74aa0b0659bd340}} 
+\index{std::math@{std::math}!operator$\ast$=@{operator$\ast$=}}
+\index{operator$\ast$=@{operator$\ast$=}!std::math@{std::math}}
+\doxysubsubsection{\texorpdfstring{operator$\ast$=()}{operator*=()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily template$<$concepts\+::vector\+\_\+data V, concepts\+::matrix\+\_\+data M$>$ \\
+constexpr V\& std\+::math\+::operator$\ast$= (\begin{DoxyParamCaption}\item[{V \&}]{v,  }\item[{const M \&}]{m }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [constexpr]}, {\ttfamily [noexcept]}}
+
+\mbox{\Hypertarget{namespacestd_1_1math_a0396356ee67b1983e87decdf75e74917}\label{namespacestd_1_1math_a0396356ee67b1983e87decdf75e74917}} 
+\index{std::math@{std::math}!operator+@{operator+}}
+\index{operator+@{operator+}!std::math@{std::math}}
+\doxysubsubsection{\texorpdfstring{operator+()}{operator+()}}
+{\footnotesize\ttfamily template$<$concepts\+::tensor\+\_\+data T1, concepts\+::tensor\+\_\+data T2$>$ \\
+constexpr decltype(auto) std\+::math\+::operator+ (\begin{DoxyParamCaption}\item[{const T1 \&}]{t1,  }\item[{const T2 \&}]{t2 }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [constexpr]}, {\ttfamily [noexcept]}}
+
+\mbox{\Hypertarget{namespacestd_1_1math_a137f3e3e3397561fa5f2e9a4775bf26a}\label{namespacestd_1_1math_a137f3e3e3397561fa5f2e9a4775bf26a}} 
+\index{std::math@{std::math}!operator+=@{operator+=}}
+\index{operator+=@{operator+=}!std::math@{std::math}}
+\doxysubsubsection{\texorpdfstring{operator+=()}{operator+=()}}
+{\footnotesize\ttfamily template$<$concepts\+::tensor\+\_\+data T1, concepts\+::tensor\+\_\+data T2$>$ \\
+constexpr T1\& std\+::math\+::operator+= (\begin{DoxyParamCaption}\item[{T1 \&}]{t1,  }\item[{const T2 \&}]{t2 }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [constexpr]}, {\ttfamily [noexcept]}}
+
+\mbox{\Hypertarget{namespacestd_1_1math_ae0ebbca9368067db0126a9ebbfa28040}\label{namespacestd_1_1math_ae0ebbca9368067db0126a9ebbfa28040}} 
+\index{std::math@{std::math}!operator-\/@{operator-\/}}
+\index{operator-\/@{operator-\/}!std::math@{std::math}}
+\doxysubsubsection{\texorpdfstring{operator-\/()}{operator-()}}
+{\footnotesize\ttfamily template$<$concepts\+::tensor\+\_\+data T$>$ \\
+constexpr decltype(auto) std\+::math\+::operator-\/ (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{namespacestd_1_1math_a53983004b9afa750d13aff5975152bf2}{T}} \&}]{t }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [constexpr]}, {\ttfamily [noexcept]}}
+
+\mbox{\Hypertarget{namespacestd_1_1math_a125d6e852557b79b0b33eb1d2b3dc167}\label{namespacestd_1_1math_a125d6e852557b79b0b33eb1d2b3dc167}} 
+\index{std::math@{std::math}!operator-\/=@{operator-\/=}}
+\index{operator-\/=@{operator-\/=}!std::math@{std::math}}
+\doxysubsubsection{\texorpdfstring{operator-\/=()}{operator-=()}}
+{\footnotesize\ttfamily template$<$concepts\+::tensor\+\_\+data T1, concepts\+::tensor\+\_\+data T2$>$ \\
+constexpr T1\& std\+::math\+::operator-\/= (\begin{DoxyParamCaption}\item[{T1 \&}]{t1,  }\item[{const T2 \&}]{t2 }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [constexpr]}, {\ttfamily [noexcept]}}
+
+\mbox{\Hypertarget{namespacestd_1_1math_a6fba4c921e2dc317387f2f0d8eb1f828}\label{namespacestd_1_1math_a6fba4c921e2dc317387f2f0d8eb1f828}} 
+\index{std::math@{std::math}!operator/@{operator/}}
+\index{operator/@{operator/}!std::math@{std::math}}
+\doxysubsubsection{\texorpdfstring{operator/()}{operator/()}}
+{\footnotesize\ttfamily template$<$concepts\+::tensor\+\_\+data T, class S $>$ \\
+constexpr decltype(auto) std\+::math\+::operator/ (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{namespacestd_1_1math_a53983004b9afa750d13aff5975152bf2}{T}} \&}]{t,  }\item[{const S \&}]{s }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [constexpr]}, {\ttfamily [noexcept]}}
+
+\mbox{\Hypertarget{namespacestd_1_1math_a1815325bba1c222186bc522ed16084d3}\label{namespacestd_1_1math_a1815325bba1c222186bc522ed16084d3}} 
+\index{std::math@{std::math}!operator/=@{operator/=}}
+\index{operator/=@{operator/=}!std::math@{std::math}}
+\doxysubsubsection{\texorpdfstring{operator/=()}{operator/=()}}
+{\footnotesize\ttfamily template$<$concepts\+::tensor\+\_\+data T, class S $>$ \\
+constexpr \mbox{\hyperlink{namespacestd_1_1math_a53983004b9afa750d13aff5975152bf2}{T}}\& std\+::math\+::operator/= (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{namespacestd_1_1math_a53983004b9afa750d13aff5975152bf2}{T}} \&}]{t,  }\item[{const S \&}]{s }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [constexpr]}, {\ttfamily [noexcept]}}
+
+\mbox{\Hypertarget{namespacestd_1_1math_a16d9bb61f2dd78e168c6318baed2625b}\label{namespacestd_1_1math_a16d9bb61f2dd78e168c6318baed2625b}} 
+\index{std::math@{std::math}!outer\_prod@{outer\_prod}}
+\index{outer\_prod@{outer\_prod}!std::math@{std::math}}
+\doxysubsubsection{\texorpdfstring{outer\_prod()}{outer\_prod()}}
+{\footnotesize\ttfamily template$<$concepts\+::vector\+\_\+data V1, concepts\+::vector\+\_\+data V2$>$ \\
+constexpr decltype(auto) std\+::math\+::outer\+\_\+prod (\begin{DoxyParamCaption}\item[{const V1 \&}]{v1,  }\item[{const V2 \&}]{v2 }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [constexpr]}, {\ttfamily [noexcept]}}
+
+\mbox{\Hypertarget{namespacestd_1_1math_a05c21a980b5b76e44c3fdadd1c74e487}\label{namespacestd_1_1math_a05c21a980b5b76e44c3fdadd1c74e487}} 
+\index{std::math@{std::math}!requires@{requires}}
+\index{requires@{requires}!std::math@{std::math}}
+\doxysubsubsection{\texorpdfstring{requires()}{requires()}\hspace{0.1cm}{\footnotesize\ttfamily [1/11]}}
+{\footnotesize\ttfamily template$<$class T , class L , class A , size\+\_\+t ... Ds$>$ \\
+std\+::math\+::requires (\begin{DoxyParamCaption}\item[{(Ds $>$=0) \&\&}]{... }\end{DoxyParamCaption})}
+
+
+
+Fixed-\/size, fixed-\/capacity tensor. 
+
+
+\begin{DoxyTemplParams}{Template Parameters}
+{\em T} & element\+\_\+type \\
+\hline
+{\em L} & layout defines the ordering of elements in memory \\
+\hline
+{\em A} & accessor policy defines how elements are accessed \\
+\hline
+{\em Ds...} & length of each dimension of the tensor \\
+\hline
+\end{DoxyTemplParams}
+Type used to define memory layout
+
+Type used to define access into memory
+
+Type contained by the tensor
+
+Type returned by const index access
+
+Type used for indexing
+
+Type used for size along any dimension
+
+Type used to express size of tensor
+
+Type used to represent a node in the tensor
+
+Type used to const view memory
+
+Type used to view memory
+
+Type used to portray tensor as an N dimensional view
+
+Type returned by mutable index access
+
+mutable view of a subtensor
+
+const view of a subtensor
+
+Rebind defines a type for a rebinding a fized size tensor to the new type parameters 
+\begin{DoxyTemplParams}{Template Parameters}
+{\em Value\+Type} & rebound value type \\
+\hline
+{\em Layout\+Type} & rebound layout policy \\
+\hline
+{\em Access\+Type} & rebound access policy\\
+\hline
+\end{DoxyTemplParams}
+Helper for defining rebound tensor type 
+\begin{DoxyTemplParams}{Template Parameters}
+{\em Value\+Type} & rebound value type \\
+\hline
+{\em Layout\+Type} & rebound layout policy \\
+\hline
+{\em Access\+Type} & rebound access policy\\
+\hline
+\end{DoxyTemplParams}
+Destructor
+
+Default constructor
+
+Default move constructor 
+\begin{DoxyParams}{Parameters}
+{\em fs\+\_\+tensor} & to be moved\\
+\hline
+\end{DoxyParams}
+Default copy constructor 
+\begin{DoxyParams}{Parameters}
+{\em fs\+\_\+tensor} & to be copied\\
+\hline
+\end{DoxyParams}
+Template copy constructor 
+\begin{DoxyTemplParams}{Template Parameters}
+{\em tensor} & to be copied\\
+\hline
+\end{DoxyTemplParams}
+Construct from a view 
+\begin{DoxyTemplParams}{Template Parameters}
+{\em An} & N dimensional view\\
+\hline
+\end{DoxyTemplParams}
+Construct by applying lambda to every element in the tensor 
+\begin{DoxyTemplParams}{Template Parameters}
+{\em lambda} & lambda expression encapsulating operation to be performed on each element\\
+\hline
+\end{DoxyTemplParams}
+Default move assignment 
+\begin{DoxyParams}{Parameters}
+{\em fs\+\_\+tensor} & to be moved \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+self
+\end{DoxyReturn}
+Default copy assignment 
+\begin{DoxyParams}{Parameters}
+{\em fs\+\_\+tensor} & to be copied \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+self
+\end{DoxyReturn}
+Template copy assignment 
+\begin{DoxyTemplParams}{Template Parameters}
+{\em type} & of tensor to be copied \\
+\hline
+\end{DoxyTemplParams}
+
+\begin{DoxyParams}{Parameters}
+{\em tensor} & to be copied \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+self
+\end{DoxyReturn}
+Construct from a two dimensional view 
+\begin{DoxyTemplParams}{Template Parameters}
+{\em type} & of view to be copied \\
+\hline
+\end{DoxyTemplParams}
+
+\begin{DoxyParams}{Parameters}
+{\em view} & to be copied \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+self
+\end{DoxyReturn}
+Returns the current number of (rows,columns,depth,etc..) \begin{DoxyReturn}{Returns}
+number of (rows,columns)
+\end{DoxyReturn}
+Returns the current capacity of (rows,columns,depth,etc...) \begin{DoxyReturn}{Returns}
+capacity of (rows,columns)
+\end{DoxyReturn}
+returns a const N dimensional span of extents(\+Ds...) \begin{DoxyReturn}{Returns}
+const N dimensional span of extents(\+Ds...) ~\newline
+
+
+mutable N dimensional span of extents(\+Ds...) returns a mutable N dimensional span of extents(\+Ds...)
+\end{DoxyReturn}
+returns a const N dimensional span of extents(\+Ds...) \begin{DoxyReturn}{Returns}
+const N dimensional span of extents(\+Ds...) ~\newline
+
+\end{DoxyReturn}
+Returns the value at (indices...) without index bounds checking 
+\begin{DoxyParams}{Parameters}
+{\em indices} & set indices representing a node in the tensor \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+value at row i, column j, depth k, etc.
+\end{DoxyReturn}
+Returns the value at (indices...) with index bounds checking 
+\begin{DoxyParams}{Parameters}
+{\em indices} & set indices representing a node in the tensor \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+value at row i, column j, depth k, etc.
+\end{DoxyReturn}
+Returns a const vector view 
+\begin{DoxyTemplParams}{Template Parameters}
+{\em ...\+Slice\+Args} & argument types used to get a const vector view \\
+\hline
+\end{DoxyTemplParams}
+
+\begin{DoxyParams}{Parameters}
+{\em ...\+args} & aguments to get a const vector view \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+const vector view
+\end{DoxyReturn}
+Returns a const matrix view 
+\begin{DoxyTemplParams}{Template Parameters}
+{\em ...\+Slice\+Args} & argument types used to get a const matrix view \\
+\hline
+\end{DoxyTemplParams}
+
+\begin{DoxyParams}{Parameters}
+{\em ...\+args} & aguments to get a const matrix view \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+const matrix view
+\end{DoxyReturn}
+Returns a const view of the specified subtensor 
+\begin{DoxyParams}{Parameters}
+{\em start} & tuple start of subtensor \\
+\hline
+{\em end} & tuple end of subtensor \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+const view of the specified subtensor
+\end{DoxyReturn}
+Returns a mutable value at (indices...) without index bounds checking 
+\begin{DoxyParams}{Parameters}
+{\em indices} & set indices representing a node in the tensor \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+mutable value at row i, column j, depth k, etc.
+\end{DoxyReturn}
+Returns a mutable value at (indices...) with index bounds checking 
+\begin{DoxyParams}{Parameters}
+{\em indices} & set indices representing a node in the tensor \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+mutable value at row i, column j, depth k, etc.
+\end{DoxyReturn}
+Returns a vector view 
+\begin{DoxyTemplParams}{Template Parameters}
+{\em ...\+Slice\+Args} & argument types used to get a vector view \\
+\hline
+\end{DoxyTemplParams}
+
+\begin{DoxyParams}{Parameters}
+{\em ...\+args} & aguments to get a vector view \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+vector view
+\end{DoxyReturn}
+Returns a matrix view 
+\begin{DoxyTemplParams}{Template Parameters}
+{\em ...\+Slice\+Args} & argument types used to get a matrix view \\
+\hline
+\end{DoxyTemplParams}
+
+\begin{DoxyParams}{Parameters}
+{\em ...\+args} & aguments to get a matrix view \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+matrix view
+\end{DoxyReturn}
+Returns a mutable view of the specified subtensor 
+\begin{DoxyParams}{Parameters}
+{\em start} & tuple start of subtensor \\
+\hline
+{\em end} & tuple end of subtensor \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+mutable view of the specified subtensor
+\end{DoxyReturn}
+Number of elements in array
+
+Array of elements\mbox{\Hypertarget{namespacestd_1_1math_a54934c3124920b8de72805e41c41b54c}\label{namespacestd_1_1math_a54934c3124920b8de72805e41c41b54c}} 
+\index{std::math@{std::math}!requires@{requires}}
+\index{requires@{requires}!std::math@{std::math}}
+\doxysubsubsection{\texorpdfstring{requires()}{requires()}\hspace{0.1cm}{\footnotesize\ttfamily [2/11]}}
+{\footnotesize\ttfamily template$<$class T , size\+\_\+t R, size\+\_\+t C, class L , class A $>$ \\
+requires ( ( \mbox{\hyperlink{namespacestd_1_1math_ad69af7dc6d02afb275a8d32b5a1c5c5e}{R}} $>$= 0 ) \&\& ( \mbox{\hyperlink{namespacestd_1_1math_a8c735c3d5e54895143b53108bce94db1}{C}} $>$= 0 ) ) class fs\+\_\+matrix std\+::math\+::requires (\begin{DoxyParamCaption}\item[{(\mbox{\hyperlink{namespacestd_1_1math_ad69af7dc6d02afb275a8d32b5a1c5c5e}{R}} $>$=0) \&\&(\mbox{\hyperlink{namespacestd_1_1math_a8c735c3d5e54895143b53108bce94db1}{C}} $>$=0)}]{ }\end{DoxyParamCaption})}
+
+
+
+Fixed-\/size, fixed-\/capacity matrix. 
+
+
+\begin{DoxyTemplParams}{Template Parameters}
+{\em T} & element\+\_\+type \\
+\hline
+{\em R} & number of rows \\
+\hline
+{\em C} & number of columns \\
+\hline
+{\em L} & layout defines the ordering of elements in memory \\
+\hline
+{\em A} & accessor policy defines how elements are accessed \\
+\hline
+\end{DoxyTemplParams}
+\mbox{\Hypertarget{namespacestd_1_1math_a5f626a1e3803d0c0fab85f17a652afdf}\label{namespacestd_1_1math_a5f626a1e3803d0c0fab85f17a652afdf}} 
+\index{std::math@{std::math}!requires@{requires}}
+\index{requires@{requires}!std::math@{std::math}}
+\doxysubsubsection{\texorpdfstring{requires()}{requires()}\hspace{0.1cm}{\footnotesize\ttfamily [3/11]}}
+{\footnotesize\ttfamily template$<$class T , size\+\_\+t R, size\+\_\+t C, class L , class A $>$ \\
+std\+::math\+::requires (\begin{DoxyParamCaption}\item[{(\mbox{\hyperlink{namespacestd_1_1math_ad69af7dc6d02afb275a8d32b5a1c5c5e}{R}} $>$=0) \&\&(\mbox{\hyperlink{namespacestd_1_1math_a8c735c3d5e54895143b53108bce94db1}{C}} $>$=0)}]{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{namespacestd_1_1math_a7dcb6143a01d5b65ee47e923ca7c552c}\label{namespacestd_1_1math_a7dcb6143a01d5b65ee47e923ca7c552c}} 
+\index{std::math@{std::math}!requires@{requires}}
+\index{requires@{requires}!std::math@{std::math}}
+\doxysubsubsection{\texorpdfstring{requires()}{requires()}\hspace{0.1cm}{\footnotesize\ttfamily [4/11]}}
+{\footnotesize\ttfamily template$<$class MDS $>$ \\
+std\+::math\+::requires (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{namespacestd_1_1math_1_1detail_a25550b69c908000165785e0db4b8d3bf}{detail\+::is\+\_\+mdspan\+\_\+v}}$<$ MDS $>$ \&\&}]{MDS\+::extents\+\_\+type\+::rank()==1) \&\&\+MDS\+::is\+\_\+always\+\_\+unique( }\end{DoxyParamCaption}) const}
+
+
+
+Vector view. 
+
+
+\begin{DoxyTemplParams}{Template Parameters}
+{\em MDS} & mdspan \\
+\hline
+\end{DoxyTemplParams}
+\mbox{\Hypertarget{namespacestd_1_1math_aed065ecd643353dbe56a10f250edd082}\label{namespacestd_1_1math_aed065ecd643353dbe56a10f250edd082}} 
+\index{std::math@{std::math}!requires@{requires}}
+\index{requires@{requires}!std::math@{std::math}}
+\doxysubsubsection{\texorpdfstring{requires()}{requires()}\hspace{0.1cm}{\footnotesize\ttfamily [5/11]}}
+{\footnotesize\ttfamily template$<$class MDS $>$ \\
+std\+::math\+::requires (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{namespacestd_1_1math_1_1detail_a25550b69c908000165785e0db4b8d3bf}{detail\+::is\+\_\+mdspan\+\_\+v}}$<$ MDS $>$ \&\&}]{MDS\+::extents\+\_\+type\+::rank()==1) \&\&\+MDS\+::is\+\_\+always\+\_\+unique( }\end{DoxyParamCaption}) const \&}
+
+\mbox{\Hypertarget{namespacestd_1_1math_a92b9b451191cfc215b3fe106371d27eb}\label{namespacestd_1_1math_a92b9b451191cfc215b3fe106371d27eb}} 
+\index{std::math@{std::math}!requires@{requires}}
+\index{requires@{requires}!std::math@{std::math}}
+\doxysubsubsection{\texorpdfstring{requires()}{requires()}\hspace{0.1cm}{\footnotesize\ttfamily [6/11]}}
+{\footnotesize\ttfamily template$<$class MDS $>$ \\
+std\+::math\+::requires (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{namespacestd_1_1math_1_1detail_a25550b69c908000165785e0db4b8d3bf}{detail\+::is\+\_\+mdspan\+\_\+v}}$<$ MDS $>$ \&\&}]{MDS\+::extents\+\_\+type\+::rank()==2) \&\&\+MDS\+::is\+\_\+always\+\_\+unique( }\end{DoxyParamCaption}) const \&}
+
+\mbox{\Hypertarget{namespacestd_1_1math_a833a9f77e17ddda50f441337daa66c52}\label{namespacestd_1_1math_a833a9f77e17ddda50f441337daa66c52}} 
+\index{std::math@{std::math}!requires@{requires}}
+\index{requires@{requires}!std::math@{std::math}}
+\doxysubsubsection{\texorpdfstring{requires()}{requires()}\hspace{0.1cm}{\footnotesize\ttfamily [7/11]}}
+{\footnotesize\ttfamily template$<$class MDS $>$ \\
+std\+::math\+::requires (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{namespacestd_1_1math_1_1detail_a25550b69c908000165785e0db4b8d3bf}{detail\+::is\+\_\+mdspan\+\_\+v}}$<$ MDS $>$ \&\&}]{MDS\+::extents\+\_\+type\+::rank()==2) \&\&\+MDS\+::is\+\_\+always\+\_\+unique( }\end{DoxyParamCaption}) const}
+
+
+
+Matrix view. 
+
+
+\begin{DoxyTemplParams}{Template Parameters}
+{\em MDS} & mdspan \\
+\hline
+\end{DoxyTemplParams}
+\mbox{\Hypertarget{namespacestd_1_1math_ac7f68f8e37e3a02eb3dc485c01691b99}\label{namespacestd_1_1math_ac7f68f8e37e3a02eb3dc485c01691b99}} 
+\index{std::math@{std::math}!requires@{requires}}
+\index{requires@{requires}!std::math@{std::math}}
+\doxysubsubsection{\texorpdfstring{requires()}{requires()}\hspace{0.1cm}{\footnotesize\ttfamily [8/11]}}
+{\footnotesize\ttfamily template$<$class MDS $>$ \\
+std\+::math\+::requires (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{namespacestd_1_1math_1_1detail_a25550b69c908000165785e0db4b8d3bf}{detail\+::is\+\_\+mdspan\+\_\+v}}$<$ MDS $>$ \&\&}]{MDS\+::is\+\_\+always\+\_\+unique() }\end{DoxyParamCaption})}
+
+
+
+Tensor view. 
+
+
+\begin{DoxyTemplParams}{Template Parameters}
+{\em MDS} & mdspan \\
+\hline
+\end{DoxyTemplParams}
+Type used to define memory layout
+
+Type used to define access into memory
+
+Type contained by the tensor view
+
+Type returned by const index access
+
+Type used to express size of tensor
+
+Type used for indexing
+
+Type used for size along any dimension
+
+Type used to represent a node in the tensor
+
+Type used to const view memory
+
+Type used to view memory
+
+Type used to portray tensor as an N dimensional view
+
+Type returned by mutable index access
+
+mutable view of a subtensor
+
+const view of a subtensor
+
+Default destructor
+
+Default constructor
+
+Default move constructor 
+\begin{DoxyParams}{Parameters}
+{\em tensor\+\_\+view} & to be moved\\
+\hline
+\end{DoxyParams}
+Default copy constructor 
+\begin{DoxyParams}{Parameters}
+{\em tensor\+\_\+view} & to be copied\\
+\hline
+\end{DoxyParams}
+Construct from view 
+\begin{DoxyParams}{Parameters}
+{\em view} & to be constructed from\\
+\hline
+\end{DoxyParams}
+Default move assignment 
+\begin{DoxyParams}{Parameters}
+{\em tensor\+\_\+view} & to be moved \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+self
+\end{DoxyReturn}
+Default copy assignment 
+\begin{DoxyParams}{Parameters}
+{\em tensor\+\_\+view} & to be copied \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+self
+\end{DoxyReturn}
+Assign from view 
+\begin{DoxyParams}{Parameters}
+{\em view} & to be assigned \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+self
+\end{DoxyReturn}
+Returns the current number of (rows,columns,depth,etc.) \begin{DoxyReturn}{Returns}
+number of (rows,columns,depth,etc.)
+\end{DoxyReturn}
+Returns the current capacity of (rows,columns,depth,etc.) \begin{DoxyReturn}{Returns}
+capacity of (rows,columns,depth,etc.)
+\end{DoxyReturn}
+Returns the value at (indices...) 
+\begin{DoxyParams}{Parameters}
+{\em indices} & set indices representing a node in the tensor \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+value at row i, column j, depth k, etc.
+\end{DoxyReturn}
+Returns the value at (indices...) 
+\begin{DoxyParams}{Parameters}
+{\em indices} & set indices representing a node in the tensor \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+value at row i, column j, depth k, etc.
+\end{DoxyReturn}
+Returns a const view of the specified subtensor 
+\begin{DoxyParams}{Parameters}
+{\em start} & tuple start of subtensor \\
+\hline
+{\em end} & tuple end of subtensor \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+const view of the specified subtensor
+\end{DoxyReturn}
+Returns a mutable value at (indices...) 
+\begin{DoxyParams}{Parameters}
+{\em indices} & set indices representing a node in the tensor \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+mutable value at row i, column j, depth k, etc.
+\end{DoxyReturn}
+Returns a mutable value at (indices...) 
+\begin{DoxyParams}{Parameters}
+{\em indices} & set indices representing a node in the tensor \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+mutable value at row i, column j, depth k, etc.
+\end{DoxyReturn}
+Returns a mutable view of the specified subtensor 
+\begin{DoxyParams}{Parameters}
+{\em start} & tuple start of subtensor \\
+\hline
+{\em end} & tuple end of subtensor \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+mutable view of the specified subtensor
+\end{DoxyReturn}
+returns a const view \begin{DoxyReturn}{Returns}
+const view
+\end{DoxyReturn}
+the view \begin{DoxyReturn}{Returns}
+returns the view
+\end{DoxyReturn}
+returns a const view \begin{DoxyReturn}{Returns}
+const view
+\end{DoxyReturn}
+non-\/owning view of the elements in the tensor\mbox{\Hypertarget{namespacestd_1_1math_aedde45f730f0ba98e60f9a3f8711b54a}\label{namespacestd_1_1math_aedde45f730f0ba98e60f9a3f8711b54a}} 
+\index{std::math@{std::math}!requires@{requires}}
+\index{requires@{requires}!std::math@{std::math}}
+\doxysubsubsection{\texorpdfstring{requires()}{requires()}\hspace{0.1cm}{\footnotesize\ttfamily [9/11]}}
+{\footnotesize\ttfamily template$<$class MDS $>$ \\
+std\+::math\+::requires (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{namespacestd_1_1math_1_1detail_a25550b69c908000165785e0db4b8d3bf}{detail\+::is\+\_\+mdspan\+\_\+v}}$<$ MDS $>$ \&\&}]{MDS\+::is\+\_\+always\+\_\+unique() }\end{DoxyParamCaption}) const \&}
+
+\mbox{\Hypertarget{namespacestd_1_1math_a480ffe329f3de686b3da9bbf9a8045c4}\label{namespacestd_1_1math_a480ffe329f3de686b3da9bbf9a8045c4}} 
+\index{std::math@{std::math}!requires@{requires}}
+\index{requires@{requires}!std::math@{std::math}}
+\doxysubsubsection{\texorpdfstring{requires()}{requires()}\hspace{0.1cm}{\footnotesize\ttfamily [10/11]}}
+{\footnotesize\ttfamily template$<$class T , size\+\_\+t N, class L , class A $>$ \\
+requires ( \mbox{\hyperlink{namespacestd_1_1math_a5e61c4699154de320e85e7a1148e3b81}{N}} $>$= 0 ) class fs\+\_\+vector std\+::math\+::requires (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{namespacestd_1_1math_a5e61c4699154de320e85e7a1148e3b81}{N}} $>$=}]{0 }\end{DoxyParamCaption})}
+
+
+
+Fixed-\/size, fixed-\/capacity vector. 
+
+
+\begin{DoxyTemplParams}{Template Parameters}
+{\em T} & element\+\_\+type \\
+\hline
+{\em N} & number of elements \\
+\hline
+{\em L} & layout defines the ordering of elements in memory \\
+\hline
+{\em A} & accessor policy defines how elements are accessed \\
+\hline
+\end{DoxyTemplParams}
+\mbox{\Hypertarget{namespacestd_1_1math_a58cab628ee4c0da63b7c5ded36ff1e7c}\label{namespacestd_1_1math_a58cab628ee4c0da63b7c5ded36ff1e7c}} 
+\index{std::math@{std::math}!requires@{requires}}
+\index{requires@{requires}!std::math@{std::math}}
+\doxysubsubsection{\texorpdfstring{requires()}{requires()}\hspace{0.1cm}{\footnotesize\ttfamily [11/11]}}
+{\footnotesize\ttfamily template$<$class T , size\+\_\+t N, class L , class A $>$ \\
+std\+::math\+::requires (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{namespacestd_1_1math_a5e61c4699154de320e85e7a1148e3b81}{N}} $>$=}]{0 }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{namespacestd_1_1math_afb774a78b33e4013a8c453dd5a2bf789}\label{namespacestd_1_1math_afb774a78b33e4013a8c453dd5a2bf789}} 
+\index{std::math@{std::math}!subvector@{subvector}}
+\index{subvector@{subvector}!std::math@{std::math}}
+\doxysubsubsection{\texorpdfstring{subvector()}{subvector()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classstd_1_1math_1_1dr__tensor}{std\+::math\+::dr\+\_\+tensor}}$<$ \mbox{\hyperlink{namespacestd_1_1math_a53983004b9afa750d13aff5975152bf2}{T}}, \mbox{\hyperlink{namespacestd_1_1math_ad69af7dc6d02afb275a8d32b5a1c5c5e}{R}}, \mbox{\hyperlink{namespacestd_1_1math_a597a66936269f36c2b022a726d9f82a0}{Alloc}}, \mbox{\hyperlink{namespacestd_1_1math_a1575e00678072847b093ec1a603697d1}{L}}, \mbox{\hyperlink{namespacestd_1_1math_a39f52c16036f51ca651f8cf88cffbead}{Access}} $>$ reference\+\_\+type \mbox{\hyperlink{classstd_1_1math_1_1dr__tensor_a3e4b6e300ca1af8ae62d51cc10b81340}{dr\+\_\+tensor\+::at}} Index\+Type indices \mbox{\hyperlink{namespacestd_1_1math_a99301a8e16b7c6c884465173b22852a5}{requires}} sizeof Index\+Type \mbox{\hyperlink{namespacestd_1_1math_ad69af7dc6d02afb275a8d32b5a1c5c5e}{R}} is\+\_\+convertible\+\_\+v std\+::math\+::subvector (\begin{DoxyParamCaption}\item[{Slice\+Args ...}]{args }\end{DoxyParamCaption}) const}
+
+\mbox{\Hypertarget{namespacestd_1_1math_aad19d9284c196e0f59cf9a4e03794b99}\label{namespacestd_1_1math_aad19d9284c196e0f59cf9a4e03794b99}} 
+\index{std::math@{std::math}!trans@{trans}}
+\index{trans@{trans}!std::math@{std::math}}
+\doxysubsubsection{\texorpdfstring{trans()}{trans()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily template$<$concepts\+::matrix\+\_\+data M$>$ \\
+constexpr decltype(auto) std\+::math\+::trans (\begin{DoxyParamCaption}\item[{const M \&}]{m }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [constexpr]}, {\ttfamily [noexcept]}}
+
+\mbox{\Hypertarget{namespacestd_1_1math_abda6cbd6bfc2db633b23c3be56c2657c}\label{namespacestd_1_1math_abda6cbd6bfc2db633b23c3be56c2657c}} 
+\index{std::math@{std::math}!trans@{trans}}
+\index{trans@{trans}!std::math@{std::math}}
+\doxysubsubsection{\texorpdfstring{trans()}{trans()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily template$<$concepts\+::vector\+\_\+data V$>$ \\
+constexpr decltype(auto) std\+::math\+::trans (\begin{DoxyParamCaption}\item[{const V \&}]{v }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [constexpr]}, {\ttfamily [noexcept]}}
+
+\mbox{\Hypertarget{namespacestd_1_1math_a3a55e3fe5a34b1a59d7fbdeaa66a263b}\label{namespacestd_1_1math_a3a55e3fe5a34b1a59d7fbdeaa66a263b}} 
+\index{std::math@{std::math}!view\_@{view\_}}
+\index{view\_@{view\_}!std::math@{std::math}}
+\doxysubsubsection{\texorpdfstring{view\_()}{view\_()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily constexpr std\+::math\+::view\+\_\+ (\begin{DoxyParamCaption}\item[{this-\/$>$}]{create\+\_\+views }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{namespacestd_1_1math_a684453cb5990601008c3a24f6fe6413f}\label{namespacestd_1_1math_a684453cb5990601008c3a24f6fe6413f}} 
+\index{std::math@{std::math}!view\_@{view\_}}
+\index{view\_@{view\_}!std::math@{std::math}}
+\doxysubsubsection{\texorpdfstring{view\_()}{view\_()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily constexpr std\+::math\+::view\+\_\+ (\begin{DoxyParamCaption}\item[{this-\/$>$}]{create\+\_\+viewthis-\/$>$cap\+\_\+ }\end{DoxyParamCaption})}
+
+
+
+\doxysubsection{Variable Documentation}
+\mbox{\Hypertarget{namespacestd_1_1math_ac0d063c758dec5487937bacbf92c3b51}\label{namespacestd_1_1math_ac0d063c758dec5487937bacbf92c3b51}} 
+\index{std::math@{std::math}!\_\_pad0\_\_@{\_\_pad0\_\_}}
+\index{\_\_pad0\_\_@{\_\_pad0\_\_}!std::math@{std::math}}
+\doxysubsubsection{\texorpdfstring{\_\_pad0\_\_}{\_\_pad0\_\_}}
+{\footnotesize\ttfamily std\+::math\+::\+\_\+\+\_\+pad0\+\_\+\+\_\+}
+
+\mbox{\Hypertarget{namespacestd_1_1math_ad78bff74a4eb2941aeeff67e7fc0b7e3}\label{namespacestd_1_1math_ad78bff74a4eb2941aeeff67e7fc0b7e3}} 
+\index{std::math@{std::math}!\_\_pad1\_\_@{\_\_pad1\_\_}}
+\index{\_\_pad1\_\_@{\_\_pad1\_\_}!std::math@{std::math}}
+\doxysubsubsection{\texorpdfstring{\_\_pad1\_\_}{\_\_pad1\_\_}}
+{\footnotesize\ttfamily std\+::math\+::\+\_\+\+\_\+pad1\+\_\+\+\_\+}
+
+\mbox{\Hypertarget{namespacestd_1_1math_ae980c721f2e9e690b55c4a717116d108}\label{namespacestd_1_1math_ae980c721f2e9e690b55c4a717116d108}} 
+\index{std::math@{std::math}!\_\_pad2\_\_@{\_\_pad2\_\_}}
+\index{\_\_pad2\_\_@{\_\_pad2\_\_}!std::math@{std::math}}
+\doxysubsubsection{\texorpdfstring{\_\_pad2\_\_}{\_\_pad2\_\_}}
+{\footnotesize\ttfamily std\+::math\+::\+\_\+\+\_\+pad2\+\_\+\+\_\+}
+
+\mbox{\Hypertarget{namespacestd_1_1math_a1d863f98fd39f1caaa7200e593184c83}\label{namespacestd_1_1math_a1d863f98fd39f1caaa7200e593184c83}} 
+\index{std::math@{std::math}!\_\_pad3\_\_@{\_\_pad3\_\_}}
+\index{\_\_pad3\_\_@{\_\_pad3\_\_}!std::math@{std::math}}
+\doxysubsubsection{\texorpdfstring{\_\_pad3\_\_}{\_\_pad3\_\_}}
+{\footnotesize\ttfamily std\+::math\+::\+\_\+\+\_\+pad3\+\_\+\+\_\+}
+
+\mbox{\Hypertarget{namespacestd_1_1math_aec36a4ff94b66aff54672870305664a3}\label{namespacestd_1_1math_aec36a4ff94b66aff54672870305664a3}} 
+\index{std::math@{std::math}!A@{A}}
+\index{A@{A}!std::math@{std::math}}
+\doxysubsubsection{\texorpdfstring{A}{A}}
+{\footnotesize\ttfamily std\+::math\+::A}
+
+\mbox{\Hypertarget{namespacestd_1_1math_a597a66936269f36c2b022a726d9f82a0}\label{namespacestd_1_1math_a597a66936269f36c2b022a726d9f82a0}} 
+\index{std::math@{std::math}!Alloc@{Alloc}}
+\index{Alloc@{Alloc}!std::math@{std::math}}
+\doxysubsubsection{\texorpdfstring{Alloc}{Alloc}}
+{\footnotesize\ttfamily constexpr std\+::math\+::\+Alloc}
+
+\mbox{\Hypertarget{namespacestd_1_1math_a8c735c3d5e54895143b53108bce94db1}\label{namespacestd_1_1math_a8c735c3d5e54895143b53108bce94db1}} 
+\index{std::math@{std::math}!C@{C}}
+\index{C@{C}!std::math@{std::math}}
+\doxysubsubsection{\texorpdfstring{C}{C}}
+{\footnotesize\ttfamily std\+::math\+::C}
+
+\mbox{\Hypertarget{namespacestd_1_1math_a62cb5abd4d6c70b634fe480d563f86fd}\label{namespacestd_1_1math_a62cb5abd4d6c70b634fe480d563f86fd}} 
+\index{std::math@{std::math}!ctor@{ctor}}
+\index{ctor@{ctor}!std::math@{std::math}}
+\doxysubsubsection{\texorpdfstring{ctor}{ctor}}
+{\footnotesize\ttfamily auto std\+::math\+::ctor}
+
+{\bfseries Initial value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{= [\textcolor{keyword}{this},\&lambda,\&eptr]< \textcolor{keyword}{class }... SizeType >( SizeType ... indices ) constexpr noexcept}
+\DoxyCodeLine{    \{}
+\DoxyCodeLine{      \textcolor{keywordflow}{try}}
+\DoxyCodeLine{      \{}
+\DoxyCodeLine{        this-\/>\mbox{\hyperlink{dynamic__tensor_8hpp_a656066318a49f8eaf777493886f26a2c}{underlying\_span}}()(indices...) = lambda(indices...);}
+\DoxyCodeLine{      \}}
+\DoxyCodeLine{      \textcolor{keywordflow}{catch} ( ... )}
+\DoxyCodeLine{      \{}
+\DoxyCodeLine{        eptr = current\_exception();}
+\DoxyCodeLine{      \}}
+\DoxyCodeLine{    \}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{namespacestd_1_1math_a6e31b51db9a866353d094a3111e3c188}\label{namespacestd_1_1math_a6e31b51db9a866353d094a3111e3c188}} 
+\index{std::math@{std::math}!else@{else}}
+\index{else@{else}!std::math@{std::math}}
+\doxysubsubsection{\texorpdfstring{else}{else}}
+{\footnotesize\ttfamily std\+::math\+::else}
+
+{\bfseries Initial value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\{}
+\DoxyCodeLine{    }
+\DoxyCodeLine{    exception\_ptr eptr}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{namespacestd_1_1math_a1575e00678072847b093ec1a603697d1}\label{namespacestd_1_1math_a1575e00678072847b093ec1a603697d1}} 
+\index{std::math@{std::math}!L@{L}}
+\index{L@{L}!std::math@{std::math}}
+\doxysubsubsection{\texorpdfstring{L}{L}}
+{\footnotesize\ttfamily constexpr std\+::math\+::L}
+
+\mbox{\Hypertarget{namespacestd_1_1math_ac0bd025457e9ad925acc5bf1c9c2470c}\label{namespacestd_1_1math_ac0bd025457e9ad925acc5bf1c9c2470c}} 
+\index{std::math@{std::math}!make\_integer\_sequence$<$ index\_type, R $>$@{make\_integer\_sequence$<$ index\_type, R $>$}}
+\index{make\_integer\_sequence$<$ index\_type, R $>$@{make\_integer\_sequence$<$ index\_type, R $>$}!std::math@{std::math}}
+\doxysubsubsection{\texorpdfstring{make\_integer\_sequence$<$ index\_type, R $>$}{make\_integer\_sequence< index\_type, R >}}
+{\footnotesize\ttfamily constexpr std\+::math\+::make\+\_\+integer\+\_\+sequence$<$ index\+\_\+type, \mbox{\hyperlink{namespacestd_1_1math_ad69af7dc6d02afb275a8d32b5a1c5c5e}{R}} $>$}
+
+\mbox{\Hypertarget{namespacestd_1_1math_a5e61c4699154de320e85e7a1148e3b81}\label{namespacestd_1_1math_a5e61c4699154de320e85e7a1148e3b81}} 
+\index{std::math@{std::math}!N@{N}}
+\index{N@{N}!std::math@{std::math}}
+\doxysubsubsection{\texorpdfstring{N}{N}}
+{\footnotesize\ttfamily std\+::math\+::N}
+
+\mbox{\Hypertarget{namespacestd_1_1math_ad69af7dc6d02afb275a8d32b5a1c5c5e}\label{namespacestd_1_1math_ad69af7dc6d02afb275a8d32b5a1c5c5e}} 
+\index{std::math@{std::math}!R@{R}}
+\index{R@{R}!std::math@{std::math}}
+\doxysubsubsection{\texorpdfstring{R}{R}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classstd_1_1math_1_1dr__tensor}{std\+::math\+::dr\+\_\+tensor}}$<$ \mbox{\hyperlink{namespacestd_1_1math_a53983004b9afa750d13aff5975152bf2}{T}}, R, \mbox{\hyperlink{namespacestd_1_1math_a597a66936269f36c2b022a726d9f82a0}{Alloc}}, \mbox{\hyperlink{namespacestd_1_1math_a1575e00678072847b093ec1a603697d1}{L}}, \mbox{\hyperlink{namespacestd_1_1math_a39f52c16036f51ca651f8cf88cffbead}{Access}} $>$ std\+::math\+::R}
+
+\mbox{\Hypertarget{namespacestd_1_1math_a99301a8e16b7c6c884465173b22852a5}\label{namespacestd_1_1math_a99301a8e16b7c6c884465173b22852a5}} 
+\index{std::math@{std::math}!requires@{requires}}
+\index{requires@{requires}!std::math@{std::math}}
+\doxysubsubsection{\texorpdfstring{requires}{requires}}
+{\footnotesize\ttfamily constexpr Access\+::allocator\+\_\+type \&\& std\+::math\+::requires}
+
+{\bfseries Initial value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\{ \{ declval<Lambda\&\&>()( declval<typename dr\_matrix<T,Alloc,L,Access>::index\_type>(),}
+\DoxyCodeLine{                                             declval<\textcolor{keyword}{typename} dr\_matrix<T,Alloc,L,Access>::index\_type>() ) \}}
+\DoxyCodeLine{                      -\/> convertible\_to<typename dr\_matrix<T,Alloc,L,Access>::element\_type>}
+
+\end{DoxyCode}
+
+
+Matrix view. 
+
+Vector view.
+
+
+\begin{DoxyTemplParams}{Template Parameters}
+{\em MDS} & mdspan \\
+\hline
+\end{DoxyTemplParams}
+\mbox{\Hypertarget{namespacestd_1_1math_a53983004b9afa750d13aff5975152bf2}\label{namespacestd_1_1math_a53983004b9afa750d13aff5975152bf2}} 
+\index{std::math@{std::math}!T@{T}}
+\index{T@{T}!std::math@{std::math}}
+\doxysubsubsection{\texorpdfstring{T}{T}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classstd_1_1math_1_1dr__tensor}{std\+::math\+::dr\+\_\+tensor}}$<$ T, \mbox{\hyperlink{namespacestd_1_1math_ad69af7dc6d02afb275a8d32b5a1c5c5e}{R}}, \mbox{\hyperlink{namespacestd_1_1math_a597a66936269f36c2b022a726d9f82a0}{Alloc}}, \mbox{\hyperlink{namespacestd_1_1math_a1575e00678072847b093ec1a603697d1}{L}}, \mbox{\hyperlink{namespacestd_1_1math_a39f52c16036f51ca651f8cf88cffbead}{Access}} $>$ std\+::math\+::T}
+

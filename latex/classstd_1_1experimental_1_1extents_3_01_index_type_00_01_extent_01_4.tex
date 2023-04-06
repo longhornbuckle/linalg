@@ -1,0 +1,207 @@
+\hypertarget{classstd_1_1experimental_1_1extents_3_01_index_type_00_01_extent_01_4}{}\doxysection{std\+::experimental\+::extents$<$ Index\+Type, Extent $>$ Class Template Reference}
+\label{classstd_1_1experimental_1_1extents_3_01_index_type_00_01_extent_01_4}\index{std::experimental::extents$<$ IndexType, Extent $>$@{std::experimental::extents$<$ IndexType, Extent $>$}}
+
+
+{\ttfamily \#include $<$mdspan\+\_\+improvements.\+hpp$>$}
+
+
+
+Collaboration diagram for std\+::experimental\+::extents$<$ Index\+Type, Extent $>$\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=268pt]{classstd_1_1experimental_1_1extents_3_01_index_type_00_01_extent_01_4__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+using \mbox{\hyperlink{classstd_1_1experimental_1_1extents_3_01_index_type_00_01_extent_01_4_a2a46d9564622215033650f188041fbc7}{index\+\_\+type}} = Index\+Type
+\item 
+using \mbox{\hyperlink{classstd_1_1experimental_1_1extents_3_01_index_type_00_01_extent_01_4_a5acfee3f499232380a0122571a90b070}{size\+\_\+type}} = make\+\_\+unsigned\+\_\+t$<$ \mbox{\hyperlink{classstd_1_1experimental_1_1extents_3_01_index_type_00_01_extent_01_4_a2a46d9564622215033650f188041fbc7}{index\+\_\+type}} $>$
+\item 
+using \mbox{\hyperlink{classstd_1_1experimental_1_1extents_3_01_index_type_00_01_extent_01_4_a38420896ab19cfd9252b8d9c1f92dd55}{rank\+\_\+type}} = size\+\_\+t
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+constexpr MDSPAN\+\_\+\+INLINE\+\_\+\+FUNCTION \mbox{\hyperlink{classstd_1_1experimental_1_1extents_3_01_index_type_00_01_extent_01_4_a2a46d9564622215033650f188041fbc7}{index\+\_\+type}} \mbox{\hyperlink{classstd_1_1experimental_1_1extents_3_01_index_type_00_01_extent_01_4_a0c72e8302f18e3ebcf966462caaaf21a}{extent}} (\mbox{\hyperlink{classstd_1_1experimental_1_1extents_3_01_index_type_00_01_extent_01_4_a38420896ab19cfd9252b8d9c1f92dd55}{rank\+\_\+type}} r) const \mbox{\hyperlink{classstd_1_1experimental_1_1extents_3_01_index_type_00_01_extent_01_4_aa25f63ffee8a343c9847c1e3a1b92b07}{noexcept}}
+\item 
+constexpr MDSPAN\+\_\+\+INLINE\+\_\+\+FUNCTION\+\_\+\+DEFAULTED \mbox{\hyperlink{classstd_1_1experimental_1_1extents_3_01_index_type_00_01_extent_01_4_a75871e401d88caa04d5b9410355748bb}{extents}} () \mbox{\hyperlink{classstd_1_1experimental_1_1extents_3_01_index_type_00_01_extent_01_4_aa25f63ffee8a343c9847c1e3a1b92b07}{noexcept}}=default
+\item 
+\mbox{\hyperlink{classstd_1_1experimental_1_1extents_3_01_index_type_00_01_extent_01_4_a76ffab4cc77f68026320a0812dde7842}{MDSPAN\+\_\+\+TEMPLATE\+\_\+\+REQUIRES}} (class... Other\+Index\+Types,(\+\_\+\+MDSPAN\+\_\+\+FOLD\+\_\+\+AND(\+\_\+\+MDSPAN\+\_\+\+TRAIT(is\+\_\+convertible, Other\+Index\+Types, \mbox{\hyperlink{classstd_1_1experimental_1_1extents_3_01_index_type_00_01_extent_01_4_a2a46d9564622215033650f188041fbc7}{index\+\_\+type}})) \&\&\+\_\+\+MDSPAN\+\_\+\+FOLD\+\_\+\+AND(\+\_\+\+MDSPAN\+\_\+\+TRAIT(is\+\_\+nothrow\+\_\+constructible, \mbox{\hyperlink{classstd_1_1experimental_1_1extents_3_01_index_type_00_01_extent_01_4_a2a46d9564622215033650f188041fbc7}{index\+\_\+type}}, Other\+Index\+Types)) \&\&(sizeof...(Other\+Index\+Types)==m\+\_\+rank$\vert$$\vert$sizeof...(Other\+Index\+Types)==m\+\_\+rank\+\_\+dynamic))) MDSPAN\+\_\+\+INLINE\+\_\+\+FUNCTION const expr \mbox{\hyperlink{classstd_1_1experimental_1_1extents_3_01_index_type_00_01_extent_01_4_a75871e401d88caa04d5b9410355748bb}{extents}}(Other\+Index\+Types... dynvals) \mbox{\hyperlink{classstd_1_1experimental_1_1extents_3_01_index_type_00_01_extent_01_4_aa25f63ffee8a343c9847c1e3a1b92b07}{noexcept}}
+\item 
+\mbox{\hyperlink{classstd_1_1experimental_1_1extents_3_01_index_type_00_01_extent_01_4_a5fac1fe2a175f233b0a895d65a7d1dc2}{MDSPAN\+\_\+\+TEMPLATE\+\_\+\+REQUIRES}} (class Other\+Index\+Type, size\+\_\+t N,(\+\_\+\+MDSPAN\+\_\+\+TRAIT(is\+\_\+convertible, Other\+Index\+Type, \mbox{\hyperlink{classstd_1_1experimental_1_1extents_3_01_index_type_00_01_extent_01_4_a2a46d9564622215033650f188041fbc7}{index\+\_\+type}}) \&\&\+\_\+\+MDSPAN\+\_\+\+TRAIT(is\+\_\+nothrow\+\_\+constructible, \mbox{\hyperlink{classstd_1_1experimental_1_1extents_3_01_index_type_00_01_extent_01_4_a2a46d9564622215033650f188041fbc7}{index\+\_\+type}}, Other\+Index\+Type) \&\&(N==m\+\_\+rank$\vert$$\vert$N==m\+\_\+rank\+\_\+dynamic))) MDSPAN\+\_\+\+INLINE\+\_\+\+FUNCTION const expr \mbox{\hyperlink{classstd_1_1experimental_1_1extents_3_01_index_type_00_01_extent_01_4_a75871e401d88caa04d5b9410355748bb}{extents}}(const array$<$ Other\+Index\+Type
+\item 
+\mbox{\hyperlink{classstd_1_1experimental_1_1extents_3_01_index_type_00_01_extent_01_4_a68163fd3272d106bef4703883e2c566f}{class\+::::::\+Dynamic\+Values}} ((\mbox{\hyperlink{classstd_1_1experimental_1_1extents_3_01_index_type_00_01_extent_01_4_a673aac0d8b8a45a8aae7fad1d09f0b86}{R}}$<$ m\+\_\+rank) \&\&(\mbox{\hyperlink{classstd_1_1experimental_1_1extents_3_01_index_type_00_01_extent_01_4_a8ef7a6a74d721bd9781c33a6cc825a63}{static\+\_\+extent}}(\mbox{\hyperlink{classstd_1_1experimental_1_1extents_3_01_index_type_00_01_extent_01_4_a673aac0d8b8a45a8aae7fad1d09f0b86}{R}})==dynamic\+\_\+extent))) MDSPAN\+\_\+\+INLINE\+\_\+\+FUNCTION vals\+\_\+t \+\_\+\+\_\+construct\+\_\+vals\+\_\+from\+\_\+extents(std
+\item 
+constexpr MDSPAN\+\_\+\+FORCE\+\_\+\+INLINE\+\_\+\+FUNCTION \mbox{\hyperlink{classstd_1_1experimental_1_1extents_3_01_index_type_00_01_extent_01_4_a421674753a4bbb34e984e2bab6f0f838}{operator Index\+Type}} () \mbox{\hyperlink{classstd_1_1experimental_1_1extents_3_01_index_type_00_01_extent_01_4_aa25f63ffee8a343c9847c1e3a1b92b07}{noexcept}}
+\item 
+{\footnotesize template$<$class Other\+Index\+Type $>$ }\\constexpr MDSPAN\+\_\+\+INLINE\+\_\+\+FUNCTION bool \mbox{\hyperlink{classstd_1_1experimental_1_1extents_3_01_index_type_00_01_extent_01_4_a52bbaa80b7cddcbabcc7b0aa6f02fe79}{operator==}} (Other\+Index\+Type const \&rhs) \mbox{\hyperlink{classstd_1_1experimental_1_1extents_3_01_index_type_00_01_extent_01_4_aa25f63ffee8a343c9847c1e3a1b92b07}{noexcept}} requires(!detail
+\end{DoxyCompactItemize}
+\doxysubsection*{Static Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+constexpr static MDSPAN\+\_\+\+INLINE\+\_\+\+FUNCTION \mbox{\hyperlink{classstd_1_1experimental_1_1extents_3_01_index_type_00_01_extent_01_4_a38420896ab19cfd9252b8d9c1f92dd55}{rank\+\_\+type}} \mbox{\hyperlink{classstd_1_1experimental_1_1extents_3_01_index_type_00_01_extent_01_4_a5da9c6a3709db638c5a23edbe988e3a4}{rank}} () \mbox{\hyperlink{classstd_1_1experimental_1_1extents_3_01_index_type_00_01_extent_01_4_aa25f63ffee8a343c9847c1e3a1b92b07}{noexcept}}
+\item 
+constexpr static MDSPAN\+\_\+\+INLINE\+\_\+\+FUNCTION \mbox{\hyperlink{classstd_1_1experimental_1_1extents_3_01_index_type_00_01_extent_01_4_a38420896ab19cfd9252b8d9c1f92dd55}{rank\+\_\+type}} \mbox{\hyperlink{classstd_1_1experimental_1_1extents_3_01_index_type_00_01_extent_01_4_afc934034275b0a575872da9968c41ed4}{rank\+\_\+dynamic}} () \mbox{\hyperlink{classstd_1_1experimental_1_1extents_3_01_index_type_00_01_extent_01_4_aa25f63ffee8a343c9847c1e3a1b92b07}{noexcept}}
+\item 
+constexpr static MDSPAN\+\_\+\+INLINE\+\_\+\+FUNCTION size\+\_\+t \mbox{\hyperlink{classstd_1_1experimental_1_1extents_3_01_index_type_00_01_extent_01_4_a8ef7a6a74d721bd9781c33a6cc825a63}{static\+\_\+extent}} (\mbox{\hyperlink{classstd_1_1experimental_1_1extents_3_01_index_type_00_01_extent_01_4_a38420896ab19cfd9252b8d9c1f92dd55}{rank\+\_\+type}} r) \mbox{\hyperlink{classstd_1_1experimental_1_1extents_3_01_index_type_00_01_extent_01_4_aa25f63ffee8a343c9847c1e3a1b92b07}{noexcept}}
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+N \&exts \mbox{\hyperlink{classstd_1_1experimental_1_1extents_3_01_index_type_00_01_extent_01_4_aa25f63ffee8a343c9847c1e3a1b92b07}{noexcept}}\+: m\+\_\+vals(std\+::move(exts)) \{\}private\+: \mbox{\hyperlink{classstd_1_1experimental_1_1extents_3_01_index_type_00_01_extent_01_4_a76ffab4cc77f68026320a0812dde7842}{MDSPAN\+\_\+\+TEMPLATE\+\_\+\+REQUIRES}}( size\+\_\+t Dyn\+Count
+\item 
+N \&exts size\+\_\+t \mbox{\hyperlink{classstd_1_1experimental_1_1extents_3_01_index_type_00_01_extent_01_4_a673aac0d8b8a45a8aae7fad1d09f0b86}{R}}
+\end{DoxyCompactItemize}
+\doxysubsection*{Friends}
+\begin{DoxyCompactItemize}
+\item 
+{\footnotesize template$<$class Other\+Index\+Type , size\+\_\+t... Other\+Extents$>$ }\\MDSPAN\+\_\+\+INLINE\+\_\+\+FUNCTION constexpr friend bool \mbox{\hyperlink{classstd_1_1experimental_1_1extents_3_01_index_type_00_01_extent_01_4_a8766dfac5e0fdba2a0c6cf0b39088678}{operator==}} (const \mbox{\hyperlink{classstd_1_1experimental_1_1extents_3_01_index_type_00_01_extent_01_4_a75871e401d88caa04d5b9410355748bb}{extents}} \&lhs, const \mbox{\hyperlink{classstd_1_1experimental_1_1extents_3_01_index_type_00_01_extent_01_4_a75871e401d88caa04d5b9410355748bb}{extents}}$<$ Other\+Index\+Type, Other\+Extents... $>$ \&rhs) \mbox{\hyperlink{classstd_1_1experimental_1_1extents_3_01_index_type_00_01_extent_01_4_aa25f63ffee8a343c9847c1e3a1b92b07}{noexcept}}
+\item 
+{\footnotesize template$<$class Other\+Index\+Type , size\+\_\+t... Other\+Extents$>$ }\\MDSPAN\+\_\+\+INLINE\+\_\+\+FUNCTION constexpr friend bool \mbox{\hyperlink{classstd_1_1experimental_1_1extents_3_01_index_type_00_01_extent_01_4_a88c54b72a5b057cdbf6c0caaa383aae9}{operator!=}} (\mbox{\hyperlink{classstd_1_1experimental_1_1extents_3_01_index_type_00_01_extent_01_4_a75871e401d88caa04d5b9410355748bb}{extents}} const \&lhs, \mbox{\hyperlink{classstd_1_1experimental_1_1extents_3_01_index_type_00_01_extent_01_4_a75871e401d88caa04d5b9410355748bb}{extents}}$<$ Other\+Index\+Type, Other\+Extents... $>$ const \&rhs) \mbox{\hyperlink{classstd_1_1experimental_1_1extents_3_01_index_type_00_01_extent_01_4_aa25f63ffee8a343c9847c1e3a1b92b07}{noexcept}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Member Typedef Documentation}
+\mbox{\Hypertarget{classstd_1_1experimental_1_1extents_3_01_index_type_00_01_extent_01_4_a2a46d9564622215033650f188041fbc7}\label{classstd_1_1experimental_1_1extents_3_01_index_type_00_01_extent_01_4_a2a46d9564622215033650f188041fbc7}} 
+\index{std::experimental::extents$<$ IndexType, Extent $>$@{std::experimental::extents$<$ IndexType, Extent $>$}!index\_type@{index\_type}}
+\index{index\_type@{index\_type}!std::experimental::extents$<$ IndexType, Extent $>$@{std::experimental::extents$<$ IndexType, Extent $>$}}
+\doxysubsubsection{\texorpdfstring{index\_type}{index\_type}}
+{\footnotesize\ttfamily template$<$class Index\+Type , size\+\_\+t Extent$>$ \\
+using std\+::experimental\+::extents$<$ Index\+Type, Extent $>$\+::\mbox{\hyperlink{classstd_1_1experimental_1_1extents_3_01_index_type_00_01_extent_01_4_a2a46d9564622215033650f188041fbc7}{index\+\_\+type}} =  Index\+Type}
+
+\mbox{\Hypertarget{classstd_1_1experimental_1_1extents_3_01_index_type_00_01_extent_01_4_a38420896ab19cfd9252b8d9c1f92dd55}\label{classstd_1_1experimental_1_1extents_3_01_index_type_00_01_extent_01_4_a38420896ab19cfd9252b8d9c1f92dd55}} 
+\index{std::experimental::extents$<$ IndexType, Extent $>$@{std::experimental::extents$<$ IndexType, Extent $>$}!rank\_type@{rank\_type}}
+\index{rank\_type@{rank\_type}!std::experimental::extents$<$ IndexType, Extent $>$@{std::experimental::extents$<$ IndexType, Extent $>$}}
+\doxysubsubsection{\texorpdfstring{rank\_type}{rank\_type}}
+{\footnotesize\ttfamily template$<$class Index\+Type , size\+\_\+t Extent$>$ \\
+using std\+::experimental\+::extents$<$ Index\+Type, Extent $>$\+::\mbox{\hyperlink{classstd_1_1experimental_1_1extents_3_01_index_type_00_01_extent_01_4_a38420896ab19cfd9252b8d9c1f92dd55}{rank\+\_\+type}} =  size\+\_\+t}
+
+\mbox{\Hypertarget{classstd_1_1experimental_1_1extents_3_01_index_type_00_01_extent_01_4_a5acfee3f499232380a0122571a90b070}\label{classstd_1_1experimental_1_1extents_3_01_index_type_00_01_extent_01_4_a5acfee3f499232380a0122571a90b070}} 
+\index{std::experimental::extents$<$ IndexType, Extent $>$@{std::experimental::extents$<$ IndexType, Extent $>$}!size\_type@{size\_type}}
+\index{size\_type@{size\_type}!std::experimental::extents$<$ IndexType, Extent $>$@{std::experimental::extents$<$ IndexType, Extent $>$}}
+\doxysubsubsection{\texorpdfstring{size\_type}{size\_type}}
+{\footnotesize\ttfamily template$<$class Index\+Type , size\+\_\+t Extent$>$ \\
+using std\+::experimental\+::extents$<$ Index\+Type, Extent $>$\+::\mbox{\hyperlink{classstd_1_1experimental_1_1extents_3_01_index_type_00_01_extent_01_4_a5acfee3f499232380a0122571a90b070}{size\+\_\+type}} =  make\+\_\+unsigned\+\_\+t$<$\mbox{\hyperlink{classstd_1_1experimental_1_1extents_3_01_index_type_00_01_extent_01_4_a2a46d9564622215033650f188041fbc7}{index\+\_\+type}}$>$}
+
+
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classstd_1_1experimental_1_1extents_3_01_index_type_00_01_extent_01_4_a75871e401d88caa04d5b9410355748bb}\label{classstd_1_1experimental_1_1extents_3_01_index_type_00_01_extent_01_4_a75871e401d88caa04d5b9410355748bb}} 
+\index{std::experimental::extents$<$ IndexType, Extent $>$@{std::experimental::extents$<$ IndexType, Extent $>$}!extents@{extents}}
+\index{extents@{extents}!std::experimental::extents$<$ IndexType, Extent $>$@{std::experimental::extents$<$ IndexType, Extent $>$}}
+\doxysubsubsection{\texorpdfstring{extents()}{extents()}}
+{\footnotesize\ttfamily template$<$class Index\+Type , size\+\_\+t Extent$>$ \\
+constexpr MDSPAN\+\_\+\+INLINE\+\_\+\+FUNCTION\+\_\+\+DEFAULTED std\+::experimental\+::extents$<$ Index\+Type, Extent $>$\+::extents (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [constexpr]}, {\ttfamily [default]}, {\ttfamily [noexcept]}}
+
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classstd_1_1experimental_1_1extents_3_01_index_type_00_01_extent_01_4_a68163fd3272d106bef4703883e2c566f}\label{classstd_1_1experimental_1_1extents_3_01_index_type_00_01_extent_01_4_a68163fd3272d106bef4703883e2c566f}} 
+\index{std::experimental::extents$<$ IndexType, Extent $>$@{std::experimental::extents$<$ IndexType, Extent $>$}!class::::::DynamicValues@{class::::::DynamicValues}}
+\index{class::::::DynamicValues@{class::::::DynamicValues}!std::experimental::extents$<$ IndexType, Extent $>$@{std::experimental::extents$<$ IndexType, Extent $>$}}
+\doxysubsubsection{\texorpdfstring{class::::::DynamicValues()}{class::::::DynamicValues()}}
+{\footnotesize\ttfamily template$<$class Index\+Type , size\+\_\+t Extent$>$ \\
+std\+::experimental\+::extents$<$ Index\+Type, Extent $>$\+::class\+::::::\+Dynamic\+Values (\begin{DoxyParamCaption}\item[{(\mbox{\hyperlink{classstd_1_1experimental_1_1extents_3_01_index_type_00_01_extent_01_4_a673aac0d8b8a45a8aae7fad1d09f0b86}{R}}$<$ m\+\_\+rank) \&\&(\mbox{\hyperlink{classstd_1_1experimental_1_1extents_3_01_index_type_00_01_extent_01_4_a8ef7a6a74d721bd9781c33a6cc825a63}{static\+\_\+extent}}(\mbox{\hyperlink{classstd_1_1experimental_1_1extents_3_01_index_type_00_01_extent_01_4_a673aac0d8b8a45a8aae7fad1d09f0b86}{R}})==dynamic\+\_\+extent)}]{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{classstd_1_1experimental_1_1extents_3_01_index_type_00_01_extent_01_4_a0c72e8302f18e3ebcf966462caaaf21a}\label{classstd_1_1experimental_1_1extents_3_01_index_type_00_01_extent_01_4_a0c72e8302f18e3ebcf966462caaaf21a}} 
+\index{std::experimental::extents$<$ IndexType, Extent $>$@{std::experimental::extents$<$ IndexType, Extent $>$}!extent@{extent}}
+\index{extent@{extent}!std::experimental::extents$<$ IndexType, Extent $>$@{std::experimental::extents$<$ IndexType, Extent $>$}}
+\doxysubsubsection{\texorpdfstring{extent()}{extent()}}
+{\footnotesize\ttfamily template$<$class Index\+Type , size\+\_\+t Extent$>$ \\
+constexpr MDSPAN\+\_\+\+INLINE\+\_\+\+FUNCTION \mbox{\hyperlink{classstd_1_1experimental_1_1extents_3_01_index_type_00_01_extent_01_4_a2a46d9564622215033650f188041fbc7}{index\+\_\+type}} std\+::experimental\+::extents$<$ Index\+Type, Extent $>$\+::extent (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classstd_1_1experimental_1_1extents_3_01_index_type_00_01_extent_01_4_a38420896ab19cfd9252b8d9c1f92dd55}{rank\+\_\+type}}}]{r }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [constexpr]}, {\ttfamily [noexcept]}}
+
+\mbox{\Hypertarget{classstd_1_1experimental_1_1extents_3_01_index_type_00_01_extent_01_4_a5fac1fe2a175f233b0a895d65a7d1dc2}\label{classstd_1_1experimental_1_1extents_3_01_index_type_00_01_extent_01_4_a5fac1fe2a175f233b0a895d65a7d1dc2}} 
+\index{std::experimental::extents$<$ IndexType, Extent $>$@{std::experimental::extents$<$ IndexType, Extent $>$}!MDSPAN\_TEMPLATE\_REQUIRES@{MDSPAN\_TEMPLATE\_REQUIRES}}
+\index{MDSPAN\_TEMPLATE\_REQUIRES@{MDSPAN\_TEMPLATE\_REQUIRES}!std::experimental::extents$<$ IndexType, Extent $>$@{std::experimental::extents$<$ IndexType, Extent $>$}}
+\doxysubsubsection{\texorpdfstring{MDSPAN\_TEMPLATE\_REQUIRES()}{MDSPAN\_TEMPLATE\_REQUIRES()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily template$<$class Index\+Type , size\+\_\+t Extent$>$ \\
+std\+::experimental\+::extents$<$ Index\+Type, Extent $>$\+::MDSPAN\+\_\+\+TEMPLATE\+\_\+\+REQUIRES (\begin{DoxyParamCaption}\item[{class Other\+Index\+Type}]{,  }\item[{size\+\_\+t}]{N,  }\item[{( \+\_\+\+MDSPAN\+\_\+\+TRAIT(is\+\_\+convertible, Other\+Index\+Type, \mbox{\hyperlink{classstd_1_1experimental_1_1extents_3_01_index_type_00_01_extent_01_4_a2a46d9564622215033650f188041fbc7}{index\+\_\+type}}) \&\& \+\_\+\+MDSPAN\+\_\+\+TRAIT(is\+\_\+nothrow\+\_\+constructible, \mbox{\hyperlink{classstd_1_1experimental_1_1extents_3_01_index_type_00_01_extent_01_4_a2a46d9564622215033650f188041fbc7}{index\+\_\+type}}, Other\+Index\+Type) \&\&(N==m\+\_\+rank$\vert$$\vert$N==m\+\_\+rank\+\_\+dynamic))}]{ }\end{DoxyParamCaption}) const}
+
+\mbox{\Hypertarget{classstd_1_1experimental_1_1extents_3_01_index_type_00_01_extent_01_4_a76ffab4cc77f68026320a0812dde7842}\label{classstd_1_1experimental_1_1extents_3_01_index_type_00_01_extent_01_4_a76ffab4cc77f68026320a0812dde7842}} 
+\index{std::experimental::extents$<$ IndexType, Extent $>$@{std::experimental::extents$<$ IndexType, Extent $>$}!MDSPAN\_TEMPLATE\_REQUIRES@{MDSPAN\_TEMPLATE\_REQUIRES}}
+\index{MDSPAN\_TEMPLATE\_REQUIRES@{MDSPAN\_TEMPLATE\_REQUIRES}!std::experimental::extents$<$ IndexType, Extent $>$@{std::experimental::extents$<$ IndexType, Extent $>$}}
+\doxysubsubsection{\texorpdfstring{MDSPAN\_TEMPLATE\_REQUIRES()}{MDSPAN\_TEMPLATE\_REQUIRES()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily template$<$class Index\+Type , size\+\_\+t Extent$>$ \\
+std\+::experimental\+::extents$<$ Index\+Type, Extent $>$\+::MDSPAN\+\_\+\+TEMPLATE\+\_\+\+REQUIRES (\begin{DoxyParamCaption}\item[{class...}]{Other\+Index\+Types,  }\item[{( \+\_\+\+MDSPAN\+\_\+\+FOLD\+\_\+\+AND(\+\_\+\+MDSPAN\+\_\+\+TRAIT(is\+\_\+convertible, Other\+Index\+Types, \mbox{\hyperlink{classstd_1_1experimental_1_1extents_3_01_index_type_00_01_extent_01_4_a2a46d9564622215033650f188041fbc7}{index\+\_\+type}})) \&\& \+\_\+\+MDSPAN\+\_\+\+FOLD\+\_\+\+AND(\+\_\+\+MDSPAN\+\_\+\+TRAIT(is\+\_\+nothrow\+\_\+constructible, \mbox{\hyperlink{classstd_1_1experimental_1_1extents_3_01_index_type_00_01_extent_01_4_a2a46d9564622215033650f188041fbc7}{index\+\_\+type}}, Other\+Index\+Types)) \&\&(sizeof...(Other\+Index\+Types)==m\+\_\+rank$\vert$$\vert$ sizeof...(Other\+Index\+Types)==m\+\_\+rank\+\_\+dynamic))}]{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [noexcept]}}
+
+\mbox{\Hypertarget{classstd_1_1experimental_1_1extents_3_01_index_type_00_01_extent_01_4_a421674753a4bbb34e984e2bab6f0f838}\label{classstd_1_1experimental_1_1extents_3_01_index_type_00_01_extent_01_4_a421674753a4bbb34e984e2bab6f0f838}} 
+\index{std::experimental::extents$<$ IndexType, Extent $>$@{std::experimental::extents$<$ IndexType, Extent $>$}!operator IndexType@{operator IndexType}}
+\index{operator IndexType@{operator IndexType}!std::experimental::extents$<$ IndexType, Extent $>$@{std::experimental::extents$<$ IndexType, Extent $>$}}
+\doxysubsubsection{\texorpdfstring{operator IndexType()}{operator IndexType()}}
+{\footnotesize\ttfamily template$<$class Index\+Type , size\+\_\+t Extent$>$ \\
+constexpr MDSPAN\+\_\+\+FORCE\+\_\+\+INLINE\+\_\+\+FUNCTION std\+::experimental\+::extents$<$ Index\+Type, Extent $>$\+::operator Index\+Type (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [constexpr]}, {\ttfamily [noexcept]}}
+
+\mbox{\Hypertarget{classstd_1_1experimental_1_1extents_3_01_index_type_00_01_extent_01_4_a52bbaa80b7cddcbabcc7b0aa6f02fe79}\label{classstd_1_1experimental_1_1extents_3_01_index_type_00_01_extent_01_4_a52bbaa80b7cddcbabcc7b0aa6f02fe79}} 
+\index{std::experimental::extents$<$ IndexType, Extent $>$@{std::experimental::extents$<$ IndexType, Extent $>$}!operator==@{operator==}}
+\index{operator==@{operator==}!std::experimental::extents$<$ IndexType, Extent $>$@{std::experimental::extents$<$ IndexType, Extent $>$}}
+\doxysubsubsection{\texorpdfstring{operator==()}{operator==()}}
+{\footnotesize\ttfamily template$<$class Index\+Type , size\+\_\+t Extent$>$ \\
+template$<$class Other\+Index\+Type $>$ \\
+constexpr MDSPAN\+\_\+\+INLINE\+\_\+\+FUNCTION bool std\+::experimental\+::extents$<$ Index\+Type, Extent $>$\+::operator== (\begin{DoxyParamCaption}\item[{Other\+Index\+Type const \&}]{rhs }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [constexpr]}, {\ttfamily [noexcept]}}
+
+\mbox{\Hypertarget{classstd_1_1experimental_1_1extents_3_01_index_type_00_01_extent_01_4_a5da9c6a3709db638c5a23edbe988e3a4}\label{classstd_1_1experimental_1_1extents_3_01_index_type_00_01_extent_01_4_a5da9c6a3709db638c5a23edbe988e3a4}} 
+\index{std::experimental::extents$<$ IndexType, Extent $>$@{std::experimental::extents$<$ IndexType, Extent $>$}!rank@{rank}}
+\index{rank@{rank}!std::experimental::extents$<$ IndexType, Extent $>$@{std::experimental::extents$<$ IndexType, Extent $>$}}
+\doxysubsubsection{\texorpdfstring{rank()}{rank()}}
+{\footnotesize\ttfamily template$<$class Index\+Type , size\+\_\+t Extent$>$ \\
+constexpr static MDSPAN\+\_\+\+INLINE\+\_\+\+FUNCTION \mbox{\hyperlink{classstd_1_1experimental_1_1extents_3_01_index_type_00_01_extent_01_4_a38420896ab19cfd9252b8d9c1f92dd55}{rank\+\_\+type}} std\+::experimental\+::extents$<$ Index\+Type, Extent $>$\+::rank (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}, {\ttfamily [constexpr]}, {\ttfamily [noexcept]}}
+
+\mbox{\Hypertarget{classstd_1_1experimental_1_1extents_3_01_index_type_00_01_extent_01_4_afc934034275b0a575872da9968c41ed4}\label{classstd_1_1experimental_1_1extents_3_01_index_type_00_01_extent_01_4_afc934034275b0a575872da9968c41ed4}} 
+\index{std::experimental::extents$<$ IndexType, Extent $>$@{std::experimental::extents$<$ IndexType, Extent $>$}!rank\_dynamic@{rank\_dynamic}}
+\index{rank\_dynamic@{rank\_dynamic}!std::experimental::extents$<$ IndexType, Extent $>$@{std::experimental::extents$<$ IndexType, Extent $>$}}
+\doxysubsubsection{\texorpdfstring{rank\_dynamic()}{rank\_dynamic()}}
+{\footnotesize\ttfamily template$<$class Index\+Type , size\+\_\+t Extent$>$ \\
+constexpr static MDSPAN\+\_\+\+INLINE\+\_\+\+FUNCTION \mbox{\hyperlink{classstd_1_1experimental_1_1extents_3_01_index_type_00_01_extent_01_4_a38420896ab19cfd9252b8d9c1f92dd55}{rank\+\_\+type}} std\+::experimental\+::extents$<$ Index\+Type, Extent $>$\+::rank\+\_\+dynamic (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}, {\ttfamily [constexpr]}, {\ttfamily [noexcept]}}
+
+\mbox{\Hypertarget{classstd_1_1experimental_1_1extents_3_01_index_type_00_01_extent_01_4_a8ef7a6a74d721bd9781c33a6cc825a63}\label{classstd_1_1experimental_1_1extents_3_01_index_type_00_01_extent_01_4_a8ef7a6a74d721bd9781c33a6cc825a63}} 
+\index{std::experimental::extents$<$ IndexType, Extent $>$@{std::experimental::extents$<$ IndexType, Extent $>$}!static\_extent@{static\_extent}}
+\index{static\_extent@{static\_extent}!std::experimental::extents$<$ IndexType, Extent $>$@{std::experimental::extents$<$ IndexType, Extent $>$}}
+\doxysubsubsection{\texorpdfstring{static\_extent()}{static\_extent()}}
+{\footnotesize\ttfamily template$<$class Index\+Type , size\+\_\+t Extent$>$ \\
+constexpr static MDSPAN\+\_\+\+INLINE\+\_\+\+FUNCTION size\+\_\+t std\+::experimental\+::extents$<$ Index\+Type, Extent $>$\+::static\+\_\+extent (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classstd_1_1experimental_1_1extents_3_01_index_type_00_01_extent_01_4_a38420896ab19cfd9252b8d9c1f92dd55}{rank\+\_\+type}}}]{r }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}, {\ttfamily [constexpr]}, {\ttfamily [noexcept]}}
+
+
+
+\doxysubsection{Friends And Related Function Documentation}
+\mbox{\Hypertarget{classstd_1_1experimental_1_1extents_3_01_index_type_00_01_extent_01_4_a88c54b72a5b057cdbf6c0caaa383aae9}\label{classstd_1_1experimental_1_1extents_3_01_index_type_00_01_extent_01_4_a88c54b72a5b057cdbf6c0caaa383aae9}} 
+\index{std::experimental::extents$<$ IndexType, Extent $>$@{std::experimental::extents$<$ IndexType, Extent $>$}!operator"!=@{operator"!=}}
+\index{operator"!=@{operator"!=}!std::experimental::extents$<$ IndexType, Extent $>$@{std::experimental::extents$<$ IndexType, Extent $>$}}
+\doxysubsubsection{\texorpdfstring{operator"!=}{operator!=}}
+{\footnotesize\ttfamily template$<$class Index\+Type , size\+\_\+t Extent$>$ \\
+template$<$class Other\+Index\+Type , size\+\_\+t... Other\+Extents$>$ \\
+MDSPAN\+\_\+\+INLINE\+\_\+\+FUNCTION constexpr friend bool operator!= (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classstd_1_1experimental_1_1extents_3_01_index_type_00_01_extent_01_4_a75871e401d88caa04d5b9410355748bb}{extents}}$<$ Index\+Type, Extent $>$ const \&}]{lhs,  }\item[{\mbox{\hyperlink{classstd_1_1experimental_1_1extents_3_01_index_type_00_01_extent_01_4_a75871e401d88caa04d5b9410355748bb}{extents}}$<$ Other\+Index\+Type, Other\+Extents... $>$ const \&}]{rhs }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [friend]}}
+
+\mbox{\Hypertarget{classstd_1_1experimental_1_1extents_3_01_index_type_00_01_extent_01_4_a8766dfac5e0fdba2a0c6cf0b39088678}\label{classstd_1_1experimental_1_1extents_3_01_index_type_00_01_extent_01_4_a8766dfac5e0fdba2a0c6cf0b39088678}} 
+\index{std::experimental::extents$<$ IndexType, Extent $>$@{std::experimental::extents$<$ IndexType, Extent $>$}!operator==@{operator==}}
+\index{operator==@{operator==}!std::experimental::extents$<$ IndexType, Extent $>$@{std::experimental::extents$<$ IndexType, Extent $>$}}
+\doxysubsubsection{\texorpdfstring{operator==}{operator==}}
+{\footnotesize\ttfamily template$<$class Index\+Type , size\+\_\+t Extent$>$ \\
+template$<$class Other\+Index\+Type , size\+\_\+t... Other\+Extents$>$ \\
+MDSPAN\+\_\+\+INLINE\+\_\+\+FUNCTION constexpr friend bool operator== (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classstd_1_1experimental_1_1extents_3_01_index_type_00_01_extent_01_4_a75871e401d88caa04d5b9410355748bb}{extents}}$<$ Index\+Type, Extent $>$ \&}]{lhs,  }\item[{const \mbox{\hyperlink{classstd_1_1experimental_1_1extents_3_01_index_type_00_01_extent_01_4_a75871e401d88caa04d5b9410355748bb}{extents}}$<$ Other\+Index\+Type, Other\+Extents... $>$ \&}]{rhs }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [friend]}}
+
+
+
+\doxysubsection{Member Data Documentation}
+\mbox{\Hypertarget{classstd_1_1experimental_1_1extents_3_01_index_type_00_01_extent_01_4_aa25f63ffee8a343c9847c1e3a1b92b07}\label{classstd_1_1experimental_1_1extents_3_01_index_type_00_01_extent_01_4_aa25f63ffee8a343c9847c1e3a1b92b07}} 
+\index{std::experimental::extents$<$ IndexType, Extent $>$@{std::experimental::extents$<$ IndexType, Extent $>$}!noexcept@{noexcept}}
+\index{noexcept@{noexcept}!std::experimental::extents$<$ IndexType, Extent $>$@{std::experimental::extents$<$ IndexType, Extent $>$}}
+\doxysubsubsection{\texorpdfstring{noexcept}{noexcept}}
+{\footnotesize\ttfamily template$<$class Index\+Type , size\+\_\+t Extent$>$ \\
+N\& exts std\+::experimental\+::extents$<$ Index\+Type, Extent $>$\+::noexcept}
+
+\mbox{\Hypertarget{classstd_1_1experimental_1_1extents_3_01_index_type_00_01_extent_01_4_a673aac0d8b8a45a8aae7fad1d09f0b86}\label{classstd_1_1experimental_1_1extents_3_01_index_type_00_01_extent_01_4_a673aac0d8b8a45a8aae7fad1d09f0b86}} 
+\index{std::experimental::extents$<$ IndexType, Extent $>$@{std::experimental::extents$<$ IndexType, Extent $>$}!R@{R}}
+\index{R@{R}!std::experimental::extents$<$ IndexType, Extent $>$@{std::experimental::extents$<$ IndexType, Extent $>$}}
+\doxysubsubsection{\texorpdfstring{R}{R}}
+{\footnotesize\ttfamily template$<$class Index\+Type , size\+\_\+t Extent$>$ \\
+N\& exts size\+\_\+t std\+::experimental\+::extents$<$ Index\+Type, Extent $>$\+::R}
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+include/experimental/\mbox{\hyperlink{mdspan__improvements_8hpp}{mdspan\+\_\+improvements.\+hpp}}\end{DoxyCompactItemize}
