@@ -21,6 +21,10 @@ Acknowledgements
 ----------------
 This work essentially started out by examining what P1673 might look like if it incorporated mdspan and concepts. Along the way, I started to take very different directions and pretty much started over; however, some of the terminology is kept.
 
+Documentation
+-------------
+Doxygen documentation located [here](https://longhornbuckle.github.io/linalg/html/files.html).
+
 Capabilities
 ------------
 - fs_vector: fixed-size fixed-capacity vector
