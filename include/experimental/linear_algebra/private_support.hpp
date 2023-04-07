@@ -468,7 +468,7 @@ constexpr void apply_all_strided2( View&&               view,
     }
     else
     {
-      apply_all_strided2_except( view, lambda, execution_policy, indices );
+      apply_all_strided2_except<Index>( view, lambda, execution_policy, indices );
     }
   }
 }
