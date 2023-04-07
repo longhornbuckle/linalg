@@ -172,12 +172,12 @@ class addition
       noexcept( noexcept( detail::apply_all( t1.underlying_span(),
                                              [&t1,&t2]< class ... IndexType >( IndexType ... indices ) constexpr noexcept
                                                { static_cast<void>( t1[ indices ... ] += t2[ indices ... ] ); },
-                                             execution::unseq ) ) )
+                                             LINALG_EXECUTION_UNSEQ ) ) )
     {
       auto add_lambda = [&t1,&t2]< class ... IndexType >( IndexType ... indices ) constexpr noexcept
         { static_cast<void>( t1[ indices ... ] += t2[ indices ... ] ); };
       // Apply lamda
-      detail::apply_all( t1.underlying_span(), add_lambda, execution::unseq );
+      detail::apply_all( t1.underlying_span(), add_lambda, LINALG_EXECUTION_UNSEQ );
       // Return updated tensor
       return t1;
     }
@@ -263,12 +263,12 @@ class subtraction
       noexcept( noexcept( detail::apply_all( t1.underlying_span(),
                                              [&t1,&t2]< class ... IndexType >( IndexType ... indices ) constexpr noexcept
                                                { static_cast<void>( t1[ indices ... ] -= t2[ indices ... ] ); },
-                                             execution::unseq ) ) )
+                                             LINALG_EXECUTION_UNSEQ ) ) )
     {
       auto subtract_lambda = [&t1,&t2]< class ... IndexType >( IndexType ... indices ) constexpr noexcept
         { static_cast<void>( t1[ indices ... ] -= t2[ indices ... ] ); };
       // Apply lamda
-      detail::apply_all( t1.underlying_span(), subtract_lambda, execution::unseq );
+      detail::apply_all( t1.underlying_span(), subtract_lambda, LINALG_EXECUTION_UNSEQ );
       // Return updated tensor
       return t1;
     }
@@ -339,13 +339,13 @@ class scalar_product
       noexcept( noexcept( detail::apply_all( t.underlying_span(),
                                              [&t,&s]< class ... IndexType >( IndexType ... indices ) constexpr noexcept
                                                { static_cast<void>( t[ indices ... ] += s ); },
-                                             execution::unseq ) ) )
+                                             LINALG_EXECUTION_UNSEQ ) ) )
     {
       // Define product operation on each element
       auto prod_lambda = [&s,&t]< class ... IndexType >( IndexType ... indices ) constexpr noexcept
         { static_cast<void>( t[ indices ... ] *= s ); };
       // Apply lamda
-      detail::apply_all( t.underlying_span(), prod_lambda, execution::unseq );
+      detail::apply_all( t.underlying_span(), prod_lambda, LINALG_EXECUTION_UNSEQ );
       // Return updated tensor
       return t;
     }
@@ -410,13 +410,13 @@ struct scalar_division
       noexcept( noexcept( detail::apply_all( t.underlying_span(),
                                              [&t,&s]< class ... IndexType >( IndexType ... indices ) constexpr noexcept
                                                { static_cast<void>( t[ indices ... ] /= s ); },
-                                             execution::unseq ) ) )
+                                             LINALG_EXECUTION_UNSEQ ) ) )
     {
       // Define product operation on each element
       auto divide_lambda = [&s,&t]< class ... IndexType >( IndexType ... indices ) constexpr noexcept
         { static_cast<void>( t[ indices ... ] /= s ); };
       // Apply lamda
-      detail::apply_all( t.underlying_span(), divide_lambda, execution::unseq );
+      detail::apply_all( t.underlying_span(), divide_lambda, LINALG_EXECUTION_UNSEQ );
       // Return updated tensor
       return t;
     }
@@ -762,7 +762,7 @@ class vector_matrix_product
                              [&v,&m]< class IndexType >( IndexType index ) constexpr noexcept
                              {
                                result_value_type result = 0;
-                               for_each( execution::unseq,
+                               for_each( LINALG_EXECUTION_UNSEQ,
                                          detail::faux_index_iterator<typename vector_type::index_type>( 0 ),
                                          detail::faux_index_iterator<typename vector_type::index_type>( v.size().extent(0) ),
                                          [ &v, &m, &index, &result ] ( typename vector_type::index_type index2 ) constexpr noexcept
@@ -789,7 +789,7 @@ class vector_matrix_product
       auto lambda = [&v,&m]< class IndexType >( IndexType index ) constexpr noexcept
       {
         result_value_type result = 0;
-        for_each( execution::unseq,
+        for_each( LINALG_EXECUTION_UNSEQ,
                   detail::faux_index_iterator<typename vector_type::index_type>( 0 ),
                   detail::faux_index_iterator<typename vector_type::index_type>( v.size().extent(0) ),
                   [ &v, &m, &index, &result ] ( typename vector_type::index_type index2 ) constexpr noexcept
@@ -817,7 +817,7 @@ class vector_matrix_product
                              [&v,&m]< class IndexType >( IndexType index ) constexpr noexcept
                              {
                                result_value_type result = 0;
-                               for_each( execution::unseq,
+                               for_each( LINALG_EXECUTION_UNSEQ,
                                          detail::faux_index_iterator<typename vector_type::index_type>( 0 ),
                                          detail::faux_index_iterator<typename vector_type::index_type>( v.size().extent(0) ),
                                          [ &v, &m, &index, &result ] ( typename vector_type::index_type index2 ) constexpr noexcept
@@ -844,7 +844,7 @@ class vector_matrix_product
       auto lambda = [&v,&m]< class IndexType >( IndexType index ) constexpr noexcept
       {
         result_value_type result = 0;
-        for_each( execution::unseq,
+        for_each( LINALG_EXECUTION_UNSEQ,
                   detail::faux_index_iterator<typename vector_type::index_type>( 0 ),
                   detail::faux_index_iterator<typename vector_type::index_type>( v.size().extent(0) ),
                   [ &v, &m, &index, &result ] ( typename vector_type::index_type index2 ) constexpr noexcept
@@ -949,7 +949,7 @@ class matrix_matrix_product
                            [&m1,&m2]< class IndexType1, class IndexType2 >( IndexType1 index1, IndexType2 index2 ) constexpr noexcept
                            {
                              result_value_type result = 0;
-                             for_each( execution::unseq,
+                             for_each( LINALG_EXECUTION_UNSEQ,
                                        detail::faux_index_iterator<typename first_matrix_type::index_type>( 0 ),
                                        detail::faux_index_iterator<typename first_matrix_type::index_type>( m1.size().extent(1) ),
                                        [ &m1, &m2, &index1, &index2, &result ] ( typename first_matrix_type::index_type index ) constexpr noexcept
@@ -976,7 +976,7 @@ class matrix_matrix_product
       auto lambda = [&m1,&m2]< class IndexType1, class IndexType2 >( IndexType1 index1, IndexType2 index2 ) constexpr noexcept
       {
         result_value_type result = 0;
-        for_each( execution::unseq,
+        for_each( LINALG_EXECUTION_UNSEQ,
                   detail::faux_index_iterator<typename first_matrix_type::index_type>( 0 ),
                   detail::faux_index_iterator<typename first_matrix_type::index_type>( m1.size().extent(1) ),
                   [ &m1, &m2, &index1, &index2, &result ] ( typename first_matrix_type::index_type index ) constexpr noexcept
@@ -1034,7 +1034,7 @@ class inner_product
       // Define lambda function to sum inner product
       auto inner_prod_lambda = [&v1,&v2,&result]< class ... IndexType >( IndexType ... indices ) constexpr noexcept { result += v1[ indices ... ] * v2[ indices ... ]; };
       // Apply lambda expression
-      detail::apply_all( v1.span(), inner_prod_lambda, execution::unseq );
+      detail::apply_all( v1.span(), inner_prod_lambda, LINALG_EXECUTION_UNSEQ );
       // Return result
       return result;
     }
