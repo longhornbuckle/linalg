@@ -254,10 +254,10 @@ struct is_unsequenced< execution::unsequenced_policy > : public true_type { };
 
 #endif
 
+#endif
+
 template < class T >
 inline constexpr bool is_unsequenced_v = is_unsequenced<T>::value;
-
-#endif
 
 //==================================================================================================
 //  Apply All applies the lambda expression to all elements in the view
