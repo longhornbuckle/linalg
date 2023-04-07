@@ -46,7 +46,7 @@
 #endif
 
 // Define if gnu compiler is being used
-#ifndef LINALG_COMPILER_GNU && !defined( LINALG_COMPILER_CLANG )
+#if !defined( LINALG_COMPILER_GNU ) && !defined( LINALG_COMPILER_CLANG )
 #  if defined( __GNUC__ )
 #    define LINALG_COMPILER_GNU __GNUC__
 #  endif
