@@ -1,12 +1,14 @@
 name: Doxygen GitHub Pages Deploy Action
 
 on:
-  push:
-    branches:
-      - main
-  pull_request:
-    branches:
-      - main
+# The doxygen version pulled from the default mirror is old and does not parse the code well
+# so default doxygen generate is disabled.
+#  push:
+#    branches:
+#      - main
+#  pull_request:
+#    branches:
+#      - main
 
 jobs:
   deploy:
