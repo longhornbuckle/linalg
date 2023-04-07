@@ -552,7 +552,7 @@ constexpr void apply_all_impl2( View&&              view,
   }
   else
   {
-    apply_all_impl2_except( view, lambda, execution_policy, dim, before_indices );
+    apply_all_impl2_except( view, lambda, execution_policy, dim, before_indices ... );
   }
 }
 
@@ -659,7 +659,7 @@ constexpr void apply_all_impl( View&&                                           
     }
     else
     {
-      apply_all_impl_except( view, lambda, execution_policy, first_extents, indices );
+      apply_all_impl_except( view, lambda, execution_policy, first_extents, indices ... );
     }
   }
 }
