@@ -653,7 +653,7 @@ class vector_matrix_product
       return m.get_allocator();
     }
     // Returns the std allocator
-    [[nodiscard]] static inline constexpr decltype(auto) get_allocator( const matrix_type& m ) noexcept
+    [[nodiscard]] static inline constexpr decltype(auto) get_allocator( [[maybe_unused]] const matrix_type& m ) noexcept
       requires ( !concepts::dynamic_matrix_data< matrix_type > )
     {
       return std::allocator<result_value_type>();
@@ -883,7 +883,7 @@ class matrix_matrix_product
       return m2.get_allocator();
     }
     // Returns the std allocator
-    [[nodiscard]] static inline constexpr decltype(auto) get_allocator( const first_matrix_type& m1, const second_matrix_type& m2 ) noexcept
+    [[nodiscard]] static inline constexpr decltype(auto) get_allocator( [[maybe_unused]] const first_matrix_type& m1, [[maybe_unused]] const second_matrix_type& m2 ) noexcept
       requires ( !concepts::dynamic_matrix_data< first_matrix_type > && !concepts::dynamic_matrix_data< second_matrix_type > )
     {
       return std::allocator<result_value_type>();
@@ -1067,7 +1067,7 @@ class outer_product
       return v2.get_allocator();
     }
     // Returns the std allocator
-    [[nodiscard]] static inline constexpr decltype(auto) get_allocator( const first_vector_type& v1, const second_vector_type& v2 ) noexcept
+    [[nodiscard]] static inline constexpr decltype(auto) get_allocator( [[maybe_unused]] const first_vector_type& v1, [[maybe_unused]] const second_vector_type& v2 ) noexcept
       requires ( !concepts::dynamic_matrix_data< first_vector_type > && !concepts::dynamic_matrix_data< second_vector_type > )
     {
       return std::allocator<result_value_type>();

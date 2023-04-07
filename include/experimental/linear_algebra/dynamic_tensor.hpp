@@ -89,12 +89,12 @@ class dr_tensor
     template < class U, class propogate_on_copy_true >
     struct Alloc_copy_helper { [[nodiscard]] static inline constexpr auto propogate( const U& u ) noexcept { return u.get_allocator(); } };
     template < class U >
-    struct Alloc_copy_helper< U, false_type > { [[nodiscard]] static inline constexpr auto propogate( const U& u ) noexcept { return move( allocator_type() ); } };
+    struct Alloc_copy_helper< U, false_type > { [[nodiscard]] static inline constexpr auto propogate( [[maybe_unused]] const U& u ) noexcept { return move( allocator_type() ); } };
     // Helper class for defining allocator behavior
     template < class U, class propogate_on_move_true >
     struct Alloc_move_helper { [[nodiscard]] static inline constexpr auto propogate( U&& u ) noexcept { return move( u.get_allocator() ); } };
     template < class U >
-    struct Alloc_move_helper< U, false_type > { [[nodiscard]] static inline constexpr auto propogate( U&& u ) noexcept { return move( allocator_type() ); } };
+    struct Alloc_move_helper< U, false_type > { [[nodiscard]] static inline constexpr auto propogate( [[maybe_unused]] U&& u ) noexcept { return move( allocator_type() ); } };
     // Verifies lambda expression takes a set of indices and produces an output convertible to element type
     template < class Lambda, class Seq, bool > struct convertible_lambda_expression_impl : public false_type { };
     template < class Lambda,

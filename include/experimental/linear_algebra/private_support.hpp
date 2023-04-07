@@ -698,7 +698,7 @@ template < class SizeType, class OtherSizeType, size_t ... Extents, size_t ... O
   {
     // Iterate over each dimension
     bool sufficient = true;
-    for( auto dim = 0; ( dim < experimental::extents<SizeType,Extents...>::rank() && sufficient ); ++dim )
+    for( size_t dim = 0; ( dim < experimental::extents<SizeType,Extents...>::rank() ) && sufficient; ++dim )
     {
       // Set to false if size is not large enough
       sufficient = ( extents.extent( dim ) >= other_extents.extent( dim ) );

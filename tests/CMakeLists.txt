@@ -3,7 +3,6 @@ macro( linalg_add_test name )
     set_source_files_properties( ${name} PROPERTIES LANGUAGE ${LINALG_TEST_LANGUAGE} )
   endif()
   add_executable( ${name} ${name}.cpp )
-  set( CMAKE_VERBOSE_MAKEFILE ON )
   set_property( TARGET ${name} PROPERTY CXX_STANDARD 23 ) # set c++ version
   set( CMAKE_CXX_STANDARD_REQUIRED YES)
   set( CMAKE_CXX_EXTENSIONS NO )
