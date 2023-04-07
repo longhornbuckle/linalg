@@ -5,8 +5,8 @@
 //              absence of particular feature support
 //==================================================================================================
 //
-#ifndef LINEAR_ALGEBRA_CONFIG_HPP
-#define LINEAR_ALGEBRA_CONFIG_HPP
+#ifndef LINEAR_ALGEBRA_MACROS_HPP
+#define LINEAR_ALGEBRA_MACROS_HPP
 
 // Define if STL execution policies are supported.
 #ifndef LINALG_EXECUTION_POLICY
@@ -29,4 +29,4 @@
 #  endif
 #endif
 
-#endif  //- LINEAR_ALGEBRA_CONFIG_HPP
+#endif  //- LINEAR_ALGEBRA_MACROS_HPP
