@@ -3,11 +3,12 @@ macro( linalg_add_test name )
     set_source_files_properties( ${name} PROPERTIES LANGUAGE ${LINALG_TEST_LANGUAGE} )
   endif()
   add_executable( ${name} ${name}.cpp )
+  set( CMAKE_VERBOSE_MAKEFILE ON )
   set_property( TARGET ${name} PROPERTY CXX_STANDARD 23 ) # set c++ version
-  set_property( TARGET ${name} PROPERTY CMAKE_CXX_STANDARD_REQUIRED YES)
-  set_property( TARGET ${name} PROPERTY CMAKE_CXX_EXTENSIONS NO )
+  set( CMAKE_CXX_STANDARD_REQUIRED YES)
+  set( CMAKE_CXX_EXTENSIONS NO )
   target_link_libraries( ${name} linalg gtest_main gtest )
-  target_compile_options( ${name} linalg
+  target_compile_options( linalg
     PRIVATE
         $<$<OR:$<CXX_COMPILER_ID:GNU>>:-fconcepts -Wall -pedantic -Wextra  -Wno-unused-function -Wno-unused-variable -W -Wno-unused-but-set-variable -Wno-unused-local-typedefs -fmax-errors=10>
         $<$<OR:$<CXX_COMPILER_ID:Clang>>:-stdlib=libc++ -Wall -pedantic -Wextra -Wno-unused-parameter -Wno-unused-function -Wno-unused-local-typedefs>
