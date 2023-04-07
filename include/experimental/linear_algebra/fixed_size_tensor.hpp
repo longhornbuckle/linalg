@@ -296,39 +296,12 @@ constexpr fs_tensor<T,L,A,Ds...>::fs_tensor( Lambda&& lambda ) noexcept( noexcep
 {
   // If expression is no except, then no need to capture last exception
   static const bool lambda_is_noexcept = is_nothrow_convertible_v< decltype( declval<Lambda&&>()( Ds ... ) ), element_type >;
-  if constexpr ( lambda_is_noexcept )
+  // Construct all elements from lambda output
+  auto ctor = [this,&lambda]< class ... SizeType >( SizeType ... indices ) constexpr noexcept( lambda_is_noexcept )
   {
-    // Construct all elements from lambda output
-    auto ctor = [this,&lambda]< class ... SizeType >( SizeType ... indices ) constexpr noexcept
-    {
-      this->underlying_span()[ indices ... ] = lambda( indices ... );
-    };
-    detail::apply_all( this->underlying_span(), ctor, execution::unseq );
-  }
-  else
-  {
-    // Cache the last exception to be thrown
-    exception_ptr eptr;
-    // Construct all elements from lambda output
-    auto ctor = [this,&lambda,&eptr]< class ... SizeType >( SizeType ... indices ) constexpr noexcept
-    {
-      try
-      {
-        this->underlying_span()(indices...) = lambda(indices...);
-      }
-      catch ( ... )
-      {
-        eptr = current_exception();
-      }
-    };
-    // Apply lambda
-    detail::apply_all( this->underlying_span(), ctor, execution::unseq );
-    // Rethrow last exception caught
-    if ( eptr ) [[unlikely]]
-    {
-      rethrow_exception( eptr );
-    }
-  }
+    this->underlying_span()[ indices ... ] = lambda( indices ... );
+  };
+  detail::apply_all( this->underlying_span(), ctor, execution::unseq );
 }
 
 template < class T, class L, class A, size_t ... Ds > requires ( ( Ds >= 0 ) && ... )
