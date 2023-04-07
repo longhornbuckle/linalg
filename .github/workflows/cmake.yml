@@ -17,7 +17,7 @@ jobs:
             compiler_prefix: /usr/bin
           }
         - {
-            compiler_driver: clang++-15,
+            compiler_driver: clang++-14,
             compiler_prefix: /usr/bin
           }
     name: ${{ matrix.settings.compiler_driver }} ${{ matrix.configuration }}
