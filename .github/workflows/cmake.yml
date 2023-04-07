@@ -11,12 +11,16 @@ jobs:
       fail-fast: false
       matrix:
         configuration: [ "Release", "Debug" ]
-        include:
-        - compiler_driver: g++-12
-          compiler_prefix: /usr/bin
-        - compiler_driver: clang++-14
-          compiler_prefix: /usr/bin
-    name: ${{ matrix.compiler_driver }} ${{ matrix.configuration }}
+        settings:
+        - {
+            compiler_driver: g++-12,
+            compiler_prefix: /usr/bin
+          }
+        - {
+            compiler_driver: clang++-14,
+            compiler_prefix: /usr/bin
+          }
+    name: ${{ matrix.settings.compiler_driver }} ${{ matrix.configuration }}
     steps:
     
     - name: Install gtest manually
@@ -40,8 +44,8 @@ jobs:
     - name: Configure CMake
       shell: bash
       working-directory: ${{github.workspace}}/linalg-build
-      run: CMAKE_CXX_COMPILER=${{ matrix.compiler_prefix}}/${{ matrix.compiler_driver }}
-           CXX=${{ matrix.compiler_prefix}}/${{ matrix.compiler_driver }} 
+      run: CMAKE_CXX_COMPILER=${{ matrix.settings.compiler_prefix}}/${{ matrix.settings.compiler_driver }}
+           CXX=${{ matrix.settings.compiler_prefix}}/${{ matrix.settings.compiler_driver }} 
            cmake $GITHUB_WORKSPACE/linalg-src -DCMAKE_BUILD_TYPE=$BUILD_TYPE -DCMAKE_INSTALL_PREFIX=$GITHUB_WORKSPACE/linalg-install
 
     - name: Build
