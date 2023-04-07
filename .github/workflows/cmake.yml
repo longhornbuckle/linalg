@@ -16,7 +16,7 @@ jobs:
           compiler_prefix: /usr/bin
         - compiler_driver: clang++-14
           compiler_prefix: /usr/bin
-    name: ${{ matrix.compiler_driver }}
+    name: ${{ matrix.compiler_driver }} ${{ matrix.configuration }}
     steps:
     
     - name: Install gtest manually
