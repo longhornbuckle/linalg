@@ -447,4 +447,4 @@ fs_tensor<T,L,A,Ds...>::underlying_span() const noexcept
 
 }       //- math namespace
 }       //- std namespace
-#endif  //- LINEAR_ALGEBRA_FIXED_SIZE_MATRIX_ENGINE_HPP
+#endif  //- LINEAR_ALGEBRA_FIXED_SIZE_TENSOR_HPP
