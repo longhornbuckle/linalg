@@ -315,21 +315,55 @@ template < class         View,
            IndexType ... BeforeIndices,
            IndexType ... AfterIndices,
            class ...     IndicesType >
-constexpr void apply_all_strided3( View&&                 view,
-                                   Lambda&&               lambda,
-                                   ExecutionPolicy&&      execution_policy,
-                                   [[maybe_unused]] integer_sequence<IndexType,BeforeIndices...>,
-                                   [[maybe_unused]] integer_sequence<IndexType,AfterIndices...>,
-                                   tuple<IndicesType...>& indices )
+inline void apply_all_strided3_except( View&&                 view,
+                                       Lambda&&               lambda,
+                                       ExecutionPolicy&&      execution_policy,
+                                       [[maybe_unused]] integer_sequence<IndexType,BeforeIndices...>,
+                                       [[maybe_unused]] integer_sequence<IndexType,AfterIndices...>,
+                                       tuple<IndicesType...>& indices )
+{
+  constexpr IndexType index = sizeof...(BeforeIndices);
+  // Cache the last exception to be thrown
+  exception_ptr eptr;
+  // Attempt lambda expression on each element
+  for_each( execution_policy,
+            faux_index_iterator<decay_t<decltype( get<index>(indices) )> >(0),
+            faux_index_iterator<decay_t<decltype( get<index>(indices) )> >(view.extent(index)),
+            [&lambda,&indices,&eptr] ( decay_t<decltype( get<index>(indices) )> curr_index ) constexpr noexcept
+              {
+                try { lambda( get<BeforeIndices>(indices) ..., curr_index, get<AfterIndices+index>(indices) ... ); }
+                catch ( ... ) { eptr = current_exception(); }
+              } );
+  // If exceptions were thrown, rethrow the last
+  if ( eptr ) [[unlikely]]
+  {
+    rethrow_exception( eptr );
+  }
+}
+
+template < class         View,
+           class         Lambda,
+           class         ExecutionPolicy,
+           class         IndexType,
+           IndexType ... BeforeIndices,
+           IndexType ... AfterIndices,
+           class ...     IndicesType >
+constexpr void apply_all_strided3( View&&                                                        view,
+                                   Lambda&&                                                      lambda,
+                                   ExecutionPolicy&&                                             execution_policy,
+                                   [[maybe_unused]] integer_sequence<IndexType,BeforeIndices...> before,
+                                   [[maybe_unused]] integer_sequence<IndexType,AfterIndices...>  after,
+                                   tuple<IndicesType...>&                                        indices )
   noexcept( noexcept( lambda( get< BeforeIndices >( indices ) ...,
                               declval< decay_t< decltype( get< sizeof...(BeforeIndices) >( indices ) ) > >(),
                               get< AfterIndices + sizeof...(BeforeIndices) >( indices ) ... ) ) )
 {
   constexpr IndexType index = sizeof...(BeforeIndices);
   // If lambda expression is noexcept, then just attempt to call using whatever execution policy
-  if constexpr ( noexcept( lambda( get< BeforeIndices >( indices ) ...,
-                                   declval< decay_t< decltype( get< sizeof...(BeforeIndices) >( indices ) ) > >(),
-                                   get< AfterIndices + sizeof...(BeforeIndices) >( indices ) ... ) ) )
+  constexpr bool is_noexcept = noexcept( lambda( get< BeforeIndices >( indices ) ...,
+                                                 declval< decay_t< decltype( get< sizeof...(BeforeIndices) >( indices ) ) > >(),
+                                                 get< AfterIndices + sizeof...(BeforeIndices) >( indices ) ... ) );
+  if constexpr ( is_noexcept )
   {
     for_each( execution_policy,
               faux_index_iterator<decay_t<decltype( get<index>(indices) )> >(0),
@@ -341,22 +375,7 @@ constexpr void apply_all_strided3( View&&                 view,
   }
   else
   {
-    // Cache the last exception to be thrown
-    exception_ptr eptr;
-    // Attempt lambda expression on each element
-    for_each( execution_policy,
-              faux_index_iterator<decay_t<decltype( get<index>(indices) )> >(0),
-              faux_index_iterator<decay_t<decltype( get<index>(indices) )> >(view.extent(index)),
-              [&lambda,&indices,&eptr] ( decay_t<decltype( get<index>(indices) )> curr_index ) constexpr noexcept
-                {
-                  try { lambda( get<BeforeIndices>(indices) ..., curr_index, get<AfterIndices+index>(indices) ... ); }
-                  catch ( ... ) { eptr = current_exception(); }
-                } );
-    // If exceptions were thrown, rethrow the last
-    if ( eptr ) [[unlikely]]
-    {
-      rethrow_exception( eptr );
-    }
+    apply_all_strided3_except( view, lambda, execution_policy, before, after, indices );
   }
 }
 
@@ -380,6 +399,36 @@ template < size_t    Index,
   else
   {
     return apply_all_strided2_is_noexcept<Index+1,View,Lambda,ExecutionPolicy,IndexType ...>();
+  }
+}
+
+template < size_t    Index,
+           class     View,
+           class     Lambda,
+           class     ExecutionPolicy,
+           class ... IndexType >
+inline void apply_all_strided2_except( View&&               view,
+                                       Lambda&&             lambda,
+                                       ExecutionPolicy&&    execution_policy,
+                                       tuple<IndexType...>& indices )
+{
+  constexpr size_t index_stride = stride_order< decay_t<View> >::get_nth_largest_stride_index( Index );
+  // Cache the last exception to be thrown
+  exception_ptr eptr;
+  // Attempt lambda expression on each element
+  for_each( execution_policy,
+            faux_index_iterator<decay_t<decltype( get<index_stride>(indices) )> >(0),
+            faux_index_iterator<decay_t<decltype( get<index_stride>(indices) )> >(view.extent(index_stride)),
+            [&view,&lambda,&execution_policy,&indices,&eptr,index_stride] ( decay_t<decltype( get<index_stride>(indices) )> index ) constexpr noexcept
+              {
+                get<index_stride>(indices) = index;
+                try { apply_all_strided2<Index+1>( view, lambda, execution_policy, indices ); }
+                catch ( ... ) { eptr = current_exception(); }
+              } );
+  // If exceptions were thrown, rethrow the last
+  if ( eptr ) [[unlikely]]
+  {
+    rethrow_exception( eptr );
   }
 }
 
@@ -419,23 +468,7 @@ constexpr void apply_all_strided2( View&&               view,
     }
     else
     {
-      // Cache the last exception to be thrown
-      exception_ptr eptr;
-      // Attempt lambda expression on each element
-      for_each( execution_policy,
-                faux_index_iterator<decay_t<decltype( get<index_stride>(indices) )> >(0),
-                faux_index_iterator<decay_t<decltype( get<index_stride>(indices) )> >(view.extent(index_stride)),
-                [&view,&lambda,&execution_policy,&indices,&eptr,index_stride] ( decay_t<decltype( get<index_stride>(indices) )> index ) constexpr noexcept
-                  {
-                    get<index_stride>(indices) = index;
-                    try { apply_all_strided2<Index+1>( view, lambda, execution_policy, indices ); }
-                    catch ( ... ) { eptr = current_exception(); }
-                  } );
-      // If exceptions were thrown, rethrow the last
-      if ( eptr ) [[unlikely]]
-      {
-        rethrow_exception( eptr );
-      }
+      apply_all_strided2_except( view, lambda, execution_policy, indices );
     }
   }
 }
@@ -474,6 +507,32 @@ template < class     View,
            class     ExecutionPolicy,
            class ... BeforeIndexType,
            class     ExtentType >
+inline void apply_all_impl2_except( View&&              view,
+                                    Lambda&&            lambda,
+                                    ExecutionPolicy&&   execution_policy,
+                                    ExtentType          dim,
+                                    BeforeIndexType ... before_indices )
+{
+  // Cache the last exception to be thrown
+  exception_ptr eptr;
+  // Attempt lambda expression on each element
+  for_each( execution_policy,
+            faux_index_iterator<typename decay_t<View>::size_type>( 0 ),
+            faux_index_iterator<typename decay_t<View>::size_type>( view.extent(dim) ),
+            [ &lambda, &before_indices..., &eptr ]( typename decay_t<View>::size_type index ) constexpr noexcept
+              { try { lambda( before_indices ..., index ); } catch ( ... ) { eptr = current_exception(); } } );
+  // If exceptions were thrown, rethrow the last
+  if ( eptr ) [[unlikely]]
+  {
+    rethrow_exception( eptr );
+  }
+}
+
+template < class     View,
+           class     Lambda,
+           class     ExecutionPolicy,
+           class ... BeforeIndexType,
+           class     ExtentType >
 constexpr void apply_all_impl2( View&&              view,
                                 Lambda&&            lambda,
                                 ExecutionPolicy&&   execution_policy,
@@ -493,19 +552,7 @@ constexpr void apply_all_impl2( View&&              view,
   }
   else
   {
-    // Cache the last exception to be thrown
-    exception_ptr eptr;
-    // Attempt lambda expression on each element
-    for_each( execution_policy,
-              faux_index_iterator<typename decay_t<View>::size_type>( 0 ),
-              faux_index_iterator<typename decay_t<View>::size_type>( view.extent(dim) ),
-              [ &lambda, &before_indices..., &eptr ]( typename decay_t<View>::size_type index ) constexpr noexcept
-                { try { lambda( before_indices ..., index ); } catch ( ... ) { eptr = current_exception(); } } );
-    // If exceptions were thrown, rethrow the last
-    if ( eptr ) [[unlikely]]
-    {
-      rethrow_exception( eptr );
-    }
+    apply_all_impl2_except( view, lambda, execution_policy, dim, before_indices );
   }
 }
 
@@ -539,11 +586,45 @@ template < class           View,
            class           ExtentsType,
            ExtentsType     FirstExtents,
            ExtentsType ... Extents >
-constexpr void apply_all_impl( View&&            view,
-                               Lambda&&          lambda,
-                               ExecutionPolicy&& execution_policy,
-                               [[maybe_unused]] integer_sequence<ExtentsType,FirstExtents,Extents...>,
-                               SizeType ...      indices )
+inline void apply_all_impl_except( View&&            view,
+                                   Lambda&&          lambda,
+                                   ExecutionPolicy&& execution_policy,
+                                   [[maybe_unused]] integer_sequence<ExtentsType,FirstExtents,Extents...>,
+                                   SizeType ...      indices )
+{
+  // Lambda expression iterates over the next index
+  auto for_each_lambda = [&view,&lambda,&execution_policy,&indices...] ( typename decay_t<View>::size_type index )
+  { apply_all_impl( forward<View>( view ),
+                    forward<Lambda>( lambda ),
+                    forward<ExecutionPolicy>( execution_policy ),
+                    integer_sequence<ExtentsType,Extents...>{}, indices ..., index ); };
+  // Cache the last exception to be thrown
+  exception_ptr eptr;
+  // Attempt lambda expression
+  for_each( execution_policy,
+            faux_index_iterator<typename decay_t<View>::size_type>( 0 ),
+            faux_index_iterator<typename decay_t<View>::size_type>( view.extent(FirstExtents) ),
+            [ &for_each_lambda, &eptr ] ( typename decay_t<View>::size_type index ) constexpr noexcept
+              { try { for_each_lambda(index); } catch ( ... ) { eptr = current_exception(); } } );
+  // If exceptions were thrown, rethrow the last
+  if ( eptr ) [[unlikely]]
+  {
+    rethrow_exception( eptr );
+  }
+}
+
+template < class           View,
+           class           Lambda,
+           class           ExecutionPolicy,
+           class ...       SizeType,
+           class           ExtentsType,
+           ExtentsType     FirstExtents,
+           ExtentsType ... Extents >
+constexpr void apply_all_impl( View&&                                                                 view,
+                               Lambda&&                                                               lambda,
+                               ExecutionPolicy&&                                                      execution_policy,
+                               [[maybe_unused]] integer_sequence<ExtentsType,FirstExtents,Extents...> first_extents,
+                               SizeType ...                                                           indices )
   noexcept( apply_all_impl_is_noexcept<View,Lambda,ExecutionPolicy,SizeType...>( integer_sequence<ExtentsType,FirstExtents,Extents...>{} ) )
 {
   if constexpr ( sizeof...(Extents) == 0 )
@@ -561,16 +642,16 @@ constexpr void apply_all_impl( View&&            view,
                                 forward<Lambda>( lambda ),
                                 forward<ExecutionPolicy>( execution_policy ),
                                 integer_sequence<ExtentsType,Extents...>{}, indices ..., declval<typename decay_t<View>::size_type>() ) );
-    // Lambda expression iterates over the next index
-    auto for_each_lambda = [&view,&lambda,&execution_policy,&indices...] ( typename decay_t<View>::size_type index )
-      constexpr noexcept( is_noexcept )
-      { apply_all_impl( forward<View>( view ),
-                        forward<Lambda>( lambda ),
-                        forward<ExecutionPolicy>( execution_policy ),
-                        integer_sequence<ExtentsType,Extents...>{}, indices ..., index ); };
     // If lambda expression is no except then no need to try to catch exception pointers
     if constexpr ( is_noexcept )
     {
+      // Lambda expression iterates over the next index
+      auto for_each_lambda = [&view,&lambda,&execution_policy,&indices...] ( typename decay_t<View>::size_type index )
+        constexpr noexcept( is_noexcept )
+        { apply_all_impl( forward<View>( view ),
+                          forward<Lambda>( lambda ),
+                          forward<ExecutionPolicy>( execution_policy ),
+                          integer_sequence<ExtentsType,Extents...>{}, indices ..., index ); };
       for_each( execution_policy,
                 faux_index_iterator<typename decay_t<View>::size_type>( 0 ),
                 faux_index_iterator<typename decay_t<View>::size_type>( view.extent(FirstExtents) ),
@@ -578,19 +659,7 @@ constexpr void apply_all_impl( View&&            view,
     }
     else
     {
-      // Cache the last exception to be thrown
-      exception_ptr eptr;
-      // Attempt lambda expression
-      for_each( execution_policy,
-                faux_index_iterator<typename decay_t<View>::size_type>( 0 ),
-                faux_index_iterator<typename decay_t<View>::size_type>( view.extent(FirstExtents) ),
-                [ &for_each_lambda, &eptr ] ( typename decay_t<View>::size_type index ) constexpr noexcept
-                  { try { for_each_lambda(index); } catch ( ... ) { eptr = current_exception(); } } );
-      // If exceptions were thrown, rethrow the last
-      if ( eptr ) [[unlikely]]
-      {
-        rethrow_exception( eptr );
-      }
+      apply_all_impl_except( view, lambda, execution_policy, first_extents, indices );
     }
   }
 }
