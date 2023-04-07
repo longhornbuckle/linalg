@@ -8,7 +8,7 @@ macro( linalg_add_test name )
   set( CMAKE_CXX_STANDARD_REQUIRED YES)
   set( CMAKE_CXX_EXTENSIONS NO )
   target_link_libraries( ${name} linalg gtest_main gtest )
-  target_compile_options( linalg
+  target_compile_options( ${name}
     PRIVATE
         $<$<OR:$<CXX_COMPILER_ID:GNU>>:-fconcepts -Wall -pedantic -Wextra  -Wno-unused-function -Wno-unused-variable -W -Wno-unused-but-set-variable -Wno-unused-local-typedefs -fmax-errors=10>
         $<$<OR:$<CXX_COMPILER_ID:Clang>>:-stdlib=libc++ -Wall -pedantic -Wextra -Wno-unused-parameter -Wno-unused-function -Wno-unused-local-typedefs>
