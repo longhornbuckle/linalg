@@ -806,7 +806,7 @@ assign_view( ToView& to_view, const FromView& from_view )
                [ &to_view, &from_view ]< class ... Indices >( Indices ... indices )
                  constexpr noexcept( is_nothrow_convertible_v<typename decay_t<FromView>::reference,typename decay_t<ToView>::reference> )
                  { to_view[ indices ... ] = from_view[ indices ... ]; },
-               LINALG_EXECUTION_UNSEQq );
+               LINALG_EXECUTION_UNSEQ );
   }
   else
   {
