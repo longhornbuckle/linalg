@@ -1,0 +1,373 @@
+\hypertarget{dynamic__matrix_8hpp_source}{}\doxysection{dynamic\+\_\+matrix.\+hpp}
+\label{dynamic__matrix_8hpp_source}\index{include/experimental/linear\_algebra/dynamic\_matrix.hpp@{include/experimental/linear\_algebra/dynamic\_matrix.hpp}}
+\mbox{\hyperlink{dynamic__matrix_8hpp}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{comment}{//==================================================================================================}}
+\DoxyCodeLine{00002\ \textcolor{comment}{//\ \ File:\ \ \ \ \ \ \ dynamic\_matrix.hpp}}
+\DoxyCodeLine{00003\ \textcolor{comment}{//}}
+\DoxyCodeLine{00004\ \textcolor{comment}{//\ \ Summary:\ \ \ \ This\ header\ defines\ a\ dynamic\_matrix.\ In\ this\ context,\ dynamic\ means\ the\ row\ and}}
+\DoxyCodeLine{00005\ \textcolor{comment}{//\ \ \ \ \ \ \ \ \ \ \ \ \ \ column\ extents\ of\ such\ objects\ are\ not\ known\ at\ compile-\/time.}}
+\DoxyCodeLine{00006\ \textcolor{comment}{//==================================================================================================}}
+\DoxyCodeLine{00007\ \textcolor{comment}{//}}
+\DoxyCodeLine{00008\ \textcolor{preprocessor}{\#ifndef\ LINEAR\_ALGEBRA\_DYNAMIC\_MATRIX\_HPP}}
+\DoxyCodeLine{00009\ \textcolor{preprocessor}{\#define\ LINEAR\_ALGEBRA\_DYNAMIC\_MATRIX\_HPP}}
+\DoxyCodeLine{00010\ }
+\DoxyCodeLine{00011\ \textcolor{preprocessor}{\#include\ <\mbox{\hyperlink{linear__algebra_8hpp}{experimental/linear\_algebra.hpp}}>}}
+\DoxyCodeLine{00012\ }
+\DoxyCodeLine{00013\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespacestd}{std}}}
+\DoxyCodeLine{00014\ \{}
+\DoxyCodeLine{00015\ \textcolor{keyword}{namespace\ }math}
+\DoxyCodeLine{00016\ \{}
+\DoxyCodeLine{00017\ }
+\DoxyCodeLine{00019\ \textcolor{comment}{//\ \ \ \ \ \ \ \ \ Implementation\ satisfies\ the\ following\ concepts:}}
+\DoxyCodeLine{00020\ \textcolor{comment}{//\ \ \ \ \ \ \ \ \ concepts::dynamic\_matrix}}
+\DoxyCodeLine{00021\ \textcolor{comment}{//\ \ \ \ \ \ \ \ \ concepts::writable\_matrix}}
+\DoxyCodeLine{00026\ \textcolor{comment}{}\textcolor{keyword}{template}\ <\ \textcolor{keyword}{class\ }T,}
+\DoxyCodeLine{00027\ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{class\ }Alloc\ \ =\ allocator<T>,}
+\DoxyCodeLine{00028\ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{class\ }L\ \ \ \ \ \ =\ experimental::layout\_right,}
+\DoxyCodeLine{00029\ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{class\ }Access\ =\ experimental::default\_accessor<T>\ >}
+\DoxyCodeLine{00030\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classstd_1_1math_1_1dr__matrix}{dr\_matrix}}\ :\ \textcolor{keyword}{public}\ \mbox{\hyperlink{classstd_1_1math_1_1dr__tensor}{dr\_tensor}}<T,2,Alloc,L,Access>}
+\DoxyCodeLine{00031\ \{}
+\DoxyCodeLine{00032\ \ \ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00033\ \ \ \ \ \textcolor{comment}{//\ Base\ tensor\ type}}
+\DoxyCodeLine{00034\ \ \ \ \ \textcolor{keyword}{using\ }\mbox{\hyperlink{classstd_1_1math_1_1dr__tensor}{base\_type}}\ =\ \mbox{\hyperlink{classstd_1_1math_1_1dr__tensor}{dr\_tensor<T,2,Alloc,L,Access>}};}
+\DoxyCodeLine{00035\ \ \ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00036\ \ \ \ \ \textcolor{comment}{//-\/\ Types}}
+\DoxyCodeLine{00037\ }
+\DoxyCodeLine{00039\ \ \ \ \ \textcolor{keyword}{using\ }\mbox{\hyperlink{classstd_1_1math_1_1dr__matrix_ad1bc4f3adc19e8c20028fb2dffadffee}{layout\_type}}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ =\ \textcolor{keyword}{typename}\ \mbox{\hyperlink{classstd_1_1math_1_1dr__tensor_a7e1674ecc1d57ad775b9b5ba05f9374d}{base\_type::layout\_type}};}
+\DoxyCodeLine{00041\ \ \ \ \ \textcolor{keyword}{using\ }\mbox{\hyperlink{classstd_1_1math_1_1dr__matrix_a5d932b4dab1f9085483bc96fd5f7ec9e}{accessor\_type}}\ \ \ \ \ \ \ \ \ \ \ \ \ \ =\ \textcolor{keyword}{typename}\ \mbox{\hyperlink{classstd_1_1math_1_1dr__tensor_a54b6af496f85a5e1027426cddb575c24}{base\_type::accessor\_type}};}
+\DoxyCodeLine{00043\ \ \ \ \ \textcolor{keyword}{using\ }\mbox{\hyperlink{classstd_1_1math_1_1dr__matrix_a7d14ebbc93ee38098e151c1276ed2e9e}{element\_type}}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ =\ \textcolor{keyword}{typename}\ \mbox{\hyperlink{classstd_1_1math_1_1dr__tensor_a45a1af906818137bb34eb82f01c89275}{base\_type::element\_type}};}
+\DoxyCodeLine{00045\ \ \ \ \ \textcolor{keyword}{using\ }\mbox{\hyperlink{classstd_1_1math_1_1dr__matrix_a02a6f6e53d1a4fb0be36490b347e0b68}{value\_type}}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ =\ \textcolor{keyword}{typename}\ \mbox{\hyperlink{classstd_1_1math_1_1dr__tensor_a1a99c1781e9f09ce477dc87f950216e6}{base\_type::value\_type}};}
+\DoxyCodeLine{00047\ \ \ \ \ \textcolor{keyword}{using\ }\mbox{\hyperlink{classstd_1_1math_1_1dr__matrix_a1fe25d36296174f6c0130bf93cb39a7d}{allocator\_type}}\ \ \ \ \ \ \ \ \ \ \ \ \ =\ \textcolor{keyword}{typename}\ \mbox{\hyperlink{classstd_1_1math_1_1dr__tensor_a25d140c88f3bf227d4be72c5809ab19a}{base\_type::allocator\_type}};}
+\DoxyCodeLine{00049\ \ \ \ \ \textcolor{keyword}{using\ }\mbox{\hyperlink{classstd_1_1math_1_1dr__matrix_afaf5cea2635ac4f9b226d0a89cecaf57}{index\_type}}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ =\ \textcolor{keyword}{typename}\ \mbox{\hyperlink{classstd_1_1math_1_1dr__tensor_a32d51fefc007ba5c0fe1bc333076b8dd}{base\_type::index\_type}};}
+\DoxyCodeLine{00051\ \ \ \ \ \textcolor{keyword}{using\ }\mbox{\hyperlink{classstd_1_1math_1_1dr__matrix_af801b34e4eba972f88113261bd7587d7}{size\_type}}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ =\ \textcolor{keyword}{typename}\ \mbox{\hyperlink{classstd_1_1math_1_1dr__tensor_ad92f5299cd5817c7c8d23471d6f76e42}{base\_type::size\_type}};}
+\DoxyCodeLine{00053\ \ \ \ \ \textcolor{keyword}{using\ }\mbox{\hyperlink{classstd_1_1math_1_1dr__matrix_a708494c9db17c0e143f80a319d6d66e8}{extents\_type}}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ =\ \textcolor{keyword}{typename}\ \mbox{\hyperlink{classstd_1_1math_1_1dr__tensor_aab60c7ac7de58b9986fba1a43edf95a3}{base\_type::extents\_type}};}
+\DoxyCodeLine{00055\ \ \ \ \ \textcolor{keyword}{using\ }\mbox{\hyperlink{classstd_1_1math_1_1dr__matrix_a421847d85efa25b9d8484a86408692b6}{tuple\_type}}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ =\ \textcolor{keyword}{typename}\ \mbox{\hyperlink{classstd_1_1math_1_1dr__tensor_a311855993b4064aba8e19587ed8c8c30}{base\_type::tuple\_type}};}
+\DoxyCodeLine{00057\ \ \ \ \ \textcolor{keyword}{using\ }\mbox{\hyperlink{classstd_1_1math_1_1dr__matrix_a86fdd3eea86e4dd17e29c965d3a50dec}{const\_underlying\_span\_type}}\ =\ \textcolor{keyword}{typename}\ \mbox{\hyperlink{classstd_1_1math_1_1dr__tensor_ac614c64c2545c31fb294544d95536f23}{base\_type::const\_underlying\_span\_type}};}
+\DoxyCodeLine{00059\ \ \ \ \ \textcolor{keyword}{using\ }\mbox{\hyperlink{classstd_1_1math_1_1dr__matrix_a7c325fffee8d3b0ca8872e829dde311e}{underlying\_span\_type}}\ \ \ \ \ \ \ =\ \textcolor{keyword}{typename}\ \mbox{\hyperlink{classstd_1_1math_1_1dr__tensor_a4330bcccce54d66e9f93c7889a3998a2}{base\_type::underlying\_span\_type}};}
+\DoxyCodeLine{00061\ \ \ \ \ \textcolor{keyword}{using\ }\mbox{\hyperlink{classstd_1_1math_1_1dr__matrix_a12c68998146c5e3d915ca19cb145c6f8}{span\_type}}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ =\ \textcolor{keyword}{typename}\ \mbox{\hyperlink{classstd_1_1math_1_1dr__tensor_ac18a7bc8a870b1b695e21b2d58cc4898}{base\_type::span\_type}};}
+\DoxyCodeLine{00063\ \ \ \ \ \textcolor{keyword}{using\ }\mbox{\hyperlink{classstd_1_1math_1_1dr__matrix_a09f94e7a0e70efc435aebf505d381ae3}{reference\_type}}\ \ \ \ \ \ \ \ \ \ \ \ \ =\ \textcolor{keyword}{typename}\ \mbox{\hyperlink{classstd_1_1math_1_1dr__tensor_ab12f3e2dba6862820a8480998e76841d}{base\_type::reference\_type}};}
+\DoxyCodeLine{00065\ \ \ \ \ \textcolor{keyword}{using\ }\mbox{\hyperlink{classstd_1_1math_1_1dr__matrix_a8f05cc6f2d141b582c5ee27b0e755540}{subtensor\_type}}\ \ \ \ \ \ \ \ \ \ \ \ \ =\ \textcolor{keyword}{typename}\ \mbox{\hyperlink{classstd_1_1math_1_1dr__tensor_a220aaa2d4ad4d41d374244948ca68930}{base\_type::subtensor\_type}};}
+\DoxyCodeLine{00067\ \ \ \ \ \textcolor{keyword}{using\ }\mbox{\hyperlink{classstd_1_1math_1_1dr__matrix_a7982120e79f91b218e4ab82eba706b5f}{const\_subtensor\_type}}\ \ \ \ \ \ \ =\ \textcolor{keyword}{typename}\ \mbox{\hyperlink{classstd_1_1math_1_1dr__tensor_a56057e834324d437bf4b1d9b06f8c122}{base\_type::const\_subtensor\_type}};}
+\DoxyCodeLine{00069\ \ \ \ \ \textcolor{keyword}{using\ }\mbox{\hyperlink{classstd_1_1math_1_1vector__view}{column\_type}}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ =\ \mbox{\hyperlink{classstd_1_1math_1_1vector__view}{vector\_view<decltype(\ experimental::submdspan(\ declval<underlying\_span\_type>}}(),\ declval<experimental::full\_extent\_t>(),\ declval<index\_type>()\ )\ )>;}
+\DoxyCodeLine{00071\ \ \ \ \ \textcolor{keyword}{using\ }\mbox{\hyperlink{classstd_1_1math_1_1vector__view}{const\_column\_type}}\ \ \ \ \ \ \ \ \ \ =\ \mbox{\hyperlink{classstd_1_1math_1_1vector__view}{vector\_view<decltype(\ experimental::submdspan(\ declval<const\_underlying\_span\_type>}}(),\ declval<experimental::full\_extent\_t>(),\ declval<index\_type>()\ )\ )>;}
+\DoxyCodeLine{00073\ \ \ \ \ \textcolor{keyword}{using\ }\mbox{\hyperlink{classstd_1_1math_1_1vector__view}{row\_type}}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ =\ \mbox{\hyperlink{classstd_1_1math_1_1vector__view}{vector\_view<decltype(\ experimental::submdspan(\ declval<underlying\_span\_type>}}(),\ declval<index\_type>(),\ declval<experimental::full\_extent\_t>()\ )\ )>;}
+\DoxyCodeLine{00075\ \ \ \ \ \textcolor{keyword}{using\ }\mbox{\hyperlink{classstd_1_1math_1_1vector__view}{const\_row\_type}}\ \ \ \ \ \ \ \ \ \ \ \ \ =\ \mbox{\hyperlink{classstd_1_1math_1_1vector__view}{vector\_view<decltype(\ experimental::submdspan(\ declval<const\_underlying\_span\_type>}}(),\ declval<index\_type>(),\ declval<experimental::full\_extent\_t>()\ )\ )>;}
+\DoxyCodeLine{00077\ \ \ \ \ \textcolor{keyword}{using\ }\mbox{\hyperlink{classstd_1_1math_1_1matrix__view}{submatrix\_type}}\ \ \ \ \ \ \ \ \ \ \ \ \ =\ \mbox{\hyperlink{classstd_1_1math_1_1matrix__view}{matrix\_view<decltype(\ detail::submdspan(\ declval<underlying\_span\_type>}}(),\ declval<tuple\_type>(),\ declval<tuple\_type>()\ )\ )>;}
+\DoxyCodeLine{00079\ \ \ \ \ \textcolor{keyword}{using\ }\mbox{\hyperlink{classstd_1_1math_1_1matrix__view}{const\_submatrix\_type}}\ \ \ \ \ \ \ =\ \mbox{\hyperlink{classstd_1_1math_1_1matrix__view}{matrix\_view<decltype(\ detail::submdspan(\ declval<const\_underlying\_span\_type>}}(),\ declval<tuple\_type>(),\ declval<tuple\_type>()\ )\ )>;}
+\DoxyCodeLine{00081\ \ \ \ \ \textcolor{keyword}{using\ }\mbox{\hyperlink{classstd_1_1math_1_1dr__matrix}{transpose\_type}}\ \ \ \ \ \ \ \ \ \ \ \ \ =\ \mbox{\hyperlink{classstd_1_1math_1_1dr__matrix_ae5e32f8047d2c3160fd20f4129307f60}{dr\_matrix}};}
+\DoxyCodeLine{00082\ \ \ \ \ }
+\DoxyCodeLine{00083\ \ \ \ \ \textcolor{comment}{//-\/\ Rebind}}
+\DoxyCodeLine{00084\ }
+\DoxyCodeLine{00089\ \ \ \ \ \textcolor{keyword}{template}\ <\ \textcolor{keyword}{class\ }ValueType,}
+\DoxyCodeLine{00090\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{class\ }LayoutType\ \ \ =\ \mbox{\hyperlink{classstd_1_1math_1_1dr__matrix_ad1bc4f3adc19e8c20028fb2dffadffee}{layout\_type}},}
+\DoxyCodeLine{00091\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{class\ }AccessorType\ =\ \mbox{\hyperlink{classstd_1_1math_1_1dr__matrix_a5d932b4dab1f9085483bc96fd5f7ec9e}{accessor\_type}}\ >}
+\DoxyCodeLine{00092\ \ \ \ \ \textcolor{keyword}{class\ }\mbox{\hyperlink{classstd_1_1math_1_1dr__matrix_1_1rebind}{rebind}}}
+\DoxyCodeLine{00093\ \ \ \ \ \{}
+\DoxyCodeLine{00094\ \ \ \ \ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00095\ \ \ \ \ \ \ \textcolor{keyword}{using\ }rebind\_accessor\_type\ =\ \mbox{\hyperlink{namespacestd_1_1math_1_1detail_a66ad73a2afe0cb3a49bfaad6497ce6a1}{detail::rebind\_accessor\_t<AccessorType,ValueType>}};}
+\DoxyCodeLine{00096\ \ \ \ \ \ \ \textcolor{keyword}{using\ }rebind\_element\_type\ \ =\ \textcolor{keyword}{typename}\ rebind\_accessor\_type::element\_type;}
+\DoxyCodeLine{00097\ \ \ \ \ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00098\ \ \ \ \ \ \ \textcolor{keyword}{using\ }\mbox{\hyperlink{classstd_1_1math_1_1dr__matrix}{type}}\ =\ \mbox{\hyperlink{classstd_1_1math_1_1dr__matrix}{dr\_matrix}}<\ ValueType,}
+\DoxyCodeLine{00099\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{typename}\ allocator\_traits<allocator\_type>::template\ rebind\_alloc<rebind\_element\_type>,}
+\DoxyCodeLine{00100\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ LayoutType,}
+\DoxyCodeLine{00101\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ rebind\_accessor\_type\ >;}
+\DoxyCodeLine{00102\ \ \ \ \ \};}
+\DoxyCodeLine{00107\ \ \ \ \ \textcolor{keyword}{template}\ <\ \textcolor{keyword}{class\ }ValueType,}
+\DoxyCodeLine{00108\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{class\ }LayoutType\ \ \ =\ \mbox{\hyperlink{classstd_1_1math_1_1dr__matrix_ad1bc4f3adc19e8c20028fb2dffadffee}{layout\_type}},}
+\DoxyCodeLine{00109\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{class\ }AccessorType\ =\ \mbox{\hyperlink{classstd_1_1math_1_1dr__matrix_a5d932b4dab1f9085483bc96fd5f7ec9e}{accessor\_type}}\ >}
+\DoxyCodeLine{00110\ \ \ \ \ \textcolor{keyword}{using\ }\mbox{\hyperlink{classstd_1_1math_1_1dr__matrix_abf8bf1e5350b283973da3c1e5c431c54}{rebind\_t}}\ =\ \textcolor{keyword}{typename}\ \mbox{\hyperlink{classstd_1_1math_1_1dr__matrix}{rebind<\ ValueType,\ LayoutType,\ AccessorType\ >::type}};}
+\DoxyCodeLine{00111\ }
+\DoxyCodeLine{00112\ \ \ \ \ \textcolor{comment}{//-\/\ Destructor\ /\ Constructors\ /\ Assignments}}
+\DoxyCodeLine{00113\ }
+\DoxyCodeLine{00115\ \ \ \ \ \mbox{\hyperlink{classstd_1_1math_1_1dr__matrix_a4ee8e8e8935786112b2667526ae00130}{\string~dr\_matrix}}()\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ =\ \textcolor{keywordflow}{default};}
+\DoxyCodeLine{00117\ \ \ \ \ \textcolor{keyword}{constexpr}\ \mbox{\hyperlink{classstd_1_1math_1_1dr__matrix_ae5e32f8047d2c3160fd20f4129307f60}{dr\_matrix}}()\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ =\ \textcolor{keywordflow}{default};}
+\DoxyCodeLine{00120\ \ \ \ \ \textcolor{keyword}{constexpr}\ \mbox{\hyperlink{classstd_1_1math_1_1dr__matrix_adc0f0e3a46d83751a8b24c5224f7aa7d}{dr\_matrix}}(\ \mbox{\hyperlink{classstd_1_1math_1_1dr__matrix}{dr\_matrix}}\&\&\ )\ \ \ \ \ \ =\ \textcolor{keywordflow}{default};}
+\DoxyCodeLine{00123\ \ \ \ \ \textcolor{keyword}{constexpr}\ \mbox{\hyperlink{classstd_1_1math_1_1dr__matrix_ae747a279904bc22b99ad4c879e398dfe}{dr\_matrix}}(\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classstd_1_1math_1_1dr__matrix}{dr\_matrix}}\&\ )\ =\ \textcolor{keywordflow}{default};}
+\DoxyCodeLine{00126\ \ \ \ \ \textcolor{keyword}{template}\ <\ concepts::tensor\_may\_be\_constructible<\ dr\_matrix\ >\ M2\ >}
+\DoxyCodeLine{00127\ \ \ \ \ \textcolor{keyword}{explicit}\ \textcolor{keyword}{constexpr}\ \mbox{\hyperlink{classstd_1_1math_1_1dr__matrix_ae5e32f8047d2c3160fd20f4129307f60}{dr\_matrix}}(\ \textcolor{keyword}{const}\ M2\&\ rhs\ )\ \textcolor{keyword}{noexcept}(\ \textcolor{keyword}{noexcept}(\ \mbox{\hyperlink{classstd_1_1math_1_1dr__tensor}{base\_type}}(rhs)\ )\ );}
+\DoxyCodeLine{00131\ \ \ \ \ \textcolor{keyword}{template}\ <\ concepts::view\_may\_be\_constructible\_to\_tensor<\ dr\_matrix\ >\ MDS\ >}
+\DoxyCodeLine{00132\ \ \ \ \ \textcolor{keyword}{explicit}\ \textcolor{keyword}{constexpr}\ \mbox{\hyperlink{classstd_1_1math_1_1dr__matrix_ae5e32f8047d2c3160fd20f4129307f60}{dr\_matrix}}(\ \textcolor{keyword}{const}\ MDS\&\ view\ )\ \textcolor{keyword}{noexcept}(\ \textcolor{keyword}{noexcept}(\ \mbox{\hyperlink{classstd_1_1math_1_1dr__tensor}{base\_type}}(view)\ )\ )}
+\DoxyCodeLine{00133\ \ \ \ \ \ \ \textcolor{keyword}{requires}\ is\_default\_constructible\_v<allocator\_type>;}
+\DoxyCodeLine{00136\ \ \ \ \ \textcolor{keyword}{explicit}\ \textcolor{keyword}{constexpr}\ \mbox{\hyperlink{classstd_1_1math_1_1dr__matrix_ae5e32f8047d2c3160fd20f4129307f60}{dr\_matrix}}(\ \mbox{\hyperlink{classstd_1_1math_1_1dr__matrix_a708494c9db17c0e143f80a319d6d66e8}{extents\_type}}\ s\ )\ \textcolor{keyword}{noexcept}(\ \textcolor{keyword}{noexcept}(\ \mbox{\hyperlink{classstd_1_1math_1_1dr__tensor}{base\_type}}(s)\ )\ )}
+\DoxyCodeLine{00137\ \ \ \ \ \ \ \textcolor{keyword}{requires}\ is\_default\_constructible\_v<allocator\_type>;}
+\DoxyCodeLine{00141\ \ \ \ \ \textcolor{keyword}{constexpr}\ \mbox{\hyperlink{classstd_1_1math_1_1dr__matrix_ae5e32f8047d2c3160fd20f4129307f60}{dr\_matrix}}(\ \mbox{\hyperlink{classstd_1_1math_1_1dr__matrix_a708494c9db17c0e143f80a319d6d66e8}{extents\_type}}\ s,\ \mbox{\hyperlink{classstd_1_1math_1_1dr__matrix_a708494c9db17c0e143f80a319d6d66e8}{extents\_type}}\ cap\ )\ \textcolor{keyword}{noexcept}(\ \textcolor{keyword}{noexcept}(\ \mbox{\hyperlink{classstd_1_1math_1_1dr__tensor}{base\_type}}(s,cap)\ )\ )}
+\DoxyCodeLine{00142\ \ \ \ \ \ \ \textcolor{keyword}{requires}\ is\_default\_constructible\_v<allocator\_type>;}
+\DoxyCodeLine{00147\ \ \ \ \ \textcolor{keyword}{template}\ <\ \textcolor{keyword}{class}\ Lambda\ >}
+\DoxyCodeLine{00148\ \ \ \ \ \textcolor{keyword}{constexpr}\ \mbox{\hyperlink{classstd_1_1math_1_1dr__matrix_ae5e32f8047d2c3160fd20f4129307f60}{dr\_matrix}}(\ \mbox{\hyperlink{classstd_1_1math_1_1dr__matrix_a708494c9db17c0e143f80a319d6d66e8}{extents\_type}}\ s,\ Lambda\&\&\ lambda\ )\ \textcolor{keyword}{noexcept}(\ \textcolor{keyword}{noexcept}(\ \mbox{\hyperlink{classstd_1_1math_1_1dr__tensor}{base\_type}}(s,lambda)\ )\ )}
+\DoxyCodeLine{00149\ \ \ \ \ \ \ \textcolor{keyword}{requires}\ is\_default\_constructible\_v<allocator\_type>\ \&\&}
+\DoxyCodeLine{00150\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{requires}\ \{\ \{\ declval<Lambda\&\&>()(\ declval<index\_type>(),\ declval<index\_type>()\ )\ \}\ -\/>\ convertible\_to<element\_type>;\ \};}
+\DoxyCodeLine{00156\ \ \ \ \ \textcolor{keyword}{template}\ <\ \textcolor{keyword}{class}\ Lambda\ >}
+\DoxyCodeLine{00157\ \ \ \ \ \textcolor{keyword}{constexpr}\ \mbox{\hyperlink{classstd_1_1math_1_1dr__matrix_ae5e32f8047d2c3160fd20f4129307f60}{dr\_matrix}}(\ \mbox{\hyperlink{classstd_1_1math_1_1dr__matrix_a708494c9db17c0e143f80a319d6d66e8}{extents\_type}}\ s,\ \mbox{\hyperlink{classstd_1_1math_1_1dr__matrix_a708494c9db17c0e143f80a319d6d66e8}{extents\_type}}\ cap,\ Lambda\&\&\ lambda\ )\ \textcolor{keyword}{noexcept}(\ \textcolor{keyword}{noexcept}(\ base\_type(s,cap,lambda)\ )\ )}
+\DoxyCodeLine{00158\ \ \ \ \ \ \ \textcolor{keyword}{requires}\ is\_default\_constructible\_v<allocator\_type>\ \&\&}
+\DoxyCodeLine{00159\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{requires}\ \{\ \{\ declval<Lambda\&\&>()(\ declval<index\_type>(),\ declval<index\_type>()\ )\ \}\ -\/>\ convertible\_to<element\_type>;\ \};}
+\DoxyCodeLine{00162\ \ \ \ \ \textcolor{keyword}{explicit}\ \textcolor{keyword}{constexpr}\ \mbox{\hyperlink{classstd_1_1math_1_1dr__matrix_ae5e32f8047d2c3160fd20f4129307f60}{dr\_matrix}}(\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classstd_1_1math_1_1dr__matrix_a1fe25d36296174f6c0130bf93cb39a7d}{allocator\_type}}\&\ alloc\ )\ \textcolor{keyword}{noexcept}(\ \textcolor{keyword}{noexcept}(\ base\_type(alloc)\ )\ );}
+\DoxyCodeLine{00167\ \ \ \ \ \textcolor{keyword}{template}\ <\ concepts::view\_may\_be\_constructible\_to\_tensor<\ dr\_matrix\ >\ MDS\ >}
+\DoxyCodeLine{00168\ \ \ \ \ \textcolor{keyword}{explicit}\ \textcolor{keyword}{constexpr}\ \mbox{\hyperlink{classstd_1_1math_1_1dr__matrix_ae5e32f8047d2c3160fd20f4129307f60}{dr\_matrix}}(\ \textcolor{keyword}{const}\ MDS\&\ view,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classstd_1_1math_1_1dr__matrix_a1fe25d36296174f6c0130bf93cb39a7d}{allocator\_type}}\&\ alloc\ )\ \textcolor{keyword}{noexcept}(\ \textcolor{keyword}{noexcept}(\ base\_type(view,alloc)\ )\ );}
+\DoxyCodeLine{00172\ \ \ \ \ \textcolor{keyword}{constexpr}\ \mbox{\hyperlink{classstd_1_1math_1_1dr__matrix_ae5e32f8047d2c3160fd20f4129307f60}{dr\_matrix}}(\ \mbox{\hyperlink{classstd_1_1math_1_1dr__matrix_a708494c9db17c0e143f80a319d6d66e8}{extents\_type}}\ s,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classstd_1_1math_1_1dr__matrix_a1fe25d36296174f6c0130bf93cb39a7d}{allocator\_type}}\&\ alloc\ )\ \textcolor{keyword}{noexcept}(\ \textcolor{keyword}{noexcept}(\ base\_type(s,alloc)\ )\ );}
+\DoxyCodeLine{00177\ \ \ \ \ \textcolor{keyword}{constexpr}\ \mbox{\hyperlink{classstd_1_1math_1_1dr__matrix_ae5e32f8047d2c3160fd20f4129307f60}{dr\_matrix}}(\ \mbox{\hyperlink{classstd_1_1math_1_1dr__matrix_a708494c9db17c0e143f80a319d6d66e8}{extents\_type}}\ s,\ \mbox{\hyperlink{classstd_1_1math_1_1dr__matrix_a708494c9db17c0e143f80a319d6d66e8}{extents\_type}}\ cap,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classstd_1_1math_1_1dr__matrix_a1fe25d36296174f6c0130bf93cb39a7d}{allocator\_type}}\&\ alloc\ )\ \textcolor{keyword}{noexcept}(\ \textcolor{keyword}{noexcept}(\ base\_type(s,cap,alloc)\ )\ );}
+\DoxyCodeLine{00183\ \ \ \ \ \textcolor{keyword}{template}\ <\ \textcolor{keyword}{class}\ Lambda\ >}
+\DoxyCodeLine{00184\ \ \ \ \ \textcolor{keyword}{constexpr}\ \mbox{\hyperlink{classstd_1_1math_1_1dr__matrix_ae5e32f8047d2c3160fd20f4129307f60}{dr\_matrix}}(\ \mbox{\hyperlink{classstd_1_1math_1_1dr__matrix_a708494c9db17c0e143f80a319d6d66e8}{extents\_type}}\ s,\ Lambda\&\&\ lambda,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classstd_1_1math_1_1dr__matrix_a1fe25d36296174f6c0130bf93cb39a7d}{allocator\_type}}\&\ alloc\ )\ \textcolor{keyword}{noexcept}(\ \textcolor{keyword}{noexcept}(\ base\_type(s,lambda,alloc)\ )\ )}
+\DoxyCodeLine{00185\ \ \ \ \ \ \ \textcolor{keyword}{requires}\ \textcolor{keyword}{requires}\ \{\ \{\ declval<Lambda\&\&>()(\ declval<index\_type>(),\ declval<index\_type>()\ )\ \}\ -\/>\ convertible\_to<element\_type>;\ \};}
+\DoxyCodeLine{00192\ \ \ \ \ \textcolor{keyword}{template}\ <\ \textcolor{keyword}{class}\ Lambda\ >}
+\DoxyCodeLine{00193\ \ \ \ \ \textcolor{keyword}{constexpr}\ \mbox{\hyperlink{classstd_1_1math_1_1dr__matrix_ae5e32f8047d2c3160fd20f4129307f60}{dr\_matrix}}(\ \mbox{\hyperlink{classstd_1_1math_1_1dr__matrix_a708494c9db17c0e143f80a319d6d66e8}{extents\_type}}\ s,\ \mbox{\hyperlink{classstd_1_1math_1_1dr__matrix_a708494c9db17c0e143f80a319d6d66e8}{extents\_type}}\ cap,\ Lambda\&\&\ lambda,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classstd_1_1math_1_1dr__matrix_a1fe25d36296174f6c0130bf93cb39a7d}{allocator\_type}}\&\ alloc\ )\ \textcolor{keyword}{noexcept}(\ \textcolor{keyword}{noexcept}(\ base\_type(s,cap,lambda,alloc)\ )\ )}
+\DoxyCodeLine{00194\ \ \ \ \ \ \ \textcolor{keyword}{requires}\ \textcolor{keyword}{requires}\ \{\ \{\ declval<Lambda\&\&>()(\ declval<index\_type>(),\ declval<index\_type>()\ )\ \}\ -\/>\ convertible\_to<element\_type>;\ \};}
+\DoxyCodeLine{00198\ \ \ \ \ \textcolor{keyword}{constexpr}\ \mbox{\hyperlink{classstd_1_1math_1_1dr__matrix}{dr\_matrix}}\&\ \mbox{\hyperlink{classstd_1_1math_1_1dr__matrix_acb6fa00fde99b962e3f767827e78aad0}{operator\ =\ }}(\ \mbox{\hyperlink{classstd_1_1math_1_1dr__matrix}{dr\_matrix}}\&\&\ )\ \ \ \ \ \ =\ \textcolor{keywordflow}{default};}
+\DoxyCodeLine{00202\ \ \ \ \ \textcolor{keyword}{constexpr}\ \mbox{\hyperlink{classstd_1_1math_1_1dr__matrix}{dr\_matrix}}\&\ \mbox{\hyperlink{classstd_1_1math_1_1dr__matrix_acb6fa00fde99b962e3f767827e78aad0}{operator\ =\ }}(\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classstd_1_1math_1_1dr__matrix}{dr\_matrix}}\&\ )\ =\ \textcolor{keywordflow}{default};}
+\DoxyCodeLine{00207\ \ \ \ \ \textcolor{keyword}{template}\ <\ concepts::tensor\_may\_be\_constructible<\ dr\_matrix\ >\ M2\ >}
+\DoxyCodeLine{00208\ \ \ \ \ \textcolor{keyword}{constexpr}\ \mbox{\hyperlink{classstd_1_1math_1_1dr__matrix}{dr\_matrix}}\&\ \mbox{\hyperlink{classstd_1_1math_1_1dr__matrix_acb6fa00fde99b962e3f767827e78aad0}{operator\ =\ }}(\ \textcolor{keyword}{const}\ M2\&\ rhs\ )\ \textcolor{keyword}{noexcept}(\ \textcolor{keyword}{noexcept}(\ declval<base\_type>()\ =\ rhs\ )\ );}
+\DoxyCodeLine{00213\ \ \ \ \ \textcolor{keyword}{template}\ <\ concepts::view\_may\_be\_constructible\_to\_tensor<\ dr\_matrix\ >\ MDS\ >}
+\DoxyCodeLine{00214\ \ \ \ \ \textcolor{keyword}{constexpr}\ \mbox{\hyperlink{classstd_1_1math_1_1dr__matrix}{dr\_matrix}}\&\ \mbox{\hyperlink{classstd_1_1math_1_1dr__matrix_acb6fa00fde99b962e3f767827e78aad0}{operator\ =\ }}(\ \textcolor{keyword}{const}\ MDS\&\ view\ )\ \textcolor{keyword}{noexcept}(\ \textcolor{keyword}{noexcept}(\ declval<base\_type>()\ =\ view\ )\ );}
+\DoxyCodeLine{00215\ }
+\DoxyCodeLine{00216\ \ \ \ \ \textcolor{comment}{//-\/\ Size\ /\ Capacity}}
+\DoxyCodeLine{00217\ }
+\DoxyCodeLine{00218\ \ \ \ \ \textcolor{keyword}{using\ }\mbox{\hyperlink{classstd_1_1math_1_1dr__tensor_a275d3bd7235f3837cb98ba1c8a867396}{base\_type::size}};}
+\DoxyCodeLine{00219\ \ \ \ \ \textcolor{keyword}{using\ }\mbox{\hyperlink{classstd_1_1math_1_1dr__tensor_ac1960576abca63d8a73842a1279313f0}{base\_type::capacity}};}
+\DoxyCodeLine{00220\ \ \ \ \ \textcolor{keyword}{using\ }\mbox{\hyperlink{classstd_1_1math_1_1dr__tensor_a0b5db9c39b0e2e3acf07c7c32b96dec8}{base\_type::resize}};}
+\DoxyCodeLine{00221\ \ \ \ \ \textcolor{keyword}{using\ }\mbox{\hyperlink{classstd_1_1math_1_1dr__tensor_a32196d11a470b955b93b065a31a09e2f}{base\_type::reserve}};}
+\DoxyCodeLine{00222\ }
+\DoxyCodeLine{00225\ \ \ \ \ [[nodiscard]]\ \textcolor{keyword}{constexpr}\ \mbox{\hyperlink{classstd_1_1math_1_1dr__matrix_af801b34e4eba972f88113261bd7587d7}{size\_type}}\ \mbox{\hyperlink{classstd_1_1math_1_1dr__matrix_a9b361d01cc71700456d4e6386a86118a}{columns}}()\ const\ noexcept;}
+\DoxyCodeLine{00228\ \ \ \ \ [[nodiscard]]\ constexpr\ \mbox{\hyperlink{classstd_1_1math_1_1dr__matrix_af801b34e4eba972f88113261bd7587d7}{size\_type}}\ \mbox{\hyperlink{classstd_1_1math_1_1dr__matrix_aa771ef9605d9c743f353a9aebbe2b461}{rows}}()\ const\ noexcept;}
+\DoxyCodeLine{00231\ \ \ \ \ [[nodiscard]]\ constexpr\ \mbox{\hyperlink{classstd_1_1math_1_1dr__matrix_af801b34e4eba972f88113261bd7587d7}{size\_type}}\ \mbox{\hyperlink{classstd_1_1math_1_1dr__matrix_ad54d2d8b8d74b99897d6bf399988bc0e}{column\_capacity}}()\ const\ noexcept;}
+\DoxyCodeLine{00234\ \ \ \ \ [[nodiscard]]\ constexpr\ \mbox{\hyperlink{classstd_1_1math_1_1dr__matrix_af801b34e4eba972f88113261bd7587d7}{size\_type}}\ \mbox{\hyperlink{classstd_1_1math_1_1dr__matrix_ad8fa6af175c9702b7d7e47adcafb5a6d}{row\_capacity}}()\ const\ noexcept;}
+\DoxyCodeLine{00235\ }
+\DoxyCodeLine{00236\ \ \ \ \ \textcolor{comment}{//-\/\ Const\ views}}
+\DoxyCodeLine{00237\ }
+\DoxyCodeLine{00238\ \ \ \ \ using\ \mbox{\hyperlink{classstd_1_1math_1_1dr__tensor}{base\_type}}::operator[];\ \textcolor{comment}{//\ Brings\ into\ scope\ const\ and\ mutable}}
+\DoxyCodeLine{00239\ \ \ \ \ using\ \mbox{\hyperlink{classstd_1_1math_1_1dr__tensor}{base\_type}}::\mbox{\hyperlink{classstd_1_1math_1_1dr__matrix_a607ecc31a33866abcda5e0a8f49c83ba}{at}};\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Brings\ into\ scope\ const\ and\ mutable}}
+\DoxyCodeLine{00240\ }
+\DoxyCodeLine{00244\ \ \ \ \ [[nodiscard]]\ constexpr\ \mbox{\hyperlink{classstd_1_1math_1_1vector__view}{const\_column\_type}}\ \mbox{\hyperlink{classstd_1_1math_1_1dr__matrix_a6615d7f88a56721585d410e0f3d0514d}{column}}(\ \mbox{\hyperlink{classstd_1_1math_1_1dr__matrix_afaf5cea2635ac4f9b226d0a89cecaf57}{index\_type}}\ j\ )\ const;}
+\DoxyCodeLine{00248\ \ \ \ \ [[nodiscard]]\ constexpr\ \mbox{\hyperlink{classstd_1_1math_1_1vector__view}{const\_row\_type}}\ \mbox{\hyperlink{classstd_1_1math_1_1dr__matrix_a3515152de3343ba8c51c1316d3f2aa34}{row}}(\ \mbox{\hyperlink{classstd_1_1math_1_1dr__matrix_afaf5cea2635ac4f9b226d0a89cecaf57}{index\_type}}\ i\ )\ const;}
+\DoxyCodeLine{00253\ \ \ \ \ [[nodiscard]]\ constexpr\ \mbox{\hyperlink{classstd_1_1math_1_1matrix__view}{const\_submatrix\_type}}\ \mbox{\hyperlink{classstd_1_1math_1_1dr__matrix_a408177961c27faafc5f9580a15140f3f}{submatrix}}(\ \mbox{\hyperlink{classstd_1_1math_1_1dr__matrix_a421847d85efa25b9d8484a86408692b6}{tuple\_type}}\ start,}
+\DoxyCodeLine{00254\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classstd_1_1math_1_1dr__matrix_a421847d85efa25b9d8484a86408692b6}{tuple\_type}}\ end\ )\ const;}
+\DoxyCodeLine{00255\ }
+\DoxyCodeLine{00256\ \ \ \ \ \textcolor{comment}{//-\/\ Mutable\ views}}
+\DoxyCodeLine{00257\ }
+\DoxyCodeLine{00261\ \ \ \ \ [[nodiscard]]\ constexpr\ \mbox{\hyperlink{classstd_1_1math_1_1vector__view}{column\_type}}\ \mbox{\hyperlink{classstd_1_1math_1_1dr__matrix_a6615d7f88a56721585d410e0f3d0514d}{column}}(\ \mbox{\hyperlink{classstd_1_1math_1_1dr__matrix_afaf5cea2635ac4f9b226d0a89cecaf57}{index\_type}}\ j\ );}
+\DoxyCodeLine{00265\ \ \ \ \ [[nodiscard]]\ constexpr\ \mbox{\hyperlink{classstd_1_1math_1_1vector__view}{row\_type}}\ \mbox{\hyperlink{classstd_1_1math_1_1dr__matrix_a3515152de3343ba8c51c1316d3f2aa34}{row}}(\ \mbox{\hyperlink{classstd_1_1math_1_1dr__matrix_afaf5cea2635ac4f9b226d0a89cecaf57}{index\_type}}\ i\ );}
+\DoxyCodeLine{00270\ \ \ \ \ [[nodiscard]]\ constexpr\ \mbox{\hyperlink{classstd_1_1math_1_1matrix__view}{submatrix\_type}}\ \mbox{\hyperlink{classstd_1_1math_1_1dr__matrix_a408177961c27faafc5f9580a15140f3f}{submatrix}}(\ \mbox{\hyperlink{classstd_1_1math_1_1dr__matrix_a421847d85efa25b9d8484a86408692b6}{tuple\_type}}\ start,}
+\DoxyCodeLine{00271\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classstd_1_1math_1_1dr__matrix_a421847d85efa25b9d8484a86408692b6}{tuple\_type}}\ end\ );}
+\DoxyCodeLine{00272\ }
+\DoxyCodeLine{00273\ \ \ \ \ \textcolor{comment}{//-\/\ Data\ access}}
+\DoxyCodeLine{00274\ }
+\DoxyCodeLine{00275\ \ \ \ \ using\ \mbox{\hyperlink{classstd_1_1math_1_1dr__tensor}{base\_type}}::\mbox{\hyperlink{classstd_1_1math_1_1dr__matrix_a81dac913f117d1276b494f62a758df89}{span}};}
+\DoxyCodeLine{00276\ \ \ \ \ using\ \mbox{\hyperlink{classstd_1_1math_1_1dr__tensor}{base\_type}}::\mbox{\hyperlink{classstd_1_1math_1_1dr__matrix_acc1bccfd0955c035f0369425f9c64bfc}{underlying\_span}};}
+\DoxyCodeLine{00277\ }
+\DoxyCodeLine{00278\ \};}
+\DoxyCodeLine{00279\ }
+\DoxyCodeLine{00280\ \textcolor{comment}{//-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{00281\ \textcolor{comment}{//\ Implementation\ of\ dr\_matrix<T,Alloc,L,Access>}}
+\DoxyCodeLine{00282\ \textcolor{comment}{//-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{00283\ }
+\DoxyCodeLine{00284\ \textcolor{comment}{//-\/\ Destructor\ /\ Constructors\ /\ Assignments}}
+\DoxyCodeLine{00285\ }
+\DoxyCodeLine{00286\ template\ <\ class\ T,\ class\ Alloc,\ class\ L,\ class\ Access\ >}
+\DoxyCodeLine{00287\ template\ <\ concepts::tensor\_may\_be\_constructible<\ \mbox{\hyperlink{classstd_1_1math_1_1dr__matrix}{dr\_matrix}}<T,Alloc,L,Access>\ >\ M2\ >}
+\DoxyCodeLine{00288\ constexpr\ \mbox{\hyperlink{classstd_1_1math_1_1dr__matrix}{dr\_matrix}}<T,Alloc,L,Access>::\mbox{\hyperlink{classstd_1_1math_1_1dr__matrix}{dr\_matrix}}(\ const\ M2\&\ rhs\ )}
+\DoxyCodeLine{00289\ \ \ noexcept(\ noexcept(\ \mbox{\hyperlink{classstd_1_1math_1_1dr__matrix}{dr\_matrix}}<T,Alloc,L,Access>::\mbox{\hyperlink{classstd_1_1math_1_1dr__tensor}{base\_type}}(\ rhs\ )\ )\ )\ :}
+\DoxyCodeLine{00290\ \ \ \mbox{\hyperlink{classstd_1_1math_1_1dr__matrix}{dr\_matrix}}<T,Alloc,L,Access>::\mbox{\hyperlink{classstd_1_1math_1_1dr__tensor}{base\_type}}(\ rhs\ )}
+\DoxyCodeLine{00291\ \{}
+\DoxyCodeLine{00292\ \}}
+\DoxyCodeLine{00293\ }
+\DoxyCodeLine{00294\ \textcolor{keyword}{template}\ <\ \textcolor{keyword}{class}\ T,\ \textcolor{keyword}{class}\ Alloc,\ \textcolor{keyword}{class}\ L,\ \textcolor{keyword}{class}\ Access\ >}
+\DoxyCodeLine{00295\ \textcolor{keyword}{template}\ <\ concepts::view\_may\_be\_constructible\_to\_tensor<\ dr\_matrix<T,Alloc,L,Access>\ >\ MDS\ >}
+\DoxyCodeLine{00296\ \textcolor{keyword}{constexpr}\ \mbox{\hyperlink{classstd_1_1math_1_1dr__matrix_ae5e32f8047d2c3160fd20f4129307f60}{dr\_matrix<T,Alloc,L,Access>::dr\_matrix}}(\ \textcolor{keyword}{const}\ MDS\&\ view\ )}
+\DoxyCodeLine{00297\ \ \ \textcolor{keyword}{noexcept}(\ \textcolor{keyword}{noexcept}(\ \mbox{\hyperlink{classstd_1_1math_1_1dr__tensor}{dr\_matrix<T,Alloc,L,Access>::base\_type}}(view)\ )\ )}
+\DoxyCodeLine{00298\ \ \ \textcolor{keyword}{requires}\ is\_default\_constructible\_v<typename\ dr\_matrix<T,Alloc,L,Access>::allocator\_type>\ :}
+\DoxyCodeLine{00299\ \ \ \mbox{\hyperlink{classstd_1_1math_1_1dr__tensor}{dr\_matrix<T,Alloc,L,Access>::base\_type}}(view)}
+\DoxyCodeLine{00300\ \{}
+\DoxyCodeLine{00301\ \}}
+\DoxyCodeLine{00302\ \ \ }
+\DoxyCodeLine{00303\ \textcolor{keyword}{template}\ <\ \textcolor{keyword}{class}\ T,\ \textcolor{keyword}{class}\ Alloc,\ \textcolor{keyword}{class}\ L,\ \textcolor{keyword}{class}\ Access\ >}
+\DoxyCodeLine{00304\ \textcolor{keyword}{constexpr}\ \mbox{\hyperlink{classstd_1_1math_1_1dr__matrix_ae5e32f8047d2c3160fd20f4129307f60}{dr\_matrix<T,Alloc,L,Access>::dr\_matrix}}(\ \mbox{\hyperlink{classstd_1_1math_1_1dr__matrix_a708494c9db17c0e143f80a319d6d66e8}{extents\_type}}\ s\ )}
+\DoxyCodeLine{00305\ \ \ \textcolor{keyword}{noexcept}(\ \textcolor{keyword}{noexcept}(\ \mbox{\hyperlink{classstd_1_1math_1_1dr__tensor}{dr\_matrix<T,Alloc,L,Access>::base\_type}}(s)\ )\ )}
+\DoxyCodeLine{00306\ \ \ \textcolor{keyword}{requires}\ is\_default\_constructible\_v<typename\ dr\_matrix<T,Alloc,L,Access>::allocator\_type>\ :}
+\DoxyCodeLine{00307\ \ \ \mbox{\hyperlink{classstd_1_1math_1_1dr__tensor}{dr\_matrix<T,Alloc,L,Access>::base\_type}}(s)}
+\DoxyCodeLine{00308\ \{}
+\DoxyCodeLine{00309\ \}}
+\DoxyCodeLine{00310\ }
+\DoxyCodeLine{00311\ \textcolor{keyword}{template}\ <\ \textcolor{keyword}{class}\ T,\ \textcolor{keyword}{class}\ Alloc,\ \textcolor{keyword}{class}\ L,\ \textcolor{keyword}{class}\ Access\ >}
+\DoxyCodeLine{00312\ \textcolor{keyword}{constexpr}\ \mbox{\hyperlink{classstd_1_1math_1_1dr__matrix_ae5e32f8047d2c3160fd20f4129307f60}{dr\_matrix<T,Alloc,L,Access>::dr\_matrix}}(\ \mbox{\hyperlink{classstd_1_1math_1_1dr__matrix_a708494c9db17c0e143f80a319d6d66e8}{extents\_type}}\ s,\ \mbox{\hyperlink{classstd_1_1math_1_1dr__matrix_a708494c9db17c0e143f80a319d6d66e8}{extents\_type}}\ cap\ )}
+\DoxyCodeLine{00313\ \ \ \textcolor{keyword}{noexcept}(\ \textcolor{keyword}{noexcept}(\ \mbox{\hyperlink{classstd_1_1math_1_1dr__tensor}{dr\_matrix<T,Alloc,L,Access>::base\_type}}(s,cap)\ )\ )}
+\DoxyCodeLine{00314\ \ \ \textcolor{keyword}{requires}\ is\_default\_constructible\_v<typename\ dr\_matrix<T,Alloc,L,Access>::allocator\_type>\ :}
+\DoxyCodeLine{00315\ \ \ \mbox{\hyperlink{classstd_1_1math_1_1dr__tensor}{dr\_matrix<T,Alloc,L,Access>::base\_type}}(s,cap)}
+\DoxyCodeLine{00316\ \{}
+\DoxyCodeLine{00317\ \}}
+\DoxyCodeLine{00318\ }
+\DoxyCodeLine{00319\ \textcolor{keyword}{template}\ <\ \textcolor{keyword}{class}\ T,\ \textcolor{keyword}{class}\ Alloc,\ \textcolor{keyword}{class}\ L,\ \textcolor{keyword}{class}\ Access\ >}
+\DoxyCodeLine{00320\ \textcolor{keyword}{template}\ <\ \textcolor{keyword}{class}\ Lambda\ >}
+\DoxyCodeLine{00321\ \textcolor{keyword}{constexpr}\ \mbox{\hyperlink{classstd_1_1math_1_1dr__matrix_ae5e32f8047d2c3160fd20f4129307f60}{dr\_matrix<T,Alloc,L,Access>::dr\_matrix}}(\ \mbox{\hyperlink{classstd_1_1math_1_1dr__matrix_a708494c9db17c0e143f80a319d6d66e8}{extents\_type}}\ s,\ Lambda\&\&\ lambda\ )}
+\DoxyCodeLine{00322\ \ \ \textcolor{keyword}{noexcept}(\ \textcolor{keyword}{noexcept}(\ \mbox{\hyperlink{classstd_1_1math_1_1dr__tensor}{dr\_matrix<T,Alloc,L,Access>::base\_type}}(s,lambda)\ )\ )}
+\DoxyCodeLine{00323\ \ \ \textcolor{keyword}{requires}\ is\_default\_constructible\_v<typename\ dr\_matrix<T,Alloc,L,Access>::allocator\_type>\ \&\&}
+\DoxyCodeLine{00324\ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{requires}\ \{\ \{\ declval<Lambda\&\&>()(\ declval<typename\ dr\_matrix<T,Alloc,L,Access>::index\_type>(),}
+\DoxyCodeLine{00325\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ declval<\textcolor{keyword}{typename}\ \mbox{\hyperlink{classstd_1_1math_1_1dr__matrix_afaf5cea2635ac4f9b226d0a89cecaf57}{dr\_matrix<T,Alloc,L,Access>::index\_type}}>()\ )\ \}}
+\DoxyCodeLine{00326\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ -\/>\ convertible\_to<typename\ dr\_matrix<T,Alloc,L,Access>::element\_type>;\ \}\ :}
+\DoxyCodeLine{00327\ \ \ \mbox{\hyperlink{classstd_1_1math_1_1dr__tensor}{dr\_matrix<T,Alloc,L,Access>::base\_type}}(s,lambda)}
+\DoxyCodeLine{00328\ \{}
+\DoxyCodeLine{00329\ \}}
+\DoxyCodeLine{00330\ }
+\DoxyCodeLine{00331\ \textcolor{keyword}{template}\ <\ \textcolor{keyword}{class}\ T,\ \textcolor{keyword}{class}\ Alloc,\ \textcolor{keyword}{class}\ L,\ \textcolor{keyword}{class}\ Access\ >}
+\DoxyCodeLine{00332\ \textcolor{keyword}{template}\ <\ \textcolor{keyword}{class}\ Lambda\ >}
+\DoxyCodeLine{00333\ \textcolor{keyword}{constexpr}\ \mbox{\hyperlink{classstd_1_1math_1_1dr__matrix_ae5e32f8047d2c3160fd20f4129307f60}{dr\_matrix<T,Alloc,L,Access>::dr\_matrix}}(\ \mbox{\hyperlink{classstd_1_1math_1_1dr__matrix_a708494c9db17c0e143f80a319d6d66e8}{extents\_type}}\ s,\ \mbox{\hyperlink{classstd_1_1math_1_1dr__matrix_a708494c9db17c0e143f80a319d6d66e8}{extents\_type}}\ cap,\ Lambda\&\&\ lambda\ )}
+\DoxyCodeLine{00334\ \ \ \textcolor{keyword}{noexcept}(\ \textcolor{keyword}{noexcept}(\ \mbox{\hyperlink{classstd_1_1math_1_1dr__tensor}{dr\_matrix<T,Alloc,L,Access>::base\_type}}(s,cap,lambda)\ )\ )}
+\DoxyCodeLine{00335\ \ \ \textcolor{keyword}{requires}\ is\_default\_constructible\_v<typename\ dr\_matrix<T,Alloc,L,Access>::allocator\_type>\ \&\&}
+\DoxyCodeLine{00336\ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{requires}\ \{\ \{\ declval<Lambda\&\&>()(\ declval<typename\ dr\_matrix<T,Alloc,L,Access>::index\_type>(),}
+\DoxyCodeLine{00337\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ declval<\textcolor{keyword}{typename}\ \mbox{\hyperlink{classstd_1_1math_1_1dr__matrix_afaf5cea2635ac4f9b226d0a89cecaf57}{dr\_matrix<T,Alloc,L,Access>::index\_type}}>()\ )\ \}}
+\DoxyCodeLine{00338\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ -\/>\ convertible\_to<typename\ dr\_matrix<T,Alloc,L,Access>::element\_type>;\ \}\ :}
+\DoxyCodeLine{00339\ \ \ \mbox{\hyperlink{classstd_1_1math_1_1dr__tensor}{dr\_matrix<T,Alloc,L,Access>::base\_type}}(s,cap,lambda)}
+\DoxyCodeLine{00340\ \{}
+\DoxyCodeLine{00341\ \}}
+\DoxyCodeLine{00342\ }
+\DoxyCodeLine{00343\ \textcolor{keyword}{template}\ <\ \textcolor{keyword}{class}\ T,\ \textcolor{keyword}{class}\ Alloc,\ \textcolor{keyword}{class}\ L,\ \textcolor{keyword}{class}\ Access\ >}
+\DoxyCodeLine{00344\ \textcolor{keyword}{constexpr}\ \mbox{\hyperlink{classstd_1_1math_1_1dr__matrix_ae5e32f8047d2c3160fd20f4129307f60}{dr\_matrix<T,Alloc,L,Access>::dr\_matrix}}(\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classstd_1_1math_1_1dr__matrix_a1fe25d36296174f6c0130bf93cb39a7d}{allocator\_type}}\&\ alloc\ )}
+\DoxyCodeLine{00345\ \ \ \textcolor{keyword}{noexcept}(\ \textcolor{keyword}{noexcept}(\ \mbox{\hyperlink{classstd_1_1math_1_1dr__tensor}{dr\_matrix<T,Alloc,L,Access>::base\_type}}(alloc)\ )\ )\ :}
+\DoxyCodeLine{00346\ \ \ \mbox{\hyperlink{classstd_1_1math_1_1dr__tensor}{dr\_matrix<T,Alloc,L,Access>::base\_type}}(alloc)}
+\DoxyCodeLine{00347\ \{}
+\DoxyCodeLine{00348\ \}}
+\DoxyCodeLine{00349\ }
+\DoxyCodeLine{00350\ \textcolor{keyword}{template}\ <\ \textcolor{keyword}{class}\ T,\ \textcolor{keyword}{class}\ Alloc,\ \textcolor{keyword}{class}\ L,\ \textcolor{keyword}{class}\ Access\ >}
+\DoxyCodeLine{00351\ \textcolor{keyword}{template}\ <\ concepts::view\_may\_be\_constructible\_to\_tensor<\ dr\_matrix<T,Alloc,L,Access>\ >\ MDS\ >}
+\DoxyCodeLine{00352\ \textcolor{keyword}{constexpr}\ \mbox{\hyperlink{classstd_1_1math_1_1dr__matrix_ae5e32f8047d2c3160fd20f4129307f60}{dr\_matrix<T,Alloc,L,Access>::dr\_matrix}}(\ \textcolor{keyword}{const}\ MDS\&\ view,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classstd_1_1math_1_1dr__matrix_a1fe25d36296174f6c0130bf93cb39a7d}{allocator\_type}}\&\ alloc\ )}
+\DoxyCodeLine{00353\ \ \ \textcolor{keyword}{noexcept}(\ \textcolor{keyword}{noexcept}(\ \mbox{\hyperlink{classstd_1_1math_1_1dr__tensor}{dr\_matrix<T,Alloc,L,Access>::base\_type}}(view,alloc)\ )\ )\ :}
+\DoxyCodeLine{00354\ \ \ \mbox{\hyperlink{classstd_1_1math_1_1dr__tensor}{dr\_matrix<T,Alloc,L,Access>::base\_type}}(view,alloc)}
+\DoxyCodeLine{00355\ \{}
+\DoxyCodeLine{00356\ \}}
+\DoxyCodeLine{00357\ }
+\DoxyCodeLine{00358\ \textcolor{keyword}{template}\ <\ \textcolor{keyword}{class}\ T,\ \textcolor{keyword}{class}\ Alloc,\ \textcolor{keyword}{class}\ L,\ \textcolor{keyword}{class}\ Access\ >}
+\DoxyCodeLine{00359\ \textcolor{keyword}{constexpr}\ \mbox{\hyperlink{classstd_1_1math_1_1dr__matrix_ae5e32f8047d2c3160fd20f4129307f60}{dr\_matrix<T,Alloc,L,Access>::dr\_matrix}}(\ \mbox{\hyperlink{classstd_1_1math_1_1dr__matrix_a708494c9db17c0e143f80a319d6d66e8}{extents\_type}}\ s,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classstd_1_1math_1_1dr__matrix_a1fe25d36296174f6c0130bf93cb39a7d}{allocator\_type}}\&\ alloc\ )}
+\DoxyCodeLine{00360\ \ \ \textcolor{keyword}{noexcept}(\ \textcolor{keyword}{noexcept}(\ \mbox{\hyperlink{classstd_1_1math_1_1dr__tensor}{dr\_matrix<T,Alloc,L,Access>::base\_type}}(s,alloc)\ )\ )\ :}
+\DoxyCodeLine{00361\ \ \ \mbox{\hyperlink{classstd_1_1math_1_1dr__tensor}{dr\_matrix<T,Alloc,L,Access>::base\_type}}(s,alloc)}
+\DoxyCodeLine{00362\ \{}
+\DoxyCodeLine{00363\ \}}
+\DoxyCodeLine{00364\ }
+\DoxyCodeLine{00365\ \textcolor{keyword}{template}\ <\ \textcolor{keyword}{class}\ T,\ \textcolor{keyword}{class}\ Alloc,\ \textcolor{keyword}{class}\ L,\ \textcolor{keyword}{class}\ Access\ >}
+\DoxyCodeLine{00366\ \textcolor{keyword}{constexpr}\ \mbox{\hyperlink{classstd_1_1math_1_1dr__matrix_ae5e32f8047d2c3160fd20f4129307f60}{dr\_matrix<T,Alloc,L,Access>::dr\_matrix}}(\ \mbox{\hyperlink{classstd_1_1math_1_1dr__matrix_a708494c9db17c0e143f80a319d6d66e8}{extents\_type}}\ s,\ \mbox{\hyperlink{classstd_1_1math_1_1dr__matrix_a708494c9db17c0e143f80a319d6d66e8}{extents\_type}}\ cap,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classstd_1_1math_1_1dr__matrix_a1fe25d36296174f6c0130bf93cb39a7d}{allocator\_type}}\&\ alloc\ )}
+\DoxyCodeLine{00367\ \ \ \textcolor{keyword}{noexcept}(\ \textcolor{keyword}{noexcept}(\ \mbox{\hyperlink{classstd_1_1math_1_1dr__tensor}{dr\_matrix<T,Alloc,L,Access>::base\_type}}(s,cap,alloc)\ )\ )\ :}
+\DoxyCodeLine{00368\ \ \ \mbox{\hyperlink{classstd_1_1math_1_1dr__tensor}{dr\_matrix<T,Alloc,L,Access>::base\_type}}(s,cap,alloc)}
+\DoxyCodeLine{00369\ \{}
+\DoxyCodeLine{00370\ \}}
+\DoxyCodeLine{00371\ }
+\DoxyCodeLine{00372\ \textcolor{keyword}{template}\ <\ \textcolor{keyword}{class}\ T,\ \textcolor{keyword}{class}\ Alloc,\ \textcolor{keyword}{class}\ L,\ \textcolor{keyword}{class}\ Access\ >}
+\DoxyCodeLine{00373\ \textcolor{keyword}{template}\ <\ \textcolor{keyword}{class}\ Lambda\ >}
+\DoxyCodeLine{00374\ \textcolor{keyword}{constexpr}\ \mbox{\hyperlink{classstd_1_1math_1_1dr__matrix_ae5e32f8047d2c3160fd20f4129307f60}{dr\_matrix<T,Alloc,L,Access>::dr\_matrix}}(\ \mbox{\hyperlink{classstd_1_1math_1_1dr__matrix_a708494c9db17c0e143f80a319d6d66e8}{extents\_type}}\ s,\ Lambda\&\&\ lambda,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classstd_1_1math_1_1dr__matrix_a1fe25d36296174f6c0130bf93cb39a7d}{allocator\_type}}\&\ alloc\ )}
+\DoxyCodeLine{00375\ \ \ \textcolor{keyword}{noexcept}(\ \textcolor{keyword}{noexcept}(\ \mbox{\hyperlink{classstd_1_1math_1_1dr__tensor}{dr\_matrix<T,Alloc,L,Access>::base\_type}}(s,lambda,alloc)\ )\ )}
+\DoxyCodeLine{00376\ \ \ \textcolor{keyword}{requires}\ \textcolor{keyword}{requires}\ \{\ \{\ declval<Lambda\&\&>()(\ declval<typename\ dr\_matrix<T,Alloc,L,Access>::index\_type>(),}
+\DoxyCodeLine{00377\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ declval<\textcolor{keyword}{typename}\ \mbox{\hyperlink{classstd_1_1math_1_1dr__matrix_afaf5cea2635ac4f9b226d0a89cecaf57}{dr\_matrix<T,Alloc,L,Access>::index\_type}}>()\ )\ \}}
+\DoxyCodeLine{00378\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ -\/>\ convertible\_to<typename\ dr\_matrix<T,Alloc,L,Access>::element\_type>;\ \}\ :}
+\DoxyCodeLine{00379\ \ \ \mbox{\hyperlink{classstd_1_1math_1_1dr__tensor}{dr\_matrix<T,Alloc,L,Access>::base\_type}}(s,lambda,alloc)}
+\DoxyCodeLine{00380\ \{}
+\DoxyCodeLine{00381\ \}}
+\DoxyCodeLine{00382\ }
+\DoxyCodeLine{00383\ \textcolor{keyword}{template}\ <\ \textcolor{keyword}{class}\ T,\ \textcolor{keyword}{class}\ Alloc,\ \textcolor{keyword}{class}\ L,\ \textcolor{keyword}{class}\ Access\ >}
+\DoxyCodeLine{00384\ \textcolor{keyword}{template}\ <\ \textcolor{keyword}{class}\ Lambda\ >}
+\DoxyCodeLine{00385\ \textcolor{keyword}{constexpr}\ \mbox{\hyperlink{classstd_1_1math_1_1dr__matrix_ae5e32f8047d2c3160fd20f4129307f60}{dr\_matrix<T,Alloc,L,Access>::dr\_matrix}}(\ \mbox{\hyperlink{classstd_1_1math_1_1dr__matrix_a708494c9db17c0e143f80a319d6d66e8}{extents\_type}}\ s,\ \mbox{\hyperlink{classstd_1_1math_1_1dr__matrix_a708494c9db17c0e143f80a319d6d66e8}{extents\_type}}\ cap,\ Lambda\&\&\ lambda,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classstd_1_1math_1_1dr__matrix_a1fe25d36296174f6c0130bf93cb39a7d}{allocator\_type}}\&\ alloc\ )}
+\DoxyCodeLine{00386\ \ \ \textcolor{keyword}{noexcept}(\ \textcolor{keyword}{noexcept}(\ \mbox{\hyperlink{classstd_1_1math_1_1dr__tensor}{dr\_matrix<T,Alloc,L,Access>::base\_type}}(s,cap,lambda,alloc)\ )\ )}
+\DoxyCodeLine{00387\ \ \ \textcolor{keyword}{requires}\ \textcolor{keyword}{requires}\ \{\ \{\ declval<Lambda\&\&>()(\ declval<typename\ dr\_matrix<T,Alloc,L,Access>::index\_type>(),}
+\DoxyCodeLine{00388\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ declval<\textcolor{keyword}{typename}\ \mbox{\hyperlink{classstd_1_1math_1_1dr__matrix_afaf5cea2635ac4f9b226d0a89cecaf57}{dr\_matrix<T,Alloc,L,Access>::index\_type}}>()\ )\ \}}
+\DoxyCodeLine{00389\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ -\/>\ convertible\_to<typename\ dr\_matrix<T,Alloc,L,Access>::element\_type>;\ \}\ :}
+\DoxyCodeLine{00390\ \ \ \mbox{\hyperlink{classstd_1_1math_1_1dr__tensor}{dr\_matrix<T,Alloc,L,Access>::base\_type}}(s,cap,lambda,alloc)}
+\DoxyCodeLine{00391\ \{}
+\DoxyCodeLine{00392\ \}}
+\DoxyCodeLine{00393\ }
+\DoxyCodeLine{00394\ \textcolor{keyword}{template}\ <\ \textcolor{keyword}{class}\ T,\ \textcolor{keyword}{class}\ Alloc,\ \textcolor{keyword}{class}\ L,\ \textcolor{keyword}{class}\ Access\ >}
+\DoxyCodeLine{00395\ \textcolor{keyword}{template}\ <\ concepts::tensor\_may\_be\_constructible<\ dr\_matrix<T,Alloc,L,Access>\ >\ M2\ >}
+\DoxyCodeLine{00396\ \textcolor{keyword}{constexpr}\ \mbox{\hyperlink{classstd_1_1math_1_1dr__matrix}{dr\_matrix<T,Alloc,L,Access>}}\&\ \mbox{\hyperlink{classstd_1_1math_1_1dr__matrix_acb6fa00fde99b962e3f767827e78aad0}{dr\_matrix<T,Alloc,L,Access>::operator\ =\ }}(\ \textcolor{keyword}{const}\ M2\&\ rhs\ )}
+\DoxyCodeLine{00397\ \ \ \textcolor{keyword}{noexcept}(\ \textcolor{keyword}{noexcept}(\ declval<typename\ dr\_matrix<T,Alloc,L,Access>::base\_type>()\ =\ rhs\ )\ )}
+\DoxyCodeLine{00398\ \{}
+\DoxyCodeLine{00399\ \ \ \textcolor{keyword}{static\_cast<}\textcolor{keywordtype}{void}\textcolor{keyword}{>}(\ this-\/>\mbox{\hyperlink{classstd_1_1math_1_1dr__tensor_a1abf6880d1ed2c8b30aafe846c2f9180}{base\_type::operator=}}(rhs)\ );}
+\DoxyCodeLine{00400\ \ \ \textcolor{keywordflow}{return}\ *\textcolor{keyword}{this};}
+\DoxyCodeLine{00401\ \}}
+\DoxyCodeLine{00402\ }
+\DoxyCodeLine{00403\ \textcolor{keyword}{template}\ <\ \textcolor{keyword}{class}\ T,\ \textcolor{keyword}{class}\ Alloc,\ \textcolor{keyword}{class}\ L,\ \textcolor{keyword}{class}\ Access\ >}
+\DoxyCodeLine{00404\ \textcolor{keyword}{template}\ <\ concepts::view\_may\_be\_constructible\_to\_tensor<\ dr\_matrix<T,Alloc,L,Access>\ >\ MDS\ >}
+\DoxyCodeLine{00405\ \textcolor{keyword}{constexpr}\ \mbox{\hyperlink{classstd_1_1math_1_1dr__matrix}{dr\_matrix<T,Alloc,L,Access>}}\&\ \mbox{\hyperlink{classstd_1_1math_1_1dr__matrix_acb6fa00fde99b962e3f767827e78aad0}{dr\_matrix<T,Alloc,L,Access>::operator\ =\ }}(\ \textcolor{keyword}{const}\ MDS\&\ view\ )}
+\DoxyCodeLine{00406\ \ \ \textcolor{keyword}{noexcept}(\ \textcolor{keyword}{noexcept}(\ declval<typename\ dr\_matrix<T,Alloc,L,Access>::base\_type>()\ =\ view\ )\ )}
+\DoxyCodeLine{00407\ \{}
+\DoxyCodeLine{00408\ \ \ \textcolor{keyword}{static\_cast<}\textcolor{keywordtype}{void}\textcolor{keyword}{>}(\ this-\/>\mbox{\hyperlink{classstd_1_1math_1_1dr__tensor_a1abf6880d1ed2c8b30aafe846c2f9180}{base\_type::operator=}}(view)\ );}
+\DoxyCodeLine{00409\ \ \ \textcolor{keywordflow}{return}\ *\textcolor{keyword}{this};}
+\DoxyCodeLine{00410\ \}}
+\DoxyCodeLine{00411\ }
+\DoxyCodeLine{00412\ \textcolor{comment}{//-\/\ Size\ /\ Capacity}}
+\DoxyCodeLine{00413\ }
+\DoxyCodeLine{00414\ \textcolor{keyword}{template}\ <\ \textcolor{keyword}{class}\ T,\ \textcolor{keyword}{class}\ Alloc,\ \textcolor{keyword}{class}\ L,\ \textcolor{keyword}{class}\ Access\ >}
+\DoxyCodeLine{00415\ [[nodiscard]]\ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{typename}\ \mbox{\hyperlink{classstd_1_1math_1_1dr__matrix_af801b34e4eba972f88113261bd7587d7}{dr\_matrix<T,Alloc,L,Access>::size\_type}}}
+\DoxyCodeLine{00416\ \mbox{\hyperlink{classstd_1_1math_1_1dr__matrix_a9b361d01cc71700456d4e6386a86118a}{dr\_matrix<T,Alloc,L,Access>::columns}}()\ const\ noexcept}
+\DoxyCodeLine{00417\ \{}
+\DoxyCodeLine{00418\ \ \ \textcolor{keywordflow}{return}\ this-\/>\mbox{\hyperlink{classstd_1_1math_1_1dr__matrix_a275d3bd7235f3837cb98ba1c8a867396}{size}}().extent(1);}
+\DoxyCodeLine{00419\ \}}
+\DoxyCodeLine{00420\ }
+\DoxyCodeLine{00421\ \textcolor{keyword}{template}\ <\ \textcolor{keyword}{class}\ T,\ \textcolor{keyword}{class}\ Alloc,\ \textcolor{keyword}{class}\ L,\ \textcolor{keyword}{class}\ Access\ >}
+\DoxyCodeLine{00422\ [[nodiscard]]\ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{typename}\ \mbox{\hyperlink{classstd_1_1math_1_1dr__matrix_af801b34e4eba972f88113261bd7587d7}{dr\_matrix<T,Alloc,L,Access>::size\_type}}}
+\DoxyCodeLine{00423\ \mbox{\hyperlink{classstd_1_1math_1_1dr__matrix_aa771ef9605d9c743f353a9aebbe2b461}{dr\_matrix<T,Alloc,L,Access>::rows}}()\ const\ noexcept}
+\DoxyCodeLine{00424\ \{}
+\DoxyCodeLine{00425\ \ \ \textcolor{keywordflow}{return}\ this-\/>\mbox{\hyperlink{classstd_1_1math_1_1dr__matrix_a275d3bd7235f3837cb98ba1c8a867396}{size}}().extent(0);}
+\DoxyCodeLine{00426\ \}}
+\DoxyCodeLine{00427\ }
+\DoxyCodeLine{00428\ \textcolor{keyword}{template}\ <\ \textcolor{keyword}{class}\ T,\ \textcolor{keyword}{class}\ Alloc,\ \textcolor{keyword}{class}\ L,\ \textcolor{keyword}{class}\ Access\ >}
+\DoxyCodeLine{00429\ [[nodiscard]]\ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{typename}\ \mbox{\hyperlink{classstd_1_1math_1_1dr__matrix_af801b34e4eba972f88113261bd7587d7}{dr\_matrix<T,Alloc,L,Access>::size\_type}}}
+\DoxyCodeLine{00430\ \mbox{\hyperlink{classstd_1_1math_1_1dr__matrix_ad54d2d8b8d74b99897d6bf399988bc0e}{dr\_matrix<T,Alloc,L,Access>::column\_capacity}}()\ const\ noexcept}
+\DoxyCodeLine{00431\ \{}
+\DoxyCodeLine{00432\ \ \ \textcolor{keywordflow}{return}\ this-\/>\mbox{\hyperlink{classstd_1_1math_1_1dr__matrix_ac1960576abca63d8a73842a1279313f0}{capacity}}().extent(1);}
+\DoxyCodeLine{00433\ \}}
+\DoxyCodeLine{00434\ }
+\DoxyCodeLine{00435\ \textcolor{keyword}{template}\ <\ \textcolor{keyword}{class}\ T,\ \textcolor{keyword}{class}\ Alloc,\ \textcolor{keyword}{class}\ L,\ \textcolor{keyword}{class}\ Access\ >}
+\DoxyCodeLine{00436\ [[nodiscard]]\ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{typename}\ \mbox{\hyperlink{classstd_1_1math_1_1dr__matrix_af801b34e4eba972f88113261bd7587d7}{dr\_matrix<T,Alloc,L,Access>::size\_type}}}
+\DoxyCodeLine{00437\ \mbox{\hyperlink{classstd_1_1math_1_1dr__matrix_ad8fa6af175c9702b7d7e47adcafb5a6d}{dr\_matrix<T,Alloc,L,Access>::row\_capacity}}()\ const\ noexcept}
+\DoxyCodeLine{00438\ \{}
+\DoxyCodeLine{00439\ \ \ \textcolor{keywordflow}{return}\ this-\/>\mbox{\hyperlink{classstd_1_1math_1_1dr__matrix_ac1960576abca63d8a73842a1279313f0}{capacity}}().extent(0);}
+\DoxyCodeLine{00440\ \}}
+\DoxyCodeLine{00441\ }
+\DoxyCodeLine{00442\ }
+\DoxyCodeLine{00443\ \textcolor{comment}{//-\/\ Const\ views}}
+\DoxyCodeLine{00444\ }
+\DoxyCodeLine{00445\ \textcolor{keyword}{template}\ <\ \textcolor{keyword}{class}\ T,\ \textcolor{keyword}{class}\ Alloc,\ \textcolor{keyword}{class}\ L,\ \textcolor{keyword}{class}\ Access\ >}
+\DoxyCodeLine{00446\ [[nodiscard]]\ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{typename}\ \mbox{\hyperlink{classstd_1_1math_1_1vector__view}{dr\_matrix<T,Alloc,L,Access>::const\_column\_type}}}
+\DoxyCodeLine{00447\ \mbox{\hyperlink{classstd_1_1math_1_1dr__matrix_a6615d7f88a56721585d410e0f3d0514d}{dr\_matrix<T,Alloc,L,Access>::column}}(\ \textcolor{keyword}{typename}\ \mbox{\hyperlink{classstd_1_1math_1_1dr__matrix_afaf5cea2635ac4f9b226d0a89cecaf57}{dr\_matrix<T,Alloc,L,Access>::index\_type}}\ j\ )\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00448\ \textcolor{keyword}{}\{}
+\DoxyCodeLine{00449\ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{classstd_1_1math_1_1dr__matrix_a07e8a3c6a141bdedd6ce5fce4bbdf41a}{const\_column\_type}}\ \{\ experimental::submdspan(\ this-\/>\mbox{\hyperlink{classstd_1_1math_1_1dr__matrix_acc1bccfd0955c035f0369425f9c64bfc}{underlying\_span}}(),\ experimental::full\_extent,\ j\ )\ \};}
+\DoxyCodeLine{00450\ \}}
+\DoxyCodeLine{00451\ }
+\DoxyCodeLine{00452\ \textcolor{keyword}{template}\ <\ \textcolor{keyword}{class}\ T,\ \textcolor{keyword}{class}\ Alloc,\ \textcolor{keyword}{class}\ L,\ \textcolor{keyword}{class}\ Access\ >}
+\DoxyCodeLine{00453\ [[nodiscard]]\ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{typename}\ \mbox{\hyperlink{classstd_1_1math_1_1dr__matrix_a8036f92437a86877e088daae29352524}{dr\_matrix<T,Alloc,L,Access>::const\_row\_type}}}
+\DoxyCodeLine{00454\ \mbox{\hyperlink{classstd_1_1math_1_1dr__matrix_a3515152de3343ba8c51c1316d3f2aa34}{dr\_matrix<T,Alloc,L,Access>::row}}(\ \textcolor{keyword}{typename}\ \mbox{\hyperlink{classstd_1_1math_1_1dr__matrix_afaf5cea2635ac4f9b226d0a89cecaf57}{dr\_matrix<T,Alloc,L,Access>::index\_type}}\ i\ )\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00455\ \textcolor{keyword}{}\{}
+\DoxyCodeLine{00456\ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{classstd_1_1math_1_1dr__matrix_a8036f92437a86877e088daae29352524}{const\_row\_type}}\ \{\ experimental::submdspan(\ this-\/>\mbox{\hyperlink{classstd_1_1math_1_1dr__matrix_acc1bccfd0955c035f0369425f9c64bfc}{underlying\_span}}(),\ i,\ experimental::full\_extent\ )\ \};}
+\DoxyCodeLine{00457\ \}}
+\DoxyCodeLine{00458\ }
+\DoxyCodeLine{00459\ \textcolor{keyword}{template}\ <\ \textcolor{keyword}{class}\ T,\ \textcolor{keyword}{class}\ Alloc,\ \textcolor{keyword}{class}\ L,\ \textcolor{keyword}{class}\ Access\ >}
+\DoxyCodeLine{00460\ [[nodiscard]]\ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{typename}\ \mbox{\hyperlink{classstd_1_1math_1_1dr__matrix_a4af7c8308a01329c0a123e1dce3b85d6}{dr\_matrix<T,Alloc,L,Access>::const\_submatrix\_type}}}
+\DoxyCodeLine{00461\ \mbox{\hyperlink{classstd_1_1math_1_1dr__matrix_a408177961c27faafc5f9580a15140f3f}{dr\_matrix<T,Alloc,L,Access>::submatrix}}(\ \mbox{\hyperlink{classstd_1_1math_1_1dr__matrix_a421847d85efa25b9d8484a86408692b6}{tuple\_type}}\ start,}
+\DoxyCodeLine{00462\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classstd_1_1math_1_1dr__matrix_a421847d85efa25b9d8484a86408692b6}{tuple\_type}}\ end\ )\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00463\ \textcolor{keyword}{}\{}
+\DoxyCodeLine{00464\ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{classstd_1_1math_1_1matrix__view}{const\_submatrix\_type}}\ \{\ \mbox{\hyperlink{namespacestd_1_1math_1_1detail_af274dde876e47ba2ec1b483608c81d69}{detail::submdspan}}(\ this-\/>\mbox{\hyperlink{classstd_1_1math_1_1dr__matrix_acc1bccfd0955c035f0369425f9c64bfc}{underlying\_span}}(),\ start,\ end\ )\ \};}
+\DoxyCodeLine{00465\ \}}
+\DoxyCodeLine{00466\ }
+\DoxyCodeLine{00467\ \textcolor{comment}{//-\/\ Mutable\ views}}
+\DoxyCodeLine{00468\ }
+\DoxyCodeLine{00469\ \textcolor{keyword}{template}\ <\ \textcolor{keyword}{class}\ T,\ \textcolor{keyword}{class}\ Alloc,\ \textcolor{keyword}{class}\ L,\ \textcolor{keyword}{class}\ Access\ >}
+\DoxyCodeLine{00470\ [[nodiscard]]\ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{typename}\ \mbox{\hyperlink{classstd_1_1math_1_1vector__view}{dr\_matrix<T,Alloc,L,Access>::column\_type}}}
+\DoxyCodeLine{00471\ \mbox{\hyperlink{classstd_1_1math_1_1dr__matrix_a6615d7f88a56721585d410e0f3d0514d}{dr\_matrix<T,Alloc,L,Access>::column}}(\ \textcolor{keyword}{typename}\ \mbox{\hyperlink{classstd_1_1math_1_1dr__matrix_afaf5cea2635ac4f9b226d0a89cecaf57}{dr\_matrix<T,Alloc,L,Access>::index\_type}}\ j\ )}
+\DoxyCodeLine{00472\ \{}
+\DoxyCodeLine{00473\ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{classstd_1_1math_1_1dr__matrix_aa7a551d41f3084a02c7208ef2cb632c2}{column\_type}}\ \{\ experimental::submdspan(\ this-\/>\mbox{\hyperlink{classstd_1_1math_1_1dr__matrix_acc1bccfd0955c035f0369425f9c64bfc}{underlying\_span}}(),\ experimental::full\_extent,\ j\ )\ \};}
+\DoxyCodeLine{00474\ \}}
+\DoxyCodeLine{00475\ }
+\DoxyCodeLine{00476\ \textcolor{keyword}{template}\ <\ \textcolor{keyword}{class}\ T,\ \textcolor{keyword}{class}\ Alloc,\ \textcolor{keyword}{class}\ L,\ \textcolor{keyword}{class}\ Access\ >}
+\DoxyCodeLine{00477\ [[nodiscard]]\ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{typename}\ \mbox{\hyperlink{classstd_1_1math_1_1dr__matrix_a41950a5f0861b1fb28b2e983e77d7e98}{dr\_matrix<T,Alloc,L,Access>::row\_type}}}
+\DoxyCodeLine{00478\ \mbox{\hyperlink{classstd_1_1math_1_1dr__matrix_a3515152de3343ba8c51c1316d3f2aa34}{dr\_matrix<T,Alloc,L,Access>::row}}(\ \textcolor{keyword}{typename}\ \mbox{\hyperlink{classstd_1_1math_1_1dr__matrix_afaf5cea2635ac4f9b226d0a89cecaf57}{dr\_matrix<T,Alloc,L,Access>::index\_type}}\ i\ )}
+\DoxyCodeLine{00479\ \{}
+\DoxyCodeLine{00480\ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{classstd_1_1math_1_1dr__matrix_a41950a5f0861b1fb28b2e983e77d7e98}{row\_type}}\ \{\ experimental::submdspan(\ this-\/>\mbox{\hyperlink{classstd_1_1math_1_1dr__matrix_acc1bccfd0955c035f0369425f9c64bfc}{underlying\_span}}(),\ i,\ experimental::full\_extent\ )\ \};}
+\DoxyCodeLine{00481\ \}}
+\DoxyCodeLine{00482\ }
+\DoxyCodeLine{00483\ \textcolor{keyword}{template}\ <\ \textcolor{keyword}{class}\ T,\ \textcolor{keyword}{class}\ Alloc,\ \textcolor{keyword}{class}\ L,\ \textcolor{keyword}{class}\ Access\ >}
+\DoxyCodeLine{00484\ [[nodiscard]]\ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{typename}\ \mbox{\hyperlink{classstd_1_1math_1_1dr__matrix_a398a8e1231c028fe9526fcbcddc2ba87}{dr\_matrix<T,Alloc,L,Access>::submatrix\_type}}}
+\DoxyCodeLine{00485\ \mbox{\hyperlink{classstd_1_1math_1_1dr__matrix_a408177961c27faafc5f9580a15140f3f}{dr\_matrix<T,Alloc,L,Access>::submatrix}}(\ \mbox{\hyperlink{classstd_1_1math_1_1dr__matrix_a421847d85efa25b9d8484a86408692b6}{tuple\_type}}\ start,}
+\DoxyCodeLine{00486\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classstd_1_1math_1_1dr__matrix_a421847d85efa25b9d8484a86408692b6}{tuple\_type}}\ end\ )}
+\DoxyCodeLine{00487\ \{}
+\DoxyCodeLine{00488\ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{classstd_1_1math_1_1matrix__view}{submatrix\_type}}\ \{\ \mbox{\hyperlink{namespacestd_1_1math_1_1detail_af274dde876e47ba2ec1b483608c81d69}{detail::submdspan}}(\ this-\/>\mbox{\hyperlink{classstd_1_1math_1_1dr__matrix_acc1bccfd0955c035f0369425f9c64bfc}{underlying\_span}}(),\ start,\ end\ )\ \};}
+\DoxyCodeLine{00489\ \}}
+\DoxyCodeLine{00490\ }
+\DoxyCodeLine{00491\ \}\ \ \ \ \ \ \ \textcolor{comment}{//-\/\ math\ namespace}}
+\DoxyCodeLine{00492\ \}\ \ \ \ \ \ \ \textcolor{comment}{//-\/\ std\ namespace}}
+\DoxyCodeLine{00493\ \textcolor{preprocessor}{\#endif\ \ }\textcolor{comment}{//-\/\ LINEAR\_ALGEBRA\_FIXED\_SIZE\_MATRIX\_HPP}}
+
+\end{DoxyCode}

@@ -1,4 +1,4 @@
-\hypertarget{classstd_1_1math_1_1dr__matrix}{}\doxysection{std\+::math\+::dr\+\_\+matrix$<$ T, Alloc, L, Access $>$ Class Template Reference}
+\hypertarget{classstd_1_1math_1_1dr__matrix}{}\doxysection{std\+::math\+::dr\+\_\+matrix\texorpdfstring{$<$}{<} T, Alloc, L, Access \texorpdfstring{$>$}{>} Class Template Reference}
 \label{classstd_1_1math_1_1dr__matrix}\index{std::math::dr\_matrix$<$ T, Alloc, L, Access $>$@{std::math::dr\_matrix$<$ T, Alloc, L, Access $>$}}
 
 
@@ -11,7 +11,7 @@ Dynamic-\/size, dynamic-\/capacity matrix.
 
 
 
-Inheritance diagram for std\+::math\+::dr\+\_\+matrix$<$ T, Alloc, L, Access $>$\+:
+Inheritance diagram for std\+::math\+::dr\+\_\+matrix\texorpdfstring{$<$}{<} T, Alloc, L, Access \texorpdfstring{$>$}{>}\+:
 \nopagebreak
 \begin{figure}[H]
 \begin{center}
@@ -21,7 +21,7 @@ Inheritance diagram for std\+::math\+::dr\+\_\+matrix$<$ T, Alloc, L, Access $>$
 \end{figure}
 
 
-Collaboration diagram for std\+::math\+::dr\+\_\+matrix$<$ T, Alloc, L, Access $>$\+:
+Collaboration diagram for std\+::math\+::dr\+\_\+matrix\texorpdfstring{$<$}{<} T, Alloc, L, Access \texorpdfstring{$>$}{>}\+:
 \nopagebreak
 \begin{figure}[H]
 \begin{center}
@@ -67,21 +67,56 @@ using \mbox{\hyperlink{classstd_1_1math_1_1dr__matrix_a8f05cc6f2d141b582c5ee27b0
 \begin{DoxyCompactList}\small\item\em mutable view of a subtensor \end{DoxyCompactList}\item 
 using \mbox{\hyperlink{classstd_1_1math_1_1dr__matrix_a7982120e79f91b218e4ab82eba706b5f}{const\+\_\+subtensor\+\_\+type}} = typename \mbox{\hyperlink{classstd_1_1math_1_1dr__tensor_a56057e834324d437bf4b1d9b06f8c122}{base\+\_\+type\+::const\+\_\+subtensor\+\_\+type}}
 \begin{DoxyCompactList}\small\item\em const view of a subtensor \end{DoxyCompactList}\item 
-using \mbox{\hyperlink{classstd_1_1math_1_1dr__matrix_aa7a551d41f3084a02c7208ef2cb632c2}{column\+\_\+type}} = vector\+\_\+view$<$ decltype(experimental\+::submdspan(declval$<$ \mbox{\hyperlink{classstd_1_1math_1_1dr__matrix_a7c325fffee8d3b0ca8872e829dde311e}{underlying\+\_\+span\+\_\+type}} $>$(), declval$<$ experimental\+::full\+\_\+extent\+\_\+t $>$(), declval$<$ \mbox{\hyperlink{classstd_1_1math_1_1dr__matrix_afaf5cea2635ac4f9b226d0a89cecaf57}{index\+\_\+type}} $>$()))$>$
+using \mbox{\hyperlink{classstd_1_1math_1_1dr__matrix_aa7a551d41f3084a02c7208ef2cb632c2}{column\+\_\+type}} = \mbox{\hyperlink{classstd_1_1math_1_1vector__view}{vector\+\_\+view}}$<$ decltype(experimental\+::submdspan(declval$<$ \mbox{\hyperlink{classstd_1_1math_1_1dr__matrix_a7c325fffee8d3b0ca8872e829dde311e}{underlying\+\_\+span\+\_\+type}} $>$(), declval$<$ experimental\+::full\+\_\+extent\+\_\+t $>$(), declval$<$ \mbox{\hyperlink{classstd_1_1math_1_1dr__matrix_afaf5cea2635ac4f9b226d0a89cecaf57}{index\+\_\+type}} $>$()))$>$
 \begin{DoxyCompactList}\small\item\em mutable view of a column vector \end{DoxyCompactList}\item 
-using \mbox{\hyperlink{classstd_1_1math_1_1dr__matrix_a07e8a3c6a141bdedd6ce5fce4bbdf41a}{const\+\_\+column\+\_\+type}} = vector\+\_\+view$<$ decltype(experimental\+::submdspan(declval$<$ \mbox{\hyperlink{classstd_1_1math_1_1dr__matrix_a86fdd3eea86e4dd17e29c965d3a50dec}{const\+\_\+underlying\+\_\+span\+\_\+type}} $>$(), declval$<$ experimental\+::full\+\_\+extent\+\_\+t $>$(), declval$<$ \mbox{\hyperlink{classstd_1_1math_1_1dr__matrix_afaf5cea2635ac4f9b226d0a89cecaf57}{index\+\_\+type}} $>$()))$>$
+using \mbox{\hyperlink{classstd_1_1math_1_1dr__matrix_a07e8a3c6a141bdedd6ce5fce4bbdf41a}{const\+\_\+column\+\_\+type}} = \mbox{\hyperlink{classstd_1_1math_1_1vector__view}{vector\+\_\+view}}$<$ decltype(experimental\+::submdspan(declval$<$ \mbox{\hyperlink{classstd_1_1math_1_1dr__matrix_a86fdd3eea86e4dd17e29c965d3a50dec}{const\+\_\+underlying\+\_\+span\+\_\+type}} $>$(), declval$<$ experimental\+::full\+\_\+extent\+\_\+t $>$(), declval$<$ \mbox{\hyperlink{classstd_1_1math_1_1dr__matrix_afaf5cea2635ac4f9b226d0a89cecaf57}{index\+\_\+type}} $>$()))$>$
 \begin{DoxyCompactList}\small\item\em const view of a column vector \end{DoxyCompactList}\item 
-using \mbox{\hyperlink{classstd_1_1math_1_1dr__matrix_a41950a5f0861b1fb28b2e983e77d7e98}{row\+\_\+type}} = vector\+\_\+view$<$ decltype(experimental\+::submdspan(declval$<$ \mbox{\hyperlink{classstd_1_1math_1_1dr__matrix_a7c325fffee8d3b0ca8872e829dde311e}{underlying\+\_\+span\+\_\+type}} $>$(), declval$<$ \mbox{\hyperlink{classstd_1_1math_1_1dr__matrix_afaf5cea2635ac4f9b226d0a89cecaf57}{index\+\_\+type}} $>$(), declval$<$ experimental\+::full\+\_\+extent\+\_\+t $>$()))$>$
+using \mbox{\hyperlink{classstd_1_1math_1_1dr__matrix_a41950a5f0861b1fb28b2e983e77d7e98}{row\+\_\+type}} = \mbox{\hyperlink{classstd_1_1math_1_1vector__view}{vector\+\_\+view}}$<$ decltype(experimental\+::submdspan(declval$<$ \mbox{\hyperlink{classstd_1_1math_1_1dr__matrix_a7c325fffee8d3b0ca8872e829dde311e}{underlying\+\_\+span\+\_\+type}} $>$(), declval$<$ \mbox{\hyperlink{classstd_1_1math_1_1dr__matrix_afaf5cea2635ac4f9b226d0a89cecaf57}{index\+\_\+type}} $>$(), declval$<$ experimental\+::full\+\_\+extent\+\_\+t $>$()))$>$
 \begin{DoxyCompactList}\small\item\em mutable view of a row vector \end{DoxyCompactList}\item 
-using \mbox{\hyperlink{classstd_1_1math_1_1dr__matrix_a8036f92437a86877e088daae29352524}{const\+\_\+row\+\_\+type}} = vector\+\_\+view$<$ decltype(experimental\+::submdspan(declval$<$ \mbox{\hyperlink{classstd_1_1math_1_1dr__matrix_a86fdd3eea86e4dd17e29c965d3a50dec}{const\+\_\+underlying\+\_\+span\+\_\+type}} $>$(), declval$<$ \mbox{\hyperlink{classstd_1_1math_1_1dr__matrix_afaf5cea2635ac4f9b226d0a89cecaf57}{index\+\_\+type}} $>$(), declval$<$ experimental\+::full\+\_\+extent\+\_\+t $>$()))$>$
+using \mbox{\hyperlink{classstd_1_1math_1_1dr__matrix_a8036f92437a86877e088daae29352524}{const\+\_\+row\+\_\+type}} = \mbox{\hyperlink{classstd_1_1math_1_1vector__view}{vector\+\_\+view}}$<$ decltype(experimental\+::submdspan(declval$<$ \mbox{\hyperlink{classstd_1_1math_1_1dr__matrix_a86fdd3eea86e4dd17e29c965d3a50dec}{const\+\_\+underlying\+\_\+span\+\_\+type}} $>$(), declval$<$ \mbox{\hyperlink{classstd_1_1math_1_1dr__matrix_afaf5cea2635ac4f9b226d0a89cecaf57}{index\+\_\+type}} $>$(), declval$<$ experimental\+::full\+\_\+extent\+\_\+t $>$()))$>$
 \begin{DoxyCompactList}\small\item\em const view of a row vector \end{DoxyCompactList}\item 
-using \mbox{\hyperlink{classstd_1_1math_1_1dr__matrix_a398a8e1231c028fe9526fcbcddc2ba87}{submatrix\+\_\+type}} = matrix\+\_\+view$<$ decltype(\mbox{\hyperlink{namespacestd_1_1math_1_1detail_a539c3b8a18138b315e1af489c693bc38}{detail\+::submdspan}}(declval$<$ \mbox{\hyperlink{classstd_1_1math_1_1dr__matrix_a7c325fffee8d3b0ca8872e829dde311e}{underlying\+\_\+span\+\_\+type}} $>$(), declval$<$ \mbox{\hyperlink{classstd_1_1math_1_1dr__matrix_a421847d85efa25b9d8484a86408692b6}{tuple\+\_\+type}} $>$(), declval$<$ \mbox{\hyperlink{classstd_1_1math_1_1dr__matrix_a421847d85efa25b9d8484a86408692b6}{tuple\+\_\+type}} $>$()))$>$
+using \mbox{\hyperlink{classstd_1_1math_1_1dr__matrix_a398a8e1231c028fe9526fcbcddc2ba87}{submatrix\+\_\+type}} = \mbox{\hyperlink{classstd_1_1math_1_1matrix__view}{matrix\+\_\+view}}$<$ decltype(\mbox{\hyperlink{namespacestd_1_1math_1_1detail_af274dde876e47ba2ec1b483608c81d69}{detail\+::submdspan}}(declval$<$ \mbox{\hyperlink{classstd_1_1math_1_1dr__matrix_a7c325fffee8d3b0ca8872e829dde311e}{underlying\+\_\+span\+\_\+type}} $>$(), declval$<$ \mbox{\hyperlink{classstd_1_1math_1_1dr__matrix_a421847d85efa25b9d8484a86408692b6}{tuple\+\_\+type}} $>$(), declval$<$ \mbox{\hyperlink{classstd_1_1math_1_1dr__matrix_a421847d85efa25b9d8484a86408692b6}{tuple\+\_\+type}} $>$()))$>$
 \begin{DoxyCompactList}\small\item\em mutable view of a submatrix \end{DoxyCompactList}\item 
-using \mbox{\hyperlink{classstd_1_1math_1_1dr__matrix_a4af7c8308a01329c0a123e1dce3b85d6}{const\+\_\+submatrix\+\_\+type}} = matrix\+\_\+view$<$ decltype(\mbox{\hyperlink{namespacestd_1_1math_1_1detail_a539c3b8a18138b315e1af489c693bc38}{detail\+::submdspan}}(declval$<$ \mbox{\hyperlink{classstd_1_1math_1_1dr__matrix_a86fdd3eea86e4dd17e29c965d3a50dec}{const\+\_\+underlying\+\_\+span\+\_\+type}} $>$(), declval$<$ \mbox{\hyperlink{classstd_1_1math_1_1dr__matrix_a421847d85efa25b9d8484a86408692b6}{tuple\+\_\+type}} $>$(), declval$<$ \mbox{\hyperlink{classstd_1_1math_1_1dr__matrix_a421847d85efa25b9d8484a86408692b6}{tuple\+\_\+type}} $>$()))$>$
+using \mbox{\hyperlink{classstd_1_1math_1_1dr__matrix_a4af7c8308a01329c0a123e1dce3b85d6}{const\+\_\+submatrix\+\_\+type}} = \mbox{\hyperlink{classstd_1_1math_1_1matrix__view}{matrix\+\_\+view}}$<$ decltype(\mbox{\hyperlink{namespacestd_1_1math_1_1detail_af274dde876e47ba2ec1b483608c81d69}{detail\+::submdspan}}(declval$<$ \mbox{\hyperlink{classstd_1_1math_1_1dr__matrix_a86fdd3eea86e4dd17e29c965d3a50dec}{const\+\_\+underlying\+\_\+span\+\_\+type}} $>$(), declval$<$ \mbox{\hyperlink{classstd_1_1math_1_1dr__matrix_a421847d85efa25b9d8484a86408692b6}{tuple\+\_\+type}} $>$(), declval$<$ \mbox{\hyperlink{classstd_1_1math_1_1dr__matrix_a421847d85efa25b9d8484a86408692b6}{tuple\+\_\+type}} $>$()))$>$
 \begin{DoxyCompactList}\small\item\em const view of a submatrix \end{DoxyCompactList}\item 
 using \mbox{\hyperlink{classstd_1_1math_1_1dr__matrix_adbe807efe1aa0145c8ec5c8fad7b578d}{transpose\+\_\+type}} = \mbox{\hyperlink{classstd_1_1math_1_1dr__matrix}{dr\+\_\+matrix}}
 \begin{DoxyCompactList}\small\item\em matrix tanspose \end{DoxyCompactList}\item 
 {\footnotesize template$<$class Value\+Type , class Layout\+Type  = layout\+\_\+type, class Accessor\+Type  = accessor\+\_\+type$>$ }\\using \mbox{\hyperlink{classstd_1_1math_1_1dr__matrix_abf8bf1e5350b283973da3c1e5c431c54}{rebind\+\_\+t}} = typename \mbox{\hyperlink{classstd_1_1math_1_1dr__matrix_1_1rebind}{rebind}}$<$ Value\+Type, Layout\+Type, Accessor\+Type $>$\+::type
+\begin{DoxyCompactList}\small\item\em Helper for defining rebound type. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Public Types inherited from \mbox{\hyperlink{classstd_1_1math_1_1dr__tensor}{std\+::math\+::dr\+\_\+tensor$<$ T, R, Alloc, L, Access $>$}}}
+\begin{DoxyCompactItemize}
+\item 
+using \mbox{\hyperlink{classstd_1_1math_1_1dr__tensor_a7e1674ecc1d57ad775b9b5ba05f9374d}{layout\+\_\+type}} = L
+\begin{DoxyCompactList}\small\item\em Type used to define memory layout. \end{DoxyCompactList}\item 
+using \mbox{\hyperlink{classstd_1_1math_1_1dr__tensor_a54b6af496f85a5e1027426cddb575c24}{accessor\+\_\+type}} = Access
+\begin{DoxyCompactList}\small\item\em Type used to define access into memory. \end{DoxyCompactList}\item 
+using \mbox{\hyperlink{classstd_1_1math_1_1dr__tensor_a45a1af906818137bb34eb82f01c89275}{element\+\_\+type}} = typename accessor\+\_\+type\+::element\+\_\+type
+\begin{DoxyCompactList}\small\item\em Type contained by the tensor. \end{DoxyCompactList}\item 
+using \mbox{\hyperlink{classstd_1_1math_1_1dr__tensor_ad92f5299cd5817c7c8d23471d6f76e42}{size\+\_\+type}} = size\+\_\+t
+\begin{DoxyCompactList}\small\item\em Type used for size along any dimension. \end{DoxyCompactList}\item 
+using \mbox{\hyperlink{classstd_1_1math_1_1dr__tensor_aab60c7ac7de58b9986fba1a43edf95a3}{extents\+\_\+type}} = typename detail\+::template extents\+\_\+helper$<$ \mbox{\hyperlink{classstd_1_1math_1_1dr__tensor_ad92f5299cd5817c7c8d23471d6f76e42}{size\+\_\+type}}, R $>$\+::extents\+\_\+type
+\begin{DoxyCompactList}\small\item\em Type used to express size of tensor. \end{DoxyCompactList}\item 
+using \mbox{\hyperlink{classstd_1_1math_1_1dr__tensor_a1a99c1781e9f09ce477dc87f950216e6}{value\+\_\+type}} = remove\+\_\+cv\+\_\+t$<$ \mbox{\hyperlink{classstd_1_1math_1_1dr__tensor_a45a1af906818137bb34eb82f01c89275}{element\+\_\+type}} $>$
+\begin{DoxyCompactList}\small\item\em Type returned by const index access. \end{DoxyCompactList}\item 
+using \mbox{\hyperlink{classstd_1_1math_1_1dr__tensor_a25d140c88f3bf227d4be72c5809ab19a}{allocator\+\_\+type}} = allocator\+\_\+traits$<$ Alloc $>$\+::template rebind\+\_\+alloc$<$ \mbox{\hyperlink{classstd_1_1math_1_1dr__tensor_a45a1af906818137bb34eb82f01c89275}{element\+\_\+type}} $>$
+\begin{DoxyCompactList}\small\item\em Type of allocator used to get memory. \end{DoxyCompactList}\item 
+using \mbox{\hyperlink{classstd_1_1math_1_1dr__tensor_a32d51fefc007ba5c0fe1bc333076b8dd}{index\+\_\+type}} = ptrdiff\+\_\+t
+\begin{DoxyCompactList}\small\item\em Type used for indexing. \end{DoxyCompactList}\item 
+using \mbox{\hyperlink{classstd_1_1math_1_1dr__tensor_a311855993b4064aba8e19587ed8c8c30}{tuple\+\_\+type}} = typename detail\+::template extents\+\_\+helper$<$ \mbox{\hyperlink{classstd_1_1math_1_1dr__tensor_ad92f5299cd5817c7c8d23471d6f76e42}{size\+\_\+type}}, R $>$\+::tuple\+\_\+type
+\begin{DoxyCompactList}\small\item\em Type used to represent a node in the tensor. \end{DoxyCompactList}\item 
+using \mbox{\hyperlink{classstd_1_1math_1_1dr__tensor_a4330bcccce54d66e9f93c7889a3998a2}{underlying\+\_\+span\+\_\+type}} = decltype(\mbox{\hyperlink{namespacestd_1_1math_1_1detail_af274dde876e47ba2ec1b483608c81d69}{detail\+::submdspan}}(declval$<$ capacity\+\_\+span\+\_\+type $>$(), declval$<$ \mbox{\hyperlink{classstd_1_1math_1_1dr__tensor_a311855993b4064aba8e19587ed8c8c30}{tuple\+\_\+type}} $>$(), declval$<$ \mbox{\hyperlink{classstd_1_1math_1_1dr__tensor_a311855993b4064aba8e19587ed8c8c30}{tuple\+\_\+type}} $>$()))
+\begin{DoxyCompactList}\small\item\em Type used to view memory within size. \end{DoxyCompactList}\item 
+using \mbox{\hyperlink{classstd_1_1math_1_1dr__tensor_ac614c64c2545c31fb294544d95536f23}{const\+\_\+underlying\+\_\+span\+\_\+type}} = decltype(\mbox{\hyperlink{namespacestd_1_1math_1_1detail_af274dde876e47ba2ec1b483608c81d69}{detail\+::submdspan}}(declval$<$ const\+\_\+capacity\+\_\+span\+\_\+type $>$(), declval$<$ \mbox{\hyperlink{classstd_1_1math_1_1dr__tensor_a311855993b4064aba8e19587ed8c8c30}{tuple\+\_\+type}} $>$(), declval$<$ \mbox{\hyperlink{classstd_1_1math_1_1dr__tensor_a311855993b4064aba8e19587ed8c8c30}{tuple\+\_\+type}} $>$()))
+\begin{DoxyCompactList}\small\item\em Type used to const view memory within size. \end{DoxyCompactList}\item 
+using \mbox{\hyperlink{classstd_1_1math_1_1dr__tensor_ac18a7bc8a870b1b695e21b2d58cc4898}{span\+\_\+type}} = \mbox{\hyperlink{classstd_1_1math_1_1dr__tensor_ac614c64c2545c31fb294544d95536f23}{const\+\_\+underlying\+\_\+span\+\_\+type}}
+\begin{DoxyCompactList}\small\item\em Type used to portray tensor as an N dimensional view. \end{DoxyCompactList}\item 
+using \mbox{\hyperlink{classstd_1_1math_1_1dr__tensor_ab12f3e2dba6862820a8480998e76841d}{reference\+\_\+type}} = typename accessor\+\_\+type\+::reference
+\begin{DoxyCompactList}\small\item\em Type returned by mutable index access. \end{DoxyCompactList}\item 
+using \mbox{\hyperlink{classstd_1_1math_1_1dr__tensor_a220aaa2d4ad4d41d374244948ca68930}{subtensor\+\_\+type}} = \mbox{\hyperlink{classstd_1_1math_1_1tensor__view}{tensor\+\_\+view}}$<$ decltype(\mbox{\hyperlink{namespacestd_1_1math_1_1detail_af274dde876e47ba2ec1b483608c81d69}{detail\+::submdspan}}(declval$<$ \mbox{\hyperlink{classstd_1_1math_1_1dr__tensor_a4330bcccce54d66e9f93c7889a3998a2}{underlying\+\_\+span\+\_\+type}} $>$(), declval$<$ \mbox{\hyperlink{classstd_1_1math_1_1dr__tensor_a311855993b4064aba8e19587ed8c8c30}{tuple\+\_\+type}} $>$(), declval$<$ \mbox{\hyperlink{classstd_1_1math_1_1dr__tensor_a311855993b4064aba8e19587ed8c8c30}{tuple\+\_\+type}} $>$())) $>$
+\begin{DoxyCompactList}\small\item\em mutable view of a subtensor \end{DoxyCompactList}\item 
+using \mbox{\hyperlink{classstd_1_1math_1_1dr__tensor_a56057e834324d437bf4b1d9b06f8c122}{const\+\_\+subtensor\+\_\+type}} = \mbox{\hyperlink{classstd_1_1math_1_1tensor__view}{tensor\+\_\+view}}$<$ decltype(\mbox{\hyperlink{namespacestd_1_1math_1_1detail_af274dde876e47ba2ec1b483608c81d69}{detail\+::submdspan}}(declval$<$ \mbox{\hyperlink{classstd_1_1math_1_1dr__tensor_ac614c64c2545c31fb294544d95536f23}{const\+\_\+underlying\+\_\+span\+\_\+type}} $>$(), declval$<$ \mbox{\hyperlink{classstd_1_1math_1_1dr__tensor_a311855993b4064aba8e19587ed8c8c30}{tuple\+\_\+type}} $>$(), declval$<$ \mbox{\hyperlink{classstd_1_1math_1_1dr__tensor_a311855993b4064aba8e19587ed8c8c30}{tuple\+\_\+type}} $>$())) $>$
+\begin{DoxyCompactList}\small\item\em const view of a subtensor \end{DoxyCompactList}\item 
+{\footnotesize template$<$class Value\+Type , class Layout\+Type  = layout\+\_\+type, class Accessor\+Type  = accessor\+\_\+type$>$ }\\using \mbox{\hyperlink{classstd_1_1math_1_1dr__tensor_ab6869d29a011a9423543866c215a8dfe}{rebind\+\_\+t}} = typename \mbox{\hyperlink{classstd_1_1math_1_1dr__tensor_1_1rebind}{rebind}}$<$ Value\+Type, Layout\+Type, Accessor\+Type $>$\+::type
 \begin{DoxyCompactList}\small\item\em Helper for defining rebound type. \end{DoxyCompactList}\end{DoxyCompactItemize}
 \doxysubsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
@@ -94,37 +129,42 @@ constexpr \mbox{\hyperlink{classstd_1_1math_1_1dr__matrix_adc0f0e3a46d83751a8b24
 \begin{DoxyCompactList}\small\item\em Default move constructor. \end{DoxyCompactList}\item 
 constexpr \mbox{\hyperlink{classstd_1_1math_1_1dr__matrix_ae747a279904bc22b99ad4c879e398dfe}{dr\+\_\+matrix}} (const \mbox{\hyperlink{classstd_1_1math_1_1dr__matrix}{dr\+\_\+matrix}} \&)=default
 \begin{DoxyCompactList}\small\item\em Default copy constructor. \end{DoxyCompactList}\item 
-{\footnotesize template$<$concepts\+::tensor\+\_\+may\+\_\+be\+\_\+constructible$<$ dr\+\_\+matrix $>$ M2$>$ }\\constexpr \mbox{\hyperlink{classstd_1_1math_1_1dr__matrix_a3e070d8b83fde1eea36a014175e085e1}{dr\+\_\+matrix}} (const M2 \&rhs) noexcept(noexcept(\mbox{\hyperlink{classstd_1_1math_1_1dr__tensor}{base\+\_\+type}}(rhs)))
+{\footnotesize template$<$concepts\+::tensor\+\_\+may\+\_\+be\+\_\+constructible$<$ \mbox{\hyperlink{classstd_1_1math_1_1dr__matrix}{dr\+\_\+matrix}} $>$ M2$>$ }\\constexpr \mbox{\hyperlink{classstd_1_1math_1_1dr__matrix_a3e070d8b83fde1eea36a014175e085e1}{dr\+\_\+matrix}} (const M2 \&rhs) noexcept(noexcept(\mbox{\hyperlink{classstd_1_1math_1_1dr__tensor}{base\+\_\+type}}(rhs)))
 \begin{DoxyCompactList}\small\item\em Template copy constructor. \end{DoxyCompactList}\item 
-{\footnotesize template$<$concepts\+::view\+\_\+may\+\_\+be\+\_\+constructible\+\_\+to\+\_\+tensor$<$ dr\+\_\+matrix $>$ MDS$>$ }\\constexpr \mbox{\hyperlink{classstd_1_1math_1_1dr__matrix_aa4eed07552cdcd54a14e0167aa64084a}{dr\+\_\+matrix}} (const MDS \&view) noexcept(noexcept(\mbox{\hyperlink{classstd_1_1math_1_1dr__tensor}{base\+\_\+type}}(view))) \mbox{\hyperlink{namespacestd_1_1math_a99301a8e16b7c6c884465173b22852a5}{requires}} is\+\_\+default\+\_\+constructible\+\_\+v$<$ \mbox{\hyperlink{classstd_1_1math_1_1dr__matrix_a1fe25d36296174f6c0130bf93cb39a7d}{allocator\+\_\+type}} $>$
+{\footnotesize template$<$concepts\+::view\+\_\+may\+\_\+be\+\_\+constructible\+\_\+to\+\_\+tensor$<$ \mbox{\hyperlink{classstd_1_1math_1_1dr__matrix}{dr\+\_\+matrix}} $>$ MDS$>$ \newline
+requires is\+\_\+default\+\_\+constructible\+\_\+v$<$\mbox{\hyperlink{classstd_1_1math_1_1dr__matrix_a1fe25d36296174f6c0130bf93cb39a7d}{allocator\+\_\+type}}$>$}\\constexpr \mbox{\hyperlink{classstd_1_1math_1_1dr__matrix_a45b699e58cb0315ea57551be7d00878c}{dr\+\_\+matrix}} (const MDS \&view) noexcept(noexcept(\mbox{\hyperlink{classstd_1_1math_1_1dr__tensor}{base\+\_\+type}}(view)))
 \begin{DoxyCompactList}\small\item\em Construct from a view. \end{DoxyCompactList}\item 
-constexpr \mbox{\hyperlink{classstd_1_1math_1_1dr__matrix_a51faed53412331d37c5e73b0f6767465}{dr\+\_\+matrix}} (\mbox{\hyperlink{classstd_1_1math_1_1dr__matrix_a708494c9db17c0e143f80a319d6d66e8}{extents\+\_\+type}} s) noexcept(noexcept(\mbox{\hyperlink{classstd_1_1math_1_1dr__tensor}{base\+\_\+type}}(s))) \mbox{\hyperlink{namespacestd_1_1math_a99301a8e16b7c6c884465173b22852a5}{requires}} is\+\_\+default\+\_\+constructible\+\_\+v$<$ \mbox{\hyperlink{classstd_1_1math_1_1dr__matrix_a1fe25d36296174f6c0130bf93cb39a7d}{allocator\+\_\+type}} $>$
+constexpr \mbox{\hyperlink{classstd_1_1math_1_1dr__matrix_a7582d6de6bc6fc317749337838c3af83}{dr\+\_\+matrix}} (\mbox{\hyperlink{classstd_1_1math_1_1dr__matrix_a708494c9db17c0e143f80a319d6d66e8}{extents\+\_\+type}} s) noexcept(noexcept(\mbox{\hyperlink{classstd_1_1math_1_1dr__tensor}{base\+\_\+type}}(s)))
 \begin{DoxyCompactList}\small\item\em Attempt to allocate sufficient resources for a size s matrix and construct. \end{DoxyCompactList}\item 
-constexpr \mbox{\hyperlink{classstd_1_1math_1_1dr__matrix_a25c0042a1cae31d88474c5860acd0de3}{dr\+\_\+matrix}} (\mbox{\hyperlink{classstd_1_1math_1_1dr__matrix_a708494c9db17c0e143f80a319d6d66e8}{extents\+\_\+type}} s, \mbox{\hyperlink{classstd_1_1math_1_1dr__matrix_a708494c9db17c0e143f80a319d6d66e8}{extents\+\_\+type}} cap) noexcept(noexcept(\mbox{\hyperlink{classstd_1_1math_1_1dr__tensor}{base\+\_\+type}}(s, cap))) \mbox{\hyperlink{namespacestd_1_1math_a99301a8e16b7c6c884465173b22852a5}{requires}} is\+\_\+default\+\_\+constructible\+\_\+v$<$ \mbox{\hyperlink{classstd_1_1math_1_1dr__matrix_a1fe25d36296174f6c0130bf93cb39a7d}{allocator\+\_\+type}} $>$
+constexpr \mbox{\hyperlink{classstd_1_1math_1_1dr__matrix_a03a360fc29eb7be26e852dad75a09de5}{dr\+\_\+matrix}} (\mbox{\hyperlink{classstd_1_1math_1_1dr__matrix_a708494c9db17c0e143f80a319d6d66e8}{extents\+\_\+type}} s, \mbox{\hyperlink{classstd_1_1math_1_1dr__matrix_a708494c9db17c0e143f80a319d6d66e8}{extents\+\_\+type}} cap) noexcept(noexcept(\mbox{\hyperlink{classstd_1_1math_1_1dr__tensor}{base\+\_\+type}}(s, cap)))
 \begin{DoxyCompactList}\small\item\em Attempt to allocate sufficient resources for a size s matrix with the input capacity and construct. \end{DoxyCompactList}\item 
-{\footnotesize template$<$class Lambda $>$ }\\constexpr \mbox{\hyperlink{classstd_1_1math_1_1dr__matrix_a703fe5792cda0c2cf12d258d46fc673c}{dr\+\_\+matrix}} (\mbox{\hyperlink{classstd_1_1math_1_1dr__matrix_a708494c9db17c0e143f80a319d6d66e8}{extents\+\_\+type}} s, Lambda \&\&lambda) noexcept(noexcept(\mbox{\hyperlink{classstd_1_1math_1_1dr__tensor}{base\+\_\+type}}(s, lambda))) \mbox{\hyperlink{namespacestd_1_1math_a99301a8e16b7c6c884465173b22852a5}{requires}} is\+\_\+default\+\_\+constructible\+\_\+v$<$ \mbox{\hyperlink{classstd_1_1math_1_1dr__matrix_a1fe25d36296174f6c0130bf93cb39a7d}{allocator\+\_\+type}} $>$ \&\&\mbox{\hyperlink{namespacestd_1_1math_a99301a8e16b7c6c884465173b22852a5}{requires}}
+{\footnotesize template$<$class Lambda $>$ \newline
+requires is\+\_\+default\+\_\+constructible\+\_\+v$<$\mbox{\hyperlink{classstd_1_1math_1_1dr__matrix_a1fe25d36296174f6c0130bf93cb39a7d}{allocator\+\_\+type}}$>$ \&\& requires \{ \{ declval$<$Lambda\&\&$>$()( declval$<$\mbox{\hyperlink{classstd_1_1math_1_1dr__matrix_afaf5cea2635ac4f9b226d0a89cecaf57}{index\+\_\+type}}$>$(), declval$<$\mbox{\hyperlink{classstd_1_1math_1_1dr__matrix_afaf5cea2635ac4f9b226d0a89cecaf57}{index\+\_\+type}}$>$() ) \} -\/$>$ convertible\+\_\+to$<$\mbox{\hyperlink{classstd_1_1math_1_1dr__matrix_a7d14ebbc93ee38098e151c1276ed2e9e}{element\+\_\+type}}$>$; \}}\\constexpr \mbox{\hyperlink{classstd_1_1math_1_1dr__matrix_a78fe967759bbefbe66fe589a63d275ae}{dr\+\_\+matrix}} (\mbox{\hyperlink{classstd_1_1math_1_1dr__matrix_a708494c9db17c0e143f80a319d6d66e8}{extents\+\_\+type}} s, Lambda \&\&lambda) noexcept(noexcept(\mbox{\hyperlink{classstd_1_1math_1_1dr__tensor}{base\+\_\+type}}(s, lambda)))
 \begin{DoxyCompactList}\small\item\em Construct by applying lambda to every element in the matrix. \end{DoxyCompactList}\item 
-{\footnotesize template$<$class Lambda $>$ }\\constexpr \mbox{\hyperlink{classstd_1_1math_1_1dr__matrix_abf3276e1c6f5cfd877a06e4297e025df}{dr\+\_\+matrix}} (\mbox{\hyperlink{classstd_1_1math_1_1dr__matrix_a708494c9db17c0e143f80a319d6d66e8}{extents\+\_\+type}} s, \mbox{\hyperlink{classstd_1_1math_1_1dr__matrix_a708494c9db17c0e143f80a319d6d66e8}{extents\+\_\+type}} cap, Lambda \&\&lambda) noexcept(noexcept(\mbox{\hyperlink{classstd_1_1math_1_1dr__tensor}{base\+\_\+type}}(s, cap, lambda))) \mbox{\hyperlink{namespacestd_1_1math_a99301a8e16b7c6c884465173b22852a5}{requires}} is\+\_\+default\+\_\+constructible\+\_\+v$<$ \mbox{\hyperlink{classstd_1_1math_1_1dr__matrix_a1fe25d36296174f6c0130bf93cb39a7d}{allocator\+\_\+type}} $>$ \&\&\mbox{\hyperlink{namespacestd_1_1math_a99301a8e16b7c6c884465173b22852a5}{requires}}
+{\footnotesize template$<$class Lambda $>$ \newline
+requires is\+\_\+default\+\_\+constructible\+\_\+v$<$\mbox{\hyperlink{classstd_1_1math_1_1dr__matrix_a1fe25d36296174f6c0130bf93cb39a7d}{allocator\+\_\+type}}$>$ \&\& requires \{ \{ declval$<$Lambda\&\&$>$()( declval$<$\mbox{\hyperlink{classstd_1_1math_1_1dr__matrix_afaf5cea2635ac4f9b226d0a89cecaf57}{index\+\_\+type}}$>$(), declval$<$\mbox{\hyperlink{classstd_1_1math_1_1dr__matrix_afaf5cea2635ac4f9b226d0a89cecaf57}{index\+\_\+type}}$>$() ) \} -\/$>$ convertible\+\_\+to$<$\mbox{\hyperlink{classstd_1_1math_1_1dr__matrix_a7d14ebbc93ee38098e151c1276ed2e9e}{element\+\_\+type}}$>$; \}}\\constexpr \mbox{\hyperlink{classstd_1_1math_1_1dr__matrix_ae2be38472848e02c0f811e9d9f1b34b3}{dr\+\_\+matrix}} (\mbox{\hyperlink{classstd_1_1math_1_1dr__matrix_a708494c9db17c0e143f80a319d6d66e8}{extents\+\_\+type}} s, \mbox{\hyperlink{classstd_1_1math_1_1dr__matrix_a708494c9db17c0e143f80a319d6d66e8}{extents\+\_\+type}} cap, Lambda \&\&lambda) noexcept(noexcept(\mbox{\hyperlink{classstd_1_1math_1_1dr__tensor}{base\+\_\+type}}(s, cap, lambda)))
 \begin{DoxyCompactList}\small\item\em Construct by applying lambda to every element in the matrix. \end{DoxyCompactList}\item 
 constexpr \mbox{\hyperlink{classstd_1_1math_1_1dr__matrix_a72b3ea78d5d404d4c39e7306eedf4168}{dr\+\_\+matrix}} (const \mbox{\hyperlink{classstd_1_1math_1_1dr__matrix_a1fe25d36296174f6c0130bf93cb39a7d}{allocator\+\_\+type}} \&alloc) noexcept(noexcept(\mbox{\hyperlink{classstd_1_1math_1_1dr__tensor}{base\+\_\+type}}(alloc)))
 \begin{DoxyCompactList}\small\item\em Construct empty dimensionless matrix with an allocator. \end{DoxyCompactList}\item 
-{\footnotesize template$<$concepts\+::view\+\_\+may\+\_\+be\+\_\+constructible\+\_\+to\+\_\+tensor$<$ dr\+\_\+matrix $>$ MDS$>$ }\\constexpr \mbox{\hyperlink{classstd_1_1math_1_1dr__matrix_a0777ba088021646eb32505114e1a10b7}{dr\+\_\+matrix}} (const MDS \&view, const \mbox{\hyperlink{classstd_1_1math_1_1dr__matrix_a1fe25d36296174f6c0130bf93cb39a7d}{allocator\+\_\+type}} \&alloc) noexcept(noexcept(\mbox{\hyperlink{classstd_1_1math_1_1dr__tensor}{base\+\_\+type}}(view, alloc)))
+{\footnotesize template$<$concepts\+::view\+\_\+may\+\_\+be\+\_\+constructible\+\_\+to\+\_\+tensor$<$ \mbox{\hyperlink{classstd_1_1math_1_1dr__matrix}{dr\+\_\+matrix}} $>$ MDS$>$ }\\constexpr \mbox{\hyperlink{classstd_1_1math_1_1dr__matrix_a0777ba088021646eb32505114e1a10b7}{dr\+\_\+matrix}} (const MDS \&view, const \mbox{\hyperlink{classstd_1_1math_1_1dr__matrix_a1fe25d36296174f6c0130bf93cb39a7d}{allocator\+\_\+type}} \&alloc) noexcept(noexcept(\mbox{\hyperlink{classstd_1_1math_1_1dr__tensor}{base\+\_\+type}}(view, alloc)))
 \begin{DoxyCompactList}\small\item\em Construct from a view. \end{DoxyCompactList}\item 
 constexpr \mbox{\hyperlink{classstd_1_1math_1_1dr__matrix_ae1ca1ca49667740b8b4ff77b569f4412}{dr\+\_\+matrix}} (\mbox{\hyperlink{classstd_1_1math_1_1dr__matrix_a708494c9db17c0e143f80a319d6d66e8}{extents\+\_\+type}} s, const \mbox{\hyperlink{classstd_1_1math_1_1dr__matrix_a1fe25d36296174f6c0130bf93cb39a7d}{allocator\+\_\+type}} \&alloc) noexcept(noexcept(\mbox{\hyperlink{classstd_1_1math_1_1dr__tensor}{base\+\_\+type}}(s, alloc)))
 \begin{DoxyCompactList}\small\item\em Attempt to allocate sufficient resources for a size matrix and construct. \end{DoxyCompactList}\item 
 constexpr \mbox{\hyperlink{classstd_1_1math_1_1dr__matrix_a09f12b1114ca0d9687b35699426a26da}{dr\+\_\+matrix}} (\mbox{\hyperlink{classstd_1_1math_1_1dr__matrix_a708494c9db17c0e143f80a319d6d66e8}{extents\+\_\+type}} s, \mbox{\hyperlink{classstd_1_1math_1_1dr__matrix_a708494c9db17c0e143f80a319d6d66e8}{extents\+\_\+type}} cap, const \mbox{\hyperlink{classstd_1_1math_1_1dr__matrix_a1fe25d36296174f6c0130bf93cb39a7d}{allocator\+\_\+type}} \&alloc) noexcept(noexcept(\mbox{\hyperlink{classstd_1_1math_1_1dr__tensor}{base\+\_\+type}}(s, cap, alloc)))
 \begin{DoxyCompactList}\small\item\em Attempt to allocate sufficient resources for a size s matrix with the input capacity and construct. \end{DoxyCompactList}\item 
-{\footnotesize template$<$class Lambda $>$ }\\constexpr \mbox{\hyperlink{classstd_1_1math_1_1dr__matrix_adc48408a1686d7bf9870a9bb513ad3f9}{dr\+\_\+matrix}} (\mbox{\hyperlink{classstd_1_1math_1_1dr__matrix_a708494c9db17c0e143f80a319d6d66e8}{extents\+\_\+type}} s, Lambda \&\&lambda, const \mbox{\hyperlink{classstd_1_1math_1_1dr__matrix_a1fe25d36296174f6c0130bf93cb39a7d}{allocator\+\_\+type}} \&alloc) noexcept(noexcept(\mbox{\hyperlink{classstd_1_1math_1_1dr__tensor}{base\+\_\+type}}(s, lambda, alloc))) \mbox{\hyperlink{namespacestd_1_1math_a99301a8e16b7c6c884465173b22852a5}{requires}} \mbox{\hyperlink{namespacestd_1_1math_a99301a8e16b7c6c884465173b22852a5}{requires}}
+{\footnotesize template$<$class Lambda $>$ \newline
+requires requires \{ \{ declval$<$Lambda\&\&$>$()( declval$<$\mbox{\hyperlink{classstd_1_1math_1_1dr__matrix_afaf5cea2635ac4f9b226d0a89cecaf57}{index\+\_\+type}}$>$(), declval$<$\mbox{\hyperlink{classstd_1_1math_1_1dr__matrix_afaf5cea2635ac4f9b226d0a89cecaf57}{index\+\_\+type}}$>$() ) \} -\/$>$ convertible\+\_\+to$<$\mbox{\hyperlink{classstd_1_1math_1_1dr__matrix_a7d14ebbc93ee38098e151c1276ed2e9e}{element\+\_\+type}}$>$; \}}\\constexpr \mbox{\hyperlink{classstd_1_1math_1_1dr__matrix_a3f6918ab8de57438f39a588ec9c726c4}{dr\+\_\+matrix}} (\mbox{\hyperlink{classstd_1_1math_1_1dr__matrix_a708494c9db17c0e143f80a319d6d66e8}{extents\+\_\+type}} s, Lambda \&\&lambda, const \mbox{\hyperlink{classstd_1_1math_1_1dr__matrix_a1fe25d36296174f6c0130bf93cb39a7d}{allocator\+\_\+type}} \&alloc) noexcept(noexcept(\mbox{\hyperlink{classstd_1_1math_1_1dr__tensor}{base\+\_\+type}}(s, lambda, alloc)))
 \begin{DoxyCompactList}\small\item\em Construct by applying lambda to every element in the matrix. \end{DoxyCompactList}\item 
-{\footnotesize template$<$class Lambda $>$ }\\constexpr \mbox{\hyperlink{classstd_1_1math_1_1dr__matrix_a6518bca440c8bdbbe3d05955a4648d8f}{dr\+\_\+matrix}} (\mbox{\hyperlink{classstd_1_1math_1_1dr__matrix_a708494c9db17c0e143f80a319d6d66e8}{extents\+\_\+type}} s, \mbox{\hyperlink{classstd_1_1math_1_1dr__matrix_a708494c9db17c0e143f80a319d6d66e8}{extents\+\_\+type}} cap, Lambda \&\&lambda, const \mbox{\hyperlink{classstd_1_1math_1_1dr__matrix_a1fe25d36296174f6c0130bf93cb39a7d}{allocator\+\_\+type}} \&alloc) noexcept(noexcept(\mbox{\hyperlink{classstd_1_1math_1_1dr__tensor}{base\+\_\+type}}(s, cap, lambda, alloc))) \mbox{\hyperlink{namespacestd_1_1math_a99301a8e16b7c6c884465173b22852a5}{requires}} \mbox{\hyperlink{namespacestd_1_1math_a99301a8e16b7c6c884465173b22852a5}{requires}}
+{\footnotesize template$<$class Lambda $>$ \newline
+requires requires \{ \{ declval$<$Lambda\&\&$>$()( declval$<$\mbox{\hyperlink{classstd_1_1math_1_1dr__matrix_afaf5cea2635ac4f9b226d0a89cecaf57}{index\+\_\+type}}$>$(), declval$<$\mbox{\hyperlink{classstd_1_1math_1_1dr__matrix_afaf5cea2635ac4f9b226d0a89cecaf57}{index\+\_\+type}}$>$() ) \} -\/$>$ convertible\+\_\+to$<$\mbox{\hyperlink{classstd_1_1math_1_1dr__matrix_a7d14ebbc93ee38098e151c1276ed2e9e}{element\+\_\+type}}$>$; \}}\\constexpr \mbox{\hyperlink{classstd_1_1math_1_1dr__matrix_af349463e56f6837f341d04d9b42573d2}{dr\+\_\+matrix}} (\mbox{\hyperlink{classstd_1_1math_1_1dr__matrix_a708494c9db17c0e143f80a319d6d66e8}{extents\+\_\+type}} s, \mbox{\hyperlink{classstd_1_1math_1_1dr__matrix_a708494c9db17c0e143f80a319d6d66e8}{extents\+\_\+type}} cap, Lambda \&\&lambda, const \mbox{\hyperlink{classstd_1_1math_1_1dr__matrix_a1fe25d36296174f6c0130bf93cb39a7d}{allocator\+\_\+type}} \&alloc) noexcept(noexcept(\mbox{\hyperlink{classstd_1_1math_1_1dr__tensor}{base\+\_\+type}}(s, cap, lambda, alloc)))
 \begin{DoxyCompactList}\small\item\em Construct by applying lambda to every element in the matrix. \end{DoxyCompactList}\item 
-constexpr \mbox{\hyperlink{classstd_1_1math_1_1dr__matrix}{dr\+\_\+matrix}} \& \mbox{\hyperlink{classstd_1_1math_1_1dr__matrix_a718b174540ff23324ebaae61befdbfd2}{operator=}} (\mbox{\hyperlink{classstd_1_1math_1_1dr__matrix}{dr\+\_\+matrix}} \&\&)=default
+constexpr \mbox{\hyperlink{classstd_1_1math_1_1dr__matrix}{dr\+\_\+matrix}} \& \mbox{\hyperlink{classstd_1_1math_1_1dr__matrix_acb6fa00fde99b962e3f767827e78aad0}{operator=}} (\mbox{\hyperlink{classstd_1_1math_1_1dr__matrix}{dr\+\_\+matrix}} \&\&)=default
 \begin{DoxyCompactList}\small\item\em Default move assignment. \end{DoxyCompactList}\item 
-constexpr \mbox{\hyperlink{classstd_1_1math_1_1dr__matrix}{dr\+\_\+matrix}} \& \mbox{\hyperlink{classstd_1_1math_1_1dr__matrix_a409eeadbea52840376d3c450d050d459}{operator=}} (const \mbox{\hyperlink{classstd_1_1math_1_1dr__matrix}{dr\+\_\+matrix}} \&)=default
+constexpr \mbox{\hyperlink{classstd_1_1math_1_1dr__matrix}{dr\+\_\+matrix}} \& \mbox{\hyperlink{classstd_1_1math_1_1dr__matrix_adedea14492d41d4e8d5833f17961a857}{operator=}} (const \mbox{\hyperlink{classstd_1_1math_1_1dr__matrix}{dr\+\_\+matrix}} \&)=default
 \begin{DoxyCompactList}\small\item\em Default copy assignment. \end{DoxyCompactList}\item 
-{\footnotesize template$<$concepts\+::tensor\+\_\+may\+\_\+be\+\_\+constructible$<$ dr\+\_\+matrix $>$ M2$>$ }\\constexpr \mbox{\hyperlink{classstd_1_1math_1_1dr__matrix}{dr\+\_\+matrix}} \& \mbox{\hyperlink{classstd_1_1math_1_1dr__matrix_af5a00e7dac9ee67e2a1c5903a74b5006}{operator=}} (const M2 \&rhs) noexcept(noexcept(declval$<$ \mbox{\hyperlink{classstd_1_1math_1_1dr__tensor}{base\+\_\+type}} $>$()=rhs))
+{\footnotesize template$<$concepts\+::tensor\+\_\+may\+\_\+be\+\_\+constructible$<$ \mbox{\hyperlink{classstd_1_1math_1_1dr__matrix}{dr\+\_\+matrix}} $>$ M2$>$ }\\constexpr \mbox{\hyperlink{classstd_1_1math_1_1dr__matrix}{dr\+\_\+matrix}} \& \mbox{\hyperlink{classstd_1_1math_1_1dr__matrix_a9d236bd6dd3a7e02157fa72cd3c4dedb}{operator=}} (const M2 \&rhs) noexcept(noexcept(declval$<$ \mbox{\hyperlink{classstd_1_1math_1_1dr__tensor}{base\+\_\+type}} $>$()=rhs))
 \begin{DoxyCompactList}\small\item\em Template copy assignment. \end{DoxyCompactList}\item 
-{\footnotesize template$<$concepts\+::view\+\_\+may\+\_\+be\+\_\+constructible\+\_\+to\+\_\+tensor$<$ dr\+\_\+matrix $>$ MDS$>$ }\\constexpr \mbox{\hyperlink{classstd_1_1math_1_1dr__matrix}{dr\+\_\+matrix}} \& \mbox{\hyperlink{classstd_1_1math_1_1dr__matrix_afeef79f23e9542ecb9ca050d0473dec7}{operator=}} (const MDS \&view) noexcept(noexcept(declval$<$ \mbox{\hyperlink{classstd_1_1math_1_1dr__tensor}{base\+\_\+type}} $>$()=view))
+{\footnotesize template$<$concepts\+::view\+\_\+may\+\_\+be\+\_\+constructible\+\_\+to\+\_\+tensor$<$ \mbox{\hyperlink{classstd_1_1math_1_1dr__matrix}{dr\+\_\+matrix}} $>$ MDS$>$ }\\constexpr \mbox{\hyperlink{classstd_1_1math_1_1dr__matrix}{dr\+\_\+matrix}} \& \mbox{\hyperlink{classstd_1_1math_1_1dr__matrix_a1af59099970afc2bb3b5b6c33df2b2ce}{operator=}} (const MDS \&view) noexcept(noexcept(declval$<$ \mbox{\hyperlink{classstd_1_1math_1_1dr__tensor}{base\+\_\+type}} $>$()=view))
 \begin{DoxyCompactList}\small\item\em Construct from a two dimensional view. \end{DoxyCompactList}\item 
 constexpr \mbox{\hyperlink{classstd_1_1math_1_1dr__matrix_af801b34e4eba972f88113261bd7587d7}{size\+\_\+type}} \mbox{\hyperlink{classstd_1_1math_1_1dr__matrix_a9b361d01cc71700456d4e6386a86118a}{columns}} () const noexcept
 \begin{DoxyCompactList}\small\item\em Returns current number of columns. \end{DoxyCompactList}\item 
@@ -146,9 +186,9 @@ constexpr \mbox{\hyperlink{classstd_1_1math_1_1dr__matrix_a41950a5f0861b1fb28b2e
 \begin{DoxyCompactList}\small\item\em Returns a mutable view of the specified row. \end{DoxyCompactList}\item 
 constexpr \mbox{\hyperlink{classstd_1_1math_1_1dr__matrix_a398a8e1231c028fe9526fcbcddc2ba87}{submatrix\+\_\+type}} \mbox{\hyperlink{classstd_1_1math_1_1dr__matrix_a2267a50a9c50121e170be7e1939c9b35}{submatrix}} (\mbox{\hyperlink{classstd_1_1math_1_1dr__matrix_a421847d85efa25b9d8484a86408692b6}{tuple\+\_\+type}} start, \mbox{\hyperlink{classstd_1_1math_1_1dr__matrix_a421847d85efa25b9d8484a86408692b6}{tuple\+\_\+type}} end)
 \begin{DoxyCompactList}\small\item\em Returns a mutable view of the specified submatrix. \end{DoxyCompactList}\item 
-{\footnotesize template$<$concepts\+::tensor\+\_\+may\+\_\+be\+\_\+constructible$<$ dr\+\_\+matrix$<$ T, Alloc, L, Access $>$ $>$ M2$>$ }\\constexpr \mbox{\hyperlink{classstd_1_1math_1_1dr__matrix}{dr\+\_\+matrix}}$<$ \mbox{\hyperlink{namespacestd_1_1math_a53983004b9afa750d13aff5975152bf2}{T}}, \mbox{\hyperlink{namespacestd_1_1math_a597a66936269f36c2b022a726d9f82a0}{Alloc}}, \mbox{\hyperlink{namespacestd_1_1math_a1575e00678072847b093ec1a603697d1}{L}}, \mbox{\hyperlink{namespacestd_1_1math_a39f52c16036f51ca651f8cf88cffbead}{Access}} $>$ \& \mbox{\hyperlink{classstd_1_1math_1_1dr__matrix_a650881dfc6d46d05aa176f916adfa0f5}{operator=}} (const M2 \&rhs) noexcept(noexcept(declval$<$ typename \mbox{\hyperlink{classstd_1_1math_1_1dr__matrix}{dr\+\_\+matrix}}$<$ \mbox{\hyperlink{namespacestd_1_1math_a53983004b9afa750d13aff5975152bf2}{T}}, \mbox{\hyperlink{namespacestd_1_1math_a597a66936269f36c2b022a726d9f82a0}{Alloc}}, \mbox{\hyperlink{namespacestd_1_1math_a1575e00678072847b093ec1a603697d1}{L}}, \mbox{\hyperlink{namespacestd_1_1math_a39f52c16036f51ca651f8cf88cffbead}{Access}} $>$\+::\mbox{\hyperlink{classstd_1_1math_1_1dr__tensor}{base\+\_\+type}} $>$()=rhs))
+{\footnotesize template$<$concepts\+::tensor\+\_\+may\+\_\+be\+\_\+constructible$<$ \mbox{\hyperlink{classstd_1_1math_1_1dr__matrix}{dr\+\_\+matrix}}$<$ T, Alloc, L, Access $>$ $>$ M2$>$ }\\constexpr \mbox{\hyperlink{classstd_1_1math_1_1dr__matrix}{dr\+\_\+matrix}}$<$ T, Alloc, L, Access $>$ \& \mbox{\hyperlink{classstd_1_1math_1_1dr__matrix_a63def649b13c72108c2e2120c3f0d94d}{operator=}} (const M2 \&rhs) noexcept(noexcept(declval$<$ typename \mbox{\hyperlink{classstd_1_1math_1_1dr__matrix}{dr\+\_\+matrix}}$<$ T, Alloc, L, Access $>$\+::base\+\_\+type $>$()=rhs))
 \item 
-{\footnotesize template$<$concepts\+::view\+\_\+may\+\_\+be\+\_\+constructible\+\_\+to\+\_\+tensor$<$ dr\+\_\+matrix$<$ T, Alloc, L, Access $>$ $>$ MDS$>$ }\\constexpr \mbox{\hyperlink{classstd_1_1math_1_1dr__matrix}{dr\+\_\+matrix}}$<$ \mbox{\hyperlink{namespacestd_1_1math_a53983004b9afa750d13aff5975152bf2}{T}}, \mbox{\hyperlink{namespacestd_1_1math_a597a66936269f36c2b022a726d9f82a0}{Alloc}}, \mbox{\hyperlink{namespacestd_1_1math_a1575e00678072847b093ec1a603697d1}{L}}, \mbox{\hyperlink{namespacestd_1_1math_a39f52c16036f51ca651f8cf88cffbead}{Access}} $>$ \& \mbox{\hyperlink{classstd_1_1math_1_1dr__matrix_aa8c4f2b5d3dfb0ca19845e2bb583e772}{operator=}} (const MDS \&view) noexcept(noexcept(declval$<$ typename \mbox{\hyperlink{classstd_1_1math_1_1dr__matrix}{dr\+\_\+matrix}}$<$ \mbox{\hyperlink{namespacestd_1_1math_a53983004b9afa750d13aff5975152bf2}{T}}, \mbox{\hyperlink{namespacestd_1_1math_a597a66936269f36c2b022a726d9f82a0}{Alloc}}, \mbox{\hyperlink{namespacestd_1_1math_a1575e00678072847b093ec1a603697d1}{L}}, \mbox{\hyperlink{namespacestd_1_1math_a39f52c16036f51ca651f8cf88cffbead}{Access}} $>$\+::\mbox{\hyperlink{classstd_1_1math_1_1dr__tensor}{base\+\_\+type}} $>$()=view))
+{\footnotesize template$<$concepts\+::view\+\_\+may\+\_\+be\+\_\+constructible\+\_\+to\+\_\+tensor$<$ \mbox{\hyperlink{classstd_1_1math_1_1dr__matrix}{dr\+\_\+matrix}}$<$ T, Alloc, L, Access $>$ $>$ MDS$>$ }\\constexpr \mbox{\hyperlink{classstd_1_1math_1_1dr__matrix}{dr\+\_\+matrix}}$<$ T, Alloc, L, Access $>$ \& \mbox{\hyperlink{classstd_1_1math_1_1dr__matrix_a5f9b74481e7bbae0351aa3f09430bc73}{operator=}} (const MDS \&view) noexcept(noexcept(declval$<$ typename \mbox{\hyperlink{classstd_1_1math_1_1dr__matrix}{dr\+\_\+matrix}}$<$ T, Alloc, L, Access $>$\+::base\+\_\+type $>$()=view))
 \item 
 constexpr \mbox{\hyperlink{classstd_1_1math_1_1dr__matrix_a708494c9db17c0e143f80a319d6d66e8}{extents\+\_\+type}} \mbox{\hyperlink{classstd_1_1math_1_1dr__matrix_a275d3bd7235f3837cb98ba1c8a867396}{size}} () const noexcept
 \begin{DoxyCompactList}\small\item\em Returns the current number of (rows,columns,depth,etc.) \end{DoxyCompactList}\item 
@@ -158,9 +198,11 @@ constexpr void \mbox{\hyperlink{classstd_1_1math_1_1dr__matrix_a0b5db9c39b0e2e3a
 \begin{DoxyCompactList}\small\item\em Attempts to resize the tensor to the input extents. \end{DoxyCompactList}\item 
 constexpr void \mbox{\hyperlink{classstd_1_1math_1_1dr__matrix_a32196d11a470b955b93b065a31a09e2f}{reserve}} (\mbox{\hyperlink{classstd_1_1math_1_1dr__matrix_a708494c9db17c0e143f80a319d6d66e8}{extents\+\_\+type}} new\+\_\+cap)
 \begin{DoxyCompactList}\small\item\em Attempts to reserve the capacity of the tensor to the input extents. \end{DoxyCompactList}\item 
-{\footnotesize template$<$class ... Index\+Type$>$ }\\constexpr \mbox{\hyperlink{classstd_1_1math_1_1dr__matrix_a02a6f6e53d1a4fb0be36490b347e0b68}{value\+\_\+type}} \mbox{\hyperlink{classstd_1_1math_1_1dr__matrix_a3e4b6e300ca1af8ae62d51cc10b81340}{at}} (Index\+Type ... indices) const \mbox{\hyperlink{namespacestd_1_1math_a99301a8e16b7c6c884465173b22852a5}{requires}}(sizeof...(Index\+Type)
+{\footnotesize template$<$class ... Index\+Type$>$ \newline
+requires ( sizeof...(Index\+Type) == R ) \&\& ( is\+\_\+convertible\+\_\+v$<$Index\+Type,\mbox{\hyperlink{classstd_1_1math_1_1dr__matrix_afaf5cea2635ac4f9b226d0a89cecaf57}{index\+\_\+type}}$>$ \&\& ... )}\\constexpr \mbox{\hyperlink{classstd_1_1math_1_1dr__matrix_a02a6f6e53d1a4fb0be36490b347e0b68}{value\+\_\+type}} \mbox{\hyperlink{classstd_1_1math_1_1dr__matrix_a607ecc31a33866abcda5e0a8f49c83ba}{at}} (Index\+Type ... indices) const
 \begin{DoxyCompactList}\small\item\em Returns the value at (indices...) with index bounds checking. \end{DoxyCompactList}\item 
-{\footnotesize template$<$class ... Index\+Type$>$ }\\constexpr \mbox{\hyperlink{classstd_1_1math_1_1dr__matrix_a09f94e7a0e70efc435aebf505d381ae3}{reference\+\_\+type}} \mbox{\hyperlink{classstd_1_1math_1_1dr__matrix_a48df41244a08b0796ff25ebdec7c7437}{at}} (Index\+Type ... indices) \mbox{\hyperlink{namespacestd_1_1math_a99301a8e16b7c6c884465173b22852a5}{requires}}(sizeof...(Index\+Type)
+{\footnotesize template$<$class ... Index\+Type$>$ \newline
+requires ( sizeof...(Index\+Type) == R ) \&\& ( is\+\_\+convertible\+\_\+v$<$Index\+Type,\mbox{\hyperlink{classstd_1_1math_1_1dr__matrix_afaf5cea2635ac4f9b226d0a89cecaf57}{index\+\_\+type}}$>$ \&\& ... )}\\constexpr \mbox{\hyperlink{classstd_1_1math_1_1dr__matrix_a09f94e7a0e70efc435aebf505d381ae3}{reference\+\_\+type}} \mbox{\hyperlink{classstd_1_1math_1_1dr__matrix_a7f52b94ae13750bd11efae7bffb777be}{at}} (Index\+Type ... indices)
 \begin{DoxyCompactList}\small\item\em Returns a mutable value at (indices...) with index bounds checking. \end{DoxyCompactList}\item 
 constexpr \mbox{\hyperlink{classstd_1_1math_1_1dr__matrix_a12c68998146c5e3d915ca19cb145c6f8}{span\+\_\+type}} \mbox{\hyperlink{classstd_1_1math_1_1dr__matrix_a81dac913f117d1276b494f62a758df89}{span}} () const noexcept
 \begin{DoxyCompactList}\small\item\em returns a const N dimensional span of extents(\+Ds...) \end{DoxyCompactList}\item 
@@ -168,13 +210,111 @@ constexpr \mbox{\hyperlink{classstd_1_1math_1_1dr__matrix_a7c325fffee8d3b0ca8872
 \begin{DoxyCompactList}\small\item\em returns a mutable N dimensional span of extents(\+Ds...) \end{DoxyCompactList}\item 
 constexpr \mbox{\hyperlink{classstd_1_1math_1_1dr__matrix_a86fdd3eea86e4dd17e29c965d3a50dec}{const\+\_\+underlying\+\_\+span\+\_\+type}} \mbox{\hyperlink{classstd_1_1math_1_1dr__matrix_a46b1bddfe1c841797b45b6b5a5e1cb1d}{underlying\+\_\+span}} () const noexcept
 \begin{DoxyCompactList}\small\item\em returns a const N dimensional span of extents(\+Ds...) \end{DoxyCompactList}\end{DoxyCompactItemize}
-\doxysubsection*{Additional Inherited Members}
+\doxysubsubsection*{Public Member Functions inherited from \mbox{\hyperlink{classstd_1_1math_1_1dr__tensor}{std\+::math\+::dr\+\_\+tensor$<$ T, R, Alloc, L, Access $>$}}}
+\begin{DoxyCompactItemize}
+\item 
+constexpr \mbox{\hyperlink{classstd_1_1math_1_1dr__tensor_a446f23f8f2a5d3841ecbf33ea3dfe0f6}{$\sim$dr\+\_\+tensor}} () noexcept(is\+\_\+nothrow\+\_\+destructible\+\_\+v$<$ \mbox{\hyperlink{classstd_1_1math_1_1dr__tensor_a45a1af906818137bb34eb82f01c89275}{element\+\_\+type}} $>$)
+\begin{DoxyCompactList}\small\item\em Destructor. \end{DoxyCompactList}\item 
+constexpr \mbox{\hyperlink{classstd_1_1math_1_1dr__tensor_a4f2a1ac10f3d9b38c5fb786a75b1022c}{dr\+\_\+tensor}} () noexcept
+\begin{DoxyCompactList}\small\item\em Default constructor. \end{DoxyCompactList}\item 
+constexpr \mbox{\hyperlink{classstd_1_1math_1_1dr__tensor_ad5f1a221a00f488df01cab73fc902cac}{dr\+\_\+tensor}} (\mbox{\hyperlink{classstd_1_1math_1_1dr__tensor}{dr\+\_\+tensor}} \&\&rhs) noexcept(typename allocator\+\_\+traits$<$ \mbox{\hyperlink{classstd_1_1math_1_1dr__tensor_a25d140c88f3bf227d4be72c5809ab19a}{allocator\+\_\+type}} $>$\+::propagate\+\_\+on\+\_\+container\+\_\+move\+\_\+assignment\{\}$\vert$$\vert$typename allocator\+\_\+traits$<$ \mbox{\hyperlink{classstd_1_1math_1_1dr__tensor_a25d140c88f3bf227d4be72c5809ab19a}{allocator\+\_\+type}} $>$\+::is\+\_\+always\+\_\+equal\{\})
+\begin{DoxyCompactList}\small\item\em Move constructor. \end{DoxyCompactList}\item 
+constexpr \mbox{\hyperlink{classstd_1_1math_1_1dr__tensor_a81295a5a862e36dbd2fd175a2ccccc5c}{dr\+\_\+tensor}} (const \mbox{\hyperlink{classstd_1_1math_1_1dr__tensor}{dr\+\_\+tensor}} \&rhs)
+\begin{DoxyCompactList}\small\item\em Copy constructor. \end{DoxyCompactList}\item 
+{\footnotesize template$<$concepts\+::tensor\+\_\+may\+\_\+be\+\_\+constructible$<$ \mbox{\hyperlink{classstd_1_1math_1_1dr__tensor}{dr\+\_\+tensor}} $>$ T2$>$ }\\constexpr \mbox{\hyperlink{classstd_1_1math_1_1dr__tensor_abae46576d8782344e9f509c0df8f5586}{dr\+\_\+tensor}} (const T2 \&rhs)
+\begin{DoxyCompactList}\small\item\em Template copy constructor. \end{DoxyCompactList}\item 
+{\footnotesize template$<$concepts\+::view\+\_\+may\+\_\+be\+\_\+constructible\+\_\+to\+\_\+tensor$<$ \mbox{\hyperlink{classstd_1_1math_1_1dr__tensor}{dr\+\_\+tensor}} $>$ MDS$>$ \newline
+requires is\+\_\+default\+\_\+constructible\+\_\+v$<$\mbox{\hyperlink{classstd_1_1math_1_1dr__tensor_a25d140c88f3bf227d4be72c5809ab19a}{allocator\+\_\+type}}$>$}\\constexpr \mbox{\hyperlink{classstd_1_1math_1_1dr__tensor_afd9a63c0a3e5e8e919ba2f26a2101bd1}{dr\+\_\+tensor}} (const MDS \&view)
+\begin{DoxyCompactList}\small\item\em Construct from a view. \end{DoxyCompactList}\item 
+constexpr \mbox{\hyperlink{classstd_1_1math_1_1dr__tensor_afd0b8630fe1004aac18b1bf3ebf7d1a6}{dr\+\_\+tensor}} (\mbox{\hyperlink{classstd_1_1math_1_1dr__tensor_aab60c7ac7de58b9986fba1a43edf95a3}{extents\+\_\+type}} s)
+\begin{DoxyCompactList}\small\item\em Attempt to allocate sufficient resources for a size tensor and construct. \end{DoxyCompactList}\item 
+constexpr \mbox{\hyperlink{classstd_1_1math_1_1dr__tensor_a497ca6eb197b25acd3f9f9fbd2c06234}{dr\+\_\+tensor}} (\mbox{\hyperlink{classstd_1_1math_1_1dr__tensor_aab60c7ac7de58b9986fba1a43edf95a3}{extents\+\_\+type}} s, \mbox{\hyperlink{classstd_1_1math_1_1dr__tensor_aab60c7ac7de58b9986fba1a43edf95a3}{extents\+\_\+type}} cap)
+\begin{DoxyCompactList}\small\item\em Attempt to allocate sufficient resources for a size tensor with the input capacity and construct. \end{DoxyCompactList}\item 
+{\footnotesize template$<$class Lambda $>$ \newline
+requires is\+\_\+default\+\_\+constructible\+\_\+v$<$\mbox{\hyperlink{classstd_1_1math_1_1dr__tensor_a25d140c88f3bf227d4be72c5809ab19a}{allocator\+\_\+type}}$>$ \&\& convertible\+\_\+lambda\+\_\+expression\+\_\+v$<$ Lambda, make\+\_\+integer\+\_\+sequence$<$\mbox{\hyperlink{classstd_1_1math_1_1dr__tensor_a32d51fefc007ba5c0fe1bc333076b8dd}{index\+\_\+type}},R$>$ $>$}\\constexpr \mbox{\hyperlink{classstd_1_1math_1_1dr__tensor_abce259d62ffb79c551b351b0bb6c555a}{dr\+\_\+tensor}} (\mbox{\hyperlink{classstd_1_1math_1_1dr__tensor_aab60c7ac7de58b9986fba1a43edf95a3}{extents\+\_\+type}} s, Lambda \&\&lambda)
+\begin{DoxyCompactList}\small\item\em Construct by applying lambda to every element in the tensor. \end{DoxyCompactList}\item 
+{\footnotesize template$<$class Lambda $>$ \newline
+requires is\+\_\+default\+\_\+constructible\+\_\+v$<$\mbox{\hyperlink{classstd_1_1math_1_1dr__tensor_a25d140c88f3bf227d4be72c5809ab19a}{allocator\+\_\+type}}$>$ \&\& convertible\+\_\+lambda\+\_\+expression\+\_\+v$<$ Lambda, make\+\_\+integer\+\_\+sequence$<$\mbox{\hyperlink{classstd_1_1math_1_1dr__tensor_a32d51fefc007ba5c0fe1bc333076b8dd}{index\+\_\+type}},R$>$ $>$}\\constexpr \mbox{\hyperlink{classstd_1_1math_1_1dr__tensor_af66a3eca137770e16699473c62879253}{dr\+\_\+tensor}} (\mbox{\hyperlink{classstd_1_1math_1_1dr__tensor_aab60c7ac7de58b9986fba1a43edf95a3}{extents\+\_\+type}} s, \mbox{\hyperlink{classstd_1_1math_1_1dr__tensor_aab60c7ac7de58b9986fba1a43edf95a3}{extents\+\_\+type}} cap, Lambda \&\&lambda)
+\begin{DoxyCompactList}\small\item\em Construct by applying lambda to every element in the tensor. \end{DoxyCompactList}\item 
+constexpr \mbox{\hyperlink{classstd_1_1math_1_1dr__tensor_a2ce0b70315e90316d2f01867030b5cbb}{dr\+\_\+tensor}} (const \mbox{\hyperlink{classstd_1_1math_1_1dr__tensor_a25d140c88f3bf227d4be72c5809ab19a}{allocator\+\_\+type}} \&alloc) noexcept
+\begin{DoxyCompactList}\small\item\em Construct empty dimensionless tensor with an allocator. \end{DoxyCompactList}\item 
+{\footnotesize template$<$concepts\+::view\+\_\+may\+\_\+be\+\_\+constructible\+\_\+to\+\_\+tensor$<$ \mbox{\hyperlink{classstd_1_1math_1_1dr__tensor}{dr\+\_\+tensor}} $>$ MDS$>$ }\\constexpr \mbox{\hyperlink{classstd_1_1math_1_1dr__tensor_a46b9f459af98e1a179784415924f271e}{dr\+\_\+tensor}} (const MDS \&view, const \mbox{\hyperlink{classstd_1_1math_1_1dr__tensor_a25d140c88f3bf227d4be72c5809ab19a}{allocator\+\_\+type}} \&alloc)
+\begin{DoxyCompactList}\small\item\em Construct from a view. \end{DoxyCompactList}\item 
+constexpr \mbox{\hyperlink{classstd_1_1math_1_1dr__tensor_aad70f44d5a6c7f8cc8dd298a0f9c0867}{dr\+\_\+tensor}} (\mbox{\hyperlink{classstd_1_1math_1_1dr__tensor_aab60c7ac7de58b9986fba1a43edf95a3}{extents\+\_\+type}} s, const \mbox{\hyperlink{classstd_1_1math_1_1dr__tensor_a25d140c88f3bf227d4be72c5809ab19a}{allocator\+\_\+type}} \&alloc)
+\begin{DoxyCompactList}\small\item\em Attempt to allocate sufficient resources for a size tensor and construct. \end{DoxyCompactList}\item 
+constexpr \mbox{\hyperlink{classstd_1_1math_1_1dr__tensor_a049d4465feb58111bc3318da679054f2}{dr\+\_\+tensor}} (\mbox{\hyperlink{classstd_1_1math_1_1dr__tensor_aab60c7ac7de58b9986fba1a43edf95a3}{extents\+\_\+type}} s, \mbox{\hyperlink{classstd_1_1math_1_1dr__tensor_aab60c7ac7de58b9986fba1a43edf95a3}{extents\+\_\+type}} cap, const \mbox{\hyperlink{classstd_1_1math_1_1dr__tensor_a25d140c88f3bf227d4be72c5809ab19a}{allocator\+\_\+type}} \&alloc)
+\begin{DoxyCompactList}\small\item\em Attempt to allocate sufficient resources for a size tensor with the input capacity and construct. \end{DoxyCompactList}\item 
+{\footnotesize template$<$class Lambda $>$ \newline
+requires convertible\+\_\+lambda\+\_\+expression\+\_\+v$<$ Lambda, make\+\_\+integer\+\_\+sequence$<$\mbox{\hyperlink{classstd_1_1math_1_1dr__tensor_a32d51fefc007ba5c0fe1bc333076b8dd}{index\+\_\+type}},R$>$ $>$}\\constexpr \mbox{\hyperlink{classstd_1_1math_1_1dr__tensor_a8e73fd59288af4dcb214b7611ee8b9ca}{dr\+\_\+tensor}} (\mbox{\hyperlink{classstd_1_1math_1_1dr__tensor_aab60c7ac7de58b9986fba1a43edf95a3}{extents\+\_\+type}} s, Lambda \&\&lambda, const \mbox{\hyperlink{classstd_1_1math_1_1dr__tensor_a25d140c88f3bf227d4be72c5809ab19a}{allocator\+\_\+type}} \&alloc)
+\begin{DoxyCompactList}\small\item\em Construct by applying lambda to every element in the tensor. \end{DoxyCompactList}\item 
+{\footnotesize template$<$class Lambda $>$ \newline
+requires convertible\+\_\+lambda\+\_\+expression\+\_\+v$<$ Lambda, make\+\_\+integer\+\_\+sequence$<$\mbox{\hyperlink{classstd_1_1math_1_1dr__tensor_a32d51fefc007ba5c0fe1bc333076b8dd}{index\+\_\+type}},R$>$ $>$}\\constexpr \mbox{\hyperlink{classstd_1_1math_1_1dr__tensor_ad0bea18424e3b78f1a7b6f8398574a0a}{dr\+\_\+tensor}} (\mbox{\hyperlink{classstd_1_1math_1_1dr__tensor_aab60c7ac7de58b9986fba1a43edf95a3}{extents\+\_\+type}} s, \mbox{\hyperlink{classstd_1_1math_1_1dr__tensor_aab60c7ac7de58b9986fba1a43edf95a3}{extents\+\_\+type}} cap, Lambda \&\&lambda, const \mbox{\hyperlink{classstd_1_1math_1_1dr__tensor_a25d140c88f3bf227d4be72c5809ab19a}{allocator\+\_\+type}} \&alloc)
+\begin{DoxyCompactList}\small\item\em Construct by applying lambda to every element in the tensor. \end{DoxyCompactList}\item 
+constexpr \mbox{\hyperlink{classstd_1_1math_1_1dr__tensor}{dr\+\_\+tensor}} \& \mbox{\hyperlink{classstd_1_1math_1_1dr__tensor_a1abf6880d1ed2c8b30aafe846c2f9180}{operator=}} (\mbox{\hyperlink{classstd_1_1math_1_1dr__tensor}{dr\+\_\+tensor}} \&\&rhs) noexcept(typename allocator\+\_\+traits$<$ \mbox{\hyperlink{classstd_1_1math_1_1dr__tensor_a25d140c88f3bf227d4be72c5809ab19a}{allocator\+\_\+type}} $>$\+::propagate\+\_\+on\+\_\+container\+\_\+move\+\_\+assignment()$\vert$$\vert$typename allocator\+\_\+traits$<$ \mbox{\hyperlink{classstd_1_1math_1_1dr__tensor_a25d140c88f3bf227d4be72c5809ab19a}{allocator\+\_\+type}} $>$\+::is\+\_\+always\+\_\+equal())
+\begin{DoxyCompactList}\small\item\em Move assignment. \end{DoxyCompactList}\item 
+constexpr \mbox{\hyperlink{classstd_1_1math_1_1dr__tensor}{dr\+\_\+tensor}} \& \mbox{\hyperlink{classstd_1_1math_1_1dr__tensor_a2067141536976c2c5d2ae56cb88c54ec}{operator=}} (const \mbox{\hyperlink{classstd_1_1math_1_1dr__tensor}{dr\+\_\+tensor}} \&rhs)
+\begin{DoxyCompactList}\small\item\em Copy assignment. \end{DoxyCompactList}\item 
+{\footnotesize template$<$concepts\+::tensor\+\_\+may\+\_\+be\+\_\+constructible$<$ \mbox{\hyperlink{classstd_1_1math_1_1dr__tensor}{dr\+\_\+tensor}} $>$ T2$>$ }\\constexpr \mbox{\hyperlink{classstd_1_1math_1_1dr__tensor}{dr\+\_\+tensor}} \& \mbox{\hyperlink{classstd_1_1math_1_1dr__tensor_a682ed28323074d803c3f87f0d4ae99d7}{operator=}} (const T2 \&rhs)
+\begin{DoxyCompactList}\small\item\em Template copy assignment. \end{DoxyCompactList}\item 
+{\footnotesize template$<$concepts\+::view\+\_\+may\+\_\+be\+\_\+constructible\+\_\+to\+\_\+tensor$<$ \mbox{\hyperlink{classstd_1_1math_1_1dr__tensor}{dr\+\_\+tensor}} $>$ MDS$>$ }\\constexpr \mbox{\hyperlink{classstd_1_1math_1_1dr__tensor}{dr\+\_\+tensor}} \& \mbox{\hyperlink{classstd_1_1math_1_1dr__tensor_ae2f019cfe69aa3d3c6f25911474db236}{operator=}} (const MDS \&view)
+\begin{DoxyCompactList}\small\item\em Construct from an N dimensional view. \end{DoxyCompactList}\item 
+constexpr \mbox{\hyperlink{classstd_1_1math_1_1dr__tensor_aab60c7ac7de58b9986fba1a43edf95a3}{extents\+\_\+type}} \mbox{\hyperlink{classstd_1_1math_1_1dr__tensor_a275d3bd7235f3837cb98ba1c8a867396}{size}} () const noexcept
+\begin{DoxyCompactList}\small\item\em Returns the current number of (rows,columns,depth,etc.) \end{DoxyCompactList}\item 
+constexpr \mbox{\hyperlink{classstd_1_1math_1_1dr__tensor_aab60c7ac7de58b9986fba1a43edf95a3}{extents\+\_\+type}} \mbox{\hyperlink{classstd_1_1math_1_1dr__tensor_ac1960576abca63d8a73842a1279313f0}{capacity}} () const noexcept
+\begin{DoxyCompactList}\small\item\em Returns the current capacity of (rows,columns,depth,etc.) \end{DoxyCompactList}\item 
+constexpr void \mbox{\hyperlink{classstd_1_1math_1_1dr__tensor_a0b5db9c39b0e2e3acf07c7c32b96dec8}{resize}} (\mbox{\hyperlink{classstd_1_1math_1_1dr__tensor_aab60c7ac7de58b9986fba1a43edf95a3}{extents\+\_\+type}} new\+\_\+size)
+\begin{DoxyCompactList}\small\item\em Attempts to resize the tensor to the input extents. \end{DoxyCompactList}\item 
+constexpr void \mbox{\hyperlink{classstd_1_1math_1_1dr__tensor_a32196d11a470b955b93b065a31a09e2f}{reserve}} (\mbox{\hyperlink{classstd_1_1math_1_1dr__tensor_aab60c7ac7de58b9986fba1a43edf95a3}{extents\+\_\+type}} new\+\_\+cap)
+\begin{DoxyCompactList}\small\item\em Attempts to reserve the capacity of the tensor to the input extents. \end{DoxyCompactList}\item 
+constexpr void \mbox{\hyperlink{classstd_1_1math_1_1dr__tensor_a01da7670cc51bd510d91ce9f98601f11}{set\+\_\+allocator}} (const \mbox{\hyperlink{classstd_1_1math_1_1dr__tensor_a25d140c88f3bf227d4be72c5809ab19a}{allocator\+\_\+type}} \&alloc)
+\begin{DoxyCompactList}\small\item\em Sets a new allocator. Attempts to copy existing state into new memory managed by the new allocator. \end{DoxyCompactList}\item 
+constexpr const \mbox{\hyperlink{classstd_1_1math_1_1dr__tensor_a25d140c88f3bf227d4be72c5809ab19a}{allocator\+\_\+type}} \&\& \mbox{\hyperlink{classstd_1_1math_1_1dr__tensor_acb0a77f5c11f2a6a032209b5e54ca7c7}{get\+\_\+allocator}} () \&\&noexcept
+\begin{DoxyCompactList}\small\item\em returns the rvalue allocator being used \end{DoxyCompactList}\item 
+constexpr const \mbox{\hyperlink{classstd_1_1math_1_1dr__tensor_a25d140c88f3bf227d4be72c5809ab19a}{allocator\+\_\+type}} \& \mbox{\hyperlink{classstd_1_1math_1_1dr__tensor_a1496ab6d3ba42abe6ff67f750de78d17}{get\+\_\+allocator}} () const \&noexcept
+\begin{DoxyCompactList}\small\item\em returns the allocator being used \end{DoxyCompactList}\item 
+constexpr \mbox{\hyperlink{classstd_1_1math_1_1dr__tensor_ac18a7bc8a870b1b695e21b2d58cc4898}{span\+\_\+type}} \mbox{\hyperlink{classstd_1_1math_1_1dr__tensor_a81dac913f117d1276b494f62a758df89}{span}} () const noexcept
+\begin{DoxyCompactList}\small\item\em returns a const N dimensional span of extents(\+Ds...) \end{DoxyCompactList}\item 
+constexpr \mbox{\hyperlink{classstd_1_1math_1_1dr__tensor_a4330bcccce54d66e9f93c7889a3998a2}{underlying\+\_\+span\+\_\+type}} \mbox{\hyperlink{classstd_1_1math_1_1dr__tensor_acc1bccfd0955c035f0369425f9c64bfc}{underlying\+\_\+span}} () noexcept
+\begin{DoxyCompactList}\small\item\em returns a mutable N dimensional span of extents(\+Ds...) \end{DoxyCompactList}\item 
+constexpr \mbox{\hyperlink{classstd_1_1math_1_1dr__tensor_ac614c64c2545c31fb294544d95536f23}{const\+\_\+underlying\+\_\+span\+\_\+type}} \mbox{\hyperlink{classstd_1_1math_1_1dr__tensor_a46b1bddfe1c841797b45b6b5a5e1cb1d}{underlying\+\_\+span}} () const noexcept
+\begin{DoxyCompactList}\small\item\em returns a const N dimensional span of extents(\+Ds...) \end{DoxyCompactList}\item 
+{\footnotesize template$<$class ... Index\+Type$>$ \newline
+requires ( sizeof...(Index\+Type) == R ) \&\& ( is\+\_\+convertible\+\_\+v$<$Index\+Type,\mbox{\hyperlink{classstd_1_1math_1_1dr__tensor_a32d51fefc007ba5c0fe1bc333076b8dd}{index\+\_\+type}}$>$ \&\& ... )}\\constexpr \mbox{\hyperlink{classstd_1_1math_1_1dr__tensor_a1a99c1781e9f09ce477dc87f950216e6}{value\+\_\+type}} \mbox{\hyperlink{classstd_1_1math_1_1dr__tensor_adde946ea3d9bf10f5db8cf820fbc502e}{operator\mbox{[}$\,$\mbox{]}}} (Index\+Type ... indices) const noexcept
+\begin{DoxyCompactList}\small\item\em Returns the value at (indices...) without index bounds checking. \end{DoxyCompactList}\item 
+{\footnotesize template$<$class ... Index\+Type$>$ \newline
+requires ( sizeof...(Index\+Type) == R ) \&\& ( is\+\_\+convertible\+\_\+v$<$Index\+Type,\mbox{\hyperlink{classstd_1_1math_1_1dr__tensor_a32d51fefc007ba5c0fe1bc333076b8dd}{index\+\_\+type}}$>$ \&\& ... )}\\constexpr \mbox{\hyperlink{classstd_1_1math_1_1dr__tensor_a1a99c1781e9f09ce477dc87f950216e6}{value\+\_\+type}} \mbox{\hyperlink{classstd_1_1math_1_1dr__tensor_a607ecc31a33866abcda5e0a8f49c83ba}{at}} (Index\+Type ... indices) const
+\begin{DoxyCompactList}\small\item\em Returns the value at (indices...) with index bounds checking. \end{DoxyCompactList}\item 
+{\footnotesize template$<$class ... Slice\+Args$>$ \newline
+requires ( decltype( experimental\+::submdspan( this-\/$>$\mbox{\hyperlink{classstd_1_1math_1_1dr__tensor_acc1bccfd0955c035f0369425f9c64bfc}{underlying\+\_\+span}}(), args ... ) )\+::rank() == 1 )}\\constexpr auto \mbox{\hyperlink{classstd_1_1math_1_1dr__tensor_a9bcfe1a957703d115319a91bd436de1f}{subvector}} (Slice\+Args ... args) const
+\begin{DoxyCompactList}\small\item\em Returns a const vector view. \end{DoxyCompactList}\item 
+{\footnotesize template$<$class ... Slice\+Args$>$ \newline
+requires ( decltype( experimental\+::submdspan( this-\/$>$\mbox{\hyperlink{classstd_1_1math_1_1dr__tensor_acc1bccfd0955c035f0369425f9c64bfc}{underlying\+\_\+span}}(), args ... ) )\+::rank() == 2 )}\\constexpr auto \mbox{\hyperlink{classstd_1_1math_1_1dr__tensor_aaeaa904d3a8e46c1f882249cc13761e5}{submatrix}} (Slice\+Args ... args) const
+\begin{DoxyCompactList}\small\item\em Returns a const matrix view. \end{DoxyCompactList}\item 
+constexpr \mbox{\hyperlink{classstd_1_1math_1_1dr__tensor_a56057e834324d437bf4b1d9b06f8c122}{const\+\_\+subtensor\+\_\+type}} \mbox{\hyperlink{classstd_1_1math_1_1dr__tensor_aee40e78c9bf6b3e7bd3060a528dfe94b}{subtensor}} (\mbox{\hyperlink{classstd_1_1math_1_1dr__tensor_a311855993b4064aba8e19587ed8c8c30}{tuple\+\_\+type}} start, \mbox{\hyperlink{classstd_1_1math_1_1dr__tensor_a311855993b4064aba8e19587ed8c8c30}{tuple\+\_\+type}} end) const
+\begin{DoxyCompactList}\small\item\em Returns a const view of the specified subtensor. \end{DoxyCompactList}\item 
+{\footnotesize template$<$class ... Index\+Type$>$ \newline
+requires ( sizeof...(Index\+Type) == R ) \&\& ( is\+\_\+convertible\+\_\+v$<$Index\+Type,\mbox{\hyperlink{classstd_1_1math_1_1dr__tensor_a32d51fefc007ba5c0fe1bc333076b8dd}{index\+\_\+type}}$>$ \&\& ... )}\\constexpr \mbox{\hyperlink{classstd_1_1math_1_1dr__tensor_ab12f3e2dba6862820a8480998e76841d}{reference\+\_\+type}} \mbox{\hyperlink{classstd_1_1math_1_1dr__tensor_a9d0d8b648db3764fbba98209cf236ac8}{operator\mbox{[}$\,$\mbox{]}}} (Index\+Type ... indices) noexcept
+\begin{DoxyCompactList}\small\item\em Returns a mutable value at (indices...) without index bounds checking. \end{DoxyCompactList}\item 
+{\footnotesize template$<$class ... Index\+Type$>$ \newline
+requires ( sizeof...(Index\+Type) == R ) \&\& ( is\+\_\+convertible\+\_\+v$<$Index\+Type,\mbox{\hyperlink{classstd_1_1math_1_1dr__tensor_a32d51fefc007ba5c0fe1bc333076b8dd}{index\+\_\+type}}$>$ \&\& ... )}\\constexpr \mbox{\hyperlink{classstd_1_1math_1_1dr__tensor_ab12f3e2dba6862820a8480998e76841d}{reference\+\_\+type}} \mbox{\hyperlink{classstd_1_1math_1_1dr__tensor_a7f52b94ae13750bd11efae7bffb777be}{at}} (Index\+Type ... indices)
+\begin{DoxyCompactList}\small\item\em Returns a mutable value at (indices...) with index bounds checking. \end{DoxyCompactList}\item 
+{\footnotesize template$<$class ... Slice\+Args$>$ \newline
+requires ( decltype( experimental\+::submdspan( this-\/$>$\mbox{\hyperlink{classstd_1_1math_1_1dr__tensor_acc1bccfd0955c035f0369425f9c64bfc}{underlying\+\_\+span}}(), args ... ) )\+::rank() == 1 )}\\constexpr auto \mbox{\hyperlink{classstd_1_1math_1_1dr__tensor_a28402b65876d5c59ec7862b94c2163da}{subvector}} (Slice\+Args ... args)
+\begin{DoxyCompactList}\small\item\em Returns a vector view. \end{DoxyCompactList}\item 
+{\footnotesize template$<$class ... Slice\+Args$>$ \newline
+requires ( decltype( experimental\+::submdspan( this-\/$>$\mbox{\hyperlink{classstd_1_1math_1_1dr__tensor_acc1bccfd0955c035f0369425f9c64bfc}{underlying\+\_\+span}}(), args ... ) )\+::rank() == 2 )}\\constexpr auto \mbox{\hyperlink{classstd_1_1math_1_1dr__tensor_aa6cf2c2bfd068bec868eb976f3657083}{submatrix}} (Slice\+Args ... args)
+\begin{DoxyCompactList}\small\item\em Returns a matrix view. \end{DoxyCompactList}\item 
+constexpr \mbox{\hyperlink{classstd_1_1math_1_1dr__tensor_a220aaa2d4ad4d41d374244948ca68930}{subtensor\+\_\+type}} \mbox{\hyperlink{classstd_1_1math_1_1dr__tensor_a8a61dfd622cecc6c78caa283cb4eb6d3}{subtensor}} (\mbox{\hyperlink{classstd_1_1math_1_1dr__tensor_a311855993b4064aba8e19587ed8c8c30}{tuple\+\_\+type}} start, \mbox{\hyperlink{classstd_1_1math_1_1dr__tensor_a311855993b4064aba8e19587ed8c8c30}{tuple\+\_\+type}} end)
+\begin{DoxyCompactList}\small\item\em Returns a mutable view of the specified subtensor. \end{DoxyCompactList}\item 
+{\footnotesize template$<$concepts\+::tensor\+\_\+may\+\_\+be\+\_\+constructible$<$ \mbox{\hyperlink{classstd_1_1math_1_1dr__tensor}{dr\+\_\+tensor}}$<$ T, R, Alloc, L, Access $>$ $>$ T2$>$ }\\constexpr \mbox{\hyperlink{classstd_1_1math_1_1dr__tensor}{dr\+\_\+tensor}}$<$ T, R, Alloc, L, Access $>$ \& \mbox{\hyperlink{classstd_1_1math_1_1dr__tensor_a975804f112c6ef3b7cc44359e5f2acd6}{operator=}} (const T2 \&rhs)
+\item 
+{\footnotesize template$<$concepts\+::view\+\_\+may\+\_\+be\+\_\+constructible\+\_\+to\+\_\+tensor$<$ \mbox{\hyperlink{classstd_1_1math_1_1dr__tensor}{dr\+\_\+tensor}}$<$ T, R, Alloc, L, Access $>$ $>$ MDS$>$ }\\constexpr \mbox{\hyperlink{classstd_1_1math_1_1dr__tensor}{dr\+\_\+tensor}}$<$ T, R, Alloc, L, Access $>$ \& \mbox{\hyperlink{classstd_1_1math_1_1dr__tensor_a3c8f1807059a2a88933131d4c4d08fd8}{operator=}} (const MDS \&view)
+\end{DoxyCompactItemize}
 
 
 \doxysubsection{Detailed Description}
 \subsubsection*{template$<$class T, class Alloc = allocator$<$\+T$>$, class L = experimental\+::layout\+\_\+right, class Access = experimental\+::default\+\_\+accessor$<$\+T$>$$>$\newline
 class std\+::math\+::dr\+\_\+matrix$<$ T, Alloc, L, Access $>$}
-
 Dynamic-\/size, dynamic-\/capacity matrix. 
 
 
@@ -196,7 +336,7 @@ Dynamic-\/size, dynamic-\/capacity matrix.
 \index{accessor\_type@{accessor\_type}!std::math::dr\_matrix$<$ T, Alloc, L, Access $>$@{std::math::dr\_matrix$<$ T, Alloc, L, Access $>$}}
 \doxysubsubsection{\texorpdfstring{accessor\_type}{accessor\_type}}
 {\footnotesize\ttfamily template$<$class T , class Alloc  = allocator$<$\+T$>$, class L  = experimental\+::layout\+\_\+right, class Access  = experimental\+::default\+\_\+accessor$<$\+T$>$$>$ \\
-using \mbox{\hyperlink{classstd_1_1math_1_1dr__matrix}{std\+::math\+::dr\+\_\+matrix}}$<$ \mbox{\hyperlink{namespacestd_1_1math_a53983004b9afa750d13aff5975152bf2}{T}}, \mbox{\hyperlink{namespacestd_1_1math_a597a66936269f36c2b022a726d9f82a0}{Alloc}}, \mbox{\hyperlink{namespacestd_1_1math_a1575e00678072847b093ec1a603697d1}{L}}, \mbox{\hyperlink{namespacestd_1_1math_a39f52c16036f51ca651f8cf88cffbead}{Access}} $>$\+::\mbox{\hyperlink{classstd_1_1math_1_1dr__matrix_a5d932b4dab1f9085483bc96fd5f7ec9e}{accessor\+\_\+type}} =  typename \mbox{\hyperlink{classstd_1_1math_1_1dr__tensor_a54b6af496f85a5e1027426cddb575c24}{base\+\_\+type\+::accessor\+\_\+type}}}
+using \mbox{\hyperlink{classstd_1_1math_1_1dr__matrix}{std\+::math\+::dr\+\_\+matrix}}$<$ T, Alloc, L, Access $>$\+::accessor\+\_\+type =  typename \mbox{\hyperlink{classstd_1_1math_1_1dr__tensor_a54b6af496f85a5e1027426cddb575c24}{base\+\_\+type\+::accessor\+\_\+type}}}
 
 
 
@@ -207,7 +347,7 @@ Type used to define access into memory.
 \index{allocator\_type@{allocator\_type}!std::math::dr\_matrix$<$ T, Alloc, L, Access $>$@{std::math::dr\_matrix$<$ T, Alloc, L, Access $>$}}
 \doxysubsubsection{\texorpdfstring{allocator\_type}{allocator\_type}}
 {\footnotesize\ttfamily template$<$class T , class Alloc  = allocator$<$\+T$>$, class L  = experimental\+::layout\+\_\+right, class Access  = experimental\+::default\+\_\+accessor$<$\+T$>$$>$ \\
-using \mbox{\hyperlink{classstd_1_1math_1_1dr__matrix}{std\+::math\+::dr\+\_\+matrix}}$<$ \mbox{\hyperlink{namespacestd_1_1math_a53983004b9afa750d13aff5975152bf2}{T}}, \mbox{\hyperlink{namespacestd_1_1math_a597a66936269f36c2b022a726d9f82a0}{Alloc}}, \mbox{\hyperlink{namespacestd_1_1math_a1575e00678072847b093ec1a603697d1}{L}}, \mbox{\hyperlink{namespacestd_1_1math_a39f52c16036f51ca651f8cf88cffbead}{Access}} $>$\+::\mbox{\hyperlink{classstd_1_1math_1_1dr__matrix_a1fe25d36296174f6c0130bf93cb39a7d}{allocator\+\_\+type}} =  typename \mbox{\hyperlink{classstd_1_1math_1_1dr__tensor_a25d140c88f3bf227d4be72c5809ab19a}{base\+\_\+type\+::allocator\+\_\+type}}}
+using \mbox{\hyperlink{classstd_1_1math_1_1dr__matrix}{std\+::math\+::dr\+\_\+matrix}}$<$ T, Alloc, L, Access $>$\+::allocator\+\_\+type =  typename \mbox{\hyperlink{classstd_1_1math_1_1dr__tensor_a25d140c88f3bf227d4be72c5809ab19a}{base\+\_\+type\+::allocator\+\_\+type}}}
 
 
 
@@ -218,7 +358,7 @@ Type of allocator used to get memory.
 \index{column\_type@{column\_type}!std::math::dr\_matrix$<$ T, Alloc, L, Access $>$@{std::math::dr\_matrix$<$ T, Alloc, L, Access $>$}}
 \doxysubsubsection{\texorpdfstring{column\_type}{column\_type}}
 {\footnotesize\ttfamily template$<$class T , class Alloc  = allocator$<$\+T$>$, class L  = experimental\+::layout\+\_\+right, class Access  = experimental\+::default\+\_\+accessor$<$\+T$>$$>$ \\
-using \mbox{\hyperlink{classstd_1_1math_1_1dr__matrix}{std\+::math\+::dr\+\_\+matrix}}$<$ \mbox{\hyperlink{namespacestd_1_1math_a53983004b9afa750d13aff5975152bf2}{T}}, \mbox{\hyperlink{namespacestd_1_1math_a597a66936269f36c2b022a726d9f82a0}{Alloc}}, \mbox{\hyperlink{namespacestd_1_1math_a1575e00678072847b093ec1a603697d1}{L}}, \mbox{\hyperlink{namespacestd_1_1math_a39f52c16036f51ca651f8cf88cffbead}{Access}} $>$\+::\mbox{\hyperlink{classstd_1_1math_1_1dr__matrix_aa7a551d41f3084a02c7208ef2cb632c2}{column\+\_\+type}} =  vector\+\_\+view$<$decltype( experimental\+::submdspan( declval$<$\mbox{\hyperlink{classstd_1_1math_1_1dr__matrix_a7c325fffee8d3b0ca8872e829dde311e}{underlying\+\_\+span\+\_\+type}}$>$(), declval$<$experimental\+::full\+\_\+extent\+\_\+t$>$(), declval$<$\mbox{\hyperlink{classstd_1_1math_1_1dr__matrix_afaf5cea2635ac4f9b226d0a89cecaf57}{index\+\_\+type}}$>$() ) )$>$}
+using \mbox{\hyperlink{classstd_1_1math_1_1dr__matrix}{std\+::math\+::dr\+\_\+matrix}}$<$ T, Alloc, L, Access $>$\+::column\+\_\+type =  \mbox{\hyperlink{classstd_1_1math_1_1vector__view}{vector\+\_\+view}}$<$decltype( experimental\+::submdspan( declval$<$\mbox{\hyperlink{classstd_1_1math_1_1dr__matrix_a7c325fffee8d3b0ca8872e829dde311e}{underlying\+\_\+span\+\_\+type}}$>$(), declval$<$experimental\+::full\+\_\+extent\+\_\+t$>$(), declval$<$\mbox{\hyperlink{classstd_1_1math_1_1dr__matrix_afaf5cea2635ac4f9b226d0a89cecaf57}{index\+\_\+type}}$>$() ) )$>$}
 
 
 
@@ -229,7 +369,7 @@ mutable view of a column vector
 \index{const\_column\_type@{const\_column\_type}!std::math::dr\_matrix$<$ T, Alloc, L, Access $>$@{std::math::dr\_matrix$<$ T, Alloc, L, Access $>$}}
 \doxysubsubsection{\texorpdfstring{const\_column\_type}{const\_column\_type}}
 {\footnotesize\ttfamily template$<$class T , class Alloc  = allocator$<$\+T$>$, class L  = experimental\+::layout\+\_\+right, class Access  = experimental\+::default\+\_\+accessor$<$\+T$>$$>$ \\
-using \mbox{\hyperlink{classstd_1_1math_1_1dr__matrix}{std\+::math\+::dr\+\_\+matrix}}$<$ \mbox{\hyperlink{namespacestd_1_1math_a53983004b9afa750d13aff5975152bf2}{T}}, \mbox{\hyperlink{namespacestd_1_1math_a597a66936269f36c2b022a726d9f82a0}{Alloc}}, \mbox{\hyperlink{namespacestd_1_1math_a1575e00678072847b093ec1a603697d1}{L}}, \mbox{\hyperlink{namespacestd_1_1math_a39f52c16036f51ca651f8cf88cffbead}{Access}} $>$\+::\mbox{\hyperlink{classstd_1_1math_1_1dr__matrix_a07e8a3c6a141bdedd6ce5fce4bbdf41a}{const\+\_\+column\+\_\+type}} =  vector\+\_\+view$<$decltype( experimental\+::submdspan( declval$<$\mbox{\hyperlink{classstd_1_1math_1_1dr__matrix_a86fdd3eea86e4dd17e29c965d3a50dec}{const\+\_\+underlying\+\_\+span\+\_\+type}}$>$(), declval$<$experimental\+::full\+\_\+extent\+\_\+t$>$(), declval$<$\mbox{\hyperlink{classstd_1_1math_1_1dr__matrix_afaf5cea2635ac4f9b226d0a89cecaf57}{index\+\_\+type}}$>$() ) )$>$}
+using \mbox{\hyperlink{classstd_1_1math_1_1dr__matrix}{std\+::math\+::dr\+\_\+matrix}}$<$ T, Alloc, L, Access $>$\+::const\+\_\+column\+\_\+type =  \mbox{\hyperlink{classstd_1_1math_1_1vector__view}{vector\+\_\+view}}$<$decltype( experimental\+::submdspan( declval$<$\mbox{\hyperlink{classstd_1_1math_1_1dr__matrix_a86fdd3eea86e4dd17e29c965d3a50dec}{const\+\_\+underlying\+\_\+span\+\_\+type}}$>$(), declval$<$experimental\+::full\+\_\+extent\+\_\+t$>$(), declval$<$\mbox{\hyperlink{classstd_1_1math_1_1dr__matrix_afaf5cea2635ac4f9b226d0a89cecaf57}{index\+\_\+type}}$>$() ) )$>$}
 
 
 
@@ -240,7 +380,7 @@ const view of a column vector
 \index{const\_row\_type@{const\_row\_type}!std::math::dr\_matrix$<$ T, Alloc, L, Access $>$@{std::math::dr\_matrix$<$ T, Alloc, L, Access $>$}}
 \doxysubsubsection{\texorpdfstring{const\_row\_type}{const\_row\_type}}
 {\footnotesize\ttfamily template$<$class T , class Alloc  = allocator$<$\+T$>$, class L  = experimental\+::layout\+\_\+right, class Access  = experimental\+::default\+\_\+accessor$<$\+T$>$$>$ \\
-using \mbox{\hyperlink{classstd_1_1math_1_1dr__matrix}{std\+::math\+::dr\+\_\+matrix}}$<$ \mbox{\hyperlink{namespacestd_1_1math_a53983004b9afa750d13aff5975152bf2}{T}}, \mbox{\hyperlink{namespacestd_1_1math_a597a66936269f36c2b022a726d9f82a0}{Alloc}}, \mbox{\hyperlink{namespacestd_1_1math_a1575e00678072847b093ec1a603697d1}{L}}, \mbox{\hyperlink{namespacestd_1_1math_a39f52c16036f51ca651f8cf88cffbead}{Access}} $>$\+::\mbox{\hyperlink{classstd_1_1math_1_1dr__matrix_a8036f92437a86877e088daae29352524}{const\+\_\+row\+\_\+type}} =  vector\+\_\+view$<$decltype( experimental\+::submdspan( declval$<$\mbox{\hyperlink{classstd_1_1math_1_1dr__matrix_a86fdd3eea86e4dd17e29c965d3a50dec}{const\+\_\+underlying\+\_\+span\+\_\+type}}$>$(), declval$<$\mbox{\hyperlink{classstd_1_1math_1_1dr__matrix_afaf5cea2635ac4f9b226d0a89cecaf57}{index\+\_\+type}}$>$(), declval$<$experimental\+::full\+\_\+extent\+\_\+t$>$() ) )$>$}
+using \mbox{\hyperlink{classstd_1_1math_1_1dr__matrix}{std\+::math\+::dr\+\_\+matrix}}$<$ T, Alloc, L, Access $>$\+::const\+\_\+row\+\_\+type =  \mbox{\hyperlink{classstd_1_1math_1_1vector__view}{vector\+\_\+view}}$<$decltype( experimental\+::submdspan( declval$<$\mbox{\hyperlink{classstd_1_1math_1_1dr__matrix_a86fdd3eea86e4dd17e29c965d3a50dec}{const\+\_\+underlying\+\_\+span\+\_\+type}}$>$(), declval$<$\mbox{\hyperlink{classstd_1_1math_1_1dr__matrix_afaf5cea2635ac4f9b226d0a89cecaf57}{index\+\_\+type}}$>$(), declval$<$experimental\+::full\+\_\+extent\+\_\+t$>$() ) )$>$}
 
 
 
@@ -251,7 +391,7 @@ const view of a row vector
 \index{const\_submatrix\_type@{const\_submatrix\_type}!std::math::dr\_matrix$<$ T, Alloc, L, Access $>$@{std::math::dr\_matrix$<$ T, Alloc, L, Access $>$}}
 \doxysubsubsection{\texorpdfstring{const\_submatrix\_type}{const\_submatrix\_type}}
 {\footnotesize\ttfamily template$<$class T , class Alloc  = allocator$<$\+T$>$, class L  = experimental\+::layout\+\_\+right, class Access  = experimental\+::default\+\_\+accessor$<$\+T$>$$>$ \\
-using \mbox{\hyperlink{classstd_1_1math_1_1dr__matrix}{std\+::math\+::dr\+\_\+matrix}}$<$ \mbox{\hyperlink{namespacestd_1_1math_a53983004b9afa750d13aff5975152bf2}{T}}, \mbox{\hyperlink{namespacestd_1_1math_a597a66936269f36c2b022a726d9f82a0}{Alloc}}, \mbox{\hyperlink{namespacestd_1_1math_a1575e00678072847b093ec1a603697d1}{L}}, \mbox{\hyperlink{namespacestd_1_1math_a39f52c16036f51ca651f8cf88cffbead}{Access}} $>$\+::\mbox{\hyperlink{classstd_1_1math_1_1dr__matrix_a4af7c8308a01329c0a123e1dce3b85d6}{const\+\_\+submatrix\+\_\+type}} =  matrix\+\_\+view$<$decltype( \mbox{\hyperlink{namespacestd_1_1math_1_1detail_a539c3b8a18138b315e1af489c693bc38}{detail\+::submdspan}}( declval$<$\mbox{\hyperlink{classstd_1_1math_1_1dr__matrix_a86fdd3eea86e4dd17e29c965d3a50dec}{const\+\_\+underlying\+\_\+span\+\_\+type}}$>$(), declval$<$\mbox{\hyperlink{classstd_1_1math_1_1dr__matrix_a421847d85efa25b9d8484a86408692b6}{tuple\+\_\+type}}$>$(), declval$<$\mbox{\hyperlink{classstd_1_1math_1_1dr__matrix_a421847d85efa25b9d8484a86408692b6}{tuple\+\_\+type}}$>$() ) )$>$}
+using \mbox{\hyperlink{classstd_1_1math_1_1dr__matrix}{std\+::math\+::dr\+\_\+matrix}}$<$ T, Alloc, L, Access $>$\+::const\+\_\+submatrix\+\_\+type =  \mbox{\hyperlink{classstd_1_1math_1_1matrix__view}{matrix\+\_\+view}}$<$decltype( \mbox{\hyperlink{namespacestd_1_1math_1_1detail_af274dde876e47ba2ec1b483608c81d69}{detail\+::submdspan}}( declval$<$\mbox{\hyperlink{classstd_1_1math_1_1dr__matrix_a86fdd3eea86e4dd17e29c965d3a50dec}{const\+\_\+underlying\+\_\+span\+\_\+type}}$>$(), declval$<$\mbox{\hyperlink{classstd_1_1math_1_1dr__matrix_a421847d85efa25b9d8484a86408692b6}{tuple\+\_\+type}}$>$(), declval$<$\mbox{\hyperlink{classstd_1_1math_1_1dr__matrix_a421847d85efa25b9d8484a86408692b6}{tuple\+\_\+type}}$>$() ) )$>$}
 
 
 
@@ -262,7 +402,7 @@ const view of a submatrix
 \index{const\_subtensor\_type@{const\_subtensor\_type}!std::math::dr\_matrix$<$ T, Alloc, L, Access $>$@{std::math::dr\_matrix$<$ T, Alloc, L, Access $>$}}
 \doxysubsubsection{\texorpdfstring{const\_subtensor\_type}{const\_subtensor\_type}}
 {\footnotesize\ttfamily template$<$class T , class Alloc  = allocator$<$\+T$>$, class L  = experimental\+::layout\+\_\+right, class Access  = experimental\+::default\+\_\+accessor$<$\+T$>$$>$ \\
-using \mbox{\hyperlink{classstd_1_1math_1_1dr__matrix}{std\+::math\+::dr\+\_\+matrix}}$<$ \mbox{\hyperlink{namespacestd_1_1math_a53983004b9afa750d13aff5975152bf2}{T}}, \mbox{\hyperlink{namespacestd_1_1math_a597a66936269f36c2b022a726d9f82a0}{Alloc}}, \mbox{\hyperlink{namespacestd_1_1math_a1575e00678072847b093ec1a603697d1}{L}}, \mbox{\hyperlink{namespacestd_1_1math_a39f52c16036f51ca651f8cf88cffbead}{Access}} $>$\+::\mbox{\hyperlink{classstd_1_1math_1_1dr__matrix_a7982120e79f91b218e4ab82eba706b5f}{const\+\_\+subtensor\+\_\+type}} =  typename \mbox{\hyperlink{classstd_1_1math_1_1dr__tensor_a56057e834324d437bf4b1d9b06f8c122}{base\+\_\+type\+::const\+\_\+subtensor\+\_\+type}}}
+using \mbox{\hyperlink{classstd_1_1math_1_1dr__matrix}{std\+::math\+::dr\+\_\+matrix}}$<$ T, Alloc, L, Access $>$\+::const\+\_\+subtensor\+\_\+type =  typename \mbox{\hyperlink{classstd_1_1math_1_1dr__tensor_a56057e834324d437bf4b1d9b06f8c122}{base\+\_\+type\+::const\+\_\+subtensor\+\_\+type}}}
 
 
 
@@ -273,7 +413,7 @@ const view of a subtensor
 \index{const\_underlying\_span\_type@{const\_underlying\_span\_type}!std::math::dr\_matrix$<$ T, Alloc, L, Access $>$@{std::math::dr\_matrix$<$ T, Alloc, L, Access $>$}}
 \doxysubsubsection{\texorpdfstring{const\_underlying\_span\_type}{const\_underlying\_span\_type}}
 {\footnotesize\ttfamily template$<$class T , class Alloc  = allocator$<$\+T$>$, class L  = experimental\+::layout\+\_\+right, class Access  = experimental\+::default\+\_\+accessor$<$\+T$>$$>$ \\
-using \mbox{\hyperlink{classstd_1_1math_1_1dr__matrix}{std\+::math\+::dr\+\_\+matrix}}$<$ \mbox{\hyperlink{namespacestd_1_1math_a53983004b9afa750d13aff5975152bf2}{T}}, \mbox{\hyperlink{namespacestd_1_1math_a597a66936269f36c2b022a726d9f82a0}{Alloc}}, \mbox{\hyperlink{namespacestd_1_1math_a1575e00678072847b093ec1a603697d1}{L}}, \mbox{\hyperlink{namespacestd_1_1math_a39f52c16036f51ca651f8cf88cffbead}{Access}} $>$\+::\mbox{\hyperlink{classstd_1_1math_1_1dr__matrix_a86fdd3eea86e4dd17e29c965d3a50dec}{const\+\_\+underlying\+\_\+span\+\_\+type}} =  typename \mbox{\hyperlink{classstd_1_1math_1_1dr__tensor_ac614c64c2545c31fb294544d95536f23}{base\+\_\+type\+::const\+\_\+underlying\+\_\+span\+\_\+type}}}
+using \mbox{\hyperlink{classstd_1_1math_1_1dr__matrix}{std\+::math\+::dr\+\_\+matrix}}$<$ T, Alloc, L, Access $>$\+::const\+\_\+underlying\+\_\+span\+\_\+type =  typename \mbox{\hyperlink{classstd_1_1math_1_1dr__tensor_ac614c64c2545c31fb294544d95536f23}{base\+\_\+type\+::const\+\_\+underlying\+\_\+span\+\_\+type}}}
 
 
 
@@ -284,7 +424,7 @@ Type used to const view memory.
 \index{element\_type@{element\_type}!std::math::dr\_matrix$<$ T, Alloc, L, Access $>$@{std::math::dr\_matrix$<$ T, Alloc, L, Access $>$}}
 \doxysubsubsection{\texorpdfstring{element\_type}{element\_type}}
 {\footnotesize\ttfamily template$<$class T , class Alloc  = allocator$<$\+T$>$, class L  = experimental\+::layout\+\_\+right, class Access  = experimental\+::default\+\_\+accessor$<$\+T$>$$>$ \\
-using \mbox{\hyperlink{classstd_1_1math_1_1dr__matrix}{std\+::math\+::dr\+\_\+matrix}}$<$ \mbox{\hyperlink{namespacestd_1_1math_a53983004b9afa750d13aff5975152bf2}{T}}, \mbox{\hyperlink{namespacestd_1_1math_a597a66936269f36c2b022a726d9f82a0}{Alloc}}, \mbox{\hyperlink{namespacestd_1_1math_a1575e00678072847b093ec1a603697d1}{L}}, \mbox{\hyperlink{namespacestd_1_1math_a39f52c16036f51ca651f8cf88cffbead}{Access}} $>$\+::\mbox{\hyperlink{classstd_1_1math_1_1dr__matrix_a7d14ebbc93ee38098e151c1276ed2e9e}{element\+\_\+type}} =  typename \mbox{\hyperlink{classstd_1_1math_1_1dr__tensor_a45a1af906818137bb34eb82f01c89275}{base\+\_\+type\+::element\+\_\+type}}}
+using \mbox{\hyperlink{classstd_1_1math_1_1dr__matrix}{std\+::math\+::dr\+\_\+matrix}}$<$ T, Alloc, L, Access $>$\+::element\+\_\+type =  typename \mbox{\hyperlink{classstd_1_1math_1_1dr__tensor_a45a1af906818137bb34eb82f01c89275}{base\+\_\+type\+::element\+\_\+type}}}
 
 
 
@@ -295,7 +435,7 @@ Type contained by the matrix.
 \index{extents\_type@{extents\_type}!std::math::dr\_matrix$<$ T, Alloc, L, Access $>$@{std::math::dr\_matrix$<$ T, Alloc, L, Access $>$}}
 \doxysubsubsection{\texorpdfstring{extents\_type}{extents\_type}}
 {\footnotesize\ttfamily template$<$class T , class Alloc  = allocator$<$\+T$>$, class L  = experimental\+::layout\+\_\+right, class Access  = experimental\+::default\+\_\+accessor$<$\+T$>$$>$ \\
-using \mbox{\hyperlink{classstd_1_1math_1_1dr__matrix}{std\+::math\+::dr\+\_\+matrix}}$<$ \mbox{\hyperlink{namespacestd_1_1math_a53983004b9afa750d13aff5975152bf2}{T}}, \mbox{\hyperlink{namespacestd_1_1math_a597a66936269f36c2b022a726d9f82a0}{Alloc}}, \mbox{\hyperlink{namespacestd_1_1math_a1575e00678072847b093ec1a603697d1}{L}}, \mbox{\hyperlink{namespacestd_1_1math_a39f52c16036f51ca651f8cf88cffbead}{Access}} $>$\+::\mbox{\hyperlink{classstd_1_1math_1_1dr__matrix_a708494c9db17c0e143f80a319d6d66e8}{extents\+\_\+type}} =  typename \mbox{\hyperlink{classstd_1_1math_1_1dr__tensor_aab60c7ac7de58b9986fba1a43edf95a3}{base\+\_\+type\+::extents\+\_\+type}}}
+using \mbox{\hyperlink{classstd_1_1math_1_1dr__matrix}{std\+::math\+::dr\+\_\+matrix}}$<$ T, Alloc, L, Access $>$\+::extents\+\_\+type =  typename \mbox{\hyperlink{classstd_1_1math_1_1dr__tensor_aab60c7ac7de58b9986fba1a43edf95a3}{base\+\_\+type\+::extents\+\_\+type}}}
 
 
 
@@ -306,7 +446,7 @@ Type used to express size of tensor.
 \index{index\_type@{index\_type}!std::math::dr\_matrix$<$ T, Alloc, L, Access $>$@{std::math::dr\_matrix$<$ T, Alloc, L, Access $>$}}
 \doxysubsubsection{\texorpdfstring{index\_type}{index\_type}}
 {\footnotesize\ttfamily template$<$class T , class Alloc  = allocator$<$\+T$>$, class L  = experimental\+::layout\+\_\+right, class Access  = experimental\+::default\+\_\+accessor$<$\+T$>$$>$ \\
-using \mbox{\hyperlink{classstd_1_1math_1_1dr__matrix}{std\+::math\+::dr\+\_\+matrix}}$<$ \mbox{\hyperlink{namespacestd_1_1math_a53983004b9afa750d13aff5975152bf2}{T}}, \mbox{\hyperlink{namespacestd_1_1math_a597a66936269f36c2b022a726d9f82a0}{Alloc}}, \mbox{\hyperlink{namespacestd_1_1math_a1575e00678072847b093ec1a603697d1}{L}}, \mbox{\hyperlink{namespacestd_1_1math_a39f52c16036f51ca651f8cf88cffbead}{Access}} $>$\+::\mbox{\hyperlink{classstd_1_1math_1_1dr__matrix_afaf5cea2635ac4f9b226d0a89cecaf57}{index\+\_\+type}} =  typename \mbox{\hyperlink{classstd_1_1math_1_1dr__tensor_a32d51fefc007ba5c0fe1bc333076b8dd}{base\+\_\+type\+::index\+\_\+type}}}
+using \mbox{\hyperlink{classstd_1_1math_1_1dr__matrix}{std\+::math\+::dr\+\_\+matrix}}$<$ T, Alloc, L, Access $>$\+::index\+\_\+type =  typename \mbox{\hyperlink{classstd_1_1math_1_1dr__tensor_a32d51fefc007ba5c0fe1bc333076b8dd}{base\+\_\+type\+::index\+\_\+type}}}
 
 
 
@@ -317,7 +457,7 @@ Type used for indexing.
 \index{layout\_type@{layout\_type}!std::math::dr\_matrix$<$ T, Alloc, L, Access $>$@{std::math::dr\_matrix$<$ T, Alloc, L, Access $>$}}
 \doxysubsubsection{\texorpdfstring{layout\_type}{layout\_type}}
 {\footnotesize\ttfamily template$<$class T , class Alloc  = allocator$<$\+T$>$, class L  = experimental\+::layout\+\_\+right, class Access  = experimental\+::default\+\_\+accessor$<$\+T$>$$>$ \\
-using \mbox{\hyperlink{classstd_1_1math_1_1dr__matrix}{std\+::math\+::dr\+\_\+matrix}}$<$ \mbox{\hyperlink{namespacestd_1_1math_a53983004b9afa750d13aff5975152bf2}{T}}, \mbox{\hyperlink{namespacestd_1_1math_a597a66936269f36c2b022a726d9f82a0}{Alloc}}, \mbox{\hyperlink{namespacestd_1_1math_a1575e00678072847b093ec1a603697d1}{L}}, \mbox{\hyperlink{namespacestd_1_1math_a39f52c16036f51ca651f8cf88cffbead}{Access}} $>$\+::\mbox{\hyperlink{classstd_1_1math_1_1dr__matrix_ad1bc4f3adc19e8c20028fb2dffadffee}{layout\+\_\+type}} =  typename \mbox{\hyperlink{classstd_1_1math_1_1dr__tensor_a7e1674ecc1d57ad775b9b5ba05f9374d}{base\+\_\+type\+::layout\+\_\+type}}}
+using \mbox{\hyperlink{classstd_1_1math_1_1dr__matrix}{std\+::math\+::dr\+\_\+matrix}}$<$ T, Alloc, L, Access $>$\+::layout\+\_\+type =  typename \mbox{\hyperlink{classstd_1_1math_1_1dr__tensor_a7e1674ecc1d57ad775b9b5ba05f9374d}{base\+\_\+type\+::layout\+\_\+type}}}
 
 
 
@@ -329,7 +469,7 @@ Type used to define memory layout.
 \doxysubsubsection{\texorpdfstring{rebind\_t}{rebind\_t}}
 {\footnotesize\ttfamily template$<$class T , class Alloc  = allocator$<$\+T$>$, class L  = experimental\+::layout\+\_\+right, class Access  = experimental\+::default\+\_\+accessor$<$\+T$>$$>$ \\
 template$<$class Value\+Type , class Layout\+Type  = layout\+\_\+type, class Accessor\+Type  = accessor\+\_\+type$>$ \\
-using \mbox{\hyperlink{classstd_1_1math_1_1dr__matrix}{std\+::math\+::dr\+\_\+matrix}}$<$ \mbox{\hyperlink{namespacestd_1_1math_a53983004b9afa750d13aff5975152bf2}{T}}, \mbox{\hyperlink{namespacestd_1_1math_a597a66936269f36c2b022a726d9f82a0}{Alloc}}, \mbox{\hyperlink{namespacestd_1_1math_a1575e00678072847b093ec1a603697d1}{L}}, \mbox{\hyperlink{namespacestd_1_1math_a39f52c16036f51ca651f8cf88cffbead}{Access}} $>$\+::\mbox{\hyperlink{classstd_1_1math_1_1dr__matrix_abf8bf1e5350b283973da3c1e5c431c54}{rebind\+\_\+t}} =  typename \mbox{\hyperlink{classstd_1_1math_1_1dr__matrix_1_1rebind}{rebind}}$<$ Value\+Type, Layout\+Type, Accessor\+Type $>$\+::type}
+using \mbox{\hyperlink{classstd_1_1math_1_1dr__matrix}{std\+::math\+::dr\+\_\+matrix}}$<$ T, Alloc, L, Access $>$\+::rebind\+\_\+t =  typename \mbox{\hyperlink{classstd_1_1math_1_1dr__matrix_1_1rebind}{rebind}}$<$ Value\+Type, Layout\+Type, Accessor\+Type $>$\+::type}
 
 
 
@@ -349,7 +489,7 @@ Helper for defining rebound type.
 \index{reference\_type@{reference\_type}!std::math::dr\_matrix$<$ T, Alloc, L, Access $>$@{std::math::dr\_matrix$<$ T, Alloc, L, Access $>$}}
 \doxysubsubsection{\texorpdfstring{reference\_type}{reference\_type}}
 {\footnotesize\ttfamily template$<$class T , class Alloc  = allocator$<$\+T$>$, class L  = experimental\+::layout\+\_\+right, class Access  = experimental\+::default\+\_\+accessor$<$\+T$>$$>$ \\
-using \mbox{\hyperlink{classstd_1_1math_1_1dr__matrix}{std\+::math\+::dr\+\_\+matrix}}$<$ \mbox{\hyperlink{namespacestd_1_1math_a53983004b9afa750d13aff5975152bf2}{T}}, \mbox{\hyperlink{namespacestd_1_1math_a597a66936269f36c2b022a726d9f82a0}{Alloc}}, \mbox{\hyperlink{namespacestd_1_1math_a1575e00678072847b093ec1a603697d1}{L}}, \mbox{\hyperlink{namespacestd_1_1math_a39f52c16036f51ca651f8cf88cffbead}{Access}} $>$\+::\mbox{\hyperlink{classstd_1_1math_1_1dr__matrix_a09f94e7a0e70efc435aebf505d381ae3}{reference\+\_\+type}} =  typename \mbox{\hyperlink{classstd_1_1math_1_1dr__tensor_ab12f3e2dba6862820a8480998e76841d}{base\+\_\+type\+::reference\+\_\+type}}}
+using \mbox{\hyperlink{classstd_1_1math_1_1dr__matrix}{std\+::math\+::dr\+\_\+matrix}}$<$ T, Alloc, L, Access $>$\+::reference\+\_\+type =  typename \mbox{\hyperlink{classstd_1_1math_1_1dr__tensor_ab12f3e2dba6862820a8480998e76841d}{base\+\_\+type\+::reference\+\_\+type}}}
 
 
 
@@ -360,7 +500,7 @@ Type returned by mutable index access.
 \index{row\_type@{row\_type}!std::math::dr\_matrix$<$ T, Alloc, L, Access $>$@{std::math::dr\_matrix$<$ T, Alloc, L, Access $>$}}
 \doxysubsubsection{\texorpdfstring{row\_type}{row\_type}}
 {\footnotesize\ttfamily template$<$class T , class Alloc  = allocator$<$\+T$>$, class L  = experimental\+::layout\+\_\+right, class Access  = experimental\+::default\+\_\+accessor$<$\+T$>$$>$ \\
-using \mbox{\hyperlink{classstd_1_1math_1_1dr__matrix}{std\+::math\+::dr\+\_\+matrix}}$<$ \mbox{\hyperlink{namespacestd_1_1math_a53983004b9afa750d13aff5975152bf2}{T}}, \mbox{\hyperlink{namespacestd_1_1math_a597a66936269f36c2b022a726d9f82a0}{Alloc}}, \mbox{\hyperlink{namespacestd_1_1math_a1575e00678072847b093ec1a603697d1}{L}}, \mbox{\hyperlink{namespacestd_1_1math_a39f52c16036f51ca651f8cf88cffbead}{Access}} $>$\+::\mbox{\hyperlink{classstd_1_1math_1_1dr__matrix_a41950a5f0861b1fb28b2e983e77d7e98}{row\+\_\+type}} =  vector\+\_\+view$<$decltype( experimental\+::submdspan( declval$<$\mbox{\hyperlink{classstd_1_1math_1_1dr__matrix_a7c325fffee8d3b0ca8872e829dde311e}{underlying\+\_\+span\+\_\+type}}$>$(), declval$<$\mbox{\hyperlink{classstd_1_1math_1_1dr__matrix_afaf5cea2635ac4f9b226d0a89cecaf57}{index\+\_\+type}}$>$(), declval$<$experimental\+::full\+\_\+extent\+\_\+t$>$() ) )$>$}
+using \mbox{\hyperlink{classstd_1_1math_1_1dr__matrix}{std\+::math\+::dr\+\_\+matrix}}$<$ T, Alloc, L, Access $>$\+::row\+\_\+type =  \mbox{\hyperlink{classstd_1_1math_1_1vector__view}{vector\+\_\+view}}$<$decltype( experimental\+::submdspan( declval$<$\mbox{\hyperlink{classstd_1_1math_1_1dr__matrix_a7c325fffee8d3b0ca8872e829dde311e}{underlying\+\_\+span\+\_\+type}}$>$(), declval$<$\mbox{\hyperlink{classstd_1_1math_1_1dr__matrix_afaf5cea2635ac4f9b226d0a89cecaf57}{index\+\_\+type}}$>$(), declval$<$experimental\+::full\+\_\+extent\+\_\+t$>$() ) )$>$}
 
 
 
@@ -371,7 +511,7 @@ mutable view of a row vector
 \index{size\_type@{size\_type}!std::math::dr\_matrix$<$ T, Alloc, L, Access $>$@{std::math::dr\_matrix$<$ T, Alloc, L, Access $>$}}
 \doxysubsubsection{\texorpdfstring{size\_type}{size\_type}}
 {\footnotesize\ttfamily template$<$class T , class Alloc  = allocator$<$\+T$>$, class L  = experimental\+::layout\+\_\+right, class Access  = experimental\+::default\+\_\+accessor$<$\+T$>$$>$ \\
-using \mbox{\hyperlink{classstd_1_1math_1_1dr__matrix}{std\+::math\+::dr\+\_\+matrix}}$<$ \mbox{\hyperlink{namespacestd_1_1math_a53983004b9afa750d13aff5975152bf2}{T}}, \mbox{\hyperlink{namespacestd_1_1math_a597a66936269f36c2b022a726d9f82a0}{Alloc}}, \mbox{\hyperlink{namespacestd_1_1math_a1575e00678072847b093ec1a603697d1}{L}}, \mbox{\hyperlink{namespacestd_1_1math_a39f52c16036f51ca651f8cf88cffbead}{Access}} $>$\+::\mbox{\hyperlink{classstd_1_1math_1_1dr__matrix_af801b34e4eba972f88113261bd7587d7}{size\+\_\+type}} =  typename \mbox{\hyperlink{classstd_1_1math_1_1dr__tensor_ad92f5299cd5817c7c8d23471d6f76e42}{base\+\_\+type\+::size\+\_\+type}}}
+using \mbox{\hyperlink{classstd_1_1math_1_1dr__matrix}{std\+::math\+::dr\+\_\+matrix}}$<$ T, Alloc, L, Access $>$\+::size\+\_\+type =  typename \mbox{\hyperlink{classstd_1_1math_1_1dr__tensor_ad92f5299cd5817c7c8d23471d6f76e42}{base\+\_\+type\+::size\+\_\+type}}}
 
 
 
@@ -382,7 +522,7 @@ Type used for size along any dimension.
 \index{span\_type@{span\_type}!std::math::dr\_matrix$<$ T, Alloc, L, Access $>$@{std::math::dr\_matrix$<$ T, Alloc, L, Access $>$}}
 \doxysubsubsection{\texorpdfstring{span\_type}{span\_type}}
 {\footnotesize\ttfamily template$<$class T , class Alloc  = allocator$<$\+T$>$, class L  = experimental\+::layout\+\_\+right, class Access  = experimental\+::default\+\_\+accessor$<$\+T$>$$>$ \\
-using \mbox{\hyperlink{classstd_1_1math_1_1dr__matrix}{std\+::math\+::dr\+\_\+matrix}}$<$ \mbox{\hyperlink{namespacestd_1_1math_a53983004b9afa750d13aff5975152bf2}{T}}, \mbox{\hyperlink{namespacestd_1_1math_a597a66936269f36c2b022a726d9f82a0}{Alloc}}, \mbox{\hyperlink{namespacestd_1_1math_a1575e00678072847b093ec1a603697d1}{L}}, \mbox{\hyperlink{namespacestd_1_1math_a39f52c16036f51ca651f8cf88cffbead}{Access}} $>$\+::\mbox{\hyperlink{classstd_1_1math_1_1dr__matrix_a12c68998146c5e3d915ca19cb145c6f8}{span\+\_\+type}} =  typename \mbox{\hyperlink{classstd_1_1math_1_1dr__tensor_ac18a7bc8a870b1b695e21b2d58cc4898}{base\+\_\+type\+::span\+\_\+type}}}
+using \mbox{\hyperlink{classstd_1_1math_1_1dr__matrix}{std\+::math\+::dr\+\_\+matrix}}$<$ T, Alloc, L, Access $>$\+::span\+\_\+type =  typename \mbox{\hyperlink{classstd_1_1math_1_1dr__tensor_ac18a7bc8a870b1b695e21b2d58cc4898}{base\+\_\+type\+::span\+\_\+type}}}
 
 
 
@@ -393,7 +533,7 @@ Type used to portray tensor as an N dimensional view.
 \index{submatrix\_type@{submatrix\_type}!std::math::dr\_matrix$<$ T, Alloc, L, Access $>$@{std::math::dr\_matrix$<$ T, Alloc, L, Access $>$}}
 \doxysubsubsection{\texorpdfstring{submatrix\_type}{submatrix\_type}}
 {\footnotesize\ttfamily template$<$class T , class Alloc  = allocator$<$\+T$>$, class L  = experimental\+::layout\+\_\+right, class Access  = experimental\+::default\+\_\+accessor$<$\+T$>$$>$ \\
-using \mbox{\hyperlink{classstd_1_1math_1_1dr__matrix}{std\+::math\+::dr\+\_\+matrix}}$<$ \mbox{\hyperlink{namespacestd_1_1math_a53983004b9afa750d13aff5975152bf2}{T}}, \mbox{\hyperlink{namespacestd_1_1math_a597a66936269f36c2b022a726d9f82a0}{Alloc}}, \mbox{\hyperlink{namespacestd_1_1math_a1575e00678072847b093ec1a603697d1}{L}}, \mbox{\hyperlink{namespacestd_1_1math_a39f52c16036f51ca651f8cf88cffbead}{Access}} $>$\+::\mbox{\hyperlink{classstd_1_1math_1_1dr__matrix_a398a8e1231c028fe9526fcbcddc2ba87}{submatrix\+\_\+type}} =  matrix\+\_\+view$<$decltype( \mbox{\hyperlink{namespacestd_1_1math_1_1detail_a539c3b8a18138b315e1af489c693bc38}{detail\+::submdspan}}( declval$<$\mbox{\hyperlink{classstd_1_1math_1_1dr__matrix_a7c325fffee8d3b0ca8872e829dde311e}{underlying\+\_\+span\+\_\+type}}$>$(), declval$<$\mbox{\hyperlink{classstd_1_1math_1_1dr__matrix_a421847d85efa25b9d8484a86408692b6}{tuple\+\_\+type}}$>$(), declval$<$\mbox{\hyperlink{classstd_1_1math_1_1dr__matrix_a421847d85efa25b9d8484a86408692b6}{tuple\+\_\+type}}$>$() ) )$>$}
+using \mbox{\hyperlink{classstd_1_1math_1_1dr__matrix}{std\+::math\+::dr\+\_\+matrix}}$<$ T, Alloc, L, Access $>$\+::submatrix\+\_\+type =  \mbox{\hyperlink{classstd_1_1math_1_1matrix__view}{matrix\+\_\+view}}$<$decltype( \mbox{\hyperlink{namespacestd_1_1math_1_1detail_af274dde876e47ba2ec1b483608c81d69}{detail\+::submdspan}}( declval$<$\mbox{\hyperlink{classstd_1_1math_1_1dr__matrix_a7c325fffee8d3b0ca8872e829dde311e}{underlying\+\_\+span\+\_\+type}}$>$(), declval$<$\mbox{\hyperlink{classstd_1_1math_1_1dr__matrix_a421847d85efa25b9d8484a86408692b6}{tuple\+\_\+type}}$>$(), declval$<$\mbox{\hyperlink{classstd_1_1math_1_1dr__matrix_a421847d85efa25b9d8484a86408692b6}{tuple\+\_\+type}}$>$() ) )$>$}
 
 
 
@@ -404,7 +544,7 @@ mutable view of a submatrix
 \index{subtensor\_type@{subtensor\_type}!std::math::dr\_matrix$<$ T, Alloc, L, Access $>$@{std::math::dr\_matrix$<$ T, Alloc, L, Access $>$}}
 \doxysubsubsection{\texorpdfstring{subtensor\_type}{subtensor\_type}}
 {\footnotesize\ttfamily template$<$class T , class Alloc  = allocator$<$\+T$>$, class L  = experimental\+::layout\+\_\+right, class Access  = experimental\+::default\+\_\+accessor$<$\+T$>$$>$ \\
-using \mbox{\hyperlink{classstd_1_1math_1_1dr__matrix}{std\+::math\+::dr\+\_\+matrix}}$<$ \mbox{\hyperlink{namespacestd_1_1math_a53983004b9afa750d13aff5975152bf2}{T}}, \mbox{\hyperlink{namespacestd_1_1math_a597a66936269f36c2b022a726d9f82a0}{Alloc}}, \mbox{\hyperlink{namespacestd_1_1math_a1575e00678072847b093ec1a603697d1}{L}}, \mbox{\hyperlink{namespacestd_1_1math_a39f52c16036f51ca651f8cf88cffbead}{Access}} $>$\+::\mbox{\hyperlink{classstd_1_1math_1_1dr__matrix_a8f05cc6f2d141b582c5ee27b0e755540}{subtensor\+\_\+type}} =  typename \mbox{\hyperlink{classstd_1_1math_1_1dr__tensor_a220aaa2d4ad4d41d374244948ca68930}{base\+\_\+type\+::subtensor\+\_\+type}}}
+using \mbox{\hyperlink{classstd_1_1math_1_1dr__matrix}{std\+::math\+::dr\+\_\+matrix}}$<$ T, Alloc, L, Access $>$\+::subtensor\+\_\+type =  typename \mbox{\hyperlink{classstd_1_1math_1_1dr__tensor_a220aaa2d4ad4d41d374244948ca68930}{base\+\_\+type\+::subtensor\+\_\+type}}}
 
 
 
@@ -415,7 +555,7 @@ mutable view of a subtensor
 \index{transpose\_type@{transpose\_type}!std::math::dr\_matrix$<$ T, Alloc, L, Access $>$@{std::math::dr\_matrix$<$ T, Alloc, L, Access $>$}}
 \doxysubsubsection{\texorpdfstring{transpose\_type}{transpose\_type}}
 {\footnotesize\ttfamily template$<$class T , class Alloc  = allocator$<$\+T$>$, class L  = experimental\+::layout\+\_\+right, class Access  = experimental\+::default\+\_\+accessor$<$\+T$>$$>$ \\
-using \mbox{\hyperlink{classstd_1_1math_1_1dr__matrix}{std\+::math\+::dr\+\_\+matrix}}$<$ \mbox{\hyperlink{namespacestd_1_1math_a53983004b9afa750d13aff5975152bf2}{T}}, \mbox{\hyperlink{namespacestd_1_1math_a597a66936269f36c2b022a726d9f82a0}{Alloc}}, \mbox{\hyperlink{namespacestd_1_1math_a1575e00678072847b093ec1a603697d1}{L}}, \mbox{\hyperlink{namespacestd_1_1math_a39f52c16036f51ca651f8cf88cffbead}{Access}} $>$\+::\mbox{\hyperlink{classstd_1_1math_1_1dr__matrix_adbe807efe1aa0145c8ec5c8fad7b578d}{transpose\+\_\+type}} =  \mbox{\hyperlink{classstd_1_1math_1_1dr__matrix}{dr\+\_\+matrix}}}
+using \mbox{\hyperlink{classstd_1_1math_1_1dr__matrix}{std\+::math\+::dr\+\_\+matrix}}$<$ T, Alloc, L, Access $>$\+::transpose\+\_\+type =  \mbox{\hyperlink{classstd_1_1math_1_1dr__matrix}{dr\+\_\+matrix}}}
 
 
 
@@ -426,7 +566,7 @@ matrix tanspose
 \index{tuple\_type@{tuple\_type}!std::math::dr\_matrix$<$ T, Alloc, L, Access $>$@{std::math::dr\_matrix$<$ T, Alloc, L, Access $>$}}
 \doxysubsubsection{\texorpdfstring{tuple\_type}{tuple\_type}}
 {\footnotesize\ttfamily template$<$class T , class Alloc  = allocator$<$\+T$>$, class L  = experimental\+::layout\+\_\+right, class Access  = experimental\+::default\+\_\+accessor$<$\+T$>$$>$ \\
-using \mbox{\hyperlink{classstd_1_1math_1_1dr__matrix}{std\+::math\+::dr\+\_\+matrix}}$<$ \mbox{\hyperlink{namespacestd_1_1math_a53983004b9afa750d13aff5975152bf2}{T}}, \mbox{\hyperlink{namespacestd_1_1math_a597a66936269f36c2b022a726d9f82a0}{Alloc}}, \mbox{\hyperlink{namespacestd_1_1math_a1575e00678072847b093ec1a603697d1}{L}}, \mbox{\hyperlink{namespacestd_1_1math_a39f52c16036f51ca651f8cf88cffbead}{Access}} $>$\+::\mbox{\hyperlink{classstd_1_1math_1_1dr__matrix_a421847d85efa25b9d8484a86408692b6}{tuple\+\_\+type}} =  typename \mbox{\hyperlink{classstd_1_1math_1_1dr__tensor_a311855993b4064aba8e19587ed8c8c30}{base\+\_\+type\+::tuple\+\_\+type}}}
+using \mbox{\hyperlink{classstd_1_1math_1_1dr__matrix}{std\+::math\+::dr\+\_\+matrix}}$<$ T, Alloc, L, Access $>$\+::tuple\+\_\+type =  typename \mbox{\hyperlink{classstd_1_1math_1_1dr__tensor_a311855993b4064aba8e19587ed8c8c30}{base\+\_\+type\+::tuple\+\_\+type}}}
 
 
 
@@ -437,7 +577,7 @@ Type used to represent a node in the tensor.
 \index{underlying\_span\_type@{underlying\_span\_type}!std::math::dr\_matrix$<$ T, Alloc, L, Access $>$@{std::math::dr\_matrix$<$ T, Alloc, L, Access $>$}}
 \doxysubsubsection{\texorpdfstring{underlying\_span\_type}{underlying\_span\_type}}
 {\footnotesize\ttfamily template$<$class T , class Alloc  = allocator$<$\+T$>$, class L  = experimental\+::layout\+\_\+right, class Access  = experimental\+::default\+\_\+accessor$<$\+T$>$$>$ \\
-using \mbox{\hyperlink{classstd_1_1math_1_1dr__matrix}{std\+::math\+::dr\+\_\+matrix}}$<$ \mbox{\hyperlink{namespacestd_1_1math_a53983004b9afa750d13aff5975152bf2}{T}}, \mbox{\hyperlink{namespacestd_1_1math_a597a66936269f36c2b022a726d9f82a0}{Alloc}}, \mbox{\hyperlink{namespacestd_1_1math_a1575e00678072847b093ec1a603697d1}{L}}, \mbox{\hyperlink{namespacestd_1_1math_a39f52c16036f51ca651f8cf88cffbead}{Access}} $>$\+::\mbox{\hyperlink{classstd_1_1math_1_1dr__matrix_a7c325fffee8d3b0ca8872e829dde311e}{underlying\+\_\+span\+\_\+type}} =  typename \mbox{\hyperlink{classstd_1_1math_1_1dr__tensor_a4330bcccce54d66e9f93c7889a3998a2}{base\+\_\+type\+::underlying\+\_\+span\+\_\+type}}}
+using \mbox{\hyperlink{classstd_1_1math_1_1dr__matrix}{std\+::math\+::dr\+\_\+matrix}}$<$ T, Alloc, L, Access $>$\+::underlying\+\_\+span\+\_\+type =  typename \mbox{\hyperlink{classstd_1_1math_1_1dr__tensor_a4330bcccce54d66e9f93c7889a3998a2}{base\+\_\+type\+::underlying\+\_\+span\+\_\+type}}}
 
 
 
@@ -448,7 +588,7 @@ Type used to view memory.
 \index{value\_type@{value\_type}!std::math::dr\_matrix$<$ T, Alloc, L, Access $>$@{std::math::dr\_matrix$<$ T, Alloc, L, Access $>$}}
 \doxysubsubsection{\texorpdfstring{value\_type}{value\_type}}
 {\footnotesize\ttfamily template$<$class T , class Alloc  = allocator$<$\+T$>$, class L  = experimental\+::layout\+\_\+right, class Access  = experimental\+::default\+\_\+accessor$<$\+T$>$$>$ \\
-using \mbox{\hyperlink{classstd_1_1math_1_1dr__matrix}{std\+::math\+::dr\+\_\+matrix}}$<$ \mbox{\hyperlink{namespacestd_1_1math_a53983004b9afa750d13aff5975152bf2}{T}}, \mbox{\hyperlink{namespacestd_1_1math_a597a66936269f36c2b022a726d9f82a0}{Alloc}}, \mbox{\hyperlink{namespacestd_1_1math_a1575e00678072847b093ec1a603697d1}{L}}, \mbox{\hyperlink{namespacestd_1_1math_a39f52c16036f51ca651f8cf88cffbead}{Access}} $>$\+::\mbox{\hyperlink{classstd_1_1math_1_1dr__matrix_a02a6f6e53d1a4fb0be36490b347e0b68}{value\+\_\+type}} =  typename \mbox{\hyperlink{classstd_1_1math_1_1dr__tensor_a1a99c1781e9f09ce477dc87f950216e6}{base\+\_\+type\+::value\+\_\+type}}}
+using \mbox{\hyperlink{classstd_1_1math_1_1dr__matrix}{std\+::math\+::dr\+\_\+matrix}}$<$ T, Alloc, L, Access $>$\+::value\+\_\+type =  typename \mbox{\hyperlink{classstd_1_1math_1_1dr__tensor_a1a99c1781e9f09ce477dc87f950216e6}{base\+\_\+type\+::value\+\_\+type}}}
 
 
 
@@ -462,7 +602,7 @@ Type returned by const index access.
 \index{````~dr\_matrix@{$\sim$dr\_matrix}!std::math::dr\_matrix$<$ T, Alloc, L, Access $>$@{std::math::dr\_matrix$<$ T, Alloc, L, Access $>$}}
 \doxysubsubsection{\texorpdfstring{$\sim$dr\_matrix()}{~dr\_matrix()}}
 {\footnotesize\ttfamily template$<$class T , class Alloc  = allocator$<$\+T$>$, class L  = experimental\+::layout\+\_\+right, class Access  = experimental\+::default\+\_\+accessor$<$\+T$>$$>$ \\
-\mbox{\hyperlink{classstd_1_1math_1_1dr__matrix}{std\+::math\+::dr\+\_\+matrix}}$<$ \mbox{\hyperlink{namespacestd_1_1math_a53983004b9afa750d13aff5975152bf2}{T}}, \mbox{\hyperlink{namespacestd_1_1math_a597a66936269f36c2b022a726d9f82a0}{Alloc}}, \mbox{\hyperlink{namespacestd_1_1math_a1575e00678072847b093ec1a603697d1}{L}}, \mbox{\hyperlink{namespacestd_1_1math_a39f52c16036f51ca651f8cf88cffbead}{Access}} $>$\+::$\sim$\mbox{\hyperlink{classstd_1_1math_1_1dr__matrix}{dr\+\_\+matrix}} (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [default]}}
+\mbox{\hyperlink{classstd_1_1math_1_1dr__matrix}{std\+::math\+::dr\+\_\+matrix}}$<$ T, Alloc, L, Access $>$\+::$\sim$\mbox{\hyperlink{classstd_1_1math_1_1dr__matrix}{dr\+\_\+matrix}} (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [default]}}
 
 
 
@@ -473,7 +613,7 @@ Default destructor.
 \index{dr\_matrix@{dr\_matrix}!std::math::dr\_matrix$<$ T, Alloc, L, Access $>$@{std::math::dr\_matrix$<$ T, Alloc, L, Access $>$}}
 \doxysubsubsection{\texorpdfstring{dr\_matrix()}{dr\_matrix()}\hspace{0.1cm}{\footnotesize\ttfamily [1/15]}}
 {\footnotesize\ttfamily template$<$class T , class Alloc  = allocator$<$\+T$>$, class L  = experimental\+::layout\+\_\+right, class Access  = experimental\+::default\+\_\+accessor$<$\+T$>$$>$ \\
-constexpr \mbox{\hyperlink{classstd_1_1math_1_1dr__matrix}{std\+::math\+::dr\+\_\+matrix}}$<$ \mbox{\hyperlink{namespacestd_1_1math_a53983004b9afa750d13aff5975152bf2}{T}}, \mbox{\hyperlink{namespacestd_1_1math_a597a66936269f36c2b022a726d9f82a0}{Alloc}}, \mbox{\hyperlink{namespacestd_1_1math_a1575e00678072847b093ec1a603697d1}{L}}, \mbox{\hyperlink{namespacestd_1_1math_a39f52c16036f51ca651f8cf88cffbead}{Access}} $>$\+::\mbox{\hyperlink{classstd_1_1math_1_1dr__matrix}{dr\+\_\+matrix}} (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [constexpr]}, {\ttfamily [default]}}
+constexpr \mbox{\hyperlink{classstd_1_1math_1_1dr__matrix}{std\+::math\+::dr\+\_\+matrix}}$<$ T, Alloc, L, Access $>$\+::dr\+\_\+matrix (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [constexpr]}, {\ttfamily [default]}}
 
 
 
@@ -484,7 +624,7 @@ Default constructor.
 \index{dr\_matrix@{dr\_matrix}!std::math::dr\_matrix$<$ T, Alloc, L, Access $>$@{std::math::dr\_matrix$<$ T, Alloc, L, Access $>$}}
 \doxysubsubsection{\texorpdfstring{dr\_matrix()}{dr\_matrix()}\hspace{0.1cm}{\footnotesize\ttfamily [2/15]}}
 {\footnotesize\ttfamily template$<$class T , class Alloc  = allocator$<$\+T$>$, class L  = experimental\+::layout\+\_\+right, class Access  = experimental\+::default\+\_\+accessor$<$\+T$>$$>$ \\
-constexpr \mbox{\hyperlink{classstd_1_1math_1_1dr__matrix}{std\+::math\+::dr\+\_\+matrix}}$<$ \mbox{\hyperlink{namespacestd_1_1math_a53983004b9afa750d13aff5975152bf2}{T}}, \mbox{\hyperlink{namespacestd_1_1math_a597a66936269f36c2b022a726d9f82a0}{Alloc}}, \mbox{\hyperlink{namespacestd_1_1math_a1575e00678072847b093ec1a603697d1}{L}}, \mbox{\hyperlink{namespacestd_1_1math_a39f52c16036f51ca651f8cf88cffbead}{Access}} $>$\+::\mbox{\hyperlink{classstd_1_1math_1_1dr__matrix}{dr\+\_\+matrix}} (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classstd_1_1math_1_1dr__matrix}{dr\+\_\+matrix}}$<$ \mbox{\hyperlink{namespacestd_1_1math_a53983004b9afa750d13aff5975152bf2}{T}}, \mbox{\hyperlink{namespacestd_1_1math_a597a66936269f36c2b022a726d9f82a0}{Alloc}}, \mbox{\hyperlink{namespacestd_1_1math_a1575e00678072847b093ec1a603697d1}{L}}, \mbox{\hyperlink{namespacestd_1_1math_a39f52c16036f51ca651f8cf88cffbead}{Access}} $>$ \&\&}]{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [constexpr]}, {\ttfamily [default]}}
+constexpr \mbox{\hyperlink{classstd_1_1math_1_1dr__matrix}{std\+::math\+::dr\+\_\+matrix}}$<$ T, Alloc, L, Access $>$\+::dr\+\_\+matrix (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classstd_1_1math_1_1dr__matrix}{dr\+\_\+matrix}}$<$ T, Alloc, L, Access $>$ \&\&}]{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [constexpr]}, {\ttfamily [default]}}
 
 
 
@@ -500,7 +640,7 @@ Default move constructor.
 \index{dr\_matrix@{dr\_matrix}!std::math::dr\_matrix$<$ T, Alloc, L, Access $>$@{std::math::dr\_matrix$<$ T, Alloc, L, Access $>$}}
 \doxysubsubsection{\texorpdfstring{dr\_matrix()}{dr\_matrix()}\hspace{0.1cm}{\footnotesize\ttfamily [3/15]}}
 {\footnotesize\ttfamily template$<$class T , class Alloc  = allocator$<$\+T$>$, class L  = experimental\+::layout\+\_\+right, class Access  = experimental\+::default\+\_\+accessor$<$\+T$>$$>$ \\
-constexpr \mbox{\hyperlink{classstd_1_1math_1_1dr__matrix}{std\+::math\+::dr\+\_\+matrix}}$<$ \mbox{\hyperlink{namespacestd_1_1math_a53983004b9afa750d13aff5975152bf2}{T}}, \mbox{\hyperlink{namespacestd_1_1math_a597a66936269f36c2b022a726d9f82a0}{Alloc}}, \mbox{\hyperlink{namespacestd_1_1math_a1575e00678072847b093ec1a603697d1}{L}}, \mbox{\hyperlink{namespacestd_1_1math_a39f52c16036f51ca651f8cf88cffbead}{Access}} $>$\+::\mbox{\hyperlink{classstd_1_1math_1_1dr__matrix}{dr\+\_\+matrix}} (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classstd_1_1math_1_1dr__matrix}{dr\+\_\+matrix}}$<$ \mbox{\hyperlink{namespacestd_1_1math_a53983004b9afa750d13aff5975152bf2}{T}}, \mbox{\hyperlink{namespacestd_1_1math_a597a66936269f36c2b022a726d9f82a0}{Alloc}}, \mbox{\hyperlink{namespacestd_1_1math_a1575e00678072847b093ec1a603697d1}{L}}, \mbox{\hyperlink{namespacestd_1_1math_a39f52c16036f51ca651f8cf88cffbead}{Access}} $>$ \&}]{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [constexpr]}, {\ttfamily [default]}}
+constexpr \mbox{\hyperlink{classstd_1_1math_1_1dr__matrix}{std\+::math\+::dr\+\_\+matrix}}$<$ T, Alloc, L, Access $>$\+::dr\+\_\+matrix (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classstd_1_1math_1_1dr__matrix}{dr\+\_\+matrix}}$<$ T, Alloc, L, Access $>$ \&}]{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [constexpr]}, {\ttfamily [default]}}
 
 
 
@@ -516,8 +656,8 @@ Default copy constructor.
 \index{dr\_matrix@{dr\_matrix}!std::math::dr\_matrix$<$ T, Alloc, L, Access $>$@{std::math::dr\_matrix$<$ T, Alloc, L, Access $>$}}
 \doxysubsubsection{\texorpdfstring{dr\_matrix()}{dr\_matrix()}\hspace{0.1cm}{\footnotesize\ttfamily [4/15]}}
 {\footnotesize\ttfamily template$<$class T , class Alloc , class L , class Access $>$ \\
-template$<$concepts\+::tensor\+\_\+may\+\_\+be\+\_\+constructible$<$ dr\+\_\+matrix$<$ T, Alloc, L, Access $>$ $>$ M2$>$ \\
-constexpr \mbox{\hyperlink{classstd_1_1math_1_1dr__matrix}{std\+::math\+::dr\+\_\+matrix}}$<$ \mbox{\hyperlink{namespacestd_1_1math_a53983004b9afa750d13aff5975152bf2}{T}}, \mbox{\hyperlink{namespacestd_1_1math_a597a66936269f36c2b022a726d9f82a0}{Alloc}}, \mbox{\hyperlink{namespacestd_1_1math_a1575e00678072847b093ec1a603697d1}{L}}, \mbox{\hyperlink{namespacestd_1_1math_a39f52c16036f51ca651f8cf88cffbead}{Access}} $>$\+::\mbox{\hyperlink{classstd_1_1math_1_1dr__matrix}{dr\+\_\+matrix}} (\begin{DoxyParamCaption}\item[{const M2 \&}]{rhs }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [explicit]}, {\ttfamily [constexpr]}, {\ttfamily [noexcept]}}
+template$<$concepts\+::tensor\+\_\+may\+\_\+be\+\_\+constructible$<$ \mbox{\hyperlink{classstd_1_1math_1_1dr__matrix}{dr\+\_\+matrix}}$<$ T, Alloc, L, Access $>$ $>$ M2$>$ \\
+constexpr \mbox{\hyperlink{classstd_1_1math_1_1dr__matrix}{std\+::math\+::dr\+\_\+matrix}}$<$ T, Alloc, L, Access $>$\+::dr\+\_\+matrix (\begin{DoxyParamCaption}\item[{const M2 \&}]{rhs }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [explicit]}, {\ttfamily [constexpr]}, {\ttfamily [noexcept]}}
 
 
 
@@ -528,13 +668,15 @@ Template copy constructor.
 {\em matrix} & to be copied \\
 \hline
 \end{DoxyTemplParams}
-\mbox{\Hypertarget{classstd_1_1math_1_1dr__matrix_aa4eed07552cdcd54a14e0167aa64084a}\label{classstd_1_1math_1_1dr__matrix_aa4eed07552cdcd54a14e0167aa64084a}} 
+\mbox{\Hypertarget{classstd_1_1math_1_1dr__matrix_a45b699e58cb0315ea57551be7d00878c}\label{classstd_1_1math_1_1dr__matrix_a45b699e58cb0315ea57551be7d00878c}} 
 \index{std::math::dr\_matrix$<$ T, Alloc, L, Access $>$@{std::math::dr\_matrix$<$ T, Alloc, L, Access $>$}!dr\_matrix@{dr\_matrix}}
 \index{dr\_matrix@{dr\_matrix}!std::math::dr\_matrix$<$ T, Alloc, L, Access $>$@{std::math::dr\_matrix$<$ T, Alloc, L, Access $>$}}
 \doxysubsubsection{\texorpdfstring{dr\_matrix()}{dr\_matrix()}\hspace{0.1cm}{\footnotesize\ttfamily [5/15]}}
-{\footnotesize\ttfamily template$<$class T , class Alloc , class L , class Access $>$ \\
-template$<$concepts\+::view\+\_\+may\+\_\+be\+\_\+constructible\+\_\+to\+\_\+tensor$<$ dr\+\_\+matrix$<$ T, Alloc, L, Access $>$ $>$ MDS$>$ \\
-constexpr \mbox{\hyperlink{classstd_1_1math_1_1dr__matrix}{std\+::math\+::dr\+\_\+matrix}}$<$ \mbox{\hyperlink{namespacestd_1_1math_a53983004b9afa750d13aff5975152bf2}{T}}, \mbox{\hyperlink{namespacestd_1_1math_a597a66936269f36c2b022a726d9f82a0}{Alloc}}, \mbox{\hyperlink{namespacestd_1_1math_a1575e00678072847b093ec1a603697d1}{L}}, \mbox{\hyperlink{namespacestd_1_1math_a39f52c16036f51ca651f8cf88cffbead}{Access}} $>$\+::\mbox{\hyperlink{classstd_1_1math_1_1dr__matrix}{dr\+\_\+matrix}} (\begin{DoxyParamCaption}\item[{const MDS \&}]{view }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [explicit]}, {\ttfamily [constexpr]}, {\ttfamily [noexcept]}}
+{\footnotesize\ttfamily template$<$class T , class Alloc , class L , class Access $>$ \newline
+requires is\+\_\+default\+\_\+constructible\+\_\+v$<$\mbox{\hyperlink{classstd_1_1math_1_1dr__matrix_a1fe25d36296174f6c0130bf93cb39a7d}{allocator\+\_\+type}}$>$\\
+template$<$concepts\+::view\+\_\+may\+\_\+be\+\_\+constructible\+\_\+to\+\_\+tensor$<$ \mbox{\hyperlink{classstd_1_1math_1_1dr__matrix}{dr\+\_\+matrix}}$<$ T, Alloc, L, Access $>$ $>$ MDS$>$ \newline
+requires is\+\_\+default\+\_\+constructible\+\_\+v$<$\mbox{\hyperlink{classstd_1_1math_1_1dr__matrix_a1fe25d36296174f6c0130bf93cb39a7d}{allocator\+\_\+type}}$>$\\
+constexpr \mbox{\hyperlink{classstd_1_1math_1_1dr__matrix}{std\+::math\+::dr\+\_\+matrix}}$<$ T, Alloc, L, Access $>$\+::dr\+\_\+matrix (\begin{DoxyParamCaption}\item[{const MDS \&}]{view }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [explicit]}, {\ttfamily [constexpr]}, {\ttfamily [noexcept]}}
 
 
 
@@ -550,12 +692,13 @@ Construct from a view.
 {\em view} & view of matrix elements \\
 \hline
 \end{DoxyParams}
-\mbox{\Hypertarget{classstd_1_1math_1_1dr__matrix_a51faed53412331d37c5e73b0f6767465}\label{classstd_1_1math_1_1dr__matrix_a51faed53412331d37c5e73b0f6767465}} 
+\mbox{\Hypertarget{classstd_1_1math_1_1dr__matrix_a7582d6de6bc6fc317749337838c3af83}\label{classstd_1_1math_1_1dr__matrix_a7582d6de6bc6fc317749337838c3af83}} 
 \index{std::math::dr\_matrix$<$ T, Alloc, L, Access $>$@{std::math::dr\_matrix$<$ T, Alloc, L, Access $>$}!dr\_matrix@{dr\_matrix}}
 \index{dr\_matrix@{dr\_matrix}!std::math::dr\_matrix$<$ T, Alloc, L, Access $>$@{std::math::dr\_matrix$<$ T, Alloc, L, Access $>$}}
 \doxysubsubsection{\texorpdfstring{dr\_matrix()}{dr\_matrix()}\hspace{0.1cm}{\footnotesize\ttfamily [6/15]}}
-{\footnotesize\ttfamily template$<$class T , class Alloc , class L , class Access $>$ \\
-constexpr \mbox{\hyperlink{classstd_1_1math_1_1dr__matrix}{std\+::math\+::dr\+\_\+matrix}}$<$ \mbox{\hyperlink{namespacestd_1_1math_a53983004b9afa750d13aff5975152bf2}{T}}, \mbox{\hyperlink{namespacestd_1_1math_a597a66936269f36c2b022a726d9f82a0}{Alloc}}, \mbox{\hyperlink{namespacestd_1_1math_a1575e00678072847b093ec1a603697d1}{L}}, \mbox{\hyperlink{namespacestd_1_1math_a39f52c16036f51ca651f8cf88cffbead}{Access}} $>$\+::\mbox{\hyperlink{classstd_1_1math_1_1dr__matrix}{dr\+\_\+matrix}} (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classstd_1_1math_1_1dr__matrix_a708494c9db17c0e143f80a319d6d66e8}{extents\+\_\+type}}}]{s }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [explicit]}, {\ttfamily [constexpr]}, {\ttfamily [noexcept]}}
+{\footnotesize\ttfamily template$<$class T , class Alloc , class L , class Access $>$ \newline
+requires is\+\_\+default\+\_\+constructible\+\_\+v$<$\mbox{\hyperlink{classstd_1_1math_1_1dr__matrix_a1fe25d36296174f6c0130bf93cb39a7d}{allocator\+\_\+type}}$>$\\
+constexpr \mbox{\hyperlink{classstd_1_1math_1_1dr__matrix}{std\+::math\+::dr\+\_\+matrix}}$<$ T, Alloc, L, Access $>$\+::dr\+\_\+matrix (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classstd_1_1math_1_1dr__matrix_a708494c9db17c0e143f80a319d6d66e8}{extents\+\_\+type}}}]{s }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [explicit]}, {\ttfamily [constexpr]}, {\ttfamily [noexcept]}}
 
 
 
@@ -566,12 +709,13 @@ Attempt to allocate sufficient resources for a size s matrix and construct.
 {\em s} & defines the rows and columns of the matrix \\
 \hline
 \end{DoxyParams}
-\mbox{\Hypertarget{classstd_1_1math_1_1dr__matrix_a25c0042a1cae31d88474c5860acd0de3}\label{classstd_1_1math_1_1dr__matrix_a25c0042a1cae31d88474c5860acd0de3}} 
+\mbox{\Hypertarget{classstd_1_1math_1_1dr__matrix_a03a360fc29eb7be26e852dad75a09de5}\label{classstd_1_1math_1_1dr__matrix_a03a360fc29eb7be26e852dad75a09de5}} 
 \index{std::math::dr\_matrix$<$ T, Alloc, L, Access $>$@{std::math::dr\_matrix$<$ T, Alloc, L, Access $>$}!dr\_matrix@{dr\_matrix}}
 \index{dr\_matrix@{dr\_matrix}!std::math::dr\_matrix$<$ T, Alloc, L, Access $>$@{std::math::dr\_matrix$<$ T, Alloc, L, Access $>$}}
 \doxysubsubsection{\texorpdfstring{dr\_matrix()}{dr\_matrix()}\hspace{0.1cm}{\footnotesize\ttfamily [7/15]}}
-{\footnotesize\ttfamily template$<$class T , class Alloc , class L , class Access $>$ \\
-constexpr \mbox{\hyperlink{classstd_1_1math_1_1dr__matrix}{std\+::math\+::dr\+\_\+matrix}}$<$ \mbox{\hyperlink{namespacestd_1_1math_a53983004b9afa750d13aff5975152bf2}{T}}, \mbox{\hyperlink{namespacestd_1_1math_a597a66936269f36c2b022a726d9f82a0}{Alloc}}, \mbox{\hyperlink{namespacestd_1_1math_a1575e00678072847b093ec1a603697d1}{L}}, \mbox{\hyperlink{namespacestd_1_1math_a39f52c16036f51ca651f8cf88cffbead}{Access}} $>$\+::\mbox{\hyperlink{classstd_1_1math_1_1dr__matrix}{dr\+\_\+matrix}} (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classstd_1_1math_1_1dr__matrix_a708494c9db17c0e143f80a319d6d66e8}{extents\+\_\+type}}}]{s,  }\item[{\mbox{\hyperlink{classstd_1_1math_1_1dr__matrix_a708494c9db17c0e143f80a319d6d66e8}{extents\+\_\+type}}}]{cap }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [constexpr]}, {\ttfamily [noexcept]}}
+{\footnotesize\ttfamily template$<$class T , class Alloc , class L , class Access $>$ \newline
+requires is\+\_\+default\+\_\+constructible\+\_\+v$<$\mbox{\hyperlink{classstd_1_1math_1_1dr__matrix_a1fe25d36296174f6c0130bf93cb39a7d}{allocator\+\_\+type}}$>$\\
+constexpr \mbox{\hyperlink{classstd_1_1math_1_1dr__matrix}{std\+::math\+::dr\+\_\+matrix}}$<$ T, Alloc, L, Access $>$\+::dr\+\_\+matrix (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classstd_1_1math_1_1dr__matrix_a708494c9db17c0e143f80a319d6d66e8}{extents\+\_\+type}}}]{s,  }\item[{\mbox{\hyperlink{classstd_1_1math_1_1dr__matrix_a708494c9db17c0e143f80a319d6d66e8}{extents\+\_\+type}}}]{cap }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [constexpr]}, {\ttfamily [noexcept]}}
 
 
 
@@ -584,13 +728,15 @@ Attempt to allocate sufficient resources for a size s matrix with the input capa
 {\em cap} & defines the capacity along each of the dimensions of the matrix \\
 \hline
 \end{DoxyParams}
-\mbox{\Hypertarget{classstd_1_1math_1_1dr__matrix_a703fe5792cda0c2cf12d258d46fc673c}\label{classstd_1_1math_1_1dr__matrix_a703fe5792cda0c2cf12d258d46fc673c}} 
+\mbox{\Hypertarget{classstd_1_1math_1_1dr__matrix_a78fe967759bbefbe66fe589a63d275ae}\label{classstd_1_1math_1_1dr__matrix_a78fe967759bbefbe66fe589a63d275ae}} 
 \index{std::math::dr\_matrix$<$ T, Alloc, L, Access $>$@{std::math::dr\_matrix$<$ T, Alloc, L, Access $>$}!dr\_matrix@{dr\_matrix}}
 \index{dr\_matrix@{dr\_matrix}!std::math::dr\_matrix$<$ T, Alloc, L, Access $>$@{std::math::dr\_matrix$<$ T, Alloc, L, Access $>$}}
 \doxysubsubsection{\texorpdfstring{dr\_matrix()}{dr\_matrix()}\hspace{0.1cm}{\footnotesize\ttfamily [8/15]}}
-{\footnotesize\ttfamily template$<$class T , class Alloc , class L , class Access $>$ \\
-template$<$class Lambda $>$ \\
-constexpr \mbox{\hyperlink{classstd_1_1math_1_1dr__matrix}{std\+::math\+::dr\+\_\+matrix}}$<$ \mbox{\hyperlink{namespacestd_1_1math_a53983004b9afa750d13aff5975152bf2}{T}}, \mbox{\hyperlink{namespacestd_1_1math_a597a66936269f36c2b022a726d9f82a0}{Alloc}}, \mbox{\hyperlink{namespacestd_1_1math_a1575e00678072847b093ec1a603697d1}{L}}, \mbox{\hyperlink{namespacestd_1_1math_a39f52c16036f51ca651f8cf88cffbead}{Access}} $>$\+::\mbox{\hyperlink{classstd_1_1math_1_1dr__matrix}{dr\+\_\+matrix}} (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classstd_1_1math_1_1dr__matrix_a708494c9db17c0e143f80a319d6d66e8}{extents\+\_\+type}}}]{s,  }\item[{Lambda \&\&}]{lambda }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [constexpr]}, {\ttfamily [noexcept]}}
+{\footnotesize\ttfamily template$<$class T , class Alloc , class L , class Access $>$ \newline
+requires is\+\_\+default\+\_\+constructible\+\_\+v$<$\mbox{\hyperlink{classstd_1_1math_1_1dr__matrix_a1fe25d36296174f6c0130bf93cb39a7d}{allocator\+\_\+type}}$>$ \&\& requires \{ \{ declval$<$Lambda\&\&$>$()( declval$<$\mbox{\hyperlink{classstd_1_1math_1_1dr__matrix_afaf5cea2635ac4f9b226d0a89cecaf57}{index\+\_\+type}}$>$(), declval$<$\mbox{\hyperlink{classstd_1_1math_1_1dr__matrix_afaf5cea2635ac4f9b226d0a89cecaf57}{index\+\_\+type}}$>$() ) \} -\/$>$ convertible\+\_\+to$<$\mbox{\hyperlink{classstd_1_1math_1_1dr__matrix_a7d14ebbc93ee38098e151c1276ed2e9e}{element\+\_\+type}}$>$; \}\\
+template$<$class Lambda $>$ \newline
+requires is\+\_\+default\+\_\+constructible\+\_\+v$<$\mbox{\hyperlink{classstd_1_1math_1_1dr__matrix_a1fe25d36296174f6c0130bf93cb39a7d}{allocator\+\_\+type}}$>$ \&\& requires \{ \{ declval$<$Lambda\&\&$>$()( declval$<$\mbox{\hyperlink{classstd_1_1math_1_1dr__matrix_afaf5cea2635ac4f9b226d0a89cecaf57}{index\+\_\+type}}$>$(), declval$<$\mbox{\hyperlink{classstd_1_1math_1_1dr__matrix_afaf5cea2635ac4f9b226d0a89cecaf57}{index\+\_\+type}}$>$() ) \} -\/$>$ convertible\+\_\+to$<$\mbox{\hyperlink{classstd_1_1math_1_1dr__matrix_a7d14ebbc93ee38098e151c1276ed2e9e}{element\+\_\+type}}$>$; \}\\
+constexpr \mbox{\hyperlink{classstd_1_1math_1_1dr__matrix}{std\+::math\+::dr\+\_\+matrix}}$<$ T, Alloc, L, Access $>$\+::dr\+\_\+matrix (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classstd_1_1math_1_1dr__matrix_a708494c9db17c0e143f80a319d6d66e8}{extents\+\_\+type}}}]{s,  }\item[{Lambda \&\&}]{lambda }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [constexpr]}, {\ttfamily [noexcept]}}
 
 
 
@@ -608,13 +754,15 @@ Construct by applying lambda to every element in the matrix.
 {\em lambda} & lambda expression to be performed on each element \\
 \hline
 \end{DoxyParams}
-\mbox{\Hypertarget{classstd_1_1math_1_1dr__matrix_abf3276e1c6f5cfd877a06e4297e025df}\label{classstd_1_1math_1_1dr__matrix_abf3276e1c6f5cfd877a06e4297e025df}} 
+\mbox{\Hypertarget{classstd_1_1math_1_1dr__matrix_ae2be38472848e02c0f811e9d9f1b34b3}\label{classstd_1_1math_1_1dr__matrix_ae2be38472848e02c0f811e9d9f1b34b3}} 
 \index{std::math::dr\_matrix$<$ T, Alloc, L, Access $>$@{std::math::dr\_matrix$<$ T, Alloc, L, Access $>$}!dr\_matrix@{dr\_matrix}}
 \index{dr\_matrix@{dr\_matrix}!std::math::dr\_matrix$<$ T, Alloc, L, Access $>$@{std::math::dr\_matrix$<$ T, Alloc, L, Access $>$}}
 \doxysubsubsection{\texorpdfstring{dr\_matrix()}{dr\_matrix()}\hspace{0.1cm}{\footnotesize\ttfamily [9/15]}}
-{\footnotesize\ttfamily template$<$class T , class Alloc , class L , class Access $>$ \\
-template$<$class Lambda $>$ \\
-constexpr \mbox{\hyperlink{classstd_1_1math_1_1dr__matrix}{std\+::math\+::dr\+\_\+matrix}}$<$ \mbox{\hyperlink{namespacestd_1_1math_a53983004b9afa750d13aff5975152bf2}{T}}, \mbox{\hyperlink{namespacestd_1_1math_a597a66936269f36c2b022a726d9f82a0}{Alloc}}, \mbox{\hyperlink{namespacestd_1_1math_a1575e00678072847b093ec1a603697d1}{L}}, \mbox{\hyperlink{namespacestd_1_1math_a39f52c16036f51ca651f8cf88cffbead}{Access}} $>$\+::\mbox{\hyperlink{classstd_1_1math_1_1dr__matrix}{dr\+\_\+matrix}} (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classstd_1_1math_1_1dr__matrix_a708494c9db17c0e143f80a319d6d66e8}{extents\+\_\+type}}}]{s,  }\item[{\mbox{\hyperlink{classstd_1_1math_1_1dr__matrix_a708494c9db17c0e143f80a319d6d66e8}{extents\+\_\+type}}}]{cap,  }\item[{Lambda \&\&}]{lambda }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [constexpr]}, {\ttfamily [noexcept]}}
+{\footnotesize\ttfamily template$<$class T , class Alloc , class L , class Access $>$ \newline
+requires is\+\_\+default\+\_\+constructible\+\_\+v$<$\mbox{\hyperlink{classstd_1_1math_1_1dr__matrix_a1fe25d36296174f6c0130bf93cb39a7d}{allocator\+\_\+type}}$>$ \&\& requires \{ \{ declval$<$Lambda\&\&$>$()( declval$<$\mbox{\hyperlink{classstd_1_1math_1_1dr__matrix_afaf5cea2635ac4f9b226d0a89cecaf57}{index\+\_\+type}}$>$(), declval$<$\mbox{\hyperlink{classstd_1_1math_1_1dr__matrix_afaf5cea2635ac4f9b226d0a89cecaf57}{index\+\_\+type}}$>$() ) \} -\/$>$ convertible\+\_\+to$<$\mbox{\hyperlink{classstd_1_1math_1_1dr__matrix_a7d14ebbc93ee38098e151c1276ed2e9e}{element\+\_\+type}}$>$; \}\\
+template$<$class Lambda $>$ \newline
+requires is\+\_\+default\+\_\+constructible\+\_\+v$<$\mbox{\hyperlink{classstd_1_1math_1_1dr__matrix_a1fe25d36296174f6c0130bf93cb39a7d}{allocator\+\_\+type}}$>$ \&\& requires \{ \{ declval$<$Lambda\&\&$>$()( declval$<$\mbox{\hyperlink{classstd_1_1math_1_1dr__matrix_afaf5cea2635ac4f9b226d0a89cecaf57}{index\+\_\+type}}$>$(), declval$<$\mbox{\hyperlink{classstd_1_1math_1_1dr__matrix_afaf5cea2635ac4f9b226d0a89cecaf57}{index\+\_\+type}}$>$() ) \} -\/$>$ convertible\+\_\+to$<$\mbox{\hyperlink{classstd_1_1math_1_1dr__matrix_a7d14ebbc93ee38098e151c1276ed2e9e}{element\+\_\+type}}$>$; \}\\
+constexpr \mbox{\hyperlink{classstd_1_1math_1_1dr__matrix}{std\+::math\+::dr\+\_\+matrix}}$<$ T, Alloc, L, Access $>$\+::dr\+\_\+matrix (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classstd_1_1math_1_1dr__matrix_a708494c9db17c0e143f80a319d6d66e8}{extents\+\_\+type}}}]{s,  }\item[{\mbox{\hyperlink{classstd_1_1math_1_1dr__matrix_a708494c9db17c0e143f80a319d6d66e8}{extents\+\_\+type}}}]{cap,  }\item[{Lambda \&\&}]{lambda }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [constexpr]}, {\ttfamily [noexcept]}}
 
 
 
@@ -639,7 +787,7 @@ Construct by applying lambda to every element in the matrix.
 \index{dr\_matrix@{dr\_matrix}!std::math::dr\_matrix$<$ T, Alloc, L, Access $>$@{std::math::dr\_matrix$<$ T, Alloc, L, Access $>$}}
 \doxysubsubsection{\texorpdfstring{dr\_matrix()}{dr\_matrix()}\hspace{0.1cm}{\footnotesize\ttfamily [10/15]}}
 {\footnotesize\ttfamily template$<$class T , class Alloc , class L , class Access $>$ \\
-constexpr \mbox{\hyperlink{classstd_1_1math_1_1dr__matrix}{std\+::math\+::dr\+\_\+matrix}}$<$ \mbox{\hyperlink{namespacestd_1_1math_a53983004b9afa750d13aff5975152bf2}{T}}, \mbox{\hyperlink{namespacestd_1_1math_a597a66936269f36c2b022a726d9f82a0}{Alloc}}, \mbox{\hyperlink{namespacestd_1_1math_a1575e00678072847b093ec1a603697d1}{L}}, \mbox{\hyperlink{namespacestd_1_1math_a39f52c16036f51ca651f8cf88cffbead}{Access}} $>$\+::\mbox{\hyperlink{classstd_1_1math_1_1dr__matrix}{dr\+\_\+matrix}} (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classstd_1_1math_1_1dr__matrix_a1fe25d36296174f6c0130bf93cb39a7d}{allocator\+\_\+type}} \&}]{alloc }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [explicit]}, {\ttfamily [constexpr]}, {\ttfamily [noexcept]}}
+constexpr \mbox{\hyperlink{classstd_1_1math_1_1dr__matrix}{std\+::math\+::dr\+\_\+matrix}}$<$ T, Alloc, L, Access $>$\+::dr\+\_\+matrix (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classstd_1_1math_1_1dr__matrix_a1fe25d36296174f6c0130bf93cb39a7d}{allocator\+\_\+type}} \&}]{alloc }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [explicit]}, {\ttfamily [constexpr]}, {\ttfamily [noexcept]}}
 
 
 
@@ -655,8 +803,8 @@ Construct empty dimensionless matrix with an allocator.
 \index{dr\_matrix@{dr\_matrix}!std::math::dr\_matrix$<$ T, Alloc, L, Access $>$@{std::math::dr\_matrix$<$ T, Alloc, L, Access $>$}}
 \doxysubsubsection{\texorpdfstring{dr\_matrix()}{dr\_matrix()}\hspace{0.1cm}{\footnotesize\ttfamily [11/15]}}
 {\footnotesize\ttfamily template$<$class T , class Alloc , class L , class Access $>$ \\
-template$<$concepts\+::view\+\_\+may\+\_\+be\+\_\+constructible\+\_\+to\+\_\+tensor$<$ dr\+\_\+matrix$<$ T, Alloc, L, Access $>$ $>$ MDS$>$ \\
-constexpr \mbox{\hyperlink{classstd_1_1math_1_1dr__matrix}{std\+::math\+::dr\+\_\+matrix}}$<$ \mbox{\hyperlink{namespacestd_1_1math_a53983004b9afa750d13aff5975152bf2}{T}}, \mbox{\hyperlink{namespacestd_1_1math_a597a66936269f36c2b022a726d9f82a0}{Alloc}}, \mbox{\hyperlink{namespacestd_1_1math_a1575e00678072847b093ec1a603697d1}{L}}, \mbox{\hyperlink{namespacestd_1_1math_a39f52c16036f51ca651f8cf88cffbead}{Access}} $>$\+::\mbox{\hyperlink{classstd_1_1math_1_1dr__matrix}{dr\+\_\+matrix}} (\begin{DoxyParamCaption}\item[{const MDS \&}]{view,  }\item[{const \mbox{\hyperlink{classstd_1_1math_1_1dr__matrix_a1fe25d36296174f6c0130bf93cb39a7d}{allocator\+\_\+type}} \&}]{alloc }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [explicit]}, {\ttfamily [constexpr]}, {\ttfamily [noexcept]}}
+template$<$concepts\+::view\+\_\+may\+\_\+be\+\_\+constructible\+\_\+to\+\_\+tensor$<$ \mbox{\hyperlink{classstd_1_1math_1_1dr__matrix}{dr\+\_\+matrix}}$<$ T, Alloc, L, Access $>$ $>$ MDS$>$ \\
+constexpr \mbox{\hyperlink{classstd_1_1math_1_1dr__matrix}{std\+::math\+::dr\+\_\+matrix}}$<$ T, Alloc, L, Access $>$\+::dr\+\_\+matrix (\begin{DoxyParamCaption}\item[{const MDS \&}]{view,  }\item[{const \mbox{\hyperlink{classstd_1_1math_1_1dr__matrix_a1fe25d36296174f6c0130bf93cb39a7d}{allocator\+\_\+type}} \&}]{alloc }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [explicit]}, {\ttfamily [constexpr]}, {\ttfamily [noexcept]}}
 
 
 
@@ -679,7 +827,7 @@ Construct from a view.
 \index{dr\_matrix@{dr\_matrix}!std::math::dr\_matrix$<$ T, Alloc, L, Access $>$@{std::math::dr\_matrix$<$ T, Alloc, L, Access $>$}}
 \doxysubsubsection{\texorpdfstring{dr\_matrix()}{dr\_matrix()}\hspace{0.1cm}{\footnotesize\ttfamily [12/15]}}
 {\footnotesize\ttfamily template$<$class T , class Alloc , class L , class Access $>$ \\
-constexpr \mbox{\hyperlink{classstd_1_1math_1_1dr__matrix}{std\+::math\+::dr\+\_\+matrix}}$<$ \mbox{\hyperlink{namespacestd_1_1math_a53983004b9afa750d13aff5975152bf2}{T}}, \mbox{\hyperlink{namespacestd_1_1math_a597a66936269f36c2b022a726d9f82a0}{Alloc}}, \mbox{\hyperlink{namespacestd_1_1math_a1575e00678072847b093ec1a603697d1}{L}}, \mbox{\hyperlink{namespacestd_1_1math_a39f52c16036f51ca651f8cf88cffbead}{Access}} $>$\+::\mbox{\hyperlink{classstd_1_1math_1_1dr__matrix}{dr\+\_\+matrix}} (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classstd_1_1math_1_1dr__matrix_a708494c9db17c0e143f80a319d6d66e8}{extents\+\_\+type}}}]{s,  }\item[{const \mbox{\hyperlink{classstd_1_1math_1_1dr__matrix_a1fe25d36296174f6c0130bf93cb39a7d}{allocator\+\_\+type}} \&}]{alloc }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [constexpr]}, {\ttfamily [noexcept]}}
+constexpr \mbox{\hyperlink{classstd_1_1math_1_1dr__matrix}{std\+::math\+::dr\+\_\+matrix}}$<$ T, Alloc, L, Access $>$\+::dr\+\_\+matrix (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classstd_1_1math_1_1dr__matrix_a708494c9db17c0e143f80a319d6d66e8}{extents\+\_\+type}}}]{s,  }\item[{const \mbox{\hyperlink{classstd_1_1math_1_1dr__matrix_a1fe25d36296174f6c0130bf93cb39a7d}{allocator\+\_\+type}} \&}]{alloc }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [constexpr]}, {\ttfamily [noexcept]}}
 
 
 
@@ -697,7 +845,7 @@ Attempt to allocate sufficient resources for a size matrix and construct.
 \index{dr\_matrix@{dr\_matrix}!std::math::dr\_matrix$<$ T, Alloc, L, Access $>$@{std::math::dr\_matrix$<$ T, Alloc, L, Access $>$}}
 \doxysubsubsection{\texorpdfstring{dr\_matrix()}{dr\_matrix()}\hspace{0.1cm}{\footnotesize\ttfamily [13/15]}}
 {\footnotesize\ttfamily template$<$class T , class Alloc , class L , class Access $>$ \\
-constexpr \mbox{\hyperlink{classstd_1_1math_1_1dr__matrix}{std\+::math\+::dr\+\_\+matrix}}$<$ \mbox{\hyperlink{namespacestd_1_1math_a53983004b9afa750d13aff5975152bf2}{T}}, \mbox{\hyperlink{namespacestd_1_1math_a597a66936269f36c2b022a726d9f82a0}{Alloc}}, \mbox{\hyperlink{namespacestd_1_1math_a1575e00678072847b093ec1a603697d1}{L}}, \mbox{\hyperlink{namespacestd_1_1math_a39f52c16036f51ca651f8cf88cffbead}{Access}} $>$\+::\mbox{\hyperlink{classstd_1_1math_1_1dr__matrix}{dr\+\_\+matrix}} (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classstd_1_1math_1_1dr__matrix_a708494c9db17c0e143f80a319d6d66e8}{extents\+\_\+type}}}]{s,  }\item[{\mbox{\hyperlink{classstd_1_1math_1_1dr__matrix_a708494c9db17c0e143f80a319d6d66e8}{extents\+\_\+type}}}]{cap,  }\item[{const \mbox{\hyperlink{classstd_1_1math_1_1dr__matrix_a1fe25d36296174f6c0130bf93cb39a7d}{allocator\+\_\+type}} \&}]{alloc }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [constexpr]}, {\ttfamily [noexcept]}}
+constexpr \mbox{\hyperlink{classstd_1_1math_1_1dr__matrix}{std\+::math\+::dr\+\_\+matrix}}$<$ T, Alloc, L, Access $>$\+::dr\+\_\+matrix (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classstd_1_1math_1_1dr__matrix_a708494c9db17c0e143f80a319d6d66e8}{extents\+\_\+type}}}]{s,  }\item[{\mbox{\hyperlink{classstd_1_1math_1_1dr__matrix_a708494c9db17c0e143f80a319d6d66e8}{extents\+\_\+type}}}]{cap,  }\item[{const \mbox{\hyperlink{classstd_1_1math_1_1dr__matrix_a1fe25d36296174f6c0130bf93cb39a7d}{allocator\+\_\+type}} \&}]{alloc }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [constexpr]}, {\ttfamily [noexcept]}}
 
 
 
@@ -712,13 +860,15 @@ Attempt to allocate sufficient resources for a size s matrix with the input capa
 {\em alloc} & allocator used to construct with \\
 \hline
 \end{DoxyParams}
-\mbox{\Hypertarget{classstd_1_1math_1_1dr__matrix_adc48408a1686d7bf9870a9bb513ad3f9}\label{classstd_1_1math_1_1dr__matrix_adc48408a1686d7bf9870a9bb513ad3f9}} 
+\mbox{\Hypertarget{classstd_1_1math_1_1dr__matrix_a3f6918ab8de57438f39a588ec9c726c4}\label{classstd_1_1math_1_1dr__matrix_a3f6918ab8de57438f39a588ec9c726c4}} 
 \index{std::math::dr\_matrix$<$ T, Alloc, L, Access $>$@{std::math::dr\_matrix$<$ T, Alloc, L, Access $>$}!dr\_matrix@{dr\_matrix}}
 \index{dr\_matrix@{dr\_matrix}!std::math::dr\_matrix$<$ T, Alloc, L, Access $>$@{std::math::dr\_matrix$<$ T, Alloc, L, Access $>$}}
 \doxysubsubsection{\texorpdfstring{dr\_matrix()}{dr\_matrix()}\hspace{0.1cm}{\footnotesize\ttfamily [14/15]}}
-{\footnotesize\ttfamily template$<$class T , class Alloc , class L , class Access $>$ \\
-template$<$class Lambda $>$ \\
-constexpr \mbox{\hyperlink{classstd_1_1math_1_1dr__matrix}{std\+::math\+::dr\+\_\+matrix}}$<$ \mbox{\hyperlink{namespacestd_1_1math_a53983004b9afa750d13aff5975152bf2}{T}}, \mbox{\hyperlink{namespacestd_1_1math_a597a66936269f36c2b022a726d9f82a0}{Alloc}}, \mbox{\hyperlink{namespacestd_1_1math_a1575e00678072847b093ec1a603697d1}{L}}, \mbox{\hyperlink{namespacestd_1_1math_a39f52c16036f51ca651f8cf88cffbead}{Access}} $>$\+::\mbox{\hyperlink{classstd_1_1math_1_1dr__matrix}{dr\+\_\+matrix}} (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classstd_1_1math_1_1dr__matrix_a708494c9db17c0e143f80a319d6d66e8}{extents\+\_\+type}}}]{s,  }\item[{Lambda \&\&}]{lambda,  }\item[{const \mbox{\hyperlink{classstd_1_1math_1_1dr__matrix_a1fe25d36296174f6c0130bf93cb39a7d}{allocator\+\_\+type}} \&}]{alloc }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [constexpr]}, {\ttfamily [noexcept]}}
+{\footnotesize\ttfamily template$<$class T , class Alloc , class L , class Access $>$ \newline
+requires requires \{ \{ declval$<$Lambda\&\&$>$()( declval$<$\mbox{\hyperlink{classstd_1_1math_1_1dr__matrix_afaf5cea2635ac4f9b226d0a89cecaf57}{index\+\_\+type}}$>$(), declval$<$\mbox{\hyperlink{classstd_1_1math_1_1dr__matrix_afaf5cea2635ac4f9b226d0a89cecaf57}{index\+\_\+type}}$>$() ) \} -\/$>$ convertible\+\_\+to$<$\mbox{\hyperlink{classstd_1_1math_1_1dr__matrix_a7d14ebbc93ee38098e151c1276ed2e9e}{element\+\_\+type}}$>$; \}\\
+template$<$class Lambda $>$ \newline
+requires requires \{ \{ declval$<$Lambda\&\&$>$()( declval$<$\mbox{\hyperlink{classstd_1_1math_1_1dr__matrix_afaf5cea2635ac4f9b226d0a89cecaf57}{index\+\_\+type}}$>$(), declval$<$\mbox{\hyperlink{classstd_1_1math_1_1dr__matrix_afaf5cea2635ac4f9b226d0a89cecaf57}{index\+\_\+type}}$>$() ) \} -\/$>$ convertible\+\_\+to$<$\mbox{\hyperlink{classstd_1_1math_1_1dr__matrix_a7d14ebbc93ee38098e151c1276ed2e9e}{element\+\_\+type}}$>$; \}\\
+constexpr \mbox{\hyperlink{classstd_1_1math_1_1dr__matrix}{std\+::math\+::dr\+\_\+matrix}}$<$ T, Alloc, L, Access $>$\+::dr\+\_\+matrix (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classstd_1_1math_1_1dr__matrix_a708494c9db17c0e143f80a319d6d66e8}{extents\+\_\+type}}}]{s,  }\item[{Lambda \&\&}]{lambda,  }\item[{const \mbox{\hyperlink{classstd_1_1math_1_1dr__matrix_a1fe25d36296174f6c0130bf93cb39a7d}{allocator\+\_\+type}} \&}]{alloc }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [constexpr]}, {\ttfamily [noexcept]}}
 
 
 
@@ -738,13 +888,15 @@ Construct by applying lambda to every element in the matrix.
 {\em alloc} & allocator used to construct with \\
 \hline
 \end{DoxyParams}
-\mbox{\Hypertarget{classstd_1_1math_1_1dr__matrix_a6518bca440c8bdbbe3d05955a4648d8f}\label{classstd_1_1math_1_1dr__matrix_a6518bca440c8bdbbe3d05955a4648d8f}} 
+\mbox{\Hypertarget{classstd_1_1math_1_1dr__matrix_af349463e56f6837f341d04d9b42573d2}\label{classstd_1_1math_1_1dr__matrix_af349463e56f6837f341d04d9b42573d2}} 
 \index{std::math::dr\_matrix$<$ T, Alloc, L, Access $>$@{std::math::dr\_matrix$<$ T, Alloc, L, Access $>$}!dr\_matrix@{dr\_matrix}}
 \index{dr\_matrix@{dr\_matrix}!std::math::dr\_matrix$<$ T, Alloc, L, Access $>$@{std::math::dr\_matrix$<$ T, Alloc, L, Access $>$}}
 \doxysubsubsection{\texorpdfstring{dr\_matrix()}{dr\_matrix()}\hspace{0.1cm}{\footnotesize\ttfamily [15/15]}}
-{\footnotesize\ttfamily template$<$class T , class Alloc , class L , class Access $>$ \\
-template$<$class Lambda $>$ \\
-constexpr \mbox{\hyperlink{classstd_1_1math_1_1dr__matrix}{std\+::math\+::dr\+\_\+matrix}}$<$ \mbox{\hyperlink{namespacestd_1_1math_a53983004b9afa750d13aff5975152bf2}{T}}, \mbox{\hyperlink{namespacestd_1_1math_a597a66936269f36c2b022a726d9f82a0}{Alloc}}, \mbox{\hyperlink{namespacestd_1_1math_a1575e00678072847b093ec1a603697d1}{L}}, \mbox{\hyperlink{namespacestd_1_1math_a39f52c16036f51ca651f8cf88cffbead}{Access}} $>$\+::\mbox{\hyperlink{classstd_1_1math_1_1dr__matrix}{dr\+\_\+matrix}} (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classstd_1_1math_1_1dr__matrix_a708494c9db17c0e143f80a319d6d66e8}{extents\+\_\+type}}}]{s,  }\item[{\mbox{\hyperlink{classstd_1_1math_1_1dr__matrix_a708494c9db17c0e143f80a319d6d66e8}{extents\+\_\+type}}}]{cap,  }\item[{Lambda \&\&}]{lambda,  }\item[{const \mbox{\hyperlink{classstd_1_1math_1_1dr__matrix_a1fe25d36296174f6c0130bf93cb39a7d}{allocator\+\_\+type}} \&}]{alloc }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [constexpr]}, {\ttfamily [noexcept]}}
+{\footnotesize\ttfamily template$<$class T , class Alloc , class L , class Access $>$ \newline
+requires requires \{ \{ declval$<$Lambda\&\&$>$()( declval$<$\mbox{\hyperlink{classstd_1_1math_1_1dr__matrix_afaf5cea2635ac4f9b226d0a89cecaf57}{index\+\_\+type}}$>$(), declval$<$\mbox{\hyperlink{classstd_1_1math_1_1dr__matrix_afaf5cea2635ac4f9b226d0a89cecaf57}{index\+\_\+type}}$>$() ) \} -\/$>$ convertible\+\_\+to$<$\mbox{\hyperlink{classstd_1_1math_1_1dr__matrix_a7d14ebbc93ee38098e151c1276ed2e9e}{element\+\_\+type}}$>$; \}\\
+template$<$class Lambda $>$ \newline
+requires requires \{ \{ declval$<$Lambda\&\&$>$()( declval$<$\mbox{\hyperlink{classstd_1_1math_1_1dr__matrix_afaf5cea2635ac4f9b226d0a89cecaf57}{index\+\_\+type}}$>$(), declval$<$\mbox{\hyperlink{classstd_1_1math_1_1dr__matrix_afaf5cea2635ac4f9b226d0a89cecaf57}{index\+\_\+type}}$>$() ) \} -\/$>$ convertible\+\_\+to$<$\mbox{\hyperlink{classstd_1_1math_1_1dr__matrix_a7d14ebbc93ee38098e151c1276ed2e9e}{element\+\_\+type}}$>$; \}\\
+constexpr \mbox{\hyperlink{classstd_1_1math_1_1dr__matrix}{std\+::math\+::dr\+\_\+matrix}}$<$ T, Alloc, L, Access $>$\+::dr\+\_\+matrix (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classstd_1_1math_1_1dr__matrix_a708494c9db17c0e143f80a319d6d66e8}{extents\+\_\+type}}}]{s,  }\item[{\mbox{\hyperlink{classstd_1_1math_1_1dr__matrix_a708494c9db17c0e143f80a319d6d66e8}{extents\+\_\+type}}}]{cap,  }\item[{Lambda \&\&}]{lambda,  }\item[{const \mbox{\hyperlink{classstd_1_1math_1_1dr__matrix_a1fe25d36296174f6c0130bf93cb39a7d}{allocator\+\_\+type}} \&}]{alloc }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [constexpr]}, {\ttfamily [noexcept]}}
 
 
 
@@ -769,33 +921,14 @@ Construct by applying lambda to every element in the matrix.
 
 
 \doxysubsection{Member Function Documentation}
-\mbox{\Hypertarget{classstd_1_1math_1_1dr__matrix_a3e4b6e300ca1af8ae62d51cc10b81340}\label{classstd_1_1math_1_1dr__matrix_a3e4b6e300ca1af8ae62d51cc10b81340}} 
+\mbox{\Hypertarget{classstd_1_1math_1_1dr__matrix_a7f52b94ae13750bd11efae7bffb777be}\label{classstd_1_1math_1_1dr__matrix_a7f52b94ae13750bd11efae7bffb777be}} 
 \index{std::math::dr\_matrix$<$ T, Alloc, L, Access $>$@{std::math::dr\_matrix$<$ T, Alloc, L, Access $>$}!at@{at}}
 \index{at@{at}!std::math::dr\_matrix$<$ T, Alloc, L, Access $>$@{std::math::dr\_matrix$<$ T, Alloc, L, Access $>$}}
 \doxysubsubsection{\texorpdfstring{at()}{at()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
 {\footnotesize\ttfamily template$<$class T , class Alloc  = allocator$<$\+T$>$, class L  = experimental\+::layout\+\_\+right, class Access  = experimental\+::default\+\_\+accessor$<$\+T$>$$>$ \\
-template$<$class ... Index\+Type$>$ \\
-constexpr \mbox{\hyperlink{classstd_1_1math_1_1dr__matrix_a02a6f6e53d1a4fb0be36490b347e0b68}{value\+\_\+type}} \mbox{\hyperlink{classstd_1_1math_1_1dr__tensor}{std\+::math\+::dr\+\_\+tensor}}$<$ \mbox{\hyperlink{namespacestd_1_1math_a53983004b9afa750d13aff5975152bf2}{T}}, \mbox{\hyperlink{namespacestd_1_1math_ad69af7dc6d02afb275a8d32b5a1c5c5e}{R}}, \mbox{\hyperlink{namespacestd_1_1math_a597a66936269f36c2b022a726d9f82a0}{Alloc}}, \mbox{\hyperlink{namespacestd_1_1math_a1575e00678072847b093ec1a603697d1}{L}}, \mbox{\hyperlink{namespacestd_1_1math_a39f52c16036f51ca651f8cf88cffbead}{Access}} $>$\+::at (\begin{DoxyParamCaption}\item[{class ...}]{Index\+Type }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [constexpr]}}
-
-
-
-Returns the value at (indices...) with index bounds checking. 
-
-
-\begin{DoxyParams}{Parameters}
-{\em indices} & set indices representing a node in the tensor \\
-\hline
-\end{DoxyParams}
-\begin{DoxyReturn}{Returns}
-value at row i, column j, depth k, etc. 
-\end{DoxyReturn}
-\mbox{\Hypertarget{classstd_1_1math_1_1dr__matrix_a48df41244a08b0796ff25ebdec7c7437}\label{classstd_1_1math_1_1dr__matrix_a48df41244a08b0796ff25ebdec7c7437}} 
-\index{std::math::dr\_matrix$<$ T, Alloc, L, Access $>$@{std::math::dr\_matrix$<$ T, Alloc, L, Access $>$}!at@{at}}
-\index{at@{at}!std::math::dr\_matrix$<$ T, Alloc, L, Access $>$@{std::math::dr\_matrix$<$ T, Alloc, L, Access $>$}}
-\doxysubsubsection{\texorpdfstring{at()}{at()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
-{\footnotesize\ttfamily template$<$class T , class Alloc  = allocator$<$\+T$>$, class L  = experimental\+::layout\+\_\+right, class Access  = experimental\+::default\+\_\+accessor$<$\+T$>$$>$ \\
-template$<$class ... Index\+Type$>$ \\
-constexpr \mbox{\hyperlink{classstd_1_1math_1_1dr__matrix_a09f94e7a0e70efc435aebf505d381ae3}{reference\+\_\+type}} \mbox{\hyperlink{classstd_1_1math_1_1dr__tensor}{std\+::math\+::dr\+\_\+tensor}}$<$ \mbox{\hyperlink{namespacestd_1_1math_a53983004b9afa750d13aff5975152bf2}{T}}, \mbox{\hyperlink{namespacestd_1_1math_ad69af7dc6d02afb275a8d32b5a1c5c5e}{R}}, \mbox{\hyperlink{namespacestd_1_1math_a597a66936269f36c2b022a726d9f82a0}{Alloc}}, \mbox{\hyperlink{namespacestd_1_1math_a1575e00678072847b093ec1a603697d1}{L}}, \mbox{\hyperlink{namespacestd_1_1math_a39f52c16036f51ca651f8cf88cffbead}{Access}} $>$\+::at (\begin{DoxyParamCaption}\item[{class ...}]{Index\+Type }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [constexpr]}}
+template$<$class ... Index\+Type$>$ \newline
+requires ( sizeof...(Index\+Type) == R ) \&\& ( is\+\_\+convertible\+\_\+v$<$Index\+Type,\mbox{\hyperlink{classstd_1_1math_1_1dr__matrix_afaf5cea2635ac4f9b226d0a89cecaf57}{index\+\_\+type}}$>$ \&\& ... )\\
+constexpr \mbox{\hyperlink{classstd_1_1math_1_1dr__tensor}{dr\+\_\+tensor}}$<$ T, R, Alloc, L, Access $>$\mbox{\hyperlink{classstd_1_1math_1_1dr__matrix_a09f94e7a0e70efc435aebf505d381ae3}{\+::reference\+\_\+type}} \mbox{\hyperlink{classstd_1_1math_1_1dr__tensor}{std\+::math\+::dr\+\_\+tensor}}$<$ T, R, Alloc, L, Access $>$\+::at (\begin{DoxyParamCaption}\item[{Index\+Type ...}]{indices }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [constexpr]}}
 
 
 
@@ -809,12 +942,33 @@ Returns a mutable value at (indices...) with index bounds checking.
 \begin{DoxyReturn}{Returns}
 mutable value at row i, column j, depth k, etc. 
 \end{DoxyReturn}
+\mbox{\Hypertarget{classstd_1_1math_1_1dr__matrix_a607ecc31a33866abcda5e0a8f49c83ba}\label{classstd_1_1math_1_1dr__matrix_a607ecc31a33866abcda5e0a8f49c83ba}} 
+\index{std::math::dr\_matrix$<$ T, Alloc, L, Access $>$@{std::math::dr\_matrix$<$ T, Alloc, L, Access $>$}!at@{at}}
+\index{at@{at}!std::math::dr\_matrix$<$ T, Alloc, L, Access $>$@{std::math::dr\_matrix$<$ T, Alloc, L, Access $>$}}
+\doxysubsubsection{\texorpdfstring{at()}{at()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily template$<$class T , class Alloc  = allocator$<$\+T$>$, class L  = experimental\+::layout\+\_\+right, class Access  = experimental\+::default\+\_\+accessor$<$\+T$>$$>$ \\
+template$<$class ... Index\+Type$>$ \newline
+requires ( sizeof...(Index\+Type) == R ) \&\& ( is\+\_\+convertible\+\_\+v$<$Index\+Type,\mbox{\hyperlink{classstd_1_1math_1_1dr__matrix_afaf5cea2635ac4f9b226d0a89cecaf57}{index\+\_\+type}}$>$ \&\& ... )\\
+constexpr \mbox{\hyperlink{classstd_1_1math_1_1dr__tensor}{dr\+\_\+tensor}}$<$ T, R, Alloc, L, Access $>$\mbox{\hyperlink{classstd_1_1math_1_1dr__matrix_a02a6f6e53d1a4fb0be36490b347e0b68}{\+::value\+\_\+type}} \mbox{\hyperlink{classstd_1_1math_1_1dr__tensor}{std\+::math\+::dr\+\_\+tensor}}$<$ T, R, Alloc, L, Access $>$\+::at (\begin{DoxyParamCaption}\item[{Index\+Type ...}]{indices }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [constexpr]}}
+
+
+
+Returns the value at (indices...) with index bounds checking. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em indices} & set indices representing a node in the tensor \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+value at row i, column j, depth k, etc. 
+\end{DoxyReturn}
 \mbox{\Hypertarget{classstd_1_1math_1_1dr__matrix_ac1960576abca63d8a73842a1279313f0}\label{classstd_1_1math_1_1dr__matrix_ac1960576abca63d8a73842a1279313f0}} 
 \index{std::math::dr\_matrix$<$ T, Alloc, L, Access $>$@{std::math::dr\_matrix$<$ T, Alloc, L, Access $>$}!capacity@{capacity}}
 \index{capacity@{capacity}!std::math::dr\_matrix$<$ T, Alloc, L, Access $>$@{std::math::dr\_matrix$<$ T, Alloc, L, Access $>$}}
 \doxysubsubsection{\texorpdfstring{capacity()}{capacity()}}
 {\footnotesize\ttfamily template$<$class T , class Alloc  = allocator$<$\+T$>$, class L  = experimental\+::layout\+\_\+right, class Access  = experimental\+::default\+\_\+accessor$<$\+T$>$$>$ \\
-constexpr \mbox{\hyperlink{classstd_1_1math_1_1dr__tensor}{dr\+\_\+tensor}}$<$ \mbox{\hyperlink{namespacestd_1_1math_a53983004b9afa750d13aff5975152bf2}{T}}, \mbox{\hyperlink{namespacestd_1_1math_ad69af7dc6d02afb275a8d32b5a1c5c5e}{R}}, \mbox{\hyperlink{namespacestd_1_1math_a597a66936269f36c2b022a726d9f82a0}{Alloc}}, \mbox{\hyperlink{namespacestd_1_1math_a1575e00678072847b093ec1a603697d1}{L}}, \mbox{\hyperlink{namespacestd_1_1math_a39f52c16036f51ca651f8cf88cffbead}{Access}} $>$\+::\mbox{\hyperlink{classstd_1_1math_1_1dr__matrix_a708494c9db17c0e143f80a319d6d66e8}{extents\+\_\+type}} \mbox{\hyperlink{classstd_1_1math_1_1dr__tensor}{std\+::math\+::dr\+\_\+tensor}}$<$ \mbox{\hyperlink{namespacestd_1_1math_a53983004b9afa750d13aff5975152bf2}{T}}, \mbox{\hyperlink{namespacestd_1_1math_ad69af7dc6d02afb275a8d32b5a1c5c5e}{R}}, \mbox{\hyperlink{namespacestd_1_1math_a597a66936269f36c2b022a726d9f82a0}{Alloc}}, \mbox{\hyperlink{namespacestd_1_1math_a1575e00678072847b093ec1a603697d1}{L}}, \mbox{\hyperlink{namespacestd_1_1math_a39f52c16036f51ca651f8cf88cffbead}{Access}} $>$\+::capacity\hspace{0.3cm}{\ttfamily [constexpr]}, {\ttfamily [noexcept]}}
+constexpr \mbox{\hyperlink{classstd_1_1math_1_1dr__tensor}{dr\+\_\+tensor}}$<$ T, R, Alloc, L, Access $>$\mbox{\hyperlink{classstd_1_1math_1_1dr__matrix_a708494c9db17c0e143f80a319d6d66e8}{\+::extents\+\_\+type}} \mbox{\hyperlink{classstd_1_1math_1_1dr__tensor}{std\+::math\+::dr\+\_\+tensor}}$<$ T, R, Alloc, L, Access $>$\+::capacity\hspace{0.3cm}{\ttfamily [constexpr]}, {\ttfamily [noexcept]}}
 
 
 
@@ -828,7 +982,7 @@ capacity of (rows,columns,depth,etc.)
 \index{column@{column}!std::math::dr\_matrix$<$ T, Alloc, L, Access $>$@{std::math::dr\_matrix$<$ T, Alloc, L, Access $>$}}
 \doxysubsubsection{\texorpdfstring{column()}{column()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
 {\footnotesize\ttfamily template$<$class T , class Alloc  = allocator$<$\+T$>$, class L  = experimental\+::layout\+\_\+right, class Access  = experimental\+::default\+\_\+accessor$<$\+T$>$$>$ \\
-constexpr \mbox{\hyperlink{classstd_1_1math_1_1dr__matrix_aa7a551d41f3084a02c7208ef2cb632c2}{column\+\_\+type}} \mbox{\hyperlink{classstd_1_1math_1_1dr__matrix}{std\+::math\+::dr\+\_\+matrix}}$<$ \mbox{\hyperlink{namespacestd_1_1math_a53983004b9afa750d13aff5975152bf2}{T}}, \mbox{\hyperlink{namespacestd_1_1math_a597a66936269f36c2b022a726d9f82a0}{Alloc}}, \mbox{\hyperlink{namespacestd_1_1math_a1575e00678072847b093ec1a603697d1}{L}}, \mbox{\hyperlink{namespacestd_1_1math_a39f52c16036f51ca651f8cf88cffbead}{Access}} $>$\+::column (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classstd_1_1math_1_1dr__matrix_afaf5cea2635ac4f9b226d0a89cecaf57}{index\+\_\+type}}}]{j }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [constexpr]}}
+constexpr \mbox{\hyperlink{classstd_1_1math_1_1dr__matrix_aa7a551d41f3084a02c7208ef2cb632c2}{column\+\_\+type}} \mbox{\hyperlink{classstd_1_1math_1_1dr__matrix}{std\+::math\+::dr\+\_\+matrix}}$<$ T, Alloc, L, Access $>$\+::column (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classstd_1_1math_1_1dr__matrix_afaf5cea2635ac4f9b226d0a89cecaf57}{index\+\_\+type}}}]{j }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [constexpr]}}
 
 
 
@@ -847,7 +1001,7 @@ mutable view of column
 \index{column@{column}!std::math::dr\_matrix$<$ T, Alloc, L, Access $>$@{std::math::dr\_matrix$<$ T, Alloc, L, Access $>$}}
 \doxysubsubsection{\texorpdfstring{column()}{column()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
 {\footnotesize\ttfamily template$<$class T , class Alloc  = allocator$<$\+T$>$, class L  = experimental\+::layout\+\_\+right, class Access  = experimental\+::default\+\_\+accessor$<$\+T$>$$>$ \\
-constexpr \mbox{\hyperlink{classstd_1_1math_1_1dr__matrix_a07e8a3c6a141bdedd6ce5fce4bbdf41a}{const\+\_\+column\+\_\+type}} \mbox{\hyperlink{classstd_1_1math_1_1dr__matrix}{std\+::math\+::dr\+\_\+matrix}}$<$ \mbox{\hyperlink{namespacestd_1_1math_a53983004b9afa750d13aff5975152bf2}{T}}, \mbox{\hyperlink{namespacestd_1_1math_a597a66936269f36c2b022a726d9f82a0}{Alloc}}, \mbox{\hyperlink{namespacestd_1_1math_a1575e00678072847b093ec1a603697d1}{L}}, \mbox{\hyperlink{namespacestd_1_1math_a39f52c16036f51ca651f8cf88cffbead}{Access}} $>$\+::column (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classstd_1_1math_1_1dr__matrix_afaf5cea2635ac4f9b226d0a89cecaf57}{index\+\_\+type}}}]{j }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [constexpr]}}
+constexpr \mbox{\hyperlink{classstd_1_1math_1_1dr__matrix_a07e8a3c6a141bdedd6ce5fce4bbdf41a}{const\+\_\+column\+\_\+type}} \mbox{\hyperlink{classstd_1_1math_1_1dr__matrix}{std\+::math\+::dr\+\_\+matrix}}$<$ T, Alloc, L, Access $>$\+::column (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classstd_1_1math_1_1dr__matrix_afaf5cea2635ac4f9b226d0a89cecaf57}{index\+\_\+type}}}]{j }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [constexpr]}}
 
 
 
@@ -866,7 +1020,7 @@ const view of column
 \index{column\_capacity@{column\_capacity}!std::math::dr\_matrix$<$ T, Alloc, L, Access $>$@{std::math::dr\_matrix$<$ T, Alloc, L, Access $>$}}
 \doxysubsubsection{\texorpdfstring{column\_capacity()}{column\_capacity()}}
 {\footnotesize\ttfamily template$<$class T , class Alloc , class L , class Access $>$ \\
-constexpr \mbox{\hyperlink{classstd_1_1math_1_1dr__matrix}{dr\+\_\+matrix}}$<$ \mbox{\hyperlink{namespacestd_1_1math_a53983004b9afa750d13aff5975152bf2}{T}}, \mbox{\hyperlink{namespacestd_1_1math_a597a66936269f36c2b022a726d9f82a0}{Alloc}}, \mbox{\hyperlink{namespacestd_1_1math_a1575e00678072847b093ec1a603697d1}{L}}, \mbox{\hyperlink{namespacestd_1_1math_a39f52c16036f51ca651f8cf88cffbead}{Access}} $>$\+::\mbox{\hyperlink{classstd_1_1math_1_1dr__matrix_af801b34e4eba972f88113261bd7587d7}{size\+\_\+type}} \mbox{\hyperlink{classstd_1_1math_1_1dr__matrix}{std\+::math\+::dr\+\_\+matrix}}$<$ \mbox{\hyperlink{namespacestd_1_1math_a53983004b9afa750d13aff5975152bf2}{T}}, \mbox{\hyperlink{namespacestd_1_1math_a597a66936269f36c2b022a726d9f82a0}{Alloc}}, \mbox{\hyperlink{namespacestd_1_1math_a1575e00678072847b093ec1a603697d1}{L}}, \mbox{\hyperlink{namespacestd_1_1math_a39f52c16036f51ca651f8cf88cffbead}{Access}} $>$\+::column\+\_\+capacity\hspace{0.3cm}{\ttfamily [constexpr]}, {\ttfamily [noexcept]}}
+constexpr \mbox{\hyperlink{classstd_1_1math_1_1dr__matrix}{dr\+\_\+matrix}}$<$ T, Alloc, L, Access $>$\mbox{\hyperlink{classstd_1_1math_1_1dr__matrix_af801b34e4eba972f88113261bd7587d7}{\+::size\+\_\+type}} \mbox{\hyperlink{classstd_1_1math_1_1dr__matrix}{std\+::math\+::dr\+\_\+matrix}}$<$ T, Alloc, L, Access $>$\+::column\+\_\+capacity\hspace{0.3cm}{\ttfamily [constexpr]}, {\ttfamily [noexcept]}}
 
 
 
@@ -880,7 +1034,7 @@ column capacity
 \index{columns@{columns}!std::math::dr\_matrix$<$ T, Alloc, L, Access $>$@{std::math::dr\_matrix$<$ T, Alloc, L, Access $>$}}
 \doxysubsubsection{\texorpdfstring{columns()}{columns()}}
 {\footnotesize\ttfamily template$<$class T , class Alloc , class L , class Access $>$ \\
-constexpr \mbox{\hyperlink{classstd_1_1math_1_1dr__matrix}{dr\+\_\+matrix}}$<$ \mbox{\hyperlink{namespacestd_1_1math_a53983004b9afa750d13aff5975152bf2}{T}}, \mbox{\hyperlink{namespacestd_1_1math_a597a66936269f36c2b022a726d9f82a0}{Alloc}}, \mbox{\hyperlink{namespacestd_1_1math_a1575e00678072847b093ec1a603697d1}{L}}, \mbox{\hyperlink{namespacestd_1_1math_a39f52c16036f51ca651f8cf88cffbead}{Access}} $>$\+::\mbox{\hyperlink{classstd_1_1math_1_1dr__matrix_af801b34e4eba972f88113261bd7587d7}{size\+\_\+type}} \mbox{\hyperlink{classstd_1_1math_1_1dr__matrix}{std\+::math\+::dr\+\_\+matrix}}$<$ \mbox{\hyperlink{namespacestd_1_1math_a53983004b9afa750d13aff5975152bf2}{T}}, \mbox{\hyperlink{namespacestd_1_1math_a597a66936269f36c2b022a726d9f82a0}{Alloc}}, \mbox{\hyperlink{namespacestd_1_1math_a1575e00678072847b093ec1a603697d1}{L}}, \mbox{\hyperlink{namespacestd_1_1math_a39f52c16036f51ca651f8cf88cffbead}{Access}} $>$\+::columns\hspace{0.3cm}{\ttfamily [constexpr]}, {\ttfamily [noexcept]}}
+constexpr \mbox{\hyperlink{classstd_1_1math_1_1dr__matrix}{dr\+\_\+matrix}}$<$ T, Alloc, L, Access $>$\mbox{\hyperlink{classstd_1_1math_1_1dr__matrix_af801b34e4eba972f88113261bd7587d7}{\+::size\+\_\+type}} \mbox{\hyperlink{classstd_1_1math_1_1dr__matrix}{std\+::math\+::dr\+\_\+matrix}}$<$ T, Alloc, L, Access $>$\+::columns\hspace{0.3cm}{\ttfamily [constexpr]}, {\ttfamily [noexcept]}}
 
 
 
@@ -889,12 +1043,12 @@ Returns current number of columns.
 \begin{DoxyReturn}{Returns}
 number of columns 
 \end{DoxyReturn}
-\mbox{\Hypertarget{classstd_1_1math_1_1dr__matrix_a409eeadbea52840376d3c450d050d459}\label{classstd_1_1math_1_1dr__matrix_a409eeadbea52840376d3c450d050d459}} 
+\mbox{\Hypertarget{classstd_1_1math_1_1dr__matrix_adedea14492d41d4e8d5833f17961a857}\label{classstd_1_1math_1_1dr__matrix_adedea14492d41d4e8d5833f17961a857}} 
 \index{std::math::dr\_matrix$<$ T, Alloc, L, Access $>$@{std::math::dr\_matrix$<$ T, Alloc, L, Access $>$}!operator=@{operator=}}
 \index{operator=@{operator=}!std::math::dr\_matrix$<$ T, Alloc, L, Access $>$@{std::math::dr\_matrix$<$ T, Alloc, L, Access $>$}}
 \doxysubsubsection{\texorpdfstring{operator=()}{operator=()}\hspace{0.1cm}{\footnotesize\ttfamily [1/6]}}
 {\footnotesize\ttfamily template$<$class T , class Alloc  = allocator$<$\+T$>$, class L  = experimental\+::layout\+\_\+right, class Access  = experimental\+::default\+\_\+accessor$<$\+T$>$$>$ \\
-constexpr \mbox{\hyperlink{classstd_1_1math_1_1dr__matrix}{dr\+\_\+matrix}}\& \mbox{\hyperlink{classstd_1_1math_1_1dr__matrix}{std\+::math\+::dr\+\_\+matrix}}$<$ \mbox{\hyperlink{namespacestd_1_1math_a53983004b9afa750d13aff5975152bf2}{T}}, \mbox{\hyperlink{namespacestd_1_1math_a597a66936269f36c2b022a726d9f82a0}{Alloc}}, \mbox{\hyperlink{namespacestd_1_1math_a1575e00678072847b093ec1a603697d1}{L}}, \mbox{\hyperlink{namespacestd_1_1math_a39f52c16036f51ca651f8cf88cffbead}{Access}} $>$\+::operator= (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classstd_1_1math_1_1dr__matrix}{dr\+\_\+matrix}}$<$ \mbox{\hyperlink{namespacestd_1_1math_a53983004b9afa750d13aff5975152bf2}{T}}, \mbox{\hyperlink{namespacestd_1_1math_a597a66936269f36c2b022a726d9f82a0}{Alloc}}, \mbox{\hyperlink{namespacestd_1_1math_a1575e00678072847b093ec1a603697d1}{L}}, \mbox{\hyperlink{namespacestd_1_1math_a39f52c16036f51ca651f8cf88cffbead}{Access}} $>$ \&}]{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [constexpr]}, {\ttfamily [default]}}
+constexpr \mbox{\hyperlink{classstd_1_1math_1_1dr__matrix}{dr\+\_\+matrix}} \& \mbox{\hyperlink{classstd_1_1math_1_1dr__matrix}{std\+::math\+::dr\+\_\+matrix}}$<$ T, Alloc, L, Access $>$\+::operator= (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classstd_1_1math_1_1dr__matrix}{dr\+\_\+matrix}}$<$ T, Alloc, L, Access $>$ \&}]{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [constexpr]}, {\ttfamily [default]}}
 
 
 
@@ -908,13 +1062,13 @@ Default copy assignment.
 \begin{DoxyReturn}{Returns}
 self 
 \end{DoxyReturn}
-\mbox{\Hypertarget{classstd_1_1math_1_1dr__matrix_af5a00e7dac9ee67e2a1c5903a74b5006}\label{classstd_1_1math_1_1dr__matrix_af5a00e7dac9ee67e2a1c5903a74b5006}} 
+\mbox{\Hypertarget{classstd_1_1math_1_1dr__matrix_a9d236bd6dd3a7e02157fa72cd3c4dedb}\label{classstd_1_1math_1_1dr__matrix_a9d236bd6dd3a7e02157fa72cd3c4dedb}} 
 \index{std::math::dr\_matrix$<$ T, Alloc, L, Access $>$@{std::math::dr\_matrix$<$ T, Alloc, L, Access $>$}!operator=@{operator=}}
 \index{operator=@{operator=}!std::math::dr\_matrix$<$ T, Alloc, L, Access $>$@{std::math::dr\_matrix$<$ T, Alloc, L, Access $>$}}
 \doxysubsubsection{\texorpdfstring{operator=()}{operator=()}\hspace{0.1cm}{\footnotesize\ttfamily [2/6]}}
 {\footnotesize\ttfamily template$<$class T , class Alloc  = allocator$<$\+T$>$, class L  = experimental\+::layout\+\_\+right, class Access  = experimental\+::default\+\_\+accessor$<$\+T$>$$>$ \\
-template$<$concepts\+::tensor\+\_\+may\+\_\+be\+\_\+constructible$<$ dr\+\_\+matrix $>$ M2$>$ \\
-constexpr \mbox{\hyperlink{classstd_1_1math_1_1dr__matrix}{dr\+\_\+matrix}}\& \mbox{\hyperlink{classstd_1_1math_1_1dr__matrix}{std\+::math\+::dr\+\_\+matrix}}$<$ \mbox{\hyperlink{namespacestd_1_1math_a53983004b9afa750d13aff5975152bf2}{T}}, \mbox{\hyperlink{namespacestd_1_1math_a597a66936269f36c2b022a726d9f82a0}{Alloc}}, \mbox{\hyperlink{namespacestd_1_1math_a1575e00678072847b093ec1a603697d1}{L}}, \mbox{\hyperlink{namespacestd_1_1math_a39f52c16036f51ca651f8cf88cffbead}{Access}} $>$\+::operator= (\begin{DoxyParamCaption}\item[{const M2 \&}]{rhs }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [constexpr]}, {\ttfamily [noexcept]}}
+template$<$concepts\+::tensor\+\_\+may\+\_\+be\+\_\+constructible$<$ \mbox{\hyperlink{classstd_1_1math_1_1dr__matrix}{dr\+\_\+matrix}} $>$ M2$>$ \\
+constexpr \mbox{\hyperlink{classstd_1_1math_1_1dr__matrix}{dr\+\_\+matrix}} \& \mbox{\hyperlink{classstd_1_1math_1_1dr__matrix}{std\+::math\+::dr\+\_\+matrix}}$<$ T, Alloc, L, Access $>$\+::operator= (\begin{DoxyParamCaption}\item[{const M2 \&}]{rhs }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [constexpr]}, {\ttfamily [noexcept]}}
 
 
 
@@ -933,21 +1087,21 @@ Template copy assignment.
 \begin{DoxyReturn}{Returns}
 self 
 \end{DoxyReturn}
-\mbox{\Hypertarget{classstd_1_1math_1_1dr__matrix_a650881dfc6d46d05aa176f916adfa0f5}\label{classstd_1_1math_1_1dr__matrix_a650881dfc6d46d05aa176f916adfa0f5}} 
+\mbox{\Hypertarget{classstd_1_1math_1_1dr__matrix_a63def649b13c72108c2e2120c3f0d94d}\label{classstd_1_1math_1_1dr__matrix_a63def649b13c72108c2e2120c3f0d94d}} 
 \index{std::math::dr\_matrix$<$ T, Alloc, L, Access $>$@{std::math::dr\_matrix$<$ T, Alloc, L, Access $>$}!operator=@{operator=}}
 \index{operator=@{operator=}!std::math::dr\_matrix$<$ T, Alloc, L, Access $>$@{std::math::dr\_matrix$<$ T, Alloc, L, Access $>$}}
 \doxysubsubsection{\texorpdfstring{operator=()}{operator=()}\hspace{0.1cm}{\footnotesize\ttfamily [3/6]}}
 {\footnotesize\ttfamily template$<$class T , class Alloc  = allocator$<$\+T$>$, class L  = experimental\+::layout\+\_\+right, class Access  = experimental\+::default\+\_\+accessor$<$\+T$>$$>$ \\
-template$<$concepts\+::tensor\+\_\+may\+\_\+be\+\_\+constructible$<$ dr\+\_\+matrix$<$ T, Alloc, L, Access $>$ $>$ M2$>$ \\
-constexpr \mbox{\hyperlink{classstd_1_1math_1_1dr__matrix}{dr\+\_\+matrix}}$<$\mbox{\hyperlink{namespacestd_1_1math_a53983004b9afa750d13aff5975152bf2}{T}},\mbox{\hyperlink{namespacestd_1_1math_a597a66936269f36c2b022a726d9f82a0}{Alloc}},\mbox{\hyperlink{namespacestd_1_1math_a1575e00678072847b093ec1a603697d1}{L}},\mbox{\hyperlink{namespacestd_1_1math_a39f52c16036f51ca651f8cf88cffbead}{Access}}$>$\& \mbox{\hyperlink{classstd_1_1math_1_1dr__matrix}{std\+::math\+::dr\+\_\+matrix}}$<$ \mbox{\hyperlink{namespacestd_1_1math_a53983004b9afa750d13aff5975152bf2}{T}}, \mbox{\hyperlink{namespacestd_1_1math_a597a66936269f36c2b022a726d9f82a0}{Alloc}}, \mbox{\hyperlink{namespacestd_1_1math_a1575e00678072847b093ec1a603697d1}{L}}, \mbox{\hyperlink{namespacestd_1_1math_a39f52c16036f51ca651f8cf88cffbead}{Access}} $>$\+::operator= (\begin{DoxyParamCaption}\item[{const M2 \&}]{rhs }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [constexpr]}, {\ttfamily [noexcept]}}
+template$<$concepts\+::tensor\+\_\+may\+\_\+be\+\_\+constructible$<$ \mbox{\hyperlink{classstd_1_1math_1_1dr__matrix}{dr\+\_\+matrix}}$<$ T, Alloc, L, Access $>$ $>$ M2$>$ \\
+constexpr \mbox{\hyperlink{classstd_1_1math_1_1dr__matrix}{dr\+\_\+matrix}}$<$ T, Alloc, L, Access $>$ \& \mbox{\hyperlink{classstd_1_1math_1_1dr__matrix}{std\+::math\+::dr\+\_\+matrix}}$<$ T, Alloc, L, Access $>$\+::operator= (\begin{DoxyParamCaption}\item[{const M2 \&}]{rhs }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [constexpr]}, {\ttfamily [noexcept]}}
 
-\mbox{\Hypertarget{classstd_1_1math_1_1dr__matrix_afeef79f23e9542ecb9ca050d0473dec7}\label{classstd_1_1math_1_1dr__matrix_afeef79f23e9542ecb9ca050d0473dec7}} 
+\mbox{\Hypertarget{classstd_1_1math_1_1dr__matrix_a1af59099970afc2bb3b5b6c33df2b2ce}\label{classstd_1_1math_1_1dr__matrix_a1af59099970afc2bb3b5b6c33df2b2ce}} 
 \index{std::math::dr\_matrix$<$ T, Alloc, L, Access $>$@{std::math::dr\_matrix$<$ T, Alloc, L, Access $>$}!operator=@{operator=}}
 \index{operator=@{operator=}!std::math::dr\_matrix$<$ T, Alloc, L, Access $>$@{std::math::dr\_matrix$<$ T, Alloc, L, Access $>$}}
 \doxysubsubsection{\texorpdfstring{operator=()}{operator=()}\hspace{0.1cm}{\footnotesize\ttfamily [4/6]}}
 {\footnotesize\ttfamily template$<$class T , class Alloc  = allocator$<$\+T$>$, class L  = experimental\+::layout\+\_\+right, class Access  = experimental\+::default\+\_\+accessor$<$\+T$>$$>$ \\
-template$<$concepts\+::view\+\_\+may\+\_\+be\+\_\+constructible\+\_\+to\+\_\+tensor$<$ dr\+\_\+matrix $>$ MDS$>$ \\
-constexpr \mbox{\hyperlink{classstd_1_1math_1_1dr__matrix}{dr\+\_\+matrix}}\& \mbox{\hyperlink{classstd_1_1math_1_1dr__matrix}{std\+::math\+::dr\+\_\+matrix}}$<$ \mbox{\hyperlink{namespacestd_1_1math_a53983004b9afa750d13aff5975152bf2}{T}}, \mbox{\hyperlink{namespacestd_1_1math_a597a66936269f36c2b022a726d9f82a0}{Alloc}}, \mbox{\hyperlink{namespacestd_1_1math_a1575e00678072847b093ec1a603697d1}{L}}, \mbox{\hyperlink{namespacestd_1_1math_a39f52c16036f51ca651f8cf88cffbead}{Access}} $>$\+::operator= (\begin{DoxyParamCaption}\item[{const MDS \&}]{view }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [constexpr]}, {\ttfamily [noexcept]}}
+template$<$concepts\+::view\+\_\+may\+\_\+be\+\_\+constructible\+\_\+to\+\_\+tensor$<$ \mbox{\hyperlink{classstd_1_1math_1_1dr__matrix}{dr\+\_\+matrix}} $>$ MDS$>$ \\
+constexpr \mbox{\hyperlink{classstd_1_1math_1_1dr__matrix}{dr\+\_\+matrix}} \& \mbox{\hyperlink{classstd_1_1math_1_1dr__matrix}{std\+::math\+::dr\+\_\+matrix}}$<$ T, Alloc, L, Access $>$\+::operator= (\begin{DoxyParamCaption}\item[{const MDS \&}]{view }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [constexpr]}, {\ttfamily [noexcept]}}
 
 
 
@@ -966,20 +1120,20 @@ Construct from a two dimensional view.
 \begin{DoxyReturn}{Returns}
 self 
 \end{DoxyReturn}
-\mbox{\Hypertarget{classstd_1_1math_1_1dr__matrix_aa8c4f2b5d3dfb0ca19845e2bb583e772}\label{classstd_1_1math_1_1dr__matrix_aa8c4f2b5d3dfb0ca19845e2bb583e772}} 
+\mbox{\Hypertarget{classstd_1_1math_1_1dr__matrix_a5f9b74481e7bbae0351aa3f09430bc73}\label{classstd_1_1math_1_1dr__matrix_a5f9b74481e7bbae0351aa3f09430bc73}} 
 \index{std::math::dr\_matrix$<$ T, Alloc, L, Access $>$@{std::math::dr\_matrix$<$ T, Alloc, L, Access $>$}!operator=@{operator=}}
 \index{operator=@{operator=}!std::math::dr\_matrix$<$ T, Alloc, L, Access $>$@{std::math::dr\_matrix$<$ T, Alloc, L, Access $>$}}
 \doxysubsubsection{\texorpdfstring{operator=()}{operator=()}\hspace{0.1cm}{\footnotesize\ttfamily [5/6]}}
 {\footnotesize\ttfamily template$<$class T , class Alloc  = allocator$<$\+T$>$, class L  = experimental\+::layout\+\_\+right, class Access  = experimental\+::default\+\_\+accessor$<$\+T$>$$>$ \\
-template$<$concepts\+::view\+\_\+may\+\_\+be\+\_\+constructible\+\_\+to\+\_\+tensor$<$ dr\+\_\+matrix$<$ T, Alloc, L, Access $>$ $>$ MDS$>$ \\
-constexpr \mbox{\hyperlink{classstd_1_1math_1_1dr__matrix}{dr\+\_\+matrix}}$<$\mbox{\hyperlink{namespacestd_1_1math_a53983004b9afa750d13aff5975152bf2}{T}},\mbox{\hyperlink{namespacestd_1_1math_a597a66936269f36c2b022a726d9f82a0}{Alloc}},\mbox{\hyperlink{namespacestd_1_1math_a1575e00678072847b093ec1a603697d1}{L}},\mbox{\hyperlink{namespacestd_1_1math_a39f52c16036f51ca651f8cf88cffbead}{Access}}$>$\& \mbox{\hyperlink{classstd_1_1math_1_1dr__matrix}{std\+::math\+::dr\+\_\+matrix}}$<$ \mbox{\hyperlink{namespacestd_1_1math_a53983004b9afa750d13aff5975152bf2}{T}}, \mbox{\hyperlink{namespacestd_1_1math_a597a66936269f36c2b022a726d9f82a0}{Alloc}}, \mbox{\hyperlink{namespacestd_1_1math_a1575e00678072847b093ec1a603697d1}{L}}, \mbox{\hyperlink{namespacestd_1_1math_a39f52c16036f51ca651f8cf88cffbead}{Access}} $>$\+::operator= (\begin{DoxyParamCaption}\item[{const MDS \&}]{view }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [constexpr]}, {\ttfamily [noexcept]}}
+template$<$concepts\+::view\+\_\+may\+\_\+be\+\_\+constructible\+\_\+to\+\_\+tensor$<$ \mbox{\hyperlink{classstd_1_1math_1_1dr__matrix}{dr\+\_\+matrix}}$<$ T, Alloc, L, Access $>$ $>$ MDS$>$ \\
+constexpr \mbox{\hyperlink{classstd_1_1math_1_1dr__matrix}{dr\+\_\+matrix}}$<$ T, Alloc, L, Access $>$ \& \mbox{\hyperlink{classstd_1_1math_1_1dr__matrix}{std\+::math\+::dr\+\_\+matrix}}$<$ T, Alloc, L, Access $>$\+::operator= (\begin{DoxyParamCaption}\item[{const MDS \&}]{view }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [constexpr]}, {\ttfamily [noexcept]}}
 
-\mbox{\Hypertarget{classstd_1_1math_1_1dr__matrix_a718b174540ff23324ebaae61befdbfd2}\label{classstd_1_1math_1_1dr__matrix_a718b174540ff23324ebaae61befdbfd2}} 
+\mbox{\Hypertarget{classstd_1_1math_1_1dr__matrix_acb6fa00fde99b962e3f767827e78aad0}\label{classstd_1_1math_1_1dr__matrix_acb6fa00fde99b962e3f767827e78aad0}} 
 \index{std::math::dr\_matrix$<$ T, Alloc, L, Access $>$@{std::math::dr\_matrix$<$ T, Alloc, L, Access $>$}!operator=@{operator=}}
 \index{operator=@{operator=}!std::math::dr\_matrix$<$ T, Alloc, L, Access $>$@{std::math::dr\_matrix$<$ T, Alloc, L, Access $>$}}
 \doxysubsubsection{\texorpdfstring{operator=()}{operator=()}\hspace{0.1cm}{\footnotesize\ttfamily [6/6]}}
 {\footnotesize\ttfamily template$<$class T , class Alloc  = allocator$<$\+T$>$, class L  = experimental\+::layout\+\_\+right, class Access  = experimental\+::default\+\_\+accessor$<$\+T$>$$>$ \\
-constexpr \mbox{\hyperlink{classstd_1_1math_1_1dr__matrix}{dr\+\_\+matrix}}\& \mbox{\hyperlink{classstd_1_1math_1_1dr__matrix}{std\+::math\+::dr\+\_\+matrix}}$<$ \mbox{\hyperlink{namespacestd_1_1math_a53983004b9afa750d13aff5975152bf2}{T}}, \mbox{\hyperlink{namespacestd_1_1math_a597a66936269f36c2b022a726d9f82a0}{Alloc}}, \mbox{\hyperlink{namespacestd_1_1math_a1575e00678072847b093ec1a603697d1}{L}}, \mbox{\hyperlink{namespacestd_1_1math_a39f52c16036f51ca651f8cf88cffbead}{Access}} $>$\+::operator= (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classstd_1_1math_1_1dr__matrix}{dr\+\_\+matrix}}$<$ \mbox{\hyperlink{namespacestd_1_1math_a53983004b9afa750d13aff5975152bf2}{T}}, \mbox{\hyperlink{namespacestd_1_1math_a597a66936269f36c2b022a726d9f82a0}{Alloc}}, \mbox{\hyperlink{namespacestd_1_1math_a1575e00678072847b093ec1a603697d1}{L}}, \mbox{\hyperlink{namespacestd_1_1math_a39f52c16036f51ca651f8cf88cffbead}{Access}} $>$ \&\&}]{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [constexpr]}, {\ttfamily [default]}}
+constexpr \mbox{\hyperlink{classstd_1_1math_1_1dr__matrix}{dr\+\_\+matrix}} \& \mbox{\hyperlink{classstd_1_1math_1_1dr__matrix}{std\+::math\+::dr\+\_\+matrix}}$<$ T, Alloc, L, Access $>$\+::operator= (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classstd_1_1math_1_1dr__matrix}{dr\+\_\+matrix}}$<$ T, Alloc, L, Access $>$ \&\&}]{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [constexpr]}, {\ttfamily [default]}}
 
 
 
@@ -998,7 +1152,7 @@ self
 \index{reserve@{reserve}!std::math::dr\_matrix$<$ T, Alloc, L, Access $>$@{std::math::dr\_matrix$<$ T, Alloc, L, Access $>$}}
 \doxysubsubsection{\texorpdfstring{reserve()}{reserve()}}
 {\footnotesize\ttfamily template$<$class T , class Alloc  = allocator$<$\+T$>$, class L  = experimental\+::layout\+\_\+right, class Access  = experimental\+::default\+\_\+accessor$<$\+T$>$$>$ \\
-constexpr void \mbox{\hyperlink{classstd_1_1math_1_1dr__tensor}{std\+::math\+::dr\+\_\+tensor}}$<$ \mbox{\hyperlink{namespacestd_1_1math_a53983004b9afa750d13aff5975152bf2}{T}}, \mbox{\hyperlink{namespacestd_1_1math_ad69af7dc6d02afb275a8d32b5a1c5c5e}{R}}, \mbox{\hyperlink{namespacestd_1_1math_a597a66936269f36c2b022a726d9f82a0}{Alloc}}, \mbox{\hyperlink{namespacestd_1_1math_a1575e00678072847b093ec1a603697d1}{L}}, \mbox{\hyperlink{namespacestd_1_1math_a39f52c16036f51ca651f8cf88cffbead}{Access}} $>$\+::reserve\hspace{0.3cm}{\ttfamily [constexpr]}}
+constexpr void \mbox{\hyperlink{classstd_1_1math_1_1dr__tensor}{std\+::math\+::dr\+\_\+tensor}}$<$ T, R, Alloc, L, Access $>$\+::reserve (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classstd_1_1math_1_1dr__matrix_a708494c9db17c0e143f80a319d6d66e8}{extents\+\_\+type}}}]{new\+\_\+cap }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [constexpr]}}
 
 
 
@@ -1014,7 +1168,7 @@ Attempts to reserve the capacity of the tensor to the input extents.
 \index{resize@{resize}!std::math::dr\_matrix$<$ T, Alloc, L, Access $>$@{std::math::dr\_matrix$<$ T, Alloc, L, Access $>$}}
 \doxysubsubsection{\texorpdfstring{resize()}{resize()}}
 {\footnotesize\ttfamily template$<$class T , class Alloc  = allocator$<$\+T$>$, class L  = experimental\+::layout\+\_\+right, class Access  = experimental\+::default\+\_\+accessor$<$\+T$>$$>$ \\
-constexpr void \mbox{\hyperlink{classstd_1_1math_1_1dr__tensor}{std\+::math\+::dr\+\_\+tensor}}$<$ \mbox{\hyperlink{namespacestd_1_1math_a53983004b9afa750d13aff5975152bf2}{T}}, \mbox{\hyperlink{namespacestd_1_1math_ad69af7dc6d02afb275a8d32b5a1c5c5e}{R}}, \mbox{\hyperlink{namespacestd_1_1math_a597a66936269f36c2b022a726d9f82a0}{Alloc}}, \mbox{\hyperlink{namespacestd_1_1math_a1575e00678072847b093ec1a603697d1}{L}}, \mbox{\hyperlink{namespacestd_1_1math_a39f52c16036f51ca651f8cf88cffbead}{Access}} $>$\+::resize\hspace{0.3cm}{\ttfamily [constexpr]}}
+constexpr void \mbox{\hyperlink{classstd_1_1math_1_1dr__tensor}{std\+::math\+::dr\+\_\+tensor}}$<$ T, R, Alloc, L, Access $>$\+::resize (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classstd_1_1math_1_1dr__matrix_a708494c9db17c0e143f80a319d6d66e8}{extents\+\_\+type}}}]{new\+\_\+size }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [constexpr]}}
 
 
 
@@ -1030,7 +1184,7 @@ Attempts to resize the tensor to the input extents.
 \index{row@{row}!std::math::dr\_matrix$<$ T, Alloc, L, Access $>$@{std::math::dr\_matrix$<$ T, Alloc, L, Access $>$}}
 \doxysubsubsection{\texorpdfstring{row()}{row()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
 {\footnotesize\ttfamily template$<$class T , class Alloc  = allocator$<$\+T$>$, class L  = experimental\+::layout\+\_\+right, class Access  = experimental\+::default\+\_\+accessor$<$\+T$>$$>$ \\
-constexpr \mbox{\hyperlink{classstd_1_1math_1_1dr__matrix_a41950a5f0861b1fb28b2e983e77d7e98}{row\+\_\+type}} \mbox{\hyperlink{classstd_1_1math_1_1dr__matrix}{std\+::math\+::dr\+\_\+matrix}}$<$ \mbox{\hyperlink{namespacestd_1_1math_a53983004b9afa750d13aff5975152bf2}{T}}, \mbox{\hyperlink{namespacestd_1_1math_a597a66936269f36c2b022a726d9f82a0}{Alloc}}, \mbox{\hyperlink{namespacestd_1_1math_a1575e00678072847b093ec1a603697d1}{L}}, \mbox{\hyperlink{namespacestd_1_1math_a39f52c16036f51ca651f8cf88cffbead}{Access}} $>$\+::row (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classstd_1_1math_1_1dr__matrix_afaf5cea2635ac4f9b226d0a89cecaf57}{index\+\_\+type}}}]{i }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [constexpr]}}
+constexpr \mbox{\hyperlink{classstd_1_1math_1_1dr__matrix_a41950a5f0861b1fb28b2e983e77d7e98}{row\+\_\+type}} \mbox{\hyperlink{classstd_1_1math_1_1dr__matrix}{std\+::math\+::dr\+\_\+matrix}}$<$ T, Alloc, L, Access $>$\+::row (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classstd_1_1math_1_1dr__matrix_afaf5cea2635ac4f9b226d0a89cecaf57}{index\+\_\+type}}}]{i }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [constexpr]}}
 
 
 
@@ -1049,7 +1203,7 @@ mutable view of row
 \index{row@{row}!std::math::dr\_matrix$<$ T, Alloc, L, Access $>$@{std::math::dr\_matrix$<$ T, Alloc, L, Access $>$}}
 \doxysubsubsection{\texorpdfstring{row()}{row()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
 {\footnotesize\ttfamily template$<$class T , class Alloc  = allocator$<$\+T$>$, class L  = experimental\+::layout\+\_\+right, class Access  = experimental\+::default\+\_\+accessor$<$\+T$>$$>$ \\
-constexpr \mbox{\hyperlink{classstd_1_1math_1_1dr__matrix_a8036f92437a86877e088daae29352524}{const\+\_\+row\+\_\+type}} \mbox{\hyperlink{classstd_1_1math_1_1dr__matrix}{std\+::math\+::dr\+\_\+matrix}}$<$ \mbox{\hyperlink{namespacestd_1_1math_a53983004b9afa750d13aff5975152bf2}{T}}, \mbox{\hyperlink{namespacestd_1_1math_a597a66936269f36c2b022a726d9f82a0}{Alloc}}, \mbox{\hyperlink{namespacestd_1_1math_a1575e00678072847b093ec1a603697d1}{L}}, \mbox{\hyperlink{namespacestd_1_1math_a39f52c16036f51ca651f8cf88cffbead}{Access}} $>$\+::row (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classstd_1_1math_1_1dr__matrix_afaf5cea2635ac4f9b226d0a89cecaf57}{index\+\_\+type}}}]{i }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [constexpr]}}
+constexpr \mbox{\hyperlink{classstd_1_1math_1_1dr__matrix_a8036f92437a86877e088daae29352524}{const\+\_\+row\+\_\+type}} \mbox{\hyperlink{classstd_1_1math_1_1dr__matrix}{std\+::math\+::dr\+\_\+matrix}}$<$ T, Alloc, L, Access $>$\+::row (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classstd_1_1math_1_1dr__matrix_afaf5cea2635ac4f9b226d0a89cecaf57}{index\+\_\+type}}}]{i }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [constexpr]}}
 
 
 
@@ -1068,7 +1222,7 @@ const view of row
 \index{row\_capacity@{row\_capacity}!std::math::dr\_matrix$<$ T, Alloc, L, Access $>$@{std::math::dr\_matrix$<$ T, Alloc, L, Access $>$}}
 \doxysubsubsection{\texorpdfstring{row\_capacity()}{row\_capacity()}}
 {\footnotesize\ttfamily template$<$class T , class Alloc , class L , class Access $>$ \\
-constexpr \mbox{\hyperlink{classstd_1_1math_1_1dr__matrix}{dr\+\_\+matrix}}$<$ \mbox{\hyperlink{namespacestd_1_1math_a53983004b9afa750d13aff5975152bf2}{T}}, \mbox{\hyperlink{namespacestd_1_1math_a597a66936269f36c2b022a726d9f82a0}{Alloc}}, \mbox{\hyperlink{namespacestd_1_1math_a1575e00678072847b093ec1a603697d1}{L}}, \mbox{\hyperlink{namespacestd_1_1math_a39f52c16036f51ca651f8cf88cffbead}{Access}} $>$\+::\mbox{\hyperlink{classstd_1_1math_1_1dr__matrix_af801b34e4eba972f88113261bd7587d7}{size\+\_\+type}} \mbox{\hyperlink{classstd_1_1math_1_1dr__matrix}{std\+::math\+::dr\+\_\+matrix}}$<$ \mbox{\hyperlink{namespacestd_1_1math_a53983004b9afa750d13aff5975152bf2}{T}}, \mbox{\hyperlink{namespacestd_1_1math_a597a66936269f36c2b022a726d9f82a0}{Alloc}}, \mbox{\hyperlink{namespacestd_1_1math_a1575e00678072847b093ec1a603697d1}{L}}, \mbox{\hyperlink{namespacestd_1_1math_a39f52c16036f51ca651f8cf88cffbead}{Access}} $>$\+::row\+\_\+capacity\hspace{0.3cm}{\ttfamily [constexpr]}, {\ttfamily [noexcept]}}
+constexpr \mbox{\hyperlink{classstd_1_1math_1_1dr__matrix}{dr\+\_\+matrix}}$<$ T, Alloc, L, Access $>$\mbox{\hyperlink{classstd_1_1math_1_1dr__matrix_af801b34e4eba972f88113261bd7587d7}{\+::size\+\_\+type}} \mbox{\hyperlink{classstd_1_1math_1_1dr__matrix}{std\+::math\+::dr\+\_\+matrix}}$<$ T, Alloc, L, Access $>$\+::row\+\_\+capacity\hspace{0.3cm}{\ttfamily [constexpr]}, {\ttfamily [noexcept]}}
 
 
 
@@ -1082,7 +1236,7 @@ row capacity
 \index{rows@{rows}!std::math::dr\_matrix$<$ T, Alloc, L, Access $>$@{std::math::dr\_matrix$<$ T, Alloc, L, Access $>$}}
 \doxysubsubsection{\texorpdfstring{rows()}{rows()}}
 {\footnotesize\ttfamily template$<$class T , class Alloc , class L , class Access $>$ \\
-constexpr \mbox{\hyperlink{classstd_1_1math_1_1dr__matrix}{dr\+\_\+matrix}}$<$ \mbox{\hyperlink{namespacestd_1_1math_a53983004b9afa750d13aff5975152bf2}{T}}, \mbox{\hyperlink{namespacestd_1_1math_a597a66936269f36c2b022a726d9f82a0}{Alloc}}, \mbox{\hyperlink{namespacestd_1_1math_a1575e00678072847b093ec1a603697d1}{L}}, \mbox{\hyperlink{namespacestd_1_1math_a39f52c16036f51ca651f8cf88cffbead}{Access}} $>$\+::\mbox{\hyperlink{classstd_1_1math_1_1dr__matrix_af801b34e4eba972f88113261bd7587d7}{size\+\_\+type}} \mbox{\hyperlink{classstd_1_1math_1_1dr__matrix}{std\+::math\+::dr\+\_\+matrix}}$<$ \mbox{\hyperlink{namespacestd_1_1math_a53983004b9afa750d13aff5975152bf2}{T}}, \mbox{\hyperlink{namespacestd_1_1math_a597a66936269f36c2b022a726d9f82a0}{Alloc}}, \mbox{\hyperlink{namespacestd_1_1math_a1575e00678072847b093ec1a603697d1}{L}}, \mbox{\hyperlink{namespacestd_1_1math_a39f52c16036f51ca651f8cf88cffbead}{Access}} $>$\+::rows\hspace{0.3cm}{\ttfamily [constexpr]}, {\ttfamily [noexcept]}}
+constexpr \mbox{\hyperlink{classstd_1_1math_1_1dr__matrix}{dr\+\_\+matrix}}$<$ T, Alloc, L, Access $>$\mbox{\hyperlink{classstd_1_1math_1_1dr__matrix_af801b34e4eba972f88113261bd7587d7}{\+::size\+\_\+type}} \mbox{\hyperlink{classstd_1_1math_1_1dr__matrix}{std\+::math\+::dr\+\_\+matrix}}$<$ T, Alloc, L, Access $>$\+::rows\hspace{0.3cm}{\ttfamily [constexpr]}, {\ttfamily [noexcept]}}
 
 
 
@@ -1096,7 +1250,7 @@ number of rows
 \index{size@{size}!std::math::dr\_matrix$<$ T, Alloc, L, Access $>$@{std::math::dr\_matrix$<$ T, Alloc, L, Access $>$}}
 \doxysubsubsection{\texorpdfstring{size()}{size()}}
 {\footnotesize\ttfamily template$<$class T , class Alloc  = allocator$<$\+T$>$, class L  = experimental\+::layout\+\_\+right, class Access  = experimental\+::default\+\_\+accessor$<$\+T$>$$>$ \\
-constexpr \mbox{\hyperlink{classstd_1_1math_1_1dr__tensor}{dr\+\_\+tensor}}$<$ \mbox{\hyperlink{namespacestd_1_1math_a53983004b9afa750d13aff5975152bf2}{T}}, \mbox{\hyperlink{namespacestd_1_1math_ad69af7dc6d02afb275a8d32b5a1c5c5e}{R}}, \mbox{\hyperlink{namespacestd_1_1math_a597a66936269f36c2b022a726d9f82a0}{Alloc}}, \mbox{\hyperlink{namespacestd_1_1math_a1575e00678072847b093ec1a603697d1}{L}}, \mbox{\hyperlink{namespacestd_1_1math_a39f52c16036f51ca651f8cf88cffbead}{Access}} $>$\+::\mbox{\hyperlink{classstd_1_1math_1_1dr__matrix_a708494c9db17c0e143f80a319d6d66e8}{extents\+\_\+type}} \mbox{\hyperlink{classstd_1_1math_1_1dr__tensor}{std\+::math\+::dr\+\_\+tensor}}$<$ \mbox{\hyperlink{namespacestd_1_1math_a53983004b9afa750d13aff5975152bf2}{T}}, \mbox{\hyperlink{namespacestd_1_1math_ad69af7dc6d02afb275a8d32b5a1c5c5e}{R}}, \mbox{\hyperlink{namespacestd_1_1math_a597a66936269f36c2b022a726d9f82a0}{Alloc}}, \mbox{\hyperlink{namespacestd_1_1math_a1575e00678072847b093ec1a603697d1}{L}}, \mbox{\hyperlink{namespacestd_1_1math_a39f52c16036f51ca651f8cf88cffbead}{Access}} $>$\+::size\hspace{0.3cm}{\ttfamily [constexpr]}, {\ttfamily [noexcept]}}
+constexpr \mbox{\hyperlink{classstd_1_1math_1_1dr__tensor}{dr\+\_\+tensor}}$<$ T, R, Alloc, L, Access $>$\mbox{\hyperlink{classstd_1_1math_1_1dr__matrix_a708494c9db17c0e143f80a319d6d66e8}{\+::extents\+\_\+type}} \mbox{\hyperlink{classstd_1_1math_1_1dr__tensor}{std\+::math\+::dr\+\_\+tensor}}$<$ T, R, Alloc, L, Access $>$\+::size\hspace{0.3cm}{\ttfamily [constexpr]}, {\ttfamily [noexcept]}}
 
 
 
@@ -1110,7 +1264,7 @@ number of (rows,columns,depth,etc.)
 \index{span@{span}!std::math::dr\_matrix$<$ T, Alloc, L, Access $>$@{std::math::dr\_matrix$<$ T, Alloc, L, Access $>$}}
 \doxysubsubsection{\texorpdfstring{span()}{span()}}
 {\footnotesize\ttfamily template$<$class T , class Alloc  = allocator$<$\+T$>$, class L  = experimental\+::layout\+\_\+right, class Access  = experimental\+::default\+\_\+accessor$<$\+T$>$$>$ \\
-constexpr \mbox{\hyperlink{classstd_1_1math_1_1dr__tensor}{dr\+\_\+tensor}}$<$ \mbox{\hyperlink{namespacestd_1_1math_a53983004b9afa750d13aff5975152bf2}{T}}, \mbox{\hyperlink{namespacestd_1_1math_ad69af7dc6d02afb275a8d32b5a1c5c5e}{R}}, \mbox{\hyperlink{namespacestd_1_1math_a597a66936269f36c2b022a726d9f82a0}{Alloc}}, \mbox{\hyperlink{namespacestd_1_1math_a1575e00678072847b093ec1a603697d1}{L}}, \mbox{\hyperlink{namespacestd_1_1math_a39f52c16036f51ca651f8cf88cffbead}{Access}} $>$\+::\mbox{\hyperlink{classstd_1_1math_1_1dr__matrix_a12c68998146c5e3d915ca19cb145c6f8}{span\+\_\+type}} \mbox{\hyperlink{classstd_1_1math_1_1dr__tensor}{std\+::math\+::dr\+\_\+tensor}}$<$ \mbox{\hyperlink{namespacestd_1_1math_a53983004b9afa750d13aff5975152bf2}{T}}, \mbox{\hyperlink{namespacestd_1_1math_ad69af7dc6d02afb275a8d32b5a1c5c5e}{R}}, \mbox{\hyperlink{namespacestd_1_1math_a597a66936269f36c2b022a726d9f82a0}{Alloc}}, \mbox{\hyperlink{namespacestd_1_1math_a1575e00678072847b093ec1a603697d1}{L}}, \mbox{\hyperlink{namespacestd_1_1math_a39f52c16036f51ca651f8cf88cffbead}{Access}} $>$\+::span\hspace{0.3cm}{\ttfamily [constexpr]}, {\ttfamily [noexcept]}}
+constexpr \mbox{\hyperlink{classstd_1_1math_1_1dr__tensor}{dr\+\_\+tensor}}$<$ T, R, Alloc, L, Access $>$\mbox{\hyperlink{classstd_1_1math_1_1dr__matrix_a12c68998146c5e3d915ca19cb145c6f8}{\+::span\+\_\+type}} \mbox{\hyperlink{classstd_1_1math_1_1dr__tensor}{std\+::math\+::dr\+\_\+tensor}}$<$ T, R, Alloc, L, Access $>$\+::span\hspace{0.3cm}{\ttfamily [constexpr]}, {\ttfamily [noexcept]}}
 
 
 
@@ -1125,7 +1279,7 @@ const N dimensional span of extents(\+Ds...) ~\newline
 \index{submatrix@{submatrix}!std::math::dr\_matrix$<$ T, Alloc, L, Access $>$@{std::math::dr\_matrix$<$ T, Alloc, L, Access $>$}}
 \doxysubsubsection{\texorpdfstring{submatrix()}{submatrix()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
 {\footnotesize\ttfamily template$<$class T , class Alloc , class L , class Access $>$ \\
-constexpr \mbox{\hyperlink{classstd_1_1math_1_1dr__matrix}{dr\+\_\+matrix}}$<$ \mbox{\hyperlink{namespacestd_1_1math_a53983004b9afa750d13aff5975152bf2}{T}}, \mbox{\hyperlink{namespacestd_1_1math_a597a66936269f36c2b022a726d9f82a0}{Alloc}}, \mbox{\hyperlink{namespacestd_1_1math_a1575e00678072847b093ec1a603697d1}{L}}, \mbox{\hyperlink{namespacestd_1_1math_a39f52c16036f51ca651f8cf88cffbead}{Access}} $>$\+::\mbox{\hyperlink{classstd_1_1math_1_1dr__matrix_a398a8e1231c028fe9526fcbcddc2ba87}{submatrix\+\_\+type}} \mbox{\hyperlink{classstd_1_1math_1_1dr__matrix}{std\+::math\+::dr\+\_\+matrix}}$<$ \mbox{\hyperlink{namespacestd_1_1math_a53983004b9afa750d13aff5975152bf2}{T}}, \mbox{\hyperlink{namespacestd_1_1math_a597a66936269f36c2b022a726d9f82a0}{Alloc}}, \mbox{\hyperlink{namespacestd_1_1math_a1575e00678072847b093ec1a603697d1}{L}}, \mbox{\hyperlink{namespacestd_1_1math_a39f52c16036f51ca651f8cf88cffbead}{Access}} $>$\+::submatrix (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classstd_1_1math_1_1dr__matrix_a421847d85efa25b9d8484a86408692b6}{tuple\+\_\+type}}}]{start,  }\item[{\mbox{\hyperlink{classstd_1_1math_1_1dr__matrix_a421847d85efa25b9d8484a86408692b6}{tuple\+\_\+type}}}]{end }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [constexpr]}}
+constexpr \mbox{\hyperlink{classstd_1_1math_1_1dr__matrix}{dr\+\_\+matrix}}$<$ T, Alloc, L, Access $>$\mbox{\hyperlink{classstd_1_1math_1_1dr__matrix_a398a8e1231c028fe9526fcbcddc2ba87}{\+::submatrix\+\_\+type}} \mbox{\hyperlink{classstd_1_1math_1_1dr__matrix}{std\+::math\+::dr\+\_\+matrix}}$<$ T, Alloc, L, Access $>$\+::submatrix (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classstd_1_1math_1_1dr__matrix_a421847d85efa25b9d8484a86408692b6}{tuple\+\_\+type}}}]{start,  }\item[{\mbox{\hyperlink{classstd_1_1math_1_1dr__matrix_a421847d85efa25b9d8484a86408692b6}{tuple\+\_\+type}}}]{end }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [constexpr]}}
 
 
 
@@ -1146,7 +1300,7 @@ mutable view of the specified submatrix
 \index{submatrix@{submatrix}!std::math::dr\_matrix$<$ T, Alloc, L, Access $>$@{std::math::dr\_matrix$<$ T, Alloc, L, Access $>$}}
 \doxysubsubsection{\texorpdfstring{submatrix()}{submatrix()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
 {\footnotesize\ttfamily template$<$class T , class Alloc , class L , class Access $>$ \\
-constexpr \mbox{\hyperlink{classstd_1_1math_1_1dr__matrix}{dr\+\_\+matrix}}$<$ \mbox{\hyperlink{namespacestd_1_1math_a53983004b9afa750d13aff5975152bf2}{T}}, \mbox{\hyperlink{namespacestd_1_1math_a597a66936269f36c2b022a726d9f82a0}{Alloc}}, \mbox{\hyperlink{namespacestd_1_1math_a1575e00678072847b093ec1a603697d1}{L}}, \mbox{\hyperlink{namespacestd_1_1math_a39f52c16036f51ca651f8cf88cffbead}{Access}} $>$\+::\mbox{\hyperlink{classstd_1_1math_1_1dr__matrix_a4af7c8308a01329c0a123e1dce3b85d6}{const\+\_\+submatrix\+\_\+type}} \mbox{\hyperlink{classstd_1_1math_1_1dr__matrix}{std\+::math\+::dr\+\_\+matrix}}$<$ \mbox{\hyperlink{namespacestd_1_1math_a53983004b9afa750d13aff5975152bf2}{T}}, \mbox{\hyperlink{namespacestd_1_1math_a597a66936269f36c2b022a726d9f82a0}{Alloc}}, \mbox{\hyperlink{namespacestd_1_1math_a1575e00678072847b093ec1a603697d1}{L}}, \mbox{\hyperlink{namespacestd_1_1math_a39f52c16036f51ca651f8cf88cffbead}{Access}} $>$\+::submatrix (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classstd_1_1math_1_1dr__matrix_a421847d85efa25b9d8484a86408692b6}{tuple\+\_\+type}}}]{start,  }\item[{\mbox{\hyperlink{classstd_1_1math_1_1dr__matrix_a421847d85efa25b9d8484a86408692b6}{tuple\+\_\+type}}}]{end }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [constexpr]}}
+constexpr \mbox{\hyperlink{classstd_1_1math_1_1dr__matrix}{dr\+\_\+matrix}}$<$ T, Alloc, L, Access $>$\mbox{\hyperlink{classstd_1_1math_1_1dr__matrix_a4af7c8308a01329c0a123e1dce3b85d6}{\+::const\+\_\+submatrix\+\_\+type}} \mbox{\hyperlink{classstd_1_1math_1_1dr__matrix}{std\+::math\+::dr\+\_\+matrix}}$<$ T, Alloc, L, Access $>$\+::submatrix (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classstd_1_1math_1_1dr__matrix_a421847d85efa25b9d8484a86408692b6}{tuple\+\_\+type}}}]{start,  }\item[{\mbox{\hyperlink{classstd_1_1math_1_1dr__matrix_a421847d85efa25b9d8484a86408692b6}{tuple\+\_\+type}}}]{end }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [constexpr]}}
 
 
 
@@ -1167,7 +1321,7 @@ const view of the specified submatrix
 \index{underlying\_span@{underlying\_span}!std::math::dr\_matrix$<$ T, Alloc, L, Access $>$@{std::math::dr\_matrix$<$ T, Alloc, L, Access $>$}}
 \doxysubsubsection{\texorpdfstring{underlying\_span()}{underlying\_span()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
 {\footnotesize\ttfamily template$<$class T , class Alloc  = allocator$<$\+T$>$, class L  = experimental\+::layout\+\_\+right, class Access  = experimental\+::default\+\_\+accessor$<$\+T$>$$>$ \\
-constexpr \mbox{\hyperlink{classstd_1_1math_1_1dr__tensor}{dr\+\_\+tensor}}$<$ \mbox{\hyperlink{namespacestd_1_1math_a53983004b9afa750d13aff5975152bf2}{T}}, \mbox{\hyperlink{namespacestd_1_1math_ad69af7dc6d02afb275a8d32b5a1c5c5e}{R}}, \mbox{\hyperlink{namespacestd_1_1math_a597a66936269f36c2b022a726d9f82a0}{Alloc}}, \mbox{\hyperlink{namespacestd_1_1math_a1575e00678072847b093ec1a603697d1}{L}}, \mbox{\hyperlink{namespacestd_1_1math_a39f52c16036f51ca651f8cf88cffbead}{Access}} $>$\+::\mbox{\hyperlink{classstd_1_1math_1_1dr__matrix_a86fdd3eea86e4dd17e29c965d3a50dec}{const\+\_\+underlying\+\_\+span\+\_\+type}} \mbox{\hyperlink{classstd_1_1math_1_1dr__tensor}{std\+::math\+::dr\+\_\+tensor}}$<$ \mbox{\hyperlink{namespacestd_1_1math_a53983004b9afa750d13aff5975152bf2}{T}}, \mbox{\hyperlink{namespacestd_1_1math_ad69af7dc6d02afb275a8d32b5a1c5c5e}{R}}, \mbox{\hyperlink{namespacestd_1_1math_a597a66936269f36c2b022a726d9f82a0}{Alloc}}, \mbox{\hyperlink{namespacestd_1_1math_a1575e00678072847b093ec1a603697d1}{L}}, \mbox{\hyperlink{namespacestd_1_1math_a39f52c16036f51ca651f8cf88cffbead}{Access}} $>$\+::underlying\+\_\+span\hspace{0.3cm}{\ttfamily [constexpr]}, {\ttfamily [noexcept]}}
+constexpr \mbox{\hyperlink{classstd_1_1math_1_1dr__tensor}{dr\+\_\+tensor}}$<$ T, R, Alloc, L, Access $>$\mbox{\hyperlink{classstd_1_1math_1_1dr__matrix_a86fdd3eea86e4dd17e29c965d3a50dec}{\+::const\+\_\+underlying\+\_\+span\+\_\+type}} \mbox{\hyperlink{classstd_1_1math_1_1dr__tensor}{std\+::math\+::dr\+\_\+tensor}}$<$ T, R, Alloc, L, Access $>$\+::underlying\+\_\+span\hspace{0.3cm}{\ttfamily [constexpr]}, {\ttfamily [noexcept]}}
 
 
 
@@ -1182,7 +1336,7 @@ const N dimensional span of extents(\+Ds...) ~\newline
 \index{underlying\_span@{underlying\_span}!std::math::dr\_matrix$<$ T, Alloc, L, Access $>$@{std::math::dr\_matrix$<$ T, Alloc, L, Access $>$}}
 \doxysubsubsection{\texorpdfstring{underlying\_span()}{underlying\_span()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
 {\footnotesize\ttfamily template$<$class T , class Alloc  = allocator$<$\+T$>$, class L  = experimental\+::layout\+\_\+right, class Access  = experimental\+::default\+\_\+accessor$<$\+T$>$$>$ \\
-constexpr \mbox{\hyperlink{classstd_1_1math_1_1dr__tensor}{dr\+\_\+tensor}}$<$ \mbox{\hyperlink{namespacestd_1_1math_a53983004b9afa750d13aff5975152bf2}{T}}, \mbox{\hyperlink{namespacestd_1_1math_ad69af7dc6d02afb275a8d32b5a1c5c5e}{R}}, \mbox{\hyperlink{namespacestd_1_1math_a597a66936269f36c2b022a726d9f82a0}{Alloc}}, \mbox{\hyperlink{namespacestd_1_1math_a1575e00678072847b093ec1a603697d1}{L}}, \mbox{\hyperlink{namespacestd_1_1math_a39f52c16036f51ca651f8cf88cffbead}{Access}} $>$\+::\mbox{\hyperlink{classstd_1_1math_1_1dr__matrix_a7c325fffee8d3b0ca8872e829dde311e}{underlying\+\_\+span\+\_\+type}} \mbox{\hyperlink{classstd_1_1math_1_1dr__tensor}{std\+::math\+::dr\+\_\+tensor}}$<$ \mbox{\hyperlink{namespacestd_1_1math_a53983004b9afa750d13aff5975152bf2}{T}}, \mbox{\hyperlink{namespacestd_1_1math_ad69af7dc6d02afb275a8d32b5a1c5c5e}{R}}, \mbox{\hyperlink{namespacestd_1_1math_a597a66936269f36c2b022a726d9f82a0}{Alloc}}, \mbox{\hyperlink{namespacestd_1_1math_a1575e00678072847b093ec1a603697d1}{L}}, \mbox{\hyperlink{namespacestd_1_1math_a39f52c16036f51ca651f8cf88cffbead}{Access}} $>$\+::underlying\+\_\+span\hspace{0.3cm}{\ttfamily [constexpr]}, {\ttfamily [noexcept]}}
+constexpr \mbox{\hyperlink{classstd_1_1math_1_1dr__tensor}{dr\+\_\+tensor}}$<$ T, R, Alloc, L, Access $>$\mbox{\hyperlink{classstd_1_1math_1_1dr__matrix_a7c325fffee8d3b0ca8872e829dde311e}{\+::underlying\+\_\+span\+\_\+type}} \mbox{\hyperlink{classstd_1_1math_1_1dr__tensor}{std\+::math\+::dr\+\_\+tensor}}$<$ T, R, Alloc, L, Access $>$\+::underlying\+\_\+span\hspace{0.3cm}{\ttfamily [constexpr]}, {\ttfamily [noexcept]}}
 
 
 

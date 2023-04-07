@@ -1,4 +1,4 @@
-\hypertarget{structstd_1_1math_1_1instant__evaluated__operations_1_1scalar__division}{}\doxysection{std\+::math\+::instant\+\_\+evaluated\+\_\+operations\+::scalar\+\_\+division$<$ T, S $>$ Struct Template Reference}
+\hypertarget{structstd_1_1math_1_1instant__evaluated__operations_1_1scalar__division}{}\doxysection{std\+::math\+::instant\+\_\+evaluated\+\_\+operations\+::scalar\+\_\+division\texorpdfstring{$<$}{<} T, S \texorpdfstring{$>$}{>} Struct Template Reference}
 \label{structstd_1_1math_1_1instant__evaluated__operations_1_1scalar__division}\index{std::math::instant\_evaluated\_operations::scalar\_division$<$ T, S $>$@{std::math::instant\_evaluated\_operations::scalar\_division$<$ T, S $>$}}
 
 
@@ -11,25 +11,31 @@ Defines scalar division operation on a tensor with a scalar.
 
 
 
-Collaboration diagram for std\+::math\+::instant\+\_\+evaluated\+\_\+operations\+::scalar\+\_\+division$<$ T, S $>$\+:
+Collaboration diagram for std\+::math\+::instant\+\_\+evaluated\+\_\+operations\+::scalar\+\_\+division\texorpdfstring{$<$}{<} T, S \texorpdfstring{$>$}{>}\+:
 \nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
-\includegraphics[width=216pt]{structstd_1_1math_1_1instant__evaluated__operations_1_1scalar__division__coll__graph}
+\includegraphics[width=202pt]{structstd_1_1math_1_1instant__evaluated__operations_1_1scalar__division__coll__graph}
 \end{center}
 \end{figure}
 \doxysubsection*{Public Types}
 \begin{DoxyCompactItemize}
 \item 
-using \mbox{\hyperlink{structstd_1_1math_1_1instant__evaluated__operations_1_1scalar__division_ac3816fb79769d3f73b801626fab828c8}{tensor\+\_\+type}} = \mbox{\hyperlink{namespacestd_1_1math_a53983004b9afa750d13aff5975152bf2}{T}}
+using \mbox{\hyperlink{structstd_1_1math_1_1instant__evaluated__operations_1_1scalar__division_ac3816fb79769d3f73b801626fab828c8}{tensor\+\_\+type}} = T
 \begin{DoxyCompactList}\small\item\em Input tensor type. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Static Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+static constexpr auto \mbox{\hyperlink{structstd_1_1math_1_1instant__evaluated__operations_1_1scalar__division_a1284b7e889bd171b02bb357147385f9e}{divide}} (const \mbox{\hyperlink{structstd_1_1math_1_1instant__evaluated__operations_1_1scalar__division_ac3816fb79769d3f73b801626fab828c8}{tensor\+\_\+type}} \&t, const S \&s) noexcept(noexcept(\mbox{\hyperlink{namespacestd_1_1math_1_1detail_ae5eb3cf5ea2a6e93d691bfd9f701768e}{detail\+::make\+\_\+from\+\_\+tuple}}$<$ result\+\_\+tensor\+\_\+type $>$(collect\+\_\+ctor\+\_\+args(declval$<$ const \mbox{\hyperlink{structstd_1_1math_1_1instant__evaluated__operations_1_1scalar__division_ac3816fb79769d3f73b801626fab828c8}{tensor\+\_\+type}} \& $>$(), \mbox{[}\&t,\&s\mbox{]}$<$ class ... Index\+Type $>$(Index\+Type ... indices) constexpr noexcept \{ return t\mbox{[}indices ...\mbox{]}/s;\}))))
+\begin{DoxyCompactList}\small\item\em Returns t / s. \end{DoxyCompactList}\item 
+static constexpr \mbox{\hyperlink{structstd_1_1math_1_1instant__evaluated__operations_1_1scalar__division_ac3816fb79769d3f73b801626fab828c8}{tensor\+\_\+type}} \& \mbox{\hyperlink{structstd_1_1math_1_1instant__evaluated__operations_1_1scalar__division_ae7de84ddf87a86b08cc26f78d0ab6dd1}{divide}} (\mbox{\hyperlink{structstd_1_1math_1_1instant__evaluated__operations_1_1scalar__division_ac3816fb79769d3f73b801626fab828c8}{tensor\+\_\+type}} \&t, const S \&s) noexcept(noexcept(\mbox{\hyperlink{namespacestd_1_1math_1_1detail_a0632c805386c46488956a9bdc72c749b}{detail\+::apply\+\_\+all}}(t.\+underlying\+\_\+span(), \mbox{[}\&t,\&s\mbox{]}$<$ class ... Index\+Type $>$(Index\+Type ... indices) constexpr noexcept \{ static\+\_\+cast$<$ void $>$(t\mbox{[}indices ...\mbox{]}/=s);\}, execution\+::unseq)))
+\begin{DoxyCompactList}\small\item\em Returns t /= s. \end{DoxyCompactList}\end{DoxyCompactItemize}
 
 
 \doxysubsection{Detailed Description}
 \subsubsection*{template$<$concepts\+::tensor\+\_\+data T, class S$>$\newline
 struct std\+::math\+::instant\+\_\+evaluated\+\_\+operations\+::scalar\+\_\+division$<$ T, S $>$}
-
 Defines scalar division operation on a tensor with a scalar. 
 
 
@@ -47,11 +53,36 @@ Defines scalar division operation on a tensor with a scalar.
 \index{tensor\_type@{tensor\_type}!std::math::instant\_evaluated\_operations::scalar\_division$<$ T, S $>$@{std::math::instant\_evaluated\_operations::scalar\_division$<$ T, S $>$}}
 \doxysubsubsection{\texorpdfstring{tensor\_type}{tensor\_type}}
 {\footnotesize\ttfamily template$<$concepts\+::tensor\+\_\+data T, class S $>$ \\
-using \mbox{\hyperlink{structstd_1_1math_1_1instant__evaluated__operations_1_1scalar__division}{std\+::math\+::instant\+\_\+evaluated\+\_\+operations\+::scalar\+\_\+division}}$<$ \mbox{\hyperlink{namespacestd_1_1math_a53983004b9afa750d13aff5975152bf2}{T}}, S $>$\+::\mbox{\hyperlink{structstd_1_1math_1_1instant__evaluated__operations_1_1scalar__division_ac3816fb79769d3f73b801626fab828c8}{tensor\+\_\+type}} =  \mbox{\hyperlink{namespacestd_1_1math_a53983004b9afa750d13aff5975152bf2}{T}}}
+using \mbox{\hyperlink{structstd_1_1math_1_1instant__evaluated__operations_1_1scalar__division}{std\+::math\+::instant\+\_\+evaluated\+\_\+operations\+::scalar\+\_\+division}}$<$ T, S $>$\+::tensor\+\_\+type =  T}
 
 
 
 Input tensor type. 
+
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{structstd_1_1math_1_1instant__evaluated__operations_1_1scalar__division_a1284b7e889bd171b02bb357147385f9e}\label{structstd_1_1math_1_1instant__evaluated__operations_1_1scalar__division_a1284b7e889bd171b02bb357147385f9e}} 
+\index{std::math::instant\_evaluated\_operations::scalar\_division$<$ T, S $>$@{std::math::instant\_evaluated\_operations::scalar\_division$<$ T, S $>$}!divide@{divide}}
+\index{divide@{divide}!std::math::instant\_evaluated\_operations::scalar\_division$<$ T, S $>$@{std::math::instant\_evaluated\_operations::scalar\_division$<$ T, S $>$}}
+\doxysubsubsection{\texorpdfstring{divide()}{divide()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily template$<$concepts\+::tensor\+\_\+data T, class S $>$ \\
+static constexpr auto \mbox{\hyperlink{structstd_1_1math_1_1instant__evaluated__operations_1_1scalar__division}{std\+::math\+::instant\+\_\+evaluated\+\_\+operations\+::scalar\+\_\+division}}$<$ T, S $>$\+::divide (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{structstd_1_1math_1_1instant__evaluated__operations_1_1scalar__division_ac3816fb79769d3f73b801626fab828c8}{tensor\+\_\+type}} \&}]{t,  }\item[{const S \&}]{s }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}, {\ttfamily [constexpr]}, {\ttfamily [noexcept]}}
+
+
+
+Returns t / s. 
+
+\mbox{\Hypertarget{structstd_1_1math_1_1instant__evaluated__operations_1_1scalar__division_ae7de84ddf87a86b08cc26f78d0ab6dd1}\label{structstd_1_1math_1_1instant__evaluated__operations_1_1scalar__division_ae7de84ddf87a86b08cc26f78d0ab6dd1}} 
+\index{std::math::instant\_evaluated\_operations::scalar\_division$<$ T, S $>$@{std::math::instant\_evaluated\_operations::scalar\_division$<$ T, S $>$}!divide@{divide}}
+\index{divide@{divide}!std::math::instant\_evaluated\_operations::scalar\_division$<$ T, S $>$@{std::math::instant\_evaluated\_operations::scalar\_division$<$ T, S $>$}}
+\doxysubsubsection{\texorpdfstring{divide()}{divide()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily template$<$concepts\+::tensor\+\_\+data T, class S $>$ \\
+static constexpr \mbox{\hyperlink{structstd_1_1math_1_1instant__evaluated__operations_1_1scalar__division_ac3816fb79769d3f73b801626fab828c8}{tensor\+\_\+type}} \& \mbox{\hyperlink{structstd_1_1math_1_1instant__evaluated__operations_1_1scalar__division}{std\+::math\+::instant\+\_\+evaluated\+\_\+operations\+::scalar\+\_\+division}}$<$ T, S $>$\+::divide (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structstd_1_1math_1_1instant__evaluated__operations_1_1scalar__division_ac3816fb79769d3f73b801626fab828c8}{tensor\+\_\+type}} \&}]{t,  }\item[{const S \&}]{s }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}, {\ttfamily [constexpr]}, {\ttfamily [noexcept]}}
+
+
+
+Returns t /= s. 
 
 
 

@@ -1,4 +1,4 @@
-\hypertarget{classstd_1_1math_1_1instant__evaluated__operations_1_1conjugate__matrix}{}\doxysection{std\+::math\+::instant\+\_\+evaluated\+\_\+operations\+::conjugate\+\_\+matrix$<$ M $>$ Class Template Reference}
+\hypertarget{classstd_1_1math_1_1instant__evaluated__operations_1_1conjugate__matrix}{}\doxysection{std\+::math\+::instant\+\_\+evaluated\+\_\+operations\+::conjugate\+\_\+matrix\texorpdfstring{$<$}{<} M \texorpdfstring{$>$}{>} Class Template Reference}
 \label{classstd_1_1math_1_1instant__evaluated__operations_1_1conjugate__matrix}\index{std::math::instant\_evaluated\_operations::conjugate\_matrix$<$ M $>$@{std::math::instant\_evaluated\_operations::conjugate\_matrix$<$ M $>$}}
 
 
@@ -11,12 +11,12 @@ Defines conjugate transpose operation on a matrix.
 
 
 
-Collaboration diagram for std\+::math\+::instant\+\_\+evaluated\+\_\+operations\+::conjugate\+\_\+matrix$<$ M $>$\+:
+Collaboration diagram for std\+::math\+::instant\+\_\+evaluated\+\_\+operations\+::conjugate\+\_\+matrix\texorpdfstring{$<$}{<} M \texorpdfstring{$>$}{>}\+:
 \nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
-\includegraphics[width=220pt]{classstd_1_1math_1_1instant__evaluated__operations_1_1conjugate__matrix__coll__graph}
+\includegraphics[width=203pt]{classstd_1_1math_1_1instant__evaluated__operations_1_1conjugate__matrix__coll__graph}
 \end{center}
 \end{figure}
 \doxysubsection*{Public Types}
@@ -24,12 +24,16 @@ Collaboration diagram for std\+::math\+::instant\+\_\+evaluated\+\_\+operations\
 \item 
 using \mbox{\hyperlink{classstd_1_1math_1_1instant__evaluated__operations_1_1conjugate__matrix_af79974a91794c74c6c40e0f1199a1108}{matrix\+\_\+type}} = M
 \begin{DoxyCompactList}\small\item\em Input matrix type. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Static Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+static constexpr auto \mbox{\hyperlink{classstd_1_1math_1_1instant__evaluated__operations_1_1conjugate__matrix_a771b5f3e182bd991576341dc744686f9}{conjugate}} (const \mbox{\hyperlink{classstd_1_1math_1_1instant__evaluated__operations_1_1conjugate__matrix_af79974a91794c74c6c40e0f1199a1108}{matrix\+\_\+type}} \&m) noexcept(noexcept(\mbox{\hyperlink{namespacestd_1_1math_1_1detail_ae5eb3cf5ea2a6e93d691bfd9f701768e}{detail\+::make\+\_\+from\+\_\+tuple}}$<$ result\+\_\+matrix\+\_\+type $>$(collect\+\_\+ctor\+\_\+args(m, \mbox{[}\&m\mbox{]}$<$ class Index\+Type1, class Index\+Type2 $>$(Index\+Type1 index1, Index\+Type2 index2) constexpr noexcept \{ return \+::std\+::conj(m\mbox{[}index2, index1\mbox{]});\}))))
+\begin{DoxyCompactList}\small\item\em Returns transpose conjugate( matrix ) \end{DoxyCompactList}\end{DoxyCompactItemize}
 
 
 \doxysubsection{Detailed Description}
 \subsubsection*{template$<$concepts\+::matrix\+\_\+data M$>$\newline
 class std\+::math\+::instant\+\_\+evaluated\+\_\+operations\+::conjugate\+\_\+matrix$<$ M $>$}
-
 Defines conjugate transpose operation on a matrix. 
 
 
@@ -45,11 +49,25 @@ Defines conjugate transpose operation on a matrix.
 \index{matrix\_type@{matrix\_type}!std::math::instant\_evaluated\_operations::conjugate\_matrix$<$ M $>$@{std::math::instant\_evaluated\_operations::conjugate\_matrix$<$ M $>$}}
 \doxysubsubsection{\texorpdfstring{matrix\_type}{matrix\_type}}
 {\footnotesize\ttfamily template$<$concepts\+::matrix\+\_\+data M$>$ \\
-using \mbox{\hyperlink{classstd_1_1math_1_1instant__evaluated__operations_1_1conjugate__matrix}{std\+::math\+::instant\+\_\+evaluated\+\_\+operations\+::conjugate\+\_\+matrix}}$<$ M $>$\+::\mbox{\hyperlink{classstd_1_1math_1_1instant__evaluated__operations_1_1conjugate__matrix_af79974a91794c74c6c40e0f1199a1108}{matrix\+\_\+type}} =  M}
+using \mbox{\hyperlink{classstd_1_1math_1_1instant__evaluated__operations_1_1conjugate__matrix}{std\+::math\+::instant\+\_\+evaluated\+\_\+operations\+::conjugate\+\_\+matrix}}$<$ M $>$\+::matrix\+\_\+type =  M}
 
 
 
 Input matrix type. 
+
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classstd_1_1math_1_1instant__evaluated__operations_1_1conjugate__matrix_a771b5f3e182bd991576341dc744686f9}\label{classstd_1_1math_1_1instant__evaluated__operations_1_1conjugate__matrix_a771b5f3e182bd991576341dc744686f9}} 
+\index{std::math::instant\_evaluated\_operations::conjugate\_matrix$<$ M $>$@{std::math::instant\_evaluated\_operations::conjugate\_matrix$<$ M $>$}!conjugate@{conjugate}}
+\index{conjugate@{conjugate}!std::math::instant\_evaluated\_operations::conjugate\_matrix$<$ M $>$@{std::math::instant\_evaluated\_operations::conjugate\_matrix$<$ M $>$}}
+\doxysubsubsection{\texorpdfstring{conjugate()}{conjugate()}}
+{\footnotesize\ttfamily template$<$concepts\+::matrix\+\_\+data M$>$ \\
+static constexpr auto \mbox{\hyperlink{classstd_1_1math_1_1instant__evaluated__operations_1_1conjugate__matrix}{std\+::math\+::instant\+\_\+evaluated\+\_\+operations\+::conjugate\+\_\+matrix}}$<$ M $>$\+::conjugate (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classstd_1_1math_1_1instant__evaluated__operations_1_1conjugate__matrix_af79974a91794c74c6c40e0f1199a1108}{matrix\+\_\+type}} \&}]{m }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}, {\ttfamily [constexpr]}, {\ttfamily [noexcept]}}
+
+
+
+Returns transpose conjugate( matrix ) 
 
 
 

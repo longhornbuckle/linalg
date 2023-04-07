@@ -1,0 +1,848 @@
+\hypertarget{private__support_8hpp_source}{}\doxysection{private\+\_\+support.\+hpp}
+\label{private__support_8hpp_source}\index{include/experimental/linear\_algebra/private\_support.hpp@{include/experimental/linear\_algebra/private\_support.hpp}}
+\mbox{\hyperlink{private__support_8hpp}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{comment}{//==================================================================================================}}
+\DoxyCodeLine{00002\ \textcolor{comment}{//\ \ File:\ \ \ \ \ \ \ private\_support.hpp}}
+\DoxyCodeLine{00003\ \textcolor{comment}{//}}
+\DoxyCodeLine{00004\ \textcolor{comment}{//\ \ Summary:\ \ \ \ This\ header\ defines\ several\ private\ traits\ types,\ alias\ templates,\ variable}}
+\DoxyCodeLine{00005\ \textcolor{comment}{//\ \ \ \ \ \ \ \ \ \ \ \ \ \ templates,\ and\ functions\ that\ support\ the\ rest\ of\ this\ implementation.}}
+\DoxyCodeLine{00006\ \textcolor{comment}{//==================================================================================================}}
+\DoxyCodeLine{00007\ \textcolor{comment}{//}}
+\DoxyCodeLine{00008\ \textcolor{preprocessor}{\#ifndef\ LINEAR\_ALGEBRA\_IMPL\_SUPPORT\_HPP}}
+\DoxyCodeLine{00009\ \textcolor{preprocessor}{\#define\ LINEAR\_ALGEBRA\_IMPL\_SUPPORT\_HPP}}
+\DoxyCodeLine{00010\ }
+\DoxyCodeLine{00011\ \textcolor{preprocessor}{\#include\ <\mbox{\hyperlink{linear__algebra_8hpp}{experimental/linear\_algebra.hpp}}>}}
+\DoxyCodeLine{00012\ }
+\DoxyCodeLine{00013\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespacestd}{std}}}
+\DoxyCodeLine{00014\ \{}
+\DoxyCodeLine{00015\ \textcolor{keyword}{namespace\ }math}
+\DoxyCodeLine{00016\ \{}
+\DoxyCodeLine{00017\ \textcolor{keyword}{namespace\ }detail}
+\DoxyCodeLine{00018\ \{}
+\DoxyCodeLine{00019\ }
+\DoxyCodeLine{00020\ \textcolor{comment}{//==================================================================================================}}
+\DoxyCodeLine{00021\ \textcolor{comment}{//\ \ Test\ if\ type\ is\ an\ mdspan}}
+\DoxyCodeLine{00022\ \textcolor{comment}{//==================================================================================================}}
+\DoxyCodeLine{00023\ \textcolor{keyword}{template}\ <\ \textcolor{keyword}{class}\ T\ >}
+\DoxyCodeLine{00024\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structstd_1_1math_1_1detail_1_1is__mdspan}{is\_mdspan}}\ :\ false\_type\ \{\};}
+\DoxyCodeLine{00025\ }
+\DoxyCodeLine{00026\ \textcolor{keyword}{template}\ <\ \textcolor{keyword}{class}\ T,\ \textcolor{keyword}{class}\ Extents,\ \textcolor{keyword}{class}\ LayoutPolicy,\ \textcolor{keyword}{class}\ AccessorPolicy\ >}
+\DoxyCodeLine{00027\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structstd_1_1math_1_1detail_1_1is__mdspan}{is\_mdspan}}<\ \mbox{\hyperlink{namespacestd}{std}}::experimental::mdspan<T,Extents,LayoutPolicy,AccessorPolicy>\ >\ :\ true\_type\ \{\};}
+\DoxyCodeLine{00030\ \textcolor{keyword}{template}\ <\ \textcolor{keyword}{class}\ T\ >}
+\DoxyCodeLine{00031\ \textcolor{keyword}{inline}\ \textcolor{keyword}{constexpr}\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{namespacestd_1_1math_1_1detail_a25550b69c908000165785e0db4b8d3bf}{is\_mdspan\_v}}\ =\ \mbox{\hyperlink{structstd_1_1math_1_1detail_1_1is__mdspan}{is\_mdspan<T>::value}};}
+\DoxyCodeLine{00032\ }
+\DoxyCodeLine{00033\ \textcolor{comment}{//==================================================================================================}}
+\DoxyCodeLine{00034\ \textcolor{comment}{//\ \ Test\ if\ type\ is\ a\ span}}
+\DoxyCodeLine{00035\ \textcolor{comment}{//==================================================================================================}}
+\DoxyCodeLine{00036\ \textcolor{keyword}{template}\ <\ \textcolor{keyword}{class}\ T\ >}
+\DoxyCodeLine{00037\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structstd_1_1math_1_1detail_1_1is__span}{is\_span}}\ :\ false\_type\ \{\};}
+\DoxyCodeLine{00038\ }
+\DoxyCodeLine{00039\ \textcolor{keyword}{template}\ <\ \textcolor{keyword}{class}\ T,\ \textcolor{keywordtype}{size\_t}\ Extents\ >}
+\DoxyCodeLine{00040\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structstd_1_1math_1_1detail_1_1is__span}{is\_span}}<\ span<T,Extents>\ >\ :\ true\_type\ \{\};}
+\DoxyCodeLine{00043\ \textcolor{keyword}{template}\ <\ \textcolor{keyword}{class}\ T\ >}
+\DoxyCodeLine{00044\ \textcolor{keyword}{inline}\ \textcolor{keyword}{constexpr}\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{namespacestd_1_1math_1_1detail_a56f24ac4546bc61cdb896cdb978e63ce}{is\_span\_v}}\ =\ \mbox{\hyperlink{structstd_1_1math_1_1detail_1_1is__span}{is\_span<T>::value}};}
+\DoxyCodeLine{00045\ }
+\DoxyCodeLine{00046\ \textcolor{comment}{//==================================================================================================}}
+\DoxyCodeLine{00047\ \textcolor{comment}{//\ \ Test\ if\ type\ is\ an\ extents}}
+\DoxyCodeLine{00048\ \textcolor{comment}{//==================================================================================================}}
+\DoxyCodeLine{00049\ \textcolor{keyword}{template}\ <\ \textcolor{keyword}{class}\ T\ >}
+\DoxyCodeLine{00050\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structstd_1_1math_1_1detail_1_1is__extents}{is\_extents}}\ :\ false\_type\ \{\};}
+\DoxyCodeLine{00051\ }
+\DoxyCodeLine{00052\ \textcolor{keyword}{template}\ <\ \textcolor{keyword}{class\ }size\_type,\ \textcolor{keywordtype}{size\_t}\ ...\ Extents\ >}
+\DoxyCodeLine{00053\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structstd_1_1math_1_1detail_1_1is__extents}{is\_extents}}<\ experimental::extents<size\_type,Extents...>\ >\ :\ true\_type\ \{\};}
+\DoxyCodeLine{00056\ \textcolor{keyword}{template}\ <\ \textcolor{keyword}{class}\ T\ >}
+\DoxyCodeLine{00057\ \textcolor{keyword}{inline}\ \textcolor{keyword}{constexpr}\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{namespacestd_1_1math_1_1detail_a7e289b47e1487ee64400c3e3496f606a}{is\_extents\_v}}\ =\ \mbox{\hyperlink{structstd_1_1math_1_1detail_1_1is__extents}{is\_extents<T>::value}};}
+\DoxyCodeLine{00058\ }
+\DoxyCodeLine{00059\ \textcolor{comment}{//==================================================================================================}}
+\DoxyCodeLine{00060\ \textcolor{comment}{//\ \ Test\ if\ type\ is\ a\ tuple\ of\ all\ same\ type}}
+\DoxyCodeLine{00061\ \textcolor{comment}{//==================================================================================================}}
+\DoxyCodeLine{00062\ \textcolor{keyword}{template}\ <\ \textcolor{keyword}{class}\ T\ >}
+\DoxyCodeLine{00063\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structstd_1_1math_1_1detail_1_1is__homogeneous__tuple}{is\_homogeneous\_tuple}}\ :\ false\_type\ \{\};}
+\DoxyCodeLine{00064\ }
+\DoxyCodeLine{00065\ \textcolor{keyword}{template}\ <\ \textcolor{keyword}{class}...\ size\_type\ >}
+\DoxyCodeLine{00066\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structstd_1_1math_1_1detail_1_1is__homogeneous__tuple}{is\_homogeneous\_tuple}}<\ tuple<size\_type...>\ >\ :\ true\_type\ \{\};}
+\DoxyCodeLine{00069\ \textcolor{keyword}{template}\ <\ \textcolor{keyword}{class}\ T\ >}
+\DoxyCodeLine{00070\ \textcolor{keyword}{inline}\ \textcolor{keyword}{constexpr}\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{namespacestd_1_1math_1_1detail_ab3b7b67460b14044171d556015206626}{is\_homogeneous\_tuple\_v}}\ =\ \mbox{\hyperlink{structstd_1_1math_1_1detail_1_1is__homogeneous__tuple}{is\_homogeneous\_tuple<T>::value}};}
+\DoxyCodeLine{00071\ }
+\DoxyCodeLine{00072\ \textcolor{comment}{//==================================================================================================}}
+\DoxyCodeLine{00073\ \textcolor{comment}{//\ \ Test\ if\ type\ extents\ is\ not\ dynamic}}
+\DoxyCodeLine{00074\ \textcolor{comment}{//==================================================================================================}}
+\DoxyCodeLine{00075\ \textcolor{keyword}{template}\ <\ \textcolor{keyword}{class}\ T\ >}
+\DoxyCodeLine{00076\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structstd_1_1math_1_1detail_1_1extents__is__static}{extents\_is\_static}}\ :\ \textcolor{keyword}{public}\ false\_type\ \{\};}
+\DoxyCodeLine{00077\ }
+\DoxyCodeLine{00078\ \textcolor{keyword}{template}\ <\ \textcolor{keyword}{class\ }SizeType,\ \textcolor{keywordtype}{size\_t}\ ...\ Extents\ >}
+\DoxyCodeLine{00079\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structstd_1_1math_1_1detail_1_1extents__is__static}{extents\_is\_static}}<\ experimental::extents<SizeType,Extents...>\ >\ :\ \textcolor{keyword}{public}}
+\DoxyCodeLine{00080\ \ \ conditional\_t<\ (\ (\ Extents\ !=\ dynamic\_extent\ )\ \&\&\ ...\ ),\ true\_type,\ false\_type\ >\ \{\};}
+\DoxyCodeLine{00081\ }
+\DoxyCodeLine{00082\ \textcolor{keyword}{template}\ <\ \textcolor{keyword}{class}\ T\ >}
+\DoxyCodeLine{00083\ \textcolor{keyword}{inline}\ \textcolor{keyword}{constexpr}\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{namespacestd_1_1math_1_1detail_a89a680e003240d0a24ccd8ab30a8a030}{extents\_is\_static\_v}}\ =\ \mbox{\hyperlink{structstd_1_1math_1_1detail_1_1extents__is__static}{extents\_is\_static<T>::value}};}
+\DoxyCodeLine{00084\ }
+\DoxyCodeLine{00085\ \textcolor{comment}{//==================================================================================================}}
+\DoxyCodeLine{00086\ \textcolor{comment}{//\ \ Test\ if\ type\ extents\ may\ be\ equal}}
+\DoxyCodeLine{00087\ \textcolor{comment}{//==================================================================================================}}
+\DoxyCodeLine{00088\ }
+\DoxyCodeLine{00089\ \textcolor{keyword}{template}\ <\ \textcolor{keyword}{class}\ T,\ \textcolor{keyword}{class}\ U,\ \textcolor{keyword}{class}\ Seq\ >}
+\DoxyCodeLine{00090\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structstd_1_1math_1_1detail_1_1extents__may__be__equal__impl}{extents\_may\_be\_equal\_impl}};}
+\DoxyCodeLine{00091\ }
+\DoxyCodeLine{00092\ \textcolor{keyword}{template}\ <\ \textcolor{keyword}{class\ }SizeType,\ \textcolor{keyword}{class\ }OtherSizeType,\ \textcolor{keyword}{auto}\ ...\ Extents,\ \textcolor{keyword}{auto}\ ...\ OtherExtents,\ \textcolor{keyword}{auto}\ ...\ Indices\ >}
+\DoxyCodeLine{00093\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structstd_1_1math_1_1detail_1_1extents__may__be__equal__impl}{extents\_may\_be\_equal\_impl}}<\ experimental::extents<SizeType,Extents...>,}
+\DoxyCodeLine{00094\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ experimental::extents<OtherSizeType,OtherExtents...>,}
+\DoxyCodeLine{00095\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ index\_sequence<Indices...>\ >\ :}
+\DoxyCodeLine{00096\ \ \ conditional\_t<\ (\ (\ (\ experimental::extents<SizeType,Extents...>::static\_extent(Indices)\ \ \ \ \ \ ==\ experimental::extents<SizeType,OtherExtents...>::static\_extent(Indices)\ )\ ||}
+\DoxyCodeLine{00097\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (\ experimental::extents<SizeType,Extents...>::static\_extent(Indices)\ \ \ \ \ \ ==\ experimental::dynamic\_extent\ )\ ||}
+\DoxyCodeLine{00098\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (\ experimental::extents<SizeType,OtherExtents...>::static\_extent(Indices)\ ==\ experimental::dynamic\_extent\ )\ )\ \&\&\ ...\ ),}
+\DoxyCodeLine{00099\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ true\_type,\ false\_type\ >\ \{\};}
+\DoxyCodeLine{00100\ }
+\DoxyCodeLine{00101\ \textcolor{keyword}{template}\ <\ \textcolor{keyword}{class}\ T,\ \textcolor{keyword}{class}\ U\ >}
+\DoxyCodeLine{00102\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structstd_1_1math_1_1detail_1_1extents__may__be__equal}{extents\_may\_be\_equal}}\ :\ \textcolor{keyword}{public}\ false\_type\ \{\};}
+\DoxyCodeLine{00103\ }
+\DoxyCodeLine{00104\ \textcolor{keyword}{template}\ <\ \textcolor{keyword}{class\ }SizeType,\ \textcolor{keyword}{class\ }OtherSizeType,\ \textcolor{keyword}{auto}\ ...\ Extents,\ \textcolor{keyword}{auto}\ ...\ OtherExtents\ >}
+\DoxyCodeLine{00105\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structstd_1_1math_1_1detail_1_1extents__may__be__equal}{extents\_may\_be\_equal}}<\ experimental::extents<SizeType,Extents...>,}
+\DoxyCodeLine{00106\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ experimental::extents<OtherSizeType,OtherExtents...>\ >\ :\ \textcolor{keyword}{public}}
+\DoxyCodeLine{00107\ \ \ conditional\_t<\ (\ sizeof...(Extents)\ ==\ sizeof...(OtherExtents)\ ),}
+\DoxyCodeLine{00108\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ extents\_may\_be\_equal\_impl<\ experimental::extents<SizeType,Extents...>,\ experimental::extents<OtherSizeType,OtherExtents...>,\ make\_index\_sequence<sizeof...(Extents)>\ >,}
+\DoxyCodeLine{00109\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ false\_type\ >\ \{\};}
+\DoxyCodeLine{00110\ }
+\DoxyCodeLine{00111\ \textcolor{keyword}{template}\ <\ \textcolor{keyword}{class}\ T,\ \textcolor{keyword}{class}\ U\ >}
+\DoxyCodeLine{00112\ \textcolor{keyword}{inline}\ \textcolor{keyword}{constexpr}\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{namespacestd_1_1math_1_1detail_a3e4a4cdf0946fc014991348863e3065f}{extents\_may\_be\_equal\_v}}\ =\ \mbox{\hyperlink{structstd_1_1math_1_1detail_1_1extents__may__be__equal}{extents\_may\_be\_equal<T,U>::value}};}
+\DoxyCodeLine{00113\ }
+\DoxyCodeLine{00114\ \textcolor{comment}{//==================================================================================================}}
+\DoxyCodeLine{00115\ \textcolor{comment}{//\ \ Test\ if\ type\ extents\ is\ equal}}
+\DoxyCodeLine{00116\ \textcolor{comment}{//==================================================================================================}}
+\DoxyCodeLine{00117\ \textcolor{keyword}{template}\ <\ \textcolor{keyword}{class}\ T,\ \textcolor{keyword}{class}\ U\ >}
+\DoxyCodeLine{00118\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structstd_1_1math_1_1detail_1_1extents__is__equal}{extents\_is\_equal}}\ :\ \textcolor{keyword}{public}}
+\DoxyCodeLine{00119\ \ \ conditional\_t<\ extents\_may\_be\_equal\_v<T,U>\ \&\&\ extents\_is\_static\_v<T>\ \&\&\ extents\_is\_static\_v<U>,}
+\DoxyCodeLine{00120\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ true\_type,}
+\DoxyCodeLine{00121\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ false\_type\ >\ \{\};}
+\DoxyCodeLine{00122\ }
+\DoxyCodeLine{00123\ \textcolor{keyword}{template}\ <\ \textcolor{keyword}{class}\ T,\ \textcolor{keyword}{class}\ U\ >}
+\DoxyCodeLine{00124\ \textcolor{keyword}{inline}\ \textcolor{keyword}{constexpr}\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{namespacestd_1_1math_1_1detail_a70873b8867e1f782f3d0b26951b4d715}{extents\_is\_equal\_v}}\ =\ \mbox{\hyperlink{structstd_1_1math_1_1detail_1_1extents__is__equal}{extents\_is\_equal<T,U>::value}};}
+\DoxyCodeLine{00125\ }
+\DoxyCodeLine{00126\ \textcolor{comment}{//==================================================================================================}}
+\DoxyCodeLine{00127\ \textcolor{comment}{//\ \ Returns\ the\ number\ of\ dimensions\ with\ non-\/dynamic\ extent\ greater\ than\ one}}
+\DoxyCodeLine{00128\ \textcolor{comment}{//==================================================================================================}}
+\DoxyCodeLine{00129\ \textcolor{keyword}{template}\ <\ \textcolor{keyword}{class}\ T\ >}
+\DoxyCodeLine{00130\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structstd_1_1math_1_1detail_1_1nondynamic__rank}{nondynamic\_rank}};}
+\DoxyCodeLine{00131\ }
+\DoxyCodeLine{00132\ \textcolor{keyword}{template}\ <\ \textcolor{keyword}{template}\ <\ \textcolor{keyword}{class},\ \textcolor{keywordtype}{size\_t}\ ...\ >\ \textcolor{keyword}{class\ }E,\ class\ T,\ size\_t\ ...\ Extents\ >}
+\DoxyCodeLine{00133\ struct\ \mbox{\hyperlink{structstd_1_1math_1_1detail_1_1nondynamic__rank}{nondynamic\_rank}}<\ E<T,Extents...>\ >\ :\ \textcolor{keyword}{public}\ integral\_constant<\ size\_t,\ (\ (\ (\ Extents\ >\ 1\ )\ \&\&\ (\ Extents\ !=\ experimental::dynamic\_extent\ )\ )\ +\ ...\ )\ >\ \{\};}
+\DoxyCodeLine{00134\ }
+\DoxyCodeLine{00135\ \textcolor{keyword}{template}\ <\ \textcolor{keyword}{class}\ E\ >\ \textcolor{keyword}{requires}\ is\_extents\_v<E>}
+\DoxyCodeLine{00136\ \textcolor{keyword}{inline}\ \textcolor{keyword}{constexpr}\ \textcolor{keywordtype}{size\_t}\ \mbox{\hyperlink{namespacestd_1_1math_1_1detail_a7907df104e44be4aa56f3a9d17b5b301}{nondynamic\_rank\_v}}\ =\ \mbox{\hyperlink{structstd_1_1math_1_1detail_1_1nondynamic__rank}{nondynamic\_rank<E>::value}};}
+\DoxyCodeLine{00137\ }
+\DoxyCodeLine{00138\ \textcolor{comment}{//==================================================================================================}}
+\DoxyCodeLine{00139\ \textcolor{comment}{//\ \ Returns\ the\ number\ of\ dimensions\ for\ which\ the\ extent\ is\ greater\ than\ one}}
+\DoxyCodeLine{00140\ \textcolor{comment}{//==================================================================================================}}
+\DoxyCodeLine{00141\ \textcolor{keyword}{template}\ <\ \textcolor{keyword}{class\ }SizeType,\ \textcolor{keywordtype}{size\_t}\ ...\ Extents,\ \textcolor{keywordtype}{size\_t}\ ...\ Ints\ >}
+\DoxyCodeLine{00142\ [[nodiscard]]\ \textcolor{keyword}{inline}\ \textcolor{keyword}{constexpr}\ \textcolor{keywordtype}{size\_t}\ \mbox{\hyperlink{namespacestd_1_1math_1_1detail_a8281c4328fc64722983a8f8130158dd1}{current\_rank\_impl}}(\ \textcolor{keyword}{const}\ experimental::extents<SizeType,Extents...>\&\ extents,}
+\DoxyCodeLine{00143\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ [[maybe\_unused]]\ index\_sequence<Ints...>\ )\ \textcolor{keyword}{noexcept}}
+\DoxyCodeLine{00144\ \{}
+\DoxyCodeLine{00145\ \ \ \textcolor{keywordflow}{return}\ (\ (\ extents.extent(Ints)\ >\ 1\ )\ +\ ...\ );}
+\DoxyCodeLine{00146\ \}}
+\DoxyCodeLine{00147\ \textcolor{keyword}{template}\ <\ \textcolor{keyword}{class\ }SizeType,\ \textcolor{keywordtype}{size\_t}\ ...\ Extents\ >}
+\DoxyCodeLine{00148\ [[nodiscard]]\ \textcolor{keyword}{inline}\ \textcolor{keyword}{constexpr}\ \textcolor{keywordtype}{size\_t}\ \mbox{\hyperlink{namespacestd_1_1math_1_1detail_a2f19fb178dd84ae7a802404ed9a3859e}{current\_rank}}(\ \textcolor{keyword}{const}\ experimental::extents<SizeType,Extents...>\&\ extents\ )\ \textcolor{keyword}{noexcept}}
+\DoxyCodeLine{00149\ \{}
+\DoxyCodeLine{00150\ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{namespacestd_1_1math_1_1detail_a8281c4328fc64722983a8f8130158dd1}{current\_rank\_impl}}(\ extents,\ make\_index\_sequence<\textcolor{keyword}{sizeof}...(Extents)>()\ );}
+\DoxyCodeLine{00151\ \}}
+\DoxyCodeLine{00152\ }
+\DoxyCodeLine{00153\ \textcolor{comment}{//==================================================================================================}}
+\DoxyCodeLine{00154\ \textcolor{comment}{//\ \ Test\ if\ expression\ is\ consteval}}
+\DoxyCodeLine{00155\ \textcolor{comment}{//==================================================================================================}}
+\DoxyCodeLine{00157\ \textcolor{comment}{}\textcolor{keyword}{template}\ <\ \textcolor{keyword}{class\ }Lambda,\ \textcolor{keywordtype}{int}\ =\ (\ Lambda\{\}(),\ 0\ )\ >}
+\DoxyCodeLine{00158\ \textcolor{keyword}{constexpr}\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{namespacestd_1_1math_1_1detail_a6661f390a6c982712ceecc4ce1ea0459}{is\_constexpr}}(Lambda)\ \{\ \textcolor{keywordflow}{return}\ \textcolor{keyword}{true};\ \}}
+\DoxyCodeLine{00159\ \textcolor{keyword}{constexpr}\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{namespacestd_1_1math_1_1detail_a6661f390a6c982712ceecc4ce1ea0459}{is\_constexpr}}(...)\ \{\ \textcolor{keywordflow}{return}\ \textcolor{keyword}{false};\ \}}
+\DoxyCodeLine{00160\ }
+\DoxyCodeLine{00161\ \textcolor{comment}{//==================================================================================================}}
+\DoxyCodeLine{00162\ \textcolor{comment}{//\ \ Consteval\ Product}}
+\DoxyCodeLine{00163\ \textcolor{comment}{//==================================================================================================}}
+\DoxyCodeLine{00164\ \textcolor{keyword}{template}\ <\ \textcolor{keyword}{class\ }T,\ \textcolor{keyword}{class\ }...\ Ts\ >}
+\DoxyCodeLine{00165\ [[nodiscard]]\ \textcolor{keyword}{consteval}\ \textcolor{keyword}{auto}\ \mbox{\hyperlink{namespacestd_1_1math_1_1detail_ad44b28206befc253e71aa304d00720b2}{product}}(\ T\ t,\ Ts\ ...\ ts\ )}
+\DoxyCodeLine{00166\ \{}
+\DoxyCodeLine{00167\ \ \ \textcolor{keywordflow}{if}\ \textcolor{keyword}{constexpr}\ (\ \textcolor{keyword}{sizeof}...(Ts)\ ==\ 0\ )}
+\DoxyCodeLine{00168\ \ \ \{}
+\DoxyCodeLine{00169\ \ \ \ \ \textcolor{keywordflow}{return}\ t;}
+\DoxyCodeLine{00170\ \ \ \}}
+\DoxyCodeLine{00171\ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{00172\ \ \ \{}
+\DoxyCodeLine{00173\ \ \ \ \ \textcolor{keywordflow}{return}\ t\ *\ \mbox{\hyperlink{namespacestd_1_1math_1_1detail_ad44b28206befc253e71aa304d00720b2}{product}}(\ ts\ ...\ );}
+\DoxyCodeLine{00174\ \ \ \}}
+\DoxyCodeLine{00175\ \}}
+\DoxyCodeLine{00176\ \textcolor{comment}{//==================================================================================================}}
+\DoxyCodeLine{00177\ \textcolor{comment}{//\ \ Faux\ Index\ Iterator\ allows\ indices\ to\ be\ used\ in\ std\ algorithms\ which\ take\ iterators}}
+\DoxyCodeLine{00178\ \textcolor{comment}{//==================================================================================================}}
+\DoxyCodeLine{00179\ \textcolor{keyword}{template}\ <\ \textcolor{keyword}{class}\ T\ >}
+\DoxyCodeLine{00180\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structstd_1_1math_1_1detail_1_1faux__index__iterator}{faux\_index\_iterator}}}
+\DoxyCodeLine{00181\ \{}
+\DoxyCodeLine{00182\ \ \ \textcolor{keyword}{using\ }\mbox{\hyperlink{structstd_1_1math_1_1detail_1_1faux__index__iterator_a45d1362928c4eb117fda756459982943}{value\_type}}\ \ \ \ \ \ \ \ =\ T;}
+\DoxyCodeLine{00183\ \ \ \textcolor{keyword}{using\ }\mbox{\hyperlink{structstd_1_1math_1_1detail_1_1faux__index__iterator_a8bb08007a5f24d9fd6521cfecd23241f}{difference\_type}}\ \ \ =\ ptrdiff\_t;}
+\DoxyCodeLine{00184\ \ \ \textcolor{keyword}{using\ }\mbox{\hyperlink{structstd_1_1math_1_1detail_1_1faux__index__iterator_a5de45aa1534fc0610c1419e8255a2398}{reference}}\ \ \ \ \ \ \ \ \ =\ T\&;}
+\DoxyCodeLine{00185\ \ \ \textcolor{keyword}{using\ }\mbox{\hyperlink{structstd_1_1math_1_1detail_1_1faux__index__iterator_a0164e062f6faebb04cc8bcd6d8bdf025}{pointer}}\ \ \ \ \ \ \ \ \ \ \ =\ T*;}
+\DoxyCodeLine{00186\ \ \ \textcolor{keyword}{using\ }\mbox{\hyperlink{structstd_1_1math_1_1detail_1_1faux__index__iterator_aaf9aed0781f85bb1da1bcca1982e5b68}{iterator\_category}}\ =\ random\_access\_iterator\_tag;}
+\DoxyCodeLine{00187\ \ \ \textcolor{keyword}{constexpr}\ \mbox{\hyperlink{structstd_1_1math_1_1detail_1_1faux__index__iterator}{faux\_index\_iterator}}\&\ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structstd_1_1math_1_1detail_1_1faux__index__iterator_acd28ab30db989c882036706991db6712}{operator++\ \ }}()\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ noexcept\ \{\ \textcolor{keyword}{static\_cast<}\textcolor{keywordtype}{void}\textcolor{keyword}{>}(this-\/>\mbox{\hyperlink{structstd_1_1math_1_1detail_1_1faux__index__iterator_a8399e92609c33b4bdeb2be05e9836f70}{index}}++);\ \textcolor{keywordflow}{return}\ *\textcolor{keyword}{this};\ \}}
+\DoxyCodeLine{00188\ \ \ \textcolor{keyword}{constexpr}\ \mbox{\hyperlink{structstd_1_1math_1_1detail_1_1faux__index__iterator}{faux\_index\_iterator}}\&\ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structstd_1_1math_1_1detail_1_1faux__index__iterator_a743792f4d8da0dcf9d36b67c53268864}{operator-\/-\/\ \ }}()\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ noexcept\ \{\ \textcolor{keyword}{static\_cast<}\textcolor{keywordtype}{void}\textcolor{keyword}{>}(this-\/>\mbox{\hyperlink{structstd_1_1math_1_1detail_1_1faux__index__iterator_a8399e92609c33b4bdeb2be05e9836f70}{index}}-\/-\/);\ \textcolor{keywordflow}{return}\ *\textcolor{keyword}{this};\ \}}
+\DoxyCodeLine{00189\ \ \ \textcolor{keyword}{constexpr}\ \mbox{\hyperlink{structstd_1_1math_1_1detail_1_1faux__index__iterator}{faux\_index\_iterator}}\&\ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structstd_1_1math_1_1detail_1_1faux__index__iterator_aec83ed05f8537047a9da966581bb3b43}{operator+=\ \ }}(\ \textcolor{keyword}{const}\ \mbox{\hyperlink{structstd_1_1math_1_1detail_1_1faux__index__iterator_a8bb08007a5f24d9fd6521cfecd23241f}{difference\_type}}\ n\ )\ \ \ \ \ \ \ \ \textcolor{keyword}{noexcept}\ \{\ \textcolor{keyword}{static\_cast<}\textcolor{keywordtype}{void}\textcolor{keyword}{>}(this-\/>\mbox{\hyperlink{structstd_1_1math_1_1detail_1_1faux__index__iterator_a8399e92609c33b4bdeb2be05e9836f70}{index}}+=n);\ \textcolor{keywordflow}{return}\ *\textcolor{keyword}{this};\ \}}
+\DoxyCodeLine{00190\ \ \ \textcolor{keyword}{constexpr}\ \mbox{\hyperlink{structstd_1_1math_1_1detail_1_1faux__index__iterator}{faux\_index\_iterator}}\&\ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structstd_1_1math_1_1detail_1_1faux__index__iterator_ac55832d385d38930d545fe0ce144651b}{operator-\/=\ \ }}(\ \textcolor{keyword}{const}\ \mbox{\hyperlink{structstd_1_1math_1_1detail_1_1faux__index__iterator_a8bb08007a5f24d9fd6521cfecd23241f}{difference\_type}}\ n\ )\ \ \ \ \ \ \ \ \textcolor{keyword}{noexcept}\ \{\ \textcolor{keyword}{static\_cast<}\textcolor{keywordtype}{void}\textcolor{keyword}{>}(this-\/>\mbox{\hyperlink{structstd_1_1math_1_1detail_1_1faux__index__iterator_a8399e92609c33b4bdeb2be05e9836f70}{index}}-\/=n);\ \textcolor{keywordflow}{return}\ *\textcolor{keyword}{this};\ \}}
+\DoxyCodeLine{00191\ \ \ [[nodiscard]]\ \textcolor{keyword}{constexpr}\ \mbox{\hyperlink{structstd_1_1math_1_1detail_1_1faux__index__iterator}{faux\_index\_iterator}}\ \mbox{\hyperlink{structstd_1_1math_1_1detail_1_1faux__index__iterator_ae30424e8a258434516a7fce8747b8f42}{operator+\ \ \ }}(\ \textcolor{keyword}{const}\ \mbox{\hyperlink{structstd_1_1math_1_1detail_1_1faux__index__iterator_a8bb08007a5f24d9fd6521cfecd23241f}{difference\_type}}\ n\ )\ \ \ \ \ \ \ \ \textcolor{keyword}{noexcept}\ \{\ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{structstd_1_1math_1_1detail_1_1faux__index__iterator}{faux\_index\_iterator}}(\ this-\/>\mbox{\hyperlink{structstd_1_1math_1_1detail_1_1faux__index__iterator_a8399e92609c33b4bdeb2be05e9836f70}{index}}\ +\ n\ );\ \}}
+\DoxyCodeLine{00192\ \ \ [[nodiscard]]\ \textcolor{keyword}{constexpr}\ \mbox{\hyperlink{structstd_1_1math_1_1detail_1_1faux__index__iterator}{faux\_index\_iterator}}\ \mbox{\hyperlink{structstd_1_1math_1_1detail_1_1faux__index__iterator_a2837eb3b221ec9cf45fc43d6e882327e}{operator-\/\ \ \ }}(\ \textcolor{keyword}{const}\ \mbox{\hyperlink{structstd_1_1math_1_1detail_1_1faux__index__iterator_a8bb08007a5f24d9fd6521cfecd23241f}{difference\_type}}\ n\ )\ \ \ \ \ \ \ \ \textcolor{keyword}{noexcept}\ \{\ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{structstd_1_1math_1_1detail_1_1faux__index__iterator}{faux\_index\_iterator}}(\ this-\/>\mbox{\hyperlink{structstd_1_1math_1_1detail_1_1faux__index__iterator_a8399e92609c33b4bdeb2be05e9836f70}{index}}\ -\/\ n\ );\ \}}
+\DoxyCodeLine{00193\ \ \ [[nodiscard]]\ \textcolor{keyword}{constexpr}\ \mbox{\hyperlink{structstd_1_1math_1_1detail_1_1faux__index__iterator_a8bb08007a5f24d9fd6521cfecd23241f}{difference\_type}}\ \ \ \ \ \mbox{\hyperlink{structstd_1_1math_1_1detail_1_1faux__index__iterator_a2837eb3b221ec9cf45fc43d6e882327e}{operator\ -\/\ \ }}(\ \textcolor{keyword}{const}\ \mbox{\hyperlink{structstd_1_1math_1_1detail_1_1faux__index__iterator}{faux\_index\_iterator}}\&\ rhs\ )\ \textcolor{keyword}{noexcept}\ \{\ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{structstd_1_1math_1_1detail_1_1faux__index__iterator_a8bb08007a5f24d9fd6521cfecd23241f}{difference\_type}}(\ this-\/>\mbox{\hyperlink{structstd_1_1math_1_1detail_1_1faux__index__iterator_a8399e92609c33b4bdeb2be05e9836f70}{index}}\ -\/\ rhs.index\ );\ \}}
+\DoxyCodeLine{00194\ \ \ [[nodiscard]]\ \textcolor{keyword}{constexpr}\ \mbox{\hyperlink{structstd_1_1math_1_1detail_1_1faux__index__iterator_a5de45aa1534fc0610c1419e8255a2398}{reference}}\ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structstd_1_1math_1_1detail_1_1faux__index__iterator_a958c42a421f8d64480bdc01cca5c76bf}{operator\ *\ \ }}()\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ noexcept\ \{\ \textcolor{keywordflow}{return}\ this-\/>\mbox{\hyperlink{structstd_1_1math_1_1detail_1_1faux__index__iterator_a8399e92609c33b4bdeb2be05e9836f70}{index}};\ \}}
+\DoxyCodeLine{00195\ \ \ [[nodiscard]]\ \textcolor{keyword}{constexpr}\ \mbox{\hyperlink{structstd_1_1math_1_1detail_1_1faux__index__iterator_a0164e062f6faebb04cc8bcd6d8bdf025}{pointer}}\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structstd_1_1math_1_1detail_1_1faux__index__iterator_a3ffa608eed16d426f34c3422da08d67d}{operator\ -\/>\ }}()\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ noexcept\ \{\ \textcolor{keywordflow}{return}\ \&(this-\/>\mbox{\hyperlink{structstd_1_1math_1_1detail_1_1faux__index__iterator_a8399e92609c33b4bdeb2be05e9836f70}{index}});\ \}}
+\DoxyCodeLine{00196\ \ \ [[nodiscard]]\ \textcolor{keyword}{constexpr}\ \textcolor{keywordtype}{bool}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structstd_1_1math_1_1detail_1_1faux__index__iterator_a512720292a9f1523c14b262f793484d5}{operator\ ==\ }}(\ \textcolor{keyword}{const}\ \mbox{\hyperlink{structstd_1_1math_1_1detail_1_1faux__index__iterator}{faux\_index\_iterator}}\&\ rhs\ )\ \textcolor{keyword}{noexcept}\ \{\ \textcolor{keywordflow}{return}\ (\ this-\/>\mbox{\hyperlink{structstd_1_1math_1_1detail_1_1faux__index__iterator_a8399e92609c33b4bdeb2be05e9836f70}{index}}\ ==\ rhs.index\ );\ \}}
+\DoxyCodeLine{00197\ \ \ [[nodiscard]]\ \textcolor{keyword}{constexpr}\ \textcolor{keywordtype}{bool}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structstd_1_1math_1_1detail_1_1faux__index__iterator_a65bf34ff0ec7e5bc0505fe21e0040c50}{operator\ >\ \ }}(\ \textcolor{keyword}{const}\ \mbox{\hyperlink{structstd_1_1math_1_1detail_1_1faux__index__iterator}{faux\_index\_iterator}}\&\ rhs\ )\ \textcolor{keyword}{noexcept}\ \{\ \textcolor{keywordflow}{return}\ (\ this-\/>\mbox{\hyperlink{structstd_1_1math_1_1detail_1_1faux__index__iterator_a8399e92609c33b4bdeb2be05e9836f70}{index}}\ >\ rhs.index\ );\ \}}
+\DoxyCodeLine{00198\ \ \ [[nodiscard]]\ \textcolor{keyword}{constexpr}\ \textcolor{keywordtype}{bool}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structstd_1_1math_1_1detail_1_1faux__index__iterator_a03233f4bd58fc4a37e2c63ad43834cdc}{operator\ <\ \ }}(\ \textcolor{keyword}{const}\ \mbox{\hyperlink{structstd_1_1math_1_1detail_1_1faux__index__iterator}{faux\_index\_iterator}}\&\ rhs\ )\ \textcolor{keyword}{noexcept}\ \{\ \textcolor{keywordflow}{return}\ (\ this-\/>\mbox{\hyperlink{structstd_1_1math_1_1detail_1_1faux__index__iterator_a8399e92609c33b4bdeb2be05e9836f70}{index}}\ <\ rhs.index\ );\ \}}
+\DoxyCodeLine{00199\ \ \ [[nodiscard]]\ \textcolor{keyword}{constexpr}\ \textcolor{keywordtype}{bool}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structstd_1_1math_1_1detail_1_1faux__index__iterator_a803251235b853352a53fded6c2ac168f}{operator\ !=\ }}(\ \textcolor{keyword}{const}\ \mbox{\hyperlink{structstd_1_1math_1_1detail_1_1faux__index__iterator}{faux\_index\_iterator}}\&\ rhs\ )\ \textcolor{keyword}{noexcept}\ \{\ \textcolor{keywordflow}{return}\ !(\ *\textcolor{keyword}{this}\ ==\ rhs\ );\ \}}
+\DoxyCodeLine{00200\ \ \ [[nodiscard]]\ \textcolor{keyword}{constexpr}\ \textcolor{keywordtype}{bool}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structstd_1_1math_1_1detail_1_1faux__index__iterator_a78bf4b854e6f4abdf4f4b2eddb95326c}{operator\ >=\ }}(\ \textcolor{keyword}{const}\ \mbox{\hyperlink{structstd_1_1math_1_1detail_1_1faux__index__iterator}{faux\_index\_iterator}}\&\ rhs\ )\ \textcolor{keyword}{noexcept}\ \{\ \textcolor{keywordflow}{return}\ !(\ *\textcolor{keyword}{this}\ >\ rhs\ );\ \}}
+\DoxyCodeLine{00201\ \ \ [[nodiscard]]\ \textcolor{keyword}{constexpr}\ \textcolor{keywordtype}{bool}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structstd_1_1math_1_1detail_1_1faux__index__iterator_aef63a3732e076e061ebee2144c596f6b}{operator\ <=\ }}(\ \textcolor{keyword}{const}\ \mbox{\hyperlink{structstd_1_1math_1_1detail_1_1faux__index__iterator}{faux\_index\_iterator}}\&\ rhs\ )\ \textcolor{keyword}{noexcept}\ \{\ \textcolor{keywordflow}{return}\ !(\ *\textcolor{keyword}{this}\ <\ rhs\ );\ \}}
+\DoxyCodeLine{00202\ \ \ [[nodiscard]]\ \textcolor{keyword}{constexpr}\ \mbox{\hyperlink{structstd_1_1math_1_1detail_1_1faux__index__iterator_a45d1362928c4eb117fda756459982943}{value\_type}}\ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structstd_1_1math_1_1detail_1_1faux__index__iterator_a18805ad4112d7640143c1b95f214bde2}{operator[]\ \ }}(\ \textcolor{keyword}{const}\ \mbox{\hyperlink{structstd_1_1math_1_1detail_1_1faux__index__iterator_a8bb08007a5f24d9fd6521cfecd23241f}{difference\_type}}\ n\ )\ \ \ \ \ \ \ \ \textcolor{keyword}{noexcept}\ \{\ \textcolor{keywordflow}{return}\ this-\/>\mbox{\hyperlink{structstd_1_1math_1_1detail_1_1faux__index__iterator_a8399e92609c33b4bdeb2be05e9836f70}{index}}\ +\ n;\ \}}
+\DoxyCodeLine{00203\ \ \ T\ \mbox{\hyperlink{structstd_1_1math_1_1detail_1_1faux__index__iterator_a8399e92609c33b4bdeb2be05e9836f70}{index}};}
+\DoxyCodeLine{00204\ \};}
+\DoxyCodeLine{00205\ }
+\DoxyCodeLine{00206\ \textcolor{comment}{//==================================================================================================}}
+\DoxyCodeLine{00207\ \textcolor{comment}{//\ \ Constexpr\ For}}
+\DoxyCodeLine{00208\ \textcolor{comment}{//==================================================================================================}}
+\DoxyCodeLine{00209\ \textcolor{keyword}{template}\ <\ auto\ Start,\ auto\ End,\ auto\ Inc,\ \textcolor{keyword}{class}\ F\ >}
+\DoxyCodeLine{00210\ \textcolor{keyword}{constexpr}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{namespacestd_1_1math_1_1detail_aa25c309431aba71c9a501903354ba64e}{constexpr\_for}}(\ F\&\&\ f\ )}
+\DoxyCodeLine{00211\ \{}
+\DoxyCodeLine{00212\ \ \ \textcolor{keywordflow}{if}\ \textcolor{keyword}{constexpr}\ (\ Start\ <\ End\ )}
+\DoxyCodeLine{00213\ \ \ \{}
+\DoxyCodeLine{00214\ \ \ \ \ f(\ std::integral\_constant<\ \textcolor{keyword}{decltype}(Start),\ Start\ >()\ );}
+\DoxyCodeLine{00215\ \ \ \ \ constexpr\_for<\ Start\ +\ Inc,\ End,\ Inc\ >(\ f\ );}
+\DoxyCodeLine{00216\ \ \ \}}
+\DoxyCodeLine{00217\ \}}
+\DoxyCodeLine{00218\ }
+\DoxyCodeLine{00219\ \textcolor{comment}{//==================================================================================================}}
+\DoxyCodeLine{00220\ \textcolor{comment}{//\ \ Has\ Index\ Operator\ concept\ is\ met\ if\ lambda\ has\ operator()(\ Indices\ ...\ )\ defined}}
+\DoxyCodeLine{00221\ \textcolor{comment}{//==================================================================================================}}
+\DoxyCodeLine{00222\ \textcolor{keyword}{template}\ <\ \textcolor{keyword}{class\ }Lambda,\ \textcolor{keyword}{class\ }IndexType,\ IndexType\ ...\ Indices\ >}
+\DoxyCodeLine{00223\ \textcolor{keyword}{concept\ }\mbox{\hyperlink{conceptstd_1_1math_1_1detail_1_1has__index__operator}{has\_index\_operator}}\ =\ \textcolor{keyword}{requires}\ (\ Lambda\&\&\ lambda\ )\ \{\ lambda(\ Indices\ ...\ );\ \};}
+\DoxyCodeLine{00224\ }
+\DoxyCodeLine{00225\ \textcolor{comment}{//==================================================================================================}}
+\DoxyCodeLine{00226\ \textcolor{comment}{//\ \ Is\ Defined\ is\ true\ if\ the\ class\ has\ been\ defined}}
+\DoxyCodeLine{00227\ \textcolor{comment}{//==================================================================================================}}
+\DoxyCodeLine{00228\ \textcolor{keyword}{template}\ <\ \textcolor{keyword}{class\ }...\ Ts\ >\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structstd_1_1math_1_1detail_1_1make__void}{make\_void}}\ \{\ \textcolor{keyword}{typedef}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{structstd_1_1math_1_1detail_1_1make__void_ad37ce0d2a4e771397a20c9a8861e4b31}{type}};\};}
+\DoxyCodeLine{00229\ }
+\DoxyCodeLine{00230\ \textcolor{keyword}{template}\ <\ \textcolor{keyword}{class}\ T,\ \textcolor{keyword}{class}\ Enabler\ =\ \textcolor{keywordtype}{void}\ >}
+\DoxyCodeLine{00231\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structstd_1_1math_1_1detail_1_1is__defined}{is\_defined}}\ :\ std::false\_type\ \{\};}
+\DoxyCodeLine{00232\ }
+\DoxyCodeLine{00233\ \textcolor{keyword}{template}\ <\ \textcolor{keyword}{class}\ T\ >}
+\DoxyCodeLine{00234\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structstd_1_1math_1_1detail_1_1is__defined}{is\_defined}}<\ T,\ typename\ \mbox{\hyperlink{structstd_1_1math_1_1detail_1_1make__void}{make\_void}}<\ decltype(\ sizeof(T)\ !=\ 0\ )\ >::type\ >\ :\ std::true\_type\ \{\};}
+\DoxyCodeLine{00235\ }
+\DoxyCodeLine{00236\ \textcolor{keyword}{template}\ <\ \textcolor{keyword}{class}\ T\ >}
+\DoxyCodeLine{00237\ \textcolor{keyword}{inline}\ \textcolor{keyword}{constexpr}\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{namespacestd_1_1math_1_1detail_abb1194d0615223ecf0d5ca0f2dccc37c}{is\_defined\_v}}\ =\ \mbox{\hyperlink{structstd_1_1math_1_1detail_1_1is__defined}{is\_defined<T>::value}};}
+\DoxyCodeLine{00238\ }
+\DoxyCodeLine{00239\ \textcolor{comment}{//==================================================================================================}}
+\DoxyCodeLine{00240\ \textcolor{comment}{//\ \ Is\ Unsequenced\ returns\ true\ if\ the\ Execution\ Policy\ is\ unsequence}}
+\DoxyCodeLine{00241\ \textcolor{comment}{//==================================================================================================}}
+\DoxyCodeLine{00242\ \textcolor{keyword}{template}\ <\ \textcolor{keyword}{class}\ T\ >}
+\DoxyCodeLine{00243\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structstd_1_1math_1_1detail_1_1is__unsequenced}{is\_unsequenced}}\ :\ \textcolor{keyword}{public}\ false\_type\ \{\ \};}
+\DoxyCodeLine{00244\ }
+\DoxyCodeLine{00245\ \textcolor{keyword}{template}\ <\ >}
+\DoxyCodeLine{00246\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structstd_1_1math_1_1detail_1_1is__unsequenced}{is\_unsequenced}}<\ execution::parallel\_unsequenced\_policy\ >\ :\ \textcolor{keyword}{public}\ true\_type\ \{\ \};}
+\DoxyCodeLine{00247\ }
+\DoxyCodeLine{00248\ \textcolor{keyword}{template}\ <\ >}
+\DoxyCodeLine{00249\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structstd_1_1math_1_1detail_1_1is__unsequenced}{is\_unsequenced}}<\ execution::unsequenced\_policy\ >\ :\ \textcolor{keyword}{public}\ true\_type\ \{\ \};}
+\DoxyCodeLine{00250\ }
+\DoxyCodeLine{00251\ \textcolor{keyword}{template}\ <\ \textcolor{keyword}{class}\ T\ >}
+\DoxyCodeLine{00252\ \textcolor{keyword}{inline}\ \textcolor{keyword}{constexpr}\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{namespacestd_1_1math_1_1detail_ab267c2a05cbfb511389a133e550a5573}{is\_unsequenced\_v}}\ =\ \mbox{\hyperlink{structstd_1_1math_1_1detail_1_1is__unsequenced}{is\_unsequenced<T>::value}};}
+\DoxyCodeLine{00253\ }
+\DoxyCodeLine{00254\ \textcolor{comment}{//==================================================================================================}}
+\DoxyCodeLine{00255\ \textcolor{comment}{//\ \ Apply\ All\ applies\ the\ lambda\ expression\ to\ all\ elements\ in\ the\ view}}
+\DoxyCodeLine{00256\ \textcolor{comment}{//==================================================================================================}}
+\DoxyCodeLine{00257\ }
+\DoxyCodeLine{00258\ \textcolor{keyword}{template}\ <\ \textcolor{keyword}{class}\ >\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structstd_1_1math_1_1detail_1_1apply__all__strided__helper}{apply\_all\_strided\_helper}}\ \{\ \};}
+\DoxyCodeLine{00259\ \textcolor{keyword}{template}\ <\ \textcolor{keyword}{class\ }IndexType,\ IndexType\ ...\ Indices\ >}
+\DoxyCodeLine{00260\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structstd_1_1math_1_1detail_1_1apply__all__strided__helper}{apply\_all\_strided\_helper}}<\ integer\_sequence<IndexType,Indices...>\ >}
+\DoxyCodeLine{00261\ \{}
+\DoxyCodeLine{00262\ \ \ [[nodiscard]]\ \textcolor{keyword}{static}\ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{auto}\ \mbox{\hyperlink{structstd_1_1math_1_1detail_1_1apply__all__strided__helper_3_01integer__sequence_3_01_index_type_00_01_indices_8_8_8_01_4_01_4_afa20d923e3c4eb9c2336c829bdaaf580}{zero}}(\ [[maybe\_unused]]\ IndexType\ )\ \{\ \textcolor{keywordflow}{return}\ 0;\ \}}
+\DoxyCodeLine{00263\ \ \ [[nodiscard]]\ \textcolor{keyword}{static}\ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{auto}\ \mbox{\hyperlink{structstd_1_1math_1_1detail_1_1apply__all__strided__helper_3_01integer__sequence_3_01_index_type_00_01_indices_8_8_8_01_4_01_4_a81c52754852dec56e66b1a6708181015}{initial\_indices}}()\ noexcept\ \{\ \textcolor{keywordflow}{return}\ tuple(\ zero(Indices)\ ...\ );\ \}}
+\DoxyCodeLine{00264\ \};}
+\DoxyCodeLine{00265\ }
+\DoxyCodeLine{00266\ \textcolor{keyword}{template}\ <\ \textcolor{keyword}{class}\ View\ >}
+\DoxyCodeLine{00267\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structstd_1_1math_1_1detail_1_1stride__order}{stride\_order}};}
+\DoxyCodeLine{00268\ }
+\DoxyCodeLine{00269\ \textcolor{keyword}{template}\ <\ \textcolor{keyword}{class}\ ElementType,\ \textcolor{keyword}{class}\ Extents,\ \textcolor{keyword}{class}\ AccessorPolicy\ >}
+\DoxyCodeLine{00270\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structstd_1_1math_1_1detail_1_1stride__order}{stride\_order}}<\ experimental::mdspan<\ ElementType,\ Extents,\ experimental::layout\_left,\ AccessorPolicy\ >\ >}
+\DoxyCodeLine{00271\ \{}
+\DoxyCodeLine{00272\ \ \ \textcolor{keyword}{template}\ <\ \textcolor{keyword}{class}\ IndexType\ >}
+\DoxyCodeLine{00273\ \ \ [[nodiscard]]\ \textcolor{keyword}{static}\ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{auto}\ \mbox{\hyperlink{structstd_1_1math_1_1detail_1_1stride__order_3_01experimental_1_1mdspan_3_01_element_type_00_01_f8f73e2541c2dcaca10d4553c112e1f6_abf07f615a5380b54603734e8b9fb5574}{get\_nth\_largest\_stride\_index}}(\ IndexType\ index\ )\ \textcolor{keyword}{noexcept}}
+\DoxyCodeLine{00274\ \ \ \{}
+\DoxyCodeLine{00275\ \ \ \ \ \textcolor{keywordflow}{return}\ experimental::mdspan<\ ElementType,\ Extents,\ experimental::layout\_left,\ AccessorPolicy\ >::rank()\ -\/\ index\ -\/\ 1;}
+\DoxyCodeLine{00276\ \ \ \}}
+\DoxyCodeLine{00277\ \};}
+\DoxyCodeLine{00278\ }
+\DoxyCodeLine{00279\ \textcolor{keyword}{template}\ <\ \textcolor{keyword}{class}\ ElementType,\ \textcolor{keyword}{class}\ Extents,\ \textcolor{keyword}{class}\ AccessorPolicy\ >}
+\DoxyCodeLine{00280\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structstd_1_1math_1_1detail_1_1stride__order}{stride\_order}}<\ experimental::mdspan<\ ElementType,\ Extents,\ experimental::layout\_right,\ AccessorPolicy\ >\ >}
+\DoxyCodeLine{00281\ \{}
+\DoxyCodeLine{00282\ \ \ \textcolor{keyword}{template}\ <\ \textcolor{keyword}{class}\ IndexType\ >}
+\DoxyCodeLine{00283\ \ \ [[nodiscard]]\ \textcolor{keyword}{static}\ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{auto}\ \mbox{\hyperlink{structstd_1_1math_1_1detail_1_1stride__order_3_01experimental_1_1mdspan_3_01_element_type_00_01_03d1e1065c63c901ab9987119b89c53f_a92f13b8f454b6086fd2b2bfae20c128e}{get\_nth\_largest\_stride\_index}}(\ IndexType\ index\ )\ \textcolor{keyword}{noexcept}}
+\DoxyCodeLine{00284\ \ \ \{}
+\DoxyCodeLine{00285\ \ \ \ \ \textcolor{keywordflow}{return}\ index;}
+\DoxyCodeLine{00286\ \ \ \}}
+\DoxyCodeLine{00287\ \};}
+\DoxyCodeLine{00288\ }
+\DoxyCodeLine{00289\ \textcolor{comment}{//\ DOESN'T\ WORK.\ ORDER\ MUST\ BE\ DETERMINED\ AT\ COMPILE\ TIME}}
+\DoxyCodeLine{00290\ \textcolor{comment}{//}}
+\DoxyCodeLine{00291\ \textcolor{comment}{//\ template\ <\ class\ ElementType,\ class\ Extents,\ class\ AccessorPolicy\ >}}
+\DoxyCodeLine{00292\ \textcolor{comment}{//\ struct\ stride\_order<\ experimental::mdspan<\ ElementType,\ Extents,\ experimental::layout\_stride,\ AccessorPolicy\ >\ >}}
+\DoxyCodeLine{00293\ \textcolor{comment}{//\ \{}}
+\DoxyCodeLine{00294\ \textcolor{comment}{//\ \ \ constexpr\ stride\_order(\ const\ experimental::layout\_stride::mapping<Extents>\&\ layout\ )\ noexcept\ :}}
+\DoxyCodeLine{00295\ \textcolor{comment}{//\ \ \ \ \ order\_(\ layout.strides()\ )}}
+\DoxyCodeLine{00296\ \textcolor{comment}{//\ \ \ \{}}
+\DoxyCodeLine{00297\ \textcolor{comment}{//\ \ \ \ \ sort(\ this-\/>order\_.begin(),}}
+\DoxyCodeLine{00298\ \textcolor{comment}{//\ \ \ \ \ \ \ \ \ \ \ this-\/>order\_.end(),}}
+\DoxyCodeLine{00299\ \textcolor{comment}{//\ \ \ \ \ \ \ \ \ \ \ [layout](\ auto\ index1,\ auto\ index2\ )\ \{\ return\ layout.stride(index1)\ <=\ layout.stride(index2);\ \}\ );}}
+\DoxyCodeLine{00300\ \textcolor{comment}{//\ \ \ \}}}
+\DoxyCodeLine{00301\ }
+\DoxyCodeLine{00302\ \textcolor{comment}{//\ \ \ template\ <\ class\ IndexType\ >}}
+\DoxyCodeLine{00303\ \textcolor{comment}{//\ \ \ [[nodiscard]]\ constexpr\ auto\ get\_nth\_largest\_stride\_index(\ IndexType\ index\ )\ noexcept}}
+\DoxyCodeLine{00304\ \textcolor{comment}{//\ \ \ \{}}
+\DoxyCodeLine{00305\ \textcolor{comment}{//\ \ \ \ \ return\ this-\/>order\_[index];}}
+\DoxyCodeLine{00306\ \textcolor{comment}{//\ \ \ \}}}
+\DoxyCodeLine{00307\ \textcolor{comment}{//\ private\ :}}
+\DoxyCodeLine{00308\ \textcolor{comment}{//\ \ \ decltype(\ declval<\ experimental::layout\_stride::mapping<Extents>\ >().strides()\ )\ order\_;}}
+\DoxyCodeLine{00309\ \textcolor{comment}{//\ \};}}
+\DoxyCodeLine{00310\ }
+\DoxyCodeLine{00311\ \textcolor{keyword}{template}\ <\ \textcolor{keyword}{class\ \ \ \ \ \ \ \ \ }View,}
+\DoxyCodeLine{00312\ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{class\ \ \ \ \ \ \ \ \ }Lambda,}
+\DoxyCodeLine{00313\ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{class\ \ \ \ \ \ \ \ \ }ExecutionPolicy,}
+\DoxyCodeLine{00314\ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{class\ \ \ \ \ \ \ \ \ }IndexType,}
+\DoxyCodeLine{00315\ \ \ \ \ \ \ \ \ \ \ \ IndexType\ ...\ BeforeIndices,}
+\DoxyCodeLine{00316\ \ \ \ \ \ \ \ \ \ \ \ IndexType\ ...\ AfterIndices,}
+\DoxyCodeLine{00317\ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{class\ }...\ \ \ \ \ IndicesType\ >}
+\DoxyCodeLine{00318\ \textcolor{keyword}{constexpr}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{namespacestd_1_1math_1_1detail_afc8cc2d943145d25f52fcb5d59d05540}{apply\_all\_strided3}}(\ View\&\&\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ view,}
+\DoxyCodeLine{00319\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Lambda\&\&\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ lambda,}
+\DoxyCodeLine{00320\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ExecutionPolicy\&\&\ \ \ \ \ \ execution\_policy,}
+\DoxyCodeLine{00321\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ [[maybe\_unused]]\ integer\_sequence<IndexType,BeforeIndices...>,}
+\DoxyCodeLine{00322\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ [[maybe\_unused]]\ integer\_sequence<IndexType,AfterIndices...>,}
+\DoxyCodeLine{00323\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ tuple<IndicesType...>\&\ indices\ )}
+\DoxyCodeLine{00324\ \ \ \textcolor{keyword}{noexcept}(\ \textcolor{keyword}{noexcept}(\ lambda(\ get<\ BeforeIndices\ >(\ indices\ )\ ...,}
+\DoxyCodeLine{00325\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ declval<\ decay\_t<\ \textcolor{keyword}{decltype}(\ get<\ \textcolor{keyword}{sizeof}...(BeforeIndices)\ >(\ indices\ )\ )\ >\ >(),}
+\DoxyCodeLine{00326\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ get<\ AfterIndices\ +\ \textcolor{keyword}{sizeof}...(BeforeIndices)\ >(\ indices\ )\ ...\ )\ )\ )}
+\DoxyCodeLine{00327\ \{}
+\DoxyCodeLine{00328\ \ \ \textcolor{keyword}{constexpr}\ IndexType\ index\ =\ \textcolor{keyword}{sizeof}...(BeforeIndices);}
+\DoxyCodeLine{00329\ \ \ \textcolor{comment}{//\ If\ lambda\ expression\ is\ noexcept,\ then\ just\ attempt\ to\ call\ using\ whatever\ execution\ policy}}
+\DoxyCodeLine{00330\ \ \ \textcolor{keywordflow}{if}\ \textcolor{keyword}{constexpr}\ (\ \textcolor{keyword}{noexcept}(\ lambda(\ get<\ BeforeIndices\ >(\ indices\ )\ ...,}
+\DoxyCodeLine{00331\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ declval<\ decay\_t<\ \textcolor{keyword}{decltype}(\ get<\ \textcolor{keyword}{sizeof}...(BeforeIndices)\ >(\ indices\ )\ )\ >\ >(),}
+\DoxyCodeLine{00332\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ get<\ AfterIndices\ +\ \textcolor{keyword}{sizeof}...(BeforeIndices)\ >(\ indices\ )\ ...\ )\ )\ )}
+\DoxyCodeLine{00333\ \ \ \{}
+\DoxyCodeLine{00334\ \ \ \ \ for\_each(\ execution\_policy,}
+\DoxyCodeLine{00335\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structstd_1_1math_1_1detail_1_1faux__index__iterator}{faux\_index\_iterator}}<decay\_t<\textcolor{keyword}{decltype}(\ get<index>(indices)\ )>\ >(0),}
+\DoxyCodeLine{00336\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structstd_1_1math_1_1detail_1_1faux__index__iterator}{faux\_index\_iterator}}<decay\_t<\textcolor{keyword}{decltype}(\ get<index>(indices)\ )>\ >(view.extent(index)),}
+\DoxyCodeLine{00337\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ [\&lambda,\&indices]\ (\ decay\_t<\textcolor{keyword}{decltype}(\ get<index>(indices)\ )>\ curr\_index\ )\ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{noexcept}}
+\DoxyCodeLine{00338\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00339\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ lambda(\ get<BeforeIndices>(indices)\ ...,\ curr\_index,\ get<AfterIndices+index>(indices)\ ...\ );}
+\DoxyCodeLine{00340\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}\ );}
+\DoxyCodeLine{00341\ \ \ \}}
+\DoxyCodeLine{00342\ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{00343\ \ \ \{}
+\DoxyCodeLine{00344\ \ \ \ \ \textcolor{comment}{//\ Cache\ the\ last\ exception\ to\ be\ thrown}}
+\DoxyCodeLine{00345\ \ \ \ \ exception\_ptr\ eptr;}
+\DoxyCodeLine{00346\ \ \ \ \ \textcolor{comment}{//\ Attempt\ lambda\ expression\ on\ each\ element}}
+\DoxyCodeLine{00347\ \ \ \ \ for\_each(\ execution\_policy,}
+\DoxyCodeLine{00348\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structstd_1_1math_1_1detail_1_1faux__index__iterator}{faux\_index\_iterator}}<decay\_t<\textcolor{keyword}{decltype}(\ get<index>(indices)\ )>\ >(0),}
+\DoxyCodeLine{00349\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structstd_1_1math_1_1detail_1_1faux__index__iterator}{faux\_index\_iterator}}<decay\_t<\textcolor{keyword}{decltype}(\ get<index>(indices)\ )>\ >(view.extent(index)),}
+\DoxyCodeLine{00350\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ [\&lambda,\&indices,\&eptr]\ (\ decay\_t<\textcolor{keyword}{decltype}(\ get<index>(indices)\ )>\ curr\_index\ )\ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{noexcept}}
+\DoxyCodeLine{00351\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00352\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ try\ \{\ lambda(\ get<BeforeIndices>(indices)\ ...,\ curr\_index,\ get<AfterIndices+index>(indices)\ ...\ );\ \}}
+\DoxyCodeLine{00353\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ catch\ (\ ...\ )\ \{\ eptr\ =\ current\_exception();\ \}}
+\DoxyCodeLine{00354\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}\ );}
+\DoxyCodeLine{00355\ \ \ \ \ \textcolor{comment}{//\ If\ exceptions\ were\ thrown,\ rethrow\ the\ last}}
+\DoxyCodeLine{00356\ \ \ \ \ \textcolor{keywordflow}{if}\ (\ eptr\ )\ [[unlikely]]}
+\DoxyCodeLine{00357\ \ \ \ \ \{}
+\DoxyCodeLine{00358\ \ \ \ \ \ \ rethrow\_exception(\ eptr\ );}
+\DoxyCodeLine{00359\ \ \ \ \ \}}
+\DoxyCodeLine{00360\ \ \ \}}
+\DoxyCodeLine{00361\ \}}
+\DoxyCodeLine{00362\ }
+\DoxyCodeLine{00363\ \textcolor{keyword}{template}\ <\ \textcolor{keywordtype}{size\_t}\ \ \ \ Index,}
+\DoxyCodeLine{00364\ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{class\ \ \ \ \ }View,}
+\DoxyCodeLine{00365\ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{class\ \ \ \ \ }Lambda,}
+\DoxyCodeLine{00366\ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{class\ \ \ \ \ }ExecutionPolicy,}
+\DoxyCodeLine{00367\ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{class\ }...\ IndexType\ >}
+\DoxyCodeLine{00368\ [[nodiscard]]\ \textcolor{keyword}{consteval}\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{namespacestd_1_1math_1_1detail_a53b696ca75b314da844990e5d0917092}{apply\_all\_strided2\_is\_noexcept}}()\ noexcept}
+\DoxyCodeLine{00369\ \{}
+\DoxyCodeLine{00370\ \ \ \textcolor{keyword}{constexpr}\ \textcolor{keywordtype}{size\_t}\ index\_stride\ =\ \mbox{\hyperlink{structstd_1_1math_1_1detail_1_1stride__order}{stride\_order<\ decay\_t<View>}}\ >::get\_nth\_largest\_stride\_index(\ Index\ );}
+\DoxyCodeLine{00371\ \ \ \textcolor{keywordflow}{if}\ \textcolor{keyword}{constexpr}\ (\ Index\ ==\ \textcolor{keyword}{sizeof}...(IndexType)\ -\/\ 1\ )}
+\DoxyCodeLine{00372\ \ \ \{}
+\DoxyCodeLine{00373\ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{noexcept}(\ \mbox{\hyperlink{namespacestd_1_1math_1_1detail_afc8cc2d943145d25f52fcb5d59d05540}{apply\_all\_strided3}}(\ declval<View\&\&>(),}
+\DoxyCodeLine{00374\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ declval<Lambda\&\&>(),}
+\DoxyCodeLine{00375\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ declval<ExecutionPolicy\&\&>(),}
+\DoxyCodeLine{00376\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ make\_index\_sequence<index\_stride>(),}
+\DoxyCodeLine{00377\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ make\_index\_sequence<\textcolor{keyword}{sizeof}...(IndexType)-\/index\_stride-\/1>(),}
+\DoxyCodeLine{00378\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ declval<tuple<IndexType...>\&>()\ )\ );}
+\DoxyCodeLine{00379\ \ \ \}}
+\DoxyCodeLine{00380\ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{00381\ \ \ \{}
+\DoxyCodeLine{00382\ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{namespacestd_1_1math_1_1detail_a53b696ca75b314da844990e5d0917092}{apply\_all\_strided2\_is\_noexcept}}<Index+1,View,Lambda,ExecutionPolicy,IndexType\ ...>();}
+\DoxyCodeLine{00383\ \ \ \}}
+\DoxyCodeLine{00384\ \}}
+\DoxyCodeLine{00385\ }
+\DoxyCodeLine{00386\ \textcolor{keyword}{template}\ <\ \textcolor{keywordtype}{size\_t}\ \ \ \ Index,}
+\DoxyCodeLine{00387\ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{class\ \ \ \ \ }View,}
+\DoxyCodeLine{00388\ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{class\ \ \ \ \ }Lambda,}
+\DoxyCodeLine{00389\ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{class\ \ \ \ \ }ExecutionPolicy,}
+\DoxyCodeLine{00390\ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{class\ }...\ IndexType\ >}
+\DoxyCodeLine{00391\ \textcolor{keyword}{constexpr}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{namespacestd_1_1math_1_1detail_a9d0d87d8729bf26007005e323b882dcb}{apply\_all\_strided2}}(\ View\&\&\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ view,}
+\DoxyCodeLine{00392\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Lambda\&\&\ \ \ \ \ \ \ \ \ \ \ \ \ lambda,}
+\DoxyCodeLine{00393\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ExecutionPolicy\&\&\ \ \ \ execution\_policy,}
+\DoxyCodeLine{00394\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ tuple<IndexType...>\&\ indices\ )}
+\DoxyCodeLine{00395\ \ \ \textcolor{keyword}{noexcept}(\ \mbox{\hyperlink{namespacestd_1_1math_1_1detail_a53b696ca75b314da844990e5d0917092}{apply\_all\_strided2\_is\_noexcept}}<Index,View,Lambda,ExecutionPolicy,IndexType\ ...>()\ )}
+\DoxyCodeLine{00396\ \{}
+\DoxyCodeLine{00397\ \ \ \textcolor{keyword}{constexpr}\ \textcolor{keywordtype}{size\_t}\ index\_stride\ =\ \mbox{\hyperlink{structstd_1_1math_1_1detail_1_1stride__order}{stride\_order<\ decay\_t<View>}}\ >::get\_nth\_largest\_stride\_index(\ Index\ );}
+\DoxyCodeLine{00398\ \ \ \textcolor{keywordflow}{if}\ \textcolor{keyword}{constexpr}\ (\ Index\ ==\ \textcolor{keyword}{sizeof}...(IndexType)\ -\/\ 1\ )}
+\DoxyCodeLine{00399\ \ \ \{}
+\DoxyCodeLine{00400\ \ \ \ \ \mbox{\hyperlink{namespacestd_1_1math_1_1detail_afc8cc2d943145d25f52fcb5d59d05540}{apply\_all\_strided3}}(\ view,}
+\DoxyCodeLine{00401\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ lambda,}
+\DoxyCodeLine{00402\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ execution\_policy,}
+\DoxyCodeLine{00403\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ make\_index\_sequence<index\_stride>(),}
+\DoxyCodeLine{00404\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ make\_index\_sequence<\textcolor{keyword}{sizeof}...(IndexType)-\/index\_stride-\/1>(),}
+\DoxyCodeLine{00405\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ indices\ );}
+\DoxyCodeLine{00406\ \ \ \}}
+\DoxyCodeLine{00407\ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{00408\ \ \ \{}
+\DoxyCodeLine{00409\ \ \ \ \ \textcolor{keywordflow}{if}\ \textcolor{keyword}{constexpr}\ (\ \mbox{\hyperlink{namespacestd_1_1math_1_1detail_a53b696ca75b314da844990e5d0917092}{apply\_all\_strided2\_is\_noexcept}}<Index+1,View,Lambda,ExecutionPolicy,IndexType\ ...>()\ )}
+\DoxyCodeLine{00410\ \ \ \ \ \{}
+\DoxyCodeLine{00411\ \ \ \ \ \ \ for\_each(\ execution\_policy,}
+\DoxyCodeLine{00412\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structstd_1_1math_1_1detail_1_1faux__index__iterator}{faux\_index\_iterator}}<decay\_t<\textcolor{keyword}{decltype}(\ get<index\_stride>(indices)\ )>\ >(0),}
+\DoxyCodeLine{00413\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structstd_1_1math_1_1detail_1_1faux__index__iterator}{faux\_index\_iterator}}<decay\_t<\textcolor{keyword}{decltype}(\ get<index\_stride>(indices)\ )>\ >(view.extent(index\_stride)),}
+\DoxyCodeLine{00414\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ [\&view,\&lambda,\&execution\_policy,\&indices,index\_stride]\ (\ decay\_t<\textcolor{keyword}{decltype}(\ get<index\_stride>(indices)\ )>\ index\ )\ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{noexcept}}
+\DoxyCodeLine{00415\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00416\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ get<index\_stride>(indices)\ =\ index;}
+\DoxyCodeLine{00417\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ apply\_all\_strided2<Index+1>(\ view,\ lambda,\ execution\_policy,\ indices\ );}
+\DoxyCodeLine{00418\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}\ );}
+\DoxyCodeLine{00419\ \ \ \ \ \}}
+\DoxyCodeLine{00420\ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{00421\ \ \ \ \ \{}
+\DoxyCodeLine{00422\ \ \ \ \ \ \ \textcolor{comment}{//\ Cache\ the\ last\ exception\ to\ be\ thrown}}
+\DoxyCodeLine{00423\ \ \ \ \ \ \ exception\_ptr\ eptr;}
+\DoxyCodeLine{00424\ \ \ \ \ \ \ \textcolor{comment}{//\ Attempt\ lambda\ expression\ on\ each\ element}}
+\DoxyCodeLine{00425\ \ \ \ \ \ \ for\_each(\ execution\_policy,}
+\DoxyCodeLine{00426\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structstd_1_1math_1_1detail_1_1faux__index__iterator}{faux\_index\_iterator}}<decay\_t<\textcolor{keyword}{decltype}(\ get<index\_stride>(indices)\ )>\ >(0),}
+\DoxyCodeLine{00427\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structstd_1_1math_1_1detail_1_1faux__index__iterator}{faux\_index\_iterator}}<decay\_t<\textcolor{keyword}{decltype}(\ get<index\_stride>(indices)\ )>\ >(view.extent(index\_stride)),}
+\DoxyCodeLine{00428\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ [\&view,\&lambda,\&execution\_policy,\&indices,\&eptr,index\_stride]\ (\ decay\_t<\textcolor{keyword}{decltype}(\ get<index\_stride>(indices)\ )>\ index\ )\ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{noexcept}}
+\DoxyCodeLine{00429\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00430\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ get<index\_stride>(indices)\ =\ index;}
+\DoxyCodeLine{00431\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ try\ \{\ apply\_all\_strided2<Index+1>(\ view,\ lambda,\ execution\_policy,\ indices\ );\ \}}
+\DoxyCodeLine{00432\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ catch\ (\ ...\ )\ \{\ eptr\ =\ current\_exception();\ \}}
+\DoxyCodeLine{00433\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}\ );}
+\DoxyCodeLine{00434\ \ \ \ \ \ \ \textcolor{comment}{//\ If\ exceptions\ were\ thrown,\ rethrow\ the\ last}}
+\DoxyCodeLine{00435\ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\ eptr\ )\ [[unlikely]]}
+\DoxyCodeLine{00436\ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00437\ \ \ \ \ \ \ \ \ rethrow\_exception(\ eptr\ );}
+\DoxyCodeLine{00438\ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00439\ \ \ \ \ \}}
+\DoxyCodeLine{00440\ \ \ \}}
+\DoxyCodeLine{00441\ \}}
+\DoxyCodeLine{00442\ }
+\DoxyCodeLine{00443\ \textcolor{keyword}{template}\ <\ \textcolor{keyword}{class\ }View,}
+\DoxyCodeLine{00444\ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{class\ }Lambda,}
+\DoxyCodeLine{00445\ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{class\ }ExecutionPolicy\ >}
+\DoxyCodeLine{00446\ [[nodiscard]]\ \textcolor{keyword}{consteval}\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{namespacestd_1_1math_1_1detail_ac6c13339658cf3a0a3f4701f533a9eb7}{apply\_all\_strided\_is\_noexcept}}()\ noexcept}
+\DoxyCodeLine{00447\ \{}
+\DoxyCodeLine{00448\ \ \ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{auto}\ rank\ =\ decay\_t<View>::rank();}
+\DoxyCodeLine{00449\ \ \ \textcolor{keyword}{auto}\ indices\ =\ \mbox{\hyperlink{structstd_1_1math_1_1detail_1_1apply__all__strided__helper}{apply\_all\_strided\_helper<\ make\_integer\_sequence<\ typename\ decay\_t<View>::size\_type}},\ rank\ >\ >::initial\_indices();}
+\DoxyCodeLine{00450\ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{noexcept}(\ apply\_all\_strided2<0>(\ declval<View\&\&>(),}
+\DoxyCodeLine{00451\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ declval<Lambda\&\&>(),}
+\DoxyCodeLine{00452\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ declval<ExecutionPolicy\&\&>(),}
+\DoxyCodeLine{00453\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ indices\ )\ );}
+\DoxyCodeLine{00454\ \}}
+\DoxyCodeLine{00455\ }
+\DoxyCodeLine{00456\ \textcolor{keyword}{template}\ <\ \textcolor{keyword}{class\ }View,}
+\DoxyCodeLine{00457\ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{class\ }Lambda,}
+\DoxyCodeLine{00458\ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{class\ }ExecutionPolicy\ >}
+\DoxyCodeLine{00459\ \textcolor{keyword}{constexpr}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{namespacestd_1_1math_1_1detail_acd11660bd33d8b1bc1c2beb20c335171}{apply\_all\_strided}}(\ View\&\&\ \ \ \ \ \ \ \ \ \ \ \ view,}
+\DoxyCodeLine{00460\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Lambda\&\&\ \ \ \ \ \ \ \ \ \ lambda,}
+\DoxyCodeLine{00461\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ExecutionPolicy\&\&\ execution\_policy\ )}
+\DoxyCodeLine{00462\ \ \ \textcolor{keyword}{noexcept}(\ apply\_all\_strided\_is\_noexcept<View,Lambda,ExecutionPolicy>()\ )}
+\DoxyCodeLine{00463\ \{}
+\DoxyCodeLine{00464\ \ \ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{auto}\ rank\ =\ decay\_t<View>::rank();}
+\DoxyCodeLine{00465\ \ \ \textcolor{keyword}{auto}\ indices\ =\ \mbox{\hyperlink{structstd_1_1math_1_1detail_1_1apply__all__strided__helper}{apply\_all\_strided\_helper<\ make\_integer\_sequence<\ typename\ decay\_t<View>::size\_type}},\ rank\ >\ >::initial\_indices();}
+\DoxyCodeLine{00466\ \ \ apply\_all\_strided2<0>(\ view,}
+\DoxyCodeLine{00467\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ lambda,}
+\DoxyCodeLine{00468\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ execution\_policy,}
+\DoxyCodeLine{00469\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ indices\ );}
+\DoxyCodeLine{00470\ \};}
+\DoxyCodeLine{00471\ }
+\DoxyCodeLine{00472\ \textcolor{keyword}{template}\ <\ \textcolor{keyword}{class\ \ \ \ \ }View,}
+\DoxyCodeLine{00473\ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{class\ \ \ \ \ }Lambda,}
+\DoxyCodeLine{00474\ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{class\ \ \ \ \ }ExecutionPolicy,}
+\DoxyCodeLine{00475\ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{class\ }...\ BeforeIndexType,}
+\DoxyCodeLine{00476\ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{class\ \ \ \ \ }ExtentType\ >}
+\DoxyCodeLine{00477\ \textcolor{keyword}{constexpr}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{namespacestd_1_1math_1_1detail_a141e6731c9fb41cb5d164d6f09b170d1}{apply\_all\_impl2}}(\ View\&\&\ \ \ \ \ \ \ \ \ \ \ \ \ \ view,}
+\DoxyCodeLine{00478\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Lambda\&\&\ \ \ \ \ \ \ \ \ \ \ \ lambda,}
+\DoxyCodeLine{00479\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ExecutionPolicy\&\&\ \ \ execution\_policy,}
+\DoxyCodeLine{00480\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ExtentType\ \ \ \ \ \ \ \ \ \ dim,}
+\DoxyCodeLine{00481\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ BeforeIndexType\ ...\ before\_indices\ )}
+\DoxyCodeLine{00482\ \ \ \textcolor{keyword}{noexcept}(\ \textcolor{keyword}{noexcept}(\ lambda(\ before\_indices\ ...,\ declval<\textcolor{keyword}{typename}\ decay\_t<View>::size\_type>()\ )\ )\ )}
+\DoxyCodeLine{00483\ \{}
+\DoxyCodeLine{00484\ \ \ \textcolor{keyword}{constexpr}\ \textcolor{keywordtype}{bool}\ is\_noexcept\ =\ \textcolor{keyword}{noexcept}(\ lambda(\ before\_indices\ ...,\ declval<\textcolor{keyword}{typename}\ decay\_t<View>::size\_type>()\ )\ );}
+\DoxyCodeLine{00485\ \ \ \textcolor{comment}{//\ If\ lambda\ expression\ is\ noexcept,\ then\ just\ attempt\ to\ call\ using\ whatever\ execution\ policy}}
+\DoxyCodeLine{00486\ \ \ \textcolor{keywordflow}{if}\ \textcolor{keyword}{constexpr}\ (\ is\_noexcept\ )}
+\DoxyCodeLine{00487\ \ \ \{}
+\DoxyCodeLine{00488\ \ \ \ \ for\_each(\ execution\_policy,}
+\DoxyCodeLine{00489\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structstd_1_1math_1_1detail_1_1faux__index__iterator}{faux\_index\_iterator}}<\textcolor{keyword}{typename}\ decay\_t<View>::size\_type>(\ 0\ ),}
+\DoxyCodeLine{00490\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structstd_1_1math_1_1detail_1_1faux__index__iterator}{faux\_index\_iterator}}<\textcolor{keyword}{typename}\ decay\_t<View>::size\_type>(\ view.extent(dim)\ ),}
+\DoxyCodeLine{00491\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ [\ \&lambda,\ \&before\_indices...\ ](\ \textcolor{keyword}{typename}\ decay\_t<View>::size\_type\ index\ )\ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{noexcept}}
+\DoxyCodeLine{00492\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{\ lambda(\ before\_indices\ ...,\ index\ );\ \}\ );}
+\DoxyCodeLine{00493\ \ \ \}}
+\DoxyCodeLine{00494\ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{00495\ \ \ \{}
+\DoxyCodeLine{00496\ \ \ \ \ \textcolor{comment}{//\ Cache\ the\ last\ exception\ to\ be\ thrown}}
+\DoxyCodeLine{00497\ \ \ \ \ exception\_ptr\ eptr;}
+\DoxyCodeLine{00498\ \ \ \ \ \textcolor{comment}{//\ Attempt\ lambda\ expression\ on\ each\ element}}
+\DoxyCodeLine{00499\ \ \ \ \ for\_each(\ execution\_policy,}
+\DoxyCodeLine{00500\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structstd_1_1math_1_1detail_1_1faux__index__iterator}{faux\_index\_iterator}}<\textcolor{keyword}{typename}\ decay\_t<View>::size\_type>(\ 0\ ),}
+\DoxyCodeLine{00501\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structstd_1_1math_1_1detail_1_1faux__index__iterator}{faux\_index\_iterator}}<\textcolor{keyword}{typename}\ decay\_t<View>::size\_type>(\ view.extent(dim)\ ),}
+\DoxyCodeLine{00502\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ [\ \&lambda,\ \&before\_indices...,\ \&eptr\ ](\ \textcolor{keyword}{typename}\ decay\_t<View>::size\_type\ index\ )\ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{noexcept}}
+\DoxyCodeLine{00503\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{\ try\ \{\ lambda(\ before\_indices\ ...,\ index\ );\ \}\ catch\ (\ ...\ )\ \{\ eptr\ =\ current\_exception();\ \}\ \}\ );}
+\DoxyCodeLine{00504\ \ \ \ \ \textcolor{comment}{//\ If\ exceptions\ were\ thrown,\ rethrow\ the\ last}}
+\DoxyCodeLine{00505\ \ \ \ \ \textcolor{keywordflow}{if}\ (\ eptr\ )\ [[unlikely]]}
+\DoxyCodeLine{00506\ \ \ \ \ \{}
+\DoxyCodeLine{00507\ \ \ \ \ \ \ rethrow\_exception(\ eptr\ );}
+\DoxyCodeLine{00508\ \ \ \ \ \}}
+\DoxyCodeLine{00509\ \ \ \}}
+\DoxyCodeLine{00510\ \}}
+\DoxyCodeLine{00511\ }
+\DoxyCodeLine{00512\ \textcolor{keyword}{template}\ <\ \textcolor{keyword}{class\ \ \ \ \ \ \ \ \ \ \ }View,}
+\DoxyCodeLine{00513\ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{class\ \ \ \ \ \ \ \ \ \ \ }Lambda,}
+\DoxyCodeLine{00514\ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{class\ \ \ \ \ \ \ \ \ \ \ }ExecutionPolicy,}
+\DoxyCodeLine{00515\ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{class\ }...\ \ \ \ \ \ \ SizeType,}
+\DoxyCodeLine{00516\ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{class\ \ \ \ \ \ \ \ \ \ \ }ExtentsType,}
+\DoxyCodeLine{00517\ \ \ \ \ \ \ \ \ \ \ \ ExtentsType\ \ \ \ \ FirstExtents,}
+\DoxyCodeLine{00518\ \ \ \ \ \ \ \ \ \ \ \ ExtentsType\ ...\ Extents\ >}
+\DoxyCodeLine{00519\ [[nodiscard]]\ \textcolor{keyword}{consteval}\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{namespacestd_1_1math_1_1detail_a63161f317450e180ce12c3562f26f304}{apply\_all\_impl\_is\_noexcept}}(\ [[maybe\_unused]]\ integer\_sequence<ExtentsType,FirstExtents,Extents...>\ )\ \textcolor{keyword}{noexcept}}
+\DoxyCodeLine{00520\ \{}
+\DoxyCodeLine{00521\ \ \ \textcolor{keywordflow}{if}\ \textcolor{keyword}{constexpr}\ (\ \textcolor{keyword}{sizeof}...(Extents)\ ==\ 0\ )}
+\DoxyCodeLine{00522\ \ \ \{}
+\DoxyCodeLine{00523\ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{noexcept}(\ \mbox{\hyperlink{namespacestd_1_1math_1_1detail_a141e6731c9fb41cb5d164d6f09b170d1}{apply\_all\_impl2}}(\ forward<View>(\ declval<View\&\&>()\ ),}
+\DoxyCodeLine{00524\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ forward<Lambda>(\ declval<Lambda\&\&>()\ ),}
+\DoxyCodeLine{00525\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ forward<ExecutionPolicy>(\ declval<ExecutionPolicy\&\&>()\ ),}
+\DoxyCodeLine{00526\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ FirstExtents,\ declval<SizeType>()\ ...\ )\ );}
+\DoxyCodeLine{00527\ \ \ \}}
+\DoxyCodeLine{00528\ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{00529\ \ \ \{}
+\DoxyCodeLine{00530\ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{namespacestd_1_1math_1_1detail_a63161f317450e180ce12c3562f26f304}{apply\_all\_impl\_is\_noexcept}}<View,Lambda,ExecutionPolicy,SizeType...,\textcolor{keyword}{typename}\ decay\_t<View>::size\_type>}
+\DoxyCodeLine{00531\ \ \ \ \ \ \ \ \ \ \ \ \ \ (\ integer\_sequence<ExtentsType,Extents...>\{\}\ );}
+\DoxyCodeLine{00532\ \ \ \}}
+\DoxyCodeLine{00533\ \}}
+\DoxyCodeLine{00534\ }
+\DoxyCodeLine{00535\ \textcolor{keyword}{template}\ <\ \textcolor{keyword}{class\ \ \ \ \ \ \ \ \ \ \ }View,}
+\DoxyCodeLine{00536\ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{class\ \ \ \ \ \ \ \ \ \ \ }Lambda,}
+\DoxyCodeLine{00537\ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{class\ \ \ \ \ \ \ \ \ \ \ }ExecutionPolicy,}
+\DoxyCodeLine{00538\ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{class\ }...\ \ \ \ \ \ \ SizeType,}
+\DoxyCodeLine{00539\ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{class\ \ \ \ \ \ \ \ \ \ \ }ExtentsType,}
+\DoxyCodeLine{00540\ \ \ \ \ \ \ \ \ \ \ \ ExtentsType\ \ \ \ \ FirstExtents,}
+\DoxyCodeLine{00541\ \ \ \ \ \ \ \ \ \ \ \ ExtentsType\ ...\ Extents\ >}
+\DoxyCodeLine{00542\ \textcolor{keyword}{constexpr}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{namespacestd_1_1math_1_1detail_ae5df6e130a51ea6c31a29a197601abe8}{apply\_all\_impl}}(\ View\&\&\ \ \ \ \ \ \ \ \ \ \ \ view,}
+\DoxyCodeLine{00543\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Lambda\&\&\ \ \ \ \ \ \ \ \ \ lambda,}
+\DoxyCodeLine{00544\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ExecutionPolicy\&\&\ execution\_policy,}
+\DoxyCodeLine{00545\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ [[maybe\_unused]]\ integer\_sequence<ExtentsType,FirstExtents,Extents...>,}
+\DoxyCodeLine{00546\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ SizeType\ ...\ \ \ \ \ \ indices\ )}
+\DoxyCodeLine{00547\ \ \ \textcolor{keyword}{noexcept}(\ \mbox{\hyperlink{namespacestd_1_1math_1_1detail_a63161f317450e180ce12c3562f26f304}{apply\_all\_impl\_is\_noexcept}}<View,Lambda,ExecutionPolicy,SizeType...>(\ integer\_sequence<ExtentsType,FirstExtents,Extents...>\{\}\ )\ )}
+\DoxyCodeLine{00548\ \{}
+\DoxyCodeLine{00549\ \ \ \textcolor{keywordflow}{if}\ \textcolor{keyword}{constexpr}\ (\ \textcolor{keyword}{sizeof}...(Extents)\ ==\ 0\ )}
+\DoxyCodeLine{00550\ \ \ \{}
+\DoxyCodeLine{00551\ \ \ \ \ apply\_all\_impl2(\ forward<View>(\ view\ ),}
+\DoxyCodeLine{00552\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ forward<Lambda>(\ lambda\ ),}
+\DoxyCodeLine{00553\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ forward<ExecutionPolicy>(\ execution\_policy\ ),}
+\DoxyCodeLine{00554\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ FirstExtents,\ indices\ ...\ );}
+\DoxyCodeLine{00555\ \ \ \}}
+\DoxyCodeLine{00556\ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{00557\ \ \ \{}
+\DoxyCodeLine{00558\ \ \ \ \ \textcolor{comment}{//\ Determines\ if\ the\ following\ lambda\ expression\ is\ noexcept}}
+\DoxyCodeLine{00559\ \ \ \ \ \textcolor{keyword}{constexpr}\ \textcolor{keywordtype}{bool}\ is\_noexcept\ =}
+\DoxyCodeLine{00560\ \ \ \ \ \ \ \textcolor{keyword}{noexcept}(\ apply\_all\_impl(\ forward<View>(\ view\ ),}
+\DoxyCodeLine{00561\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ forward<Lambda>(\ lambda\ ),}
+\DoxyCodeLine{00562\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ forward<ExecutionPolicy>(\ execution\_policy\ ),}
+\DoxyCodeLine{00563\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ integer\_sequence<ExtentsType,Extents...>\{\},\ indices\ ...,\ declval<typename\ decay\_t<View>::size\_type>()\ )\ );}
+\DoxyCodeLine{00564\ \ \ \ \ \textcolor{comment}{//\ Lambda\ expression\ iterates\ over\ the\ next\ index}}
+\DoxyCodeLine{00565\ \ \ \ \ \textcolor{keyword}{auto}\ for\_each\_lambda\ =\ [\&view,\&lambda,\&execution\_policy,\&indices...]\ (\ \textcolor{keyword}{typename}\ decay\_t<View>::size\_type\ index\ )}
+\DoxyCodeLine{00566\ \ \ \ \ \ \ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{noexcept}(\ is\_noexcept\ )}
+\DoxyCodeLine{00567\ \ \ \ \ \ \ \{\ apply\_all\_impl(\ forward<View>(\ view\ ),}
+\DoxyCodeLine{00568\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ forward<Lambda>(\ lambda\ ),}
+\DoxyCodeLine{00569\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ forward<ExecutionPolicy>(\ execution\_policy\ ),}
+\DoxyCodeLine{00570\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ integer\_sequence<ExtentsType,Extents...>\{\},\ indices\ ...,\ index\ );\ \};}
+\DoxyCodeLine{00571\ \ \ \ \ \textcolor{comment}{//\ If\ lambda\ expression\ is\ no\ except\ then\ no\ need\ to\ try\ to\ catch\ exception\ pointers}}
+\DoxyCodeLine{00572\ \ \ \ \ \textcolor{keywordflow}{if}\ \textcolor{keyword}{constexpr}\ (\ is\_noexcept\ )}
+\DoxyCodeLine{00573\ \ \ \ \ \{}
+\DoxyCodeLine{00574\ \ \ \ \ \ \ for\_each(\ execution\_policy,}
+\DoxyCodeLine{00575\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ faux\_index\_iterator<\textcolor{keyword}{typename}\ decay\_t<View>::size\_type>(\ 0\ ),}
+\DoxyCodeLine{00576\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ faux\_index\_iterator<\textcolor{keyword}{typename}\ decay\_t<View>::size\_type>(\ view.extent(FirstExtents)\ ),}
+\DoxyCodeLine{00577\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ for\_each\_lambda\ );}
+\DoxyCodeLine{00578\ \ \ \ \ \}}
+\DoxyCodeLine{00579\ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{00580\ \ \ \ \ \{}
+\DoxyCodeLine{00581\ \ \ \ \ \ \ \textcolor{comment}{//\ Cache\ the\ last\ exception\ to\ be\ thrown}}
+\DoxyCodeLine{00582\ \ \ \ \ \ \ exception\_ptr\ eptr;}
+\DoxyCodeLine{00583\ \ \ \ \ \ \ \textcolor{comment}{//\ Attempt\ lambda\ expression}}
+\DoxyCodeLine{00584\ \ \ \ \ \ \ for\_each(\ execution\_policy,}
+\DoxyCodeLine{00585\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ faux\_index\_iterator<\textcolor{keyword}{typename}\ decay\_t<View>::size\_type>(\ 0\ ),}
+\DoxyCodeLine{00586\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ faux\_index\_iterator<\textcolor{keyword}{typename}\ decay\_t<View>::size\_type>(\ view.extent(FirstExtents)\ ),}
+\DoxyCodeLine{00587\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ [\ \&for\_each\_lambda,\ \&eptr\ ]\ (\ \textcolor{keyword}{typename}\ decay\_t<View>::size\_type\ index\ )\ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{noexcept}}
+\DoxyCodeLine{00588\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{\ try\ \{\ for\_each\_lambda(index);\ \}\ catch\ (\ ...\ )\ \{\ eptr\ =\ current\_exception();\ \}\ \}\ );}
+\DoxyCodeLine{00589\ \ \ \ \ \ \ \textcolor{comment}{//\ If\ exceptions\ were\ thrown,\ rethrow\ the\ last}}
+\DoxyCodeLine{00590\ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\ eptr\ )\ [[unlikely]]}
+\DoxyCodeLine{00591\ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00592\ \ \ \ \ \ \ \ \ rethrow\_exception(\ eptr\ );}
+\DoxyCodeLine{00593\ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00594\ \ \ \ \ \}}
+\DoxyCodeLine{00595\ \ \ \}}
+\DoxyCodeLine{00596\ \}}
+\DoxyCodeLine{00597\ }
+\DoxyCodeLine{00598\ \textcolor{keyword}{template}\ <\ \textcolor{keywordtype}{bool}\ >}
+\DoxyCodeLine{00599\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structstd_1_1math_1_1detail_1_1apply__all__maybe__strided__helper}{apply\_all\_maybe\_strided\_helper}}}
+\DoxyCodeLine{00600\ \{}
+\DoxyCodeLine{00601\ \ \ \textcolor{keyword}{template}\ <\ \textcolor{keyword}{class\ }View,}
+\DoxyCodeLine{00602\ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{class\ }Lambda,}
+\DoxyCodeLine{00603\ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{class\ }ExecutionPolicy\ >}
+\DoxyCodeLine{00604\ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{constexpr}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{structstd_1_1math_1_1detail_1_1apply__all__maybe__strided__helper_a8770cada034af44733f93a9ad1870a45}{apply\_all}}(\ View\&\&\ \ \ \ \ \ \ \ \ \ \ \ view,}
+\DoxyCodeLine{00605\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Lambda\&\&\ \ \ \ \ \ \ \ \ \ lambda,}
+\DoxyCodeLine{00606\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ExecutionPolicy\&\&\ execution\_policy\ )}
+\DoxyCodeLine{00607\ \ \ \{}
+\DoxyCodeLine{00608\ \ \ \ \ \mbox{\hyperlink{namespacestd_1_1math_1_1detail_acd11660bd33d8b1bc1c2beb20c335171}{apply\_all\_strided}}(\ view,\ lambda,\ execution\_policy\ );}
+\DoxyCodeLine{00609\ \ \ \}}
+\DoxyCodeLine{00610\ \};}
+\DoxyCodeLine{00611\ }
+\DoxyCodeLine{00612\ \textcolor{keyword}{template}\ <\ >}
+\DoxyCodeLine{00613\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structstd_1_1math_1_1detail_1_1apply__all__maybe__strided__helper}{apply\_all\_maybe\_strided\_helper}}<\ false\ >}
+\DoxyCodeLine{00614\ \{}
+\DoxyCodeLine{00615\ \ \ \textcolor{keyword}{template}\ <\ \textcolor{keyword}{class\ }View,}
+\DoxyCodeLine{00616\ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{class\ }Lambda,}
+\DoxyCodeLine{00617\ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{class\ }ExecutionPolicy\ >}
+\DoxyCodeLine{00618\ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{constexpr}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{structstd_1_1math_1_1detail_1_1apply__all__maybe__strided__helper_3_01false_01_4_aa76116e491910ae1890a71216abf3a3f}{apply\_all}}(\ View\&\&\ \ \ \ \ \ \ \ \ \ \ \ view,}
+\DoxyCodeLine{00619\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Lambda\&\&\ \ \ \ \ \ \ \ \ \ lambda,}
+\DoxyCodeLine{00620\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ExecutionPolicy\&\&\ execution\_policy\ )}
+\DoxyCodeLine{00621\ \ \ \ \ \textcolor{keyword}{noexcept}(\ \textcolor{keyword}{noexcept}(\ \mbox{\hyperlink{namespacestd_1_1math_1_1detail_ae5df6e130a51ea6c31a29a197601abe8}{apply\_all\_impl}}(\ forward<View>(\ declval<View\&\&>()\ ),}
+\DoxyCodeLine{00622\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ forward<Lambda>(\ declval<Lambda\&\&>()\ ),}
+\DoxyCodeLine{00623\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ forward<ExecutionPolicy>(\ declval<ExecutionPolicy\&\&>()\ ),}
+\DoxyCodeLine{00624\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ make\_integer\_sequence<\textcolor{keyword}{typename}\ decay\_t<View>::extents\_type::rank\_type,decay\_t<View>::extents\_type::rank()>\{\}\ )\ )\ )}
+\DoxyCodeLine{00625\ \ \ \{}
+\DoxyCodeLine{00626\ \ \ \ \ \mbox{\hyperlink{namespacestd_1_1math_1_1detail_ae5df6e130a51ea6c31a29a197601abe8}{apply\_all\_impl}}(\ forward<View>(\ view\ ),}
+\DoxyCodeLine{00627\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ forward<Lambda>(\ lambda\ ),}
+\DoxyCodeLine{00628\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ forward<ExecutionPolicy>(\ execution\_policy\ ),}
+\DoxyCodeLine{00629\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ make\_integer\_sequence<\textcolor{keyword}{typename}\ decay\_t<View>::extents\_type::rank\_type,decay\_t<View>::extents\_type::rank()>\{\}\ );}
+\DoxyCodeLine{00630\ \ \ \}}
+\DoxyCodeLine{00631\ \};}
+\DoxyCodeLine{00632\ }
+\DoxyCodeLine{00633\ \textcolor{keyword}{template}\ <\ \textcolor{keyword}{class\ }View,}
+\DoxyCodeLine{00634\ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{class\ }Lambda,}
+\DoxyCodeLine{00635\ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{class\ }ExecutionPolicy\ >}
+\DoxyCodeLine{00636\ \textcolor{keyword}{constexpr}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{namespacestd_1_1math_1_1detail_a0632c805386c46488956a9bdc72c749b}{apply\_all}}(\ View\&\&\ \ \ \ \ \ \ \ \ \ \ \ view,}
+\DoxyCodeLine{00637\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Lambda\&\&\ \ \ \ \ \ \ \ \ \ lambda,}
+\DoxyCodeLine{00638\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ExecutionPolicy\&\&\ execution\_policy\ )}
+\DoxyCodeLine{00639\ \ \ \textcolor{keyword}{noexcept}(\ \textcolor{keyword}{noexcept}(\ \mbox{\hyperlink{namespacestd_1_1math_1_1detail_ae5df6e130a51ea6c31a29a197601abe8}{apply\_all\_impl}}(\ forward<View>(\ declval<View\&\&>()\ ),}
+\DoxyCodeLine{00640\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ forward<Lambda>(\ declval<Lambda\&\&>()\ ),}
+\DoxyCodeLine{00641\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ forward<ExecutionPolicy>(\ declval<ExecutionPolicy\&\&>()\ ),}
+\DoxyCodeLine{00642\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ make\_integer\_sequence<\textcolor{keyword}{typename}\ decay\_t<View>::extents\_type::rank\_type,decay\_t<View>::extents\_type::rank()>\{\}\ )\ )\ )}
+\DoxyCodeLine{00643\ \{}
+\DoxyCodeLine{00644\ \ \ \textcolor{keywordflow}{return}\ apply\_all\_maybe\_strided\_helper<\ is\_defined\_v<\ stride\_order<\ decay\_t<\ View\ >\ >\ >\ \&\&}
+\DoxyCodeLine{00645\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ is\_unsequenced\_v<\ decay\_t<\ ExecutionPolicy\ >\ >\ >::}
+\DoxyCodeLine{00646\ \ \ \ \ apply\_all(\ view,\ lambda,\ execution\_policy\ );}
+\DoxyCodeLine{00647\ \}}
+\DoxyCodeLine{00648\ }
+\DoxyCodeLine{00649\ \textcolor{comment}{//==================================================================================================}}
+\DoxyCodeLine{00650\ \textcolor{comment}{//\ \ Submdspan\ calls\ submdspan\ using\ a\ pair\ of\ tuples\ instead\ of\ a\ parameter\ pack}}
+\DoxyCodeLine{00651\ \textcolor{comment}{//==================================================================================================}}
+\DoxyCodeLine{00652\ \textcolor{keyword}{template}\ <\ \textcolor{keyword}{class\ }T,\ \textcolor{keyword}{class\ }E,\ \textcolor{keyword}{class\ }L,\ \textcolor{keyword}{class\ }A,\ \textcolor{keyword}{class\ }...\ IndexType,\ \textcolor{keywordtype}{size\_t}\ ...\ Indices\ >}
+\DoxyCodeLine{00653\ [[nodiscard]]\ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{auto}\ \mbox{\hyperlink{namespacestd_1_1math_1_1detail_a7623b0f9223df400eaabc068494ed579}{submdspan\_impl}}(\ experimental::mdspan<T,E,L,A>\ mds,}
+\DoxyCodeLine{00654\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ tuple<IndexType...>\ \ \ \ \ \ \ \ \ \ \ start,}
+\DoxyCodeLine{00655\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ tuple<IndexType...>\ \ \ \ \ \ \ \ \ \ \ end,}
+\DoxyCodeLine{00656\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ [[maybe\_unused]]\ index\_sequence<Indices...>\ )\ \textcolor{keyword}{noexcept}}
+\DoxyCodeLine{00657\ \{}
+\DoxyCodeLine{00658\ \ \ \textcolor{keywordflow}{return}\ experimental::submdspan(\ mds,\ tuple(\ get<Indices>(start),\ get<Indices>(end)\ )\ ...\ );}
+\DoxyCodeLine{00659\ \}}
+\DoxyCodeLine{00660\ }
+\DoxyCodeLine{00661\ \textcolor{keyword}{template}\ <\ \textcolor{keyword}{class\ }T,\ \textcolor{keyword}{class\ }E,\ \textcolor{keyword}{class\ }L,\ \textcolor{keyword}{class\ }A,\ \textcolor{keyword}{class\ }...\ IndexType\ >}
+\DoxyCodeLine{00662\ [[nodiscard]]\ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{auto}\ \mbox{\hyperlink{namespacestd_1_1math_1_1detail_af274dde876e47ba2ec1b483608c81d69}{submdspan}}(\ experimental::mdspan<T,E,L,A>\ mds,}
+\DoxyCodeLine{00663\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ tuple<IndexType...>\ \ \ \ \ \ \ \ \ \ \ start,}
+\DoxyCodeLine{00664\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ tuple<IndexType...>\ \ \ \ \ \ \ \ \ \ \ end\ )\ \textcolor{keyword}{noexcept}}
+\DoxyCodeLine{00665\ \ \ \textcolor{keyword}{requires}\ (\ \textcolor{keyword}{sizeof}...(IndexType)\ ==\ E::rank()\ )}
+\DoxyCodeLine{00666\ \{}
+\DoxyCodeLine{00667\ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{namespacestd_1_1math_1_1detail_a7623b0f9223df400eaabc068494ed579}{submdspan\_impl}}(\ mds,\ start,\ end,\ make\_index\_sequence<E::rank()>\{\}\ );}
+\DoxyCodeLine{00668\ \}}
+\DoxyCodeLine{00669\ }
+\DoxyCodeLine{00670\ \textcolor{comment}{//==================================================================================================}}
+\DoxyCodeLine{00671\ \textcolor{comment}{//\ \ make\_from\_tuple\ with\ noexcept}}
+\DoxyCodeLine{00672\ \textcolor{comment}{//==================================================================================================}}
+\DoxyCodeLine{00673\ \textcolor{keyword}{template}\ <\ \textcolor{keyword}{class\ }T,\ \textcolor{keyword}{class\ }Tuple,\ \textcolor{keywordtype}{size\_t}\ ...\ Indices\ >}
+\DoxyCodeLine{00674\ [[nodiscard]]\ \textcolor{keyword}{constexpr}\ T\ \mbox{\hyperlink{namespacestd_1_1math_1_1detail_a84d4e09e30fa9f29dab26423c74e5055}{make\_from\_tuple\_impl}}(\ Tuple\&\&\ t,\ index\_sequence<\ Indices\ ...\ >\ )}
+\DoxyCodeLine{00675\ \ \ \textcolor{keyword}{noexcept}(\ is\_nothrow\_constructible\_v<\ T,\ decltype(\ get<Indices>(\ declval<Tuple>()\ )\ )\ ...\ >\ )}
+\DoxyCodeLine{00676\ \ \ \textcolor{keyword}{requires}\ is\_constructible\_v<\ T,\ decltype(\ get<Indices>(\ declval<Tuple>()\ )\ )\ ...\ >}
+\DoxyCodeLine{00677\ \{}
+\DoxyCodeLine{00678\ \ \ \textcolor{keywordflow}{return}\ T(\ get<Indices>(\ forward<Tuple>(t)\ )\ ...\ );}
+\DoxyCodeLine{00679\ \}}
+\DoxyCodeLine{00680\ \ }
+\DoxyCodeLine{00681\ \textcolor{keyword}{template}<\textcolor{keyword}{class}\ T,\ \textcolor{keyword}{class}\ Tuple>}
+\DoxyCodeLine{00682\ [[nodiscard]]\ \textcolor{keyword}{constexpr}\ T\ \mbox{\hyperlink{namespacestd_1_1math_1_1detail_ae5eb3cf5ea2a6e93d691bfd9f701768e}{make\_from\_tuple}}(\ Tuple\&\&\ t\ )}
+\DoxyCodeLine{00683\ \ \ \textcolor{keyword}{noexcept}(\ \textcolor{keyword}{noexcept}(\ make\_from\_tuple\_impl<T>(\ forward<Tuple>(\ t\ ),\ make\_index\_sequence<\ tuple\_size\_v<\ remove\_reference\_t<\ Tuple\ >\ >\ >\{\}\ )\ )\ )}
+\DoxyCodeLine{00684\ \{}
+\DoxyCodeLine{00685\ \ \ \textcolor{keywordflow}{return}\ make\_from\_tuple\_impl<T>(}
+\DoxyCodeLine{00686\ \ \ \ \ forward<Tuple>(\ t\ ),}
+\DoxyCodeLine{00687\ \ \ \ \ make\_index\_sequence<\ tuple\_size\_v<\ remove\_reference\_t<\ Tuple\ >\ >\ >\{\}\ );}
+\DoxyCodeLine{00688\ \}}
+\DoxyCodeLine{00689\ }
+\DoxyCodeLine{00690\ \textcolor{comment}{//==================================================================================================}}
+\DoxyCodeLine{00691\ \textcolor{comment}{//\ \ Sufficient\ Extents\ tests\ if\ the\ first\ extents\ encompasses\ the\ second}}
+\DoxyCodeLine{00692\ \textcolor{comment}{//==================================================================================================}}
+\DoxyCodeLine{00693\ \textcolor{keyword}{template}\ <\ \textcolor{keyword}{class\ }SizeType,\ \textcolor{keyword}{class\ }OtherSizeType,\ \textcolor{keywordtype}{size\_t}\ ...\ Extents,\ \textcolor{keywordtype}{size\_t}\ ...\ OtherExtents\ >}
+\DoxyCodeLine{00694\ [[nodiscard]]\ \textcolor{keyword}{constexpr}\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{namespacestd_1_1math_1_1detail_a08b4685ca9c41024caf8b371b0c2c88b}{sufficient\_extents}}(\ \textcolor{keyword}{const}\ experimental::extents<SizeType,Extents...>\&\ \ \ \ \ \ \ \ \ \ \ extents,}
+\DoxyCodeLine{00695\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ experimental::extents<OtherSizeType,OtherExtents...>\&\ other\_extents\ )\ \textcolor{keyword}{noexcept}}
+\DoxyCodeLine{00696\ \{}
+\DoxyCodeLine{00697\ \ \ \textcolor{keywordflow}{if}\ \textcolor{keyword}{constexpr}\ (\ \textcolor{keyword}{sizeof}...(Extents)\ ==\ \textcolor{keyword}{sizeof}...(OtherExtents)\ )}
+\DoxyCodeLine{00698\ \ \ \{}
+\DoxyCodeLine{00699\ \ \ \ \ \textcolor{comment}{//\ Iterate\ over\ each\ dimension}}
+\DoxyCodeLine{00700\ \ \ \ \ \textcolor{keywordtype}{bool}\ sufficient\ =\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00701\ \ \ \ \ \textcolor{keywordflow}{for}(\ \textcolor{keyword}{auto}\ dim\ =\ 0;\ (\ dim\ <\ experimental::extents<SizeType,Extents...>::rank()\ \&\&\ sufficient\ );\ ++dim\ )}
+\DoxyCodeLine{00702\ \ \ \ \ \{}
+\DoxyCodeLine{00703\ \ \ \ \ \ \ \textcolor{comment}{//\ Set\ to\ false\ if\ size\ is\ not\ large\ enough}}
+\DoxyCodeLine{00704\ \ \ \ \ \ \ sufficient\ =\ (\ extents.extent(\ dim\ )\ >=\ other\_extents.extent(\ dim\ )\ );}
+\DoxyCodeLine{00705\ \ \ \ \ \}}
+\DoxyCodeLine{00706\ \ \ \ \ \textcolor{keywordflow}{return}\ sufficient;}
+\DoxyCodeLine{00707\ \ \ \}}
+\DoxyCodeLine{00708\ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{00709\ \ \ \{}
+\DoxyCodeLine{00710\ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00711\ \ \ \}}
+\DoxyCodeLine{00712\ \}}
+\DoxyCodeLine{00713\ }
+\DoxyCodeLine{00714\ \textcolor{comment}{//==================================================================================================}}
+\DoxyCodeLine{00715\ \textcolor{comment}{//\ \ Assign\ View\ assigns\ views\ with\ disparate\ but\ compatable\ types}}
+\DoxyCodeLine{00716\ \textcolor{comment}{//==================================================================================================}}
+\DoxyCodeLine{00717\ \textcolor{keyword}{template}\ <\ \textcolor{keyword}{class}\ ToView,\ \textcolor{keyword}{class}\ FromView\ >\ \textcolor{keyword}{requires}}
+\DoxyCodeLine{00718\ \ \ is\_mdspan\_v<\ ToView\ >\ \&\&\ is\_mdspan\_v<\ FromView\ >\ \&\&}
+\DoxyCodeLine{00719\ \ \ is\_convertible\_v<typename\ FromView::reference,typename\ ToView::element\_type>\ \&\&}
+\DoxyCodeLine{00720\ \ \ extents\_may\_be\_equal\_v<typename\ FromView::extents\_type,typename\ ToView::extents\_type>}
+\DoxyCodeLine{00721\ \textcolor{keyword}{constexpr}\ ToView\&}
+\DoxyCodeLine{00722\ \mbox{\hyperlink{namespacestd_1_1math_1_1detail_a30f32b186e5fdf0fdde244dae8522cc0}{assign\_view}}(\ ToView\&\ to\_view,\ \textcolor{keyword}{const}\ FromView\&\ from\_view\ )}
+\DoxyCodeLine{00723\ \ \ \textcolor{keyword}{noexcept}(\ extents\_is\_equal\_v<typename\ FromView::extents\_type,typename\ ToView::extents\_type>\ \&\&}
+\DoxyCodeLine{00724\ \ \ \ \ \ \ \ \ \ \ \ \ is\_nothrow\_convertible\_v<typename\ FromView::reference,typename\ ToView::element\_type>\ )}
+\DoxyCodeLine{00725\ \{}
+\DoxyCodeLine{00726\ \ \ \textcolor{keywordflow}{if}\ \textcolor{keyword}{constexpr}\ (\ extents\_is\_equal\_v<typename\ FromView::extents\_type,typename\ ToView::extents\_type>\ )}
+\DoxyCodeLine{00727\ \ \ \{}
+\DoxyCodeLine{00728\ \ \ \ \ \mbox{\hyperlink{namespacestd_1_1math_1_1detail_a0632c805386c46488956a9bdc72c749b}{apply\_all}}(\ from\_view,}
+\DoxyCodeLine{00729\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ [\ \&to\_view,\ \&from\_view\ ]<\ \textcolor{keyword}{class}\ ...\ Indices\ >(\ Indices\ ...\ indices\ )}
+\DoxyCodeLine{00730\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{noexcept}(\ is\_nothrow\_convertible\_v<\textcolor{keyword}{typename}\ decay\_t<FromView>::reference,\textcolor{keyword}{typename}\ decay\_t<ToView>::reference>\ )}
+\DoxyCodeLine{00731\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{\ to\_view[\ indices\ ...\ ]\ =\ from\_view[\ indices\ ...\ ];\ \},}
+\DoxyCodeLine{00732\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ execution::unseq\ );}
+\DoxyCodeLine{00733\ \ \ \}}
+\DoxyCodeLine{00734\ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{00735\ \ \ \{}
+\DoxyCodeLine{00736\ \ \ \ \ \textcolor{keywordflow}{if}\ (\ \mbox{\hyperlink{namespacestd_1_1math_1_1detail_a08b4685ca9c41024caf8b371b0c2c88b}{sufficient\_extents}}(\ to\_view.extents(),\ from\_view.extents()\ )\ )\ [[likely]]}
+\DoxyCodeLine{00737\ \ \ \ \ \{}
+\DoxyCodeLine{00738\ \ \ \ \ \ \ \mbox{\hyperlink{namespacestd_1_1math_1_1detail_a0632c805386c46488956a9bdc72c749b}{apply\_all}}(\ from\_view,}
+\DoxyCodeLine{00739\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ [\ \&to\_view,\ \&from\_view\ ]<\ \textcolor{keyword}{class}\ ...\ Indices\ >(\ Indices\ ...\ indices\ )}
+\DoxyCodeLine{00740\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{noexcept}(\ is\_nothrow\_convertible\_v<\textcolor{keyword}{typename}\ decay\_t<FromView>::reference,\textcolor{keyword}{typename}\ decay\_t<ToView>::reference>\ )}
+\DoxyCodeLine{00741\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{\ to\_view[\ indices\ ...\ ]\ =\ from\_view[\ indices\ ...\ ];\ \},}
+\DoxyCodeLine{00742\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ execution::unseq\ );}
+\DoxyCodeLine{00743\ \ \ \ \ \}}
+\DoxyCodeLine{00744\ \ \ \ \ \textcolor{keywordflow}{else}\ [[unlikely]]}
+\DoxyCodeLine{00745\ \ \ \ \ \{}
+\DoxyCodeLine{00746\ \ \ \ \ \ \ \textcolor{keywordflow}{throw}\ length\_error(\ \textcolor{stringliteral}{"{}Multi-\/dimensional\ spans\ mismatch."{}}\ );}
+\DoxyCodeLine{00747\ \ \ \ \ \}}
+\DoxyCodeLine{00748\ \ \ \}}
+\DoxyCodeLine{00749\ \ \ \textcolor{keywordflow}{return}\ to\_view;}
+\DoxyCodeLine{00750\ \}}
+\DoxyCodeLine{00751\ }
+\DoxyCodeLine{00752\ \textcolor{comment}{//==================================================================================================}}
+\DoxyCodeLine{00753\ \textcolor{comment}{//\ \ Copy\ View\ copies\ inplace\ views\ with\ disparate\ but\ compatable\ types}}
+\DoxyCodeLine{00754\ \textcolor{comment}{//==================================================================================================}}
+\DoxyCodeLine{00755\ \textcolor{keyword}{template}\ <\ \textcolor{keyword}{class}\ ToView,\ \textcolor{keyword}{class}\ FromView\ >\ \textcolor{keyword}{requires}}
+\DoxyCodeLine{00756\ \ \ is\_mdspan\_v<\ ToView\ >\ \&\&\ is\_mdspan\_v<\ FromView\ >\ \&\&}
+\DoxyCodeLine{00757\ \ \ is\_convertible\_v<typename\ FromView::reference,typename\ ToView::element\_type>\ \&\&}
+\DoxyCodeLine{00758\ \ \ extents\_may\_be\_equal\_v<typename\ FromView::extents\_type,typename\ ToView::extents\_type>}
+\DoxyCodeLine{00759\ \textcolor{keyword}{constexpr}\ \textcolor{keywordtype}{void}}
+\DoxyCodeLine{00760\ \mbox{\hyperlink{namespacestd_1_1math_1_1detail_acc47ec480dc60daa6a8d6c73ca693319}{copy\_view}}(\ ToView\&\ to\_view,\ \textcolor{keyword}{const}\ FromView\&\ from\_view\ )}
+\DoxyCodeLine{00761\ \ \ \textcolor{keyword}{noexcept}(\ extents\_is\_equal\_v<typename\ FromView::extents\_type,typename\ ToView::extents\_type>\ \&\&}
+\DoxyCodeLine{00762\ \ \ \ \ \ \ \ \ \ \ \ \ is\_nothrow\_convertible\_v<typename\ FromView::reference,typename\ ToView::element\_type>\ )}
+\DoxyCodeLine{00763\ \{}
+\DoxyCodeLine{00764\ \ \ \textcolor{keywordflow}{if}\ \textcolor{keyword}{constexpr}\ (\ extents\_is\_equal\_v<typename\ FromView::extents\_type,typename\ ToView::extents\_type>\ )}
+\DoxyCodeLine{00765\ \ \ \{}
+\DoxyCodeLine{00766\ \ \ \ \ \mbox{\hyperlink{namespacestd_1_1math_1_1detail_a0632c805386c46488956a9bdc72c749b}{apply\_all}}(\ forward<ToView>(\ to\_view\ ),}
+\DoxyCodeLine{00767\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ [\ \&to\_view,\ \&from\_view\ ]<\ \textcolor{keyword}{class}\ ...\ Indices\ >(\ Indices\ ...\ indices\ )}
+\DoxyCodeLine{00768\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{noexcept}(\ is\_nothrow\_convertible\_v<\textcolor{keyword}{typename}\ decay\_t<FromView>::reference,\textcolor{keyword}{typename}\ decay\_t<ToView>::reference>\ )}
+\DoxyCodeLine{00769\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{\ ::new\ (\ addressof(\ to\_view[\ indices\ ...\ ]\ )\ )\ \textcolor{keyword}{typename}\ ToView::element\_type(\ from\_view[\ indices\ ...\ ]\ );\ \},}
+\DoxyCodeLine{00770\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ execution::unseq\ );}
+\DoxyCodeLine{00771\ \ \ \}}
+\DoxyCodeLine{00772\ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{00773\ \ \ \{}
+\DoxyCodeLine{00774\ \ \ \ \ \textcolor{keywordflow}{if}\ (\ \mbox{\hyperlink{namespacestd_1_1math_1_1detail_a08b4685ca9c41024caf8b371b0c2c88b}{sufficient\_extents}}(\ to\_view.extents(),\ from\_view.extents()\ )\ )\ [[likely]]}
+\DoxyCodeLine{00775\ \ \ \ \ \{}
+\DoxyCodeLine{00776\ \ \ \ \ \ \ \mbox{\hyperlink{namespacestd_1_1math_1_1detail_a0632c805386c46488956a9bdc72c749b}{apply\_all}}(\ forward<ToView>(\ to\_view\ ),}
+\DoxyCodeLine{00777\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ [\ \&to\_view,\ \&from\_view\ ]<\ \textcolor{keyword}{class}\ ...\ Indices\ >(\ Indices\ ...\ indices\ )}
+\DoxyCodeLine{00778\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{noexcept}(\ is\_nothrow\_convertible\_v<\textcolor{keyword}{typename}\ decay\_t<FromView>::reference,\textcolor{keyword}{typename}\ decay\_t<ToView>::reference>\ )}
+\DoxyCodeLine{00779\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{\ ::new\ (\ addressof(\ to\_view[\ indices\ ...\ ]\ )\ )\ \textcolor{keyword}{typename}\ ToView::element\_type(\ from\_view[\ indices\ ...\ ]\ );\ \},}
+\DoxyCodeLine{00780\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ execution::unseq\ );}
+\DoxyCodeLine{00781\ \ \ \ \ \}}
+\DoxyCodeLine{00782\ \ \ \ \ \textcolor{keywordflow}{else}\ [[unlikely]]}
+\DoxyCodeLine{00783\ \ \ \ \ \{}
+\DoxyCodeLine{00784\ \ \ \ \ \ \ \textcolor{keywordflow}{throw}\ length\_error(\ \textcolor{stringliteral}{"{}Multi-\/dimensional\ spans\ mismatch."{}}\ );}
+\DoxyCodeLine{00785\ \ \ \ \ \}}
+\DoxyCodeLine{00786\ \ \ \}}
+\DoxyCodeLine{00787\ \}}
+\DoxyCodeLine{00788\ }
+\DoxyCodeLine{00789\ \textcolor{comment}{//==================================================================================================}}
+\DoxyCodeLine{00790\ \textcolor{comment}{//\ \ Is\ Complex\ returns\ true\ if\ the\ type\ is\ a\ complex\ type}}
+\DoxyCodeLine{00791\ \textcolor{comment}{//==================================================================================================}}
+\DoxyCodeLine{00792\ \textcolor{keyword}{template}\ <\ \textcolor{keyword}{class}\ T\ >}
+\DoxyCodeLine{00793\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structstd_1_1math_1_1detail_1_1is__complex}{is\_complex}}\ :\ \textcolor{keyword}{public}\ false\_type\ \{\};}
+\DoxyCodeLine{00794\ }
+\DoxyCodeLine{00795\ \textcolor{keyword}{template}\ <\ \textcolor{keyword}{class}\ T\ >}
+\DoxyCodeLine{00796\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structstd_1_1math_1_1detail_1_1is__complex}{is\_complex}}<\ complex<T>\ >\ :\ \textcolor{keyword}{public}\ true\_type\ \{\};}
+\DoxyCodeLine{00797\ }
+\DoxyCodeLine{00798\ \textcolor{keyword}{template}\ <\ \textcolor{keyword}{class}\ T\ >}
+\DoxyCodeLine{00799\ \textcolor{keyword}{inline}\ \textcolor{keyword}{constexpr}\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{namespacestd_1_1math_1_1detail_a115b5c10e02845b57930bcc7a9f8ac2d}{is\_complex\_v}}\ =\ \mbox{\hyperlink{structstd_1_1math_1_1detail_1_1is__complex}{is\_complex<T>::value}};}
+\DoxyCodeLine{00800\ }
+\DoxyCodeLine{00801\ \textcolor{comment}{//==================================================================================================}}
+\DoxyCodeLine{00802\ \textcolor{comment}{//\ \ Rebind\ Accessor\ rebinds\ the\ accessor\ to\ a\ new\ value\ type}}
+\DoxyCodeLine{00803\ \textcolor{comment}{//==================================================================================================}}
+\DoxyCodeLine{00804\ }
+\DoxyCodeLine{00805\ \textcolor{keyword}{template}\ <\ \textcolor{keyword}{class}\ Access,\ \textcolor{keyword}{class}\ ValueType\ >}
+\DoxyCodeLine{00806\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structstd_1_1math_1_1detail_1_1rebind__accessor}{rebind\_accessor}}\ \{\ \textcolor{keyword}{using\ }\mbox{\hyperlink{structstd_1_1math_1_1detail_1_1rebind__accessor_a823ae14685e71103d88fdb80db307ab7}{type}}\ =\ Access;\ \};}
+\DoxyCodeLine{00807\ }
+\DoxyCodeLine{00808\ \textcolor{keyword}{template}\ <\ \textcolor{keyword}{template}\ <\ \textcolor{keyword}{class}\ >\ \textcolor{keyword}{class\ }Access,\ \textcolor{keyword}{class\ }OtherType,\ \textcolor{keyword}{class\ }ValueType\ >}
+\DoxyCodeLine{00809\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structstd_1_1math_1_1detail_1_1rebind__accessor}{rebind\_accessor}}<\ Access<OtherType>,\ ValueType\ >\ \{\ \textcolor{keyword}{using\ }\mbox{\hyperlink{structstd_1_1math_1_1detail_1_1rebind__accessor_3_01_access_3_01_other_type_01_4_00_01_value_type_01_4_a5454375eec35fc69ec3110b5d3c722e7}{type}}\ =\ Access<ValueType>;\ \};}
+\DoxyCodeLine{00810\ }
+\DoxyCodeLine{00811\ \textcolor{keyword}{template}\ <\ \textcolor{keyword}{class}\ Access,\ \textcolor{keyword}{class}\ ValueType\ >}
+\DoxyCodeLine{00812\ \textcolor{keyword}{using\ }\mbox{\hyperlink{namespacestd_1_1math_1_1detail_a66ad73a2afe0cb3a49bfaad6497ce6a1}{rebind\_accessor\_t}}\ =\ \textcolor{keyword}{typename}\ \mbox{\hyperlink{structstd_1_1math_1_1detail_1_1rebind__accessor_a823ae14685e71103d88fdb80db307ab7}{rebind\_accessor<Access,ValueType>::type}};}
+\DoxyCodeLine{00813\ }
+\DoxyCodeLine{00814\ \textcolor{comment}{//==================================================================================================}}
+\DoxyCodeLine{00815\ \textcolor{comment}{//\ \ Rebind\ Layout\ rebinds\ the\ layout\ to\ a\ new\ extents\ type}}
+\DoxyCodeLine{00816\ \textcolor{comment}{//==================================================================================================}}
+\DoxyCodeLine{00817\ }
+\DoxyCodeLine{00818\ \textcolor{keyword}{template}\ <\ \textcolor{keyword}{class}\ LayoutType,\ \textcolor{keyword}{class}\ ExtentsType\ >}
+\DoxyCodeLine{00819\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structstd_1_1math_1_1detail_1_1rebind__layout}{rebind\_layout}}\ \{\ \textcolor{keyword}{using\ }\mbox{\hyperlink{structstd_1_1math_1_1detail_1_1rebind__layout_abae445c80af2ff88e74665838d1ac166}{type}}\ =\ LayoutType;\ \};}
+\DoxyCodeLine{00820\ }
+\DoxyCodeLine{00821\ \textcolor{keyword}{template}\ <\ \textcolor{keyword}{template}\ <\ \textcolor{keyword}{class}\ >\ \textcolor{keyword}{class\ }LayoutType,\ \textcolor{keyword}{class\ }OtherType,\ \textcolor{keyword}{class\ }ExtentsType\ >}
+\DoxyCodeLine{00822\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structstd_1_1math_1_1detail_1_1rebind__layout}{rebind\_layout}}<\ LayoutType<OtherType>,\ ExtentsType\ >\ \{\ \textcolor{keyword}{using\ }\mbox{\hyperlink{structstd_1_1math_1_1detail_1_1rebind__layout_3_01_layout_type_3_01_other_type_01_4_00_01_extents_type_01_4_adbd4a7ac2aabdb96f798ab3e38b22bb4}{type}}\ =\ LayoutType<ExtentsType>;\ \};}
+\DoxyCodeLine{00823\ }
+\DoxyCodeLine{00824\ \textcolor{keyword}{template}\ <\ \textcolor{keyword}{class}\ LayoutType,\ \textcolor{keyword}{class}\ ExtentsType\ >}
+\DoxyCodeLine{00825\ \textcolor{keyword}{using\ }\mbox{\hyperlink{namespacestd_1_1math_1_1detail_ac1ee07b82c7d514289fc74451493358d}{rebind\_layout\_t}}\ =\ \textcolor{keyword}{typename}\ \mbox{\hyperlink{structstd_1_1math_1_1detail_1_1rebind__layout_abae445c80af2ff88e74665838d1ac166}{rebind\_layout<LayoutType,ExtentsType>::type}};}
+\DoxyCodeLine{00826\ }
+\DoxyCodeLine{00827\ }
+\DoxyCodeLine{00828\ \textcolor{comment}{//==================================================================================================}}
+\DoxyCodeLine{00829\ \textcolor{comment}{//\ \ Helper\ class\ for\ manipulating\ extents}}
+\DoxyCodeLine{00830\ \textcolor{comment}{//==================================================================================================}}
+\DoxyCodeLine{00831\ \textcolor{keyword}{template}\ <\ \textcolor{keyword}{class}\ U\ >\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classstd_1_1math_1_1detail_1_1extents__helper__impl}{extents\_helper\_impl}}\ \{\};}
+\DoxyCodeLine{00832\ \textcolor{keyword}{template}\ <\ \textcolor{keyword}{class\ }U,\ \textcolor{keywordtype}{size\_t}\ ...\ Indices\ >}
+\DoxyCodeLine{00833\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classstd_1_1math_1_1detail_1_1extents__helper__impl}{extents\_helper\_impl}}<\ integer\_sequence<U,Indices...>\ >}
+\DoxyCodeLine{00834\ \{}
+\DoxyCodeLine{00835\ \ \ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00836\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{consteval}\ U\ dyn\_ext(\ [[maybe\_unused]]\ U\ index\ )\ \textcolor{keyword}{noexcept}\ \{\ \textcolor{keywordflow}{return}\ experimental::dynamic\_extent;\ \}}
+\DoxyCodeLine{00837\ \ \ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00838\ \ \ \ \ \textcolor{keyword}{using\ }\mbox{\hyperlink{classstd_1_1math_1_1detail_1_1extents__helper__impl_3_01integer__sequence_3_01_u_00_01_indices_8_8_8_01_4_01_4_a7473bcc5ade98d4f5f67abc9647a3ced}{extents\_type}}\ =\ experimental::extents<U,dyn\_ext(Indices)...>;}
+\DoxyCodeLine{00839\ \ \ \ \ \textcolor{keyword}{using\ }\mbox{\hyperlink{classstd_1_1math_1_1detail_1_1extents__helper__impl_3_01integer__sequence_3_01_u_00_01_indices_8_8_8_01_4_01_4_aff869ff070e9e171303a6824860acdb9}{tuple\_type}}\ \ \ =\ tuple<\textcolor{keyword}{decltype}(Indices)...>;}
+\DoxyCodeLine{00840\ \ \ \ \ [[nodiscard]]\ \textcolor{keyword}{static}\ \textcolor{keyword}{constexpr}\ U\ \mbox{\hyperlink{classstd_1_1math_1_1detail_1_1extents__helper__impl_3_01integer__sequence_3_01_u_00_01_indices_8_8_8_01_4_01_4_ac288500535e29ff6137e1808bb8c40fd}{size}}(\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classstd_1_1math_1_1detail_1_1extents__helper__impl_3_01integer__sequence_3_01_u_00_01_indices_8_8_8_01_4_01_4_a7473bcc5ade98d4f5f67abc9647a3ced}{extents\_type}}\&\ e\ )\ \textcolor{keyword}{noexcept}\ \{\ \textcolor{keywordflow}{return}\ (\ e.extent(Indices)\ *\ ...\ );\ \}}
+\DoxyCodeLine{00841\ \ \ \ \ [[nodiscard]]\ \textcolor{keyword}{static}\ \textcolor{keyword}{consteval}\ \mbox{\hyperlink{classstd_1_1math_1_1detail_1_1extents__helper__impl_3_01integer__sequence_3_01_u_00_01_indices_8_8_8_01_4_01_4_a7473bcc5ade98d4f5f67abc9647a3ced}{extents\_type}}\ \mbox{\hyperlink{classstd_1_1math_1_1detail_1_1extents__helper__impl_3_01integer__sequence_3_01_u_00_01_indices_8_8_8_01_4_01_4_af564d17e5453ff26bd3dd98260f0a575}{zero}}()\ noexcept\ \{\ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{classstd_1_1math_1_1detail_1_1extents__helper__impl_3_01integer__sequence_3_01_u_00_01_indices_8_8_8_01_4_01_4_a7473bcc5ade98d4f5f67abc9647a3ced}{extents\_type}}(\ U(\ 0\ *\ Indices\ )\ ...\ );\ \}}
+\DoxyCodeLine{00842\ \ \ \ \ [[nodiscard]]\ \textcolor{keyword}{static}\ \textcolor{keyword}{consteval}\ \textcolor{keyword}{auto}\ \mbox{\hyperlink{classstd_1_1math_1_1detail_1_1extents__helper__impl_3_01integer__sequence_3_01_u_00_01_indices_8_8_8_01_4_01_4_a436b1176e1bdff6c2f7b3092b9cdd9b3}{zero\_tuple}}()\ noexcept\ \{\ \textcolor{keywordflow}{return}\ tuple(\ U(\ 0\ *\ Indices\ )\ ...\ );\ \}}
+\DoxyCodeLine{00843\ \ \ \ \ [[nodiscard]]\ \textcolor{keyword}{static}\ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{auto}\ \mbox{\hyperlink{classstd_1_1math_1_1detail_1_1extents__helper__impl_3_01integer__sequence_3_01_u_00_01_indices_8_8_8_01_4_01_4_a8b0b7910304a26757283e50198bd0cbe}{to\_tuple}}(\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classstd_1_1math_1_1detail_1_1extents__helper__impl_3_01integer__sequence_3_01_u_00_01_indices_8_8_8_01_4_01_4_a7473bcc5ade98d4f5f67abc9647a3ced}{extents\_type}}\&\ e\ )\ \textcolor{keyword}{noexcept}\ \{\ \textcolor{keywordflow}{return}\ tuple(\ U(\ e.extent(Indices)\ )\ ...\ );\ \}}
+\DoxyCodeLine{00844\ \};}
+\DoxyCodeLine{00845\ \textcolor{keyword}{template}\ <\ \textcolor{keyword}{class}\ U,\ \textcolor{keywordtype}{size\_t}\ R\ >}
+\DoxyCodeLine{00846\ \textcolor{keyword}{using\ }\mbox{\hyperlink{classstd_1_1math_1_1detail_1_1extents__helper__impl}{extents\_helper}}\ =\ \mbox{\hyperlink{classstd_1_1math_1_1detail_1_1extents__helper__impl}{extents\_helper\_impl<\ make\_integer\_sequence<U,R>}}\ >;}
+\DoxyCodeLine{00847\ }
+\DoxyCodeLine{00848\ \}\ \ \ \ \ \ \ \textcolor{comment}{//-\/\ detail\ namespace}}
+\DoxyCodeLine{00849\ \}\ \ \ \ \ \ \ \textcolor{comment}{//-\/\ math\ namespace}}
+\DoxyCodeLine{00850\ \}\ \ \ \ \ \ \ \textcolor{comment}{//-\/\ std\ namespace}}
+\DoxyCodeLine{00851\ \textcolor{preprocessor}{\#endif\ \ }\textcolor{comment}{//-\/\ LINEAR\_ALGEBRA\_PRIVATE\_SUPPORT\_HPP}}
+
+\end{DoxyCode}

@@ -1,0 +1,43 @@
+\hypertarget{conceptstd_1_1math_1_1concepts_1_1dynamic__tensor__data}{}\doxysection{std\+::math\+::concepts\+::dynamic\+\_\+tensor\+\_\+data Concept Reference}
+\label{conceptstd_1_1math_1_1concepts_1_1dynamic__tensor__data}\index{std::math::concepts::dynamic\_tensor\_data@{std::math::concepts::dynamic\_tensor\_data}}
+
+
+{\ttfamily \#include $<$tensor\+\_\+concepts.\+hpp$>$}
+
+\doxysubsection{Concept definition}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{keyword}{template}<\textcolor{keyword}{class}\ T>}
+\DoxyCodeLine{\textcolor{keyword}{concept\ }\mbox{\hyperlink{conceptstd_1_1math_1_1concepts_1_1dynamic__tensor__data}{std::math::concepts::dynamic\_tensor\_data}}\ =\ \ \mbox{\hyperlink{conceptstd_1_1math_1_1concepts_1_1tensor__data}{tensor\_data<T>}}\ \&\&\ \textcolor{keyword}{requires}}
+\DoxyCodeLine{\{}
+\DoxyCodeLine{\ \ \textcolor{keyword}{typename}\ T::allocator\_type;}
+\DoxyCodeLine{\}\ \&\&}
+\DoxyCodeLine{\textcolor{keyword}{requires}(\ T\&\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ t,}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{typename}\ T::extents\_type\ \ \ \ \ \ \ \ \ \ size,}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{typename}\ T::extents\_type\ \ \ \ \ \ \ \ \ \ cap,}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{typename}\ T::allocator\_type\&\ alloc\ )}
+\DoxyCodeLine{\{}
+\DoxyCodeLine{\ \ \{\ T(\ alloc\ )\};}
+\DoxyCodeLine{\ \ \{\ T(\ size,\ alloc\ )\ \};}
+\DoxyCodeLine{\ \ \{\ T(\ size,\ cap,\ alloc\ )\ \};}
+\DoxyCodeLine{\ \ \{\ t.set\_allocator(\ alloc\ )\ \};}
+\DoxyCodeLine{\ \ \{\ \textcolor{keyword}{static\_cast<}\textcolor{keyword}{const\ }T\&\textcolor{keyword}{>}(t).get\_allocator()\ \}\ -\/>\ same\_as<const\ typename\ T::allocator\_type\&>;}
+\DoxyCodeLine{\}\ \&\&}
+\DoxyCodeLine{(\ \textcolor{keyword}{requires}(\ T\&\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ t,}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{typename}\ T::extents\_type\ size,}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{typename}\ T::extents\_type\ cap\ )}
+\DoxyCodeLine{\ \ \{}
+\DoxyCodeLine{\ \ \ \ \{\ t.resize(\ size\ )\ \};}
+\DoxyCodeLine{\ \ \ \ \{\ t.reserve(\ cap\ )\ \};}
+\DoxyCodeLine{\ \ \}\ ||}
+\DoxyCodeLine{\ \ (\ \textcolor{keyword}{requires}(\ T\&\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ t,}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{typename}\ T::size\_type\ size,}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{typename}\ T::size\_type\ cap\ )}
+\DoxyCodeLine{\ \ \ \ \{}
+\DoxyCodeLine{\ \ \ \ \ \ \{\ t.resize(\ size\ )\ \};}
+\DoxyCodeLine{\ \ \ \ \ \ \{\ t.reserve(\ cap\ )\ \};}
+\DoxyCodeLine{\ \ \ \ \}\ \&\&\ (\ T::extents\_type::rank()\ ==\ 1\ )}
+\DoxyCodeLine{\ \ )}
+\DoxyCodeLine{)}
+
+\end{DoxyCode}

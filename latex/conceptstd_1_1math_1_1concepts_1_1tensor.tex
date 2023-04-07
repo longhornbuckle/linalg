@@ -1,0 +1,28 @@
+\hypertarget{conceptstd_1_1math_1_1concepts_1_1tensor}{}\doxysection{std\+::math\+::concepts\+::tensor Concept Reference}
+\label{conceptstd_1_1math_1_1concepts_1_1tensor}\index{std::math::concepts::tensor@{std::math::concepts::tensor}}
+
+
+{\ttfamily \#include $<$tensor\+\_\+concepts.\+hpp$>$}
+
+\doxysubsection{Concept definition}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{keyword}{template}<\textcolor{keyword}{class}\ T>}
+\DoxyCodeLine{\textcolor{keyword}{concept\ }\mbox{\hyperlink{conceptstd_1_1math_1_1concepts_1_1tensor}{std::math::concepts::tensor}}\ =\ \ \mbox{\hyperlink{conceptstd_1_1math_1_1concepts_1_1tensor__data}{tensor\_data<T>}}\ \&\&}
+\DoxyCodeLine{\textcolor{keyword}{requires}\ (\ T\&\ t,\ \textcolor{keyword}{typename}\ T::value\_type\ v\ )\ }
+\DoxyCodeLine{\{}
+\DoxyCodeLine{\ \ v\ *\ t;\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\ \ t\ *\ v;\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\ \ t\ /\ v;\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\}\ \&\&}
+\DoxyCodeLine{\textcolor{keyword}{requires}\ (\ T\ t\ )\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\{}
+\DoxyCodeLine{\ \ -\/t;\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\}\ \&\&}
+\DoxyCodeLine{\textcolor{keyword}{requires}(\ T\ t\ )\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\{}
+\DoxyCodeLine{\ \ t\ +\ t;\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\ \ t\ -\/\ t;\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}

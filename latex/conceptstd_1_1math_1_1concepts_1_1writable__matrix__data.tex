@@ -1,0 +1,40 @@
+\hypertarget{conceptstd_1_1math_1_1concepts_1_1writable__matrix__data}{}\doxysection{std\+::math\+::concepts\+::writable\+\_\+matrix\+\_\+data Concept Reference}
+\label{conceptstd_1_1math_1_1concepts_1_1writable__matrix__data}\index{std::math::concepts::writable\_matrix\_data@{std::math::concepts::writable\_matrix\_data}}
+
+
+{\ttfamily \#include $<$matrix\+\_\+concepts.\+hpp$>$}
+
+\doxysubsection{Concept definition}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{keyword}{template}<\textcolor{keyword}{class}\ M>}
+\DoxyCodeLine{\textcolor{keyword}{concept\ }\mbox{\hyperlink{conceptstd_1_1math_1_1concepts_1_1writable__matrix__data}{std::math::concepts::writable\_matrix\_data}}\ =\ \ \mbox{\hyperlink{conceptstd_1_1math_1_1concepts_1_1readable__matrix__data}{readable\_matrix\_data<M>}}\ \&\&\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\mbox{\hyperlink{conceptstd_1_1math_1_1concepts_1_1writable__tensor__data}{writable\_tensor\_data<M>}}\ \&\&\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\textcolor{keyword}{requires}(\ M\&\ m,\ \textcolor{keyword}{typename}\ M::index\_type\ index1,\ \textcolor{keyword}{typename}\ M::index\_type\ index2\ )\ }
+\DoxyCodeLine{\{}
+\DoxyCodeLine{\ \ \textcolor{keyword}{typename}\ M::reference\_type;}
+\DoxyCodeLine{\ \ \{\ m[index1,index2]\ \}\ \ \ \ \ \ \ \textcolor{keyword}{noexcept}\ -\/>\ same\_as<typename\ M::reference\_type>;}
+\DoxyCodeLine{\ \ \{\ m.at(index1,index2)\ \}\ \ \ \ \ \ \ \ \ \ \ \ \ -\/>\ same\_as<typename\ M::reference\_type>;}
+\DoxyCodeLine{\}\ \&\&}
+\DoxyCodeLine{\textcolor{keyword}{requires}(\ M\&\ m,\ \textcolor{keyword}{typename}\ M::index\_type\ index\ )\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\{}
+\DoxyCodeLine{\ \ \textcolor{keyword}{typename}\ M::row\_type;}
+\DoxyCodeLine{\ \ \{\ m.row(index)\ \}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ -\/>\ same\_as<typename\ M::row\_type>;}
+\DoxyCodeLine{\}\ \&\&}
+\DoxyCodeLine{writable\_vector\_data<typename\ M::row\_type>\ \&\&}
+\DoxyCodeLine{\textcolor{keyword}{requires}(\ M\&\ m,\ \textcolor{keyword}{typename}\ M::index\_type\ index\ )\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\{}
+\DoxyCodeLine{\ \ \textcolor{keyword}{typename}\ M::column\_type;}
+\DoxyCodeLine{\ \ \{\ m.column(index)\ \}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ -\/>\ same\_as<typename\ M::column\_type>;}
+\DoxyCodeLine{\}\ \&\&}
+\DoxyCodeLine{writable\_vector\_data<typename\ M::column\_type>\ \&\&}
+\DoxyCodeLine{\textcolor{keyword}{requires}(\ M\&\ m,}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ tuple<typename\ M::index\_type,typename\ M::index\_type>\ start,}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ tuple<typename\ M::index\_type,typename\ M::index\_type>\ end\ )\ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\{}
+\DoxyCodeLine{\ \ \textcolor{keyword}{typename}\ M::submatrix\_type;}
+\DoxyCodeLine{\ \ \{\ m.submatrix(start,end)\ \}\ \ \ \ \ \ \ \ \ \ -\/>\ same\_as<typename\ M::submatrix\_type>;}
+\DoxyCodeLine{\ \ \{\ m.submatrix(start,end)\ \}\ \ \ \ \ \ \ \ \ \ -\/>\ matrix;}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}

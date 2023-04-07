@@ -1,4 +1,5 @@
 var searchData=
 [
-  ['has_5findex_5foperator_98',['has_index_operator',['../namespacestd_1_1math_1_1detail.html#ae1903bd3434c3c61d4ebe7429d40d028',1,'std::math::detail']]]
+  ['layout_5ftype_0',['layout_type',['../classstd_1_1math_1_1dr__matrix.html#ad1bc4f3adc19e8c20028fb2dffadffee',1,'std::math::dr_matrix::layout_type()'],['../classstd_1_1math_1_1dr__tensor.html#a7e1674ecc1d57ad775b9b5ba05f9374d',1,'std::math::dr_tensor::layout_type()'],['../classstd_1_1math_1_1dr__vector.html#aa0431c284a67005d5b6cccab9c5db413',1,'std::math::dr_vector::layout_type()'],['../classstd_1_1math_1_1fs__matrix.html#aede8cc70231926aca37c7e20afb4254c',1,'std::math::fs_matrix::layout_type()'],['../classstd_1_1math_1_1fs__tensor.html#aa0d6ef16218fd8c5edc33065308b1913',1,'std::math::fs_tensor::layout_type()'],['../classstd_1_1math_1_1fs__vector.html#a34c5cd8d9804e3f091da2ffc4f1e8576',1,'std::math::fs_vector::layout_type()'],['../classstd_1_1math_1_1matrix__view.html#a2d2ca621cd2592144408ff01dba9f949',1,'std::math::matrix_view::layout_type()'],['../classstd_1_1math_1_1tensor__view.html#a1241b3121ae9f312314d4aacafbec0ba',1,'std::math::tensor_view::layout_type()'],['../classstd_1_1math_1_1vector__view.html#abf72912a53d041794cc21ffba546df6a',1,'std::math::vector_view::layout_type()']]],
+  ['linear_5falgebra_2ehpp_1',['linear_algebra.hpp',['../linear__algebra_8hpp.html',1,'']]]
 ];

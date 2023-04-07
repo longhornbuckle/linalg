@@ -1,0 +1,130 @@
+\hypertarget{vector__concepts_8hpp_source}{}\doxysection{vector\+\_\+concepts.\+hpp}
+\label{vector__concepts_8hpp_source}\index{include/experimental/linear\_algebra/vector\_concepts.hpp@{include/experimental/linear\_algebra/vector\_concepts.hpp}}
+\mbox{\hyperlink{vector__concepts_8hpp}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#ifndef\ LINEAR\_ALGEBRA\_VECTOR\_CONCEPTS\_HPP}}
+\DoxyCodeLine{00002\ \textcolor{preprocessor}{\#define\ LINEAR\_ALGEBRA\_VECTOR\_CONCEPTS\_HPP}}
+\DoxyCodeLine{00003\ }
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#include\ <\mbox{\hyperlink{linear__algebra_8hpp}{experimental/linear\_algebra.hpp}}>}}
+\DoxyCodeLine{00005\ }
+\DoxyCodeLine{00006\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespacestd}{std}}}
+\DoxyCodeLine{00007\ \{}
+\DoxyCodeLine{00008\ \textcolor{keyword}{namespace\ }math}
+\DoxyCodeLine{00009\ \{}
+\DoxyCodeLine{00010\ \textcolor{keyword}{namespace\ }concepts}
+\DoxyCodeLine{00011\ \{}
+\DoxyCodeLine{00012\ }
+\DoxyCodeLine{00013\ \textcolor{comment}{//=================================================================================================}}
+\DoxyCodeLine{00014\ \textcolor{comment}{//\ \ Vector\ Engine\ Concepts}}
+\DoxyCodeLine{00015\ \textcolor{comment}{//=================================================================================================}}
+\DoxyCodeLine{00016\ }
+\DoxyCodeLine{00017\ \textcolor{comment}{//\ All\ vector\ data\ types\ must\ satisfy\ tensor\ data\ requirements}}
+\DoxyCodeLine{00018\ \textcolor{comment}{//\ All\ vector\ data\ types\ must\ be\ a\ rank\ 1\ tensor}}
+\DoxyCodeLine{00019\ \textcolor{keyword}{template}\ <\ \textcolor{keyword}{class}\ V\ >}
+\DoxyCodeLine{00020\ \textcolor{keyword}{concept\ }\mbox{\hyperlink{conceptstd_1_1math_1_1concepts_1_1vector__data}{vector\_data}}\ =\ \mbox{\hyperlink{conceptstd_1_1math_1_1concepts_1_1tensor__data}{tensor\_data<V>}}\ \&\&}
+\DoxyCodeLine{00021\ (\ V::extents\_type::rank()\ ==\ 1\ );}
+\DoxyCodeLine{00022\ }
+\DoxyCodeLine{00023\ \textcolor{comment}{//\ Vector\ must\ be\ a\ vector\ data}}
+\DoxyCodeLine{00024\ \textcolor{comment}{//\ Vector\ must\ be\ a\ tensor}}
+\DoxyCodeLine{00025\ \textcolor{comment}{//\ All\ vector\ types\ must\ support\ unary\ functions:\ trans\ and\ conj}}
+\DoxyCodeLine{00026\ \textcolor{comment}{//\ All\ vector\ types\ must\ support\ binary\ functions:\ inner\_prod\ and\ outer\_prod}}
+\DoxyCodeLine{00027\ \textcolor{keyword}{template}\ <\ \textcolor{keyword}{class}\ V\ >}
+\DoxyCodeLine{00028\ \textcolor{keyword}{concept\ }\mbox{\hyperlink{conceptstd_1_1math_1_1concepts_1_1vector}{vector}}\ =\ \mbox{\hyperlink{conceptstd_1_1math_1_1concepts_1_1vector__data}{vector\_data<V>}}\ \&\&}
+\DoxyCodeLine{00029\ \mbox{\hyperlink{conceptstd_1_1math_1_1concepts_1_1tensor}{tensor<V>}}\ \&\&}
+\DoxyCodeLine{00030\ \textcolor{keyword}{requires}\ (\ V\ v\ )\ \textcolor{comment}{//\ Unary\ operations}}
+\DoxyCodeLine{00031\ \{}
+\DoxyCodeLine{00032\ \ \ \mbox{\hyperlink{namespacestd_1_1math_aad19d9284c196e0f59cf9a4e03794b99}{trans}}(\ v\ );}
+\DoxyCodeLine{00033\ \ \ \mbox{\hyperlink{namespacestd_1_1math_a381ab766e72b583fd5859302b2c643b2}{conj}}(\ v\ );}
+\DoxyCodeLine{00034\ \}\ \&\&}
+\DoxyCodeLine{00035\ \textcolor{keyword}{requires}\ (\ V\ v\ )\ \textcolor{comment}{//\ Binary\ operations}}
+\DoxyCodeLine{00036\ \{}
+\DoxyCodeLine{00037\ \ \ \mbox{\hyperlink{namespacestd_1_1math_ae595d72c25d55b2d8d8086ef2b65bfe2}{inner\_prod}}(\ v,\ v\ );}
+\DoxyCodeLine{00038\ \ \ \mbox{\hyperlink{namespacestd_1_1math_a16d9bb61f2dd78e168c6318baed2625b}{outer\_prod}}(\ v,\ v\ );}
+\DoxyCodeLine{00039\ \};}
+\DoxyCodeLine{00040\ }
+\DoxyCodeLine{00041\ \textcolor{comment}{//\ Readable\ vector\ data\ must\ A)\ be\ a\ vector\ data}}
+\DoxyCodeLine{00042\ \textcolor{comment}{//\ Readable\ vector\ data\ must\ B)\ be\ a\ readable\ tensor\ data}}
+\DoxyCodeLine{00043\ \textcolor{comment}{//\ Readable\ vector\ data\ must\ C)\ provide\ index\ access}}
+\DoxyCodeLine{00044\ \textcolor{comment}{//\ Readable\ vector\ data\ must\ D)\ provide\ a\ one\ dimension\ const\ span\ representation}}
+\DoxyCodeLine{00045\ \textcolor{comment}{//\ Readable\ vector\ data\ must\ E)\ provide\ a\ const\ subvector\ view}}
+\DoxyCodeLine{00046\ \textcolor{keyword}{template}\ <\ \textcolor{keyword}{class}\ V\ >}
+\DoxyCodeLine{00047\ \textcolor{keyword}{concept\ }\mbox{\hyperlink{conceptstd_1_1math_1_1concepts_1_1readable__vector__data}{readable\_vector\_data}}\ =\ \mbox{\hyperlink{conceptstd_1_1math_1_1concepts_1_1vector__data}{vector\_data<V>}}\ \&\&\ \ \ \ \ \textcolor{comment}{//\ A)}}
+\DoxyCodeLine{00048\ \mbox{\hyperlink{conceptstd_1_1math_1_1concepts_1_1readable__tensor__data}{readable\_tensor\_data<V>}}\ \&\&\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ B)}}
+\DoxyCodeLine{00049\ \textcolor{keyword}{requires}(\ \textcolor{keyword}{const}\ V\&\ v,\ \textcolor{keyword}{typename}\ V::index\_type\ index\ )\ \textcolor{comment}{//\ C)}}
+\DoxyCodeLine{00050\ \{}
+\DoxyCodeLine{00051\ \ \ \{\ v[index]\ \}\ \ \ \ \ \ \ \textcolor{keyword}{noexcept}\ -\/>\ same\_as<typename\ V::value\_type>;}
+\DoxyCodeLine{00052\ \ \ \{\ v.at(index)\ \}\ \ \ \ \ \ \ \ \ \ \ \ \ -\/>\ same\_as<typename\ V::value\_type>;}
+\DoxyCodeLine{00053\ \}\ \&\&}
+\DoxyCodeLine{00054\ (\ V::span\_type::extents\_type::rank()\ ==\ 1\ )\ \&\&\ \ \ \ \ \ \ \textcolor{comment}{//\ D)}}
+\DoxyCodeLine{00055\ \textcolor{keyword}{requires}(\ \textcolor{keyword}{const}\ V\&\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ v,}
+\DoxyCodeLine{00056\ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{typename}\ V::index\_type\ start,}
+\DoxyCodeLine{00057\ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{typename}\ V::index\_type\ end\ )\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ E)}}
+\DoxyCodeLine{00058\ \{}
+\DoxyCodeLine{00059\ \ \ \textcolor{keyword}{typename}\ V::const\_subvector\_type;}
+\DoxyCodeLine{00060\ \ \ \{\ v.subvector(start,end)\ \}\ -\/>\ same\_as<typename\ V::const\_subvector\_type>;}
+\DoxyCodeLine{00061\ \ \ \{\ v.subvector(start,end)\ \}\ -\/>\ vector\_data;}
+\DoxyCodeLine{00062\ \};}
+\DoxyCodeLine{00063\ }
+\DoxyCodeLine{00064\ \textcolor{comment}{//\ Readable\ vector\ must\ be\ a\ readable\ vector\ data}}
+\DoxyCodeLine{00065\ \textcolor{comment}{//\ Readable\ vector\ must\ be\ a\ vector}}
+\DoxyCodeLine{00066\ \textcolor{keyword}{template}\ <\ \textcolor{keyword}{class}\ V\ >}
+\DoxyCodeLine{00067\ \textcolor{keyword}{concept\ }\mbox{\hyperlink{conceptstd_1_1math_1_1concepts_1_1readable__vector}{readable\_vector}}\ =\ \mbox{\hyperlink{conceptstd_1_1math_1_1concepts_1_1readable__vector__data}{readable\_vector\_data<V>}}\ \&\&\ \mbox{\hyperlink{conceptstd_1_1math_1_1concepts_1_1vector}{vector<V>}};}
+\DoxyCodeLine{00068\ }
+\DoxyCodeLine{00069\ \textcolor{comment}{//\ Writable\ vector\ data\ must\ A)\ be\ a\ readable\ vector\ data}}
+\DoxyCodeLine{00070\ \textcolor{comment}{//\ Writable\ vector\ data\ must\ B)\ be\ a\ writable\ tensor\ data}}
+\DoxyCodeLine{00071\ \textcolor{comment}{//\ Writable\ vector\ data\ must\ C)\ provide\ a\ mutable\ scalar\ view}}
+\DoxyCodeLine{00072\ \textcolor{comment}{//\ Writable\ vector\ data\ must\ D)\ provide\ a\ mutable\ subvector\ view}}
+\DoxyCodeLine{00073\ \textcolor{keyword}{template}\ <\ \textcolor{keyword}{class}\ V\ >}
+\DoxyCodeLine{00074\ \textcolor{keyword}{concept\ }\mbox{\hyperlink{conceptstd_1_1math_1_1concepts_1_1writable__vector__data}{writable\_vector\_data}}\ =\ \mbox{\hyperlink{conceptstd_1_1math_1_1concepts_1_1readable__vector__data}{readable\_vector\_data<V>}}\ \&\&\ \textcolor{comment}{//\ A)}}
+\DoxyCodeLine{00075\ \mbox{\hyperlink{conceptstd_1_1math_1_1concepts_1_1writable__tensor__data}{writable\_tensor\_data<V>}}\ \&\&\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ B)}}
+\DoxyCodeLine{00076\ \textcolor{keyword}{requires}(\ V\&\ v,\ \textcolor{keyword}{typename}\ V::index\_type\ index\ )\ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ C)}}
+\DoxyCodeLine{00077\ \{}
+\DoxyCodeLine{00078\ \ \ \textcolor{keyword}{typename}\ V::reference\_type;}
+\DoxyCodeLine{00079\ \ \ \{\ v[index]\ \}\ \ \ \ \ \ \ \textcolor{keyword}{noexcept}\ -\/>\ same\_as<typename\ V::reference\_type>;}
+\DoxyCodeLine{00080\ \ \ \{\ v.at(index)\ \}\ \ \ \ \ \ \ \ \ \ \ \ \ -\/>\ same\_as<typename\ V::reference\_type>;}
+\DoxyCodeLine{00081\ \}\ \&\&}
+\DoxyCodeLine{00082\ \textcolor{keyword}{requires}(\ V\&\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ v,}
+\DoxyCodeLine{00083\ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{typename}\ V::index\_type\ start,}
+\DoxyCodeLine{00084\ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{typename}\ V::index\_type\ end\ )\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ D)}}
+\DoxyCodeLine{00085\ \{}
+\DoxyCodeLine{00086\ \ \ \textcolor{keyword}{typename}\ V::subvector\_type;}
+\DoxyCodeLine{00087\ \ \ \{\ v.subvector(start,end)\ \}\ -\/>\ same\_as<typename\ V::subvector\_type>;}
+\DoxyCodeLine{00088\ \ \ \{\ v.subvector(start,end)\ \}\ -\/>\ vector\_data;}
+\DoxyCodeLine{00089\ \};}
+\DoxyCodeLine{00090\ }
+\DoxyCodeLine{00091\ \textcolor{comment}{//\ Writable\ vector\ must\ be\ a\ writable\ vector\ data}}
+\DoxyCodeLine{00092\ \textcolor{comment}{//\ Writable\ vector\ must\ be\ a\ readable\ vector}}
+\DoxyCodeLine{00093\ \textcolor{keyword}{template}\ <\ \textcolor{keyword}{class}\ V\ >}
+\DoxyCodeLine{00094\ \textcolor{keyword}{concept\ }\mbox{\hyperlink{conceptstd_1_1math_1_1concepts_1_1writable__vector}{writable\_vector}}\ =\ \mbox{\hyperlink{conceptstd_1_1math_1_1concepts_1_1writable__vector__data}{writable\_vector\_data<V>}}\ \&\&\ \mbox{\hyperlink{conceptstd_1_1math_1_1concepts_1_1readable__vector}{readable\_vector<V>}};}
+\DoxyCodeLine{00095\ }
+\DoxyCodeLine{00096\ \textcolor{comment}{//\ Dynamic\ vector\ data\ must\ be\ a\ vector\ data}}
+\DoxyCodeLine{00097\ \textcolor{comment}{//\ Dynamic\ vector\ data\ must\ be\ a\ dynamic\ tensor\ data}}
+\DoxyCodeLine{00098\ \textcolor{keyword}{template}\ <\ \textcolor{keyword}{class}\ V\ >}
+\DoxyCodeLine{00099\ \textcolor{keyword}{concept\ }\mbox{\hyperlink{conceptstd_1_1math_1_1concepts_1_1dynamic__vector__data}{dynamic\_vector\_data}}\ =\ \mbox{\hyperlink{conceptstd_1_1math_1_1concepts_1_1vector__data}{vector\_data<V>}}\ \&\&}
+\DoxyCodeLine{00100\ \mbox{\hyperlink{conceptstd_1_1math_1_1concepts_1_1dynamic__tensor__data}{dynamic\_tensor\_data<V>}};}
+\DoxyCodeLine{00101\ }
+\DoxyCodeLine{00102\ \textcolor{comment}{//\ Dynamic\ vector\ must\ be\ a\ dynamic\ vector\ data}}
+\DoxyCodeLine{00103\ \textcolor{comment}{//\ Dynamic\ vector\ must\ be\ a\ vector}}
+\DoxyCodeLine{00104\ \textcolor{keyword}{template}\ <\ \textcolor{keyword}{class}\ V\ >}
+\DoxyCodeLine{00105\ \textcolor{keyword}{concept\ }\mbox{\hyperlink{conceptstd_1_1math_1_1concepts_1_1dynamic__vector}{dynamic\_vector}}\ =\ \mbox{\hyperlink{conceptstd_1_1math_1_1concepts_1_1dynamic__vector__data}{dynamic\_vector\_data<V>}}\ \&\&}
+\DoxyCodeLine{00106\ \mbox{\hyperlink{conceptstd_1_1math_1_1concepts_1_1vector}{vector<V>}};}
+\DoxyCodeLine{00107\ }
+\DoxyCodeLine{00108\ \textcolor{comment}{//\ Fixed\ size\ vector\ data\ must\ be\ a\ vector\ data}}
+\DoxyCodeLine{00109\ \textcolor{comment}{//\ Fixed\ size\ vector\ data\ must\ be\ a\ fixed\ size\ tensor\ data}}
+\DoxyCodeLine{00110\ \textcolor{keyword}{template}\ <\ \textcolor{keyword}{class}\ V\ >}
+\DoxyCodeLine{00111\ \textcolor{keyword}{concept\ }\mbox{\hyperlink{conceptstd_1_1math_1_1concepts_1_1fixed__size__vector__data}{fixed\_size\_vector\_data}}\ =\ \mbox{\hyperlink{conceptstd_1_1math_1_1concepts_1_1vector__data}{vector\_data<V>}}\ \&\&}
+\DoxyCodeLine{00112\ \mbox{\hyperlink{conceptstd_1_1math_1_1concepts_1_1fixed__size__tensor__data}{fixed\_size\_tensor\_data<V>}};}
+\DoxyCodeLine{00113\ }
+\DoxyCodeLine{00114\ \textcolor{comment}{//\ Fixed\ size\ vector\ must\ be\ a\ fixed\ size\ vector\ data}}
+\DoxyCodeLine{00115\ \textcolor{comment}{//\ Fixed\ size\ vector\ must\ be\ a\ vector}}
+\DoxyCodeLine{00116\ \textcolor{keyword}{template}\ <\ \textcolor{keyword}{class}\ V\ >}
+\DoxyCodeLine{00117\ \textcolor{keyword}{concept\ }\mbox{\hyperlink{conceptstd_1_1math_1_1concepts_1_1fixed__size__vector}{fixed\_size\_vector}}\ =\ \mbox{\hyperlink{conceptstd_1_1math_1_1concepts_1_1fixed__size__vector__data}{fixed\_size\_vector\_data<V>}}\ \&\&}
+\DoxyCodeLine{00118\ \mbox{\hyperlink{conceptstd_1_1math_1_1concepts_1_1vector}{vector<V>}};}
+\DoxyCodeLine{00119\ }
+\DoxyCodeLine{00120\ \}\ \ \ \ \ \ \ \textcolor{comment}{//-\/\ concepts\ namespace}}
+\DoxyCodeLine{00121\ \}\ \ \ \ \ \ \ \textcolor{comment}{//-\/\ math\ namespace}}
+\DoxyCodeLine{00122\ \}\ \ \ \ \ \ \ \textcolor{comment}{//-\/\ std\ namespace}}
+\DoxyCodeLine{00123\ }
+\DoxyCodeLine{00124\ \textcolor{preprocessor}{\#endif\ \ }\textcolor{comment}{//-\/\ LINEAR\_ALGEBRA\_VECTOR\_CONCEPTS\_HPP}}
+
+\end{DoxyCode}

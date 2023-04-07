@@ -1,0 +1,28 @@
+\hypertarget{conceptstd_1_1math_1_1concepts_1_1writable__vector__data}{}\doxysection{std\+::math\+::concepts\+::writable\+\_\+vector\+\_\+data Concept Reference}
+\label{conceptstd_1_1math_1_1concepts_1_1writable__vector__data}\index{std::math::concepts::writable\_vector\_data@{std::math::concepts::writable\_vector\_data}}
+
+
+{\ttfamily \#include $<$vector\+\_\+concepts.\+hpp$>$}
+
+\doxysubsection{Concept definition}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{keyword}{template}<\textcolor{keyword}{class}\ V>}
+\DoxyCodeLine{\textcolor{keyword}{concept\ }\mbox{\hyperlink{conceptstd_1_1math_1_1concepts_1_1writable__vector__data}{std::math::concepts::writable\_vector\_data}}\ =\ \ \mbox{\hyperlink{conceptstd_1_1math_1_1concepts_1_1readable__vector__data}{readable\_vector\_data<V>}}\ \&\&\ }
+\DoxyCodeLine{\mbox{\hyperlink{conceptstd_1_1math_1_1concepts_1_1writable__tensor__data}{writable\_tensor\_data<V>}}\ \&\&\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\textcolor{keyword}{requires}(\ V\&\ v,\ \textcolor{keyword}{typename}\ V::index\_type\ index\ )\ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\{}
+\DoxyCodeLine{\ \ \textcolor{keyword}{typename}\ V::reference\_type;}
+\DoxyCodeLine{\ \ \{\ v[index]\ \}\ \ \ \ \ \ \ \textcolor{keyword}{noexcept}\ -\/>\ same\_as<typename\ V::reference\_type>;}
+\DoxyCodeLine{\ \ \{\ v.at(index)\ \}\ \ \ \ \ \ \ \ \ \ \ \ \ -\/>\ same\_as<typename\ V::reference\_type>;}
+\DoxyCodeLine{\}\ \&\&}
+\DoxyCodeLine{\textcolor{keyword}{requires}(\ V\&\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ v,}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{typename}\ V::index\_type\ start,}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{typename}\ V::index\_type\ end\ )\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\{}
+\DoxyCodeLine{\ \ \textcolor{keyword}{typename}\ V::subvector\_type;}
+\DoxyCodeLine{\ \ \{\ v.subvector(start,end)\ \}\ -\/>\ same\_as<typename\ V::subvector\_type>;}
+\DoxyCodeLine{\ \ \{\ v.subvector(start,end)\ \}\ -\/>\ vector\_data;}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}

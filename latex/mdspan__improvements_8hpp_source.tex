@@ -1,0 +1,233 @@
+\hypertarget{mdspan__improvements_8hpp_source}{}\doxysection{mdspan\+\_\+improvements.\+hpp}
+\label{mdspan__improvements_8hpp_source}\index{include/experimental/mdspan\_improvements.hpp@{include/experimental/mdspan\_improvements.hpp}}
+\mbox{\hyperlink{mdspan__improvements_8hpp}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{comment}{//==================================================================================================}}
+\DoxyCodeLine{00002\ \textcolor{comment}{//\ \ File:\ \ \ \ \ \ \ mdspan\_improvements.hpp}}
+\DoxyCodeLine{00003\ \textcolor{comment}{//}}
+\DoxyCodeLine{00004\ \textcolor{comment}{//\ \ Summary:\ \ \ \ Defines\ improvements\ to\ mdspan}}
+\DoxyCodeLine{00005\ \textcolor{comment}{//==================================================================================================}}
+\DoxyCodeLine{00006\ \textcolor{comment}{//}}
+\DoxyCodeLine{00007\ \textcolor{preprocessor}{\#ifndef\ MDSPAN\_IMPROVEMENTS\_HPP}}
+\DoxyCodeLine{00008\ \textcolor{preprocessor}{\#define\ MDSPAN\_IMPROVEMENTS\_HPP}}
+\DoxyCodeLine{00009\ }
+\DoxyCodeLine{00010\ \textcolor{comment}{//-\/\ Disable\ some\ unnecessary\ compiler\ warnings\ coming\ from\ mdspan.}}
+\DoxyCodeLine{00011\ \textcolor{comment}{//}}
+\DoxyCodeLine{00012\ \textcolor{preprocessor}{\#if\ defined\ \_\_clang\_\_}}
+\DoxyCodeLine{00013\ \textcolor{preprocessor}{\ \ \ \ \#pragma\ clang\ diagnostic\ push}}
+\DoxyCodeLine{00014\ \textcolor{preprocessor}{\ \ \ \ \#pragma\ clang\ diagnostic\ ignored\ "{}-\/Wgnu-\/zero-\/variadic-\/macro-\/arguments"{}}}
+\DoxyCodeLine{00015\ \textcolor{preprocessor}{\#elif\ defined\ \_\_GNUG\_\_}}
+\DoxyCodeLine{00016\ \textcolor{preprocessor}{\ \ \ \ \#pragma\ GCC\ diagnostic\ push}}
+\DoxyCodeLine{00017\ \textcolor{preprocessor}{\ \ \ \ \#pragma\ GCC\ diagnostic\ ignored\ "{}-\/Wunused-\/parameter"{}}}
+\DoxyCodeLine{00018\ \textcolor{preprocessor}{\#elif\ defined\ \_MSC\_VER}}
+\DoxyCodeLine{00019\ \textcolor{preprocessor}{\ \ \ \ \#pragma\ warning(push)}}
+\DoxyCodeLine{00020\ \textcolor{preprocessor}{\ \ \ \ \#pragma\ warning(disable:\ 4100)}}
+\DoxyCodeLine{00021\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00022\ }
+\DoxyCodeLine{00023\ \textcolor{preprocessor}{\#include\ <experimental/mdspan>}}
+\DoxyCodeLine{00024\ \textcolor{keyword}{using\ }std::experimental::dynamic\_extent;}
+\DoxyCodeLine{00025\ }
+\DoxyCodeLine{00026\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespacestd}{std}}}
+\DoxyCodeLine{00027\ \{}
+\DoxyCodeLine{00028\ \textcolor{keyword}{namespace\ }experimental}
+\DoxyCodeLine{00029\ \{}
+\DoxyCodeLine{00030\ }
+\DoxyCodeLine{00031\ \textcolor{keyword}{template}\ <\ \textcolor{keyword}{class}\ IndexType,\ \textcolor{keywordtype}{size\_t}\ Extent\ >}
+\DoxyCodeLine{00032\ \textcolor{keyword}{class\ }extents<IndexType,Extent>}
+\DoxyCodeLine{00033\ \{}
+\DoxyCodeLine{00034\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00035\ \ \ \textcolor{comment}{//\ typedefs\ for\ integral\ types\ used}}
+\DoxyCodeLine{00036\ \ \ \textcolor{keyword}{using\ }\mbox{\hyperlink{classstd_1_1experimental_1_1extents_3_01_index_type_00_01_extent_01_4_a2a46d9564622215033650f188041fbc7}{index\_type}}\ =\ IndexType;}
+\DoxyCodeLine{00037\ \ \ \textcolor{keyword}{using\ }\mbox{\hyperlink{classstd_1_1experimental_1_1extents_3_01_index_type_00_01_extent_01_4_a5acfee3f499232380a0122571a90b070}{size\_type}}\ =\ make\_unsigned\_t<index\_type>;}
+\DoxyCodeLine{00038\ \ \ \textcolor{keyword}{using\ }\mbox{\hyperlink{classstd_1_1experimental_1_1extents_3_01_index_type_00_01_extent_01_4_a38420896ab19cfd9252b8d9c1f92dd55}{rank\_type}}\ =\ size\_t;}
+\DoxyCodeLine{00039\ }
+\DoxyCodeLine{00040\ \ \ \textcolor{keyword}{static\_assert}(std::is\_integral<index\_type>::value\ \&\&\ !std::is\_same<index\_type,\ bool>::value,}
+\DoxyCodeLine{00041\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}extents::index\_type\ must\ be\ a\ signed\ or\ unsigned\ integer\ type"{}});}
+\DoxyCodeLine{00042\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00043\ \ \ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{static}\ \mbox{\hyperlink{classstd_1_1experimental_1_1extents_3_01_index_type_00_01_extent_01_4_a38420896ab19cfd9252b8d9c1f92dd55}{rank\_type}}\ m\_rank\ =\ 1;}
+\DoxyCodeLine{00044\ \ \ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{static}\ \mbox{\hyperlink{classstd_1_1experimental_1_1extents_3_01_index_type_00_01_extent_01_4_a38420896ab19cfd9252b8d9c1f92dd55}{rank\_type}}\ m\_rank\_dynamic\ =\ (\ Extent\ ==\ dynamic\_extent\ );}
+\DoxyCodeLine{00045\ }
+\DoxyCodeLine{00046\ \ \ \textcolor{comment}{//\ internal\ storage\ type\ using\ maybe\_static\_array}}
+\DoxyCodeLine{00047\ \ \ \textcolor{keyword}{using\ }vals\_t\ =}
+\DoxyCodeLine{00048\ \ \ \ \ \ \ detail::maybe\_static\_array<IndexType,\ size\_t,\ dynamic\_extent,\ Extent\ >;}
+\DoxyCodeLine{00049\ \ \ \_MDSPAN\_NO\_UNIQUE\_ADDRESS\ vals\_t\ m\_vals;}
+\DoxyCodeLine{00050\ }
+\DoxyCodeLine{00051\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00052\ \ \ \textcolor{comment}{//\ [mdspan.extents.obs],\ observers\ of\ multidimensional\ index\ space}}
+\DoxyCodeLine{00053\ \ \ MDSPAN\_INLINE\_FUNCTION}
+\DoxyCodeLine{00054\ \ \ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{static}\ \mbox{\hyperlink{classstd_1_1experimental_1_1extents_3_01_index_type_00_01_extent_01_4_a38420896ab19cfd9252b8d9c1f92dd55}{rank\_type}}\ \mbox{\hyperlink{classstd_1_1experimental_1_1extents_3_01_index_type_00_01_extent_01_4_a30c47db59287f483ea61cd205be65622}{rank}}()\ noexcept\ \{\ \textcolor{keywordflow}{return}\ m\_rank;\ \}}
+\DoxyCodeLine{00055\ \ \ MDSPAN\_INLINE\_FUNCTION}
+\DoxyCodeLine{00056\ \ \ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{static}\ \mbox{\hyperlink{classstd_1_1experimental_1_1extents_3_01_index_type_00_01_extent_01_4_a38420896ab19cfd9252b8d9c1f92dd55}{rank\_type}}\ \mbox{\hyperlink{classstd_1_1experimental_1_1extents_3_01_index_type_00_01_extent_01_4_ae15a51c7f6b16baa2cc7dd2018a5e6f5}{rank\_dynamic}}()\ noexcept\ \{\ \textcolor{keywordflow}{return}\ m\_rank\_dynamic;\ \}}
+\DoxyCodeLine{00057\ }
+\DoxyCodeLine{00058\ \ \ MDSPAN\_INLINE\_FUNCTION}
+\DoxyCodeLine{00059\ \ \ \textcolor{keyword}{constexpr}\ \mbox{\hyperlink{classstd_1_1experimental_1_1extents_3_01_index_type_00_01_extent_01_4_a2a46d9564622215033650f188041fbc7}{index\_type}}\ \mbox{\hyperlink{classstd_1_1experimental_1_1extents_3_01_index_type_00_01_extent_01_4_a5214e5cc26c690369ea49b03627ffe87}{extent}}(\mbox{\hyperlink{classstd_1_1experimental_1_1extents_3_01_index_type_00_01_extent_01_4_a38420896ab19cfd9252b8d9c1f92dd55}{rank\_type}}\ r)\ \textcolor{keyword}{const}\ \textcolor{keyword}{noexcept}\ \{\ \textcolor{keywordflow}{return}\ m\_vals.value(r);\ \}}
+\DoxyCodeLine{00060\ \ \ MDSPAN\_INLINE\_FUNCTION}
+\DoxyCodeLine{00061\ \ \ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{static}\ \textcolor{keywordtype}{size\_t}\ \mbox{\hyperlink{classstd_1_1experimental_1_1extents_3_01_index_type_00_01_extent_01_4_a03abde080622ae47d30e4c062a578308}{static\_extent}}(\mbox{\hyperlink{classstd_1_1experimental_1_1extents_3_01_index_type_00_01_extent_01_4_a38420896ab19cfd9252b8d9c1f92dd55}{rank\_type}}\ r)\ \textcolor{keyword}{noexcept}\ \{}
+\DoxyCodeLine{00062\ \ \ \ \ \textcolor{keywordflow}{return}\ vals\_t::static\_value(r);}
+\DoxyCodeLine{00063\ \ \ \}}
+\DoxyCodeLine{00064\ }
+\DoxyCodeLine{00065\ \ \ \textcolor{comment}{//\ [mdspan.extents.cons],\ constructors}}
+\DoxyCodeLine{00066\ \ \ MDSPAN\_INLINE\_FUNCTION\_DEFAULTED}
+\DoxyCodeLine{00067\ \ \ \textcolor{keyword}{constexpr}\ \mbox{\hyperlink{classstd_1_1experimental_1_1extents_3_01_index_type_00_01_extent_01_4_ade744509955834c508b977527c76590a}{extents}}()\ noexcept\ =\ default;}
+\DoxyCodeLine{00068\ }
+\DoxyCodeLine{00069\ \ \ \textcolor{comment}{//\ Construction\ from\ just\ dynamic\ or\ all\ values.}}
+\DoxyCodeLine{00070\ \ \ \textcolor{comment}{//\ Precondition\ check\ is\ deferred\ to\ maybe\_static\_array\ constructor}}
+\DoxyCodeLine{00071\ \ \ MDSPAN\_TEMPLATE\_REQUIRES(}
+\DoxyCodeLine{00072\ \ \ \ \ \ \ class...\ OtherIndexTypes,}
+\DoxyCodeLine{00073\ \ \ \ \ \ \ \textcolor{comment}{/*\ requires\ */}\ (}
+\DoxyCodeLine{00074\ \ \ \ \ \ \ \ \ \ \ \_MDSPAN\_FOLD\_AND(\_MDSPAN\_TRAIT(is\_convertible,\ OtherIndexTypes,}
+\DoxyCodeLine{00075\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classstd_1_1experimental_1_1extents_3_01_index_type_00_01_extent_01_4_a2a46d9564622215033650f188041fbc7}{index\_type}})\ \textcolor{comment}{/*\ \&\&\ ...\ */})\ \&\&}
+\DoxyCodeLine{00076\ \ \ \ \ \ \ \ \ \ \ \_MDSPAN\_FOLD\_AND(\_MDSPAN\_TRAIT(is\_nothrow\_constructible,\ \mbox{\hyperlink{classstd_1_1experimental_1_1extents_3_01_index_type_00_01_extent_01_4_a2a46d9564622215033650f188041fbc7}{index\_type}},}
+\DoxyCodeLine{00077\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ OtherIndexTypes)\ \textcolor{comment}{/*\ \&\&\ ...\ */})\ \&\&}
+\DoxyCodeLine{00078\ \ \ \ \ \ \ \ \ \ \ (sizeof...(OtherIndexTypes)\ ==\ m\_rank\ ||}
+\DoxyCodeLine{00079\ \ \ \ \ \ \ \ \ \ \ \ sizeof...(OtherIndexTypes)\ ==\ m\_rank\_dynamic)))}
+\DoxyCodeLine{00080\ \ \ MDSPAN\_INLINE\_FUNCTION}
+\DoxyCodeLine{00081\ \ \ constexpr\ extents(OtherIndexTypes...\ dynvals)\ noexcept}
+\DoxyCodeLine{00082\ \ \ \ \ \ \ :\ m\_vals(static\_cast<\mbox{\hyperlink{classstd_1_1experimental_1_1extents_3_01_index_type_00_01_extent_01_4_a2a46d9564622215033650f188041fbc7}{index\_type}}>(dynvals)...)\ \{\}}
+\DoxyCodeLine{00083\ }
+\DoxyCodeLine{00084\ \ \ \mbox{\hyperlink{classstd_1_1experimental_1_1extents_3_01_index_type_00_01_extent_01_4_a5fac1fe2a175f233b0a895d65a7d1dc2}{MDSPAN\_TEMPLATE\_REQUIRES}}(}
+\DoxyCodeLine{00085\ \ \ \ \ \ \ \textcolor{keyword}{class}\ OtherIndexType,\ \textcolor{keywordtype}{size\_t}\ N,}
+\DoxyCodeLine{00086\ \ \ \ \ \ \ \textcolor{comment}{/*\ requires\ */}}
+\DoxyCodeLine{00087\ \ \ \ \ \ \ (}
+\DoxyCodeLine{00088\ \ \ \ \ \ \ \ \ \ \ \_MDSPAN\_TRAIT(is\_convertible,\ OtherIndexType,\ \mbox{\hyperlink{classstd_1_1experimental_1_1extents_3_01_index_type_00_01_extent_01_4_a2a46d9564622215033650f188041fbc7}{index\_type}})\ \&\&}
+\DoxyCodeLine{00089\ \ \ \ \ \ \ \ \ \ \ \_MDSPAN\_TRAIT(is\_nothrow\_constructible,\ \mbox{\hyperlink{classstd_1_1experimental_1_1extents_3_01_index_type_00_01_extent_01_4_a2a46d9564622215033650f188041fbc7}{index\_type}},}
+\DoxyCodeLine{00090\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ OtherIndexType)\ \&\&}
+\DoxyCodeLine{00091\ \ \ \ \ \ \ \ \ \ \ (N\ ==\ m\_rank\ ||\ N\ ==\ m\_rank\_dynamic)))}
+\DoxyCodeLine{00092\ \ \ MDSPAN\_INLINE\_FUNCTION}
+\DoxyCodeLine{00093\ \ \ MDSPAN\_CONDITIONAL\_EXPLICIT(N\ !=\ m\_rank\_dynamic)}
+\DoxyCodeLine{00094\ \ \ constexpr\ extents(const\ array<OtherIndexType,\ N>\ \&exts)\ noexcept}
+\DoxyCodeLine{00095\ \ \ \ \ \ \ :\ m\_vals(\mbox{\hyperlink{namespacestd}{std}}::move(exts))\ \{\}}
+\DoxyCodeLine{00096\ }
+\DoxyCodeLine{00097\ \textcolor{preprocessor}{\#ifdef\ \_\_cpp\_lib\_span}}
+\DoxyCodeLine{00098\ \ \ MDSPAN\_TEMPLATE\_REQUIRES(}
+\DoxyCodeLine{00099\ \ \ \ \ \ \ \textcolor{keyword}{class}\ OtherIndexType,\ \textcolor{keywordtype}{size\_t}\ N,}
+\DoxyCodeLine{00100\ \ \ \ \ \ \ \textcolor{comment}{/*\ requires\ */}}
+\DoxyCodeLine{00101\ \ \ \ \ \ \ (\_MDSPAN\_TRAIT(is\_convertible,\ OtherIndexType,\ index\_type)\ \&\&}
+\DoxyCodeLine{00102\ \ \ \ \ \ \ \ \_MDSPAN\_TRAIT(is\_nothrow\_constructible,\ index\_type,\ OtherIndexType)\ \&\&}
+\DoxyCodeLine{00103\ \ \ \ \ \ \ \ (N\ ==\ m\_rank\ ||\ N\ ==\ m\_rank\_dynamic)))}
+\DoxyCodeLine{00104\ \ \ MDSPAN\_INLINE\_FUNCTION}
+\DoxyCodeLine{00105\ \ \ MDSPAN\_CONDITIONAL\_EXPLICIT(N\ !=\ m\_rank\_dynamic)}
+\DoxyCodeLine{00106\ \ \ \textcolor{keyword}{constexpr}\ extents(\textcolor{keyword}{const}\ span<OtherIndexType,\ N>\ \&exts)\ noexcept}
+\DoxyCodeLine{00107\ \ \ \ \ \ \ :\ m\_vals(std::move(exts))\ \{\}}
+\DoxyCodeLine{00108\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00109\ }
+\DoxyCodeLine{00110\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00111\ \ \ \textcolor{comment}{//\ Function\ to\ construct\ extents\ storage\ from\ other\ extents.}}
+\DoxyCodeLine{00112\ \ \ \textcolor{comment}{//\ With\ C++\ 17\ the\ first\ two\ variants\ could\ be\ collapsed\ using\ if\ constexpr}}
+\DoxyCodeLine{00113\ \ \ \textcolor{comment}{//\ in\ which\ case\ you\ don't\ need\ all\ the\ requires\ clauses.}}
+\DoxyCodeLine{00114\ \ \ \textcolor{comment}{//\ in\ C++\ 14\ mode\ that\ doesn't\ work\ due\ to\ infinite\ recursion}}
+\DoxyCodeLine{00115\ \ \ MDSPAN\_TEMPLATE\_REQUIRES(}
+\DoxyCodeLine{00116\ \ \ \ \ \ \ \textcolor{keywordtype}{size\_t}\ DynCount,\ \textcolor{keywordtype}{size\_t}\ R,\ \textcolor{keyword}{class}\ OtherExtents,\ \textcolor{keyword}{class}...\ DynamicValues,}
+\DoxyCodeLine{00117\ \ \ \ \ \ \ \textcolor{comment}{/*\ requires\ */}\ ((R\ <\ m\_rank)\ \&\&\ (static\_extent(R)\ ==\ dynamic\_extent)))}
+\DoxyCodeLine{00118\ \ \ MDSPAN\_INLINE\_FUNCTION}
+\DoxyCodeLine{00119\ \ \ vals\_t\ \_\_construct\_vals\_from\_extents(std::integral\_constant<size\_t,\ DynCount>,}
+\DoxyCodeLine{00120\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ std::integral\_constant<size\_t,\ R>,}
+\DoxyCodeLine{00121\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ OtherExtents\ \&exts,}
+\DoxyCodeLine{00122\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ DynamicValues...\ dynamic\_values)\ \textcolor{keyword}{noexcept}\ \{}
+\DoxyCodeLine{00123\ \ \ \ \ \textcolor{keywordflow}{return}\ \_\_construct\_vals\_from\_extents(}
+\DoxyCodeLine{00124\ \ \ \ \ \ \ \ \ std::integral\_constant<size\_t,\ DynCount\ +\ 1>(),}
+\DoxyCodeLine{00125\ \ \ \ \ \ \ \ \ std::integral\_constant<size\_t,\ R\ +\ 1>(),\ exts,\ dynamic\_values...,}
+\DoxyCodeLine{00126\ \ \ \ \ \ \ \ \ exts.extent(R));}
+\DoxyCodeLine{00127\ \ \ \}}
+\DoxyCodeLine{00128\ }
+\DoxyCodeLine{00129\ \ \ MDSPAN\_TEMPLATE\_REQUIRES(}
+\DoxyCodeLine{00130\ \ \ \ \ \ \ \textcolor{keywordtype}{size\_t}\ DynCount,\ \textcolor{keywordtype}{size\_t}\ R,\ \textcolor{keyword}{class}\ OtherExtents,\ \textcolor{keyword}{class}...\ DynamicValues,}
+\DoxyCodeLine{00131\ \ \ \ \ \ \ \textcolor{comment}{/*\ requires\ */}\ ((R\ <\ m\_rank)\ \&\&\ (static\_extent(R)\ !=\ dynamic\_extent)))}
+\DoxyCodeLine{00132\ \ \ MDSPAN\_INLINE\_FUNCTION}
+\DoxyCodeLine{00133\ \ \ vals\_t\ \_\_construct\_vals\_from\_extents(std::integral\_constant<size\_t,\ DynCount>,}
+\DoxyCodeLine{00134\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ std::integral\_constant<size\_t,\ R>,}
+\DoxyCodeLine{00135\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ OtherExtents\ \&exts,}
+\DoxyCodeLine{00136\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ DynamicValues...\ dynamic\_values)\ \textcolor{keyword}{noexcept}\ \{}
+\DoxyCodeLine{00137\ \ \ \ \ \textcolor{keywordflow}{return}\ \_\_construct\_vals\_from\_extents(}
+\DoxyCodeLine{00138\ \ \ \ \ \ \ \ \ std::integral\_constant<size\_t,\ DynCount>(),}
+\DoxyCodeLine{00139\ \ \ \ \ \ \ \ \ std::integral\_constant<size\_t,\ R\ +\ 1>(),\ exts,\ dynamic\_values...);}
+\DoxyCodeLine{00140\ \ \ \}}
+\DoxyCodeLine{00141\ }
+\DoxyCodeLine{00142\ \ \ MDSPAN\_TEMPLATE\_REQUIRES(}
+\DoxyCodeLine{00143\ \ \ \ \ \ \ \textcolor{keywordtype}{size\_t}\ DynCount,\ \textcolor{keywordtype}{size\_t}\ R,\ \textcolor{keyword}{class}\ OtherExtents,\ \textcolor{keyword}{class}...\ DynamicValues,}
+\DoxyCodeLine{00144\ \ \ \ \ \ \ \textcolor{comment}{/*\ requires\ */}\ ((R\ ==\ m\_rank)\ \&\&\ (DynCount\ ==\ m\_rank\_dynamic)))}
+\DoxyCodeLine{00145\ \ \ MDSPAN\_INLINE\_FUNCTION}
+\DoxyCodeLine{00146\ \ \ vals\_t\ \_\_construct\_vals\_from\_extents(std::integral\_constant<size\_t,\ DynCount>,}
+\DoxyCodeLine{00147\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ std::integral\_constant<size\_t,\ R>,}
+\DoxyCodeLine{00148\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ OtherExtents\ \&,}
+\DoxyCodeLine{00149\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ DynamicValues...\ dynamic\_values)\ \textcolor{keyword}{noexcept}\ \{}
+\DoxyCodeLine{00150\ \ \ \ \ \textcolor{keywordflow}{return}\ vals\_t\{\textcolor{keyword}{static\_cast<}index\_type\textcolor{keyword}{>}(dynamic\_values)...\};}
+\DoxyCodeLine{00151\ \ \ \}}
+\DoxyCodeLine{00152\ }
+\DoxyCodeLine{00153\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00154\ }
+\DoxyCodeLine{00155\ \ \ \textcolor{comment}{//\ Converting\ constructor\ from\ other\ extents\ specializations}}
+\DoxyCodeLine{00156\ \ \ MDSPAN\_TEMPLATE\_REQUIRES(}
+\DoxyCodeLine{00157\ \ \ \ \ \ \ \textcolor{keyword}{class}\ OtherIndexType,\ \textcolor{keywordtype}{size\_t}...\ OtherExtents,}
+\DoxyCodeLine{00158\ \ \ \ \ \ \ \textcolor{comment}{/*\ requires\ */}}
+\DoxyCodeLine{00159\ \ \ \ \ \ \ (}
+\DoxyCodeLine{00160\ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{/*\ multi-\/stage\ check\ to\ protect\ from\ invalid\ pack\ expansion\ when\ sizes}}
+\DoxyCodeLine{00161\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ \ don't\ match?\ */}}
+\DoxyCodeLine{00162\ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{decltype}(detail::\_\_check\_compatible\_extents(}
+\DoxyCodeLine{00163\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ std::integral\_constant<\textcolor{keywordtype}{bool},\ 1\ ==}
+\DoxyCodeLine{00164\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{sizeof}...(OtherExtents)>\{\},}
+\DoxyCodeLine{00165\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ std::integer\_sequence<size\_t,\ Extent>\{\},}
+\DoxyCodeLine{00166\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ std::integer\_sequence<size\_t,\ OtherExtents...>\{\}))::value))}
+\DoxyCodeLine{00167\ \ \ MDSPAN\_INLINE\_FUNCTION}
+\DoxyCodeLine{00168\ \ \ MDSPAN\_CONDITIONAL\_EXPLICIT((((Extent\ !=\ dynamic\_extent)\ \&\&}
+\DoxyCodeLine{00169\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (OtherExtents\ ==\ dynamic\_extent))\ ||}
+\DoxyCodeLine{00170\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ...)\ ||}
+\DoxyCodeLine{00171\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (std::numeric\_limits<index\_type>::max()\ <}
+\DoxyCodeLine{00172\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ std::numeric\_limits<OtherIndexType>::max()))}
+\DoxyCodeLine{00173\ \ \ constexpr\ extents(const\ extents<OtherIndexType,\ OtherExtents...>\ \&other)\ noexcept}
+\DoxyCodeLine{00174\ \ \ \ \ \ \ :\ m\_vals(\_\_construct\_vals\_from\_extents(}
+\DoxyCodeLine{00175\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacestd}{std}}::integral\_constant<\textcolor{keywordtype}{size\_t},\ 0>(),}
+\DoxyCodeLine{00176\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacestd}{std}}::integral\_constant<\textcolor{keywordtype}{size\_t},\ 0>(),\ other))\ \{\}}
+\DoxyCodeLine{00177\ }
+\DoxyCodeLine{00178\ \ \ \textcolor{comment}{//\ Comparison\ operator}}
+\DoxyCodeLine{00179\ \ \ \textcolor{keyword}{template}\ <\textcolor{keyword}{class\ }OtherIndexType,\ \textcolor{keywordtype}{size\_t}...\ OtherExtents>}
+\DoxyCodeLine{00180\ \ \ MDSPAN\_INLINE\_FUNCTION\ \textcolor{keyword}{friend}\ \textcolor{keyword}{constexpr}\ \textcolor{keywordtype}{bool}}
+\DoxyCodeLine{00181\ \ \ \mbox{\hyperlink{classstd_1_1experimental_1_1extents_3_01_index_type_00_01_extent_01_4_ac0a2e3ff345c63327ed23e85e3645371}{operator==}}(\textcolor{keyword}{const}\ extents\ \&lhs,}
+\DoxyCodeLine{00182\ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ extents<OtherIndexType,\ OtherExtents...>\ \&rhs)\ \textcolor{keyword}{noexcept}\ \{}
+\DoxyCodeLine{00183\ \ \ \ \ \textcolor{keywordtype}{bool}\ value\ =\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00184\ \ \ \ \ \textcolor{keywordflow}{for}\ (\mbox{\hyperlink{classstd_1_1experimental_1_1extents_3_01_index_type_00_01_extent_01_4_a5acfee3f499232380a0122571a90b070}{size\_type}}\ r\ =\ 0;\ r\ <\ m\_rank;\ r++)}
+\DoxyCodeLine{00185\ \ \ \ \ \ \ value\ \&=\ rhs.extent(r)\ ==\ lhs.extent(r);}
+\DoxyCodeLine{00186\ \ \ \ \ \textcolor{keywordflow}{return}\ value;}
+\DoxyCodeLine{00187\ \ \ \}}
+\DoxyCodeLine{00188\ }
+\DoxyCodeLine{00189\ \textcolor{preprocessor}{\#if\ !(MDSPAN\_HAS\_CXX\_20)}}
+\DoxyCodeLine{00190\ \ \ \textcolor{keyword}{template}\ <\textcolor{keyword}{class\ }OtherIndexType,\ \textcolor{keywordtype}{size\_t}...\ OtherExtents>}
+\DoxyCodeLine{00191\ \ \ MDSPAN\_INLINE\_FUNCTION\ \textcolor{keyword}{friend}\ \textcolor{keyword}{constexpr}\ \textcolor{keywordtype}{bool}}
+\DoxyCodeLine{00192\ \ \ \mbox{\hyperlink{classstd_1_1experimental_1_1extents_3_01_index_type_00_01_extent_01_4_a80ec1f21d19a67a7bb6826349609a6f5}{operator!=}}(extents\ \textcolor{keyword}{const}\ \&lhs,}
+\DoxyCodeLine{00193\ \ \ \ \ \ \ \ \ \ \ \ \ \ extents<OtherIndexType,\ OtherExtents...>\ \textcolor{keyword}{const}\ \&rhs)\ \textcolor{keyword}{noexcept}\ \{}
+\DoxyCodeLine{00194\ \ \ \ \ \textcolor{keywordflow}{return}\ !(lhs\ ==\ rhs);}
+\DoxyCodeLine{00195\ \ \ \}}
+\DoxyCodeLine{00196\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00197\ }
+\DoxyCodeLine{00198\ \ \ \textcolor{comment}{//\ SPECIALIZATIONS\ FOR\ SIZEOF...(EXTENTS)\ ==\ 1}}
+\DoxyCodeLine{00199\ }
+\DoxyCodeLine{00200\ \ \ \textcolor{comment}{//\ Implicit\ conversion\ to\ underlying\ index\ type}}
+\DoxyCodeLine{00201\ \ \ MDSPAN\_FORCE\_INLINE\_FUNCTION}
+\DoxyCodeLine{00202\ \ \ \textcolor{keyword}{constexpr}}
+\DoxyCodeLine{00203\ \ \ \textcolor{keyword}{operator}\ IndexType()\ noexcept\ \{\ \textcolor{keywordflow}{return}\ this-\/>extent(0);\ \}}
+\DoxyCodeLine{00204\ }
+\DoxyCodeLine{00205\ \ \ \textcolor{comment}{//\ Comparison\ operators}}
+\DoxyCodeLine{00206\ \ \ \textcolor{keyword}{template}\ <\ \textcolor{keyword}{class}\ OtherIndexType\ >}
+\DoxyCodeLine{00207\ \ \ MDSPAN\_INLINE\_FUNCTION}
+\DoxyCodeLine{00208\ \ \ \textcolor{keyword}{constexpr}\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{classstd_1_1experimental_1_1extents_3_01_index_type_00_01_extent_01_4_aae9f61e071ec3dc6e5b7478c975814dd}{operator==}}(\ OtherIndexType\ \textcolor{keyword}{const}\&\ rhs\ )\ \textcolor{keyword}{noexcept}\ \textcolor{keyword}{requires}\ (\ !detail::\_\_is\_extents\_v<OtherIndexType>\ )\ \{}
+\DoxyCodeLine{00209\ \ \ \ \ \textcolor{keywordflow}{return}\ this-\/>extent(0)\ ==\ rhs;}
+\DoxyCodeLine{00210\ \ \ \}}
+\DoxyCodeLine{00211\ \};}
+\DoxyCodeLine{00212\ }
+\DoxyCodeLine{00213\ \}\ \textcolor{comment}{//-\/\ experimental}}
+\DoxyCodeLine{00214\ \}\ \textcolor{comment}{//-\/\ std\ namespace}}
+\DoxyCodeLine{00215\ }
+\DoxyCodeLine{00216\ }
+\DoxyCodeLine{00217\ \textcolor{comment}{//-\/\ Restore\ the\ compiler's\ diagnostic\ state.}}
+\DoxyCodeLine{00218\ \textcolor{comment}{//}}
+\DoxyCodeLine{00219\ \textcolor{preprocessor}{\#if\ defined\ \_\_clang\_\_}}
+\DoxyCodeLine{00220\ \textcolor{preprocessor}{\ \ \ \ \#pragma\ clang\ diagnostic\ pop}}
+\DoxyCodeLine{00221\ \textcolor{preprocessor}{\#elif\ defined\ \_\_GNUG\_\_}}
+\DoxyCodeLine{00222\ \textcolor{preprocessor}{\ \ \ \ \#pragma\ GCC\ diagnostic\ pop}}
+\DoxyCodeLine{00223\ \textcolor{preprocessor}{\#elif\ defined\ \_MSC\_VER}}
+\DoxyCodeLine{00224\ \textcolor{preprocessor}{\ \ \ \ \#pragma\ warning(pop)}}
+\DoxyCodeLine{00225\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00226\ }
+\DoxyCodeLine{00227\ \textcolor{preprocessor}{\#endif\ \ }\textcolor{comment}{//-\/\ MDSPAN\_IMPROVEMENTS\_HPP}}
+
+\end{DoxyCode}

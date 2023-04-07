@@ -1,6 +1,9 @@
 var searchData=
 [
-  ['l_130',['L',['../namespacestd_1_1math.html#a1575e00678072847b093ec1a603697d1',1,'std::math']]],
-  ['layout_5ftype_131',['layout_type',['../classstd_1_1math_1_1dr__matrix.html#ad1bc4f3adc19e8c20028fb2dffadffee',1,'std::math::dr_matrix::layout_type()'],['../classstd_1_1math_1_1dr__tensor.html#a7e1674ecc1d57ad775b9b5ba05f9374d',1,'std::math::dr_tensor::layout_type()'],['../classstd_1_1math_1_1dr__vector.html#aa0431c284a67005d5b6cccab9c5db413',1,'std::math::dr_vector::layout_type()']]],
-  ['linear_5falgebra_2ehpp_132',['linear_algebra.hpp',['../linear__algebra_8hpp.html',1,'']]]
+  ['negate_0',['negate',['../classstd_1_1math_1_1instant__evaluated__operations_1_1negation.html#a871eebfdb4d82ac0b7f963870b0438bc',1,'std::math::instant_evaluated_operations::negation']]],
+  ['negation_1',['negation',['../classstd_1_1math_1_1instant__evaluated__operations_1_1negation.html',1,'std::math::instant_evaluated_operations']]],
+  ['noexcept_2',['noexcept',['../classstd_1_1experimental_1_1extents_3_01_index_type_00_01_extent_01_4.html#aa25f63ffee8a343c9847c1e3a1b92b07',1,'std::experimental::extents&lt; IndexType, Extent &gt;']]],
+  ['nondynamic_5frank_3',['nondynamic_rank',['../structstd_1_1math_1_1detail_1_1nondynamic__rank.html',1,'std::math::detail']]],
+  ['nondynamic_5frank_3c_20e_3c_20t_2c_20extents_2e_2e_2e_20_3e_20_3e_4',['nondynamic_rank&lt; E&lt; T, Extents... &gt; &gt;',['../structstd_1_1math_1_1detail_1_1nondynamic__rank_3_01_e_3_01_t_00_01_extents_8_8_8_01_4_01_4.html',1,'std::math::detail']]],
+  ['nondynamic_5frank_5fv_5',['nondynamic_rank_v',['../namespacestd_1_1math_1_1detail.html#a7907df104e44be4aa56f3a9d17b5b301',1,'std::math::detail']]]
 ];

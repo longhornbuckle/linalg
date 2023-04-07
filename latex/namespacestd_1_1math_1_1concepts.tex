@@ -1,679 +1,77 @@
 \hypertarget{namespacestd_1_1math_1_1concepts}{}\doxysection{std\+::math\+::concepts Namespace Reference}
 \label{namespacestd_1_1math_1_1concepts}\index{std::math::concepts@{std::math::concepts}}
-\doxysubsection*{Variables}
+\doxysubsection*{Concepts}
 \begin{DoxyCompactItemize}
 \item 
-{\footnotesize template$<$class M $>$ }\\concept \mbox{\hyperlink{namespacestd_1_1math_1_1concepts_a8048496b61f298cc140a3a3351a5e309}{matrix\+\_\+data}}
+concept \mbox{\hyperlink{conceptstd_1_1math_1_1concepts_1_1matrix__data}{matrix\+\_\+data}}
 \item 
-{\footnotesize template$<$class M $>$ }\\concept \mbox{\hyperlink{namespacestd_1_1math_1_1concepts_a4f1678bf8d169f6ad33026bfd143af18}{matrix}}
+concept \mbox{\hyperlink{conceptstd_1_1math_1_1concepts_1_1matrix}{matrix}}
 \item 
-{\footnotesize template$<$class M $>$ }\\concept \mbox{\hyperlink{namespacestd_1_1math_1_1concepts_aa9d96c627a077dae000dcb600194adf3}{readable\+\_\+matrix\+\_\+data}}
+concept \mbox{\hyperlink{conceptstd_1_1math_1_1concepts_1_1readable__matrix__data}{readable\+\_\+matrix\+\_\+data}}
 \item 
-{\footnotesize template$<$class M $>$ }\\concept \mbox{\hyperlink{namespacestd_1_1math_1_1concepts_a21d5fabd96752c9a1d773a7168512130}{readable\+\_\+matrix}} = \mbox{\hyperlink{namespacestd_1_1math_1_1concepts_aa9d96c627a077dae000dcb600194adf3}{readable\+\_\+matrix\+\_\+data}}$<$M$>$ \&\& \mbox{\hyperlink{namespacestd_1_1math_1_1concepts_a4f1678bf8d169f6ad33026bfd143af18}{matrix}}$<$M$>$
+concept \mbox{\hyperlink{conceptstd_1_1math_1_1concepts_1_1readable__matrix}{readable\+\_\+matrix}}
 \item 
-{\footnotesize template$<$class M $>$ }\\concept \mbox{\hyperlink{namespacestd_1_1math_1_1concepts_afeef97710ad11fe149c00209131c7a90}{writable\+\_\+matrix\+\_\+data}}
+concept \mbox{\hyperlink{conceptstd_1_1math_1_1concepts_1_1writable__matrix__data}{writable\+\_\+matrix\+\_\+data}}
 \item 
-{\footnotesize template$<$class M $>$ }\\concept \mbox{\hyperlink{namespacestd_1_1math_1_1concepts_ad02a4ce2108c648b2f2a50ad8839b131}{writable\+\_\+matrix}} = \mbox{\hyperlink{namespacestd_1_1math_1_1concepts_afeef97710ad11fe149c00209131c7a90}{writable\+\_\+matrix\+\_\+data}}$<$M$>$ \&\& \mbox{\hyperlink{namespacestd_1_1math_1_1concepts_a21d5fabd96752c9a1d773a7168512130}{readable\+\_\+matrix}}$<$M$>$
+concept \mbox{\hyperlink{conceptstd_1_1math_1_1concepts_1_1writable__matrix}{writable\+\_\+matrix}}
 \item 
-{\footnotesize template$<$class M $>$ }\\concept \mbox{\hyperlink{namespacestd_1_1math_1_1concepts_a280726e24c365c0b64f09a39f7eba1e4}{dynamic\+\_\+matrix\+\_\+data}}
+concept \mbox{\hyperlink{conceptstd_1_1math_1_1concepts_1_1dynamic__matrix__data}{dynamic\+\_\+matrix\+\_\+data}}
 \item 
-{\footnotesize template$<$class M $>$ }\\concept \mbox{\hyperlink{namespacestd_1_1math_1_1concepts_af448da9099b39e6cebb26f377a1bca5f}{dynamic\+\_\+matrix}}
+concept \mbox{\hyperlink{conceptstd_1_1math_1_1concepts_1_1dynamic__matrix}{dynamic\+\_\+matrix}}
 \item 
-{\footnotesize template$<$class M $>$ }\\concept \mbox{\hyperlink{namespacestd_1_1math_1_1concepts_a384313713b14e8d2da731fa44e6145ca}{fixed\+\_\+size\+\_\+matrix\+\_\+data}}
+concept \mbox{\hyperlink{conceptstd_1_1math_1_1concepts_1_1fixed__size__matrix__data}{fixed\+\_\+size\+\_\+matrix\+\_\+data}}
 \item 
-{\footnotesize template$<$class M $>$ }\\concept \mbox{\hyperlink{namespacestd_1_1math_1_1concepts_adc5d6eb5ffb017e5ca32011f87162d0e}{fixed\+\_\+size\+\_\+matrix}}
+concept \mbox{\hyperlink{conceptstd_1_1math_1_1concepts_1_1fixed__size__matrix}{fixed\+\_\+size\+\_\+matrix}}
 \item 
-{\footnotesize template$<$class From , class To $>$ }\\concept \mbox{\hyperlink{namespacestd_1_1math_1_1concepts_af9e13690775ee6c6095745b33fdaeafd}{matrix\+\_\+may\+\_\+be\+\_\+convertible}}
+concept \mbox{\hyperlink{conceptstd_1_1math_1_1concepts_1_1matrix__may__be__convertible}{matrix\+\_\+may\+\_\+be\+\_\+convertible}}
 \item 
-{\footnotesize template$<$class From , class To $>$ }\\concept \mbox{\hyperlink{namespacestd_1_1math_1_1concepts_abc1f55ca9fc837bd0137a7ee8952ac45}{view\+\_\+may\+\_\+be\+\_\+convertible\+\_\+to\+\_\+matrix}}
+concept \mbox{\hyperlink{conceptstd_1_1math_1_1concepts_1_1view__may__be__convertible__to__matrix}{view\+\_\+may\+\_\+be\+\_\+convertible\+\_\+to\+\_\+matrix}}
 \item 
-{\footnotesize template$<$class T $>$ }\\concept \mbox{\hyperlink{namespacestd_1_1math_1_1concepts_a9bcbbb3db05bc9f50b34ef64f155486e}{tensor\+\_\+data}}
+concept \mbox{\hyperlink{conceptstd_1_1math_1_1concepts_1_1tensor__data}{tensor\+\_\+data}}
 \item 
-{\footnotesize template$<$class T $>$ }\\concept \mbox{\hyperlink{namespacestd_1_1math_1_1concepts_aa7ac7e9cec25568801bd12af49c6624f}{tensor}}
+concept \mbox{\hyperlink{conceptstd_1_1math_1_1concepts_1_1tensor}{tensor}}
 \item 
-{\footnotesize template$<$class T $>$ }\\concept \mbox{\hyperlink{namespacestd_1_1math_1_1concepts_a8d6021ca61787611a602742b50ada58c}{readable\+\_\+tensor\+\_\+data}}
+concept \mbox{\hyperlink{conceptstd_1_1math_1_1concepts_1_1readable__tensor__data}{readable\+\_\+tensor\+\_\+data}}
 \item 
-{\footnotesize template$<$class T $>$ }\\concept \mbox{\hyperlink{namespacestd_1_1math_1_1concepts_ae5f5dbd6bff0a754db28bb8beb7aa556}{readable\+\_\+tensor}} = \mbox{\hyperlink{namespacestd_1_1math_1_1concepts_a8d6021ca61787611a602742b50ada58c}{readable\+\_\+tensor\+\_\+data}}$<$\mbox{\hyperlink{namespacestd_1_1math_a53983004b9afa750d13aff5975152bf2}{T}}$>$ \&\& \mbox{\hyperlink{namespacestd_1_1math_1_1concepts_aa7ac7e9cec25568801bd12af49c6624f}{tensor}}$<$\mbox{\hyperlink{namespacestd_1_1math_a53983004b9afa750d13aff5975152bf2}{T}}$>$
+concept \mbox{\hyperlink{conceptstd_1_1math_1_1concepts_1_1readable__tensor}{readable\+\_\+tensor}}
 \item 
-{\footnotesize template$<$class T $>$ }\\concept \mbox{\hyperlink{namespacestd_1_1math_1_1concepts_a302490491ac97ea464e36d691e5c89e8}{writable\+\_\+tensor\+\_\+data}}
+concept \mbox{\hyperlink{conceptstd_1_1math_1_1concepts_1_1writable__tensor__data}{writable\+\_\+tensor\+\_\+data}}
 \item 
-{\footnotesize template$<$class T $>$ }\\concept \mbox{\hyperlink{namespacestd_1_1math_1_1concepts_aa9f3120ce8a701c05e3705a8cad52f54}{writable\+\_\+tensor}} = \mbox{\hyperlink{namespacestd_1_1math_1_1concepts_a302490491ac97ea464e36d691e5c89e8}{writable\+\_\+tensor\+\_\+data}}$<$\mbox{\hyperlink{namespacestd_1_1math_a53983004b9afa750d13aff5975152bf2}{T}}$>$ \&\& \mbox{\hyperlink{namespacestd_1_1math_1_1concepts_ae5f5dbd6bff0a754db28bb8beb7aa556}{readable\+\_\+tensor}}$<$\mbox{\hyperlink{namespacestd_1_1math_a53983004b9afa750d13aff5975152bf2}{T}}$>$
+concept \mbox{\hyperlink{conceptstd_1_1math_1_1concepts_1_1writable__tensor}{writable\+\_\+tensor}}
 \item 
-{\footnotesize template$<$class T $>$ }\\concept \mbox{\hyperlink{namespacestd_1_1math_1_1concepts_aa84d5dde773119c8a13d461e5ad34eae}{dynamic\+\_\+tensor\+\_\+data}}
+concept \mbox{\hyperlink{conceptstd_1_1math_1_1concepts_1_1dynamic__tensor__data}{dynamic\+\_\+tensor\+\_\+data}}
 \item 
-{\footnotesize template$<$class T $>$ }\\concept \mbox{\hyperlink{namespacestd_1_1math_1_1concepts_ae460ca62d0d39cc4fcb35a51f217c7f9}{dynamic\+\_\+tensor}} = \mbox{\hyperlink{namespacestd_1_1math_1_1concepts_aa84d5dde773119c8a13d461e5ad34eae}{dynamic\+\_\+tensor\+\_\+data}}$<$\mbox{\hyperlink{namespacestd_1_1math_a53983004b9afa750d13aff5975152bf2}{T}}$>$ \&\& \mbox{\hyperlink{namespacestd_1_1math_1_1concepts_aa7ac7e9cec25568801bd12af49c6624f}{tensor}}$<$\mbox{\hyperlink{namespacestd_1_1math_a53983004b9afa750d13aff5975152bf2}{T}}$>$
+concept \mbox{\hyperlink{conceptstd_1_1math_1_1concepts_1_1dynamic__tensor}{dynamic\+\_\+tensor}}
 \item 
-{\footnotesize template$<$class T $>$ }\\concept \mbox{\hyperlink{namespacestd_1_1math_1_1concepts_ad39446424ae6c98638634ec481a68639}{fixed\+\_\+size\+\_\+tensor\+\_\+data}}
+concept \mbox{\hyperlink{conceptstd_1_1math_1_1concepts_1_1fixed__size__tensor__data}{fixed\+\_\+size\+\_\+tensor\+\_\+data}}
 \item 
-{\footnotesize template$<$class T $>$ }\\concept \mbox{\hyperlink{namespacestd_1_1math_1_1concepts_aca9f6608399e0df7b987c04ae6a83b25}{fixed\+\_\+size\+\_\+tensor}} = \mbox{\hyperlink{namespacestd_1_1math_1_1concepts_ad39446424ae6c98638634ec481a68639}{fixed\+\_\+size\+\_\+tensor\+\_\+data}}$<$\mbox{\hyperlink{namespacestd_1_1math_a53983004b9afa750d13aff5975152bf2}{T}}$>$ \&\& \mbox{\hyperlink{namespacestd_1_1math_1_1concepts_aa7ac7e9cec25568801bd12af49c6624f}{tensor}}$<$\mbox{\hyperlink{namespacestd_1_1math_a53983004b9afa750d13aff5975152bf2}{T}}$>$
+concept \mbox{\hyperlink{conceptstd_1_1math_1_1concepts_1_1fixed__size__tensor}{fixed\+\_\+size\+\_\+tensor}}
 \item 
-{\footnotesize template$<$class From , class To $>$ }\\concept \mbox{\hyperlink{namespacestd_1_1math_1_1concepts_a3ac9a6231819605025b9f51a6356eabb}{tensor\+\_\+may\+\_\+be\+\_\+constructible}}
+concept \mbox{\hyperlink{conceptstd_1_1math_1_1concepts_1_1tensor__may__be__constructible}{tensor\+\_\+may\+\_\+be\+\_\+constructible}}
 \item 
-{\footnotesize template$<$class From , class To $>$ }\\concept \mbox{\hyperlink{namespacestd_1_1math_1_1concepts_acafbad84286b777c5f687c0857855d36}{view\+\_\+may\+\_\+be\+\_\+constructible\+\_\+to\+\_\+tensor}}
+concept \mbox{\hyperlink{conceptstd_1_1math_1_1concepts_1_1view__may__be__constructible__to__tensor}{view\+\_\+may\+\_\+be\+\_\+constructible\+\_\+to\+\_\+tensor}}
 \item 
-{\footnotesize template$<$class From , class To $>$ }\\concept \mbox{\hyperlink{namespacestd_1_1math_1_1concepts_aec199d757f09387af735006a96662f7f}{view\+\_\+is\+\_\+constructible\+\_\+to\+\_\+tensor}}
+concept \mbox{\hyperlink{conceptstd_1_1math_1_1concepts_1_1view__is__constructible__to__tensor}{view\+\_\+is\+\_\+constructible\+\_\+to\+\_\+tensor}}
 \item 
-{\footnotesize template$<$class From , class To $>$ }\\concept \mbox{\hyperlink{namespacestd_1_1math_1_1concepts_a25ae99fc033522821f95c0ef5aa479b2}{view\+\_\+is\+\_\+nothrow\+\_\+constructible\+\_\+to\+\_\+tensor}}
+concept \mbox{\hyperlink{conceptstd_1_1math_1_1concepts_1_1view__is__nothrow__constructible__to__tensor}{view\+\_\+is\+\_\+nothrow\+\_\+constructible\+\_\+to\+\_\+tensor}}
 \item 
-{\footnotesize template$<$class V $>$ }\\concept \mbox{\hyperlink{namespacestd_1_1math_1_1concepts_a0b997762f550bf607685e097c34a108d}{vector\+\_\+data}}
+concept \mbox{\hyperlink{conceptstd_1_1math_1_1concepts_1_1vector__data}{vector\+\_\+data}}
 \item 
-{\footnotesize template$<$class V $>$ }\\concept \mbox{\hyperlink{namespacestd_1_1math_1_1concepts_a1b5ed3e44abe679ac3b211615e4f8abf}{vector}}
+concept \mbox{\hyperlink{conceptstd_1_1math_1_1concepts_1_1vector}{vector}}
 \item 
-{\footnotesize template$<$class V $>$ }\\concept \mbox{\hyperlink{namespacestd_1_1math_1_1concepts_a8ed3615b806fc1ab4e1fc763ca2e3a15}{readable\+\_\+vector\+\_\+data}}
+concept \mbox{\hyperlink{conceptstd_1_1math_1_1concepts_1_1readable__vector__data}{readable\+\_\+vector\+\_\+data}}
 \item 
-{\footnotesize template$<$class V $>$ }\\concept \mbox{\hyperlink{namespacestd_1_1math_1_1concepts_a7fc174beb56819c6239a0b2d86176c9d}{readable\+\_\+vector}} = \mbox{\hyperlink{namespacestd_1_1math_1_1concepts_a8ed3615b806fc1ab4e1fc763ca2e3a15}{readable\+\_\+vector\+\_\+data}}$<$V$>$ \&\& \mbox{\hyperlink{namespacestd_1_1math_1_1concepts_a1b5ed3e44abe679ac3b211615e4f8abf}{vector}}$<$V$>$
+concept \mbox{\hyperlink{conceptstd_1_1math_1_1concepts_1_1readable__vector}{readable\+\_\+vector}}
 \item 
-{\footnotesize template$<$class V $>$ }\\concept \mbox{\hyperlink{namespacestd_1_1math_1_1concepts_a37e16986e70aea01ef5066b486f6ca18}{writable\+\_\+vector\+\_\+data}}
+concept \mbox{\hyperlink{conceptstd_1_1math_1_1concepts_1_1writable__vector__data}{writable\+\_\+vector\+\_\+data}}
 \item 
-{\footnotesize template$<$class V $>$ }\\concept \mbox{\hyperlink{namespacestd_1_1math_1_1concepts_a55837e1d6d61c92ecaf8a14112554b5f}{writable\+\_\+vector}} = \mbox{\hyperlink{namespacestd_1_1math_1_1concepts_a37e16986e70aea01ef5066b486f6ca18}{writable\+\_\+vector\+\_\+data}}$<$V$>$ \&\& \mbox{\hyperlink{namespacestd_1_1math_1_1concepts_a7fc174beb56819c6239a0b2d86176c9d}{readable\+\_\+vector}}$<$V$>$
+concept \mbox{\hyperlink{conceptstd_1_1math_1_1concepts_1_1writable__vector}{writable\+\_\+vector}}
 \item 
-{\footnotesize template$<$class V $>$ }\\concept \mbox{\hyperlink{namespacestd_1_1math_1_1concepts_af1df626ff8b11fe494e6a5fc723e8e11}{dynamic\+\_\+vector\+\_\+data}}
+concept \mbox{\hyperlink{conceptstd_1_1math_1_1concepts_1_1dynamic__vector__data}{dynamic\+\_\+vector\+\_\+data}}
 \item 
-{\footnotesize template$<$class V $>$ }\\concept \mbox{\hyperlink{namespacestd_1_1math_1_1concepts_a4b3a99291aa7850ce4dd7e930760ab2a}{dynamic\+\_\+vector}}
+concept \mbox{\hyperlink{conceptstd_1_1math_1_1concepts_1_1dynamic__vector}{dynamic\+\_\+vector}}
 \item 
-{\footnotesize template$<$class V $>$ }\\concept \mbox{\hyperlink{namespacestd_1_1math_1_1concepts_a1b8405c31878e03b2c8c253f90b2e984}{fixed\+\_\+size\+\_\+vector\+\_\+data}}
+concept \mbox{\hyperlink{conceptstd_1_1math_1_1concepts_1_1fixed__size__vector__data}{fixed\+\_\+size\+\_\+vector\+\_\+data}}
 \item 
-{\footnotesize template$<$class V $>$ }\\concept \mbox{\hyperlink{namespacestd_1_1math_1_1concepts_a5a779e71ec247c7be113de660e14e7a8}{fixed\+\_\+size\+\_\+vector}}
+concept \mbox{\hyperlink{conceptstd_1_1math_1_1concepts_1_1fixed__size__vector}{fixed\+\_\+size\+\_\+vector}}
 \end{DoxyCompactItemize}
-
-
-\doxysubsection{Variable Documentation}
-\mbox{\Hypertarget{namespacestd_1_1math_1_1concepts_af448da9099b39e6cebb26f377a1bca5f}\label{namespacestd_1_1math_1_1concepts_af448da9099b39e6cebb26f377a1bca5f}} 
-\index{std::math::concepts@{std::math::concepts}!dynamic\_matrix@{dynamic\_matrix}}
-\index{dynamic\_matrix@{dynamic\_matrix}!std::math::concepts@{std::math::concepts}}
-\doxysubsubsection{\texorpdfstring{dynamic\_matrix}{dynamic\_matrix}}
-{\footnotesize\ttfamily template$<$class M $>$ \\
-concept std\+::math\+::concepts\+::dynamic\+\_\+matrix}
-
-{\bfseries Initial value\+:}
-\begin{DoxyCode}{0}
-\DoxyCodeLine{= dynamic\_matrix\_data<M> \&\&}
-\DoxyCodeLine{matrix<M>}
-
-\end{DoxyCode}
-\mbox{\Hypertarget{namespacestd_1_1math_1_1concepts_a280726e24c365c0b64f09a39f7eba1e4}\label{namespacestd_1_1math_1_1concepts_a280726e24c365c0b64f09a39f7eba1e4}} 
-\index{std::math::concepts@{std::math::concepts}!dynamic\_matrix\_data@{dynamic\_matrix\_data}}
-\index{dynamic\_matrix\_data@{dynamic\_matrix\_data}!std::math::concepts@{std::math::concepts}}
-\doxysubsubsection{\texorpdfstring{dynamic\_matrix\_data}{dynamic\_matrix\_data}}
-{\footnotesize\ttfamily template$<$class M $>$ \\
-concept std\+::math\+::concepts\+::dynamic\+\_\+matrix\+\_\+data}
-
-{\bfseries Initial value\+:}
-\begin{DoxyCode}{0}
-\DoxyCodeLine{= matrix\_data<M> \&\&}
-\DoxyCodeLine{dynamic\_tensor\_data<M>}
-
-\end{DoxyCode}
-\mbox{\Hypertarget{namespacestd_1_1math_1_1concepts_ae460ca62d0d39cc4fcb35a51f217c7f9}\label{namespacestd_1_1math_1_1concepts_ae460ca62d0d39cc4fcb35a51f217c7f9}} 
-\index{std::math::concepts@{std::math::concepts}!dynamic\_tensor@{dynamic\_tensor}}
-\index{dynamic\_tensor@{dynamic\_tensor}!std::math::concepts@{std::math::concepts}}
-\doxysubsubsection{\texorpdfstring{dynamic\_tensor}{dynamic\_tensor}}
-{\footnotesize\ttfamily template$<$class T $>$ \\
-concept std\+::math\+::concepts\+::dynamic\+\_\+tensor = \mbox{\hyperlink{namespacestd_1_1math_1_1concepts_aa84d5dde773119c8a13d461e5ad34eae}{dynamic\+\_\+tensor\+\_\+data}}$<$\mbox{\hyperlink{namespacestd_1_1math_a53983004b9afa750d13aff5975152bf2}{T}}$>$ \&\& \mbox{\hyperlink{namespacestd_1_1math_1_1concepts_aa7ac7e9cec25568801bd12af49c6624f}{tensor}}$<$\mbox{\hyperlink{namespacestd_1_1math_a53983004b9afa750d13aff5975152bf2}{T}}$>$}
-
-\mbox{\Hypertarget{namespacestd_1_1math_1_1concepts_aa84d5dde773119c8a13d461e5ad34eae}\label{namespacestd_1_1math_1_1concepts_aa84d5dde773119c8a13d461e5ad34eae}} 
-\index{std::math::concepts@{std::math::concepts}!dynamic\_tensor\_data@{dynamic\_tensor\_data}}
-\index{dynamic\_tensor\_data@{dynamic\_tensor\_data}!std::math::concepts@{std::math::concepts}}
-\doxysubsubsection{\texorpdfstring{dynamic\_tensor\_data}{dynamic\_tensor\_data}}
-{\footnotesize\ttfamily template$<$class T $>$ \\
-concept std\+::math\+::concepts\+::dynamic\+\_\+tensor\+\_\+data}
-
-\mbox{\Hypertarget{namespacestd_1_1math_1_1concepts_a4b3a99291aa7850ce4dd7e930760ab2a}\label{namespacestd_1_1math_1_1concepts_a4b3a99291aa7850ce4dd7e930760ab2a}} 
-\index{std::math::concepts@{std::math::concepts}!dynamic\_vector@{dynamic\_vector}}
-\index{dynamic\_vector@{dynamic\_vector}!std::math::concepts@{std::math::concepts}}
-\doxysubsubsection{\texorpdfstring{dynamic\_vector}{dynamic\_vector}}
-{\footnotesize\ttfamily template$<$class V $>$ \\
-concept std\+::math\+::concepts\+::dynamic\+\_\+vector}
-
-{\bfseries Initial value\+:}
-\begin{DoxyCode}{0}
-\DoxyCodeLine{= dynamic\_vector\_data<V> \&\&}
-\DoxyCodeLine{vector<V>}
-
-\end{DoxyCode}
-\mbox{\Hypertarget{namespacestd_1_1math_1_1concepts_af1df626ff8b11fe494e6a5fc723e8e11}\label{namespacestd_1_1math_1_1concepts_af1df626ff8b11fe494e6a5fc723e8e11}} 
-\index{std::math::concepts@{std::math::concepts}!dynamic\_vector\_data@{dynamic\_vector\_data}}
-\index{dynamic\_vector\_data@{dynamic\_vector\_data}!std::math::concepts@{std::math::concepts}}
-\doxysubsubsection{\texorpdfstring{dynamic\_vector\_data}{dynamic\_vector\_data}}
-{\footnotesize\ttfamily template$<$class V $>$ \\
-concept std\+::math\+::concepts\+::dynamic\+\_\+vector\+\_\+data}
-
-{\bfseries Initial value\+:}
-\begin{DoxyCode}{0}
-\DoxyCodeLine{= vector\_data<V> \&\&}
-\DoxyCodeLine{dynamic\_tensor\_data<V>}
-
-\end{DoxyCode}
-\mbox{\Hypertarget{namespacestd_1_1math_1_1concepts_adc5d6eb5ffb017e5ca32011f87162d0e}\label{namespacestd_1_1math_1_1concepts_adc5d6eb5ffb017e5ca32011f87162d0e}} 
-\index{std::math::concepts@{std::math::concepts}!fixed\_size\_matrix@{fixed\_size\_matrix}}
-\index{fixed\_size\_matrix@{fixed\_size\_matrix}!std::math::concepts@{std::math::concepts}}
-\doxysubsubsection{\texorpdfstring{fixed\_size\_matrix}{fixed\_size\_matrix}}
-{\footnotesize\ttfamily template$<$class M $>$ \\
-concept std\+::math\+::concepts\+::fixed\+\_\+size\+\_\+matrix}
-
-{\bfseries Initial value\+:}
-\begin{DoxyCode}{0}
-\DoxyCodeLine{= fixed\_size\_matrix\_data<M> \&\&}
-\DoxyCodeLine{matrix<M>}
-
-\end{DoxyCode}
-\mbox{\Hypertarget{namespacestd_1_1math_1_1concepts_a384313713b14e8d2da731fa44e6145ca}\label{namespacestd_1_1math_1_1concepts_a384313713b14e8d2da731fa44e6145ca}} 
-\index{std::math::concepts@{std::math::concepts}!fixed\_size\_matrix\_data@{fixed\_size\_matrix\_data}}
-\index{fixed\_size\_matrix\_data@{fixed\_size\_matrix\_data}!std::math::concepts@{std::math::concepts}}
-\doxysubsubsection{\texorpdfstring{fixed\_size\_matrix\_data}{fixed\_size\_matrix\_data}}
-{\footnotesize\ttfamily template$<$class M $>$ \\
-concept std\+::math\+::concepts\+::fixed\+\_\+size\+\_\+matrix\+\_\+data}
-
-{\bfseries Initial value\+:}
-\begin{DoxyCode}{0}
-\DoxyCodeLine{= matrix\_data<M> \&\&}
-\DoxyCodeLine{fixed\_size\_tensor\_data<M> \&\&}
-\DoxyCodeLine{\mbox{\hyperlink{namespacestd_1_1math_1_1detail_a6661f390a6c982712ceecc4ce1ea0459}{detail::is\_constexpr}}( []\{ decltype( declval<M>().rows() )            nodiscard\_warning = M().rows(); \} ) \&\&}
-\DoxyCodeLine{detail::\mbox{\hyperlink{namespacestd_1_1math_1_1detail_a6661f390a6c982712ceecc4ce1ea0459}{is\_constexpr}}( []\{ decltype( declval<M>().columns() )         nodiscard\_warning = M().columns(); \} ) \&\&}
-\DoxyCodeLine{detail::\mbox{\hyperlink{namespacestd_1_1math_1_1detail_a6661f390a6c982712ceecc4ce1ea0459}{is\_constexpr}}( []\{ decltype( declval<M>().row\_capacity() )    nodiscard\_warning = M().row\_capacity(); \} ) \&\&}
-\DoxyCodeLine{detail::\mbox{\hyperlink{namespacestd_1_1math_1_1detail_a6661f390a6c982712ceecc4ce1ea0459}{is\_constexpr}}( []\{ decltype( declval<M>().column\_capacity() ) nodiscard\_warning = M().column\_capacity(); \} ) \&\&}
-\DoxyCodeLine{( M().rows()    == M().row\_capacity() ) \&\&}
-\DoxyCodeLine{( M().columns() == M().column\_capacity() )}
-
-\end{DoxyCode}
-\mbox{\Hypertarget{namespacestd_1_1math_1_1concepts_aca9f6608399e0df7b987c04ae6a83b25}\label{namespacestd_1_1math_1_1concepts_aca9f6608399e0df7b987c04ae6a83b25}} 
-\index{std::math::concepts@{std::math::concepts}!fixed\_size\_tensor@{fixed\_size\_tensor}}
-\index{fixed\_size\_tensor@{fixed\_size\_tensor}!std::math::concepts@{std::math::concepts}}
-\doxysubsubsection{\texorpdfstring{fixed\_size\_tensor}{fixed\_size\_tensor}}
-{\footnotesize\ttfamily template$<$class T $>$ \\
-concept std\+::math\+::concepts\+::fixed\+\_\+size\+\_\+tensor = \mbox{\hyperlink{namespacestd_1_1math_1_1concepts_ad39446424ae6c98638634ec481a68639}{fixed\+\_\+size\+\_\+tensor\+\_\+data}}$<$\mbox{\hyperlink{namespacestd_1_1math_a53983004b9afa750d13aff5975152bf2}{T}}$>$ \&\& \mbox{\hyperlink{namespacestd_1_1math_1_1concepts_aa7ac7e9cec25568801bd12af49c6624f}{tensor}}$<$\mbox{\hyperlink{namespacestd_1_1math_a53983004b9afa750d13aff5975152bf2}{T}}$>$}
-
-\mbox{\Hypertarget{namespacestd_1_1math_1_1concepts_ad39446424ae6c98638634ec481a68639}\label{namespacestd_1_1math_1_1concepts_ad39446424ae6c98638634ec481a68639}} 
-\index{std::math::concepts@{std::math::concepts}!fixed\_size\_tensor\_data@{fixed\_size\_tensor\_data}}
-\index{fixed\_size\_tensor\_data@{fixed\_size\_tensor\_data}!std::math::concepts@{std::math::concepts}}
-\doxysubsubsection{\texorpdfstring{fixed\_size\_tensor\_data}{fixed\_size\_tensor\_data}}
-{\footnotesize\ttfamily template$<$class T $>$ \\
-concept std\+::math\+::concepts\+::fixed\+\_\+size\+\_\+tensor\+\_\+data}
-
-{\bfseries Initial value\+:}
-\begin{DoxyCode}{0}
-\DoxyCodeLine{= tensor\_data<T> \&\&}
-\DoxyCodeLine{detail::extents\_is\_static\_v<typename T::extents\_type> \&\&}
-\DoxyCodeLine{\mbox{\hyperlink{namespacestd_1_1math_1_1detail_a6661f390a6c982712ceecc4ce1ea0459}{detail::is\_constexpr}}( []\{ \mbox{\hyperlink{namespacestd_1_1math_a53983004b9afa750d13aff5975152bf2}{T}}(); \} ) \&\&}
-\DoxyCodeLine{\mbox{\hyperlink{namespacestd_1_1math_1_1detail_a6661f390a6c982712ceecc4ce1ea0459}{detail::is\_constexpr}}( []\{ decltype( declval<T>().size() )     nodiscard\_warning = \mbox{\hyperlink{namespacestd_1_1math_a53983004b9afa750d13aff5975152bf2}{T}}().size(); \} ) \&\&}
-\DoxyCodeLine{detail::\mbox{\hyperlink{namespacestd_1_1math_1_1detail_a6661f390a6c982712ceecc4ce1ea0459}{is\_constexpr}}( []\{ decltype( declval<T>().capacity() ) nodiscard\_warning = \mbox{\hyperlink{namespacestd_1_1math_a53983004b9afa750d13aff5975152bf2}{T}}().capacity(); \} ) \&\&}
-\DoxyCodeLine{( \mbox{\hyperlink{namespacestd_1_1math_a53983004b9afa750d13aff5975152bf2}{T}}().size() == \mbox{\hyperlink{namespacestd_1_1math_a53983004b9afa750d13aff5975152bf2}{T}}().capacity() )}
-
-\end{DoxyCode}
-\mbox{\Hypertarget{namespacestd_1_1math_1_1concepts_a5a779e71ec247c7be113de660e14e7a8}\label{namespacestd_1_1math_1_1concepts_a5a779e71ec247c7be113de660e14e7a8}} 
-\index{std::math::concepts@{std::math::concepts}!fixed\_size\_vector@{fixed\_size\_vector}}
-\index{fixed\_size\_vector@{fixed\_size\_vector}!std::math::concepts@{std::math::concepts}}
-\doxysubsubsection{\texorpdfstring{fixed\_size\_vector}{fixed\_size\_vector}}
-{\footnotesize\ttfamily template$<$class V $>$ \\
-concept std\+::math\+::concepts\+::fixed\+\_\+size\+\_\+vector}
-
-{\bfseries Initial value\+:}
-\begin{DoxyCode}{0}
-\DoxyCodeLine{= fixed\_size\_vector\_data<V> \&\&}
-\DoxyCodeLine{vector<V>}
-
-\end{DoxyCode}
-\mbox{\Hypertarget{namespacestd_1_1math_1_1concepts_a1b8405c31878e03b2c8c253f90b2e984}\label{namespacestd_1_1math_1_1concepts_a1b8405c31878e03b2c8c253f90b2e984}} 
-\index{std::math::concepts@{std::math::concepts}!fixed\_size\_vector\_data@{fixed\_size\_vector\_data}}
-\index{fixed\_size\_vector\_data@{fixed\_size\_vector\_data}!std::math::concepts@{std::math::concepts}}
-\doxysubsubsection{\texorpdfstring{fixed\_size\_vector\_data}{fixed\_size\_vector\_data}}
-{\footnotesize\ttfamily template$<$class V $>$ \\
-concept std\+::math\+::concepts\+::fixed\+\_\+size\+\_\+vector\+\_\+data}
-
-{\bfseries Initial value\+:}
-\begin{DoxyCode}{0}
-\DoxyCodeLine{= vector\_data<V> \&\&}
-\DoxyCodeLine{fixed\_size\_tensor\_data<V>}
-
-\end{DoxyCode}
-\mbox{\Hypertarget{namespacestd_1_1math_1_1concepts_a4f1678bf8d169f6ad33026bfd143af18}\label{namespacestd_1_1math_1_1concepts_a4f1678bf8d169f6ad33026bfd143af18}} 
-\index{std::math::concepts@{std::math::concepts}!matrix@{matrix}}
-\index{matrix@{matrix}!std::math::concepts@{std::math::concepts}}
-\doxysubsubsection{\texorpdfstring{matrix}{matrix}}
-{\footnotesize\ttfamily template$<$class M $>$ \\
-concept std\+::math\+::concepts\+::matrix}
-
-{\bfseries Initial value\+:}
-\begin{DoxyCode}{0}
-\DoxyCodeLine{= matrix\_data<M> \&\&}
-\DoxyCodeLine{tensor<M> \&\&}
-\DoxyCodeLine{\mbox{\hyperlink{namespacestd_1_1math_a99301a8e16b7c6c884465173b22852a5}{requires}} ( M m ) }
-\DoxyCodeLine{\{}
-\DoxyCodeLine{  \mbox{\hyperlink{namespacestd_1_1math_aad19d9284c196e0f59cf9a4e03794b99}{trans}}( m );}
-\DoxyCodeLine{  \mbox{\hyperlink{namespacestd_1_1math_a381ab766e72b583fd5859302b2c643b2}{conj}}( m );}
-\DoxyCodeLine{\} \&\&}
-\DoxyCodeLine{\mbox{\hyperlink{namespacestd_1_1math_a99301a8e16b7c6c884465173b22852a5}{requires}} ( M m ) }
-\DoxyCodeLine{\{}
-\DoxyCodeLine{  m * \mbox{\hyperlink{namespacestd_1_1math_aad19d9284c196e0f59cf9a4e03794b99}{trans}}( m );}
-\DoxyCodeLine{\}}
-
-\end{DoxyCode}
-\mbox{\Hypertarget{namespacestd_1_1math_1_1concepts_a8048496b61f298cc140a3a3351a5e309}\label{namespacestd_1_1math_1_1concepts_a8048496b61f298cc140a3a3351a5e309}} 
-\index{std::math::concepts@{std::math::concepts}!matrix\_data@{matrix\_data}}
-\index{matrix\_data@{matrix\_data}!std::math::concepts@{std::math::concepts}}
-\doxysubsubsection{\texorpdfstring{matrix\_data}{matrix\_data}}
-{\footnotesize\ttfamily template$<$class M $>$ \\
-concept std\+::math\+::concepts\+::matrix\+\_\+data}
-
-{\bfseries Initial value\+:}
-\begin{DoxyCode}{0}
-\DoxyCodeLine{= tensor\_data<M> \&\&}
-\DoxyCodeLine{( M::extents\_type::rank() == 2 ) \&\&}
-\DoxyCodeLine{\mbox{\hyperlink{namespacestd_1_1math_a99301a8e16b7c6c884465173b22852a5}{requires}}( M\& m ) }
-\DoxyCodeLine{\{}
-\DoxyCodeLine{  \{ m.columns() \}         noexcept -\/> same\_as< typename M::size\_type >;}
-\DoxyCodeLine{  \{ m.rows() \}            noexcept -\/> same\_as< typename M::size\_type >;}
-\DoxyCodeLine{  \{ m.column\_capacity() \} noexcept -\/> same\_as< typename M::size\_type >;}
-\DoxyCodeLine{  \{ m.row\_capacity() \}    noexcept -\/> same\_as< typename M::size\_type >;}
-\DoxyCodeLine{\}}
-
-\end{DoxyCode}
-\mbox{\Hypertarget{namespacestd_1_1math_1_1concepts_af9e13690775ee6c6095745b33fdaeafd}\label{namespacestd_1_1math_1_1concepts_af9e13690775ee6c6095745b33fdaeafd}} 
-\index{std::math::concepts@{std::math::concepts}!matrix\_may\_be\_convertible@{matrix\_may\_be\_convertible}}
-\index{matrix\_may\_be\_convertible@{matrix\_may\_be\_convertible}!std::math::concepts@{std::math::concepts}}
-\doxysubsubsection{\texorpdfstring{matrix\_may\_be\_convertible}{matrix\_may\_be\_convertible}}
-{\footnotesize\ttfamily template$<$class From , class To $>$ \\
-concept std\+::math\+::concepts\+::matrix\+\_\+may\+\_\+be\+\_\+convertible}
-
-{\bfseries Initial value\+:}
-\begin{DoxyCode}{0}
-\DoxyCodeLine{=}
-\DoxyCodeLine{matrix<From> \&\& matrix<To> \&\&}
-\DoxyCodeLine{( is\_convertible\_v< typename From::value\_type, typename To::value\_type > ) \&\&}
-\DoxyCodeLine{( ( From::extents\_type::static\_extent(0) == To::extents\_type::static\_extent(0) ) ||}
-\DoxyCodeLine{  ( From::extents\_type::static\_extent(0) == std::experimental::dynamic\_extent ) ||}
-\DoxyCodeLine{  ( To::extents\_type::static\_extent(0) == std::experimental::dynamic\_extent ) ) \&\&}
-\DoxyCodeLine{( ( From::extents\_type::static\_extent(1) == To::extents\_type::static\_extent(1) ) ||}
-\DoxyCodeLine{  ( From::extents\_type::static\_extent(1) == std::experimental::dynamic\_extent ) ||}
-\DoxyCodeLine{  ( To::extents\_type::static\_extent(1) == std::experimental::dynamic\_extent ) )}
-
-\end{DoxyCode}
-\mbox{\Hypertarget{namespacestd_1_1math_1_1concepts_a21d5fabd96752c9a1d773a7168512130}\label{namespacestd_1_1math_1_1concepts_a21d5fabd96752c9a1d773a7168512130}} 
-\index{std::math::concepts@{std::math::concepts}!readable\_matrix@{readable\_matrix}}
-\index{readable\_matrix@{readable\_matrix}!std::math::concepts@{std::math::concepts}}
-\doxysubsubsection{\texorpdfstring{readable\_matrix}{readable\_matrix}}
-{\footnotesize\ttfamily template$<$class M $>$ \\
-concept std\+::math\+::concepts\+::readable\+\_\+matrix = \mbox{\hyperlink{namespacestd_1_1math_1_1concepts_aa9d96c627a077dae000dcb600194adf3}{readable\+\_\+matrix\+\_\+data}}$<$M$>$ \&\& \mbox{\hyperlink{namespacestd_1_1math_1_1concepts_a4f1678bf8d169f6ad33026bfd143af18}{matrix}}$<$M$>$}
-
-\mbox{\Hypertarget{namespacestd_1_1math_1_1concepts_aa9d96c627a077dae000dcb600194adf3}\label{namespacestd_1_1math_1_1concepts_aa9d96c627a077dae000dcb600194adf3}} 
-\index{std::math::concepts@{std::math::concepts}!readable\_matrix\_data@{readable\_matrix\_data}}
-\index{readable\_matrix\_data@{readable\_matrix\_data}!std::math::concepts@{std::math::concepts}}
-\doxysubsubsection{\texorpdfstring{readable\_matrix\_data}{readable\_matrix\_data}}
-{\footnotesize\ttfamily template$<$class M $>$ \\
-concept std\+::math\+::concepts\+::readable\+\_\+matrix\+\_\+data}
-
-{\bfseries Initial value\+:}
-\begin{DoxyCode}{0}
-\DoxyCodeLine{= matrix\_data<M> \&\&                                     }
-\DoxyCodeLine{readable\_tensor\_data<M> \&\&                                                           }
-\DoxyCodeLine{\mbox{\hyperlink{namespacestd_1_1math_a99301a8e16b7c6c884465173b22852a5}{requires}}( \textcolor{keyword}{const} M\& m, \textcolor{keyword}{typename} M::index\_type index1, \textcolor{keyword}{typename} M::index\_type index2 ) }
-\DoxyCodeLine{\{}
-\DoxyCodeLine{  \{ m[index1,index2] \}       noexcept -\/> same\_as<typename M::value\_type>;}
-\DoxyCodeLine{  \{ m.at(index1,index2) \}             -\/> same\_as<typename M::value\_type>;}
-\DoxyCodeLine{\} \&\&}
-\DoxyCodeLine{( M::span\_type::extents\_type::rank() == 2 ) \&\&                                       }
-\DoxyCodeLine{\mbox{\hyperlink{namespacestd_1_1math_a99301a8e16b7c6c884465173b22852a5}{requires}}( \textcolor{keyword}{const} M\& m, \textcolor{keyword}{typename} M::index\_type index )                                 }
-\DoxyCodeLine{\{}
-\DoxyCodeLine{  \textcolor{keyword}{typename} M::const\_row\_type;}
-\DoxyCodeLine{  \{ m.row(index) \}                    -\/> same\_as<typename M::const\_row\_type>;}
-\DoxyCodeLine{\} \&\&}
-\DoxyCodeLine{readable\_vector\_data<typename M::const\_row\_type> \&\&}
-\DoxyCodeLine{\mbox{\hyperlink{namespacestd_1_1math_a99301a8e16b7c6c884465173b22852a5}{requires}}( \textcolor{keyword}{const} M\& m, \textcolor{keyword}{typename} M::index\_type index )                                 }
-\DoxyCodeLine{\{}
-\DoxyCodeLine{  \textcolor{keyword}{typename} M::const\_column\_type;}
-\DoxyCodeLine{  \{ m.column(index) \}                 -\/> same\_as<typename M::const\_column\_type>;}
-\DoxyCodeLine{\} \&\&}
-\DoxyCodeLine{readable\_vector\_data<typename M::const\_column\_type> \&\&}
-\DoxyCodeLine{\mbox{\hyperlink{namespacestd_1_1math_a99301a8e16b7c6c884465173b22852a5}{requires}}( \textcolor{keyword}{const} M\&               m,}
-\DoxyCodeLine{          \textcolor{keyword}{typename} M::tuple\_type start,}
-\DoxyCodeLine{          \textcolor{keyword}{typename} M::tuple\_type end )                                               }
-\DoxyCodeLine{\{}
-\DoxyCodeLine{  \textcolor{keyword}{typename} M::const\_submatrix\_type;}
-\DoxyCodeLine{  \{ m.submatrix(start,end) \}          -\/> same\_as<typename M::const\_submatrix\_type>;}
-\DoxyCodeLine{  \{ m.submatrix(start,end) \}          -\/> \mbox{\hyperlink{namespacestd_1_1math_1_1concepts_a4f1678bf8d169f6ad33026bfd143af18}{matrix}};}
-\DoxyCodeLine{\}}
-
-\end{DoxyCode}
-\mbox{\Hypertarget{namespacestd_1_1math_1_1concepts_ae5f5dbd6bff0a754db28bb8beb7aa556}\label{namespacestd_1_1math_1_1concepts_ae5f5dbd6bff0a754db28bb8beb7aa556}} 
-\index{std::math::concepts@{std::math::concepts}!readable\_tensor@{readable\_tensor}}
-\index{readable\_tensor@{readable\_tensor}!std::math::concepts@{std::math::concepts}}
-\doxysubsubsection{\texorpdfstring{readable\_tensor}{readable\_tensor}}
-{\footnotesize\ttfamily template$<$class T $>$ \\
-concept std\+::math\+::concepts\+::readable\+\_\+tensor = \mbox{\hyperlink{namespacestd_1_1math_1_1concepts_a8d6021ca61787611a602742b50ada58c}{readable\+\_\+tensor\+\_\+data}}$<$\mbox{\hyperlink{namespacestd_1_1math_a53983004b9afa750d13aff5975152bf2}{T}}$>$ \&\& \mbox{\hyperlink{namespacestd_1_1math_1_1concepts_aa7ac7e9cec25568801bd12af49c6624f}{tensor}}$<$\mbox{\hyperlink{namespacestd_1_1math_a53983004b9afa750d13aff5975152bf2}{T}}$>$}
-
-\mbox{\Hypertarget{namespacestd_1_1math_1_1concepts_a8d6021ca61787611a602742b50ada58c}\label{namespacestd_1_1math_1_1concepts_a8d6021ca61787611a602742b50ada58c}} 
-\index{std::math::concepts@{std::math::concepts}!readable\_tensor\_data@{readable\_tensor\_data}}
-\index{readable\_tensor\_data@{readable\_tensor\_data}!std::math::concepts@{std::math::concepts}}
-\doxysubsubsection{\texorpdfstring{readable\_tensor\_data}{readable\_tensor\_data}}
-{\footnotesize\ttfamily template$<$class T $>$ \\
-concept std\+::math\+::concepts\+::readable\+\_\+tensor\+\_\+data}
-
-\mbox{\Hypertarget{namespacestd_1_1math_1_1concepts_a7fc174beb56819c6239a0b2d86176c9d}\label{namespacestd_1_1math_1_1concepts_a7fc174beb56819c6239a0b2d86176c9d}} 
-\index{std::math::concepts@{std::math::concepts}!readable\_vector@{readable\_vector}}
-\index{readable\_vector@{readable\_vector}!std::math::concepts@{std::math::concepts}}
-\doxysubsubsection{\texorpdfstring{readable\_vector}{readable\_vector}}
-{\footnotesize\ttfamily template$<$class V $>$ \\
-concept std\+::math\+::concepts\+::readable\+\_\+vector = \mbox{\hyperlink{namespacestd_1_1math_1_1concepts_a8ed3615b806fc1ab4e1fc763ca2e3a15}{readable\+\_\+vector\+\_\+data}}$<$V$>$ \&\& \mbox{\hyperlink{namespacestd_1_1math_1_1concepts_a1b5ed3e44abe679ac3b211615e4f8abf}{vector}}$<$V$>$}
-
-\mbox{\Hypertarget{namespacestd_1_1math_1_1concepts_a8ed3615b806fc1ab4e1fc763ca2e3a15}\label{namespacestd_1_1math_1_1concepts_a8ed3615b806fc1ab4e1fc763ca2e3a15}} 
-\index{std::math::concepts@{std::math::concepts}!readable\_vector\_data@{readable\_vector\_data}}
-\index{readable\_vector\_data@{readable\_vector\_data}!std::math::concepts@{std::math::concepts}}
-\doxysubsubsection{\texorpdfstring{readable\_vector\_data}{readable\_vector\_data}}
-{\footnotesize\ttfamily template$<$class V $>$ \\
-concept std\+::math\+::concepts\+::readable\+\_\+vector\+\_\+data}
-
-{\bfseries Initial value\+:}
-\begin{DoxyCode}{0}
-\DoxyCodeLine{= vector\_data<V> \&\&     }
-\DoxyCodeLine{readable\_tensor\_data<V> \&\&                           }
-\DoxyCodeLine{\mbox{\hyperlink{namespacestd_1_1math_a99301a8e16b7c6c884465173b22852a5}{requires}}( \textcolor{keyword}{const} V\& v, \textcolor{keyword}{typename} V::index\_type index ) }
-\DoxyCodeLine{\{}
-\DoxyCodeLine{  \{ v[index] \}       noexcept -\/> same\_as<typename V::value\_type>;}
-\DoxyCodeLine{  \{ v.at(index) \}             -\/> same\_as<typename V::value\_type>;}
-\DoxyCodeLine{\} \&\&}
-\DoxyCodeLine{( V::span\_type::extents\_type::rank() == 1 ) \&\&       }
-\DoxyCodeLine{\mbox{\hyperlink{namespacestd_1_1math_a99301a8e16b7c6c884465173b22852a5}{requires}}( \textcolor{keyword}{const} V\&               v,}
-\DoxyCodeLine{          \textcolor{keyword}{typename} V::index\_type start,}
-\DoxyCodeLine{          \textcolor{keyword}{typename} V::index\_type end )               }
-\DoxyCodeLine{\{}
-\DoxyCodeLine{  \textcolor{keyword}{typename} V::const\_subvector\_type;}
-\DoxyCodeLine{  \{ v.subvector(start,end) \} -\/> same\_as<typename V::const\_subvector\_type>;}
-\DoxyCodeLine{  \{ v.subvector(start,end) \} -\/> \mbox{\hyperlink{namespacestd_1_1math_1_1concepts_a0b997762f550bf607685e097c34a108d}{vector\_data}};}
-\DoxyCodeLine{\}}
-
-\end{DoxyCode}
-\mbox{\Hypertarget{namespacestd_1_1math_1_1concepts_aa7ac7e9cec25568801bd12af49c6624f}\label{namespacestd_1_1math_1_1concepts_aa7ac7e9cec25568801bd12af49c6624f}} 
-\index{std::math::concepts@{std::math::concepts}!tensor@{tensor}}
-\index{tensor@{tensor}!std::math::concepts@{std::math::concepts}}
-\doxysubsubsection{\texorpdfstring{tensor}{tensor}}
-{\footnotesize\ttfamily template$<$class T $>$ \\
-concept std\+::math\+::concepts\+::tensor}
-
-{\bfseries Initial value\+:}
-\begin{DoxyCode}{0}
-\DoxyCodeLine{= tensor\_data<T> \&\&}
-\DoxyCodeLine{\mbox{\hyperlink{namespacestd_1_1math_a99301a8e16b7c6c884465173b22852a5}{requires}} ( \mbox{\hyperlink{namespacestd_1_1math_a53983004b9afa750d13aff5975152bf2}{T}}\& t, \textcolor{keyword}{typename} T::value\_type v ) }
-\DoxyCodeLine{\{}
-\DoxyCodeLine{  v * t;                                    }
-\DoxyCodeLine{  t * v;                                    }
-\DoxyCodeLine{  t / v;                                    }
-\DoxyCodeLine{\} \&\&}
-\DoxyCodeLine{\mbox{\hyperlink{namespacestd_1_1math_a99301a8e16b7c6c884465173b22852a5}{requires}} ( \mbox{\hyperlink{namespacestd_1_1math_a53983004b9afa750d13aff5975152bf2}{T}} t )                            }
-\DoxyCodeLine{\{}
-\DoxyCodeLine{  -\/t;                                       }
-\DoxyCodeLine{\} \&\&}
-\DoxyCodeLine{\mbox{\hyperlink{namespacestd_1_1math_a99301a8e16b7c6c884465173b22852a5}{requires}}( \mbox{\hyperlink{namespacestd_1_1math_a53983004b9afa750d13aff5975152bf2}{T}} t )                             }
-\DoxyCodeLine{\{}
-\DoxyCodeLine{  t + t;                                    }
-\DoxyCodeLine{  t -\/ t;                                    }
-\DoxyCodeLine{\}}
-
-\end{DoxyCode}
-\mbox{\Hypertarget{namespacestd_1_1math_1_1concepts_a9bcbbb3db05bc9f50b34ef64f155486e}\label{namespacestd_1_1math_1_1concepts_a9bcbbb3db05bc9f50b34ef64f155486e}} 
-\index{std::math::concepts@{std::math::concepts}!tensor\_data@{tensor\_data}}
-\index{tensor\_data@{tensor\_data}!std::math::concepts@{std::math::concepts}}
-\doxysubsubsection{\texorpdfstring{tensor\_data}{tensor\_data}}
-{\footnotesize\ttfamily template$<$class T $>$ \\
-concept std\+::math\+::concepts\+::tensor\+\_\+data}
-
-{\bfseries Initial value\+:}
-\begin{DoxyCode}{0}
-\DoxyCodeLine{= \mbox{\hyperlink{namespacestd_1_1math_a99301a8e16b7c6c884465173b22852a5}{requires}}                       }
-\DoxyCodeLine{\{}
-\DoxyCodeLine{  \textcolor{keyword}{typename} T::value\_type;}
-\DoxyCodeLine{  \textcolor{keyword}{typename} T::index\_type;}
-\DoxyCodeLine{  \textcolor{keyword}{typename} T::size\_type;}
-\DoxyCodeLine{  \textcolor{keyword}{typename} T::extents\_type;}
-\DoxyCodeLine{\} \&\&}
-\DoxyCodeLine{( detail::is\_extents\_v<typename T::extents\_type> ) \&\&}
-\DoxyCodeLine{\mbox{\hyperlink{namespacestd_1_1math_a99301a8e16b7c6c884465173b22852a5}{requires}}( \mbox{\hyperlink{namespacestd_1_1math_a53983004b9afa750d13aff5975152bf2}{T}}\& t )                                     }
-\DoxyCodeLine{\{}
-\DoxyCodeLine{  \{ t.size() \}     noexcept;}
-\DoxyCodeLine{  \{ t.capacity() \} noexcept;}
-\DoxyCodeLine{\} \&\&}
-\DoxyCodeLine{( is\_same\_v< decltype( declval<T>().size() ), \textcolor{keyword}{typename} T::extents\_type > ||}
-\DoxyCodeLine{  ( is\_same\_v< decltype( declval<T>().size() ), \textcolor{keyword}{typename} T::size\_type > \&\& ( T::extents\_type::rank() == 1 ) ) ) \&\&}
-\DoxyCodeLine{( is\_same\_v< decltype( declval<T>().capacity() ), \textcolor{keyword}{typename} T::extents\_type > ||}
-\DoxyCodeLine{  ( is\_same\_v< decltype( declval<T>().capacity() ), \textcolor{keyword}{typename} T::size\_type > \&\& ( T::extents\_type::rank() == 1 ) ) )}
-
-\end{DoxyCode}
-\mbox{\Hypertarget{namespacestd_1_1math_1_1concepts_a3ac9a6231819605025b9f51a6356eabb}\label{namespacestd_1_1math_1_1concepts_a3ac9a6231819605025b9f51a6356eabb}} 
-\index{std::math::concepts@{std::math::concepts}!tensor\_may\_be\_constructible@{tensor\_may\_be\_constructible}}
-\index{tensor\_may\_be\_constructible@{tensor\_may\_be\_constructible}!std::math::concepts@{std::math::concepts}}
-\doxysubsubsection{\texorpdfstring{tensor\_may\_be\_constructible}{tensor\_may\_be\_constructible}}
-{\footnotesize\ttfamily template$<$class From , class To $>$ \\
-concept std\+::math\+::concepts\+::tensor\+\_\+may\+\_\+be\+\_\+constructible}
-
-{\bfseries Initial value\+:}
-\begin{DoxyCode}{0}
-\DoxyCodeLine{=}
-\DoxyCodeLine{tensor<From> \&\& tensor<To> \&\&}
-\DoxyCodeLine{( is\_constructible\_v< typename From::value\_type, typename To::value\_type > ) \&\&}
-\DoxyCodeLine{detail::extents\_may\_be\_equal\_v< typename From::extents\_type, typename To::extents\_type >}
-
-\end{DoxyCode}
-\mbox{\Hypertarget{namespacestd_1_1math_1_1concepts_a1b5ed3e44abe679ac3b211615e4f8abf}\label{namespacestd_1_1math_1_1concepts_a1b5ed3e44abe679ac3b211615e4f8abf}} 
-\index{std::math::concepts@{std::math::concepts}!vector@{vector}}
-\index{vector@{vector}!std::math::concepts@{std::math::concepts}}
-\doxysubsubsection{\texorpdfstring{vector}{vector}}
-{\footnotesize\ttfamily template$<$class V $>$ \\
-concept std\+::math\+::concepts\+::vector}
-
-{\bfseries Initial value\+:}
-\begin{DoxyCode}{0}
-\DoxyCodeLine{= vector\_data<V> \&\&}
-\DoxyCodeLine{tensor<V> \&\&}
-\DoxyCodeLine{\mbox{\hyperlink{namespacestd_1_1math_a99301a8e16b7c6c884465173b22852a5}{requires}} ( V v ) }
-\DoxyCodeLine{\{}
-\DoxyCodeLine{  \mbox{\hyperlink{namespacestd_1_1math_aad19d9284c196e0f59cf9a4e03794b99}{trans}}( v );}
-\DoxyCodeLine{  \mbox{\hyperlink{namespacestd_1_1math_a381ab766e72b583fd5859302b2c643b2}{conj}}( v );}
-\DoxyCodeLine{\} \&\&}
-\DoxyCodeLine{\mbox{\hyperlink{namespacestd_1_1math_a99301a8e16b7c6c884465173b22852a5}{requires}} ( V v ) }
-\DoxyCodeLine{\{}
-\DoxyCodeLine{  \mbox{\hyperlink{namespacestd_1_1math_ae595d72c25d55b2d8d8086ef2b65bfe2}{inner\_prod}}( v, v );}
-\DoxyCodeLine{  \mbox{\hyperlink{namespacestd_1_1math_a16d9bb61f2dd78e168c6318baed2625b}{outer\_prod}}( v, v );}
-\DoxyCodeLine{\}}
-
-\end{DoxyCode}
-\mbox{\Hypertarget{namespacestd_1_1math_1_1concepts_a0b997762f550bf607685e097c34a108d}\label{namespacestd_1_1math_1_1concepts_a0b997762f550bf607685e097c34a108d}} 
-\index{std::math::concepts@{std::math::concepts}!vector\_data@{vector\_data}}
-\index{vector\_data@{vector\_data}!std::math::concepts@{std::math::concepts}}
-\doxysubsubsection{\texorpdfstring{vector\_data}{vector\_data}}
-{\footnotesize\ttfamily template$<$class V $>$ \\
-concept std\+::math\+::concepts\+::vector\+\_\+data}
-
-{\bfseries Initial value\+:}
-\begin{DoxyCode}{0}
-\DoxyCodeLine{= tensor\_data<V> \&\&}
-\DoxyCodeLine{( V::extents\_type::rank() == 1 )}
-
-\end{DoxyCode}
-\mbox{\Hypertarget{namespacestd_1_1math_1_1concepts_aec199d757f09387af735006a96662f7f}\label{namespacestd_1_1math_1_1concepts_aec199d757f09387af735006a96662f7f}} 
-\index{std::math::concepts@{std::math::concepts}!view\_is\_constructible\_to\_tensor@{view\_is\_constructible\_to\_tensor}}
-\index{view\_is\_constructible\_to\_tensor@{view\_is\_constructible\_to\_tensor}!std::math::concepts@{std::math::concepts}}
-\doxysubsubsection{\texorpdfstring{view\_is\_constructible\_to\_tensor}{view\_is\_constructible\_to\_tensor}}
-{\footnotesize\ttfamily template$<$class From , class To $>$ \\
-concept std\+::math\+::concepts\+::view\+\_\+is\+\_\+constructible\+\_\+to\+\_\+tensor}
-
-{\bfseries Initial value\+:}
-\begin{DoxyCode}{0}
-\DoxyCodeLine{=}
-\DoxyCodeLine{detail::is\_mdspan\_v<From> \&\& tensor<To> \&\&}
-\DoxyCodeLine{( is\_constructible\_v<typename From::value\_type,typename To::value\_type> ) \&\&}
-\DoxyCodeLine{detail::extents\_is\_equal\_v< typename From::extents\_type, typename To::extents\_type >}
-
-\end{DoxyCode}
-\mbox{\Hypertarget{namespacestd_1_1math_1_1concepts_a25ae99fc033522821f95c0ef5aa479b2}\label{namespacestd_1_1math_1_1concepts_a25ae99fc033522821f95c0ef5aa479b2}} 
-\index{std::math::concepts@{std::math::concepts}!view\_is\_nothrow\_constructible\_to\_tensor@{view\_is\_nothrow\_constructible\_to\_tensor}}
-\index{view\_is\_nothrow\_constructible\_to\_tensor@{view\_is\_nothrow\_constructible\_to\_tensor}!std::math::concepts@{std::math::concepts}}
-\doxysubsubsection{\texorpdfstring{view\_is\_nothrow\_constructible\_to\_tensor}{view\_is\_nothrow\_constructible\_to\_tensor}}
-{\footnotesize\ttfamily template$<$class From , class To $>$ \\
-concept std\+::math\+::concepts\+::view\+\_\+is\+\_\+nothrow\+\_\+constructible\+\_\+to\+\_\+tensor}
-
-{\bfseries Initial value\+:}
-\begin{DoxyCode}{0}
-\DoxyCodeLine{=}
-\DoxyCodeLine{detail::is\_mdspan\_v<From> \&\& tensor<To> \&\&}
-\DoxyCodeLine{( is\_nothrow\_constructible\_v<typename From::value\_type,typename To::value\_type> ) \&\&}
-\DoxyCodeLine{detail::extents\_is\_equal\_v< typename From::extents\_type, typename To::extents\_type >}
-
-\end{DoxyCode}
-\mbox{\Hypertarget{namespacestd_1_1math_1_1concepts_acafbad84286b777c5f687c0857855d36}\label{namespacestd_1_1math_1_1concepts_acafbad84286b777c5f687c0857855d36}} 
-\index{std::math::concepts@{std::math::concepts}!view\_may\_be\_constructible\_to\_tensor@{view\_may\_be\_constructible\_to\_tensor}}
-\index{view\_may\_be\_constructible\_to\_tensor@{view\_may\_be\_constructible\_to\_tensor}!std::math::concepts@{std::math::concepts}}
-\doxysubsubsection{\texorpdfstring{view\_may\_be\_constructible\_to\_tensor}{view\_may\_be\_constructible\_to\_tensor}}
-{\footnotesize\ttfamily template$<$class From , class To $>$ \\
-concept std\+::math\+::concepts\+::view\+\_\+may\+\_\+be\+\_\+constructible\+\_\+to\+\_\+tensor}
-
-{\bfseries Initial value\+:}
-\begin{DoxyCode}{0}
-\DoxyCodeLine{=}
-\DoxyCodeLine{detail::is\_mdspan\_v<From> \&\& tensor<To> \&\&}
-\DoxyCodeLine{( is\_constructible\_v<typename From::value\_type,typename To::value\_type> ) \&\&}
-\DoxyCodeLine{detail::extents\_may\_be\_equal\_v< typename From::extents\_type, typename To::extents\_type >}
-
-\end{DoxyCode}
-\mbox{\Hypertarget{namespacestd_1_1math_1_1concepts_abc1f55ca9fc837bd0137a7ee8952ac45}\label{namespacestd_1_1math_1_1concepts_abc1f55ca9fc837bd0137a7ee8952ac45}} 
-\index{std::math::concepts@{std::math::concepts}!view\_may\_be\_convertible\_to\_matrix@{view\_may\_be\_convertible\_to\_matrix}}
-\index{view\_may\_be\_convertible\_to\_matrix@{view\_may\_be\_convertible\_to\_matrix}!std::math::concepts@{std::math::concepts}}
-\doxysubsubsection{\texorpdfstring{view\_may\_be\_convertible\_to\_matrix}{view\_may\_be\_convertible\_to\_matrix}}
-{\footnotesize\ttfamily template$<$class From , class To $>$ \\
-concept std\+::math\+::concepts\+::view\+\_\+may\+\_\+be\+\_\+convertible\+\_\+to\+\_\+matrix}
-
-{\bfseries Initial value\+:}
-\begin{DoxyCode}{0}
-\DoxyCodeLine{=}
-\DoxyCodeLine{detail::is\_mdspan\_v<From> \&\& matrix<To> \&\&}
-\DoxyCodeLine{( From::rank() == 2 ) \&\&}
-\DoxyCodeLine{matrix<To> \&\&}
-\DoxyCodeLine{( is\_convertible\_v<typename From::value\_type,typename To::value\_type> ) \&\&}
-\DoxyCodeLine{( ( From::extents\_type::static\_extent(0) == To::extents\_type::static\_extent(0) ) ||}
-\DoxyCodeLine{  ( From::extents\_type::static\_extent(0) == std::experimental::dynamic\_extent ) ||}
-\DoxyCodeLine{  ( To::extents\_type::static\_extent(0) == std::experimental::dynamic\_extent ) ) \&\&}
-\DoxyCodeLine{( ( From::extents\_type::static\_extent(1) == To::extents\_type::static\_extent(1) ) ||}
-\DoxyCodeLine{  ( From::extents\_type::static\_extent(1) == std::experimental::dynamic\_extent ) ||}
-\DoxyCodeLine{  ( To::extents\_type::static\_extent(1) == std::experimental::dynamic\_extent ) )}
-
-\end{DoxyCode}
-\mbox{\Hypertarget{namespacestd_1_1math_1_1concepts_ad02a4ce2108c648b2f2a50ad8839b131}\label{namespacestd_1_1math_1_1concepts_ad02a4ce2108c648b2f2a50ad8839b131}} 
-\index{std::math::concepts@{std::math::concepts}!writable\_matrix@{writable\_matrix}}
-\index{writable\_matrix@{writable\_matrix}!std::math::concepts@{std::math::concepts}}
-\doxysubsubsection{\texorpdfstring{writable\_matrix}{writable\_matrix}}
-{\footnotesize\ttfamily template$<$class M $>$ \\
-concept std\+::math\+::concepts\+::writable\+\_\+matrix = \mbox{\hyperlink{namespacestd_1_1math_1_1concepts_afeef97710ad11fe149c00209131c7a90}{writable\+\_\+matrix\+\_\+data}}$<$M$>$ \&\& \mbox{\hyperlink{namespacestd_1_1math_1_1concepts_a21d5fabd96752c9a1d773a7168512130}{readable\+\_\+matrix}}$<$M$>$}
-
-\mbox{\Hypertarget{namespacestd_1_1math_1_1concepts_afeef97710ad11fe149c00209131c7a90}\label{namespacestd_1_1math_1_1concepts_afeef97710ad11fe149c00209131c7a90}} 
-\index{std::math::concepts@{std::math::concepts}!writable\_matrix\_data@{writable\_matrix\_data}}
-\index{writable\_matrix\_data@{writable\_matrix\_data}!std::math::concepts@{std::math::concepts}}
-\doxysubsubsection{\texorpdfstring{writable\_matrix\_data}{writable\_matrix\_data}}
-{\footnotesize\ttfamily template$<$class M $>$ \\
-concept std\+::math\+::concepts\+::writable\+\_\+matrix\+\_\+data}
-
-{\bfseries Initial value\+:}
-\begin{DoxyCode}{0}
-\DoxyCodeLine{= readable\_matrix\_data<M> \&\&                      }
-\DoxyCodeLine{writable\_tensor\_data<M> \&\&                                                     }
-\DoxyCodeLine{\mbox{\hyperlink{namespacestd_1_1math_a99301a8e16b7c6c884465173b22852a5}{requires}}( M\& m, \textcolor{keyword}{typename} M::index\_type index1, \textcolor{keyword}{typename} M::index\_type index2 ) }
-\DoxyCodeLine{\{}
-\DoxyCodeLine{  \textcolor{keyword}{typename} M::reference\_type;}
-\DoxyCodeLine{  \{ m[index1,index2] \}       noexcept -\/> same\_as<typename M::reference\_type>;}
-\DoxyCodeLine{  \{ m.at(index1,index2) \}             -\/> same\_as<typename M::reference\_type>;}
-\DoxyCodeLine{\} \&\&}
-\DoxyCodeLine{\mbox{\hyperlink{namespacestd_1_1math_a99301a8e16b7c6c884465173b22852a5}{requires}}( M\& m, \textcolor{keyword}{typename} M::index\_type index )                                 }
-\DoxyCodeLine{\{}
-\DoxyCodeLine{  \textcolor{keyword}{typename} M::row\_type;}
-\DoxyCodeLine{  \{ m.row(index) \}                    -\/> same\_as<typename M::row\_type>;}
-\DoxyCodeLine{\} \&\&}
-\DoxyCodeLine{writable\_vector\_data<typename M::row\_type> \&\&}
-\DoxyCodeLine{\mbox{\hyperlink{namespacestd_1_1math_a99301a8e16b7c6c884465173b22852a5}{requires}}( M\& m, \textcolor{keyword}{typename} M::index\_type index )                                 }
-\DoxyCodeLine{\{}
-\DoxyCodeLine{  \textcolor{keyword}{typename} M::column\_type;}
-\DoxyCodeLine{  \{ m.column(index) \}                 -\/> same\_as<typename M::column\_type>;}
-\DoxyCodeLine{\} \&\&}
-\DoxyCodeLine{writable\_vector\_data<typename M::column\_type> \&\&}
-\DoxyCodeLine{\mbox{\hyperlink{namespacestd_1_1math_a99301a8e16b7c6c884465173b22852a5}{requires}}( M\& m,}
-\DoxyCodeLine{          tuple<typename M::index\_type,typename M::index\_type> start,}
-\DoxyCodeLine{          tuple<typename M::index\_type,typename M::index\_type> end )           }
-\DoxyCodeLine{\{}
-\DoxyCodeLine{  \textcolor{keyword}{typename} M::submatrix\_type;}
-\DoxyCodeLine{  \{ m.submatrix(start,end) \}          -\/> same\_as<typename M::submatrix\_type>;}
-\DoxyCodeLine{  \{ m.submatrix(start,end) \}          -\/> \mbox{\hyperlink{namespacestd_1_1math_1_1concepts_a4f1678bf8d169f6ad33026bfd143af18}{matrix}};}
-\DoxyCodeLine{\}}
-
-\end{DoxyCode}
-\mbox{\Hypertarget{namespacestd_1_1math_1_1concepts_aa9f3120ce8a701c05e3705a8cad52f54}\label{namespacestd_1_1math_1_1concepts_aa9f3120ce8a701c05e3705a8cad52f54}} 
-\index{std::math::concepts@{std::math::concepts}!writable\_tensor@{writable\_tensor}}
-\index{writable\_tensor@{writable\_tensor}!std::math::concepts@{std::math::concepts}}
-\doxysubsubsection{\texorpdfstring{writable\_tensor}{writable\_tensor}}
-{\footnotesize\ttfamily template$<$class T $>$ \\
-concept std\+::math\+::concepts\+::writable\+\_\+tensor = \mbox{\hyperlink{namespacestd_1_1math_1_1concepts_a302490491ac97ea464e36d691e5c89e8}{writable\+\_\+tensor\+\_\+data}}$<$\mbox{\hyperlink{namespacestd_1_1math_a53983004b9afa750d13aff5975152bf2}{T}}$>$ \&\& \mbox{\hyperlink{namespacestd_1_1math_1_1concepts_ae5f5dbd6bff0a754db28bb8beb7aa556}{readable\+\_\+tensor}}$<$\mbox{\hyperlink{namespacestd_1_1math_a53983004b9afa750d13aff5975152bf2}{T}}$>$}
-
-\mbox{\Hypertarget{namespacestd_1_1math_1_1concepts_a302490491ac97ea464e36d691e5c89e8}\label{namespacestd_1_1math_1_1concepts_a302490491ac97ea464e36d691e5c89e8}} 
-\index{std::math::concepts@{std::math::concepts}!writable\_tensor\_data@{writable\_tensor\_data}}
-\index{writable\_tensor\_data@{writable\_tensor\_data}!std::math::concepts@{std::math::concepts}}
-\doxysubsubsection{\texorpdfstring{writable\_tensor\_data}{writable\_tensor\_data}}
-{\footnotesize\ttfamily template$<$class T $>$ \\
-concept std\+::math\+::concepts\+::writable\+\_\+tensor\+\_\+data}
-
-{\bfseries Initial value\+:}
-\begin{DoxyCode}{0}
-\DoxyCodeLine{= readable\_tensor\_data<T> \&\& }
-\DoxyCodeLine{\mbox{\hyperlink{namespacestd_1_1math_a99301a8e16b7c6c884465173b22852a5}{requires}}( \mbox{\hyperlink{namespacestd_1_1math_a53983004b9afa750d13aff5975152bf2}{T}}\& t )                                          }
-\DoxyCodeLine{\{}
-\DoxyCodeLine{  \textcolor{keyword}{typename} T::reference\_type;}
-\DoxyCodeLine{  }
-\DoxyCodeLine{  }
-\DoxyCodeLine{  }
-\DoxyCodeLine{  }
-\DoxyCodeLine{  }
-\DoxyCodeLine{\} \&\&}
-\DoxyCodeLine{( !is\_const\_v< remove\_reference\_t< typename T::reference\_type > > ) \&\&}
-\DoxyCodeLine{\mbox{\hyperlink{namespacestd_1_1math_a99301a8e16b7c6c884465173b22852a5}{requires}}( \mbox{\hyperlink{namespacestd_1_1math_a53983004b9afa750d13aff5975152bf2}{T}}\& t )                                          }
-\DoxyCodeLine{\{}
-\DoxyCodeLine{  \textcolor{keyword}{typename} T::underlying\_span\_type;}
-\DoxyCodeLine{  \{ t.underlying\_span() \}    noexcept -\/> same\_as<typename T::underlying\_span\_type>;}
-\DoxyCodeLine{\} \&\&}
-\DoxyCodeLine{\mbox{\hyperlink{namespacestd_1_1math_a99301a8e16b7c6c884465173b22852a5}{requires}}( \mbox{\hyperlink{namespacestd_1_1math_a53983004b9afa750d13aff5975152bf2}{T}}\&                     t,}
-\DoxyCodeLine{          \textcolor{keyword}{typename} T::tuple\_type start,}
-\DoxyCodeLine{          \textcolor{keyword}{typename} T::tuple\_type end )                    }
-\DoxyCodeLine{\{}
-\DoxyCodeLine{  \textcolor{keyword}{typename} T::subtensor\_type;}
-\DoxyCodeLine{  \{ t.subtensor(start,end) \} -\/> same\_as<typename T::subtensor\_type>;}
-\DoxyCodeLine{  \{ t.subtensor(start,end) \} -\/> \mbox{\hyperlink{namespacestd_1_1math_1_1concepts_a9bcbbb3db05bc9f50b34ef64f155486e}{tensor\_data}};}
-\DoxyCodeLine{\}}
-
-\end{DoxyCode}
-\mbox{\Hypertarget{namespacestd_1_1math_1_1concepts_a55837e1d6d61c92ecaf8a14112554b5f}\label{namespacestd_1_1math_1_1concepts_a55837e1d6d61c92ecaf8a14112554b5f}} 
-\index{std::math::concepts@{std::math::concepts}!writable\_vector@{writable\_vector}}
-\index{writable\_vector@{writable\_vector}!std::math::concepts@{std::math::concepts}}
-\doxysubsubsection{\texorpdfstring{writable\_vector}{writable\_vector}}
-{\footnotesize\ttfamily template$<$class V $>$ \\
-concept std\+::math\+::concepts\+::writable\+\_\+vector = \mbox{\hyperlink{namespacestd_1_1math_1_1concepts_a37e16986e70aea01ef5066b486f6ca18}{writable\+\_\+vector\+\_\+data}}$<$V$>$ \&\& \mbox{\hyperlink{namespacestd_1_1math_1_1concepts_a7fc174beb56819c6239a0b2d86176c9d}{readable\+\_\+vector}}$<$V$>$}
-
-\mbox{\Hypertarget{namespacestd_1_1math_1_1concepts_a37e16986e70aea01ef5066b486f6ca18}\label{namespacestd_1_1math_1_1concepts_a37e16986e70aea01ef5066b486f6ca18}} 
-\index{std::math::concepts@{std::math::concepts}!writable\_vector\_data@{writable\_vector\_data}}
-\index{writable\_vector\_data@{writable\_vector\_data}!std::math::concepts@{std::math::concepts}}
-\doxysubsubsection{\texorpdfstring{writable\_vector\_data}{writable\_vector\_data}}
-{\footnotesize\ttfamily template$<$class V $>$ \\
-concept std\+::math\+::concepts\+::writable\+\_\+vector\+\_\+data}
-
-{\bfseries Initial value\+:}
-\begin{DoxyCode}{0}
-\DoxyCodeLine{= readable\_vector\_data<V> \&\& }
-\DoxyCodeLine{writable\_tensor\_data<V> \&\&                                }
-\DoxyCodeLine{\mbox{\hyperlink{namespacestd_1_1math_a99301a8e16b7c6c884465173b22852a5}{requires}}( V\& v, \textcolor{keyword}{typename} V::index\_type index )            }
-\DoxyCodeLine{\{}
-\DoxyCodeLine{  \textcolor{keyword}{typename} V::reference\_type;}
-\DoxyCodeLine{  \{ v[index] \}       noexcept -\/> same\_as<typename V::reference\_type>;}
-\DoxyCodeLine{  \{ v.at(index) \}             -\/> same\_as<typename V::reference\_type>;}
-\DoxyCodeLine{\} \&\&}
-\DoxyCodeLine{\mbox{\hyperlink{namespacestd_1_1math_a99301a8e16b7c6c884465173b22852a5}{requires}}( V\&                     v,}
-\DoxyCodeLine{          \textcolor{keyword}{typename} V::index\_type start,}
-\DoxyCodeLine{          \textcolor{keyword}{typename} V::index\_type end )                    }
-\DoxyCodeLine{\{}
-\DoxyCodeLine{  \textcolor{keyword}{typename} V::subvector\_type;}
-\DoxyCodeLine{  \{ v.subvector(start,end) \} -\/> same\_as<typename V::subvector\_type>;}
-\DoxyCodeLine{  \{ v.subvector(start,end) \} -\/> \mbox{\hyperlink{namespacestd_1_1math_1_1concepts_a0b997762f550bf607685e097c34a108d}{vector\_data}};}
-\DoxyCodeLine{\}}
-
-\end{DoxyCode}

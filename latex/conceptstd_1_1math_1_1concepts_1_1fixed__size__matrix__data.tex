@@ -1,0 +1,20 @@
+\hypertarget{conceptstd_1_1math_1_1concepts_1_1fixed__size__matrix__data}{}\doxysection{std\+::math\+::concepts\+::fixed\+\_\+size\+\_\+matrix\+\_\+data Concept Reference}
+\label{conceptstd_1_1math_1_1concepts_1_1fixed__size__matrix__data}\index{std::math::concepts::fixed\_size\_matrix\_data@{std::math::concepts::fixed\_size\_matrix\_data}}
+
+
+{\ttfamily \#include $<$matrix\+\_\+concepts.\+hpp$>$}
+
+\doxysubsection{Concept definition}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{keyword}{template}<\textcolor{keyword}{class}\ M>}
+\DoxyCodeLine{\textcolor{keyword}{concept\ }\mbox{\hyperlink{conceptstd_1_1math_1_1concepts_1_1fixed__size__matrix__data}{std::math::concepts::fixed\_size\_matrix\_data}}\ =\ \ \mbox{\hyperlink{conceptstd_1_1math_1_1concepts_1_1matrix__data}{matrix\_data<M>}}\ \&\&}
+\DoxyCodeLine{\mbox{\hyperlink{conceptstd_1_1math_1_1concepts_1_1fixed__size__tensor__data}{fixed\_size\_tensor\_data<M>}}\ \&\&}
+\DoxyCodeLine{\mbox{\hyperlink{namespacestd_1_1math_1_1detail_a6661f390a6c982712ceecc4ce1ea0459}{detail::is\_constexpr}}(\ []\{\ \textcolor{keyword}{decltype}(\ declval<M>().rows()\ )\ \ \ \ \ \ \ \ \ \ \ \ nodiscard\_warning\ =\ M().rows();\ \}\ )\ \&\&}
+\DoxyCodeLine{\mbox{\hyperlink{namespacestd_1_1math_1_1detail_a6661f390a6c982712ceecc4ce1ea0459}{detail::is\_constexpr}}(\ []\{\ \textcolor{keyword}{decltype}(\ declval<M>().columns()\ )\ \ \ \ \ \ \ \ \ nodiscard\_warning\ =\ M().columns();\ \}\ )\ \&\&}
+\DoxyCodeLine{\mbox{\hyperlink{namespacestd_1_1math_1_1detail_a6661f390a6c982712ceecc4ce1ea0459}{detail::is\_constexpr}}(\ []\{\ \textcolor{keyword}{decltype}(\ declval<M>().row\_capacity()\ )\ \ \ \ nodiscard\_warning\ =\ M().row\_capacity();\ \}\ )\ \&\&}
+\DoxyCodeLine{\mbox{\hyperlink{namespacestd_1_1math_1_1detail_a6661f390a6c982712ceecc4ce1ea0459}{detail::is\_constexpr}}(\ []\{\ \textcolor{keyword}{decltype}(\ declval<M>().column\_capacity()\ )\ nodiscard\_warning\ =\ M().column\_capacity();\ \}\ )\ \&\&}
+\DoxyCodeLine{(\ M().rows()\ \ \ \ ==\ M().row\_capacity()\ )\ \&\&}
+\DoxyCodeLine{(\ M().columns()\ ==\ M().column\_capacity()\ )}
+
+\end{DoxyCode}

@@ -1,0 +1,24 @@
+\hypertarget{conceptstd_1_1math_1_1concepts_1_1vector}{}\doxysection{std\+::math\+::concepts\+::vector Concept Reference}
+\label{conceptstd_1_1math_1_1concepts_1_1vector}\index{std::math::concepts::vector@{std::math::concepts::vector}}
+
+
+{\ttfamily \#include $<$vector\+\_\+concepts.\+hpp$>$}
+
+\doxysubsection{Concept definition}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{keyword}{template}<\textcolor{keyword}{class}\ V>}
+\DoxyCodeLine{\textcolor{keyword}{concept\ }\mbox{\hyperlink{conceptstd_1_1math_1_1concepts_1_1vector}{std::math::concepts::vector}}\ =\ \ \mbox{\hyperlink{conceptstd_1_1math_1_1concepts_1_1vector__data}{vector\_data<V>}}\ \&\&}
+\DoxyCodeLine{\mbox{\hyperlink{conceptstd_1_1math_1_1concepts_1_1tensor}{tensor<V>}}\ \&\&}
+\DoxyCodeLine{\textcolor{keyword}{requires}\ (\ V\ v\ )\ }
+\DoxyCodeLine{\{}
+\DoxyCodeLine{\ \ \mbox{\hyperlink{namespacestd_1_1math_aad19d9284c196e0f59cf9a4e03794b99}{trans}}(\ v\ );}
+\DoxyCodeLine{\ \ \mbox{\hyperlink{namespacestd_1_1math_a381ab766e72b583fd5859302b2c643b2}{conj}}(\ v\ );}
+\DoxyCodeLine{\}\ \&\&}
+\DoxyCodeLine{\textcolor{keyword}{requires}\ (\ V\ v\ )\ }
+\DoxyCodeLine{\{}
+\DoxyCodeLine{\ \ \mbox{\hyperlink{namespacestd_1_1math_ae595d72c25d55b2d8d8086ef2b65bfe2}{inner\_prod}}(\ v,\ v\ );}
+\DoxyCodeLine{\ \ \mbox{\hyperlink{namespacestd_1_1math_a16d9bb61f2dd78e168c6318baed2625b}{outer\_prod}}(\ v,\ v\ );}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}

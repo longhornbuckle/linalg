@@ -1,0 +1,16 @@
+\hypertarget{conceptstd_1_1math_1_1concepts_1_1view__is__constructible__to__tensor}{}\doxysection{std\+::math\+::concepts\+::view\+\_\+is\+\_\+constructible\+\_\+to\+\_\+tensor Concept Reference}
+\label{conceptstd_1_1math_1_1concepts_1_1view__is__constructible__to__tensor}\index{std::math::concepts::view\_is\_constructible\_to\_tensor@{std::math::concepts::view\_is\_constructible\_to\_tensor}}
+
+
+{\ttfamily \#include $<$tensor\+\_\+concepts.\+hpp$>$}
+
+\doxysubsection{Concept definition}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{keyword}{template}<\textcolor{keyword}{class}\ From,\ \textcolor{keyword}{class}\ To>}
+\DoxyCodeLine{\textcolor{keyword}{concept\ }\mbox{\hyperlink{conceptstd_1_1math_1_1concepts_1_1view__is__constructible__to__tensor}{std::math::concepts::view\_is\_constructible\_to\_tensor}}\ =\ }
+\DoxyCodeLine{detail::is\_mdspan\_v<From>\ \&\&\ \mbox{\hyperlink{conceptstd_1_1math_1_1concepts_1_1tensor}{tensor<To>}}\ \&\&}
+\DoxyCodeLine{(\ is\_constructible\_v<typename\ From::value\_type,typename\ To::value\_type>\ )\ \&\&}
+\DoxyCodeLine{detail::extents\_is\_equal\_v<\ typename\ From::extents\_type,\ typename\ To::extents\_type\ >}
+
+\end{DoxyCode}

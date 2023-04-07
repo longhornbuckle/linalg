@@ -1,6 +1,4 @@
 var searchData=
 [
-  ['_7edr_5fmatrix_439',['~dr_matrix',['../classstd_1_1math_1_1dr__matrix.html#a4ee8e8e8935786112b2667526ae00130',1,'std::math::dr_matrix']]],
-  ['_7edr_5ftensor_440',['~dr_tensor',['../classstd_1_1math_1_1dr__tensor.html#a446f23f8f2a5d3841ecbf33ea3dfe0f6',1,'std::math::dr_tensor']]],
-  ['_7edr_5fvector_441',['~dr_vector',['../classstd_1_1math_1_1dr__vector.html#affda3c763eba9e0aab5b9dbc8d1aa0b9',1,'std::math::dr_vector']]]
+  ['vector_5fview_0',['vector_view',['../classstd_1_1math_1_1vector__view.html#ab4ee63af1d5246c4018db18d1e6f3f36',1,'std::math::vector_view::vector_view()=default'],['../classstd_1_1math_1_1vector__view.html#a2b47b4b8fe7ac144c178db91ae2823af',1,'std::math::vector_view::vector_view(vector_view &amp;&amp;rhs)=default'],['../classstd_1_1math_1_1vector__view.html#a25fa1f06417fbb188b97c780d9287981',1,'std::math::vector_view::vector_view(const vector_view &amp;rhs)=default'],['../classstd_1_1math_1_1vector__view.html#aacc58c7ec3ce43a4c40ca721c4ef43f0',1,'std::math::vector_view::vector_view(const underlying_span_type &amp;view) noexcept']]]
 ];

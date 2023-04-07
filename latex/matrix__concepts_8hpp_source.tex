@@ -1,0 +1,209 @@
+\hypertarget{matrix__concepts_8hpp_source}{}\doxysection{matrix\+\_\+concepts.\+hpp}
+\label{matrix__concepts_8hpp_source}\index{include/experimental/linear\_algebra/matrix\_concepts.hpp@{include/experimental/linear\_algebra/matrix\_concepts.hpp}}
+\mbox{\hyperlink{matrix__concepts_8hpp}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#ifndef\ LINEAR\_ALGEBRA\_MATRIX\_CONCEPTS\_HPP}}
+\DoxyCodeLine{00002\ \textcolor{preprocessor}{\#define\ LINEAR\_ALGEBRA\_MATRIX\_CONCEPTS\_HPP}}
+\DoxyCodeLine{00003\ }
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#include\ <\mbox{\hyperlink{linear__algebra_8hpp}{experimental/linear\_algebra.hpp}}>}}
+\DoxyCodeLine{00005\ }
+\DoxyCodeLine{00006\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespacestd}{std}}}
+\DoxyCodeLine{00007\ \{}
+\DoxyCodeLine{00008\ \textcolor{keyword}{namespace\ }math}
+\DoxyCodeLine{00009\ \{}
+\DoxyCodeLine{00010\ \textcolor{keyword}{namespace\ }concepts}
+\DoxyCodeLine{00011\ \{}
+\DoxyCodeLine{00012\ }
+\DoxyCodeLine{00013\ \textcolor{comment}{//=================================================================================================}}
+\DoxyCodeLine{00014\ \textcolor{comment}{//\ \ Matrix\ Concepts}}
+\DoxyCodeLine{00015\ \textcolor{comment}{//=================================================================================================}}
+\DoxyCodeLine{00016\ }
+\DoxyCodeLine{00017\ \textcolor{comment}{//\ All\ matrix\ data\ types\ must\ satisfy\ tensor\ requirements}}
+\DoxyCodeLine{00018\ \textcolor{comment}{//\ All\ matrix\ data\ types\ must\ be\ a\ rank\ 2\ tensor}}
+\DoxyCodeLine{00019\ \textcolor{comment}{//\ All\ matrix\ data\ types\ must\ support\ size\ /\ capacity\ const\ access\ functions}}
+\DoxyCodeLine{00020\ \textcolor{keyword}{template}\ <\ \textcolor{keyword}{class}\ M\ >}
+\DoxyCodeLine{00021\ \textcolor{keyword}{concept\ }\mbox{\hyperlink{conceptstd_1_1math_1_1concepts_1_1matrix__data}{matrix\_data}}\ =\ \mbox{\hyperlink{conceptstd_1_1math_1_1concepts_1_1tensor__data}{tensor\_data<M>}}\ \&\&}
+\DoxyCodeLine{00022\ (\ M::extents\_type::rank()\ ==\ 2\ )\ \&\&}
+\DoxyCodeLine{00023\ \textcolor{keyword}{requires}(\ M\&\ m\ )\ \textcolor{comment}{//\ Functions}}
+\DoxyCodeLine{00024\ \{}
+\DoxyCodeLine{00025\ \ \ \{\ m.columns()\ \}\ \ \ \ \ \ \ \ \ \textcolor{keyword}{noexcept}\ -\/>\ same\_as<\ typename\ M::size\_type\ >;}
+\DoxyCodeLine{00026\ \ \ \{\ m.rows()\ \}\ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{noexcept}\ -\/>\ same\_as<\ typename\ M::size\_type\ >;}
+\DoxyCodeLine{00027\ \ \ \{\ m.column\_capacity()\ \}\ \textcolor{keyword}{noexcept}\ -\/>\ same\_as<\ typename\ M::size\_type\ >;}
+\DoxyCodeLine{00028\ \ \ \{\ m.row\_capacity()\ \}\ \ \ \ \textcolor{keyword}{noexcept}\ -\/>\ same\_as<\ typename\ M::size\_type\ >;}
+\DoxyCodeLine{00029\ \};}
+\DoxyCodeLine{00030\ }
+\DoxyCodeLine{00031\ \textcolor{comment}{//\ Matrix\ must\ be\ a\ matrix\ data}}
+\DoxyCodeLine{00032\ \textcolor{comment}{//\ Matrix\ must\ be\ a\ tensor}}
+\DoxyCodeLine{00033\ \textcolor{comment}{//\ All\ matrix\ data\ types\ must\ support\ unary\ functions:\ trans\ and\ conj}}
+\DoxyCodeLine{00034\ \textcolor{comment}{//\ All\ matrix\ data\ types\ must\ support\ binary\ functions:\ multiplication}}
+\DoxyCodeLine{00035\ \textcolor{keyword}{template}\ <\ \textcolor{keyword}{class}\ M\ >}
+\DoxyCodeLine{00036\ \textcolor{keyword}{concept\ }\mbox{\hyperlink{conceptstd_1_1math_1_1concepts_1_1matrix}{matrix}}\ =\ \mbox{\hyperlink{conceptstd_1_1math_1_1concepts_1_1matrix__data}{matrix\_data<M>}}\ \&\&}
+\DoxyCodeLine{00037\ \mbox{\hyperlink{conceptstd_1_1math_1_1concepts_1_1tensor}{tensor<M>}}\ \&\&}
+\DoxyCodeLine{00038\ \textcolor{keyword}{requires}\ (\ M\ m\ )\ \textcolor{comment}{//\ Unary\ operations}}
+\DoxyCodeLine{00039\ \{}
+\DoxyCodeLine{00040\ \ \ \mbox{\hyperlink{namespacestd_1_1math_aad19d9284c196e0f59cf9a4e03794b99}{trans}}(\ m\ );}
+\DoxyCodeLine{00041\ \ \ \mbox{\hyperlink{namespacestd_1_1math_a381ab766e72b583fd5859302b2c643b2}{conj}}(\ m\ );}
+\DoxyCodeLine{00042\ \}\ \&\&}
+\DoxyCodeLine{00043\ \textcolor{keyword}{requires}\ (\ M\ m\ )\ \textcolor{comment}{//\ Binary\ operations}}
+\DoxyCodeLine{00044\ \{}
+\DoxyCodeLine{00045\ \ \ m\ *\ \mbox{\hyperlink{namespacestd_1_1math_aad19d9284c196e0f59cf9a4e03794b99}{trans}}(\ m\ );}
+\DoxyCodeLine{00046\ \};}
+\DoxyCodeLine{00047\ }
+\DoxyCodeLine{00048\ \textcolor{comment}{//\ Readable\ matrix\ data\ must\ A)\ be\ a\ matrix\ data}}
+\DoxyCodeLine{00049\ \textcolor{comment}{//\ Readable\ matrix\ data\ must\ B)\ be\ a\ readable\ tensor\ data}}
+\DoxyCodeLine{00050\ \textcolor{comment}{//\ Readable\ matrix\ data\ must\ C)\ provide\ index\ access}}
+\DoxyCodeLine{00051\ \textcolor{comment}{//\ Readable\ matrix\ data\ must\ D)\ provide\ a\ two\ dimension\ const\ span\ representation}}
+\DoxyCodeLine{00052\ \textcolor{comment}{//\ Readable\ matrix\ data\ must\ D)\ provide\ an\ implementation\ defined\ view\ of\ the\ underlying\ memory.}}
+\DoxyCodeLine{00053\ \textcolor{comment}{//\ Readable\ matrix\ data\ must\ E)\ provide\ a\ const\ row\ view}}
+\DoxyCodeLine{00054\ \textcolor{comment}{//\ Readable\ matrix\ data\ must\ F)\ provide\ a\ const\ column\ view}}
+\DoxyCodeLine{00055\ \textcolor{comment}{//\ Readable\ matrix\ data\ must\ G)\ provide\ a\ const\ submatrix\ view}}
+\DoxyCodeLine{00056\ \textcolor{keyword}{template}\ <\ \textcolor{keyword}{class}\ M\ >}
+\DoxyCodeLine{00057\ \textcolor{keyword}{concept\ }\mbox{\hyperlink{conceptstd_1_1math_1_1concepts_1_1readable__matrix__data}{readable\_matrix\_data}}\ =\ \mbox{\hyperlink{conceptstd_1_1math_1_1concepts_1_1matrix__data}{matrix\_data<M>}}\ \&\&\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ A)}}
+\DoxyCodeLine{00058\ \mbox{\hyperlink{conceptstd_1_1math_1_1concepts_1_1readable__tensor__data}{readable\_tensor\_data<M>}}\ \&\&\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ B)}}
+\DoxyCodeLine{00059\ \textcolor{keyword}{requires}(\ \textcolor{keyword}{const}\ M\&\ m,\ \textcolor{keyword}{typename}\ M::index\_type\ index1,\ \textcolor{keyword}{typename}\ M::index\_type\ index2\ )\ \textcolor{comment}{//\ C)}}
+\DoxyCodeLine{00060\ \{}
+\DoxyCodeLine{00061\ \ \ \{\ m[index1,index2]\ \}\ \ \ \ \ \ \ \textcolor{keyword}{noexcept}\ -\/>\ same\_as<typename\ M::value\_type>;}
+\DoxyCodeLine{00062\ \ \ \{\ m.at(index1,index2)\ \}\ \ \ \ \ \ \ \ \ \ \ \ \ -\/>\ same\_as<typename\ M::value\_type>;}
+\DoxyCodeLine{00063\ \}\ \&\&}
+\DoxyCodeLine{00064\ (\ M::span\_type::extents\_type::rank()\ ==\ 2\ )\ \&\&\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ D)}}
+\DoxyCodeLine{00065\ \textcolor{keyword}{requires}(\ \textcolor{keyword}{const}\ M\&\ m,\ \textcolor{keyword}{typename}\ M::index\_type\ index\ )\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ E)}}
+\DoxyCodeLine{00066\ \{}
+\DoxyCodeLine{00067\ \ \ \textcolor{keyword}{typename}\ M::const\_row\_type;}
+\DoxyCodeLine{00068\ \ \ \{\ m.row(index)\ \}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ -\/>\ same\_as<typename\ M::const\_row\_type>;}
+\DoxyCodeLine{00069\ \}\ \&\&}
+\DoxyCodeLine{00070\ readable\_vector\_data<typename\ M::const\_row\_type>\ \&\&}
+\DoxyCodeLine{00071\ \textcolor{keyword}{requires}(\ \textcolor{keyword}{const}\ M\&\ m,\ \textcolor{keyword}{typename}\ M::index\_type\ index\ )\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ F)}}
+\DoxyCodeLine{00072\ \{}
+\DoxyCodeLine{00073\ \ \ \textcolor{keyword}{typename}\ M::const\_column\_type;}
+\DoxyCodeLine{00074\ \ \ \{\ m.column(index)\ \}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ -\/>\ same\_as<typename\ M::const\_column\_type>;}
+\DoxyCodeLine{00075\ \}\ \&\&}
+\DoxyCodeLine{00076\ readable\_vector\_data<typename\ M::const\_column\_type>\ \&\&}
+\DoxyCodeLine{00077\ \textcolor{keyword}{requires}(\ \textcolor{keyword}{const}\ M\&\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ m,}
+\DoxyCodeLine{00078\ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{typename}\ M::tuple\_type\ start,}
+\DoxyCodeLine{00079\ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{typename}\ M::tuple\_type\ end\ )\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ G)}}
+\DoxyCodeLine{00080\ \{}
+\DoxyCodeLine{00081\ \ \ \textcolor{keyword}{typename}\ M::const\_submatrix\_type;}
+\DoxyCodeLine{00082\ \ \ \{\ m.submatrix(start,end)\ \}\ \ \ \ \ \ \ \ \ \ -\/>\ same\_as<typename\ M::const\_submatrix\_type>;}
+\DoxyCodeLine{00083\ \ \ \{\ m.submatrix(start,end)\ \}\ \ \ \ \ \ \ \ \ \ -\/>\ matrix;}
+\DoxyCodeLine{00084\ \};}
+\DoxyCodeLine{00085\ }
+\DoxyCodeLine{00086\ \textcolor{comment}{//\ Readable\ matrix\ must\ be\ a\ readable\ matrix\ data}}
+\DoxyCodeLine{00087\ \textcolor{comment}{//\ Readable\ matrix\ must\ be\ a\ matrix}}
+\DoxyCodeLine{00088\ \textcolor{keyword}{template}\ <\ \textcolor{keyword}{class}\ M\ >}
+\DoxyCodeLine{00089\ \textcolor{keyword}{concept\ }\mbox{\hyperlink{conceptstd_1_1math_1_1concepts_1_1readable__matrix}{readable\_matrix}}\ =\ \mbox{\hyperlink{conceptstd_1_1math_1_1concepts_1_1readable__matrix__data}{readable\_matrix\_data<M>}}\ \&\&\ \mbox{\hyperlink{conceptstd_1_1math_1_1concepts_1_1matrix}{matrix<M>}};}
+\DoxyCodeLine{00090\ }
+\DoxyCodeLine{00091\ \textcolor{comment}{//\ Writable\ matrix\ data\ must\ A)\ be\ a\ readable\ matrix}}
+\DoxyCodeLine{00092\ \textcolor{comment}{//\ Writable\ matrix\ data\ must\ B)\ be\ a\ writable\ tensor}}
+\DoxyCodeLine{00093\ \textcolor{comment}{//\ Writable\ matrix\ data\ must\ C)\ provide\ a\ mutable\ scalar\ view}}
+\DoxyCodeLine{00094\ \textcolor{comment}{//\ Writable\ matrix\ data\ must\ D)\ provide\ a\ mutable\ row\ view}}
+\DoxyCodeLine{00095\ \textcolor{comment}{//\ Writable\ matrix\ data\ must\ E)\ provide\ a\ mutable\ column\ view}}
+\DoxyCodeLine{00096\ \textcolor{comment}{//\ Writable\ matrix\ data\ must\ F)\ provide\ a\ mutable\ submatrix\ view}}
+\DoxyCodeLine{00097\ \textcolor{keyword}{template}\ <\ \textcolor{keyword}{class}\ M\ >}
+\DoxyCodeLine{00098\ \textcolor{keyword}{concept\ }\mbox{\hyperlink{conceptstd_1_1math_1_1concepts_1_1writable__matrix__data}{writable\_matrix\_data}}\ =\ \mbox{\hyperlink{conceptstd_1_1math_1_1concepts_1_1readable__matrix__data}{readable\_matrix\_data<M>}}\ \&\&\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ A)}}
+\DoxyCodeLine{00099\ \mbox{\hyperlink{conceptstd_1_1math_1_1concepts_1_1writable__tensor__data}{writable\_tensor\_data<M>}}\ \&\&\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ B)}}
+\DoxyCodeLine{00100\ \textcolor{keyword}{requires}(\ M\&\ m,\ \textcolor{keyword}{typename}\ M::index\_type\ index1,\ \textcolor{keyword}{typename}\ M::index\_type\ index2\ )\ \textcolor{comment}{//\ C)}}
+\DoxyCodeLine{00101\ \{}
+\DoxyCodeLine{00102\ \ \ \textcolor{keyword}{typename}\ M::reference\_type;}
+\DoxyCodeLine{00103\ \ \ \{\ m[index1,index2]\ \}\ \ \ \ \ \ \ \textcolor{keyword}{noexcept}\ -\/>\ same\_as<typename\ M::reference\_type>;}
+\DoxyCodeLine{00104\ \ \ \{\ m.at(index1,index2)\ \}\ \ \ \ \ \ \ \ \ \ \ \ \ -\/>\ same\_as<typename\ M::reference\_type>;}
+\DoxyCodeLine{00105\ \}\ \&\&}
+\DoxyCodeLine{00106\ \textcolor{keyword}{requires}(\ M\&\ m,\ \textcolor{keyword}{typename}\ M::index\_type\ index\ )\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ D)}}
+\DoxyCodeLine{00107\ \{}
+\DoxyCodeLine{00108\ \ \ \textcolor{keyword}{typename}\ M::row\_type;}
+\DoxyCodeLine{00109\ \ \ \{\ m.row(index)\ \}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ -\/>\ same\_as<typename\ M::row\_type>;}
+\DoxyCodeLine{00110\ \}\ \&\&}
+\DoxyCodeLine{00111\ writable\_vector\_data<typename\ M::row\_type>\ \&\&}
+\DoxyCodeLine{00112\ \textcolor{keyword}{requires}(\ M\&\ m,\ \textcolor{keyword}{typename}\ M::index\_type\ index\ )\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ E)}}
+\DoxyCodeLine{00113\ \{}
+\DoxyCodeLine{00114\ \ \ \textcolor{keyword}{typename}\ M::column\_type;}
+\DoxyCodeLine{00115\ \ \ \{\ m.column(index)\ \}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ -\/>\ same\_as<typename\ M::column\_type>;}
+\DoxyCodeLine{00116\ \}\ \&\&}
+\DoxyCodeLine{00117\ writable\_vector\_data<typename\ M::column\_type>\ \&\&}
+\DoxyCodeLine{00118\ \textcolor{keyword}{requires}(\ M\&\ m,}
+\DoxyCodeLine{00119\ \ \ \ \ \ \ \ \ \ \ tuple<typename\ M::index\_type,typename\ M::index\_type>\ start,}
+\DoxyCodeLine{00120\ \ \ \ \ \ \ \ \ \ \ tuple<typename\ M::index\_type,typename\ M::index\_type>\ end\ )\ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ F)}}
+\DoxyCodeLine{00121\ \{}
+\DoxyCodeLine{00122\ \ \ \textcolor{keyword}{typename}\ M::submatrix\_type;}
+\DoxyCodeLine{00123\ \ \ \{\ m.submatrix(start,end)\ \}\ \ \ \ \ \ \ \ \ \ -\/>\ same\_as<typename\ M::submatrix\_type>;}
+\DoxyCodeLine{00124\ \ \ \{\ m.submatrix(start,end)\ \}\ \ \ \ \ \ \ \ \ \ -\/>\ matrix;}
+\DoxyCodeLine{00125\ \};}
+\DoxyCodeLine{00126\ }
+\DoxyCodeLine{00127\ \textcolor{comment}{//\ Writable\ matrix\ must\ be\ a\ writable\ matrix\ data}}
+\DoxyCodeLine{00128\ \textcolor{comment}{//\ Writable\ matrix\ must\ be\ a\ readable\ matrix}}
+\DoxyCodeLine{00129\ \textcolor{keyword}{template}\ <\ \textcolor{keyword}{class}\ M\ >}
+\DoxyCodeLine{00130\ \textcolor{keyword}{concept\ }\mbox{\hyperlink{conceptstd_1_1math_1_1concepts_1_1writable__matrix}{writable\_matrix}}\ =\ \mbox{\hyperlink{conceptstd_1_1math_1_1concepts_1_1writable__matrix__data}{writable\_matrix\_data<M>}}\ \&\&\ \mbox{\hyperlink{conceptstd_1_1math_1_1concepts_1_1readable__matrix}{readable\_matrix<M>}};}
+\DoxyCodeLine{00131\ }
+\DoxyCodeLine{00132\ \textcolor{comment}{//\ Dynamic\ matrix\ data\ must\ be\ a\ matrix\ data}}
+\DoxyCodeLine{00133\ \textcolor{comment}{//\ Dynamic\ matrix\ data\ must\ be\ a\ dynamic\ tensor\ data}}
+\DoxyCodeLine{00134\ \textcolor{keyword}{template}\ <\ \textcolor{keyword}{class}\ M\ >}
+\DoxyCodeLine{00135\ \textcolor{keyword}{concept\ }\mbox{\hyperlink{conceptstd_1_1math_1_1concepts_1_1dynamic__matrix__data}{dynamic\_matrix\_data}}\ =\ \mbox{\hyperlink{conceptstd_1_1math_1_1concepts_1_1matrix__data}{matrix\_data<M>}}\ \&\&}
+\DoxyCodeLine{00136\ \mbox{\hyperlink{conceptstd_1_1math_1_1concepts_1_1dynamic__tensor__data}{dynamic\_tensor\_data<M>}};}
+\DoxyCodeLine{00137\ }
+\DoxyCodeLine{00138\ \textcolor{comment}{//\ Dynamic\ matrix\ must\ be\ a\ dynamic\ matrix\ data}}
+\DoxyCodeLine{00139\ \textcolor{comment}{//\ Dynamic\ matrix\ must\ be\ a\ matrix}}
+\DoxyCodeLine{00140\ \textcolor{keyword}{template}\ <\ \textcolor{keyword}{class}\ M\ >}
+\DoxyCodeLine{00141\ \textcolor{keyword}{concept\ }\mbox{\hyperlink{conceptstd_1_1math_1_1concepts_1_1dynamic__matrix}{dynamic\_matrix}}\ =\ \mbox{\hyperlink{conceptstd_1_1math_1_1concepts_1_1dynamic__matrix__data}{dynamic\_matrix\_data<M>}}\ \&\&}
+\DoxyCodeLine{00142\ \mbox{\hyperlink{conceptstd_1_1math_1_1concepts_1_1matrix}{matrix<M>}};}
+\DoxyCodeLine{00143\ }
+\DoxyCodeLine{00144\ \textcolor{comment}{//\ Fixed\ size\ matrix\ data\ must\ be\ a\ matrix\ data}}
+\DoxyCodeLine{00145\ \textcolor{comment}{//\ Fixed\ size\ matrix\ data\ must\ be\ a\ fixed\ size\ tensor\ data}}
+\DoxyCodeLine{00146\ \textcolor{comment}{//\ A\ fixed\ size\ matrix\ data\ must\ support\ constant\ expression\ size\ functions.}}
+\DoxyCodeLine{00147\ \textcolor{comment}{//\ A\ fixed\ size\ matrix\ data\ must\ support\ constant\ expression\ capacity\ functions.}}
+\DoxyCodeLine{00148\ \textcolor{comment}{//\ A\ fixed\ size\ matrix\ data\ must\ have\ equivalent\ size\ and\ capacity.}}
+\DoxyCodeLine{00149\ \textcolor{keyword}{template}\ <\ \textcolor{keyword}{class}\ M\ >}
+\DoxyCodeLine{00150\ \textcolor{keyword}{concept\ }\mbox{\hyperlink{conceptstd_1_1math_1_1concepts_1_1fixed__size__matrix__data}{fixed\_size\_matrix\_data}}\ =\ \mbox{\hyperlink{conceptstd_1_1math_1_1concepts_1_1matrix__data}{matrix\_data<M>}}\ \&\&}
+\DoxyCodeLine{00151\ \mbox{\hyperlink{conceptstd_1_1math_1_1concepts_1_1fixed__size__tensor__data}{fixed\_size\_tensor\_data<M>}}\ \&\&}
+\DoxyCodeLine{00152\ \mbox{\hyperlink{namespacestd_1_1math_1_1detail_a6661f390a6c982712ceecc4ce1ea0459}{detail::is\_constexpr}}(\ []\{\ \textcolor{keyword}{decltype}(\ declval<M>().rows()\ )\ \ \ \ \ \ \ \ \ \ \ \ nodiscard\_warning\ =\ M().rows();\ \}\ )\ \&\&}
+\DoxyCodeLine{00153\ \mbox{\hyperlink{namespacestd_1_1math_1_1detail_a6661f390a6c982712ceecc4ce1ea0459}{detail::is\_constexpr}}(\ []\{\ \textcolor{keyword}{decltype}(\ declval<M>().columns()\ )\ \ \ \ \ \ \ \ \ nodiscard\_warning\ =\ M().columns();\ \}\ )\ \&\&}
+\DoxyCodeLine{00154\ \mbox{\hyperlink{namespacestd_1_1math_1_1detail_a6661f390a6c982712ceecc4ce1ea0459}{detail::is\_constexpr}}(\ []\{\ \textcolor{keyword}{decltype}(\ declval<M>().row\_capacity()\ )\ \ \ \ nodiscard\_warning\ =\ M().row\_capacity();\ \}\ )\ \&\&}
+\DoxyCodeLine{00155\ \mbox{\hyperlink{namespacestd_1_1math_1_1detail_a6661f390a6c982712ceecc4ce1ea0459}{detail::is\_constexpr}}(\ []\{\ \textcolor{keyword}{decltype}(\ declval<M>().column\_capacity()\ )\ nodiscard\_warning\ =\ M().column\_capacity();\ \}\ )\ \&\&}
+\DoxyCodeLine{00156\ (\ M().rows()\ \ \ \ ==\ M().row\_capacity()\ )\ \&\&}
+\DoxyCodeLine{00157\ (\ M().columns()\ ==\ M().column\_capacity()\ );}
+\DoxyCodeLine{00158\ }
+\DoxyCodeLine{00159\ \textcolor{comment}{//\ Fixed\ size\ matrix\ must\ be\ a\ fixed\ size\ matrix\ data}}
+\DoxyCodeLine{00160\ \textcolor{comment}{//\ Fixed\ size\ matrix\ must\ be\ a\ matrix}}
+\DoxyCodeLine{00161\ \textcolor{keyword}{template}\ <\ \textcolor{keyword}{class}\ M\ >}
+\DoxyCodeLine{00162\ \textcolor{keyword}{concept\ }\mbox{\hyperlink{conceptstd_1_1math_1_1concepts_1_1fixed__size__matrix}{fixed\_size\_matrix}}\ =\ \mbox{\hyperlink{conceptstd_1_1math_1_1concepts_1_1fixed__size__matrix__data}{fixed\_size\_matrix\_data<M>}}\ \&\&}
+\DoxyCodeLine{00163\ \mbox{\hyperlink{conceptstd_1_1math_1_1concepts_1_1matrix}{matrix<M>}};}
+\DoxyCodeLine{00164\ }
+\DoxyCodeLine{00165\ \textcolor{comment}{//=================================================================================================}}
+\DoxyCodeLine{00166\ \textcolor{comment}{//\ \ Additional\ Matrix\ Concepts}}
+\DoxyCodeLine{00167\ \textcolor{comment}{//=================================================================================================}}
+\DoxyCodeLine{00168\ }
+\DoxyCodeLine{00169\ \textcolor{comment}{//\ Matrix\ may\ be\ convertible}}
+\DoxyCodeLine{00170\ \textcolor{comment}{//\ Enforces\ both\ types\ are\ matrix\ which\ have\ convertible\ elements}}
+\DoxyCodeLine{00171\ \textcolor{comment}{//\ and\ both\ rows\ /\ columns\ must\ be\ the\ same\ size\ or\ dynamic}}
+\DoxyCodeLine{00172\ \textcolor{keyword}{template}\ <\ \textcolor{keyword}{class}\ From,\ \textcolor{keyword}{class}\ To\ >}
+\DoxyCodeLine{00173\ \textcolor{keyword}{concept\ }\mbox{\hyperlink{conceptstd_1_1math_1_1concepts_1_1matrix__may__be__convertible}{matrix\_may\_be\_convertible}}\ =}
+\DoxyCodeLine{00174\ \mbox{\hyperlink{conceptstd_1_1math_1_1concepts_1_1matrix}{matrix<From>}}\ \&\&\ \mbox{\hyperlink{conceptstd_1_1math_1_1concepts_1_1matrix}{matrix<To>}}\ \&\&}
+\DoxyCodeLine{00175\ (\ is\_convertible\_v<\ typename\ From::value\_type,\ typename\ To::value\_type\ >\ )\ \&\&}
+\DoxyCodeLine{00176\ (\ (\ From::extents\_type::static\_extent(0)\ ==\ To::extents\_type::static\_extent(0)\ )\ ||}
+\DoxyCodeLine{00177\ \ \ (\ From::extents\_type::static\_extent(0)\ ==\ std::experimental::dynamic\_extent\ )\ ||}
+\DoxyCodeLine{00178\ \ \ (\ To::extents\_type::static\_extent(0)\ ==\ std::experimental::dynamic\_extent\ )\ )\ \&\&}
+\DoxyCodeLine{00179\ (\ (\ From::extents\_type::static\_extent(1)\ ==\ To::extents\_type::static\_extent(1)\ )\ ||}
+\DoxyCodeLine{00180\ \ \ (\ From::extents\_type::static\_extent(1)\ ==\ std::experimental::dynamic\_extent\ )\ ||}
+\DoxyCodeLine{00181\ \ \ (\ To::extents\_type::static\_extent(1)\ ==\ std::experimental::dynamic\_extent\ )\ );}
+\DoxyCodeLine{00182\ }
+\DoxyCodeLine{00183\ \textcolor{comment}{//\ View\ may\ be\ convertible\ to\ matrix}}
+\DoxyCodeLine{00184\ \textcolor{comment}{//\ Enforces\ view\ is\ an\ mdspan\ of\ rank\ 2\ with\ elements\ convertible\ to}}
+\DoxyCodeLine{00185\ \textcolor{comment}{//\ the\ matrix\ elements\ and\ a\ view\ which\ may\ be\ same\ size\ as\ the\ matrix}}
+\DoxyCodeLine{00186\ \textcolor{keyword}{template}\ <\ \textcolor{keyword}{class}\ From,\ \textcolor{keyword}{class}\ To\ >}
+\DoxyCodeLine{00187\ \textcolor{keyword}{concept\ }\mbox{\hyperlink{conceptstd_1_1math_1_1concepts_1_1view__may__be__convertible__to__matrix}{view\_may\_be\_convertible\_to\_matrix}}\ =}
+\DoxyCodeLine{00188\ detail::is\_mdspan\_v<From>\ \&\&\ \mbox{\hyperlink{conceptstd_1_1math_1_1concepts_1_1matrix}{matrix<To>}}\ \&\&}
+\DoxyCodeLine{00189\ (\ From::rank()\ ==\ 2\ )\ \&\&}
+\DoxyCodeLine{00190\ \mbox{\hyperlink{conceptstd_1_1math_1_1concepts_1_1matrix}{matrix<To>}}\ \&\&}
+\DoxyCodeLine{00191\ (\ is\_convertible\_v<typename\ From::value\_type,typename\ To::value\_type>\ )\ \&\&}
+\DoxyCodeLine{00192\ (\ (\ From::extents\_type::static\_extent(0)\ ==\ To::extents\_type::static\_extent(0)\ )\ ||}
+\DoxyCodeLine{00193\ \ \ (\ From::extents\_type::static\_extent(0)\ ==\ std::experimental::dynamic\_extent\ )\ ||}
+\DoxyCodeLine{00194\ \ \ (\ To::extents\_type::static\_extent(0)\ ==\ std::experimental::dynamic\_extent\ )\ )\ \&\&}
+\DoxyCodeLine{00195\ (\ (\ From::extents\_type::static\_extent(1)\ ==\ To::extents\_type::static\_extent(1)\ )\ ||}
+\DoxyCodeLine{00196\ \ \ (\ From::extents\_type::static\_extent(1)\ ==\ std::experimental::dynamic\_extent\ )\ ||}
+\DoxyCodeLine{00197\ \ \ (\ To::extents\_type::static\_extent(1)\ ==\ std::experimental::dynamic\_extent\ )\ );}
+\DoxyCodeLine{00198\ }
+\DoxyCodeLine{00199\ \}\ \ \ \ \ \ \ \textcolor{comment}{//-\/\ concepts\ namespace}}
+\DoxyCodeLine{00200\ \}\ \ \ \ \ \ \ \textcolor{comment}{//-\/\ math\ namespace}}
+\DoxyCodeLine{00201\ \}\ \ \ \ \ \ \ \textcolor{comment}{//-\/\ std\ namespace}}
+\DoxyCodeLine{00202\ }
+\DoxyCodeLine{00203\ \textcolor{preprocessor}{\#endif\ \ }\textcolor{comment}{//-\/\ LINEAR\_ALGEBRA\_MATRIX\_CONCEPTS\_HPP\_DEFINED}}
+
+\end{DoxyCode}

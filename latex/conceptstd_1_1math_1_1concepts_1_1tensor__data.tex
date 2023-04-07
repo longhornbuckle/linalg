@@ -1,0 +1,29 @@
+\hypertarget{conceptstd_1_1math_1_1concepts_1_1tensor__data}{}\doxysection{std\+::math\+::concepts\+::tensor\+\_\+data Concept Reference}
+\label{conceptstd_1_1math_1_1concepts_1_1tensor__data}\index{std::math::concepts::tensor\_data@{std::math::concepts::tensor\_data}}
+
+
+{\ttfamily \#include $<$tensor\+\_\+concepts.\+hpp$>$}
+
+\doxysubsection{Concept definition}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{keyword}{template}<\textcolor{keyword}{class}\ T>}
+\DoxyCodeLine{\textcolor{keyword}{concept\ }\mbox{\hyperlink{conceptstd_1_1math_1_1concepts_1_1tensor__data}{std::math::concepts::tensor\_data}}\ =\ \ \textcolor{keyword}{requires}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\{}
+\DoxyCodeLine{\ \ \textcolor{keyword}{typename}\ T::value\_type;}
+\DoxyCodeLine{\ \ \textcolor{keyword}{typename}\ T::index\_type;}
+\DoxyCodeLine{\ \ \textcolor{keyword}{typename}\ T::size\_type;}
+\DoxyCodeLine{\ \ \textcolor{keyword}{typename}\ T::extents\_type;}
+\DoxyCodeLine{\}\ \&\&}
+\DoxyCodeLine{(\ detail::is\_extents\_v<typename\ T::extents\_type>\ )\ \&\&}
+\DoxyCodeLine{\textcolor{keyword}{requires}(\ T\&\ t\ )\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\{}
+\DoxyCodeLine{\ \ \{\ t.size()\ \}\ \ \ \ \ \textcolor{keyword}{noexcept};}
+\DoxyCodeLine{\ \ \{\ t.capacity()\ \}\ \textcolor{keyword}{noexcept};}
+\DoxyCodeLine{\}\ \&\&}
+\DoxyCodeLine{(\ is\_same\_v<\ decltype(\ declval<T>().size()\ ),\ \textcolor{keyword}{typename}\ T::extents\_type\ >\ ||}
+\DoxyCodeLine{\ \ (\ is\_same\_v<\ \textcolor{keyword}{decltype}(\ declval<T>().size()\ ),\ \textcolor{keyword}{typename}\ T::size\_type\ >\ \&\&\ (\ T::extents\_type::rank()\ ==\ 1\ )\ )\ )\ \&\&}
+\DoxyCodeLine{(\ is\_same\_v<\ \textcolor{keyword}{decltype}(\ declval<T>().capacity()\ ),\ \textcolor{keyword}{typename}\ T::extents\_type\ >\ ||}
+\DoxyCodeLine{\ \ (\ is\_same\_v<\ \textcolor{keyword}{decltype}(\ declval<T>().capacity()\ ),\ \textcolor{keyword}{typename}\ T::size\_type\ >\ \&\&\ (\ T::extents\_type::rank()\ ==\ 1\ )\ )\ )}
+
+\end{DoxyCode}

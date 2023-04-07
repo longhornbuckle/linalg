@@ -1,0 +1,1092 @@
+\hypertarget{instant__evaluated__operations_8hpp_source}{}\doxysection{instant\+\_\+evaluated\+\_\+operations.\+hpp}
+\label{instant__evaluated__operations_8hpp_source}\index{include/experimental/linear\_algebra/instant\_evaluated\_operations.hpp@{include/experimental/linear\_algebra/instant\_evaluated\_operations.hpp}}
+\mbox{\hyperlink{instant__evaluated__operations_8hpp}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{comment}{//==================================================================================================}}
+\DoxyCodeLine{00002\ \textcolor{comment}{//\ \ File:\ \ \ \ \ \ \ instant\_evaluated\_operations.hpp}}
+\DoxyCodeLine{00003\ \textcolor{comment}{//}}
+\DoxyCodeLine{00004\ \textcolor{comment}{//\ \ Summary:\ \ \ \ Provides\ definitions\ for\ unary\ and\ binary\ operations\ on\ tensors,\ matrices,\ vectors.}}
+\DoxyCodeLine{00005\ \textcolor{comment}{//\ \ \ \ \ \ \ \ \ \ \ \ \ \ Operations\ are\ defined\ such\ that\ the\ result\ is\ immediately\ computed.}}
+\DoxyCodeLine{00006\ \textcolor{comment}{//==================================================================================================}}
+\DoxyCodeLine{00007\ }
+\DoxyCodeLine{00008\ \textcolor{preprocessor}{\#ifndef\ LINEAR\_ALGEBRA\_INSTANT\_EVALUATED\_OPERATIONS\_HPP}}
+\DoxyCodeLine{00009\ \textcolor{preprocessor}{\#define\ LINEAR\_ALGEBRA\_INSTANT\_EVALUATED\_OPERATIONS\_HPP}}
+\DoxyCodeLine{00010\ }
+\DoxyCodeLine{00011\ \textcolor{preprocessor}{\#include\ <\mbox{\hyperlink{linear__algebra_8hpp}{experimental/linear\_algebra.hpp}}>}}
+\DoxyCodeLine{00012\ }
+\DoxyCodeLine{00013\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespacestd}{std}}}
+\DoxyCodeLine{00014\ \{}
+\DoxyCodeLine{00015\ \textcolor{keyword}{namespace\ }math}
+\DoxyCodeLine{00016\ \{}
+\DoxyCodeLine{00017\ \textcolor{keyword}{namespace\ }instant\_evaluated\_operations}
+\DoxyCodeLine{00018\ \{}
+\DoxyCodeLine{00019\ }
+\DoxyCodeLine{00021\ \textcolor{keyword}{template}\ <\ concepts::tensor\_data\ T\ >}
+\DoxyCodeLine{00022\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classstd_1_1math_1_1instant__evaluated__operations_1_1negation}{negation}}}
+\DoxyCodeLine{00023\ \{}
+\DoxyCodeLine{00024\ \ \ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00025\ \ \ \ \ \textcolor{comment}{//-\/\ Types}}
+\DoxyCodeLine{00026\ }
+\DoxyCodeLine{00028\ \ \ \ \ \textcolor{keyword}{using\ }\mbox{\hyperlink{classstd_1_1math_1_1instant__evaluated__operations_1_1negation_a0abbbb64f6d7eae2d8516a068fd20259}{tensor\_type}}\ \ \ \ \ \ \ \ =\ T;}
+\DoxyCodeLine{00029\ \ \ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00030\ \ \ \ \ \textcolor{comment}{//\ Aliases}}
+\DoxyCodeLine{00031\ \ \ \ \ \textcolor{keyword}{using\ }result\_value\_type\ \ =\ decay\_t<\ \textcolor{keyword}{decltype}(\ -\/\ declval<typename\ tensor\_type::value\_type>()\ )\ >;}
+\DoxyCodeLine{00032\ \ \ \ \ \textcolor{keyword}{using\ }result\_tensor\_type\ =\ \textcolor{keyword}{typename}\ tensor\_type::template\ rebind\_t<result\_value\_type>;}
+\DoxyCodeLine{00033\ \ \ \ \ \textcolor{comment}{//\ Gets\ necessary\ arguments\ for\ constrution}}
+\DoxyCodeLine{00034\ \ \ \ \ \textcolor{comment}{//\ If\ engine\ type\ is\ fixed\ size,\ then\ the\ lambda\ expression\ is\ the\ only\ argument\ needed}}
+\DoxyCodeLine{00035\ \ \ \ \ \textcolor{keyword}{template}\ <\ \textcolor{keyword}{class}\ Lambda\ >}
+\DoxyCodeLine{00036\ \ \ \ \ [[nodiscard]]\ \textcolor{keyword}{static}\ \textcolor{keyword}{inline}\ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{decltype}(\textcolor{keyword}{auto})\ collect\_ctor\_args(\ [[maybe\_unused]]\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classstd_1_1math_1_1instant__evaluated__operations_1_1negation_a0abbbb64f6d7eae2d8516a068fd20259}{tensor\_type}}\&,\ Lambda\&\&\ lambda\ )\ \textcolor{keyword}{noexcept}}
+\DoxyCodeLine{00037\ \ \ \ \ \ \ \textcolor{keyword}{requires}\ \mbox{\hyperlink{conceptstd_1_1math_1_1concepts_1_1fixed__size__tensor__data}{concepts::fixed\_size\_tensor\_data<result\_tensor\_type>}}\ \{\ \textcolor{keywordflow}{return}\ tuple(\ forward<Lambda>(\ lambda\ )\ );\ \}}
+\DoxyCodeLine{00038\ \ \ \ \ \textcolor{comment}{//\ If\ the\ engine\ type\ is\ dynamic,\ then\ size\ and\ capacity\ must\ be\ provided\ along\ with\ the\ lambda\ expression.}}
+\DoxyCodeLine{00039\ \ \ \ \ \textcolor{comment}{//\ Additionally,\ if\ all\ allocators\ of\ the\ desired\ type\ are\ not\ the\ same\ or\ cannot\ be\ default\ constructed,\ then\ it\ must\ be}}
+\DoxyCodeLine{00040\ \ \ \ \ \textcolor{comment}{//\ passed\ along\ as\ well.}}
+\DoxyCodeLine{00041\ \ \ \ \ \textcolor{keyword}{template}\ <\ \textcolor{keyword}{class}\ Lambda\ >}
+\DoxyCodeLine{00042\ \ \ \ \ [[nodiscard]]\ \textcolor{keyword}{static}\ \textcolor{keyword}{inline}\ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{decltype}(\textcolor{keyword}{auto})\ collect\_ctor\_args(\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classstd_1_1math_1_1instant__evaluated__operations_1_1negation_a0abbbb64f6d7eae2d8516a068fd20259}{tensor\_type}}\&\ t,\ Lambda\&\&\ lambda\ )\ \textcolor{keyword}{noexcept}}
+\DoxyCodeLine{00043\ \ \ \ \ \ \ \textcolor{keyword}{requires}\ \mbox{\hyperlink{conceptstd_1_1math_1_1concepts_1_1dynamic__tensor__data}{concepts::dynamic\_tensor\_data<result\_tensor\_type>}}}
+\DoxyCodeLine{00044\ \ \ \ \ \{}
+\DoxyCodeLine{00045\ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ \textcolor{keyword}{constexpr}\ (\ is\_default\_constructible\_v<typename\ result\_tensor\_type::allocator\_type>\ \&\&}
+\DoxyCodeLine{00046\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ allocator\_traits<typename\ result\_tensor\_type::allocator\_type>::is\_always\_equal::value\ )}
+\DoxyCodeLine{00047\ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00048\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ tuple(\ t.size(),\ t.capacity(),\ forward<Lambda>(\ lambda\ )\ );}
+\DoxyCodeLine{00049\ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00050\ \ \ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{00051\ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00052\ \ \ \ \ \ \ \ \ \textcolor{keyword}{using\ }result\_alloc\_type\ =\ allocator\_traits<typename\ tensor\_type::allocator\_type>::template\ rebind\_alloc<result\_value\_type>;}
+\DoxyCodeLine{00053\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ tuple(\ t.size(),\ t.capacity(),\ forward<Lambda>(\ lambda\ ),\ result\_alloc\_type(\ t.get\_allocator()\ )\ );}
+\DoxyCodeLine{00054\ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00055\ \ \ \ \ \}}
+\DoxyCodeLine{00056\ \ \ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00057\ \ \ \ \ \textcolor{comment}{//-\/\ Operations}}
+\DoxyCodeLine{00058\ }
+\DoxyCodeLine{00060\ \ \ \ \ [[nodiscard]]\ \textcolor{keyword}{static}\ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{auto}\ \mbox{\hyperlink{classstd_1_1math_1_1instant__evaluated__operations_1_1negation_a871eebfdb4d82ac0b7f963870b0438bc}{negate}}(\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classstd_1_1math_1_1instant__evaluated__operations_1_1negation_a0abbbb64f6d7eae2d8516a068fd20259}{tensor\_type}}\&\ t\ )}
+\DoxyCodeLine{00061\ \ \ \ \ \ \ \textcolor{keyword}{noexcept}(\ \textcolor{keyword}{noexcept}(\ detail::make\_from\_tuple<\ result\_tensor\_type\ >(}
+\DoxyCodeLine{00062\ \ \ \ \ \ \ \ \ collect\_ctor\_args(\ declval<const\ tensor\_type\&>(),}
+\DoxyCodeLine{00063\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ [\&t]<\ \textcolor{keyword}{class}\ ...\ IndexType\ >(\ IndexType\ ...\ indices\ )\ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{noexcept}\ \{\ \textcolor{keywordflow}{return}\ -\/(\ t[\ indices\ ...\ ]\ );\ \}\ )\ )\ )\ )}
+\DoxyCodeLine{00064\ \ \ \ \ \{}
+\DoxyCodeLine{00065\ \ \ \ \ \ \ \textcolor{comment}{//\ Define\ negation\ operation\ on\ each\ element}}
+\DoxyCodeLine{00066\ \ \ \ \ \ \ \textcolor{keyword}{auto}\ negate\_lambda\ =\ [\&t]<\ \textcolor{keyword}{class\ }...\ IndexType\ >(\ IndexType\ ...\ indices\ )\ constexpr\ noexcept\ \{\ \textcolor{keywordflow}{return}\ -\/(\ t[\ indices\ ...\ ]\ );\ \};}
+\DoxyCodeLine{00067\ \ \ \ \ \ \ \textcolor{comment}{//\ Construct\ negated\ tensor}}
+\DoxyCodeLine{00068\ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ detail::make\_from\_tuple<result\_tensor\_type>(\ collect\_ctor\_args(\ t,\ negate\_lambda\ )\ );}
+\DoxyCodeLine{00069\ \ \ \ \ \}}
+\DoxyCodeLine{00070\ \};}
+\DoxyCodeLine{00071\ }
+\DoxyCodeLine{00075\ \textcolor{keyword}{template}\ <\ concepts::tensor\_data\ T1,\ concepts::tensor\_data\ T2\ >}
+\DoxyCodeLine{00076\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classstd_1_1math_1_1instant__evaluated__operations_1_1addition}{addition}}}
+\DoxyCodeLine{00077\ \{}
+\DoxyCodeLine{00078\ \ \ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00079\ \ \ \ \ \textcolor{comment}{//-\/\ Types}}
+\DoxyCodeLine{00080\ }
+\DoxyCodeLine{00082\ \ \ \ \ \textcolor{keyword}{using\ }\mbox{\hyperlink{classstd_1_1math_1_1instant__evaluated__operations_1_1addition_ae8208bdc4ce66e70b1c7ef8893c7de49}{first\_tensor\_type}}\ \ =\ T1;}
+\DoxyCodeLine{00084\ \ \ \ \ \textcolor{keyword}{using\ }\mbox{\hyperlink{classstd_1_1math_1_1instant__evaluated__operations_1_1addition_a523ea84cadfd07ba2ee7146086784296}{second\_tensor\_type}}\ =\ T2;}
+\DoxyCodeLine{00085\ \ \ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00086\ \ \ \ \ \textcolor{comment}{//\ Aliases}}
+\DoxyCodeLine{00087\ \ \ \ \ \textcolor{keyword}{using\ }result\_value\_type\ \ =\ decay\_t<\ decltype(\ declval<typename\ first\_tensor\_type::value\_type>()\ +\ declval<typename\ second\_tensor\_type::value\_type>()\ )\ >;}
+\DoxyCodeLine{00088\ \ \ \ \ \textcolor{keyword}{using\ }result\_tensor\_type\ =\ conditional\_t<\ concepts::dynamic\_tensor\_data<first\_tensor\_type>\ \&\&}
+\DoxyCodeLine{00089\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{conceptstd_1_1math_1_1concepts_1_1fixed__size__tensor__data}{concepts::fixed\_size\_tensor\_data<second\_tensor\_type>}},}
+\DoxyCodeLine{00090\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{typename}\ second\_tensor\_type::template\ rebind\_t<result\_value\_type>,}
+\DoxyCodeLine{00091\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{typename}\ first\_tensor\_type::template\ rebind\_t<result\_value\_type>\ >;}
+\DoxyCodeLine{00092\ \ \ \ \ \textcolor{comment}{//\ Gets\ necessary\ arguments\ for\ constrution}}
+\DoxyCodeLine{00093\ \ \ \ \ \textcolor{comment}{//\ If\ engine\ type\ is\ fixed\ size,\ then\ the\ lambda\ expression\ is\ the\ only\ argument\ needed}}
+\DoxyCodeLine{00094\ \ \ \ \ \textcolor{keyword}{template}\ <\ \textcolor{keyword}{class}\ Lambda\ >}
+\DoxyCodeLine{00095\ \ \ \ \ [[nodiscard]]\ \textcolor{keyword}{static}\ \textcolor{keyword}{inline}\ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{auto}\ collect\_ctor\_args(\ [[maybe\_unused]]\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classstd_1_1math_1_1instant__evaluated__operations_1_1addition_ae8208bdc4ce66e70b1c7ef8893c7de49}{first\_tensor\_type}}\&,\ [[maybe\_unused]]\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classstd_1_1math_1_1instant__evaluated__operations_1_1addition_a523ea84cadfd07ba2ee7146086784296}{second\_tensor\_type}}\&,\ Lambda\&\&\ lambda\ )\ \textcolor{keyword}{noexcept}}
+\DoxyCodeLine{00096\ \ \ \ \ \ \ \textcolor{keyword}{requires}\ \mbox{\hyperlink{conceptstd_1_1math_1_1concepts_1_1fixed__size__tensor__data}{concepts::fixed\_size\_tensor\_data<result\_tensor\_type>}}}
+\DoxyCodeLine{00097\ \ \ \ \ \{\ \textcolor{keywordflow}{return}\ tuple(\ forward<Lambda>(\ lambda\ )\ );\ \}}
+\DoxyCodeLine{00098\ \ \ \ \ \textcolor{comment}{//\ If\ the\ engine\ type\ is\ dynamic,\ then\ size\ and\ capacity\ must\ be\ provided\ along\ with\ the\ lambda\ expression.}}
+\DoxyCodeLine{00099\ \ \ \ \ \textcolor{comment}{//\ Additionally,\ if\ all\ allocators\ of\ the\ desired\ type\ are\ not\ the\ same\ or\ cannot\ be\ default\ cosntructed,\ then\ it\ must\ be}}
+\DoxyCodeLine{00100\ \ \ \ \ \textcolor{comment}{//\ passed\ along\ as\ well.}}
+\DoxyCodeLine{00101\ \ \ \ \ \textcolor{keyword}{template}\ <\ \textcolor{keyword}{class}\ Lambda\ >}
+\DoxyCodeLine{00102\ \ \ \ \ [[nodiscard]]\ \textcolor{keyword}{static}\ \textcolor{keyword}{inline}\ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{auto}\ collect\_ctor\_args(\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classstd_1_1math_1_1instant__evaluated__operations_1_1addition_ae8208bdc4ce66e70b1c7ef8893c7de49}{first\_tensor\_type}}\&\ t1,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classstd_1_1math_1_1instant__evaluated__operations_1_1addition_a523ea84cadfd07ba2ee7146086784296}{second\_tensor\_type}}\&\ t2,\ Lambda\&\&\ lambda\ )\ \textcolor{keyword}{noexcept}}
+\DoxyCodeLine{00103\ \ \ \ \ \ \ \textcolor{keyword}{requires}\ \mbox{\hyperlink{conceptstd_1_1math_1_1concepts_1_1dynamic__tensor__data}{concepts::dynamic\_tensor\_data<result\_tensor\_type>}}}
+\DoxyCodeLine{00104\ \ \ \ \ \{}
+\DoxyCodeLine{00105\ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ \textcolor{keyword}{constexpr}\ (\ is\_default\_constructible\_v<typename\ result\_tensor\_type::allocator\_type>\ \&\&}
+\DoxyCodeLine{00106\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ allocator\_traits<typename\ result\_tensor\_type::allocator\_type>::is\_always\_equal::value\ )}
+\DoxyCodeLine{00107\ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00108\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ \textcolor{keyword}{constexpr}\ (\ is\_same\_v<first\_tensor\_type,result\_tensor\_type>\ )}
+\DoxyCodeLine{00109\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00110\ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ tuple(\ t1.size(),\ t1.capacity(),\ forward<Lambda>(\ lambda\ )\ );}
+\DoxyCodeLine{00111\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00112\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{00113\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00114\ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ tuple(\ t2.size(),\ t2.capacity(),\ forward<Lambda>(\ lambda\ )\ );}
+\DoxyCodeLine{00115\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00116\ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00117\ \ \ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{00118\ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00119\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ \textcolor{keyword}{constexpr}\ (\ is\_same\_v<first\_tensor\_type,result\_tensor\_type>\ )}
+\DoxyCodeLine{00120\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00121\ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{using\ }result\_alloc\_type\ =\ allocator\_traits<typename\ first\_tensor\_type::allocator\_type>::template\ rebind\_alloc<result\_value\_type>;}
+\DoxyCodeLine{00122\ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ tuple(\ t1.size(),\ t1.capacity(),\ forward<Lambda>(\ lambda\ ),\ result\_alloc\_type(\ t1.get\_allocator()\ )\ );}
+\DoxyCodeLine{00123\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00124\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{00125\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00126\ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{using\ }result\_alloc\_type\ =\ allocator\_traits<typename\ second\_tensor\_type::allocator\_type>::template\ rebind\_alloc<result\_value\_type>;}
+\DoxyCodeLine{00127\ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ tuple(\ t2.size(),\ t2.capacity(),\ forward<Lambda>(\ lambda\ ),\ result\_alloc\_type(\ t2.get\_allocator()\ )\ );}
+\DoxyCodeLine{00128\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00129\ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00130\ \ \ \ \ \}}
+\DoxyCodeLine{00131\ \ \ \ \ \textcolor{comment}{//\ LEAVING\ FOR\ REFERENCE\ IN\ CASE\ NEED\ LATER}}
+\DoxyCodeLine{00132\ \ \ \ \ \textcolor{comment}{//\ template\ <\ class\ T1,\ class\ T2,\ class\ ...\ IndexType\ >}}
+\DoxyCodeLine{00133\ \ \ \ \ \textcolor{comment}{//\ struct\ Lambda\_helper2}}
+\DoxyCodeLine{00134\ \ \ \ \ \textcolor{comment}{//\ \{}}
+\DoxyCodeLine{00135\ \ \ \ \ \textcolor{comment}{//\ \ \ T1\&\&\ t1;}}
+\DoxyCodeLine{00136\ \ \ \ \ \textcolor{comment}{//\ \ \ T2\&\&\ t2;}}
+\DoxyCodeLine{00137\ \ \ \ \ \textcolor{comment}{//\ \ \ [[nodiscard]]\ constexpr\ auto\ add\_lambda()\ noexcept}}
+\DoxyCodeLine{00138\ \ \ \ \ \textcolor{comment}{//\ \ \ \ \ \{\ return\ [this](\ IndexType\ ...\ indices\ )\ constexpr\ noexcept\ \{\ return\ this-\/>t1[\ indices\ ...\ ]\ +\ this-\/>t2[\ indices\ ...\ ];\ \};\ \}}}
+\DoxyCodeLine{00139\ \ \ \ \ \textcolor{comment}{//\ \};}}
+\DoxyCodeLine{00140\ \ \ \ \ \textcolor{comment}{//\ template\ <\ class\ T1,\ class\ T2,\ class\ T3\ >}}
+\DoxyCodeLine{00141\ \ \ \ \ \textcolor{comment}{//\ struct\ Lambda\_helper\ \{\ \};}}
+\DoxyCodeLine{00142\ \ \ \ \ \textcolor{comment}{//\ template\ <\ class\ T1,\ class\ T2,\ class\ IndexType,\ IndexType\ ...\ Indices\ >}}
+\DoxyCodeLine{00143\ \ \ \ \ \textcolor{comment}{//\ struct\ Lambda\_helper<\ T1,\ T2,\ integer\_sequence<\ IndexType,\ Indices\ ...\ >\ >}}
+\DoxyCodeLine{00144\ \ \ \ \ \textcolor{comment}{//\ \{}}
+\DoxyCodeLine{00145\ \ \ \ \ \textcolor{comment}{//\ \ \ using\ more\_helper\ =\ Lambda\_helper2<\ T1,\ T2,\ decltype(\ get<Indices>(\ make\_tuple(\ Indices\ ...\ )\ )\ )\ ...\ >;}}
+\DoxyCodeLine{00146\ \ \ \ \ \textcolor{comment}{//\ \};}}
+\DoxyCodeLine{00147\ \ \ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00148\ \ \ \ \ \textcolor{comment}{//-\/\ Operations}}
+\DoxyCodeLine{00149\ }
+\DoxyCodeLine{00151\ \ \ \ \ [[nodiscard]]\ \textcolor{keyword}{static}\ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{auto}\ \mbox{\hyperlink{classstd_1_1math_1_1instant__evaluated__operations_1_1addition_af5127bfc49bae4e92410f349aef14198}{add}}(\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classstd_1_1math_1_1instant__evaluated__operations_1_1addition_ae8208bdc4ce66e70b1c7ef8893c7de49}{first\_tensor\_type}}\&\ t1,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classstd_1_1math_1_1instant__evaluated__operations_1_1addition_a523ea84cadfd07ba2ee7146086784296}{second\_tensor\_type}}\&\ t2\ )}
+\DoxyCodeLine{00152\ \ \ \ \ \ \ \textcolor{keyword}{noexcept}(\ \textcolor{keyword}{noexcept}(\ detail::make\_from\_tuple<\ result\_tensor\_type\ >(}
+\DoxyCodeLine{00153\ \ \ \ \ \ \ \ \ collect\_ctor\_args(\ declval<const\ first\_tensor\_type\&>(),}
+\DoxyCodeLine{00154\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ declval<const\ second\_tensor\_type\&>(),}
+\DoxyCodeLine{00155\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ [\&t1,\&t2]<\ \textcolor{keyword}{class}\ ...\ IndexType\ >(\ IndexType\ ...\ indices\ )\ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{noexcept}}
+\DoxyCodeLine{00156\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{\ \textcolor{keywordflow}{return}\ t1[\ indices\ ...\ ]\ +\ t2[\ indices\ ...\ ];\ \}\ )\ )\ )\ )}
+\DoxyCodeLine{00157\ \ \ \ \ \{}
+\DoxyCodeLine{00158\ \ \ \ \ \ \ \textcolor{comment}{//\ LEAVING\ FOR\ REFERENCE\ IN\ CASE\ NEED\ LATER}}
+\DoxyCodeLine{00159\ \ \ \ \ \ \ \textcolor{comment}{//\ Define\ addition\ operation\ on\ each\ element\ pair}}
+\DoxyCodeLine{00160\ \ \ \ \ \ \ \textcolor{comment}{//\ auto\ add\_lambda\ =\ typename\ Lambda\_helper<\ const\ first\_tensor\_type\&,}}
+\DoxyCodeLine{00161\ \ \ \ \ \ \ \textcolor{comment}{//\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ const\ second\_tensor\_type\&,}}
+\DoxyCodeLine{00162\ \ \ \ \ \ \ \textcolor{comment}{//\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ make\_integer\_sequence<\ typename\ result\_tensor\_type::index\_type,}}
+\DoxyCodeLine{00163\ \ \ \ \ \ \ \textcolor{comment}{//\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ result\_tensor\_type::extents\_type::rank()\ >\ >::more\_helper}}
+\DoxyCodeLine{00164\ \ \ \ \ \ \ \textcolor{comment}{//\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (\ t1,\ t2\ ).add\_lambda();}}
+\DoxyCodeLine{00165\ \ \ \ \ \ \ \textcolor{keyword}{auto}\ add\_lambda\ =\ [\&t1,\&t2]<\ \textcolor{keyword}{class\ }...\ IndexType\ >(\ IndexType\ ...\ indices\ )\ constexpr\ noexcept}
+\DoxyCodeLine{00166\ \ \ \ \ \ \ \ \ \{\ \textcolor{keywordflow}{return}\ t1[\ indices\ ...\ ]\ +\ t2[\ indices\ ...\ ];\ \};}
+\DoxyCodeLine{00167\ \ \ \ \ \ \ \textcolor{comment}{//\ Construct\ addition\ tensor}}
+\DoxyCodeLine{00168\ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ detail::make\_from\_tuple<result\_tensor\_type>(\ collect\_ctor\_args(\ t1,\ t2,\ add\_lambda\ )\ );}
+\DoxyCodeLine{00169\ \ \ \ \ \}}
+\DoxyCodeLine{00171\ \ \ \ \ [[nodiscard]]\ \textcolor{keyword}{static}\ \textcolor{keyword}{constexpr}\ \mbox{\hyperlink{classstd_1_1math_1_1instant__evaluated__operations_1_1addition_ae8208bdc4ce66e70b1c7ef8893c7de49}{first\_tensor\_type}}\&\ \mbox{\hyperlink{classstd_1_1math_1_1instant__evaluated__operations_1_1addition_a69fbd8e7bdf4675139fb2e2e6af9375f}{add}}(\ \mbox{\hyperlink{classstd_1_1math_1_1instant__evaluated__operations_1_1addition_ae8208bdc4ce66e70b1c7ef8893c7de49}{first\_tensor\_type}}\&\ t1,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classstd_1_1math_1_1instant__evaluated__operations_1_1addition_a523ea84cadfd07ba2ee7146086784296}{second\_tensor\_type}}\&\ t2\ )}
+\DoxyCodeLine{00172\ \ \ \ \ \ \ \textcolor{keyword}{noexcept}(\ \textcolor{keyword}{noexcept}(\ \mbox{\hyperlink{namespacestd_1_1math_1_1detail_a0632c805386c46488956a9bdc72c749b}{detail::apply\_all}}(\ t1.underlying\_span(),}
+\DoxyCodeLine{00173\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ [\&t1,\&t2]<\ class\ ...\ IndexType\ >(\ IndexType\ ...\ indices\ )\ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{noexcept}}
+\DoxyCodeLine{00174\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{\ static\_cast<void>(\ t1[\ indices\ ...\ ]\ +=\ t2[\ indices\ ...\ ]\ );\ \},}
+\DoxyCodeLine{00175\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ execution::unseq\ )\ )\ )}
+\DoxyCodeLine{00176\ \ \ \ \ \{}
+\DoxyCodeLine{00177\ \ \ \ \ \ \ \textcolor{keyword}{auto}\ add\_lambda\ =\ [\&t1,\&t2]<\ \textcolor{keyword}{class\ }...\ IndexType\ >(\ IndexType\ ...\ indices\ )\ constexpr\ noexcept}
+\DoxyCodeLine{00178\ \ \ \ \ \ \ \ \ \{\ \textcolor{keyword}{static\_cast<}\textcolor{keywordtype}{void}\textcolor{keyword}{>}(\ t1[\ indices\ ...\ ]\ +=\ t2[\ indices\ ...\ ]\ );\ \};}
+\DoxyCodeLine{00179\ \ \ \ \ \ \ \textcolor{comment}{//\ Apply\ lamda}}
+\DoxyCodeLine{00180\ \ \ \ \ \ \ \mbox{\hyperlink{namespacestd_1_1math_1_1detail_a0632c805386c46488956a9bdc72c749b}{detail::apply\_all}}(\ t1.underlying\_span(),\ add\_lambda,\ execution::unseq\ );}
+\DoxyCodeLine{00181\ \ \ \ \ \ \ \textcolor{comment}{//\ Return\ updated\ tensor}}
+\DoxyCodeLine{00182\ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ t1;}
+\DoxyCodeLine{00183\ \ \ \ \ \}}
+\DoxyCodeLine{00184\ \};}
+\DoxyCodeLine{00185\ }
+\DoxyCodeLine{00189\ \textcolor{keyword}{template}\ <\ concepts::tensor\_data\ T1,\ concepts::tensor\_data\ T2\ >}
+\DoxyCodeLine{00190\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classstd_1_1math_1_1instant__evaluated__operations_1_1subtraction}{subtraction}}}
+\DoxyCodeLine{00191\ \{}
+\DoxyCodeLine{00192\ \ \ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00193\ \ \ \ \ \textcolor{comment}{//-\/\ Types}}
+\DoxyCodeLine{00194\ }
+\DoxyCodeLine{00196\ \ \ \ \ \textcolor{keyword}{using\ }\mbox{\hyperlink{classstd_1_1math_1_1instant__evaluated__operations_1_1subtraction_a2bf8c92880991863913afbaa20eb9e76}{first\_tensor\_type}}\ \ =\ T1;}
+\DoxyCodeLine{00198\ \ \ \ \ \textcolor{keyword}{using\ }\mbox{\hyperlink{classstd_1_1math_1_1instant__evaluated__operations_1_1subtraction_a878beb660a01793647dbb261c0ffce76}{second\_tensor\_type}}\ =\ T2;}
+\DoxyCodeLine{00199\ \ \ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00200\ \ \ \ \ \textcolor{comment}{//\ Aliases}}
+\DoxyCodeLine{00201\ \ \ \ \ \textcolor{keyword}{using\ }result\_value\_type\ \ =\ decay\_t<\ decltype(\ declval<typename\ first\_tensor\_type::value\_type>()\ +\ declval<typename\ second\_tensor\_type::value\_type>()\ )\ >;}
+\DoxyCodeLine{00202\ \ \ \ \ \textcolor{keyword}{using\ }result\_tensor\_type\ =\ conditional\_t<\ concepts::dynamic\_tensor\_data<first\_tensor\_type>\ \&\&}
+\DoxyCodeLine{00203\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{conceptstd_1_1math_1_1concepts_1_1fixed__size__tensor__data}{concepts::fixed\_size\_tensor\_data<second\_tensor\_type>}},}
+\DoxyCodeLine{00204\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{typename}\ second\_tensor\_type::template\ rebind\_t<result\_value\_type>,}
+\DoxyCodeLine{00205\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{typename}\ first\_tensor\_type::template\ rebind\_t<result\_value\_type>\ >;}
+\DoxyCodeLine{00206\ \ \ \ \ \textcolor{comment}{//\ Gets\ necessary\ arguments\ for\ constrution}}
+\DoxyCodeLine{00207\ \ \ \ \ \textcolor{comment}{//\ If\ engine\ type\ is\ fixed\ size,\ then\ the\ lambda\ expression\ is\ the\ only\ argument\ needed}}
+\DoxyCodeLine{00208\ \ \ \ \ \textcolor{keyword}{template}\ <\ \textcolor{keyword}{class}\ Lambda\ >}
+\DoxyCodeLine{00209\ \ \ \ \ [[nodiscard]]\ \textcolor{keyword}{static}\ \textcolor{keyword}{inline}\ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{auto}\ collect\_ctor\_args(\ [[maybe\_unused]]\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classstd_1_1math_1_1instant__evaluated__operations_1_1subtraction_a2bf8c92880991863913afbaa20eb9e76}{first\_tensor\_type}}\&,\ [[maybe\_unused]]\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classstd_1_1math_1_1instant__evaluated__operations_1_1subtraction_a878beb660a01793647dbb261c0ffce76}{second\_tensor\_type}}\&,\ Lambda\&\&\ lambda\ )\ \textcolor{keyword}{noexcept}}
+\DoxyCodeLine{00210\ \ \ \ \ \ \ \textcolor{keyword}{requires}\ \mbox{\hyperlink{conceptstd_1_1math_1_1concepts_1_1fixed__size__tensor__data}{concepts::fixed\_size\_tensor\_data<result\_tensor\_type>}}}
+\DoxyCodeLine{00211\ \ \ \ \ \{\ \textcolor{keywordflow}{return}\ tuple(\ forward<Lambda>(\ lambda\ )\ );\ \}}
+\DoxyCodeLine{00212\ \ \ \ \ \textcolor{comment}{//\ If\ the\ engine\ type\ is\ dynamic,\ then\ size\ and\ capacity\ must\ be\ provided\ along\ with\ the\ lambda\ expression.}}
+\DoxyCodeLine{00213\ \ \ \ \ \textcolor{comment}{//\ Additionally,\ if\ all\ allocators\ of\ the\ desired\ type\ are\ not\ the\ same\ or\ cannot\ be\ default\ cosntructed,\ then\ it\ must\ be}}
+\DoxyCodeLine{00214\ \ \ \ \ \textcolor{comment}{//\ passed\ along\ as\ well.}}
+\DoxyCodeLine{00215\ \ \ \ \ \textcolor{keyword}{template}\ <\ \textcolor{keyword}{class}\ Lambda\ >}
+\DoxyCodeLine{00216\ \ \ \ \ [[nodiscard]]\ \textcolor{keyword}{static}\ \textcolor{keyword}{inline}\ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{auto}\ collect\_ctor\_args(\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classstd_1_1math_1_1instant__evaluated__operations_1_1subtraction_a2bf8c92880991863913afbaa20eb9e76}{first\_tensor\_type}}\&\ t1,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classstd_1_1math_1_1instant__evaluated__operations_1_1subtraction_a878beb660a01793647dbb261c0ffce76}{second\_tensor\_type}}\&\ t2,\ Lambda\&\&\ lambda\ )\ \textcolor{keyword}{noexcept}}
+\DoxyCodeLine{00217\ \ \ \ \ \ \ \textcolor{keyword}{requires}\ \mbox{\hyperlink{conceptstd_1_1math_1_1concepts_1_1dynamic__tensor__data}{concepts::dynamic\_tensor\_data<result\_tensor\_type>}}}
+\DoxyCodeLine{00218\ \ \ \ \ \{}
+\DoxyCodeLine{00219\ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ \textcolor{keyword}{constexpr}\ (\ is\_default\_constructible\_v<typename\ result\_tensor\_type::allocator\_type>\ \&\&}
+\DoxyCodeLine{00220\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ allocator\_traits<typename\ result\_tensor\_type::allocator\_type>::is\_always\_equal::value\ )}
+\DoxyCodeLine{00221\ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00222\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ \textcolor{keyword}{constexpr}\ (\ is\_same\_v<first\_tensor\_type,result\_tensor\_type>\ )}
+\DoxyCodeLine{00223\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00224\ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ tuple(\ t1.size(),\ t1.capacity(),\ forward<Lambda>(\ lambda\ )\ );}
+\DoxyCodeLine{00225\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00226\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{00227\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00228\ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ tuple(\ t2.size(),\ t2.capacity(),\ forward<Lambda>(\ lambda\ )\ );}
+\DoxyCodeLine{00229\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00230\ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00231\ \ \ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{00232\ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00233\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ \textcolor{keyword}{constexpr}\ (\ is\_same\_v<first\_tensor\_type,result\_tensor\_type>\ )}
+\DoxyCodeLine{00234\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00235\ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{using\ }result\_alloc\_type\ =\ allocator\_traits<typename\ first\_tensor\_type::allocator\_type>::template\ rebind\_alloc<result\_value\_type>;}
+\DoxyCodeLine{00236\ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ tuple(\ t1.size(),\ t1.capacity(),\ forward<Lambda>(\ lambda\ ),\ result\_alloc\_type(\ t1.get\_allocator()\ )\ );}
+\DoxyCodeLine{00237\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00238\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{00239\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00240\ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{using\ }result\_alloc\_type\ =\ allocator\_traits<typename\ second\_tensor\_type::allocator\_type>::template\ rebind\_alloc<result\_value\_type>;}
+\DoxyCodeLine{00241\ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ tuple(\ t2.size(),\ t2.capacity(),\ forward<Lambda>(\ lambda\ ),\ result\_alloc\_type(\ t2.get\_allocator()\ )\ );}
+\DoxyCodeLine{00242\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00243\ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00244\ \ \ \ \ \}}
+\DoxyCodeLine{00245\ \ \ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00246\ \ \ \ \ \textcolor{comment}{//-\/\ Operations}}
+\DoxyCodeLine{00247\ }
+\DoxyCodeLine{00249\ \ \ \ \ [[nodiscard]]\ \textcolor{keyword}{static}\ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{auto}\ \mbox{\hyperlink{classstd_1_1math_1_1instant__evaluated__operations_1_1subtraction_ad00acaaa3d5c4bfa5b627c87dd0a2942}{subtract}}(\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classstd_1_1math_1_1instant__evaluated__operations_1_1subtraction_a2bf8c92880991863913afbaa20eb9e76}{first\_tensor\_type}}\&\ t1,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classstd_1_1math_1_1instant__evaluated__operations_1_1subtraction_a878beb660a01793647dbb261c0ffce76}{second\_tensor\_type}}\&\ t2\ )}
+\DoxyCodeLine{00250\ \ \ \ \ \ \ \textcolor{keyword}{noexcept}(\ \textcolor{keyword}{noexcept}(\ detail::make\_from\_tuple<\ result\_tensor\_type\ >(}
+\DoxyCodeLine{00251\ \ \ \ \ \ \ \ \ collect\_ctor\_args(\ declval<const\ first\_tensor\_type\&>(),}
+\DoxyCodeLine{00252\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ declval<const\ second\_tensor\_type\&>(),}
+\DoxyCodeLine{00253\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ [\&t1,\&t2]<\ \textcolor{keyword}{class}\ ...\ IndexType\ >(\ IndexType\ ...\ indices\ )\ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{noexcept}}
+\DoxyCodeLine{00254\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{\ \textcolor{keywordflow}{return}\ t1[\ indices\ ...\ ]\ -\/\ t2[\ indices\ ...\ ];\ \}\ )\ )\ )\ )}
+\DoxyCodeLine{00255\ \ \ \ \ \{}
+\DoxyCodeLine{00256\ \ \ \ \ \ \ \textcolor{keyword}{auto}\ subtract\_lambda\ =\ [\&t1,\&t2]<\ \textcolor{keyword}{class\ }...\ IndexType\ >(\ IndexType\ ...\ indices\ )\ constexpr\ noexcept}
+\DoxyCodeLine{00257\ \ \ \ \ \ \ \ \ \{\ \textcolor{keywordflow}{return}\ t1[\ indices\ ...\ ]\ -\/\ t2[\ indices\ ...\ ];\ \};}
+\DoxyCodeLine{00258\ \ \ \ \ \ \ \textcolor{comment}{//\ Construct\ addition\ tensor}}
+\DoxyCodeLine{00259\ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ detail::make\_from\_tuple<result\_tensor\_type>(\ collect\_ctor\_args(\ t1,\ t2,\ subtract\_lambda\ )\ );}
+\DoxyCodeLine{00260\ \ \ \ \ \}}
+\DoxyCodeLine{00262\ \ \ \ \ [[nodiscard]]\ \textcolor{keyword}{static}\ \textcolor{keyword}{constexpr}\ \mbox{\hyperlink{classstd_1_1math_1_1instant__evaluated__operations_1_1subtraction_a2bf8c92880991863913afbaa20eb9e76}{first\_tensor\_type}}\&\ \mbox{\hyperlink{classstd_1_1math_1_1instant__evaluated__operations_1_1subtraction_a9745a6131f0742885f6ba9fafba2c520}{subtract}}(\ \mbox{\hyperlink{classstd_1_1math_1_1instant__evaluated__operations_1_1subtraction_a2bf8c92880991863913afbaa20eb9e76}{first\_tensor\_type}}\&\ t1,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classstd_1_1math_1_1instant__evaluated__operations_1_1subtraction_a878beb660a01793647dbb261c0ffce76}{second\_tensor\_type}}\&\ t2\ )}
+\DoxyCodeLine{00263\ \ \ \ \ \ \ \textcolor{keyword}{noexcept}(\ \textcolor{keyword}{noexcept}(\ \mbox{\hyperlink{namespacestd_1_1math_1_1detail_a0632c805386c46488956a9bdc72c749b}{detail::apply\_all}}(\ t1.underlying\_span(),}
+\DoxyCodeLine{00264\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ [\&t1,\&t2]<\ class\ ...\ IndexType\ >(\ IndexType\ ...\ indices\ )\ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{noexcept}}
+\DoxyCodeLine{00265\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{\ static\_cast<void>(\ t1[\ indices\ ...\ ]\ -\/=\ t2[\ indices\ ...\ ]\ );\ \},}
+\DoxyCodeLine{00266\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ execution::unseq\ )\ )\ )}
+\DoxyCodeLine{00267\ \ \ \ \ \{}
+\DoxyCodeLine{00268\ \ \ \ \ \ \ \textcolor{keyword}{auto}\ subtract\_lambda\ =\ [\&t1,\&t2]<\ \textcolor{keyword}{class\ }...\ IndexType\ >(\ IndexType\ ...\ indices\ )\ constexpr\ noexcept}
+\DoxyCodeLine{00269\ \ \ \ \ \ \ \ \ \{\ \textcolor{keyword}{static\_cast<}\textcolor{keywordtype}{void}\textcolor{keyword}{>}(\ t1[\ indices\ ...\ ]\ -\/=\ t2[\ indices\ ...\ ]\ );\ \};}
+\DoxyCodeLine{00270\ \ \ \ \ \ \ \textcolor{comment}{//\ Apply\ lamda}}
+\DoxyCodeLine{00271\ \ \ \ \ \ \ \mbox{\hyperlink{namespacestd_1_1math_1_1detail_a0632c805386c46488956a9bdc72c749b}{detail::apply\_all}}(\ t1.underlying\_span(),\ subtract\_lambda,\ execution::unseq\ );}
+\DoxyCodeLine{00272\ \ \ \ \ \ \ \textcolor{comment}{//\ Return\ updated\ tensor}}
+\DoxyCodeLine{00273\ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ t1;}
+\DoxyCodeLine{00274\ \ \ \ \ \}}
+\DoxyCodeLine{00275\ \};}
+\DoxyCodeLine{00276\ }
+\DoxyCodeLine{00280\ \textcolor{keyword}{template}\ <\ \textcolor{keyword}{class}\ S,\ concepts::tensor\_data\ T\ >}
+\DoxyCodeLine{00281\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classstd_1_1math_1_1instant__evaluated__operations_1_1scalar__product}{scalar\_product}}}
+\DoxyCodeLine{00282\ \{}
+\DoxyCodeLine{00283\ \ \ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00284\ \ \ \ \ \textcolor{comment}{//-\/\ Types}}
+\DoxyCodeLine{00285\ }
+\DoxyCodeLine{00287\ \ \ \ \ \textcolor{keyword}{using\ }\mbox{\hyperlink{classstd_1_1math_1_1instant__evaluated__operations_1_1scalar__product_aaba91de3bd9ce407cca37ca63ca28a8b}{tensor\_type}}\ \ \ \ \ \ \ \ =\ T;}
+\DoxyCodeLine{00288\ \ \ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00289\ \ \ \ \ \textcolor{comment}{//\ Aliases}}
+\DoxyCodeLine{00290\ \ \ \ \ \textcolor{keyword}{using\ }result\_value\_type\ \ =\ decay\_t<\ decltype(\ declval<typename\ tensor\_type::value\_type>()\ *\ declval<S>()\ )\ >;}
+\DoxyCodeLine{00291\ \ \ \ \ \textcolor{keyword}{using\ }result\_tensor\_type\ =\ \textcolor{keyword}{typename}\ tensor\_type::template\ rebind\_t<result\_value\_type>;}
+\DoxyCodeLine{00292\ \ \ \ \ \textcolor{comment}{//\ Gets\ necessary\ arguments\ for\ constrution}}
+\DoxyCodeLine{00293\ \ \ \ \ \textcolor{comment}{//\ If\ tensor\ type\ is\ fixed\ size,\ then\ the\ lambda\ expression\ is\ the\ only\ argument\ needed}}
+\DoxyCodeLine{00294\ \ \ \ \ \textcolor{keyword}{template}\ <\ \textcolor{keyword}{class}\ Lambda\ >}
+\DoxyCodeLine{00295\ \ \ \ \ [[nodiscard]]\ \textcolor{keyword}{static}\ \textcolor{keyword}{inline}\ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{decltype}(\textcolor{keyword}{auto})\ collect\_ctor\_args(\ [[maybe\_unused]]\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classstd_1_1math_1_1instant__evaluated__operations_1_1scalar__product_aaba91de3bd9ce407cca37ca63ca28a8b}{tensor\_type}}\&,\ Lambda\&\&\ lambda\ )\ \textcolor{keyword}{noexcept}}
+\DoxyCodeLine{00296\ \ \ \ \ \ \ \textcolor{keyword}{requires}\ \mbox{\hyperlink{conceptstd_1_1math_1_1concepts_1_1fixed__size__tensor__data}{concepts::fixed\_size\_tensor\_data<result\_tensor\_type>}}\ \{\ \textcolor{keywordflow}{return}\ tuple(\ forward<Lambda>(\ lambda\ )\ );\ \}}
+\DoxyCodeLine{00297\ \ \ \ \ \textcolor{comment}{//\ If\ the\ tensor\ type\ is\ dynamic,\ then\ size\ and\ capacity\ must\ be\ provided\ along\ with\ the\ lambda\ expression.}}
+\DoxyCodeLine{00298\ \ \ \ \ \textcolor{comment}{//\ Additionally,\ if\ all\ allocators\ of\ the\ desired\ type\ are\ not\ the\ same\ or\ cannot\ be\ default\ cosntructed,\ then\ it\ must\ be}}
+\DoxyCodeLine{00299\ \ \ \ \ \textcolor{comment}{//\ passed\ along\ as\ well.}}
+\DoxyCodeLine{00300\ \ \ \ \ \textcolor{keyword}{template}\ <\ \textcolor{keyword}{class}\ Lambda\ >}
+\DoxyCodeLine{00301\ \ \ \ \ [[nodiscard]]\ \textcolor{keyword}{static}\ \textcolor{keyword}{inline}\ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{decltype}(\textcolor{keyword}{auto})\ collect\_ctor\_args(\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classstd_1_1math_1_1instant__evaluated__operations_1_1scalar__product_aaba91de3bd9ce407cca37ca63ca28a8b}{tensor\_type}}\&\ t,\ Lambda\&\&\ lambda\ )\ \textcolor{keyword}{noexcept}}
+\DoxyCodeLine{00302\ \ \ \ \ \ \ \textcolor{keyword}{requires}\ \mbox{\hyperlink{conceptstd_1_1math_1_1concepts_1_1dynamic__tensor__data}{concepts::dynamic\_tensor\_data<result\_tensor\_type>}}}
+\DoxyCodeLine{00303\ \ \ \ \ \{}
+\DoxyCodeLine{00304\ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ \textcolor{keyword}{constexpr}\ (\ is\_default\_constructible\_v<typename\ result\_tensor\_type::allocator\_type>\ \&\&}
+\DoxyCodeLine{00305\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ allocator\_traits<typename\ result\_tensor\_type::allocator\_type>::is\_always\_equal::value\ )}
+\DoxyCodeLine{00306\ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00307\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ tuple(\ t.size(),\ t.capacity(),\ forward<Lambda>(\ lambda\ )\ );}
+\DoxyCodeLine{00308\ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00309\ \ \ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{00310\ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00311\ \ \ \ \ \ \ \ \ \textcolor{keyword}{using\ }result\_alloc\_type\ =\ allocator\_traits<typename\ tensor\_type::allocator\_type>::template\ rebind\_alloc<result\_value\_type>;}
+\DoxyCodeLine{00312\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ tuple(\ t.size(),\ t.capacity(),\ forward<Lambda>(\ lambda\ ),\ result\_alloc\_type(\ t.get\_allocator()\ )\ );}
+\DoxyCodeLine{00313\ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00314\ \ \ \ \ \}}
+\DoxyCodeLine{00315\ \ \ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00316\ \ \ \ \ \textcolor{comment}{//-\/\ Operations}}
+\DoxyCodeLine{00317\ }
+\DoxyCodeLine{00319\ \ \ \ \ [[nodiscard]]\ \textcolor{keyword}{static}\ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{auto}\ \mbox{\hyperlink{classstd_1_1math_1_1instant__evaluated__operations_1_1scalar__product_ab8eebbe7c40e9bb98cc24e6c4ee36486}{prod}}(\ \textcolor{keyword}{const}\ S\&\ s,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classstd_1_1math_1_1instant__evaluated__operations_1_1scalar__product_aaba91de3bd9ce407cca37ca63ca28a8b}{tensor\_type}}\&\ t\ )}
+\DoxyCodeLine{00320\ \ \ \ \ \ \ \textcolor{keyword}{noexcept}(\ \textcolor{keyword}{noexcept}(\ detail::make\_from\_tuple<\ result\_tensor\_type\ >(}
+\DoxyCodeLine{00321\ \ \ \ \ \ \ \ \ collect\_ctor\_args(\ t,}
+\DoxyCodeLine{00322\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ [\&s,\&t]<\ \textcolor{keyword}{class}\ ...\ IndexType\ >(\ IndexType\ ...\ indices\ )\ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{noexcept}}
+\DoxyCodeLine{00323\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{\ \textcolor{keywordflow}{return}\ s\ *\ t[\ indices\ ...\ ];\ \}\ )\ )\ )\ )}
+\DoxyCodeLine{00324\ \ \ \ \ \{}
+\DoxyCodeLine{00325\ \ \ \ \ \ \ \textcolor{comment}{//\ Define\ product\ operation\ on\ each\ element}}
+\DoxyCodeLine{00326\ \ \ \ \ \ \ \textcolor{keyword}{auto}\ prod\_lambda\ =\ [\&s,\&t]<\ \textcolor{keyword}{class\ }...\ IndexType\ >(\ IndexType\ ...\ indices\ )\ constexpr\ noexcept}
+\DoxyCodeLine{00327\ \ \ \ \ \ \ \ \ \{\ \textcolor{keywordflow}{return}\ s\ *\ t[\ indices\ ...\ ];\ \};}
+\DoxyCodeLine{00328\ \ \ \ \ \ \ \textcolor{comment}{//\ Construct\ product\ tensor}}
+\DoxyCodeLine{00329\ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ detail::make\_from\_tuple<result\_tensor\_type>(\ collect\_ctor\_args(\ t,\ prod\_lambda\ )\ );}
+\DoxyCodeLine{00330\ \ \ \ \ \}}
+\DoxyCodeLine{00332\ \ \ \ \ [[nodiscard]]\ \textcolor{keyword}{static}\ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{auto}\ \mbox{\hyperlink{classstd_1_1math_1_1instant__evaluated__operations_1_1scalar__product_a20a191c2287dad520417c746d14ee49e}{prod}}(\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classstd_1_1math_1_1instant__evaluated__operations_1_1scalar__product_aaba91de3bd9ce407cca37ca63ca28a8b}{tensor\_type}}\&\ t,\ \textcolor{keyword}{const}\ S\&\ s\ )}
+\DoxyCodeLine{00333\ \ \ \ \ \ \ \textcolor{keyword}{noexcept}(\ \textcolor{keyword}{noexcept}(\ \mbox{\hyperlink{classstd_1_1math_1_1instant__evaluated__operations_1_1scalar__product_ab8eebbe7c40e9bb98cc24e6c4ee36486}{prod}}(\ s,\ t\ )\ )\ )}
+\DoxyCodeLine{00334\ \ \ \ \ \{}
+\DoxyCodeLine{00335\ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{classstd_1_1math_1_1instant__evaluated__operations_1_1scalar__product_ab8eebbe7c40e9bb98cc24e6c4ee36486}{prod}}(\ s,\ t\ );}
+\DoxyCodeLine{00336\ \ \ \ \ \}}
+\DoxyCodeLine{00338\ \ \ \ \ [[nodiscard]]\ \textcolor{keyword}{static}\ \textcolor{keyword}{constexpr}\ \mbox{\hyperlink{classstd_1_1math_1_1instant__evaluated__operations_1_1scalar__product_aaba91de3bd9ce407cca37ca63ca28a8b}{tensor\_type}}\&\ \mbox{\hyperlink{classstd_1_1math_1_1instant__evaluated__operations_1_1scalar__product_a2345dc74fb29d36948a8317581797a44}{prod}}(\ \mbox{\hyperlink{classstd_1_1math_1_1instant__evaluated__operations_1_1scalar__product_aaba91de3bd9ce407cca37ca63ca28a8b}{tensor\_type}}\&\ t,\ \textcolor{keyword}{const}\ S\&\ s\ )}
+\DoxyCodeLine{00339\ \ \ \ \ \ \ \textcolor{keyword}{noexcept}(\ \textcolor{keyword}{noexcept}(\ \mbox{\hyperlink{namespacestd_1_1math_1_1detail_a0632c805386c46488956a9bdc72c749b}{detail::apply\_all}}(\ t.underlying\_span(),}
+\DoxyCodeLine{00340\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ [\&t,\&s]<\ class\ ...\ IndexType\ >(\ IndexType\ ...\ indices\ )\ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{noexcept}}
+\DoxyCodeLine{00341\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{\ static\_cast<void>(\ t[\ indices\ ...\ ]\ +=\ s\ );\ \},}
+\DoxyCodeLine{00342\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ execution::unseq\ )\ )\ )}
+\DoxyCodeLine{00343\ \ \ \ \ \{}
+\DoxyCodeLine{00344\ \ \ \ \ \ \ \textcolor{comment}{//\ Define\ product\ operation\ on\ each\ element}}
+\DoxyCodeLine{00345\ \ \ \ \ \ \ \textcolor{keyword}{auto}\ prod\_lambda\ =\ [\&s,\&t]<\ \textcolor{keyword}{class\ }...\ IndexType\ >(\ IndexType\ ...\ indices\ )\ constexpr\ noexcept}
+\DoxyCodeLine{00346\ \ \ \ \ \ \ \ \ \{\ \textcolor{keyword}{static\_cast<}\textcolor{keywordtype}{void}\textcolor{keyword}{>}(\ t[\ indices\ ...\ ]\ *=\ s\ );\ \};}
+\DoxyCodeLine{00347\ \ \ \ \ \ \ \textcolor{comment}{//\ Apply\ lamda}}
+\DoxyCodeLine{00348\ \ \ \ \ \ \ \mbox{\hyperlink{namespacestd_1_1math_1_1detail_a0632c805386c46488956a9bdc72c749b}{detail::apply\_all}}(\ t.underlying\_span(),\ prod\_lambda,\ execution::unseq\ );}
+\DoxyCodeLine{00349\ \ \ \ \ \ \ \textcolor{comment}{//\ Return\ updated\ tensor}}
+\DoxyCodeLine{00350\ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ t;}
+\DoxyCodeLine{00351\ \ \ \ \ \}}
+\DoxyCodeLine{00352\ \};}
+\DoxyCodeLine{00353\ }
+\DoxyCodeLine{00357\ \textcolor{keyword}{template}\ <\ concepts::tensor\_data\ T,\ \textcolor{keyword}{class}\ S\ >}
+\DoxyCodeLine{00358\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structstd_1_1math_1_1instant__evaluated__operations_1_1scalar__division}{scalar\_division}}}
+\DoxyCodeLine{00359\ \{}
+\DoxyCodeLine{00360\ \ \ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00361\ \ \ \ \ \textcolor{comment}{//-\/\ Types}}
+\DoxyCodeLine{00362\ }
+\DoxyCodeLine{00364\ \ \ \ \ \textcolor{keyword}{using\ }\mbox{\hyperlink{structstd_1_1math_1_1instant__evaluated__operations_1_1scalar__division_ac3816fb79769d3f73b801626fab828c8}{tensor\_type}}\ \ \ \ \ \ \ \ =\ T;}
+\DoxyCodeLine{00365\ \ \ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00366\ \ \ \ \ \textcolor{comment}{//\ Aliases}}
+\DoxyCodeLine{00367\ \ \ \ \ \textcolor{keyword}{using\ }result\_value\_type\ \ =\ decay\_t<\ decltype(\ declval<typename\ tensor\_type::value\_type>()\ /\ declval<S>()\ )\ >;}
+\DoxyCodeLine{00368\ \ \ \ \ \textcolor{keyword}{using\ }result\_tensor\_type\ =\ \textcolor{keyword}{typename}\ tensor\_type::template\ rebind\_t<result\_value\_type>;}
+\DoxyCodeLine{00369\ \ \ \ \ \textcolor{comment}{//\ Gets\ necessary\ arguments\ for\ constrution}}
+\DoxyCodeLine{00370\ \ \ \ \ \textcolor{comment}{//\ If\ tensor\ type\ is\ fixed\ size,\ then\ the\ lambda\ expression\ is\ the\ only\ argument\ needed}}
+\DoxyCodeLine{00371\ \ \ \ \ \textcolor{keyword}{template}\ <\ \textcolor{keyword}{class}\ Lambda\ >}
+\DoxyCodeLine{00372\ \ \ \ \ [[nodiscard]]\ \textcolor{keyword}{static}\ \textcolor{keyword}{inline}\ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{decltype}(\textcolor{keyword}{auto})\ collect\_ctor\_args(\ [[maybe\_unused]]\ \textcolor{keyword}{const}\ \mbox{\hyperlink{structstd_1_1math_1_1instant__evaluated__operations_1_1scalar__division_ac3816fb79769d3f73b801626fab828c8}{tensor\_type}}\&,\ Lambda\&\&\ lambda\ )\ \textcolor{keyword}{noexcept}}
+\DoxyCodeLine{00373\ \ \ \ \ \ \ \textcolor{keyword}{requires}\ \mbox{\hyperlink{conceptstd_1_1math_1_1concepts_1_1fixed__size__tensor__data}{concepts::fixed\_size\_tensor\_data<result\_tensor\_type>}}\ \{\ \textcolor{keywordflow}{return}\ tuple(\ forward<Lambda>(\ lambda\ )\ );\ \}}
+\DoxyCodeLine{00374\ \ \ \ \ \textcolor{comment}{//\ If\ the\ tensor\ type\ is\ dynamic,\ then\ size\ and\ capacity\ must\ be\ provided\ along\ with\ the\ lambda\ expression.}}
+\DoxyCodeLine{00375\ \ \ \ \ \textcolor{comment}{//\ Additionally,\ if\ all\ allocators\ of\ the\ desired\ type\ are\ not\ the\ same\ or\ cannot\ be\ default\ cosntructed,\ then\ it\ must\ be}}
+\DoxyCodeLine{00376\ \ \ \ \ \textcolor{comment}{//\ passed\ along\ as\ well.}}
+\DoxyCodeLine{00377\ \ \ \ \ \textcolor{keyword}{template}\ <\ \textcolor{keyword}{class}\ Lambda\ >}
+\DoxyCodeLine{00378\ \ \ \ \ [[nodiscard]]\ \textcolor{keyword}{static}\ \textcolor{keyword}{inline}\ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{decltype}(\textcolor{keyword}{auto})\ collect\_ctor\_args(\ \textcolor{keyword}{const}\ \mbox{\hyperlink{structstd_1_1math_1_1instant__evaluated__operations_1_1scalar__division_ac3816fb79769d3f73b801626fab828c8}{tensor\_type}}\&\ t,\ Lambda\&\&\ lambda\ )\ \textcolor{keyword}{noexcept}}
+\DoxyCodeLine{00379\ \ \ \ \ \ \ \textcolor{keyword}{requires}\ \mbox{\hyperlink{conceptstd_1_1math_1_1concepts_1_1dynamic__tensor__data}{concepts::dynamic\_tensor\_data<result\_tensor\_type>}}}
+\DoxyCodeLine{00380\ \ \ \ \ \{}
+\DoxyCodeLine{00381\ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ \textcolor{keyword}{constexpr}\ (\ is\_default\_constructible\_v<typename\ result\_tensor\_type::allocator\_type>\ \&\&}
+\DoxyCodeLine{00382\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ allocator\_traits<typename\ result\_tensor\_type::allocator\_type>::is\_always\_equal::value\ )}
+\DoxyCodeLine{00383\ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00384\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ tuple(\ t.size(),\ t.capacity(),\ forward<Lambda>(\ lambda\ )\ );}
+\DoxyCodeLine{00385\ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00386\ \ \ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{00387\ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00388\ \ \ \ \ \ \ \ \ \textcolor{keyword}{using\ }result\_alloc\_type\ =\ allocator\_traits<typename\ tensor\_type::allocator\_type>::template\ rebind\_alloc<result\_value\_type>;}
+\DoxyCodeLine{00389\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ tuple(\ t.size(),\ t.capacity(),\ forward<Lambda>(\ lambda\ ),\ result\_alloc\_type(\ t.get\_allocator()\ )\ );}
+\DoxyCodeLine{00390\ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00391\ \ \ \ \ \}}
+\DoxyCodeLine{00392\ \ \ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00393\ \ \ \ \ \textcolor{comment}{//-\/\ Operations}}
+\DoxyCodeLine{00394\ }
+\DoxyCodeLine{00396\ \ \ \ \ [[nodiscard]]\ \textcolor{keyword}{static}\ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{auto}\ \mbox{\hyperlink{structstd_1_1math_1_1instant__evaluated__operations_1_1scalar__division_a1284b7e889bd171b02bb357147385f9e}{divide}}(\ \textcolor{keyword}{const}\ \mbox{\hyperlink{structstd_1_1math_1_1instant__evaluated__operations_1_1scalar__division_ac3816fb79769d3f73b801626fab828c8}{tensor\_type}}\&\ t,\ \textcolor{keyword}{const}\ S\&\ s\ )}
+\DoxyCodeLine{00397\ \ \ \ \ \ \ \textcolor{keyword}{noexcept}(\ \textcolor{keyword}{noexcept}(\ detail::make\_from\_tuple<\ result\_tensor\_type\ >(}
+\DoxyCodeLine{00398\ \ \ \ \ \ \ \ \ collect\_ctor\_args(\ declval<const\ tensor\_type\&>(),}
+\DoxyCodeLine{00399\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ [\&t,\&s]<\ \textcolor{keyword}{class}\ ...\ IndexType\ >(\ IndexType\ ...\ indices\ )\ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{noexcept}}
+\DoxyCodeLine{00400\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{\ \textcolor{keywordflow}{return}\ t[\ indices\ ...\ ]\ /\ s;\ \}\ )\ )\ )\ )}
+\DoxyCodeLine{00401\ \ \ \ \ \{}
+\DoxyCodeLine{00402\ \ \ \ \ \ \ \textcolor{comment}{//\ Define\ division\ operation\ on\ each\ element}}
+\DoxyCodeLine{00403\ \ \ \ \ \ \ \textcolor{keyword}{auto}\ divide\_lambda\ =\ [\&t,\&s]<\ \textcolor{keyword}{class\ }...\ IndexType\ >(\ IndexType\ ...\ indices\ )\ constexpr\ noexcept}
+\DoxyCodeLine{00404\ \ \ \ \ \ \ \ \ \{\ \textcolor{keywordflow}{return}\ t[\ indices\ ...\ ]\ /\ s;\ \};}
+\DoxyCodeLine{00405\ \ \ \ \ \ \ \textcolor{comment}{//\ Construct\ divided\ tensor}}
+\DoxyCodeLine{00406\ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ detail::make\_from\_tuple<result\_tensor\_type>(\ collect\_ctor\_args(\ t,\ divide\_lambda\ )\ );}
+\DoxyCodeLine{00407\ \ \ \ \ \}}
+\DoxyCodeLine{00409\ \ \ \ \ [[nodiscard]]\ \textcolor{keyword}{static}\ \textcolor{keyword}{constexpr}\ \mbox{\hyperlink{structstd_1_1math_1_1instant__evaluated__operations_1_1scalar__division_ac3816fb79769d3f73b801626fab828c8}{tensor\_type}}\&\ \mbox{\hyperlink{structstd_1_1math_1_1instant__evaluated__operations_1_1scalar__division_ae7de84ddf87a86b08cc26f78d0ab6dd1}{divide}}(\ \mbox{\hyperlink{structstd_1_1math_1_1instant__evaluated__operations_1_1scalar__division_ac3816fb79769d3f73b801626fab828c8}{tensor\_type}}\&\ t,\ \textcolor{keyword}{const}\ S\&\ s\ )}
+\DoxyCodeLine{00410\ \ \ \ \ \ \ \textcolor{keyword}{noexcept}(\ \textcolor{keyword}{noexcept}(\ \mbox{\hyperlink{namespacestd_1_1math_1_1detail_a0632c805386c46488956a9bdc72c749b}{detail::apply\_all}}(\ t.underlying\_span(),}
+\DoxyCodeLine{00411\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ [\&t,\&s]<\ class\ ...\ IndexType\ >(\ IndexType\ ...\ indices\ )\ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{noexcept}}
+\DoxyCodeLine{00412\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{\ static\_cast<void>(\ t[\ indices\ ...\ ]\ /=\ s\ );\ \},}
+\DoxyCodeLine{00413\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ execution::unseq\ )\ )\ )}
+\DoxyCodeLine{00414\ \ \ \ \ \{}
+\DoxyCodeLine{00415\ \ \ \ \ \ \ \textcolor{comment}{//\ Define\ product\ operation\ on\ each\ element}}
+\DoxyCodeLine{00416\ \ \ \ \ \ \ \textcolor{keyword}{auto}\ divide\_lambda\ =\ [\&s,\&t]<\ \textcolor{keyword}{class\ }...\ IndexType\ >(\ IndexType\ ...\ indices\ )\ constexpr\ noexcept}
+\DoxyCodeLine{00417\ \ \ \ \ \ \ \ \ \{\ \textcolor{keyword}{static\_cast<}\textcolor{keywordtype}{void}\textcolor{keyword}{>}(\ t[\ indices\ ...\ ]\ /=\ s\ );\ \};}
+\DoxyCodeLine{00418\ \ \ \ \ \ \ \textcolor{comment}{//\ Apply\ lamda}}
+\DoxyCodeLine{00419\ \ \ \ \ \ \ \mbox{\hyperlink{namespacestd_1_1math_1_1detail_a0632c805386c46488956a9bdc72c749b}{detail::apply\_all}}(\ t.underlying\_span(),\ divide\_lambda,\ execution::unseq\ );}
+\DoxyCodeLine{00420\ \ \ \ \ \ \ \textcolor{comment}{//\ Return\ updated\ tensor}}
+\DoxyCodeLine{00421\ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ t;}
+\DoxyCodeLine{00422\ \ \ \ \ \}}
+\DoxyCodeLine{00423\ \};}
+\DoxyCodeLine{00424\ }
+\DoxyCodeLine{00427\ \textcolor{keyword}{template}\ <\ concepts::matrix\_data\ M\ >}
+\DoxyCodeLine{00428\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classstd_1_1math_1_1instant__evaluated__operations_1_1transpose__matrix}{transpose\_matrix}}}
+\DoxyCodeLine{00429\ \{}
+\DoxyCodeLine{00430\ \ \ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00431\ \ \ \ \ \textcolor{comment}{//-\/\ Types}}
+\DoxyCodeLine{00432\ }
+\DoxyCodeLine{00434\ \ \ \ \ \textcolor{keyword}{using\ }\mbox{\hyperlink{classstd_1_1math_1_1instant__evaluated__operations_1_1transpose__matrix_a0ae2f38674ac79dcd6f12e5ba02c1560}{matrix\_type}}\ \ \ \ \ \ \ \ =\ M;}
+\DoxyCodeLine{00435\ \ \ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00436\ \ \ \ \ \textcolor{comment}{//\ Aliases}}
+\DoxyCodeLine{00437\ \ \ \ \ \textcolor{keyword}{using\ }result\_matrix\_type\ =\ \textcolor{keyword}{typename}\ matrix\_type::transpose\_type;}
+\DoxyCodeLine{00438\ \ \ \ \ \textcolor{comment}{//\ Gets\ necessary\ arguments\ for\ constrution}}
+\DoxyCodeLine{00439\ \ \ \ \ \textcolor{comment}{//\ If\ matrix\ type\ is\ fixed\ size,\ then\ the\ lambda\ expression\ is\ the\ only\ argument\ needed}}
+\DoxyCodeLine{00440\ \ \ \ \ \textcolor{keyword}{template}\ <\ \textcolor{keyword}{class}\ Lambda\ >}
+\DoxyCodeLine{00441\ \ \ \ \ [[nodiscard]]\ \textcolor{keyword}{static}\ \textcolor{keyword}{inline}\ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{decltype}(\textcolor{keyword}{auto})\ collect\_ctor\_args(\ [[maybe\_unused]]\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classstd_1_1math_1_1instant__evaluated__operations_1_1transpose__matrix_a0ae2f38674ac79dcd6f12e5ba02c1560}{matrix\_type}}\&,\ Lambda\&\&\ lambda\ )\ \textcolor{keyword}{noexcept}}
+\DoxyCodeLine{00442\ \ \ \ \ \ \ \textcolor{keyword}{requires}\ \mbox{\hyperlink{conceptstd_1_1math_1_1concepts_1_1fixed__size__matrix__data}{concepts::fixed\_size\_matrix\_data<result\_matrix\_type>}}}
+\DoxyCodeLine{00443\ \ \ \ \ \{\ \textcolor{keywordflow}{return}\ tuple(\ forward<Lambda>(\ lambda\ )\ );\ \}}
+\DoxyCodeLine{00444\ \ \ \ \ \textcolor{comment}{//\ If\ the\ matrix\ type\ is\ dynamic,\ then\ size\ and\ capacity\ must\ be\ provided\ along\ with\ the\ lambda\ expression.}}
+\DoxyCodeLine{00445\ \ \ \ \ \textcolor{comment}{//\ Additionally,\ if\ all\ allocators\ of\ the\ desired\ type\ are\ not\ the\ same\ or\ cannot\ be\ default\ constructed,\ then\ it\ must\ be}}
+\DoxyCodeLine{00446\ \ \ \ \ \textcolor{comment}{//\ passed\ along\ as\ well.}}
+\DoxyCodeLine{00447\ \ \ \ \ \textcolor{keyword}{template}\ <\ \textcolor{keyword}{class}\ Lambda\ >}
+\DoxyCodeLine{00448\ \ \ \ \ [[nodiscard]]\ \textcolor{keyword}{static}\ \textcolor{keyword}{inline}\ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{decltype}(\textcolor{keyword}{auto})\ collect\_ctor\_args(\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classstd_1_1math_1_1instant__evaluated__operations_1_1transpose__matrix_a0ae2f38674ac79dcd6f12e5ba02c1560}{matrix\_type}}\&\ m,\ Lambda\&\&\ lambda\ )\ \textcolor{keyword}{noexcept}}
+\DoxyCodeLine{00449\ \ \ \ \ \ \ \textcolor{keyword}{requires}\ \mbox{\hyperlink{conceptstd_1_1math_1_1concepts_1_1dynamic__matrix__data}{concepts::dynamic\_matrix\_data<result\_matrix\_type>}}}
+\DoxyCodeLine{00450\ \ \ \ \ \{}
+\DoxyCodeLine{00451\ \ \ \ \ \ \ \textcolor{keyword}{using\ }result\_extents\_type\ =\ \textcolor{keyword}{typename}\ result\_matrix\_type::extents\_type;}
+\DoxyCodeLine{00452\ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ \textcolor{keyword}{constexpr}\ (\ is\_default\_constructible\_v<typename\ result\_matrix\_type::allocator\_type>\ \&\&}
+\DoxyCodeLine{00453\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ allocator\_traits<typename\ result\_matrix\_type::allocator\_type>::is\_always\_equal::value\ )}
+\DoxyCodeLine{00454\ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00455\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ tuple(\ result\_extents\_type(\ m.size().extent(1),\ m.size().extent(0)\ ),}
+\DoxyCodeLine{00456\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ result\_extents\_type(\ m.capacity().extent(0),\ m.capacity().extent(0)\ ),}
+\DoxyCodeLine{00457\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ forward<Lambda>(\ lambda\ )\ );}
+\DoxyCodeLine{00458\ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00459\ \ \ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{00460\ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00461\ \ \ \ \ \ \ \ \ \textcolor{keyword}{using\ }result\_alloc\_type\ =\ \textcolor{keyword}{typename}\ result\_matrix\_type::allocator\_type;}
+\DoxyCodeLine{00462\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ tuple(\ result\_extents\_type(\ m.size().extent(1),\ m.size().extent(0)\ ),}
+\DoxyCodeLine{00463\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ result\_extents\_type(\ m.capacity().extent(1),\ m.capacity().extent(0)\ ),}
+\DoxyCodeLine{00464\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ forward<Lambda>(\ lambda\ ),}
+\DoxyCodeLine{00465\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ result\_alloc\_type(\ m.get\_allocator()\ )\ );}
+\DoxyCodeLine{00466\ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00467\ \ \ \ \ \}}
+\DoxyCodeLine{00468\ \ \ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00469\ \ \ \ \ \textcolor{comment}{//-\/\ Operations}}
+\DoxyCodeLine{00470\ }
+\DoxyCodeLine{00472\ \ \ \ \ [[nodiscard]]\ \textcolor{keyword}{static}\ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{auto}\ \mbox{\hyperlink{classstd_1_1math_1_1instant__evaluated__operations_1_1transpose__matrix_aa9c3d6b637894619a46c4b9572d2817d}{trans}}(\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classstd_1_1math_1_1instant__evaluated__operations_1_1transpose__matrix_a0ae2f38674ac79dcd6f12e5ba02c1560}{matrix\_type}}\&\ m\ )}
+\DoxyCodeLine{00473\ \ \ \ \ \ \ \textcolor{keyword}{noexcept}(\ \textcolor{keyword}{noexcept}(\ detail::make\_from\_tuple<\ result\_matrix\_type\ >(}
+\DoxyCodeLine{00474\ \ \ \ \ \ \ \ \ collect\_ctor\_args(\ m,\ [\&m]<\ \textcolor{keyword}{class}\ IndexType1,\ \textcolor{keyword}{class}\ IndexType2\ >(\ IndexType1\ index1,\ IndexType2\ index2\ )\ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{noexcept}}
+\DoxyCodeLine{00475\ \ \ \ \ \ \ \ \ \ \ \{\ \textcolor{keywordflow}{return}\ m[\ index2,\ index1\ ];\ \}\ )\ )\ )\ )}
+\DoxyCodeLine{00476\ \ \ \ \ \{}
+\DoxyCodeLine{00477\ \ \ \ \ \ \ \textcolor{comment}{//\ Define\ negation\ operation\ on\ each\ element}}
+\DoxyCodeLine{00478\ \ \ \ \ \ \ \textcolor{keyword}{auto}\ transpose\_lambda\ =\ [\&m]<\ \textcolor{keyword}{class\ }IndexType1,\ class\ IndexType2\ >(\ IndexType1\ index1,\ IndexType2\ index2\ )\ constexpr\ noexcept}
+\DoxyCodeLine{00479\ \ \ \ \ \ \ \ \ \{\ \textcolor{keywordflow}{return}\ m[\ index2,\ index1\ ];\ \};}
+\DoxyCodeLine{00480\ \ \ \ \ \ \ \textcolor{comment}{//\ Construct\ transpose\ matrix}}
+\DoxyCodeLine{00481\ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ detail::make\_from\_tuple<result\_matrix\_type>(\ collect\_ctor\_args(\ m,\ transpose\_lambda\ )\ );}
+\DoxyCodeLine{00482\ \ \ \ \ \}}
+\DoxyCodeLine{00483\ \};}
+\DoxyCodeLine{00484\ }
+\DoxyCodeLine{00487\ \textcolor{keyword}{template}\ <\ concepts::vector\_data\ V\ >}
+\DoxyCodeLine{00488\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classstd_1_1math_1_1instant__evaluated__operations_1_1transpose__vector}{transpose\_vector}}}
+\DoxyCodeLine{00489\ \{}
+\DoxyCodeLine{00490\ \ \ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00491\ \ \ \ \ \textcolor{comment}{//-\/\ Types}}
+\DoxyCodeLine{00492\ }
+\DoxyCodeLine{00494\ \ \ \ \ \textcolor{keyword}{using\ }\mbox{\hyperlink{classstd_1_1math_1_1instant__evaluated__operations_1_1transpose__vector_af98ff034efdcf54869cf7ac0e6254a11}{vector\_type}}\ \ \ \ \ \ \ \ =\ V;}
+\DoxyCodeLine{00495\ \ \ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00496\ \ \ \ \ \textcolor{comment}{//\ Aliases}}
+\DoxyCodeLine{00497\ \ \ \ \ \textcolor{keyword}{using\ }result\_Vector\_type\ =\ \mbox{\hyperlink{classstd_1_1math_1_1instant__evaluated__operations_1_1transpose__vector_af98ff034efdcf54869cf7ac0e6254a11}{vector\_type}};}
+\DoxyCodeLine{00498\ \ \ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00499\ \ \ \ \ \textcolor{comment}{//-\/\ Operations}}
+\DoxyCodeLine{00500\ }
+\DoxyCodeLine{00502\ \ \ \ \ [[nodiscard]]\ \textcolor{keyword}{static}\ \textcolor{keyword}{inline}\ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{auto}\ \mbox{\hyperlink{classstd_1_1math_1_1instant__evaluated__operations_1_1transpose__vector_a2b0b06dd04be3b7d7bb95bdde8967a7c}{trans}}(\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classstd_1_1math_1_1instant__evaluated__operations_1_1transpose__vector_af98ff034efdcf54869cf7ac0e6254a11}{vector\_type}}\&\ v\ )\ \textcolor{keyword}{noexcept}}
+\DoxyCodeLine{00503\ \ \ \ \ \{}
+\DoxyCodeLine{00504\ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ v;}
+\DoxyCodeLine{00505\ \ \ \ \ \}}
+\DoxyCodeLine{00506\ \};}
+\DoxyCodeLine{00507\ }
+\DoxyCodeLine{00510\ \textcolor{keyword}{template}\ <\ concepts::matrix\_data\ M\ >}
+\DoxyCodeLine{00511\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classstd_1_1math_1_1instant__evaluated__operations_1_1conjugate__matrix}{conjugate\_matrix}}}
+\DoxyCodeLine{00512\ \{}
+\DoxyCodeLine{00513\ \ \ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00514\ \ \ \ \ \textcolor{comment}{//-\/\ Types}}
+\DoxyCodeLine{00515\ }
+\DoxyCodeLine{00517\ \ \ \ \ \textcolor{keyword}{using\ }\mbox{\hyperlink{classstd_1_1math_1_1instant__evaluated__operations_1_1conjugate__matrix_af79974a91794c74c6c40e0f1199a1108}{matrix\_type}}\ \ \ \ \ \ \ \ \ =\ M;}
+\DoxyCodeLine{00518\ \ \ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00519\ \ \ \ \ \textcolor{comment}{//\ Aliases}}
+\DoxyCodeLine{00520\ \ \ \ \ \textcolor{keyword}{using\ }result\_element\_type\ =\ conditional\_t<\ detail::is\_complex\_v<typename\ matrix\_type::element\_type>,}
+\DoxyCodeLine{00521\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{decltype}(\ \mbox{\hyperlink{namespacestd_1_1math_a381ab766e72b583fd5859302b2c643b2}{conj}}(\ declval<typename\ matrix\_type::element\_type>()\ )\ ),}
+\DoxyCodeLine{00522\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{typename}\ matrix\_type::element\_type\ >;}
+\DoxyCodeLine{00523\ \ \ \ \ \textcolor{keyword}{using\ }result\_matrix\_type\ \ =\ \textcolor{keyword}{typename}\ matrix\_type::transpose\_type::template\ rebind\_t<result\_element\_type>;}
+\DoxyCodeLine{00524\ \ \ \ \ \textcolor{comment}{//\ Gets\ necessary\ arguments\ for\ constrution}}
+\DoxyCodeLine{00525\ \ \ \ \ \textcolor{comment}{//\ If\ matrix\ type\ is\ fixed\ size,\ then\ the\ lambda\ expression\ is\ the\ only\ argument\ needed}}
+\DoxyCodeLine{00526\ \ \ \ \ \textcolor{keyword}{template}\ <\ \textcolor{keyword}{class}\ Lambda\ >}
+\DoxyCodeLine{00527\ \ \ \ \ [[nodiscard]]\ \textcolor{keyword}{static}\ \textcolor{keyword}{inline}\ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{decltype}(\textcolor{keyword}{auto})\ collect\_ctor\_args(\ [[maybe\_unused]]\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classstd_1_1math_1_1instant__evaluated__operations_1_1conjugate__matrix_af79974a91794c74c6c40e0f1199a1108}{matrix\_type}}\&,\ Lambda\&\&\ lambda\ )\ \textcolor{keyword}{noexcept}}
+\DoxyCodeLine{00528\ \ \ \ \ \ \ \textcolor{keyword}{requires}\ \mbox{\hyperlink{conceptstd_1_1math_1_1concepts_1_1fixed__size__matrix__data}{concepts::fixed\_size\_matrix\_data<result\_matrix\_type>}}}
+\DoxyCodeLine{00529\ \ \ \ \ \{\ \textcolor{keywordflow}{return}\ tuple(\ forward<Lambda>(\ lambda\ )\ );\ \}}
+\DoxyCodeLine{00530\ \ \ \ \ \textcolor{comment}{//\ If\ the\ matrix\ type\ is\ dynamic,\ then\ size\ and\ capacity\ must\ be\ provided\ along\ with\ the\ lambda\ expression.}}
+\DoxyCodeLine{00531\ \ \ \ \ \textcolor{comment}{//\ Additionally,\ if\ all\ allocators\ of\ the\ desired\ type\ are\ not\ the\ same\ or\ cannot\ be\ default\ constructed,\ then\ it\ must\ be}}
+\DoxyCodeLine{00532\ \ \ \ \ \textcolor{comment}{//\ passed\ along\ as\ well.}}
+\DoxyCodeLine{00533\ \ \ \ \ \textcolor{keyword}{template}\ <\ \textcolor{keyword}{class}\ Lambda\ >}
+\DoxyCodeLine{00534\ \ \ \ \ [[nodiscard]]\ \textcolor{keyword}{static}\ \textcolor{keyword}{inline}\ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{decltype}(\textcolor{keyword}{auto})\ collect\_ctor\_args(\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classstd_1_1math_1_1instant__evaluated__operations_1_1conjugate__matrix_af79974a91794c74c6c40e0f1199a1108}{matrix\_type}}\&\ m,\ Lambda\&\&\ lambda\ )\ \textcolor{keyword}{noexcept}}
+\DoxyCodeLine{00535\ \ \ \ \ \ \ \textcolor{keyword}{requires}\ \mbox{\hyperlink{conceptstd_1_1math_1_1concepts_1_1dynamic__matrix__data}{concepts::dynamic\_matrix\_data<result\_matrix\_type>}}}
+\DoxyCodeLine{00536\ \ \ \ \ \{}
+\DoxyCodeLine{00537\ \ \ \ \ \ \ \textcolor{keyword}{using\ }result\_extents\_type\ =\ \textcolor{keyword}{typename}\ result\_matrix\_type::extents\_type;}
+\DoxyCodeLine{00538\ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ \textcolor{keyword}{constexpr}\ (\ is\_default\_constructible\_v<typename\ result\_matrix\_type::allocator\_type>\ \&\&}
+\DoxyCodeLine{00539\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ allocator\_traits<typename\ result\_matrix\_type::allocator\_type>::is\_always\_equal::value\ )}
+\DoxyCodeLine{00540\ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00541\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ tuple(\ result\_extents\_type(\ m.size().extent(1),\ m.size().extent(0)\ ),}
+\DoxyCodeLine{00542\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ result\_extents\_type(\ m.capacity().extent(1),\ m.capacity().extent(0)\ ),}
+\DoxyCodeLine{00543\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ forward<Lambda>(\ lambda\ )\ );}
+\DoxyCodeLine{00544\ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00545\ \ \ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{00546\ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00547\ \ \ \ \ \ \ \ \ \textcolor{keyword}{using\ }result\_alloc\_type\ =\ \textcolor{keyword}{typename}\ result\_matrix\_type::allocator\_type;}
+\DoxyCodeLine{00548\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ tuple(\ result\_extents\_type(\ m.size().extent(1),\ m.size().extent(0)\ ),}
+\DoxyCodeLine{00549\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ result\_extents\_type(\ m.capacity().extent(1),\ m.capacity().extent(0)\ ),}
+\DoxyCodeLine{00550\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ forward<Lambda>(\ lambda\ ),}
+\DoxyCodeLine{00551\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ result\_alloc\_type(\ m.get\_allocator()\ )\ );}
+\DoxyCodeLine{00552\ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00553\ \ \ \ \ \}}
+\DoxyCodeLine{00554\ \ \ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00555\ \ \ \ \ \textcolor{comment}{//-\/\ Operations}}
+\DoxyCodeLine{00556\ }
+\DoxyCodeLine{00558\ \ \ \ \ [[nodiscard]]\ \textcolor{keyword}{static}\ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{auto}\ \mbox{\hyperlink{classstd_1_1math_1_1instant__evaluated__operations_1_1conjugate__matrix_a771b5f3e182bd991576341dc744686f9}{conjugate}}(\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classstd_1_1math_1_1instant__evaluated__operations_1_1conjugate__matrix_af79974a91794c74c6c40e0f1199a1108}{matrix\_type}}\&\ m\ )}
+\DoxyCodeLine{00559\ \ \ \ \ \ \ \textcolor{keyword}{noexcept}(\ \textcolor{keyword}{noexcept}(\ detail::make\_from\_tuple<\ result\_matrix\_type\ >(}
+\DoxyCodeLine{00560\ \ \ \ \ \ \ \ \ collect\_ctor\_args(\ m,\ [\&m]<\ \textcolor{keyword}{class}\ IndexType1,\ \textcolor{keyword}{class}\ IndexType2\ >(\ IndexType1\ index1,\ IndexType2\ index2\ )\ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{noexcept}}
+\DoxyCodeLine{00561\ \ \ \ \ \ \ \ \ \ \ \{\ return\ ::std::conj(\ m[\ index2,\ index1\ ]\ );\ \}\ )\ )\ )\ )}
+\DoxyCodeLine{00562\ \ \ \ \ \{}
+\DoxyCodeLine{00563\ \ \ \ \ \ \ \textcolor{comment}{//\ Define\ negation\ operation\ on\ each\ element}}
+\DoxyCodeLine{00564\ \ \ \ \ \ \ \textcolor{keyword}{auto}\ conjugate\_lambda\ =\ [\&m]<\ \textcolor{keyword}{class\ }IndexType1,\ class\ IndexType2\ >(\ IndexType1\ index1,\ IndexType2\ index2\ )\ constexpr\ noexcept}
+\DoxyCodeLine{00565\ \ \ \ \ \ \ \ \ \{\ return\ ::std::conj(\ m[\ index2,\ index1\ ]\ );\ \};}
+\DoxyCodeLine{00566\ \ \ \ \ \ \ \textcolor{comment}{//\ Construct\ conjugate\ transpose\ matrix}}
+\DoxyCodeLine{00567\ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ detail::make\_from\_tuple<result\_matrix\_type>(\ collect\_ctor\_args(\ m,\ conjugate\_lambda\ )\ );}
+\DoxyCodeLine{00568\ \ \ \ \ \}}
+\DoxyCodeLine{00569\ \};}
+\DoxyCodeLine{00570\ }
+\DoxyCodeLine{00573\ \textcolor{keyword}{template}\ <\ concepts::vector\_data\ V\ >}
+\DoxyCodeLine{00574\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classstd_1_1math_1_1instant__evaluated__operations_1_1conjugate__vector}{conjugate\_vector}}}
+\DoxyCodeLine{00575\ \{}
+\DoxyCodeLine{00576\ \ \ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00577\ \ \ \ \ \textcolor{comment}{//-\/\ Types}}
+\DoxyCodeLine{00578\ }
+\DoxyCodeLine{00580\ \ \ \ \ \textcolor{keyword}{using\ }\mbox{\hyperlink{classstd_1_1math_1_1instant__evaluated__operations_1_1conjugate__vector_a9436e655bf079a00df4ae28345c6b584}{vector\_type}}\ \ \ \ \ \ \ \ \ =\ V;}
+\DoxyCodeLine{00581\ \ \ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00582\ \ \ \ \ \textcolor{comment}{//\ Aliases}}
+\DoxyCodeLine{00583\ \ \ \ \ \textcolor{keyword}{using\ }result\_element\_type\ =\ conditional\_t<\ detail::is\_complex\_v<typename\ vector\_type::element\_type>,}
+\DoxyCodeLine{00584\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{decltype}(\ \mbox{\hyperlink{namespacestd_1_1math_a381ab766e72b583fd5859302b2c643b2}{conj}}(\ declval<typename\ vector\_type::element\_type>()\ )\ ),}
+\DoxyCodeLine{00585\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{typename}\ vector\_type::element\_type\ >;}
+\DoxyCodeLine{00586\ \ \ \ \ \textcolor{keyword}{using\ }result\_vector\_type\ \ =\ \textcolor{keyword}{typename}\ vector\_type::template\ rebind\_t<result\_element\_type>;}
+\DoxyCodeLine{00587\ \ \ \ \ \textcolor{comment}{//\ Gets\ necessary\ arguments\ for\ constrution}}
+\DoxyCodeLine{00588\ \ \ \ \ \textcolor{comment}{//\ If\ vector\ type\ is\ fixed\ size,\ then\ the\ lambda\ expression\ is\ the\ only\ argument\ needed}}
+\DoxyCodeLine{00589\ \ \ \ \ \textcolor{keyword}{template}\ <\ \textcolor{keyword}{class}\ Lambda\ >}
+\DoxyCodeLine{00590\ \ \ \ \ [[nodiscard]]\ \textcolor{keyword}{static}\ \textcolor{keyword}{inline}\ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{decltype}(\textcolor{keyword}{auto})\ collect\_ctor\_args(\ [[maybe\_unused]]\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classstd_1_1math_1_1instant__evaluated__operations_1_1conjugate__vector_a9436e655bf079a00df4ae28345c6b584}{vector\_type}}\&,\ Lambda\&\&\ lambda\ )\ \textcolor{keyword}{noexcept}}
+\DoxyCodeLine{00591\ \ \ \ \ \ \ \textcolor{keyword}{requires}\ \mbox{\hyperlink{conceptstd_1_1math_1_1concepts_1_1fixed__size__vector__data}{concepts::fixed\_size\_vector\_data<result\_vector\_type>}}}
+\DoxyCodeLine{00592\ \ \ \ \ \{\ \textcolor{keywordflow}{return}\ tuple(\ forward<Lambda>(\ lambda\ )\ );\ \}}
+\DoxyCodeLine{00593\ \ \ \ \ \textcolor{comment}{//\ If\ the\ vector\ type\ is\ dynamic,\ then\ size\ and\ capacity\ must\ be\ provided\ along\ with\ the\ lambda\ expression.}}
+\DoxyCodeLine{00594\ \ \ \ \ \textcolor{comment}{//\ Additionally,\ if\ all\ allocators\ of\ the\ desired\ type\ are\ not\ the\ same\ or\ cannot\ be\ default\ constructed,\ then\ it\ must\ be}}
+\DoxyCodeLine{00595\ \ \ \ \ \textcolor{comment}{//\ passed\ along\ as\ well.}}
+\DoxyCodeLine{00596\ \ \ \ \ \textcolor{keyword}{template}\ <\ \textcolor{keyword}{class}\ Lambda\ >}
+\DoxyCodeLine{00597\ \ \ \ \ [[nodiscard]]\ \textcolor{keyword}{static}\ \textcolor{keyword}{inline}\ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{decltype}(\textcolor{keyword}{auto})\ collect\_ctor\_args(\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classstd_1_1math_1_1instant__evaluated__operations_1_1conjugate__vector_a9436e655bf079a00df4ae28345c6b584}{vector\_type}}\&\ v,\ Lambda\&\&\ lambda\ )\ \textcolor{keyword}{noexcept}}
+\DoxyCodeLine{00598\ \ \ \ \ \ \ \textcolor{keyword}{requires}\ \mbox{\hyperlink{conceptstd_1_1math_1_1concepts_1_1dynamic__vector__data}{concepts::dynamic\_vector\_data<vector\_type>}}}
+\DoxyCodeLine{00599\ \ \ \ \ \{}
+\DoxyCodeLine{00600\ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ \textcolor{keyword}{constexpr}\ (\ is\_default\_constructible\_v<typename\ result\_vector\_type::allocator\_type>\ \&\&}
+\DoxyCodeLine{00601\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ allocator\_traits<typename\ result\_vector\_type::allocator\_type>::is\_always\_equal::value\ )}
+\DoxyCodeLine{00602\ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00603\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ tuple(\ v.size(),\ v.capacity(),\ forward<Lambda>(\ lambda\ )\ );}
+\DoxyCodeLine{00604\ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00605\ \ \ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{00606\ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00607\ \ \ \ \ \ \ \ \ \textcolor{keyword}{using\ }result\_alloc\_type\ =\ allocator\_traits<typename\ vector\_type::allocator\_type>::template\ rebind\_alloc<result\_element\_type>;}
+\DoxyCodeLine{00608\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ tuple(\ v.size(),\ v.capacity(),\ forward<Lambda>(\ lambda\ ),\ result\_alloc\_type(\ v.get\_allocator()\ )\ );}
+\DoxyCodeLine{00609\ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00610\ \ \ \ \ \}}
+\DoxyCodeLine{00611\ \ \ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00612\ \ \ \ \ \textcolor{comment}{//-\/\ Operations}}
+\DoxyCodeLine{00613\ }
+\DoxyCodeLine{00615\ \ \ \ \ [[nodiscard]]\ \textcolor{keyword}{static}\ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{auto}\ \mbox{\hyperlink{classstd_1_1math_1_1instant__evaluated__operations_1_1conjugate__vector_a74270e1144589a8dcba71f99deaa27ad}{conjugate}}(\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classstd_1_1math_1_1instant__evaluated__operations_1_1conjugate__vector_a9436e655bf079a00df4ae28345c6b584}{vector\_type}}\&\ v\ )}
+\DoxyCodeLine{00616\ \ \ \ \ \ \ \textcolor{keyword}{noexcept}(\ !detail::is\_complex\_v<typename\ vector\_type::value\_type>\ ||}
+\DoxyCodeLine{00617\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{noexcept}(\ detail::make\_from\_tuple<\ result\_vector\_type\ >(}
+\DoxyCodeLine{00618\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ collect\_ctor\_args(\ v,}
+\DoxyCodeLine{00619\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ [\&v]<\ \textcolor{keyword}{class}\ ...\ IndexType\ >(\ IndexType\ ...\ indices\ )\ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{noexcept}\ \{\ return\ ::std::conj(\ v[\ indices\ ...\ ]\ );\ \}\ )\ )\ )\ )}
+\DoxyCodeLine{00620\ \ \ \ \ \{}
+\DoxyCodeLine{00621\ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ \textcolor{keyword}{constexpr}\ (\ detail::is\_complex\_v<typename\ vector\_type::value\_type>\ )}
+\DoxyCodeLine{00622\ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00623\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Define\ conjugate\ transpose\ operation\ on\ each\ element}}
+\DoxyCodeLine{00624\ \ \ \ \ \ \ \ \ \textcolor{keyword}{auto}\ conj\_lambda\ =\ [\&v]<\ \textcolor{keyword}{class\ }...\ IndexType\ >(\ IndexType\ ...\ indices\ )\ constexpr\ noexcept\ \{\ return\ ::std::conj(\ v[\ indices\ ...\ ]\ );\ \};}
+\DoxyCodeLine{00625\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Construct\ negated\ vector}}
+\DoxyCodeLine{00626\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ detail::make\_from\_tuple<result\_vector\_type>(\ collect\_ctor\_args(\ v,\ conj\_lambda\ )\ );}
+\DoxyCodeLine{00627\ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00628\ \ \ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{00629\ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00630\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ v;}
+\DoxyCodeLine{00631\ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00632\ \ \ \ \ \}}
+\DoxyCodeLine{00633\ \};}
+\DoxyCodeLine{00634\ }
+\DoxyCodeLine{00638\ \textcolor{keyword}{template}\ <\ concepts::vector\_data\ V,\ concepts::matrix\_data\ M\ >}
+\DoxyCodeLine{00639\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classstd_1_1math_1_1instant__evaluated__operations_1_1vector__matrix__product}{vector\_matrix\_product}}}
+\DoxyCodeLine{00640\ \{}
+\DoxyCodeLine{00641\ \ \ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00642\ \ \ \ \ \textcolor{comment}{//-\/\ Types}}
+\DoxyCodeLine{00643\ }
+\DoxyCodeLine{00645\ \ \ \ \ \textcolor{keyword}{using\ }\mbox{\hyperlink{classstd_1_1math_1_1instant__evaluated__operations_1_1vector__matrix__product_a73bd8138f097c8af3dff6cbc39d54b5b}{vector\_type}}\ =\ V;}
+\DoxyCodeLine{00647\ \ \ \ \ \textcolor{keyword}{using\ }\mbox{\hyperlink{classstd_1_1math_1_1instant__evaluated__operations_1_1vector__matrix__product_adc37d911d0b1352b8b25ea58a9abf7a9}{matrix\_type}}\ =\ M;}
+\DoxyCodeLine{00648\ \ \ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00649\ \ \ \ \ \textcolor{comment}{//\ Return\ the\ allocator}}
+\DoxyCodeLine{00650\ \ \ \ \ [[nodiscard]]\ \textcolor{keyword}{static}\ \textcolor{keyword}{inline}\ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{decltype}(\textcolor{keyword}{auto})\ get\_allocator(\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classstd_1_1math_1_1instant__evaluated__operations_1_1vector__matrix__product_adc37d911d0b1352b8b25ea58a9abf7a9}{matrix\_type}}\&\ m\ )\ \textcolor{keyword}{noexcept}}
+\DoxyCodeLine{00651\ \ \ \ \ \ \ \textcolor{keyword}{requires}\ \mbox{\hyperlink{conceptstd_1_1math_1_1concepts_1_1dynamic__matrix__data}{concepts::dynamic\_matrix\_data<\ matrix\_type\ >}}}
+\DoxyCodeLine{00652\ \ \ \ \ \{}
+\DoxyCodeLine{00653\ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ m.get\_allocator();}
+\DoxyCodeLine{00654\ \ \ \ \ \}}
+\DoxyCodeLine{00655\ \ \ \ \ \textcolor{comment}{//\ Returns\ the\ std\ allocator}}
+\DoxyCodeLine{00656\ \ \ \ \ [[nodiscard]]\ \textcolor{keyword}{static}\ \textcolor{keyword}{inline}\ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{decltype}(\textcolor{keyword}{auto})\ get\_allocator(\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classstd_1_1math_1_1instant__evaluated__operations_1_1vector__matrix__product_adc37d911d0b1352b8b25ea58a9abf7a9}{matrix\_type}}\&\ m\ )\ \textcolor{keyword}{noexcept}}
+\DoxyCodeLine{00657\ \ \ \ \ \ \ \textcolor{keyword}{requires}\ (\ !\mbox{\hyperlink{conceptstd_1_1math_1_1concepts_1_1dynamic__matrix__data}{concepts::dynamic\_matrix\_data<\ matrix\_type\ >}}\ )}
+\DoxyCodeLine{00658\ \ \ \ \ \{}
+\DoxyCodeLine{00659\ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ std::allocator<result\_value\_type>();}
+\DoxyCodeLine{00660\ \ \ \ \ \}}
+\DoxyCodeLine{00661\ \ \ \ \ \textcolor{comment}{//\ Aliases}}
+\DoxyCodeLine{00662\ \ \ \ \ \textcolor{keyword}{using\ }result\_value\_type\ \ \ \ \ \ \ =\ decay\_t<\ decltype(\ declval<typename\ vector\_type::value\_type>()\ *\ declval<typename\ matrix\_type::value\_type>()\ )\ >;}
+\DoxyCodeLine{00663\ \ \ \ \ \textcolor{keyword}{using\ }pre\_result\_vector\_type\ \ =\ conditional\_t<\ concepts::fixed\_size\_matrix\_data<matrix\_type>,}
+\DoxyCodeLine{00664\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classstd_1_1math_1_1fs__vector}{fs\_vector}}<\ result\_value\_type,}
+\DoxyCodeLine{00665\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ matrix\_type::extents\_type::static\_extent(1),}
+\DoxyCodeLine{00666\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacestd_1_1math_1_1detail_ac1ee07b82c7d514289fc74451493358d}{detail::rebind\_layout\_t}}<\textcolor{keyword}{typename}\ vector\_type::layout\_type,}
+\DoxyCodeLine{00667\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ experimental::extents<\textcolor{keyword}{typename}\ vector\_type::size\_type,}
+\DoxyCodeLine{00668\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ matrix\_type::extents\_type::static\_extent(1)>\ >,}
+\DoxyCodeLine{00669\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacestd_1_1math_1_1detail_a66ad73a2afe0cb3a49bfaad6497ce6a1}{detail::rebind\_accessor\_t<typename\ vector\_type::accessor\_type,result\_value\_type>}}\ >,}
+\DoxyCodeLine{00670\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classstd_1_1math_1_1dr__vector}{dr\_vector}}<\ result\_value\_type,}
+\DoxyCodeLine{00671\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{typename}\ allocator\_traits<\ decay\_t<\ decltype(\ get\_allocator(\ declval<matrix\_type>()\ )\ )\ >\ >::template\ rebind\_alloc<result\_value\_type>,}
+\DoxyCodeLine{00672\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacestd_1_1math_1_1detail_ac1ee07b82c7d514289fc74451493358d}{detail::rebind\_layout\_t}}<\textcolor{keyword}{typename}\ vector\_type::layout\_type,}
+\DoxyCodeLine{00673\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ experimental::extents<\textcolor{keyword}{typename}\ matrix\_type::size\_type,}
+\DoxyCodeLine{00674\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ matrix\_type::extents\_type::static\_extent(1)>\ >,}
+\DoxyCodeLine{00675\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacestd_1_1math_1_1detail_a66ad73a2afe0cb3a49bfaad6497ce6a1}{detail::rebind\_accessor\_t<typename\ vector\_type::accessor\_type,result\_value\_type>}}\ >\ >;}
+\DoxyCodeLine{00676\ \ \ \ \ \textcolor{keyword}{using\ }post\_result\_vector\_type\ =\ conditional\_t<\ concepts::fixed\_size\_matrix\_data<matrix\_type>,}
+\DoxyCodeLine{00677\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classstd_1_1math_1_1fs__vector}{fs\_vector}}<\ result\_value\_type,}
+\DoxyCodeLine{00678\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ matrix\_type::extents\_type::static\_extent(0),}
+\DoxyCodeLine{00679\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacestd_1_1math_1_1detail_ac1ee07b82c7d514289fc74451493358d}{detail::rebind\_layout\_t}}<\textcolor{keyword}{typename}\ vector\_type::layout\_type,}
+\DoxyCodeLine{00680\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ experimental::extents<\textcolor{keyword}{typename}\ matrix\_type::size\_type,}
+\DoxyCodeLine{00681\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ matrix\_type::extents\_type::static\_extent(0)\ >\ >,}
+\DoxyCodeLine{00682\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacestd_1_1math_1_1detail_a66ad73a2afe0cb3a49bfaad6497ce6a1}{detail::rebind\_accessor\_t<typename\ vector\_type::accessor\_type,result\_value\_type>}}\ >,}
+\DoxyCodeLine{00683\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classstd_1_1math_1_1dr__vector}{dr\_vector}}<\ result\_value\_type,}
+\DoxyCodeLine{00684\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{typename}\ allocator\_traits<\ decay\_t<\ decltype(\ get\_allocator(\ declval<matrix\_type>()\ )\ )\ >\ >::template\ rebind\_alloc<result\_value\_type>,}
+\DoxyCodeLine{00685\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacestd_1_1math_1_1detail_ac1ee07b82c7d514289fc74451493358d}{detail::rebind\_layout\_t}}<\textcolor{keyword}{typename}\ vector\_type::layout\_type,}
+\DoxyCodeLine{00686\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ experimental::extents<\textcolor{keyword}{typename}\ matrix\_type::size\_type,}
+\DoxyCodeLine{00687\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ matrix\_type::extents\_type::static\_extent(0)>\ >,}
+\DoxyCodeLine{00688\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacestd_1_1math_1_1detail_a66ad73a2afe0cb3a49bfaad6497ce6a1}{detail::rebind\_accessor\_t<typename\ vector\_type::accessor\_type,result\_value\_type>}}\ >\ >;}
+\DoxyCodeLine{00689\ \ \ \ \ \ \textcolor{comment}{//\ Gets\ necessary\ arguments\ for\ constrution}}
+\DoxyCodeLine{00690\ \ \ \ \ \textcolor{comment}{//\ If\ vector\ type\ is\ fixed\ size,\ then\ the\ lambda\ expression\ is\ the\ only\ argument\ needed}}
+\DoxyCodeLine{00691\ \ \ \ \ \textcolor{keyword}{template}\ <\ \textcolor{keyword}{class}\ Lambda\ >}
+\DoxyCodeLine{00692\ \ \ \ \ [[nodiscard]]\ \textcolor{keyword}{static}\ \textcolor{keyword}{inline}\ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{decltype}(\textcolor{keyword}{auto})\ collect\_ctor\_args(\ [[maybe\_unused]]\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classstd_1_1math_1_1instant__evaluated__operations_1_1vector__matrix__product_a73bd8138f097c8af3dff6cbc39d54b5b}{vector\_type}}\&,\ [[maybe\_unused]]\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classstd_1_1math_1_1instant__evaluated__operations_1_1vector__matrix__product_adc37d911d0b1352b8b25ea58a9abf7a9}{matrix\_type}}\&,\ Lambda\&\&\ lambda\ )\ \textcolor{keyword}{noexcept}}
+\DoxyCodeLine{00693\ \ \ \ \ \ \ \textcolor{keyword}{requires}\ \mbox{\hyperlink{conceptstd_1_1math_1_1concepts_1_1fixed__size__vector__data}{concepts::fixed\_size\_vector\_data<pre\_result\_vector\_type>}}}
+\DoxyCodeLine{00694\ \ \ \ \ \{\ \textcolor{keywordflow}{return}\ tuple(\ forward<Lambda>(\ lambda\ )\ );\ \}}
+\DoxyCodeLine{00695\ \ \ \ \ \textcolor{comment}{//\ If\ the\ vector\ type\ is\ dynamic,\ then\ size\ and\ capacity\ must\ be\ provided\ along\ with\ the\ lambda\ expression.}}
+\DoxyCodeLine{00696\ \ \ \ \ \textcolor{comment}{//\ Additionally,\ if\ all\ allocators\ of\ the\ desired\ type\ are\ not\ the\ same\ or\ cannot\ be\ default\ cosntructed,\ then\ it\ must\ be}}
+\DoxyCodeLine{00697\ \ \ \ \ \textcolor{comment}{//\ passed\ along\ as\ well.}}
+\DoxyCodeLine{00698\ \ \ \ \ \textcolor{keyword}{template}\ <\ \textcolor{keyword}{class}\ Lambda\ >}
+\DoxyCodeLine{00699\ \ \ \ \ [[nodiscard]]\ \textcolor{keyword}{static}\ \textcolor{keyword}{inline}\ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{decltype}(\textcolor{keyword}{auto})\ collect\_ctor\_args(\ [[maybe\_unused]]\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classstd_1_1math_1_1instant__evaluated__operations_1_1vector__matrix__product_a73bd8138f097c8af3dff6cbc39d54b5b}{vector\_type}}\&,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classstd_1_1math_1_1instant__evaluated__operations_1_1vector__matrix__product_adc37d911d0b1352b8b25ea58a9abf7a9}{matrix\_type}}\&\ m,\ Lambda\&\&\ lambda\ )\ \textcolor{keyword}{noexcept}}
+\DoxyCodeLine{00700\ \ \ \ \ \ \ \textcolor{keyword}{requires}\ concepts::dynamic\_vector\_data<pre\_result\_vector\_type>}
+\DoxyCodeLine{00701\ \ \ \ \ \{}
+\DoxyCodeLine{00702\ \ \ \ \ \ \ \textcolor{keyword}{using\ }result\_vector\_type\ =\ pre\_result\_vector\_type;}
+\DoxyCodeLine{00703\ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ \textcolor{keyword}{constexpr}\ (\ is\_default\_constructible\_v<typename\ result\_vector\_type::allocator\_type>\ \&\&}
+\DoxyCodeLine{00704\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ allocator\_traits<typename\ result\_vector\_type::allocator\_type>::is\_always\_equal::value\ )}
+\DoxyCodeLine{00705\ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00706\ \ \ \ \ \ \ \ \ \textcolor{keyword}{using\ }result\_extents\_type\ =\ \textcolor{keyword}{typename}\ result\_vector\_type::extents\_type;}
+\DoxyCodeLine{00707\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ tuple(\ result\_extents\_type(\ m.size().extent(1)\ ),}
+\DoxyCodeLine{00708\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ result\_extents\_type(\ m.capacity().extent(1)\ ),}
+\DoxyCodeLine{00709\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ forward<Lambda>(\ lambda\ )\ );}
+\DoxyCodeLine{00710\ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00711\ \ \ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{00712\ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00713\ \ \ \ \ \ \ \ \ \textcolor{keyword}{using\ }result\_extents\_type\ =\ \textcolor{keyword}{typename}\ result\_vector\_type::extents\_type;}
+\DoxyCodeLine{00714\ \ \ \ \ \ \ \ \ \textcolor{keyword}{using\ }result\_alloc\_type\ \ \ =\ \textcolor{keyword}{typename}\ result\_vector\_type::allocator\_type;}
+\DoxyCodeLine{00715\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ tuple(\ result\_extents\_type(\ m.size().extent(1)\ ),}
+\DoxyCodeLine{00716\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ result\_extents\_type(\ m.capacity().extent(1)\ ),}
+\DoxyCodeLine{00717\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ forward<Lambda>(\ lambda\ ),}
+\DoxyCodeLine{00718\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ result\_alloc\_type(\ m.get\_allocator()\ )\ );}
+\DoxyCodeLine{00719\ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00720\ \ \ \ \ \}}
+\DoxyCodeLine{00721\ \ \ \ \ \textcolor{comment}{//\ Gets\ necessary\ arguments\ for\ constrution}}
+\DoxyCodeLine{00722\ \ \ \ \ \textcolor{comment}{//\ If\ vector\ type\ is\ fixed\ size,\ then\ the\ lambda\ expression\ is\ the\ only\ argument\ needed}}
+\DoxyCodeLine{00723\ \ \ \ \ \textcolor{keyword}{template}\ <\ \textcolor{keyword}{class}\ Lambda\ >}
+\DoxyCodeLine{00724\ \ \ \ \ [[nodiscard]]\ \textcolor{keyword}{static}\ \textcolor{keyword}{inline}\ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{decltype}(\textcolor{keyword}{auto})\ collect\_ctor\_args(\ [[maybe\_unused]]\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classstd_1_1math_1_1instant__evaluated__operations_1_1vector__matrix__product_adc37d911d0b1352b8b25ea58a9abf7a9}{matrix\_type}}\&,\ [[maybe\_unused]]\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classstd_1_1math_1_1instant__evaluated__operations_1_1vector__matrix__product_a73bd8138f097c8af3dff6cbc39d54b5b}{vector\_type}}\&,\ Lambda\&\&\ lambda\ )\ \textcolor{keyword}{noexcept}}
+\DoxyCodeLine{00725\ \ \ \ \ \ \ \textcolor{keyword}{requires}\ concepts::fixed\_size\_vector\_data<post\_result\_vector\_type>}
+\DoxyCodeLine{00726\ \ \ \ \ \{\ \textcolor{keywordflow}{return}\ tuple(\ forward<Lambda>(\ lambda\ )\ );\ \}}
+\DoxyCodeLine{00727\ \ \ \ \ \textcolor{comment}{//\ If\ the\ vector\ type\ is\ dynamic,\ then\ size\ and\ capacity\ must\ be\ provided\ along\ with\ the\ lambda\ expression.}}
+\DoxyCodeLine{00728\ \ \ \ \ \textcolor{comment}{//\ Additionally,\ if\ all\ allocators\ of\ the\ desired\ type\ are\ not\ the\ same\ or\ cannot\ be\ default\ cosntructed,\ then\ it\ must\ be}}
+\DoxyCodeLine{00729\ \ \ \ \ \textcolor{comment}{//\ passed\ along\ as\ well.}}
+\DoxyCodeLine{00730\ \ \ \ \ \textcolor{keyword}{template}\ <\ \textcolor{keyword}{class}\ Lambda\ >}
+\DoxyCodeLine{00731\ \ \ \ \ [[nodiscard]]\ \textcolor{keyword}{static}\ \textcolor{keyword}{inline}\ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{decltype}(\textcolor{keyword}{auto})\ collect\_ctor\_args(\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classstd_1_1math_1_1instant__evaluated__operations_1_1vector__matrix__product_adc37d911d0b1352b8b25ea58a9abf7a9}{matrix\_type}}\&\ m,\ [[maybe\_unused]]\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classstd_1_1math_1_1instant__evaluated__operations_1_1vector__matrix__product_a73bd8138f097c8af3dff6cbc39d54b5b}{vector\_type}}\&,\ Lambda\&\&\ lambda\ )\ \textcolor{keyword}{noexcept}}
+\DoxyCodeLine{00732\ \ \ \ \ \ \ \textcolor{keyword}{requires}\ concepts::dynamic\_vector\_data<post\_result\_vector\_type>}
+\DoxyCodeLine{00733\ \ \ \ \ \{}
+\DoxyCodeLine{00734\ \ \ \ \ \ \ \textcolor{keyword}{using\ }result\_vector\_type\ =\ post\_result\_vector\_type;}
+\DoxyCodeLine{00735\ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ \textcolor{keyword}{constexpr}\ (\ is\_default\_constructible\_v<typename\ result\_vector\_type::allocator\_type>\ \&\&}
+\DoxyCodeLine{00736\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ allocator\_traits<typename\ result\_vector\_type::allocator\_type>::is\_always\_equal::value\ )}
+\DoxyCodeLine{00737\ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00738\ \ \ \ \ \ \ \ \ \textcolor{keyword}{using\ }result\_extents\_type\ =\ \textcolor{keyword}{typename}\ result\_vector\_type::extents\_type;}
+\DoxyCodeLine{00739\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ tuple(\ result\_extents\_type(\ m.size().extent(0)\ ),}
+\DoxyCodeLine{00740\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ result\_extents\_type(\ m.capacity().extent(0)\ ),}
+\DoxyCodeLine{00741\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ forward<Lambda>(\ lambda\ )\ );}
+\DoxyCodeLine{00742\ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00743\ \ \ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{00744\ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00745\ \ \ \ \ \ \ \ \ \textcolor{keyword}{using\ }result\_extents\_type\ =\ \textcolor{keyword}{typename}\ result\_vector\_type::extents\_type;}
+\DoxyCodeLine{00746\ \ \ \ \ \ \ \ \ \textcolor{keyword}{using\ }result\_alloc\_type\ \ \ =\ \textcolor{keyword}{typename}\ result\_vector\_type::allocator\_type;}
+\DoxyCodeLine{00747\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ tuple(\ result\_extents\_type(\ m.size().extent(0)\ ),}
+\DoxyCodeLine{00748\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ result\_extents\_type(\ m.capacity().extent(0)\ ),}
+\DoxyCodeLine{00749\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ forward<Lambda>(\ lambda\ ),}
+\DoxyCodeLine{00750\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ result\_alloc\_type(\ m.get\_allocator()\ )\ );}
+\DoxyCodeLine{00751\ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00752\ \ \ \ \ \}}
+\DoxyCodeLine{00753\ \ \ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00754\ \ \ \ \ \textcolor{comment}{//-\/\ Operations}}
+\DoxyCodeLine{00755\ }
+\DoxyCodeLine{00757\ \ \ \ \ [[nodiscard]]\ \textcolor{keyword}{static}\ \textcolor{keyword}{constexpr}\ pre\_result\_vector\_type\ \mbox{\hyperlink{classstd_1_1math_1_1instant__evaluated__operations_1_1vector__matrix__product_a3465fd5fb35ee0d150fbc7f44b8e76dd}{prod}}(\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classstd_1_1math_1_1instant__evaluated__operations_1_1vector__matrix__product_a73bd8138f097c8af3dff6cbc39d54b5b}{vector\_type}}\&\ v,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classstd_1_1math_1_1instant__evaluated__operations_1_1vector__matrix__product_adc37d911d0b1352b8b25ea58a9abf7a9}{matrix\_type}}\&\ m\ )}
+\DoxyCodeLine{00758\ \ \ \ \ \ \ \textcolor{keyword}{noexcept}(\ \textcolor{keyword}{noexcept}(}
+\DoxyCodeLine{00759\ \ \ \ \ \ \ \ \ detail::make\_from\_tuple<\ pre\_result\_vector\_type\ >(}
+\DoxyCodeLine{00760\ \ \ \ \ \ \ \ \ \ \ collect\_ctor\_args(\ v,}
+\DoxyCodeLine{00761\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ m,}
+\DoxyCodeLine{00762\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ [\&v,\&m]<\ \textcolor{keyword}{class}\ IndexType\ >(\ IndexType\ index\ )\ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{noexcept}}
+\DoxyCodeLine{00763\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00764\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ result\_value\_type\ result\ =\ 0;}
+\DoxyCodeLine{00765\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ for\_each(\ execution::unseq,}
+\DoxyCodeLine{00766\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structstd_1_1math_1_1detail_1_1faux__index__iterator}{detail::faux\_index\_iterator<typename\ vector\_type::index\_type>}}(\ 0\ ),}
+\DoxyCodeLine{00767\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structstd_1_1math_1_1detail_1_1faux__index__iterator}{detail::faux\_index\_iterator<typename\ vector\_type::index\_type>}}(\ v.size().extent(0)\ ),}
+\DoxyCodeLine{00768\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ [\ \&v,\ \&m,\ \&index,\ \&result\ ]\ (\ \textcolor{keyword}{typename}\ vector\_type::index\_type\ index2\ )\ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{noexcept}}
+\DoxyCodeLine{00769\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{\ result\ +=\ v[index2]\ *\ m[index2,index];\ \}\ );}
+\DoxyCodeLine{00770\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ result;}
+\DoxyCodeLine{00771\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}\ )\ )\ )\ \&\&}
+\DoxyCodeLine{00772\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (\ (\ vector\_type::extents\_type::static\_extent(0)\ !=\ experimental::dynamic\_extent\ )\ \&\&}
+\DoxyCodeLine{00773\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (\ matrix\_type::extents\_type::static\_extent(0)\ !=\ experimental::dynamic\_extent\ )\ )\ )}
+\DoxyCodeLine{00774\ \ \ \ \ \ \ \textcolor{keyword}{requires}\ (\ (\ vector\_type::extents\_type::static\_extent(0)\ ==\ matrix\_type::extents\_type::static\_extent(0)\ )\ ||}
+\DoxyCodeLine{00775\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (\ vector\_type::extents\_type::static\_extent(0)\ ==\ experimental::dynamic\_extent\ )\ ||}
+\DoxyCodeLine{00776\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (\ matrix\_type::extents\_type::static\_extent(0)\ ==\ experimental::dynamic\_extent\ )\ )}
+\DoxyCodeLine{00777\ \ \ \ \ \{}
+\DoxyCodeLine{00778\ \ \ \ \ \ \ \textcolor{comment}{//\ If\ the\ extents\ are\ dynamic,\ then\ check\ they\ are\ compatable}}
+\DoxyCodeLine{00779\ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ \textcolor{keyword}{constexpr}\ (\ (\ vector\_type::extents\_type::static\_extent(0)\ ==\ experimental::dynamic\_extent\ )\ ||}
+\DoxyCodeLine{00780\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (\ matrix\_type::extents\_type::static\_extent(0)\ ==\ experimental::dynamic\_extent\ )\ )}
+\DoxyCodeLine{00781\ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00782\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ If\ sizes\ are\ not\ compatable,\ then\ throw\ exception}}
+\DoxyCodeLine{00783\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\ v.size()\ !=\ m.size().extent(0)\ )\ [[unlikely]]}
+\DoxyCodeLine{00784\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00785\ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{throw}\ length\_error(\ \textcolor{stringliteral}{"{}Matrix\ and\ vector\ sizes\ are\ incompatable."{}}\ );}
+\DoxyCodeLine{00786\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00787\ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00788\ \ \ \ \ \ \ \textcolor{comment}{//\ Define\ product\ operation\ on\ each\ element\ pair}}
+\DoxyCodeLine{00789\ \ \ \ \ \ \ \textcolor{keyword}{auto}\ lambda\ =\ [\&v,\&m]<\ \textcolor{keyword}{class\ }IndexType\ >(\ IndexType\ index\ )\ constexpr\ noexcept}
+\DoxyCodeLine{00790\ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00791\ \ \ \ \ \ \ \ \ result\_value\_type\ result\ =\ 0;}
+\DoxyCodeLine{00792\ \ \ \ \ \ \ \ \ for\_each(\ execution::unseq,}
+\DoxyCodeLine{00793\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ detail::faux\_index\_iterator<typename\ vector\_type::index\_type>(\ 0\ ),}
+\DoxyCodeLine{00794\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ detail::faux\_index\_iterator<typename\ vector\_type::index\_type>(\ v.size().extent(0)\ ),}
+\DoxyCodeLine{00795\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ [\ \&v,\ \&m,\ \&index,\ \&result\ ]\ (\ \textcolor{keyword}{typename}\ vector\_type::index\_type\ index2\ )\ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{noexcept}}
+\DoxyCodeLine{00796\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{\ result\ +=\ v[index2]\ *\ m[index2,index];\ \}\ );}
+\DoxyCodeLine{00797\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ result;}
+\DoxyCodeLine{00798\ \ \ \ \ \ \ \};}
+\DoxyCodeLine{00799\ \ \ \ \ \ \ \textcolor{comment}{//\ Construct\ multiplication\ vector}}
+\DoxyCodeLine{00800\ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ detail::make\_from\_tuple<pre\_result\_vector\_type>(\ collect\_ctor\_args(\ v,\ m,\ lambda\ )\ );}
+\DoxyCodeLine{00801\ \ \ \ \ \}}
+\DoxyCodeLine{00803\ \ \ \ \ [[nodiscard]]\ \textcolor{keyword}{static}\ \textcolor{keyword}{constexpr}\ \mbox{\hyperlink{classstd_1_1math_1_1instant__evaluated__operations_1_1vector__matrix__product_a73bd8138f097c8af3dff6cbc39d54b5b}{vector\_type}}\&\ \mbox{\hyperlink{classstd_1_1math_1_1instant__evaluated__operations_1_1vector__matrix__product_aa6396d16e0932dad2708e1bad3c5cf56}{prod}}(\ \mbox{\hyperlink{classstd_1_1math_1_1instant__evaluated__operations_1_1vector__matrix__product_a73bd8138f097c8af3dff6cbc39d54b5b}{vector\_type}}\&\ v,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classstd_1_1math_1_1instant__evaluated__operations_1_1vector__matrix__product_adc37d911d0b1352b8b25ea58a9abf7a9}{matrix\_type}}\&\ m\ )}
+\DoxyCodeLine{00804\ \ \ \ \ \ \ \textcolor{keyword}{noexcept}(\ \textcolor{keyword}{noexcept}(\ v\ =\ move(\ v\ *\ m\ )\ )\ )}
+\DoxyCodeLine{00805\ \ \ \ \ \ \ \textcolor{keyword}{requires}\ (\ (\ vector\_type::extents\_type::static\_extent(0)\ ==\ matrix\_type::extents\_type::static\_extent(0)\ )\ \&\&}
+\DoxyCodeLine{00806\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (\ (\ vector\_type::extents\_type::static\_extent(0)\ ==\ matrix\_type::extents\_type::static\_extent(1)\ )\ ||}
+\DoxyCodeLine{00807\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (\ vector\_type::extents\_type::static\_extent(0)\ ==\ experimental::dynamic\_extent\ )\ )\ )}
+\DoxyCodeLine{00808\ \ \ \ \ \{}
+\DoxyCodeLine{00809\ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ v\ =\ move(\ v\ *\ m\ );}
+\DoxyCodeLine{00810\ \ \ \ \ \}}
+\DoxyCodeLine{00812\ \ \ \ \ [[nodiscard]]\ \textcolor{keyword}{static}\ \textcolor{keyword}{constexpr}\ post\_result\_vector\_type\ \mbox{\hyperlink{classstd_1_1math_1_1instant__evaluated__operations_1_1vector__matrix__product_a2b0eeffa3e50cc691ebf92653aa347e0}{prod}}(\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classstd_1_1math_1_1instant__evaluated__operations_1_1vector__matrix__product_adc37d911d0b1352b8b25ea58a9abf7a9}{matrix\_type}}\&\ m,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classstd_1_1math_1_1instant__evaluated__operations_1_1vector__matrix__product_a73bd8138f097c8af3dff6cbc39d54b5b}{vector\_type}}\&\ v\ )}
+\DoxyCodeLine{00813\ \ \ \ \ \ \ \textcolor{keyword}{noexcept}(\ \textcolor{keyword}{noexcept}(}
+\DoxyCodeLine{00814\ \ \ \ \ \ \ \ \ detail::make\_from\_tuple<\ post\_result\_vector\_type\ >(}
+\DoxyCodeLine{00815\ \ \ \ \ \ \ \ \ \ \ collect\_ctor\_args(\ declval<const\ vector\_type\&>(),}
+\DoxyCodeLine{00816\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ declval<const\ matrix\_type\&>(),}
+\DoxyCodeLine{00817\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ [\&v,\&m]<\ \textcolor{keyword}{class}\ IndexType\ >(\ IndexType\ index\ )\ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{noexcept}}
+\DoxyCodeLine{00818\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00819\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ result\_value\_type\ result\ =\ 0;}
+\DoxyCodeLine{00820\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ for\_each(\ execution::unseq,}
+\DoxyCodeLine{00821\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structstd_1_1math_1_1detail_1_1faux__index__iterator}{detail::faux\_index\_iterator<typename\ vector\_type::index\_type>}}(\ 0\ ),}
+\DoxyCodeLine{00822\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structstd_1_1math_1_1detail_1_1faux__index__iterator}{detail::faux\_index\_iterator<typename\ vector\_type::index\_type>}}(\ v.size().extent(0)\ ),}
+\DoxyCodeLine{00823\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ [\ \&v,\ \&m,\ \&index,\ \&result\ ]\ (\ \textcolor{keyword}{typename}\ vector\_type::index\_type\ index2\ )\ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{noexcept}}
+\DoxyCodeLine{00824\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{\ result\ +=\ m[index,index2]\ *\ v[index2];\ \}\ );}
+\DoxyCodeLine{00825\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ result;}
+\DoxyCodeLine{00826\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}\ )\ )\ )\ \&\&}
+\DoxyCodeLine{00827\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (\ (\ matrix\_type::extents\_type::static\_extent(1)\ !=\ experimental::dynamic\_extent\ )\ \&\&}
+\DoxyCodeLine{00828\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (\ vector\_type::extents\_type::static\_extent(0)\ !=\ experimental::dynamic\_extent\ )\ )\ )}
+\DoxyCodeLine{00829\ \ \ \ \ \ \ \textcolor{keyword}{requires}\ (\ (\ matrix\_type::extents\_type::static\_extent(1)\ ==\ vector\_type::extents\_type::static\_extent(0)\ )\ ||}
+\DoxyCodeLine{00830\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (\ matrix\_type::extents\_type::static\_extent(1)\ ==\ experimental::dynamic\_extent\ )\ ||}
+\DoxyCodeLine{00831\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (\ vector\_type::extents\_type::static\_extent(0)\ ==\ experimental::dynamic\_extent\ )\ )}
+\DoxyCodeLine{00832\ \ \ \ \ \{}
+\DoxyCodeLine{00833\ \ \ \ \ \ \ \textcolor{comment}{//\ If\ the\ extents\ are\ dynamic,\ then\ check\ they\ are\ compatable}}
+\DoxyCodeLine{00834\ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ \textcolor{keyword}{constexpr}\ (\ (\ matrix\_type::extents\_type::static\_extent(1)\ ==\ experimental::dynamic\_extent\ )\ ||}
+\DoxyCodeLine{00835\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (\ vector\_type::extents\_type::static\_extent(0)\ ==\ experimental::dynamic\_extent\ )\ )}
+\DoxyCodeLine{00836\ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00837\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ If\ sizes\ are\ not\ compatable,\ then\ throw\ exception}}
+\DoxyCodeLine{00838\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\ v.size()\ !=\ m.size().extent(1)\ )\ [[unlikely]]}
+\DoxyCodeLine{00839\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00840\ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{throw}\ length\_error(\ \textcolor{stringliteral}{"{}Matrix\ and\ vector\ sizes\ are\ incompatable."{}}\ );}
+\DoxyCodeLine{00841\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00842\ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00843\ \ \ \ \ \ \ \textcolor{comment}{//\ Define\ product\ operation\ on\ each\ element\ pair}}
+\DoxyCodeLine{00844\ \ \ \ \ \ \ \textcolor{keyword}{auto}\ lambda\ =\ [\&v,\&m]<\ \textcolor{keyword}{class\ }IndexType\ >(\ IndexType\ index\ )\ constexpr\ noexcept}
+\DoxyCodeLine{00845\ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00846\ \ \ \ \ \ \ \ \ result\_value\_type\ result\ =\ 0;}
+\DoxyCodeLine{00847\ \ \ \ \ \ \ \ \ for\_each(\ execution::unseq,}
+\DoxyCodeLine{00848\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ detail::faux\_index\_iterator<typename\ vector\_type::index\_type>(\ 0\ ),}
+\DoxyCodeLine{00849\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ detail::faux\_index\_iterator<typename\ vector\_type::index\_type>(\ v.size().extent(0)\ ),}
+\DoxyCodeLine{00850\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ [\ \&v,\ \&m,\ \&index,\ \&result\ ]\ (\ \textcolor{keyword}{typename}\ vector\_type::index\_type\ index2\ )\ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{noexcept}}
+\DoxyCodeLine{00851\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{\ result\ +=\ m[index,index2]\ *\ v[index2];\ \}\ );}
+\DoxyCodeLine{00852\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ result;}
+\DoxyCodeLine{00853\ \ \ \ \ \ \ \};}
+\DoxyCodeLine{00854\ \ \ \ \ \ \ \textcolor{comment}{//\ Construct\ multiplication\ vector}}
+\DoxyCodeLine{00855\ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ detail::make\_from\_tuple<post\_result\_vector\_type>(\ collect\_ctor\_args(\ m,\ v,\ lambda\ )\ );}
+\DoxyCodeLine{00856\ \ \ \ \ \}}
+\DoxyCodeLine{00857\ \};}
+\DoxyCodeLine{00858\ }
+\DoxyCodeLine{00862\ \textcolor{keyword}{template}\ <\ concepts::matrix\_data\ M1,\ concepts::matrix\_data\ M2\ >}
+\DoxyCodeLine{00863\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classstd_1_1math_1_1instant__evaluated__operations_1_1matrix__matrix__product}{matrix\_matrix\_product}}}
+\DoxyCodeLine{00864\ \{}
+\DoxyCodeLine{00865\ \ \ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00866\ \ \ \ \ \textcolor{comment}{//-\/\ Types}}
+\DoxyCodeLine{00867\ }
+\DoxyCodeLine{00869\ \ \ \ \ \textcolor{keyword}{using\ }\mbox{\hyperlink{classstd_1_1math_1_1instant__evaluated__operations_1_1matrix__matrix__product_a593ccca8dfbbbec22432b0814a64f71d}{first\_matrix\_type}}\ \ =\ M1;}
+\DoxyCodeLine{00871\ \ \ \ \ \textcolor{keyword}{using\ }\mbox{\hyperlink{classstd_1_1math_1_1instant__evaluated__operations_1_1matrix__matrix__product_a16f79f1a1484ebaffd448b0780ab1c8c}{second\_matrix\_type}}\ =\ M2;}
+\DoxyCodeLine{00872\ \ \ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00873\ \ \ \ \ \textcolor{comment}{//\ Return\ the\ allocator\ of\ m1}}
+\DoxyCodeLine{00874\ \ \ \ \ [[nodiscard]]\ \textcolor{keyword}{static}\ \textcolor{keyword}{inline}\ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{decltype}(\textcolor{keyword}{auto})\ get\_allocator(\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classstd_1_1math_1_1instant__evaluated__operations_1_1matrix__matrix__product_a593ccca8dfbbbec22432b0814a64f71d}{first\_matrix\_type}}\&\ m1,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classstd_1_1math_1_1instant__evaluated__operations_1_1matrix__matrix__product_a16f79f1a1484ebaffd448b0780ab1c8c}{second\_matrix\_type}}\&\ m2\ )\ \textcolor{keyword}{noexcept}}
+\DoxyCodeLine{00875\ \ \ \ \ \ \ \textcolor{keyword}{requires}\ \mbox{\hyperlink{conceptstd_1_1math_1_1concepts_1_1dynamic__matrix__data}{concepts::dynamic\_matrix\_data<\ first\_matrix\_type\ >}}}
+\DoxyCodeLine{00876\ \ \ \ \ \{}
+\DoxyCodeLine{00877\ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ m1.get\_allocator();}
+\DoxyCodeLine{00878\ \ \ \ \ \}}
+\DoxyCodeLine{00879\ \ \ \ \ \textcolor{comment}{//\ Returns\ the\ allocator\ of\ m2}}
+\DoxyCodeLine{00880\ \ \ \ \ [[nodiscard]]\ \textcolor{keyword}{static}\ \textcolor{keyword}{inline}\ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{decltype}(\textcolor{keyword}{auto})\ get\_allocator(\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classstd_1_1math_1_1instant__evaluated__operations_1_1matrix__matrix__product_a593ccca8dfbbbec22432b0814a64f71d}{first\_matrix\_type}}\&\ m1,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classstd_1_1math_1_1instant__evaluated__operations_1_1matrix__matrix__product_a16f79f1a1484ebaffd448b0780ab1c8c}{second\_matrix\_type}}\&\ m2\ )\ \textcolor{keyword}{noexcept}}
+\DoxyCodeLine{00881\ \ \ \ \ \ \ \textcolor{keyword}{requires}\ (\ \mbox{\hyperlink{conceptstd_1_1math_1_1concepts_1_1dynamic__matrix__data}{concepts::dynamic\_matrix\_data<\ second\_matrix\_type\ >}}\ \&\&\ !\mbox{\hyperlink{conceptstd_1_1math_1_1concepts_1_1dynamic__matrix__data}{concepts::dynamic\_matrix\_data<\ first\_matrix\_type\ >}}\ )}
+\DoxyCodeLine{00882\ \ \ \ \ \{}
+\DoxyCodeLine{00883\ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ m2.get\_allocator();}
+\DoxyCodeLine{00884\ \ \ \ \ \}}
+\DoxyCodeLine{00885\ \ \ \ \ \textcolor{comment}{//\ Returns\ the\ std\ allocator}}
+\DoxyCodeLine{00886\ \ \ \ \ [[nodiscard]]\ \textcolor{keyword}{static}\ \textcolor{keyword}{inline}\ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{decltype}(\textcolor{keyword}{auto})\ get\_allocator(\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classstd_1_1math_1_1instant__evaluated__operations_1_1matrix__matrix__product_a593ccca8dfbbbec22432b0814a64f71d}{first\_matrix\_type}}\&\ m1,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classstd_1_1math_1_1instant__evaluated__operations_1_1matrix__matrix__product_a16f79f1a1484ebaffd448b0780ab1c8c}{second\_matrix\_type}}\&\ m2\ )\ \textcolor{keyword}{noexcept}}
+\DoxyCodeLine{00887\ \ \ \ \ \ \ \textcolor{keyword}{requires}\ (\ !\mbox{\hyperlink{conceptstd_1_1math_1_1concepts_1_1dynamic__matrix__data}{concepts::dynamic\_matrix\_data<\ first\_matrix\_type\ >}}\ \&\&\ !\mbox{\hyperlink{conceptstd_1_1math_1_1concepts_1_1dynamic__matrix__data}{concepts::dynamic\_matrix\_data<\ second\_matrix\_type\ >}}\ )}
+\DoxyCodeLine{00888\ \ \ \ \ \{}
+\DoxyCodeLine{00889\ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ std::allocator<result\_value\_type>();}
+\DoxyCodeLine{00890\ \ \ \ \ \}}
+\DoxyCodeLine{00891\ \ \ \ \ \textcolor{comment}{//\ Aliases}}
+\DoxyCodeLine{00892\ \ \ \ \ \textcolor{keyword}{using\ }result\_value\_type\ \ =\ decay\_t<\ decltype(\ declval<typename\ first\_matrix\_type::value\_type>()\ *\ declval<typename\ second\_matrix\_type::value\_type>()\ )\ >;}
+\DoxyCodeLine{00893\ \ \ \ \ \textcolor{keyword}{using\ }result\_matrix\_type\ =\ conditional\_t<\ concepts::fixed\_size\_matrix\_data<first\_matrix\_type>\ \&\&}
+\DoxyCodeLine{00894\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ concepts::fixed\_size\_matrix\_data<second\_matrix\_type>,}
+\DoxyCodeLine{00895\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ fs\_matrix<\ result\_value\_type,}
+\DoxyCodeLine{00896\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ first\_matrix\_type::extents\_type::static\_extent(0),}
+\DoxyCodeLine{00897\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ second\_matrix\_type::extents\_type::static\_extent(1),}
+\DoxyCodeLine{00898\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacestd_1_1math_1_1detail_ac1ee07b82c7d514289fc74451493358d}{detail::rebind\_layout\_t}}<\textcolor{keyword}{typename}\ first\_matrix\_type::layout\_type,}
+\DoxyCodeLine{00899\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ experimental::extents<\textcolor{keyword}{typename}\ first\_matrix\_type::size\_type,}
+\DoxyCodeLine{00900\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ first\_matrix\_type::extents\_type::static\_extent(0),}
+\DoxyCodeLine{00901\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ second\_matrix\_type::extents\_type::static\_extent(1)>\ >,}
+\DoxyCodeLine{00902\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ detail::rebind\_accessor\_t<typename\ first\_matrix\_type::accessor\_type,result\_value\_type>\ >,}
+\DoxyCodeLine{00903\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ dr\_matrix<\ result\_value\_type,}
+\DoxyCodeLine{00904\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{typename}\ allocator\_traits<\ decay\_t<\ decltype(\ get\_allocator(\ declval<first\_matrix\_type>(),\ declval<second\_matrix\_type>()\ )\ )\ >\ >::template\ rebind\_alloc<result\_value\_type>,}
+\DoxyCodeLine{00905\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacestd_1_1math_1_1detail_ac1ee07b82c7d514289fc74451493358d}{detail::rebind\_layout\_t}}<\textcolor{keyword}{typename}\ first\_matrix\_type::layout\_type,}
+\DoxyCodeLine{00906\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ experimental::extents<\textcolor{keyword}{typename}\ first\_matrix\_type::index\_type,}
+\DoxyCodeLine{00907\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ experimental::dynamic\_extent,}
+\DoxyCodeLine{00908\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ experimental::dynamic\_extent>\ >,}
+\DoxyCodeLine{00909\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ detail::rebind\_accessor\_t<typename\ first\_matrix\_type::accessor\_type,result\_value\_type>\ >\ >;}
+\DoxyCodeLine{00910\ \ \ \ \ \textcolor{comment}{//\ Gets\ necessary\ arguments\ for\ constrution}}
+\DoxyCodeLine{00911\ \ \ \ \ \textcolor{comment}{//\ If\ matrix\ type\ is\ fixed\ size,\ then\ the\ lambda\ expression\ is\ the\ only\ argument\ needed}}
+\DoxyCodeLine{00912\ \ \ \ \ \textcolor{keyword}{template}\ <\ \textcolor{keyword}{class}\ Lambda\ >}
+\DoxyCodeLine{00913\ \ \ \ \ [[nodiscard]]\ \textcolor{keyword}{static}\ \textcolor{keyword}{inline}\ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{decltype}(\textcolor{keyword}{auto})\ collect\_ctor\_args(\ [[maybe\_unused]]\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classstd_1_1math_1_1instant__evaluated__operations_1_1matrix__matrix__product_a593ccca8dfbbbec22432b0814a64f71d}{first\_matrix\_type}}\&,\ [[maybe\_unused]]\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classstd_1_1math_1_1instant__evaluated__operations_1_1matrix__matrix__product_a16f79f1a1484ebaffd448b0780ab1c8c}{second\_matrix\_type}}\&,\ Lambda\&\&\ lambda\ )\ \textcolor{keyword}{noexcept}}
+\DoxyCodeLine{00914\ \ \ \ \ \ \ \textcolor{keyword}{requires}\ concepts::fixed\_size\_matrix\_data<result\_matrix\_type>}
+\DoxyCodeLine{00915\ \ \ \ \ \{\ \textcolor{keywordflow}{return}\ tuple(\ forward<Lambda>(\ lambda\ )\ );\ \}}
+\DoxyCodeLine{00916\ \ \ \ \ \textcolor{comment}{//\ If\ the\ matrix\ type\ is\ dynamic,\ then\ size\ and\ capacity\ must\ be\ provided\ along\ with\ the\ lambda\ expression.}}
+\DoxyCodeLine{00917\ \ \ \ \ \textcolor{comment}{//\ Additionally,\ if\ all\ allocators\ of\ the\ desired\ type\ are\ not\ the\ same\ or\ cannot\ be\ default\ constructed,\ then\ it\ must\ be}}
+\DoxyCodeLine{00918\ \ \ \ \ \textcolor{comment}{//\ passed\ along\ as\ well.}}
+\DoxyCodeLine{00919\ \ \ \ \ \textcolor{keyword}{template}\ <\ \textcolor{keyword}{class}\ Lambda\ >}
+\DoxyCodeLine{00920\ \ \ \ \ [[nodiscard]]\ \textcolor{keyword}{static}\ \textcolor{keyword}{inline}\ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{decltype}(\textcolor{keyword}{auto})\ collect\_ctor\_args(\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classstd_1_1math_1_1instant__evaluated__operations_1_1matrix__matrix__product_a593ccca8dfbbbec22432b0814a64f71d}{first\_matrix\_type}}\&\ m1,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classstd_1_1math_1_1instant__evaluated__operations_1_1matrix__matrix__product_a16f79f1a1484ebaffd448b0780ab1c8c}{second\_matrix\_type}}\&\ m2,\ Lambda\&\&\ lambda\ )\ \textcolor{keyword}{noexcept}}
+\DoxyCodeLine{00921\ \ \ \ \ \ \ \textcolor{keyword}{requires}\ concepts::dynamic\_matrix\_data<result\_matrix\_type>}
+\DoxyCodeLine{00922\ \ \ \ \ \{}
+\DoxyCodeLine{00923\ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ \textcolor{keyword}{constexpr}\ (\ is\_default\_constructible\_v<typename\ result\_matrix\_type::allocator\_type>\ \&\&}
+\DoxyCodeLine{00924\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ allocator\_traits<typename\ result\_matrix\_type::allocator\_type>::is\_always\_equal::value\ )}
+\DoxyCodeLine{00925\ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00926\ \ \ \ \ \ \ \ \ \textcolor{keyword}{using\ }result\_extents\_type\ =\ \textcolor{keyword}{typename}\ result\_matrix\_type::extents\_type;}
+\DoxyCodeLine{00927\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ tuple(\ result\_extents\_type(\ m1.size().extent(0),\ m2.size().extent(1)\ ),}
+\DoxyCodeLine{00928\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ result\_extents\_type(\ m1.capacity().extent(0),\ m2.capacity().extent(1)\ ),}
+\DoxyCodeLine{00929\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ forward<Lambda>(\ lambda\ )\ );}
+\DoxyCodeLine{00930\ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00931\ \ \ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{00932\ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00933\ \ \ \ \ \ \ \ \ \textcolor{keyword}{using\ }result\_extents\_type\ =\ \textcolor{keyword}{typename}\ result\_matrix\_type::extents\_type;}
+\DoxyCodeLine{00934\ \ \ \ \ \ \ \ \ \textcolor{keyword}{using\ }result\_alloc\_type\ \ \ =\ \textcolor{keyword}{typename}\ result\_matrix\_type::allocator\_type;}
+\DoxyCodeLine{00935\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ tuple(\ result\_extents\_type(\ m1.size().extent(0),\ m2.size().extent(1)\ ),}
+\DoxyCodeLine{00936\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ result\_extents\_type(\ m1.capacity().extent(0),\ m2.capacity().extent(1)\ ),}
+\DoxyCodeLine{00937\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ forward<Lambda>(\ lambda\ ),}
+\DoxyCodeLine{00938\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ result\_alloc\_type(\ get\_allocator(\ m1,\ m2\ )\ )\ );}
+\DoxyCodeLine{00939\ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00940\ \ \ \ \ \}}
+\DoxyCodeLine{00941\ \ \ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00942\ \ \ \ \ \textcolor{comment}{//-\/\ Operations}}
+\DoxyCodeLine{00943\ }
+\DoxyCodeLine{00945\ \ \ \ \ [[nodiscard]]\ \textcolor{keyword}{static}\ \textcolor{keyword}{constexpr}\ result\_matrix\_type\ \mbox{\hyperlink{classstd_1_1math_1_1instant__evaluated__operations_1_1matrix__matrix__product_a181ecb7061c10d07e0550069d36856f0}{prod}}(\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classstd_1_1math_1_1instant__evaluated__operations_1_1matrix__matrix__product_a593ccca8dfbbbec22432b0814a64f71d}{first\_matrix\_type}}\&\ m1,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classstd_1_1math_1_1instant__evaluated__operations_1_1matrix__matrix__product_a16f79f1a1484ebaffd448b0780ab1c8c}{second\_matrix\_type}}\&\ m2\ )}
+\DoxyCodeLine{00946\ \ \ \ \ \ \ \textcolor{keyword}{noexcept}(\ \textcolor{keyword}{noexcept}(\ detail::make\_from\_tuple<\ result\_matrix\_type\ >(}
+\DoxyCodeLine{00947\ \ \ \ \ \ \ \ \ collect\_ctor\_args(\ declval<const\ first\_matrix\_type\&>(),}
+\DoxyCodeLine{00948\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ declval<const\ second\_matrix\_type\&>(),}
+\DoxyCodeLine{00949\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ [\&m1,\&m2]<\ \textcolor{keyword}{class}\ IndexType1,\ \textcolor{keyword}{class}\ IndexType2\ >(\ IndexType1\ index1,\ IndexType2\ index2\ )\ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{noexcept}}
+\DoxyCodeLine{00950\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00951\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ result\_value\_type\ result\ =\ 0;}
+\DoxyCodeLine{00952\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ for\_each(\ execution::unseq,}
+\DoxyCodeLine{00953\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structstd_1_1math_1_1detail_1_1faux__index__iterator}{detail::faux\_index\_iterator<typename\ first\_matrix\_type::index\_type>}}(\ 0\ ),}
+\DoxyCodeLine{00954\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structstd_1_1math_1_1detail_1_1faux__index__iterator}{detail::faux\_index\_iterator<typename\ first\_matrix\_type::index\_type>}}(\ m1.size().extent(1)\ ),}
+\DoxyCodeLine{00955\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ [\ \&m1,\ \&m2,\ \&index1,\ \&index2,\ \&result\ ]\ (\ \textcolor{keyword}{typename}\ first\_matrix\_type::index\_type\ index\ )\ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{noexcept}}
+\DoxyCodeLine{00956\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{\ result\ +=\ m1[index1,index]\ *\ m2[index,index2];\ \}\ );}
+\DoxyCodeLine{00957\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ result;}
+\DoxyCodeLine{00958\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}\ )\ )\ )\ \&\&}
+\DoxyCodeLine{00959\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (\ first\_matrix\_type::extents\_type::static\_extent(1)\ !=\ experimental::dynamic\_extent\ )\ \&\&}
+\DoxyCodeLine{00960\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (\ second\_matrix\_type::extents\_type::static\_extent(0)\ !=\ experimental::dynamic\_extent\ )\ )}
+\DoxyCodeLine{00961\ \ \ \ \ \ \ \textcolor{keyword}{requires}\ (\ (\ first\_matrix\_type::extents\_type::static\_extent(1)\ ==\ second\_matrix\_type::extents\_type::static\_extent(0)\ )\ ||}
+\DoxyCodeLine{00962\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (\ first\_matrix\_type::extents\_type::static\_extent(1)\ ==\ experimental::dynamic\_extent\ )\ ||}
+\DoxyCodeLine{00963\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (\ second\_matrix\_type::extents\_type::static\_extent(0)\ ==\ experimental::dynamic\_extent\ )\ )}
+\DoxyCodeLine{00964\ \ \ \ \ \{}
+\DoxyCodeLine{00965\ \ \ \ \ \ \ \textcolor{comment}{//\ If\ the\ extents\ are\ dynamic,\ then\ check\ they\ are\ compatable}}
+\DoxyCodeLine{00966\ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ \textcolor{keyword}{constexpr}\ (\ (\ first\_matrix\_type::extents\_type::static\_extent(1)\ ==\ experimental::dynamic\_extent\ )\ ||}
+\DoxyCodeLine{00967\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (\ second\_matrix\_type::extents\_type::static\_extent(0)\ ==\ experimental::dynamic\_extent\ )\ )}
+\DoxyCodeLine{00968\ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00969\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ If\ sizes\ are\ not\ compatable,\ then\ throw\ exception}}
+\DoxyCodeLine{00970\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\ m1.size().extent(1)\ !=\ m2.size().extent(0)\ )\ [[unlikely]]}
+\DoxyCodeLine{00971\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00972\ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{throw}\ length\_error(\ \textcolor{stringliteral}{"{}Matrix\ sizes\ are\ incompatable."{}}\ );}
+\DoxyCodeLine{00973\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00974\ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00975\ \ \ \ \ \ \ \textcolor{comment}{//\ Define\ product\ operation\ on\ each\ element\ pair}}
+\DoxyCodeLine{00976\ \ \ \ \ \ \ \textcolor{keyword}{auto}\ lambda\ =\ [\&m1,\&m2]<\ \textcolor{keyword}{class\ }IndexType1,\ class\ IndexType2\ >(\ IndexType1\ index1,\ IndexType2\ index2\ )\ constexpr\ noexcept}
+\DoxyCodeLine{00977\ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00978\ \ \ \ \ \ \ \ \ result\_value\_type\ result\ =\ 0;}
+\DoxyCodeLine{00979\ \ \ \ \ \ \ \ \ for\_each(\ execution::unseq,}
+\DoxyCodeLine{00980\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ detail::faux\_index\_iterator<typename\ first\_matrix\_type::index\_type>(\ 0\ ),}
+\DoxyCodeLine{00981\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ detail::faux\_index\_iterator<typename\ first\_matrix\_type::index\_type>(\ m1.size().extent(1)\ ),}
+\DoxyCodeLine{00982\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ [\ \&m1,\ \&m2,\ \&index1,\ \&index2,\ \&result\ ]\ (\ \textcolor{keyword}{typename}\ first\_matrix\_type::index\_type\ index\ )\ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{noexcept}}
+\DoxyCodeLine{00983\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{\ result\ +=\ m1[index1,index]\ *\ m2[index,index2];\ \}\ );}
+\DoxyCodeLine{00984\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ result;}
+\DoxyCodeLine{00985\ \ \ \ \ \ \ \};}
+\DoxyCodeLine{00986\ \ \ \ \ \ \ \textcolor{comment}{//\ Construct\ multiplication\ matrix}}
+\DoxyCodeLine{00987\ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ detail::make\_from\_tuple<result\_matrix\_type>(\ collect\_ctor\_args(\ m1,\ m2,\ lambda\ )\ );}
+\DoxyCodeLine{00988\ \ \ \ \ \}}
+\DoxyCodeLine{00990\ \ \ \ \ [[nodiscard]]\ \textcolor{keyword}{static}\ \textcolor{keyword}{constexpr}\ \mbox{\hyperlink{classstd_1_1math_1_1instant__evaluated__operations_1_1matrix__matrix__product_a593ccca8dfbbbec22432b0814a64f71d}{first\_matrix\_type}}\&\ \mbox{\hyperlink{classstd_1_1math_1_1instant__evaluated__operations_1_1matrix__matrix__product_aeec1867bd0a849847dd185f2472b2e25}{prod}}(\ \mbox{\hyperlink{classstd_1_1math_1_1instant__evaluated__operations_1_1matrix__matrix__product_a593ccca8dfbbbec22432b0814a64f71d}{first\_matrix\_type}}\&\ m1,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classstd_1_1math_1_1instant__evaluated__operations_1_1matrix__matrix__product_a16f79f1a1484ebaffd448b0780ab1c8c}{second\_matrix\_type}}\&\ m2\ )}
+\DoxyCodeLine{00991\ \ \ \ \ \ \ \textcolor{keyword}{noexcept}(\ \textcolor{keyword}{noexcept}(\ m1\ =\ move(\ m1\ *\ m2\ )\ )\ )}
+\DoxyCodeLine{00992\ \ \ \ \ \ \ \textcolor{keyword}{requires}\ (\ (\ first\_matrix\_type::extents\_type::static\_extent(1)\ ==\ second\_matrix\_type::extents\_type::static\_extent(0)\ )\ \&\&}
+\DoxyCodeLine{00993\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (\ (\ first\_matrix\_type::extents\_type::static\_extent(1)\ ==\ second\_matrix\_type::extents\_type::static\_extent(1)\ )\ ||}
+\DoxyCodeLine{00994\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (\ first\_matrix\_type::extents\_type::static\_extent(1)\ ==\ experimental::dynamic\_extent\ )\ )\ )}
+\DoxyCodeLine{00995\ \ \ \ \ \{}
+\DoxyCodeLine{00996\ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ m1\ =\ move(\ m1\ *\ m2\ );}
+\DoxyCodeLine{00997\ \ \ \ \ \}}
+\DoxyCodeLine{00998\ \};}
+\DoxyCodeLine{00999\ }
+\DoxyCodeLine{01003\ \textcolor{keyword}{template}\ <\ concepts::vector\_data\ V1,\ concepts::vector\_data\ V2\ >}
+\DoxyCodeLine{01004\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classstd_1_1math_1_1instant__evaluated__operations_1_1inner__product}{inner\_product}}}
+\DoxyCodeLine{01005\ \{}
+\DoxyCodeLine{01006\ \ \ \textcolor{keyword}{public}:}
+\DoxyCodeLine{01007\ \ \ \ \ \textcolor{comment}{//-\/\ Types}}
+\DoxyCodeLine{01008\ }
+\DoxyCodeLine{01010\ \ \ \ \ \textcolor{keyword}{using\ }\mbox{\hyperlink{classstd_1_1math_1_1instant__evaluated__operations_1_1inner__product_a2ae0cf91b5c06228f61ed09ab9dc4984}{first\_vector\_type}}\ \ =\ V1;}
+\DoxyCodeLine{01012\ \ \ \ \ \textcolor{keyword}{using\ }\mbox{\hyperlink{classstd_1_1math_1_1instant__evaluated__operations_1_1inner__product_a55620c38fbfbd49cc2ab43bc69374ac6}{second\_vector\_type}}\ =\ V2;}
+\DoxyCodeLine{01013\ \ \ \textcolor{keyword}{private}:}
+\DoxyCodeLine{01014\ \ \ \ \ \textcolor{comment}{//\ Aliases}}
+\DoxyCodeLine{01015\ \ \ \ \ \textcolor{keyword}{using\ }result\_type\ \ \ \ \ \ \ \ =\ \textcolor{keyword}{decltype}(\ \textcolor{keyword}{auto}(\ declval<typename\ first\_vector\_type::value\_type>()\ *\ declval<typename\ second\_vector\_type::value\_type>()\ )\ );}
+\DoxyCodeLine{01016\ \ \ \textcolor{keyword}{public}:}
+\DoxyCodeLine{01017\ \ \ \ \ \textcolor{comment}{//-\/\ Operations}}
+\DoxyCodeLine{01018\ }
+\DoxyCodeLine{01020\ \ \ \ \ [[nodiscard]]\ \textcolor{keyword}{static}\ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{auto}\ \mbox{\hyperlink{classstd_1_1math_1_1instant__evaluated__operations_1_1inner__product_ae4376cfa1ec9a2e60a96620bce5ff82a}{prod}}(\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classstd_1_1math_1_1instant__evaluated__operations_1_1inner__product_a2ae0cf91b5c06228f61ed09ab9dc4984}{first\_vector\_type}}\&\ v1,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classstd_1_1math_1_1instant__evaluated__operations_1_1inner__product_a55620c38fbfbd49cc2ab43bc69374ac6}{second\_vector\_type}}\&\ v2\ )}
+\DoxyCodeLine{01021\ \ \ \ \ \ \ \textcolor{keyword}{noexcept}(\ detail::extents\_is\_equal\_v<typename\ first\_vector\_type::extents\_type,typename\ second\_vector\_type::extents\_type>\ )}
+\DoxyCodeLine{01022\ \ \ \ \ \ \ \textcolor{keyword}{requires}\ detail::extents\_may\_be\_equal\_v<typename\ first\_vector\_type::extents\_type,typename\ second\_vector\_type::extents\_type>}
+\DoxyCodeLine{01023\ \ \ \ \ \{}
+\DoxyCodeLine{01024\ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ \textcolor{keyword}{constexpr}\ (\ !detail::extents\_is\_equal\_v<typename\ first\_vector\_type::extents\_type,typename\ second\_vector\_type::extents\_type>\ )}
+\DoxyCodeLine{01025\ \ \ \ \ \ \ \{}
+\DoxyCodeLine{01026\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Check\ if\ sizes\ are\ equal}}
+\DoxyCodeLine{01027\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\ !(\ v1.size()\ ==\ v2.size()\ )\ )\ [[unlikely]]}
+\DoxyCodeLine{01028\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{01029\ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{throw}\ length\_error(\ \textcolor{stringliteral}{"{}Vectors\ must\ have\ same\ size."{}}\ );}
+\DoxyCodeLine{01030\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{01031\ \ \ \ \ \ \ \}}
+\DoxyCodeLine{01032\ \ \ \ \ \ \ \textcolor{comment}{//\ Store\ sum\ of\ inner\ product}}
+\DoxyCodeLine{01033\ \ \ \ \ \ \ result\_type\ result\ =\ 0;}
+\DoxyCodeLine{01034\ \ \ \ \ \ \ \textcolor{comment}{//\ Define\ lambda\ function\ to\ sum\ inner\ product}}
+\DoxyCodeLine{01035\ \ \ \ \ \ \ \textcolor{keyword}{auto}\ inner\_prod\_lambda\ =\ [\&v1,\&v2,\&result]<\ \textcolor{keyword}{class\ }...\ IndexType\ >(\ IndexType\ ...\ indices\ )\ constexpr\ noexcept\ \{\ result\ +=\ v1[\ indices\ ...\ ]\ *\ v2[\ indices\ ...\ ];\ \};}
+\DoxyCodeLine{01036\ \ \ \ \ \ \ \textcolor{comment}{//\ Apply\ lambda\ expression}}
+\DoxyCodeLine{01037\ \ \ \ \ \ \ \mbox{\hyperlink{namespacestd_1_1math_1_1detail_a0632c805386c46488956a9bdc72c749b}{detail::apply\_all}}(\ v1.span(),\ inner\_prod\_lambda,\ execution::unseq\ );}
+\DoxyCodeLine{01038\ \ \ \ \ \ \ \textcolor{comment}{//\ Return\ result}}
+\DoxyCodeLine{01039\ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ result;}
+\DoxyCodeLine{01040\ \ \ \ \ \}}
+\DoxyCodeLine{01041\ \};}
+\DoxyCodeLine{01042\ }
+\DoxyCodeLine{01046\ \textcolor{keyword}{template}\ <\ concepts::vector\_data\ V1,\ concepts::vector\_data\ V2\ >}
+\DoxyCodeLine{01047\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classstd_1_1math_1_1instant__evaluated__operations_1_1outer__product}{outer\_product}}}
+\DoxyCodeLine{01048\ \{}
+\DoxyCodeLine{01049\ \ \ \textcolor{keyword}{public}:}
+\DoxyCodeLine{01050\ \ \ \ \ \textcolor{comment}{//-\/\ Types}}
+\DoxyCodeLine{01051\ }
+\DoxyCodeLine{01053\ \ \ \ \ \textcolor{keyword}{using\ }\mbox{\hyperlink{classstd_1_1math_1_1instant__evaluated__operations_1_1outer__product_ad7a6f543c1439f2ee94b67f9677e4d2f}{first\_vector\_type}}\ \ =\ V1;}
+\DoxyCodeLine{01055\ \ \ \ \ \textcolor{keyword}{using\ }\mbox{\hyperlink{classstd_1_1math_1_1instant__evaluated__operations_1_1outer__product_ab766b7ad06b41b04e212f6ea9d0b230f}{second\_vector\_type}}\ =\ V2;}
+\DoxyCodeLine{01056\ \ \ \textcolor{keyword}{private}:}
+\DoxyCodeLine{01057\ \ \ \ \ \textcolor{comment}{//\ Return\ the\ allocator\ of\ v1}}
+\DoxyCodeLine{01058\ \ \ \ \ [[nodiscard]]\ \textcolor{keyword}{static}\ \textcolor{keyword}{inline}\ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{decltype}(\textcolor{keyword}{auto})\ get\_allocator(\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classstd_1_1math_1_1instant__evaluated__operations_1_1outer__product_ad7a6f543c1439f2ee94b67f9677e4d2f}{first\_vector\_type}}\&\ v1,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classstd_1_1math_1_1instant__evaluated__operations_1_1outer__product_ab766b7ad06b41b04e212f6ea9d0b230f}{second\_vector\_type}}\&\ v2\ )\ \textcolor{keyword}{noexcept}}
+\DoxyCodeLine{01059\ \ \ \ \ \ \ \textcolor{keyword}{requires}\ \mbox{\hyperlink{conceptstd_1_1math_1_1concepts_1_1dynamic__matrix__data}{concepts::dynamic\_matrix\_data<\ first\_vector\_type\ >}}}
+\DoxyCodeLine{01060\ \ \ \ \ \{}
+\DoxyCodeLine{01061\ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ v1.get\_allocator();}
+\DoxyCodeLine{01062\ \ \ \ \ \}}
+\DoxyCodeLine{01063\ \ \ \ \ \textcolor{comment}{//\ Returns\ the\ allocator\ of\ v2}}
+\DoxyCodeLine{01064\ \ \ \ \ [[nodiscard]]\ \textcolor{keyword}{static}\ \textcolor{keyword}{inline}\ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{decltype}(\textcolor{keyword}{auto})\ get\_allocator(\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classstd_1_1math_1_1instant__evaluated__operations_1_1outer__product_ad7a6f543c1439f2ee94b67f9677e4d2f}{first\_vector\_type}}\&\ v1,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classstd_1_1math_1_1instant__evaluated__operations_1_1outer__product_ab766b7ad06b41b04e212f6ea9d0b230f}{second\_vector\_type}}\&\ v2\ )\ \textcolor{keyword}{noexcept}}
+\DoxyCodeLine{01065\ \ \ \ \ \ \ \textcolor{keyword}{requires}\ (\ \mbox{\hyperlink{conceptstd_1_1math_1_1concepts_1_1dynamic__matrix__data}{concepts::dynamic\_matrix\_data<\ second\_vector\_type\ >}}\ \&\&\ !\mbox{\hyperlink{conceptstd_1_1math_1_1concepts_1_1dynamic__matrix__data}{concepts::dynamic\_matrix\_data<\ first\_vector\_type\ >}}\ )}
+\DoxyCodeLine{01066\ \ \ \ \ \{}
+\DoxyCodeLine{01067\ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ v2.get\_allocator();}
+\DoxyCodeLine{01068\ \ \ \ \ \}}
+\DoxyCodeLine{01069\ \ \ \ \ \textcolor{comment}{//\ Returns\ the\ std\ allocator}}
+\DoxyCodeLine{01070\ \ \ \ \ [[nodiscard]]\ \textcolor{keyword}{static}\ \textcolor{keyword}{inline}\ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{decltype}(\textcolor{keyword}{auto})\ get\_allocator(\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classstd_1_1math_1_1instant__evaluated__operations_1_1outer__product_ad7a6f543c1439f2ee94b67f9677e4d2f}{first\_vector\_type}}\&\ v1,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classstd_1_1math_1_1instant__evaluated__operations_1_1outer__product_ab766b7ad06b41b04e212f6ea9d0b230f}{second\_vector\_type}}\&\ v2\ )\ \textcolor{keyword}{noexcept}}
+\DoxyCodeLine{01071\ \ \ \ \ \ \ \textcolor{keyword}{requires}\ (\ !\mbox{\hyperlink{conceptstd_1_1math_1_1concepts_1_1dynamic__matrix__data}{concepts::dynamic\_matrix\_data<\ first\_vector\_type\ >}}\ \&\&\ !\mbox{\hyperlink{conceptstd_1_1math_1_1concepts_1_1dynamic__matrix__data}{concepts::dynamic\_matrix\_data<\ second\_vector\_type\ >}}\ )}
+\DoxyCodeLine{01072\ \ \ \ \ \{}
+\DoxyCodeLine{01073\ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ std::allocator<result\_value\_type>();}
+\DoxyCodeLine{01074\ \ \ \ \ \}}
+\DoxyCodeLine{01075\ \ \ \ \ \textcolor{comment}{//\ Aliases}}
+\DoxyCodeLine{01076\ \ \ \ \ \textcolor{keyword}{using\ }result\_value\_type\ \ =\ decay\_t<\ decltype(\ declval<typename\ first\_vector\_type::value\_type>()\ *\ declval<typename\ second\_vector\_type::value\_type>()\ )\ >;}
+\DoxyCodeLine{01077\ \ \ \ \ \textcolor{keyword}{using\ }result\_matrix\_type\ =\ conditional\_t<\ concepts::fixed\_size\_vector\_data<first\_vector\_type>\ \&\&}
+\DoxyCodeLine{01078\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ concepts::fixed\_size\_vector\_data<second\_vector\_type>,}
+\DoxyCodeLine{01079\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ fs\_matrix<\ result\_value\_type,}
+\DoxyCodeLine{01080\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ first\_vector\_type::extents\_type::static\_extent(0),}
+\DoxyCodeLine{01081\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ second\_vector\_type::extents\_type::static\_extent(0),}
+\DoxyCodeLine{01082\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacestd_1_1math_1_1detail_ac1ee07b82c7d514289fc74451493358d}{detail::rebind\_layout\_t}}<\textcolor{keyword}{typename}\ first\_vector\_type::layout\_type,}
+\DoxyCodeLine{01083\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ experimental::extents<\textcolor{keyword}{typename}\ first\_vector\_type::size\_type,}
+\DoxyCodeLine{01084\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ first\_vector\_type::extents\_type::static\_extent(0),}
+\DoxyCodeLine{01085\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ second\_vector\_type::extents\_type::static\_extent(0)>\ >,}
+\DoxyCodeLine{01086\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ detail::rebind\_accessor\_t<typename\ first\_vector\_type::accessor\_type,result\_value\_type>\ >,}
+\DoxyCodeLine{01087\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ dr\_matrix<\ result\_value\_type,}
+\DoxyCodeLine{01088\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{typename}\ allocator\_traits<\ decay\_t<\ decltype(\ get\_allocator(\ declval<first\_vector\_type>(),\ declval<second\_vector\_type>()\ )\ )\ >\ >::template\ rebind\_alloc<result\_value\_type>,}
+\DoxyCodeLine{01089\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacestd_1_1math_1_1detail_ac1ee07b82c7d514289fc74451493358d}{detail::rebind\_layout\_t}}<\textcolor{keyword}{typename}\ first\_vector\_type::layout\_type,}
+\DoxyCodeLine{01090\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ experimental::extents<\textcolor{keyword}{typename}\ first\_vector\_type::size\_type,}
+\DoxyCodeLine{01091\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ experimental::dynamic\_extent,}
+\DoxyCodeLine{01092\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ experimental::dynamic\_extent>\ >,}
+\DoxyCodeLine{01093\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ detail::rebind\_accessor\_t<typename\ first\_vector\_type::accessor\_type,result\_value\_type>\ >\ >;}
+\DoxyCodeLine{01094\ \ \ \ \ \textcolor{comment}{//\ Return\ the\ allocator\ of\ v1}}
+\DoxyCodeLine{01095\ \ \ \ \ [[nodiscard]]\ \textcolor{keyword}{static}\ \textcolor{keyword}{inline}\ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{decltype}(\textcolor{keyword}{auto})\ get\_allocator(\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classstd_1_1math_1_1instant__evaluated__operations_1_1outer__product_ad7a6f543c1439f2ee94b67f9677e4d2f}{first\_vector\_type}}\&\ v1,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classstd_1_1math_1_1instant__evaluated__operations_1_1outer__product_ab766b7ad06b41b04e212f6ea9d0b230f}{second\_vector\_type}}\&\ v2\ )\ \textcolor{keyword}{noexcept}}
+\DoxyCodeLine{01096\ \ \ \ \ \ \ \textcolor{keyword}{requires}\ concepts::dynamic\_vector\_data<\ first\_vector\_type\ >}
+\DoxyCodeLine{01097\ \ \ \ \ \{}
+\DoxyCodeLine{01098\ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ v1.get\_allocator();}
+\DoxyCodeLine{01099\ \ \ \ \ \}}
+\DoxyCodeLine{01100\ \ \ \ \ \textcolor{comment}{//\ Returns\ the\ allocator\ of\ v2}}
+\DoxyCodeLine{01101\ \ \ \ \ [[nodiscard]]\ \textcolor{keyword}{static}\ \textcolor{keyword}{inline}\ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{decltype}(\textcolor{keyword}{auto})\ get\_allocator(\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classstd_1_1math_1_1instant__evaluated__operations_1_1outer__product_ad7a6f543c1439f2ee94b67f9677e4d2f}{first\_vector\_type}}\&\ v1,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classstd_1_1math_1_1instant__evaluated__operations_1_1outer__product_ab766b7ad06b41b04e212f6ea9d0b230f}{second\_vector\_type}}\&\ v2\ )\ \textcolor{keyword}{noexcept}}
+\DoxyCodeLine{01102\ \ \ \ \ \ \ \textcolor{keyword}{requires}\ concepts::dynamic\_vector\_data<\ second\_vector\_type\ >}
+\DoxyCodeLine{01103\ \ \ \ \ \{}
+\DoxyCodeLine{01104\ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ v2.get\_allocator();}
+\DoxyCodeLine{01105\ \ \ \ \ \}}
+\DoxyCodeLine{01106\ \ \ \ \ \textcolor{comment}{//\ Gets\ necessary\ arguments\ for\ constrution}}
+\DoxyCodeLine{01107\ \ \ \ \ \textcolor{comment}{//\ If\ matrix\ type\ is\ fixed\ size,\ then\ the\ lambda\ expression\ is\ the\ only\ argument\ needed}}
+\DoxyCodeLine{01108\ \ \ \ \ \textcolor{keyword}{template}\ <\ \textcolor{keyword}{class}\ Lambda\ >}
+\DoxyCodeLine{01109\ \ \ \ \ [[nodiscard]]\ \textcolor{keyword}{static}\ \textcolor{keyword}{inline}\ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{decltype}(\textcolor{keyword}{auto})\ collect\_ctor\_args(\ [[maybe\_unused]]\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classstd_1_1math_1_1instant__evaluated__operations_1_1outer__product_ad7a6f543c1439f2ee94b67f9677e4d2f}{first\_vector\_type}}\&,\ [[maybe\_unused]]\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classstd_1_1math_1_1instant__evaluated__operations_1_1outer__product_ab766b7ad06b41b04e212f6ea9d0b230f}{second\_vector\_type}}\&,\ Lambda\&\&\ lambda\ )\ \textcolor{keyword}{noexcept}}
+\DoxyCodeLine{01110\ \ \ \ \ \ \ \textcolor{keyword}{requires}\ concepts::fixed\_size\_matrix\_data<result\_matrix\_type>}
+\DoxyCodeLine{01111\ \ \ \ \ \{\ \textcolor{keywordflow}{return}\ tuple(\ forward<Lambda>(\ lambda\ )\ );\ \}}
+\DoxyCodeLine{01112\ \ \ \ \ \textcolor{comment}{//\ If\ the\ matrix\ type\ is\ dynamic,\ then\ size\ and\ capacity\ must\ be\ provided\ along\ with\ the\ lambda\ expression.}}
+\DoxyCodeLine{01113\ \ \ \ \ \textcolor{comment}{//\ Additionally,\ if\ all\ allocators\ of\ the\ desired\ type\ are\ not\ the\ same\ or\ cannot\ be\ default\ cosntructed,\ then\ it\ must\ be}}
+\DoxyCodeLine{01114\ \ \ \ \ \textcolor{comment}{//\ passed\ along\ as\ well.}}
+\DoxyCodeLine{01115\ \ \ \ \ \textcolor{keyword}{template}\ <\ \textcolor{keyword}{class}\ Lambda\ >}
+\DoxyCodeLine{01116\ \ \ \ \ [[nodiscard]]\ \textcolor{keyword}{static}\ \textcolor{keyword}{inline}\ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{decltype}(\textcolor{keyword}{auto})\ collect\_ctor\_args(\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classstd_1_1math_1_1instant__evaluated__operations_1_1outer__product_ad7a6f543c1439f2ee94b67f9677e4d2f}{first\_vector\_type}}\&\ v1,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classstd_1_1math_1_1instant__evaluated__operations_1_1outer__product_ab766b7ad06b41b04e212f6ea9d0b230f}{second\_vector\_type}}\&\ v2,\ Lambda\&\&\ lambda\ )\ \textcolor{keyword}{noexcept}}
+\DoxyCodeLine{01117\ \ \ \ \ \ \ \textcolor{keyword}{requires}\ concepts::dynamic\_matrix\_data<result\_matrix\_type>}
+\DoxyCodeLine{01118\ \ \ \ \ \{}
+\DoxyCodeLine{01119\ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ \textcolor{keyword}{constexpr}\ (\ is\_default\_constructible\_v<typename\ result\_matrix\_type::allocator\_type>\ \&\&}
+\DoxyCodeLine{01120\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ allocator\_traits<typename\ result\_matrix\_type::allocator\_type>::is\_always\_equal::value\ )}
+\DoxyCodeLine{01121\ \ \ \ \ \ \ \{}
+\DoxyCodeLine{01122\ \ \ \ \ \ \ \ \ \textcolor{keyword}{using\ }result\_extents\_type\ =\ \textcolor{keyword}{typename}\ result\_matrix\_type::extents\_type;}
+\DoxyCodeLine{01123\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ tuple(\ result\_extents\_type(\ v1.size(),\ v2.size()\ ),}
+\DoxyCodeLine{01124\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ result\_extents\_type(\ v1.capacity(),\ v2.capacity()\ ),}
+\DoxyCodeLine{01125\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ forward<Lambda>(\ lambda\ )\ );}
+\DoxyCodeLine{01126\ \ \ \ \ \ \ \}}
+\DoxyCodeLine{01127\ \ \ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{01128\ \ \ \ \ \ \ \{}
+\DoxyCodeLine{01129\ \ \ \ \ \ \ \ \ \textcolor{keyword}{using\ }result\_extents\_type\ =\ \textcolor{keyword}{typename}\ result\_matrix\_type::extents\_type;}
+\DoxyCodeLine{01130\ \ \ \ \ \ \ \ \ \textcolor{keyword}{using\ }result\_alloc\_type\ \ \ =\ \textcolor{keyword}{typename}\ result\_matrix\_type::allocator\_type;}
+\DoxyCodeLine{01131\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ tuple(\ result\_extents\_type(\ v1.size(),\ v2.size()\ ),}
+\DoxyCodeLine{01132\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ result\_extents\_type(\ v1.capacity(),\ v2.capacity()\ ),}
+\DoxyCodeLine{01133\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ forward<Lambda>(\ lambda\ ),}
+\DoxyCodeLine{01134\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ result\_alloc\_type(\ get\_allocator(v1,v2)\ )\ );}
+\DoxyCodeLine{01135\ \ \ \ \ \ \ \}}
+\DoxyCodeLine{01136\ \ \ \ \ \}}
+\DoxyCodeLine{01137\ \ \ \textcolor{keyword}{public}:}
+\DoxyCodeLine{01139\ \ \ \ \ [[nodiscard]]\ \textcolor{keyword}{static}\ \textcolor{keyword}{constexpr}\ result\_matrix\_type\ \mbox{\hyperlink{classstd_1_1math_1_1instant__evaluated__operations_1_1outer__product_a4a77ada88ee373527c53dc36101d3810}{prod}}(\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classstd_1_1math_1_1instant__evaluated__operations_1_1outer__product_ad7a6f543c1439f2ee94b67f9677e4d2f}{first\_vector\_type}}\&\ v1,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classstd_1_1math_1_1instant__evaluated__operations_1_1outer__product_ab766b7ad06b41b04e212f6ea9d0b230f}{second\_vector\_type}}\&\ v2\ )}
+\DoxyCodeLine{01140\ \ \ \ \ \ \ \textcolor{keyword}{noexcept}(\ \textcolor{keyword}{noexcept}(\ detail::make\_from\_tuple<\ result\_matrix\_type\ >(}
+\DoxyCodeLine{01141\ \ \ \ \ \ \ \ \ collect\_ctor\_args(\ v1,}
+\DoxyCodeLine{01142\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ v2,}
+\DoxyCodeLine{01143\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ [\&v1,\&v2]<\ \textcolor{keyword}{class}\ IndexType1,\ \textcolor{keyword}{class}\ IndexType2\ >(\ IndexType1\ index1,\ IndexType2\ index2\ )\ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{noexcept}}
+\DoxyCodeLine{01144\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{\ \textcolor{keywordflow}{return}\ v1[index1]\ *\ v2[index2];\ \}\ )\ )\ )\ )}
+\DoxyCodeLine{01145\ \ \ \ \ \{}
+\DoxyCodeLine{01146\ \ \ \ \ \ \ \textcolor{comment}{//\ Define\ product\ operation\ on\ each\ element\ pair}}
+\DoxyCodeLine{01147\ \ \ \ \ \ \ \textcolor{keyword}{auto}\ lambda\ =\ [\&v1,\&v2]<\ \textcolor{keyword}{class\ }IndexType1,\ class\ IndexType2\ >(\ IndexType1\ index1,\ IndexType2\ index2\ )\ constexpr\ noexcept}
+\DoxyCodeLine{01148\ \ \ \ \ \ \ \{}
+\DoxyCodeLine{01149\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ v1[index1]\ *\ v2[index2];}
+\DoxyCodeLine{01150\ \ \ \ \ \ \ \};}
+\DoxyCodeLine{01151\ \ \ \ \ \ \ \textcolor{comment}{//\ Construct\ multiplication\ vector}}
+\DoxyCodeLine{01152\ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ detail::make\_from\_tuple<result\_matrix\_type>(\ collect\_ctor\_args(\ v1,\ v2,\ lambda\ )\ );}
+\DoxyCodeLine{01153\ \ \ \ \ \}}
+\DoxyCodeLine{01154\ \};}
+\DoxyCodeLine{01155\ }
+\DoxyCodeLine{01156\ \}\ \ \ \ \ \ \ \textcolor{comment}{//-\/\ instant\_evaluated\_operations}}
+\DoxyCodeLine{01157\ \}\ \ \ \ \ \ \ \textcolor{comment}{//-\/\ math\ namespace}}
+\DoxyCodeLine{01158\ \}\ \ \ \ \ \ \ \textcolor{comment}{//-\/\ std\ namespace}}
+\DoxyCodeLine{01159\ \textcolor{preprocessor}{\#endif\ \ }\textcolor{comment}{//-\/\ LINEAR\_ALGEBRA\_OPERATION\_TRAITS\_HPP\_DEFINED}}
+
+\end{DoxyCode}

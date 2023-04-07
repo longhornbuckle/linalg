@@ -1,0 +1,40 @@
+\hypertarget{conceptstd_1_1math_1_1concepts_1_1readable__matrix__data}{}\doxysection{std\+::math\+::concepts\+::readable\+\_\+matrix\+\_\+data Concept Reference}
+\label{conceptstd_1_1math_1_1concepts_1_1readable__matrix__data}\index{std::math::concepts::readable\_matrix\_data@{std::math::concepts::readable\_matrix\_data}}
+
+
+{\ttfamily \#include $<$matrix\+\_\+concepts.\+hpp$>$}
+
+\doxysubsection{Concept definition}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{keyword}{template}<\textcolor{keyword}{class}\ M>}
+\DoxyCodeLine{\textcolor{keyword}{concept\ }\mbox{\hyperlink{conceptstd_1_1math_1_1concepts_1_1readable__matrix__data}{std::math::concepts::readable\_matrix\_data}}\ =\ \ \mbox{\hyperlink{conceptstd_1_1math_1_1concepts_1_1matrix__data}{matrix\_data<M>}}\ \&\&\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\mbox{\hyperlink{conceptstd_1_1math_1_1concepts_1_1readable__tensor__data}{readable\_tensor\_data<M>}}\ \&\&\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\textcolor{keyword}{requires}(\ \textcolor{keyword}{const}\ M\&\ m,\ \textcolor{keyword}{typename}\ M::index\_type\ index1,\ \textcolor{keyword}{typename}\ M::index\_type\ index2\ )\ }
+\DoxyCodeLine{\{}
+\DoxyCodeLine{\ \ \{\ m[index1,index2]\ \}\ \ \ \ \ \ \ \textcolor{keyword}{noexcept}\ -\/>\ same\_as<typename\ M::value\_type>;}
+\DoxyCodeLine{\ \ \{\ m.at(index1,index2)\ \}\ \ \ \ \ \ \ \ \ \ \ \ \ -\/>\ same\_as<typename\ M::value\_type>;}
+\DoxyCodeLine{\}\ \&\&}
+\DoxyCodeLine{(\ M::span\_type::extents\_type::rank()\ ==\ 2\ )\ \&\&\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\textcolor{keyword}{requires}(\ \textcolor{keyword}{const}\ M\&\ m,\ \textcolor{keyword}{typename}\ M::index\_type\ index\ )\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\{}
+\DoxyCodeLine{\ \ \textcolor{keyword}{typename}\ M::const\_row\_type;}
+\DoxyCodeLine{\ \ \{\ m.row(index)\ \}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ -\/>\ same\_as<typename\ M::const\_row\_type>;}
+\DoxyCodeLine{\}\ \&\&}
+\DoxyCodeLine{readable\_vector\_data<typename\ M::const\_row\_type>\ \&\&}
+\DoxyCodeLine{\textcolor{keyword}{requires}(\ \textcolor{keyword}{const}\ M\&\ m,\ \textcolor{keyword}{typename}\ M::index\_type\ index\ )\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\{}
+\DoxyCodeLine{\ \ \textcolor{keyword}{typename}\ M::const\_column\_type;}
+\DoxyCodeLine{\ \ \{\ m.column(index)\ \}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ -\/>\ same\_as<typename\ M::const\_column\_type>;}
+\DoxyCodeLine{\}\ \&\&}
+\DoxyCodeLine{readable\_vector\_data<typename\ M::const\_column\_type>\ \&\&}
+\DoxyCodeLine{\textcolor{keyword}{requires}(\ \textcolor{keyword}{const}\ M\&\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ m,}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{typename}\ M::tuple\_type\ start,}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{typename}\ M::tuple\_type\ end\ )\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\{}
+\DoxyCodeLine{\ \ \textcolor{keyword}{typename}\ M::const\_submatrix\_type;}
+\DoxyCodeLine{\ \ \{\ m.submatrix(start,end)\ \}\ \ \ \ \ \ \ \ \ \ -\/>\ same\_as<typename\ M::const\_submatrix\_type>;}
+\DoxyCodeLine{\ \ \{\ m.submatrix(start,end)\ \}\ \ \ \ \ \ \ \ \ \ -\/>\ matrix;}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}

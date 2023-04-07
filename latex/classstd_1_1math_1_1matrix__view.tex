@@ -1,0 +1,873 @@
+\hypertarget{classstd_1_1math_1_1matrix__view}{}\doxysection{std\+::math\+::matrix\+\_\+view\texorpdfstring{$<$}{<} MDS \texorpdfstring{$>$}{>} Class Template Reference}
+\label{classstd_1_1math_1_1matrix__view}\index{std::math::matrix\_view$<$ MDS $>$@{std::math::matrix\_view$<$ MDS $>$}}
+
+
+Matrix view.  
+
+
+
+
+{\ttfamily \#include $<$matrix\+\_\+view.\+hpp$>$}
+
+
+
+Inheritance diagram for std\+::math\+::matrix\+\_\+view\texorpdfstring{$<$}{<} MDS \texorpdfstring{$>$}{>}\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=550pt]{classstd_1_1math_1_1matrix__view__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for std\+::math\+::matrix\+\_\+view\texorpdfstring{$<$}{<} MDS \texorpdfstring{$>$}{>}\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=550pt]{classstd_1_1math_1_1matrix__view__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+using \mbox{\hyperlink{classstd_1_1math_1_1matrix__view_a2d2ca621cd2592144408ff01dba9f949}{layout\+\_\+type}} = typename \mbox{\hyperlink{classstd_1_1math_1_1tensor__view_a1241b3121ae9f312314d4aacafbec0ba}{base\+\_\+type\+::layout\+\_\+type}}
+\begin{DoxyCompactList}\small\item\em Type used to define memory layout. \end{DoxyCompactList}\item 
+using \mbox{\hyperlink{classstd_1_1math_1_1matrix__view_aa86b435bb5fdefcf58509fec794595ed}{accessor\+\_\+type}} = typename \mbox{\hyperlink{classstd_1_1math_1_1tensor__view_a52baaaebd4f1750dded79907c87318b6}{base\+\_\+type\+::accessor\+\_\+type}}
+\begin{DoxyCompactList}\small\item\em Type used to define access into memory. \end{DoxyCompactList}\item 
+using \mbox{\hyperlink{classstd_1_1math_1_1matrix__view_a0873ce244ca355cf3e9fa32830fef538}{element\+\_\+type}} = typename \mbox{\hyperlink{classstd_1_1math_1_1tensor__view_ad777c52999a7797caf138b67dd82c82e}{base\+\_\+type\+::element\+\_\+type}}
+\begin{DoxyCompactList}\small\item\em Type contained by the matrix. \end{DoxyCompactList}\item 
+using \mbox{\hyperlink{classstd_1_1math_1_1matrix__view_a9aa5ca7ddfa2601485229fc161ac5005}{value\+\_\+type}} = typename \mbox{\hyperlink{classstd_1_1math_1_1tensor__view_a4fac84eaca56034bb9eee7c7b4e52fe0}{base\+\_\+type\+::value\+\_\+type}}
+\begin{DoxyCompactList}\small\item\em Type returned by const index access. \end{DoxyCompactList}\item 
+using \mbox{\hyperlink{classstd_1_1math_1_1matrix__view_af13e22ab3477238f46a325a3ee975b17}{index\+\_\+type}} = typename \mbox{\hyperlink{classstd_1_1math_1_1tensor__view_a346d960a2145e82eef9b93253133a174}{base\+\_\+type\+::index\+\_\+type}}
+\begin{DoxyCompactList}\small\item\em Type used for indexing. \end{DoxyCompactList}\item 
+using \mbox{\hyperlink{classstd_1_1math_1_1matrix__view_abfb685c47048660cab53adf69e9d859d}{size\+\_\+type}} = typename \mbox{\hyperlink{classstd_1_1math_1_1tensor__view_acab396dafde34881361ad1a566f138c2}{base\+\_\+type\+::size\+\_\+type}}
+\begin{DoxyCompactList}\small\item\em Type used for size along any dimension. \end{DoxyCompactList}\item 
+using \mbox{\hyperlink{classstd_1_1math_1_1matrix__view_a952236a0a976014e1ec15de1162587c3}{extents\+\_\+type}} = typename \mbox{\hyperlink{classstd_1_1math_1_1tensor__view_a78e92554d810040124579a6a0dc7a340}{base\+\_\+type\+::extents\+\_\+type}}
+\begin{DoxyCompactList}\small\item\em Type used to express size of tensor. \end{DoxyCompactList}\item 
+using \mbox{\hyperlink{classstd_1_1math_1_1matrix__view_a84b17fca1eca916f2535d59c9b94d1de}{tuple\+\_\+type}} = typename \mbox{\hyperlink{classstd_1_1math_1_1tensor__view_ae25efa38cae99f7f9381b667e0182711}{base\+\_\+type\+::tuple\+\_\+type}}
+\begin{DoxyCompactList}\small\item\em Type used to represent a node in the tensor. \end{DoxyCompactList}\item 
+using \mbox{\hyperlink{classstd_1_1math_1_1matrix__view_a100da9d3084ed4a88c79a4f60b6fac2c}{const\+\_\+underlying\+\_\+span\+\_\+type}} = typename \mbox{\hyperlink{classstd_1_1math_1_1tensor__view_a148aafc2a4764d3359a54241d0fce306}{base\+\_\+type\+::const\+\_\+underlying\+\_\+span\+\_\+type}}
+\begin{DoxyCompactList}\small\item\em Type used to const view memory. \end{DoxyCompactList}\item 
+using \mbox{\hyperlink{classstd_1_1math_1_1matrix__view_ae7c837d0c82266e54b4088d2bc7a1f89}{underlying\+\_\+span\+\_\+type}} = typename \mbox{\hyperlink{classstd_1_1math_1_1tensor__view_a2eccea75926b2c3b1a28187d1b7c32df}{base\+\_\+type\+::underlying\+\_\+span\+\_\+type}}
+\begin{DoxyCompactList}\small\item\em Type used to view memory. \end{DoxyCompactList}\item 
+using \mbox{\hyperlink{classstd_1_1math_1_1matrix__view_a933d44ad38fda2c086293aa66634c878}{span\+\_\+type}} = typename \mbox{\hyperlink{classstd_1_1math_1_1tensor__view_af5b0eef80d71ab263aade2e8d8deb6af}{base\+\_\+type\+::span\+\_\+type}}
+\begin{DoxyCompactList}\small\item\em Type used to portray tensor as an N dimensional view. \end{DoxyCompactList}\item 
+using \mbox{\hyperlink{classstd_1_1math_1_1matrix__view_a034fef9b9480791ea012d9f1c04ef6f6}{reference\+\_\+type}} = typename \mbox{\hyperlink{classstd_1_1math_1_1tensor__view_a6b37439df19fb9e7974b2163a5cbca25}{base\+\_\+type\+::reference\+\_\+type}}
+\begin{DoxyCompactList}\small\item\em Type returned by mutable index access. \end{DoxyCompactList}\item 
+using \mbox{\hyperlink{classstd_1_1math_1_1matrix__view_adaeadd58c3e794418d6e2527a0bb795f}{subtensor\+\_\+type}} = typename \mbox{\hyperlink{classstd_1_1math_1_1tensor__view_a9adecf889933b9d07bc5bf2f697f1c62}{base\+\_\+type\+::subtensor\+\_\+type}}
+\begin{DoxyCompactList}\small\item\em mutable view of a subtensor \end{DoxyCompactList}\item 
+using \mbox{\hyperlink{classstd_1_1math_1_1matrix__view_a43c96e150d4598b6073ad84b0926bddd}{const\+\_\+subtensor\+\_\+type}} = typename \mbox{\hyperlink{classstd_1_1math_1_1tensor__view_a613dd4f7019868d98d43229c7b1b93f7}{base\+\_\+type\+::const\+\_\+subtensor\+\_\+type}}
+\begin{DoxyCompactList}\small\item\em const view of a subtensor \end{DoxyCompactList}\item 
+using \mbox{\hyperlink{classstd_1_1math_1_1matrix__view_a4b7d56847b14b452caec93a9861a75cb}{submatrix\+\_\+type}} = \mbox{\hyperlink{classstd_1_1math_1_1matrix__view}{matrix\+\_\+view}}$<$ decltype(\mbox{\hyperlink{namespacestd_1_1math_1_1detail_af274dde876e47ba2ec1b483608c81d69}{detail\+::submdspan}}(declval$<$ \mbox{\hyperlink{classstd_1_1math_1_1matrix__view_ae7c837d0c82266e54b4088d2bc7a1f89}{underlying\+\_\+span\+\_\+type}} $>$(), declval$<$ \mbox{\hyperlink{classstd_1_1math_1_1matrix__view_a84b17fca1eca916f2535d59c9b94d1de}{tuple\+\_\+type}} $>$(), declval$<$ \mbox{\hyperlink{classstd_1_1math_1_1matrix__view_a84b17fca1eca916f2535d59c9b94d1de}{tuple\+\_\+type}} $>$())) $>$
+\begin{DoxyCompactList}\small\item\em mutable view of a submatrix \end{DoxyCompactList}\item 
+using \mbox{\hyperlink{classstd_1_1math_1_1matrix__view_a9044b16159891679ed08b158ffcddeec}{const\+\_\+submatrix\+\_\+type}} = \mbox{\hyperlink{classstd_1_1math_1_1matrix__view}{matrix\+\_\+view}}$<$ decltype(\mbox{\hyperlink{namespacestd_1_1math_1_1detail_af274dde876e47ba2ec1b483608c81d69}{detail\+::submdspan}}(declval$<$ \mbox{\hyperlink{classstd_1_1math_1_1matrix__view_a100da9d3084ed4a88c79a4f60b6fac2c}{const\+\_\+underlying\+\_\+span\+\_\+type}} $>$(), declval$<$ \mbox{\hyperlink{classstd_1_1math_1_1matrix__view_a84b17fca1eca916f2535d59c9b94d1de}{tuple\+\_\+type}} $>$(), declval$<$ \mbox{\hyperlink{classstd_1_1math_1_1matrix__view_a84b17fca1eca916f2535d59c9b94d1de}{tuple\+\_\+type}} $>$())) $>$
+\begin{DoxyCompactList}\small\item\em const view of a submatrix \end{DoxyCompactList}\item 
+using \mbox{\hyperlink{classstd_1_1math_1_1matrix__view_a637d7c1262d1b946b7d8e47d58fbcbbf}{column\+\_\+type}} = \mbox{\hyperlink{classstd_1_1math_1_1vector__view}{vector\+\_\+view}}$<$ decltype(experimental\+::submdspan(declval$<$ \mbox{\hyperlink{classstd_1_1math_1_1matrix__view_ae7c837d0c82266e54b4088d2bc7a1f89}{underlying\+\_\+span\+\_\+type}} $>$(), declval$<$ experimental\+::full\+\_\+extent\+\_\+t $>$(), declval$<$ \mbox{\hyperlink{classstd_1_1math_1_1matrix__view_af13e22ab3477238f46a325a3ee975b17}{index\+\_\+type}} $>$()))$>$
+\begin{DoxyCompactList}\small\item\em mutable view of a column vector \end{DoxyCompactList}\item 
+using \mbox{\hyperlink{classstd_1_1math_1_1matrix__view_a8242e762f5bb45c96f1453c608f4159f}{const\+\_\+column\+\_\+type}} = \mbox{\hyperlink{classstd_1_1math_1_1vector__view}{vector\+\_\+view}}$<$ decltype(experimental\+::submdspan(declval$<$ \mbox{\hyperlink{classstd_1_1math_1_1matrix__view_a100da9d3084ed4a88c79a4f60b6fac2c}{const\+\_\+underlying\+\_\+span\+\_\+type}} $>$(), declval$<$ experimental\+::full\+\_\+extent\+\_\+t $>$(), declval$<$ \mbox{\hyperlink{classstd_1_1math_1_1matrix__view_af13e22ab3477238f46a325a3ee975b17}{index\+\_\+type}} $>$()))$>$
+\begin{DoxyCompactList}\small\item\em const view of a column vector \end{DoxyCompactList}\item 
+using \mbox{\hyperlink{classstd_1_1math_1_1matrix__view_a60175fa7f9d854e052bca48485ae64c7}{row\+\_\+type}} = \mbox{\hyperlink{classstd_1_1math_1_1vector__view}{vector\+\_\+view}}$<$ decltype(experimental\+::submdspan(declval$<$ \mbox{\hyperlink{classstd_1_1math_1_1matrix__view_ae7c837d0c82266e54b4088d2bc7a1f89}{underlying\+\_\+span\+\_\+type}} $>$(), declval$<$ \mbox{\hyperlink{classstd_1_1math_1_1matrix__view_af13e22ab3477238f46a325a3ee975b17}{index\+\_\+type}} $>$(), declval$<$ experimental\+::full\+\_\+extent\+\_\+t $>$()))$>$
+\begin{DoxyCompactList}\small\item\em mutable view of a row vector \end{DoxyCompactList}\item 
+using \mbox{\hyperlink{classstd_1_1math_1_1matrix__view_a6fa803fe591435f26d43100f0f46cde0}{const\+\_\+row\+\_\+type}} = \mbox{\hyperlink{classstd_1_1math_1_1vector__view}{vector\+\_\+view}}$<$ decltype(experimental\+::submdspan(declval$<$ \mbox{\hyperlink{classstd_1_1math_1_1matrix__view_a100da9d3084ed4a88c79a4f60b6fac2c}{const\+\_\+underlying\+\_\+span\+\_\+type}} $>$(), declval$<$ \mbox{\hyperlink{classstd_1_1math_1_1matrix__view_af13e22ab3477238f46a325a3ee975b17}{index\+\_\+type}} $>$(), declval$<$ experimental\+::full\+\_\+extent\+\_\+t $>$()))$>$
+\begin{DoxyCompactList}\small\item\em const view of a row vector \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Public Types inherited from \mbox{\hyperlink{classstd_1_1math_1_1tensor__view}{std\+::math\+::tensor\+\_\+view$<$ MDS $>$}}}
+\begin{DoxyCompactItemize}
+\item 
+using \mbox{\hyperlink{classstd_1_1math_1_1tensor__view_a1241b3121ae9f312314d4aacafbec0ba}{layout\+\_\+type}} = typename MDS\+::layout\+\_\+type
+\begin{DoxyCompactList}\small\item\em Type used to define memory layout. \end{DoxyCompactList}\item 
+using \mbox{\hyperlink{classstd_1_1math_1_1tensor__view_a52baaaebd4f1750dded79907c87318b6}{accessor\+\_\+type}} = typename MDS\+::accessor\+\_\+type
+\begin{DoxyCompactList}\small\item\em Type used to define access into memory. \end{DoxyCompactList}\item 
+using \mbox{\hyperlink{classstd_1_1math_1_1tensor__view_ad777c52999a7797caf138b67dd82c82e}{element\+\_\+type}} = typename MDS\+::element\+\_\+type
+\begin{DoxyCompactList}\small\item\em Type contained by the tensor view. \end{DoxyCompactList}\item 
+using \mbox{\hyperlink{classstd_1_1math_1_1tensor__view_a4fac84eaca56034bb9eee7c7b4e52fe0}{value\+\_\+type}} = typename MDS\+::value\+\_\+type
+\begin{DoxyCompactList}\small\item\em Type returned by const index access. \end{DoxyCompactList}\item 
+using \mbox{\hyperlink{classstd_1_1math_1_1tensor__view_a78e92554d810040124579a6a0dc7a340}{extents\+\_\+type}} = typename MDS\+::extents\+\_\+type
+\begin{DoxyCompactList}\small\item\em Type used to express size of tensor. \end{DoxyCompactList}\item 
+using \mbox{\hyperlink{classstd_1_1math_1_1tensor__view_a346d960a2145e82eef9b93253133a174}{index\+\_\+type}} = typename extents\+\_\+type\+::size\+\_\+type
+\begin{DoxyCompactList}\small\item\em Type used for indexing. \end{DoxyCompactList}\item 
+using \mbox{\hyperlink{classstd_1_1math_1_1tensor__view_acab396dafde34881361ad1a566f138c2}{size\+\_\+type}} = size\+\_\+t
+\begin{DoxyCompactList}\small\item\em Type used for size along any dimension. \end{DoxyCompactList}\item 
+using \mbox{\hyperlink{classstd_1_1math_1_1tensor__view_ae25efa38cae99f7f9381b667e0182711}{tuple\+\_\+type}} = typename detail\+::template extents\+\_\+helper$<$ \mbox{\hyperlink{classstd_1_1math_1_1tensor__view_acab396dafde34881361ad1a566f138c2}{size\+\_\+type}}, extents\+\_\+type\+::rank()$>$\+::tuple\+\_\+type
+\begin{DoxyCompactList}\small\item\em Type used to represent a node in the tensor. \end{DoxyCompactList}\item 
+using \mbox{\hyperlink{classstd_1_1math_1_1tensor__view_a148aafc2a4764d3359a54241d0fce306}{const\+\_\+underlying\+\_\+span\+\_\+type}} = experimental\+::mdspan$<$ const remove\+\_\+const\+\_\+t$<$ \mbox{\hyperlink{classstd_1_1math_1_1tensor__view_ad777c52999a7797caf138b67dd82c82e}{element\+\_\+type}} $>$, \mbox{\hyperlink{classstd_1_1math_1_1tensor__view_a78e92554d810040124579a6a0dc7a340}{extents\+\_\+type}}, \mbox{\hyperlink{classstd_1_1math_1_1tensor__view_a1241b3121ae9f312314d4aacafbec0ba}{layout\+\_\+type}}, \mbox{\hyperlink{classstd_1_1math_1_1tensor__view_a52baaaebd4f1750dded79907c87318b6}{accessor\+\_\+type}} $>$
+\begin{DoxyCompactList}\small\item\em Type used to const view memory. \end{DoxyCompactList}\item 
+using \mbox{\hyperlink{classstd_1_1math_1_1tensor__view_a2eccea75926b2c3b1a28187d1b7c32df}{underlying\+\_\+span\+\_\+type}} = experimental\+::mdspan$<$ \mbox{\hyperlink{classstd_1_1math_1_1tensor__view_ad777c52999a7797caf138b67dd82c82e}{element\+\_\+type}}, \mbox{\hyperlink{classstd_1_1math_1_1tensor__view_a78e92554d810040124579a6a0dc7a340}{extents\+\_\+type}}, \mbox{\hyperlink{classstd_1_1math_1_1tensor__view_a1241b3121ae9f312314d4aacafbec0ba}{layout\+\_\+type}}, \mbox{\hyperlink{classstd_1_1math_1_1tensor__view_a52baaaebd4f1750dded79907c87318b6}{accessor\+\_\+type}} $>$
+\begin{DoxyCompactList}\small\item\em Type used to view memory. \end{DoxyCompactList}\item 
+using \mbox{\hyperlink{classstd_1_1math_1_1tensor__view_af5b0eef80d71ab263aade2e8d8deb6af}{span\+\_\+type}} = \mbox{\hyperlink{classstd_1_1math_1_1tensor__view_a148aafc2a4764d3359a54241d0fce306}{const\+\_\+underlying\+\_\+span\+\_\+type}}
+\begin{DoxyCompactList}\small\item\em Type used to portray tensor as an N dimensional view. \end{DoxyCompactList}\item 
+using \mbox{\hyperlink{classstd_1_1math_1_1tensor__view_a6b37439df19fb9e7974b2163a5cbca25}{reference\+\_\+type}} = typename MDS\+::reference
+\begin{DoxyCompactList}\small\item\em Type returned by mutable index access. \end{DoxyCompactList}\item 
+using \mbox{\hyperlink{classstd_1_1math_1_1tensor__view_a9adecf889933b9d07bc5bf2f697f1c62}{subtensor\+\_\+type}} = \mbox{\hyperlink{classstd_1_1math_1_1tensor__view}{tensor\+\_\+view}}$<$ decltype(\mbox{\hyperlink{namespacestd_1_1math_1_1detail_af274dde876e47ba2ec1b483608c81d69}{detail\+::submdspan}}(declval$<$ \mbox{\hyperlink{classstd_1_1math_1_1tensor__view_a2eccea75926b2c3b1a28187d1b7c32df}{underlying\+\_\+span\+\_\+type}} $>$(), declval$<$ \mbox{\hyperlink{classstd_1_1math_1_1tensor__view_ae25efa38cae99f7f9381b667e0182711}{tuple\+\_\+type}} $>$(), declval$<$ \mbox{\hyperlink{classstd_1_1math_1_1tensor__view_ae25efa38cae99f7f9381b667e0182711}{tuple\+\_\+type}} $>$())) $>$
+\begin{DoxyCompactList}\small\item\em mutable view of a subtensor \end{DoxyCompactList}\item 
+using \mbox{\hyperlink{classstd_1_1math_1_1tensor__view_a613dd4f7019868d98d43229c7b1b93f7}{const\+\_\+subtensor\+\_\+type}} = \mbox{\hyperlink{classstd_1_1math_1_1tensor__view}{tensor\+\_\+view}}$<$ decltype(\mbox{\hyperlink{namespacestd_1_1math_1_1detail_af274dde876e47ba2ec1b483608c81d69}{detail\+::submdspan}}(declval$<$ \mbox{\hyperlink{classstd_1_1math_1_1tensor__view_a148aafc2a4764d3359a54241d0fce306}{const\+\_\+underlying\+\_\+span\+\_\+type}} $>$(), declval$<$ \mbox{\hyperlink{classstd_1_1math_1_1tensor__view_ae25efa38cae99f7f9381b667e0182711}{tuple\+\_\+type}} $>$(), declval$<$ \mbox{\hyperlink{classstd_1_1math_1_1tensor__view_ae25efa38cae99f7f9381b667e0182711}{tuple\+\_\+type}} $>$())) $>$
+\begin{DoxyCompactList}\small\item\em const view of a subtensor \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classstd_1_1math_1_1matrix__view_a6915292a866a9d6c5ed6785ffb2ecb36}{$\sim$matrix\+\_\+view}} ()=default
+\begin{DoxyCompactList}\small\item\em Default destructor. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classstd_1_1math_1_1matrix__view_a150dfbd0a7719e27a52f0aca3a434ae2}{matrix\+\_\+view}} ()=default
+\begin{DoxyCompactList}\small\item\em Default constructor. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classstd_1_1math_1_1matrix__view_ac96250b199bb64304e8929db21d68afe}{matrix\+\_\+view}} (\mbox{\hyperlink{classstd_1_1math_1_1matrix__view}{matrix\+\_\+view}} \&\&rhs)=default
+\begin{DoxyCompactList}\small\item\em Default move constructor. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classstd_1_1math_1_1matrix__view_a3ccb591e3b368deb4fd3a46ebd15c0e0}{matrix\+\_\+view}} (const \mbox{\hyperlink{classstd_1_1math_1_1matrix__view}{matrix\+\_\+view}} \&rhs)=default
+\begin{DoxyCompactList}\small\item\em Default copy constructor. \end{DoxyCompactList}\item 
+constexpr \mbox{\hyperlink{classstd_1_1math_1_1matrix__view_a5dc055a767f31114c0985d05d3096213}{matrix\+\_\+view}} (const \mbox{\hyperlink{classstd_1_1math_1_1matrix__view_ae7c837d0c82266e54b4088d2bc7a1f89}{underlying\+\_\+span\+\_\+type}} \&view) noexcept
+\begin{DoxyCompactList}\small\item\em Construct from view. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classstd_1_1math_1_1matrix__view}{matrix\+\_\+view}} \& \mbox{\hyperlink{classstd_1_1math_1_1matrix__view_a50f9ef7cb04febf37346968a04323724}{operator=}} (\mbox{\hyperlink{classstd_1_1math_1_1matrix__view}{matrix\+\_\+view}} \&\&rhs)=default
+\begin{DoxyCompactList}\small\item\em Default move assignment. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classstd_1_1math_1_1matrix__view}{matrix\+\_\+view}} \& \mbox{\hyperlink{classstd_1_1math_1_1matrix__view_a495acd1426e3252f8e303c1ae3bf83df}{operator=}} (const \mbox{\hyperlink{classstd_1_1math_1_1matrix__view}{matrix\+\_\+view}} \&rhs)=default
+\begin{DoxyCompactList}\small\item\em Default copy assignment. \end{DoxyCompactList}\item 
+constexpr \mbox{\hyperlink{classstd_1_1math_1_1matrix__view}{matrix\+\_\+view}} \& \mbox{\hyperlink{classstd_1_1math_1_1matrix__view_a5b53c1f188350f34dd702dca03c1a68a}{operator=}} (const \mbox{\hyperlink{classstd_1_1math_1_1matrix__view_ae7c837d0c82266e54b4088d2bc7a1f89}{underlying\+\_\+span\+\_\+type}} \&view) noexcept
+\begin{DoxyCompactList}\small\item\em Assign from view. \end{DoxyCompactList}\item 
+constexpr \mbox{\hyperlink{classstd_1_1math_1_1matrix__view_af13e22ab3477238f46a325a3ee975b17}{index\+\_\+type}} \mbox{\hyperlink{classstd_1_1math_1_1matrix__view_aefd6cf2093179120cc13ab0086016a64}{columns}} () const noexcept
+\begin{DoxyCompactList}\small\item\em Returns current number of columns. \end{DoxyCompactList}\item 
+constexpr \mbox{\hyperlink{classstd_1_1math_1_1matrix__view_af13e22ab3477238f46a325a3ee975b17}{index\+\_\+type}} \mbox{\hyperlink{classstd_1_1math_1_1matrix__view_a4b84ff5e3b7100b1df0d422dceecd2e7}{rows}} () const noexcept
+\begin{DoxyCompactList}\small\item\em Returns the current number of rows. \end{DoxyCompactList}\item 
+constexpr \mbox{\hyperlink{classstd_1_1math_1_1matrix__view_af13e22ab3477238f46a325a3ee975b17}{index\+\_\+type}} \mbox{\hyperlink{classstd_1_1math_1_1matrix__view_a33a2cf46a1ebaca90caea0ba1662c7a8}{column\+\_\+capacity}} () const noexcept
+\begin{DoxyCompactList}\small\item\em Returns the current column capacity. \end{DoxyCompactList}\item 
+constexpr \mbox{\hyperlink{classstd_1_1math_1_1matrix__view_af13e22ab3477238f46a325a3ee975b17}{index\+\_\+type}} \mbox{\hyperlink{classstd_1_1math_1_1matrix__view_aba303f461420cda85ff0612661132b97}{row\+\_\+capacity}} () const noexcept
+\begin{DoxyCompactList}\small\item\em Returns the current row capacity. \end{DoxyCompactList}\item 
+constexpr \mbox{\hyperlink{classstd_1_1math_1_1matrix__view_a8242e762f5bb45c96f1453c608f4159f}{const\+\_\+column\+\_\+type}} \mbox{\hyperlink{classstd_1_1math_1_1matrix__view_a1d5c5a9800c1be6f3433d3c267eed419}{column}} (\mbox{\hyperlink{classstd_1_1math_1_1matrix__view_af13e22ab3477238f46a325a3ee975b17}{index\+\_\+type}} j) const
+\begin{DoxyCompactList}\small\item\em Returns a const view of the specified column. \end{DoxyCompactList}\item 
+constexpr \mbox{\hyperlink{classstd_1_1math_1_1matrix__view_a6fa803fe591435f26d43100f0f46cde0}{const\+\_\+row\+\_\+type}} \mbox{\hyperlink{classstd_1_1math_1_1matrix__view_a15eae7e61031e20023daebe3cce371ee}{row}} (\mbox{\hyperlink{classstd_1_1math_1_1matrix__view_af13e22ab3477238f46a325a3ee975b17}{index\+\_\+type}} i) const
+\begin{DoxyCompactList}\small\item\em Returns a const view of the specified row. \end{DoxyCompactList}\item 
+constexpr \mbox{\hyperlink{classstd_1_1math_1_1matrix__view_a9044b16159891679ed08b158ffcddeec}{const\+\_\+submatrix\+\_\+type}} \mbox{\hyperlink{classstd_1_1math_1_1matrix__view_afe0281852eafd6cc011b6da5b0a4631a}{submatrix}} (\mbox{\hyperlink{classstd_1_1math_1_1matrix__view_a84b17fca1eca916f2535d59c9b94d1de}{tuple\+\_\+type}} start, \mbox{\hyperlink{classstd_1_1math_1_1matrix__view_a84b17fca1eca916f2535d59c9b94d1de}{tuple\+\_\+type}} end) const
+\begin{DoxyCompactList}\small\item\em Returns a const view of the specified submatrix. \end{DoxyCompactList}\item 
+constexpr \mbox{\hyperlink{classstd_1_1math_1_1matrix__view_a637d7c1262d1b946b7d8e47d58fbcbbf}{column\+\_\+type}} \mbox{\hyperlink{classstd_1_1math_1_1matrix__view_add6d0088e2e6b8bf333f49e149e12f84}{column}} (\mbox{\hyperlink{classstd_1_1math_1_1matrix__view_af13e22ab3477238f46a325a3ee975b17}{index\+\_\+type}} j)
+\begin{DoxyCompactList}\small\item\em Returns a mutable view of the specified column. \end{DoxyCompactList}\item 
+constexpr \mbox{\hyperlink{classstd_1_1math_1_1matrix__view_a60175fa7f9d854e052bca48485ae64c7}{row\+\_\+type}} \mbox{\hyperlink{classstd_1_1math_1_1matrix__view_a745ec1b3cade78dfeb7a5868a0994141}{row}} (\mbox{\hyperlink{classstd_1_1math_1_1matrix__view_af13e22ab3477238f46a325a3ee975b17}{index\+\_\+type}} i)
+\begin{DoxyCompactList}\small\item\em Returns a mutable view of the specified row. \end{DoxyCompactList}\item 
+constexpr \mbox{\hyperlink{classstd_1_1math_1_1matrix__view_a4b7d56847b14b452caec93a9861a75cb}{submatrix\+\_\+type}} \mbox{\hyperlink{classstd_1_1math_1_1matrix__view_a133a6d9268d3f9e7a4eb5e72ecb79819}{submatrix}} (\mbox{\hyperlink{classstd_1_1math_1_1matrix__view_a84b17fca1eca916f2535d59c9b94d1de}{tuple\+\_\+type}} start, \mbox{\hyperlink{classstd_1_1math_1_1matrix__view_a84b17fca1eca916f2535d59c9b94d1de}{tuple\+\_\+type}} end)
+\begin{DoxyCompactList}\small\item\em Returns a mutable view of the specified submatrix. \end{DoxyCompactList}\item 
+constexpr \mbox{\hyperlink{classstd_1_1math_1_1matrix__view_a952236a0a976014e1ec15de1162587c3}{extents\+\_\+type}} \mbox{\hyperlink{classstd_1_1math_1_1matrix__view_a82948e145664a06afd2dfba4318d4a30}{size}} () const noexcept
+\begin{DoxyCompactList}\small\item\em Returns the current number of (rows,columns,depth,etc.) \end{DoxyCompactList}\item 
+constexpr \mbox{\hyperlink{classstd_1_1math_1_1matrix__view_a952236a0a976014e1ec15de1162587c3}{extents\+\_\+type}} \mbox{\hyperlink{classstd_1_1math_1_1matrix__view_a0c991b2c621dd3c5e999d2417c4329c5}{capacity}} () const noexcept
+\begin{DoxyCompactList}\small\item\em Returns the current capacity of (rows,columns,depth,etc.) \end{DoxyCompactList}\item 
+{\footnotesize template$<$class ... Index\+Type$>$ \newline
+requires ( sizeof...(Index\+Type) == extents\+\_\+type\+::rank() ) \&\& ( is\+\_\+convertible\+\_\+v$<$Index\+Type,\mbox{\hyperlink{classstd_1_1math_1_1matrix__view_af13e22ab3477238f46a325a3ee975b17}{index\+\_\+type}}$>$ \&\& ... )}\\constexpr \mbox{\hyperlink{classstd_1_1math_1_1matrix__view_a9aa5ca7ddfa2601485229fc161ac5005}{value\+\_\+type}} \mbox{\hyperlink{classstd_1_1math_1_1matrix__view_a91cb25a72122ef59fce6e353a39cc811}{at}} (Index\+Type ... indices) const
+\begin{DoxyCompactList}\small\item\em Returns the value at (indices...) \end{DoxyCompactList}\item 
+{\footnotesize template$<$class ... Index\+Type$>$ \newline
+requires ( sizeof...(Index\+Type) == extents\+\_\+type\+::rank() ) \&\& ( is\+\_\+convertible\+\_\+v$<$Index\+Type,\mbox{\hyperlink{classstd_1_1math_1_1matrix__view_af13e22ab3477238f46a325a3ee975b17}{index\+\_\+type}}$>$ \&\& ... ) \&\& ( !is\+\_\+const\+\_\+v$<$\mbox{\hyperlink{classstd_1_1math_1_1matrix__view_a0873ce244ca355cf3e9fa32830fef538}{element\+\_\+type}}$>$ )}\\constexpr \mbox{\hyperlink{classstd_1_1math_1_1matrix__view_a034fef9b9480791ea012d9f1c04ef6f6}{reference\+\_\+type}} \mbox{\hyperlink{classstd_1_1math_1_1matrix__view_a7881ff25dfe91d681fd27a2c03aae3a3}{at}} (Index\+Type ... indices)
+\begin{DoxyCompactList}\small\item\em Returns a mutable value at (indices...) \end{DoxyCompactList}\item 
+constexpr \mbox{\hyperlink{classstd_1_1math_1_1matrix__view_a933d44ad38fda2c086293aa66634c878}{span\+\_\+type}} \mbox{\hyperlink{classstd_1_1math_1_1matrix__view_afc228316fbd1931a0518138b2323cd16}{span}} () const noexcept
+\begin{DoxyCompactList}\small\item\em returns a const view \end{DoxyCompactList}\item 
+constexpr \mbox{\hyperlink{classstd_1_1math_1_1matrix__view_ae7c837d0c82266e54b4088d2bc7a1f89}{underlying\+\_\+span\+\_\+type}} \mbox{\hyperlink{classstd_1_1math_1_1matrix__view_aaefbce7851bd5308c3bf3ee523103643}{underlying\+\_\+span}} () noexcept
+\begin{DoxyCompactList}\small\item\em the view \end{DoxyCompactList}\item 
+constexpr \mbox{\hyperlink{classstd_1_1math_1_1matrix__view_a100da9d3084ed4a88c79a4f60b6fac2c}{const\+\_\+underlying\+\_\+span\+\_\+type}} \mbox{\hyperlink{classstd_1_1math_1_1matrix__view_ad74da9b21db15af7e3696b53030cfc35}{underlying\+\_\+span}} () const noexcept
+\begin{DoxyCompactList}\small\item\em returns a const view \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Public Member Functions inherited from \mbox{\hyperlink{classstd_1_1math_1_1tensor__view}{std\+::math\+::tensor\+\_\+view$<$ MDS $>$}}}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classstd_1_1math_1_1tensor__view_ab837e88b2478632105f49aef940b8db7}{$\sim$tensor\+\_\+view}} ()=default
+\begin{DoxyCompactList}\small\item\em Default destructor. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classstd_1_1math_1_1tensor__view_a6b0d308dbda1c65823c34fc5ff87d751}{tensor\+\_\+view}} ()=default
+\begin{DoxyCompactList}\small\item\em Default constructor. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classstd_1_1math_1_1tensor__view_af77b433cb634b54c0b7ea69a9b5dce6b}{tensor\+\_\+view}} (\mbox{\hyperlink{classstd_1_1math_1_1tensor__view}{tensor\+\_\+view}} \&\&rhs)=default
+\begin{DoxyCompactList}\small\item\em Default move constructor. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classstd_1_1math_1_1tensor__view_af681050ca606e8adaed564ed6c35c4b0}{tensor\+\_\+view}} (const \mbox{\hyperlink{classstd_1_1math_1_1tensor__view}{tensor\+\_\+view}} \&rhs)=default
+\begin{DoxyCompactList}\small\item\em Default copy constructor. \end{DoxyCompactList}\item 
+constexpr \mbox{\hyperlink{classstd_1_1math_1_1tensor__view_a5821740a939fc4e306bca14a386d57ad}{tensor\+\_\+view}} (const \mbox{\hyperlink{classstd_1_1math_1_1tensor__view_a2eccea75926b2c3b1a28187d1b7c32df}{underlying\+\_\+span\+\_\+type}} \&view) noexcept
+\begin{DoxyCompactList}\small\item\em Construct from view. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classstd_1_1math_1_1tensor__view}{tensor\+\_\+view}} \& \mbox{\hyperlink{classstd_1_1math_1_1tensor__view_a3532fc702b91c8ba5096913a839ca78b}{operator=}} (\mbox{\hyperlink{classstd_1_1math_1_1tensor__view}{tensor\+\_\+view}} \&\&rhs)=default
+\begin{DoxyCompactList}\small\item\em Default move assignment. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classstd_1_1math_1_1tensor__view}{tensor\+\_\+view}} \& \mbox{\hyperlink{classstd_1_1math_1_1tensor__view_ac29188d80f35f78b649a5206fe6092b4}{operator=}} (const \mbox{\hyperlink{classstd_1_1math_1_1tensor__view}{tensor\+\_\+view}} \&rhs)=default
+\begin{DoxyCompactList}\small\item\em Default copy assignment. \end{DoxyCompactList}\item 
+constexpr \mbox{\hyperlink{classstd_1_1math_1_1tensor__view}{tensor\+\_\+view}} \& \mbox{\hyperlink{classstd_1_1math_1_1tensor__view_a381936ec610bf2aaee1e8d54a1d92454}{operator=}} (const \mbox{\hyperlink{classstd_1_1math_1_1tensor__view_a2eccea75926b2c3b1a28187d1b7c32df}{underlying\+\_\+span\+\_\+type}} \&rhs) noexcept
+\begin{DoxyCompactList}\small\item\em Assign from view. \end{DoxyCompactList}\item 
+constexpr \mbox{\hyperlink{classstd_1_1math_1_1tensor__view_a78e92554d810040124579a6a0dc7a340}{extents\+\_\+type}} \mbox{\hyperlink{classstd_1_1math_1_1tensor__view_a82948e145664a06afd2dfba4318d4a30}{size}} () const noexcept
+\begin{DoxyCompactList}\small\item\em Returns the current number of (rows,columns,depth,etc.) \end{DoxyCompactList}\item 
+constexpr \mbox{\hyperlink{classstd_1_1math_1_1tensor__view_a78e92554d810040124579a6a0dc7a340}{extents\+\_\+type}} \mbox{\hyperlink{classstd_1_1math_1_1tensor__view_a0c991b2c621dd3c5e999d2417c4329c5}{capacity}} () const noexcept
+\begin{DoxyCompactList}\small\item\em Returns the current capacity of (rows,columns,depth,etc.) \end{DoxyCompactList}\item 
+{\footnotesize template$<$class ... Index\+Type$>$ \newline
+requires ( sizeof...(Index\+Type) == extents\+\_\+type\+::rank() ) \&\& ( is\+\_\+convertible\+\_\+v$<$Index\+Type,\mbox{\hyperlink{classstd_1_1math_1_1tensor__view_a346d960a2145e82eef9b93253133a174}{index\+\_\+type}}$>$ \&\& ... )}\\constexpr \mbox{\hyperlink{classstd_1_1math_1_1tensor__view_a4fac84eaca56034bb9eee7c7b4e52fe0}{value\+\_\+type}} \mbox{\hyperlink{classstd_1_1math_1_1tensor__view_ac1b65086b4e487dc7279cf76957c6098}{operator\mbox{[}$\,$\mbox{]}}} (Index\+Type ... indices) const noexcept
+\begin{DoxyCompactList}\small\item\em Returns the value at (indices...) \end{DoxyCompactList}\item 
+{\footnotesize template$<$class ... Index\+Type$>$ \newline
+requires ( sizeof...(Index\+Type) == extents\+\_\+type\+::rank() ) \&\& ( is\+\_\+convertible\+\_\+v$<$Index\+Type,\mbox{\hyperlink{classstd_1_1math_1_1tensor__view_a346d960a2145e82eef9b93253133a174}{index\+\_\+type}}$>$ \&\& ... )}\\constexpr \mbox{\hyperlink{classstd_1_1math_1_1tensor__view_a4fac84eaca56034bb9eee7c7b4e52fe0}{value\+\_\+type}} \mbox{\hyperlink{classstd_1_1math_1_1tensor__view_a91cb25a72122ef59fce6e353a39cc811}{at}} (Index\+Type ... indices) const
+\begin{DoxyCompactList}\small\item\em Returns the value at (indices...) \end{DoxyCompactList}\item 
+constexpr \mbox{\hyperlink{classstd_1_1math_1_1tensor__view_a613dd4f7019868d98d43229c7b1b93f7}{const\+\_\+subtensor\+\_\+type}} \mbox{\hyperlink{classstd_1_1math_1_1tensor__view_a3f924c3d4b84af7a1a789d69a17ae0b5}{subtensor}} (\mbox{\hyperlink{classstd_1_1math_1_1tensor__view_ae25efa38cae99f7f9381b667e0182711}{tuple\+\_\+type}} start, \mbox{\hyperlink{classstd_1_1math_1_1tensor__view_ae25efa38cae99f7f9381b667e0182711}{tuple\+\_\+type}} end) const
+\begin{DoxyCompactList}\small\item\em Returns a const view of the specified subtensor. \end{DoxyCompactList}\item 
+{\footnotesize template$<$class ... Index\+Type$>$ \newline
+requires ( sizeof...(Index\+Type) == extents\+\_\+type\+::rank() ) \&\& ( is\+\_\+convertible\+\_\+v$<$Index\+Type,\mbox{\hyperlink{classstd_1_1math_1_1tensor__view_a346d960a2145e82eef9b93253133a174}{index\+\_\+type}}$>$ \&\& ... ) \&\& ( !is\+\_\+const\+\_\+v$<$\mbox{\hyperlink{classstd_1_1math_1_1tensor__view_ad777c52999a7797caf138b67dd82c82e}{element\+\_\+type}}$>$ )}\\constexpr \mbox{\hyperlink{classstd_1_1math_1_1tensor__view_a6b37439df19fb9e7974b2163a5cbca25}{reference\+\_\+type}} \mbox{\hyperlink{classstd_1_1math_1_1tensor__view_a01d8927134620760a7ea78c30f56707c}{operator\mbox{[}$\,$\mbox{]}}} (Index\+Type ... indices) noexcept
+\begin{DoxyCompactList}\small\item\em Returns a mutable value at (indices...) \end{DoxyCompactList}\item 
+{\footnotesize template$<$class ... Index\+Type$>$ \newline
+requires ( sizeof...(Index\+Type) == extents\+\_\+type\+::rank() ) \&\& ( is\+\_\+convertible\+\_\+v$<$Index\+Type,\mbox{\hyperlink{classstd_1_1math_1_1tensor__view_a346d960a2145e82eef9b93253133a174}{index\+\_\+type}}$>$ \&\& ... ) \&\& ( !is\+\_\+const\+\_\+v$<$\mbox{\hyperlink{classstd_1_1math_1_1tensor__view_ad777c52999a7797caf138b67dd82c82e}{element\+\_\+type}}$>$ )}\\constexpr \mbox{\hyperlink{classstd_1_1math_1_1tensor__view_a6b37439df19fb9e7974b2163a5cbca25}{reference\+\_\+type}} \mbox{\hyperlink{classstd_1_1math_1_1tensor__view_a7881ff25dfe91d681fd27a2c03aae3a3}{at}} (Index\+Type ... indices)
+\begin{DoxyCompactList}\small\item\em Returns a mutable value at (indices...) \end{DoxyCompactList}\item 
+constexpr \mbox{\hyperlink{classstd_1_1math_1_1tensor__view_a9adecf889933b9d07bc5bf2f697f1c62}{subtensor\+\_\+type}} \mbox{\hyperlink{classstd_1_1math_1_1tensor__view_ad1da45f785e6591d5ced1e73badbe5ca}{subtensor}} (\mbox{\hyperlink{classstd_1_1math_1_1tensor__view_ae25efa38cae99f7f9381b667e0182711}{tuple\+\_\+type}} start, \mbox{\hyperlink{classstd_1_1math_1_1tensor__view_ae25efa38cae99f7f9381b667e0182711}{tuple\+\_\+type}} end)
+\begin{DoxyCompactList}\small\item\em Returns a mutable view of the specified subtensor. \end{DoxyCompactList}\item 
+constexpr \mbox{\hyperlink{classstd_1_1math_1_1tensor__view_af5b0eef80d71ab263aade2e8d8deb6af}{span\+\_\+type}} \mbox{\hyperlink{classstd_1_1math_1_1tensor__view_afc228316fbd1931a0518138b2323cd16}{span}} () const noexcept
+\begin{DoxyCompactList}\small\item\em returns a const view \end{DoxyCompactList}\item 
+constexpr \mbox{\hyperlink{classstd_1_1math_1_1tensor__view_a2eccea75926b2c3b1a28187d1b7c32df}{underlying\+\_\+span\+\_\+type}} \mbox{\hyperlink{classstd_1_1math_1_1tensor__view_aaefbce7851bd5308c3bf3ee523103643}{underlying\+\_\+span}} () noexcept
+\begin{DoxyCompactList}\small\item\em the view \end{DoxyCompactList}\item 
+constexpr \mbox{\hyperlink{classstd_1_1math_1_1tensor__view_a148aafc2a4764d3359a54241d0fce306}{const\+\_\+underlying\+\_\+span\+\_\+type}} \mbox{\hyperlink{classstd_1_1math_1_1tensor__view_ad74da9b21db15af7e3696b53030cfc35}{underlying\+\_\+span}} () const noexcept
+\begin{DoxyCompactList}\small\item\em returns a const view \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\subsubsection*{template$<$class MDS$>$\newline
+requires ( \mbox{\hyperlink{namespacestd_1_1math_1_1detail_a25550b69c908000165785e0db4b8d3bf}{detail\+::is\+\_\+mdspan\+\_\+v}}$<$MDS$>$ \&\& ( MDS\+::extents\+\_\+type\+::rank()== 2 ) \&\& MDS\+::is\+\_\+always\+\_\+unique() )\newline
+class std\+::math\+::matrix\+\_\+view$<$ MDS $>$}
+Matrix view. 
+
+
+\begin{DoxyTemplParams}{Template Parameters}
+{\em MDS} & mdspan \\
+\hline
+\end{DoxyTemplParams}
+
+
+\doxysubsection{Member Typedef Documentation}
+\mbox{\Hypertarget{classstd_1_1math_1_1matrix__view_aa86b435bb5fdefcf58509fec794595ed}\label{classstd_1_1math_1_1matrix__view_aa86b435bb5fdefcf58509fec794595ed}} 
+\index{std::math::matrix\_view$<$ MDS $>$@{std::math::matrix\_view$<$ MDS $>$}!accessor\_type@{accessor\_type}}
+\index{accessor\_type@{accessor\_type}!std::math::matrix\_view$<$ MDS $>$@{std::math::matrix\_view$<$ MDS $>$}}
+\doxysubsubsection{\texorpdfstring{accessor\_type}{accessor\_type}}
+{\footnotesize\ttfamily template$<$class MDS $>$ \\
+using \mbox{\hyperlink{classstd_1_1math_1_1matrix__view}{std\+::math\+::matrix\+\_\+view}}$<$ MDS $>$\+::accessor\+\_\+type =  typename \mbox{\hyperlink{classstd_1_1math_1_1tensor__view_a52baaaebd4f1750dded79907c87318b6}{base\+\_\+type\+::accessor\+\_\+type}}}
+
+
+
+Type used to define access into memory. 
+
+\mbox{\Hypertarget{classstd_1_1math_1_1matrix__view_a637d7c1262d1b946b7d8e47d58fbcbbf}\label{classstd_1_1math_1_1matrix__view_a637d7c1262d1b946b7d8e47d58fbcbbf}} 
+\index{std::math::matrix\_view$<$ MDS $>$@{std::math::matrix\_view$<$ MDS $>$}!column\_type@{column\_type}}
+\index{column\_type@{column\_type}!std::math::matrix\_view$<$ MDS $>$@{std::math::matrix\_view$<$ MDS $>$}}
+\doxysubsubsection{\texorpdfstring{column\_type}{column\_type}}
+{\footnotesize\ttfamily template$<$class MDS $>$ \\
+using \mbox{\hyperlink{classstd_1_1math_1_1matrix__view}{std\+::math\+::matrix\+\_\+view}}$<$ MDS $>$\+::column\+\_\+type =  \mbox{\hyperlink{classstd_1_1math_1_1vector__view}{vector\+\_\+view}}$<$decltype( experimental\+::submdspan( declval$<$\mbox{\hyperlink{classstd_1_1math_1_1matrix__view_ae7c837d0c82266e54b4088d2bc7a1f89}{underlying\+\_\+span\+\_\+type}}$>$(), declval$<$experimental\+::full\+\_\+extent\+\_\+t$>$(), declval$<$\mbox{\hyperlink{classstd_1_1math_1_1matrix__view_af13e22ab3477238f46a325a3ee975b17}{index\+\_\+type}}$>$() ) )$>$}
+
+
+
+mutable view of a column vector 
+
+\mbox{\Hypertarget{classstd_1_1math_1_1matrix__view_a8242e762f5bb45c96f1453c608f4159f}\label{classstd_1_1math_1_1matrix__view_a8242e762f5bb45c96f1453c608f4159f}} 
+\index{std::math::matrix\_view$<$ MDS $>$@{std::math::matrix\_view$<$ MDS $>$}!const\_column\_type@{const\_column\_type}}
+\index{const\_column\_type@{const\_column\_type}!std::math::matrix\_view$<$ MDS $>$@{std::math::matrix\_view$<$ MDS $>$}}
+\doxysubsubsection{\texorpdfstring{const\_column\_type}{const\_column\_type}}
+{\footnotesize\ttfamily template$<$class MDS $>$ \\
+using \mbox{\hyperlink{classstd_1_1math_1_1matrix__view}{std\+::math\+::matrix\+\_\+view}}$<$ MDS $>$\+::const\+\_\+column\+\_\+type =  \mbox{\hyperlink{classstd_1_1math_1_1vector__view}{vector\+\_\+view}}$<$decltype( experimental\+::submdspan( declval$<$\mbox{\hyperlink{classstd_1_1math_1_1matrix__view_a100da9d3084ed4a88c79a4f60b6fac2c}{const\+\_\+underlying\+\_\+span\+\_\+type}}$>$(), declval$<$experimental\+::full\+\_\+extent\+\_\+t$>$(), declval$<$\mbox{\hyperlink{classstd_1_1math_1_1matrix__view_af13e22ab3477238f46a325a3ee975b17}{index\+\_\+type}}$>$() ) )$>$}
+
+
+
+const view of a column vector 
+
+\mbox{\Hypertarget{classstd_1_1math_1_1matrix__view_a6fa803fe591435f26d43100f0f46cde0}\label{classstd_1_1math_1_1matrix__view_a6fa803fe591435f26d43100f0f46cde0}} 
+\index{std::math::matrix\_view$<$ MDS $>$@{std::math::matrix\_view$<$ MDS $>$}!const\_row\_type@{const\_row\_type}}
+\index{const\_row\_type@{const\_row\_type}!std::math::matrix\_view$<$ MDS $>$@{std::math::matrix\_view$<$ MDS $>$}}
+\doxysubsubsection{\texorpdfstring{const\_row\_type}{const\_row\_type}}
+{\footnotesize\ttfamily template$<$class MDS $>$ \\
+using \mbox{\hyperlink{classstd_1_1math_1_1matrix__view}{std\+::math\+::matrix\+\_\+view}}$<$ MDS $>$\+::const\+\_\+row\+\_\+type =  \mbox{\hyperlink{classstd_1_1math_1_1vector__view}{vector\+\_\+view}}$<$decltype( experimental\+::submdspan( declval$<$\mbox{\hyperlink{classstd_1_1math_1_1matrix__view_a100da9d3084ed4a88c79a4f60b6fac2c}{const\+\_\+underlying\+\_\+span\+\_\+type}}$>$(), declval$<$\mbox{\hyperlink{classstd_1_1math_1_1matrix__view_af13e22ab3477238f46a325a3ee975b17}{index\+\_\+type}}$>$(), declval$<$experimental\+::full\+\_\+extent\+\_\+t$>$() ) )$>$}
+
+
+
+const view of a row vector 
+
+\mbox{\Hypertarget{classstd_1_1math_1_1matrix__view_a9044b16159891679ed08b158ffcddeec}\label{classstd_1_1math_1_1matrix__view_a9044b16159891679ed08b158ffcddeec}} 
+\index{std::math::matrix\_view$<$ MDS $>$@{std::math::matrix\_view$<$ MDS $>$}!const\_submatrix\_type@{const\_submatrix\_type}}
+\index{const\_submatrix\_type@{const\_submatrix\_type}!std::math::matrix\_view$<$ MDS $>$@{std::math::matrix\_view$<$ MDS $>$}}
+\doxysubsubsection{\texorpdfstring{const\_submatrix\_type}{const\_submatrix\_type}}
+{\footnotesize\ttfamily template$<$class MDS $>$ \\
+using \mbox{\hyperlink{classstd_1_1math_1_1matrix__view}{std\+::math\+::matrix\+\_\+view}}$<$ MDS $>$\+::const\+\_\+submatrix\+\_\+type =  \mbox{\hyperlink{classstd_1_1math_1_1matrix__view}{matrix\+\_\+view}}$<$decltype( \mbox{\hyperlink{namespacestd_1_1math_1_1detail_af274dde876e47ba2ec1b483608c81d69}{detail\+::submdspan}}( declval$<$\mbox{\hyperlink{classstd_1_1math_1_1matrix__view_a100da9d3084ed4a88c79a4f60b6fac2c}{const\+\_\+underlying\+\_\+span\+\_\+type}}$>$(), declval$<$\mbox{\hyperlink{classstd_1_1math_1_1matrix__view_a84b17fca1eca916f2535d59c9b94d1de}{tuple\+\_\+type}}$>$(), declval$<$\mbox{\hyperlink{classstd_1_1math_1_1matrix__view_a84b17fca1eca916f2535d59c9b94d1de}{tuple\+\_\+type}}$>$() ) ) $>$}
+
+
+
+const view of a submatrix 
+
+\mbox{\Hypertarget{classstd_1_1math_1_1matrix__view_a43c96e150d4598b6073ad84b0926bddd}\label{classstd_1_1math_1_1matrix__view_a43c96e150d4598b6073ad84b0926bddd}} 
+\index{std::math::matrix\_view$<$ MDS $>$@{std::math::matrix\_view$<$ MDS $>$}!const\_subtensor\_type@{const\_subtensor\_type}}
+\index{const\_subtensor\_type@{const\_subtensor\_type}!std::math::matrix\_view$<$ MDS $>$@{std::math::matrix\_view$<$ MDS $>$}}
+\doxysubsubsection{\texorpdfstring{const\_subtensor\_type}{const\_subtensor\_type}}
+{\footnotesize\ttfamily template$<$class MDS $>$ \\
+using \mbox{\hyperlink{classstd_1_1math_1_1matrix__view}{std\+::math\+::matrix\+\_\+view}}$<$ MDS $>$\+::const\+\_\+subtensor\+\_\+type =  typename \mbox{\hyperlink{classstd_1_1math_1_1tensor__view_a613dd4f7019868d98d43229c7b1b93f7}{base\+\_\+type\+::const\+\_\+subtensor\+\_\+type}}}
+
+
+
+const view of a subtensor 
+
+\mbox{\Hypertarget{classstd_1_1math_1_1matrix__view_a100da9d3084ed4a88c79a4f60b6fac2c}\label{classstd_1_1math_1_1matrix__view_a100da9d3084ed4a88c79a4f60b6fac2c}} 
+\index{std::math::matrix\_view$<$ MDS $>$@{std::math::matrix\_view$<$ MDS $>$}!const\_underlying\_span\_type@{const\_underlying\_span\_type}}
+\index{const\_underlying\_span\_type@{const\_underlying\_span\_type}!std::math::matrix\_view$<$ MDS $>$@{std::math::matrix\_view$<$ MDS $>$}}
+\doxysubsubsection{\texorpdfstring{const\_underlying\_span\_type}{const\_underlying\_span\_type}}
+{\footnotesize\ttfamily template$<$class MDS $>$ \\
+using \mbox{\hyperlink{classstd_1_1math_1_1matrix__view}{std\+::math\+::matrix\+\_\+view}}$<$ MDS $>$\+::const\+\_\+underlying\+\_\+span\+\_\+type =  typename \mbox{\hyperlink{classstd_1_1math_1_1tensor__view_a148aafc2a4764d3359a54241d0fce306}{base\+\_\+type\+::const\+\_\+underlying\+\_\+span\+\_\+type}}}
+
+
+
+Type used to const view memory. 
+
+\mbox{\Hypertarget{classstd_1_1math_1_1matrix__view_a0873ce244ca355cf3e9fa32830fef538}\label{classstd_1_1math_1_1matrix__view_a0873ce244ca355cf3e9fa32830fef538}} 
+\index{std::math::matrix\_view$<$ MDS $>$@{std::math::matrix\_view$<$ MDS $>$}!element\_type@{element\_type}}
+\index{element\_type@{element\_type}!std::math::matrix\_view$<$ MDS $>$@{std::math::matrix\_view$<$ MDS $>$}}
+\doxysubsubsection{\texorpdfstring{element\_type}{element\_type}}
+{\footnotesize\ttfamily template$<$class MDS $>$ \\
+using \mbox{\hyperlink{classstd_1_1math_1_1matrix__view}{std\+::math\+::matrix\+\_\+view}}$<$ MDS $>$\+::element\+\_\+type =  typename \mbox{\hyperlink{classstd_1_1math_1_1tensor__view_ad777c52999a7797caf138b67dd82c82e}{base\+\_\+type\+::element\+\_\+type}}}
+
+
+
+Type contained by the matrix. 
+
+\mbox{\Hypertarget{classstd_1_1math_1_1matrix__view_a952236a0a976014e1ec15de1162587c3}\label{classstd_1_1math_1_1matrix__view_a952236a0a976014e1ec15de1162587c3}} 
+\index{std::math::matrix\_view$<$ MDS $>$@{std::math::matrix\_view$<$ MDS $>$}!extents\_type@{extents\_type}}
+\index{extents\_type@{extents\_type}!std::math::matrix\_view$<$ MDS $>$@{std::math::matrix\_view$<$ MDS $>$}}
+\doxysubsubsection{\texorpdfstring{extents\_type}{extents\_type}}
+{\footnotesize\ttfamily template$<$class MDS $>$ \\
+using \mbox{\hyperlink{classstd_1_1math_1_1matrix__view}{std\+::math\+::matrix\+\_\+view}}$<$ MDS $>$\+::extents\+\_\+type =  typename \mbox{\hyperlink{classstd_1_1math_1_1tensor__view_a78e92554d810040124579a6a0dc7a340}{base\+\_\+type\+::extents\+\_\+type}}}
+
+
+
+Type used to express size of tensor. 
+
+\mbox{\Hypertarget{classstd_1_1math_1_1matrix__view_af13e22ab3477238f46a325a3ee975b17}\label{classstd_1_1math_1_1matrix__view_af13e22ab3477238f46a325a3ee975b17}} 
+\index{std::math::matrix\_view$<$ MDS $>$@{std::math::matrix\_view$<$ MDS $>$}!index\_type@{index\_type}}
+\index{index\_type@{index\_type}!std::math::matrix\_view$<$ MDS $>$@{std::math::matrix\_view$<$ MDS $>$}}
+\doxysubsubsection{\texorpdfstring{index\_type}{index\_type}}
+{\footnotesize\ttfamily template$<$class MDS $>$ \\
+using \mbox{\hyperlink{classstd_1_1math_1_1matrix__view}{std\+::math\+::matrix\+\_\+view}}$<$ MDS $>$\+::index\+\_\+type =  typename \mbox{\hyperlink{classstd_1_1math_1_1tensor__view_a346d960a2145e82eef9b93253133a174}{base\+\_\+type\+::index\+\_\+type}}}
+
+
+
+Type used for indexing. 
+
+\mbox{\Hypertarget{classstd_1_1math_1_1matrix__view_a2d2ca621cd2592144408ff01dba9f949}\label{classstd_1_1math_1_1matrix__view_a2d2ca621cd2592144408ff01dba9f949}} 
+\index{std::math::matrix\_view$<$ MDS $>$@{std::math::matrix\_view$<$ MDS $>$}!layout\_type@{layout\_type}}
+\index{layout\_type@{layout\_type}!std::math::matrix\_view$<$ MDS $>$@{std::math::matrix\_view$<$ MDS $>$}}
+\doxysubsubsection{\texorpdfstring{layout\_type}{layout\_type}}
+{\footnotesize\ttfamily template$<$class MDS $>$ \\
+using \mbox{\hyperlink{classstd_1_1math_1_1matrix__view}{std\+::math\+::matrix\+\_\+view}}$<$ MDS $>$\+::layout\+\_\+type =  typename \mbox{\hyperlink{classstd_1_1math_1_1tensor__view_a1241b3121ae9f312314d4aacafbec0ba}{base\+\_\+type\+::layout\+\_\+type}}}
+
+
+
+Type used to define memory layout. 
+
+\mbox{\Hypertarget{classstd_1_1math_1_1matrix__view_a034fef9b9480791ea012d9f1c04ef6f6}\label{classstd_1_1math_1_1matrix__view_a034fef9b9480791ea012d9f1c04ef6f6}} 
+\index{std::math::matrix\_view$<$ MDS $>$@{std::math::matrix\_view$<$ MDS $>$}!reference\_type@{reference\_type}}
+\index{reference\_type@{reference\_type}!std::math::matrix\_view$<$ MDS $>$@{std::math::matrix\_view$<$ MDS $>$}}
+\doxysubsubsection{\texorpdfstring{reference\_type}{reference\_type}}
+{\footnotesize\ttfamily template$<$class MDS $>$ \\
+using \mbox{\hyperlink{classstd_1_1math_1_1matrix__view}{std\+::math\+::matrix\+\_\+view}}$<$ MDS $>$\+::reference\+\_\+type =  typename \mbox{\hyperlink{classstd_1_1math_1_1tensor__view_a6b37439df19fb9e7974b2163a5cbca25}{base\+\_\+type\+::reference\+\_\+type}}}
+
+
+
+Type returned by mutable index access. 
+
+\mbox{\Hypertarget{classstd_1_1math_1_1matrix__view_a60175fa7f9d854e052bca48485ae64c7}\label{classstd_1_1math_1_1matrix__view_a60175fa7f9d854e052bca48485ae64c7}} 
+\index{std::math::matrix\_view$<$ MDS $>$@{std::math::matrix\_view$<$ MDS $>$}!row\_type@{row\_type}}
+\index{row\_type@{row\_type}!std::math::matrix\_view$<$ MDS $>$@{std::math::matrix\_view$<$ MDS $>$}}
+\doxysubsubsection{\texorpdfstring{row\_type}{row\_type}}
+{\footnotesize\ttfamily template$<$class MDS $>$ \\
+using \mbox{\hyperlink{classstd_1_1math_1_1matrix__view}{std\+::math\+::matrix\+\_\+view}}$<$ MDS $>$\+::row\+\_\+type =  \mbox{\hyperlink{classstd_1_1math_1_1vector__view}{vector\+\_\+view}}$<$decltype( experimental\+::submdspan( declval$<$\mbox{\hyperlink{classstd_1_1math_1_1matrix__view_ae7c837d0c82266e54b4088d2bc7a1f89}{underlying\+\_\+span\+\_\+type}}$>$(), declval$<$\mbox{\hyperlink{classstd_1_1math_1_1matrix__view_af13e22ab3477238f46a325a3ee975b17}{index\+\_\+type}}$>$(), declval$<$experimental\+::full\+\_\+extent\+\_\+t$>$() ) )$>$}
+
+
+
+mutable view of a row vector 
+
+\mbox{\Hypertarget{classstd_1_1math_1_1matrix__view_abfb685c47048660cab53adf69e9d859d}\label{classstd_1_1math_1_1matrix__view_abfb685c47048660cab53adf69e9d859d}} 
+\index{std::math::matrix\_view$<$ MDS $>$@{std::math::matrix\_view$<$ MDS $>$}!size\_type@{size\_type}}
+\index{size\_type@{size\_type}!std::math::matrix\_view$<$ MDS $>$@{std::math::matrix\_view$<$ MDS $>$}}
+\doxysubsubsection{\texorpdfstring{size\_type}{size\_type}}
+{\footnotesize\ttfamily template$<$class MDS $>$ \\
+using \mbox{\hyperlink{classstd_1_1math_1_1matrix__view}{std\+::math\+::matrix\+\_\+view}}$<$ MDS $>$\+::size\+\_\+type =  typename \mbox{\hyperlink{classstd_1_1math_1_1tensor__view_acab396dafde34881361ad1a566f138c2}{base\+\_\+type\+::size\+\_\+type}}}
+
+
+
+Type used for size along any dimension. 
+
+\mbox{\Hypertarget{classstd_1_1math_1_1matrix__view_a933d44ad38fda2c086293aa66634c878}\label{classstd_1_1math_1_1matrix__view_a933d44ad38fda2c086293aa66634c878}} 
+\index{std::math::matrix\_view$<$ MDS $>$@{std::math::matrix\_view$<$ MDS $>$}!span\_type@{span\_type}}
+\index{span\_type@{span\_type}!std::math::matrix\_view$<$ MDS $>$@{std::math::matrix\_view$<$ MDS $>$}}
+\doxysubsubsection{\texorpdfstring{span\_type}{span\_type}}
+{\footnotesize\ttfamily template$<$class MDS $>$ \\
+using \mbox{\hyperlink{classstd_1_1math_1_1matrix__view}{std\+::math\+::matrix\+\_\+view}}$<$ MDS $>$\+::span\+\_\+type =  typename \mbox{\hyperlink{classstd_1_1math_1_1tensor__view_af5b0eef80d71ab263aade2e8d8deb6af}{base\+\_\+type\+::span\+\_\+type}}}
+
+
+
+Type used to portray tensor as an N dimensional view. 
+
+\mbox{\Hypertarget{classstd_1_1math_1_1matrix__view_a4b7d56847b14b452caec93a9861a75cb}\label{classstd_1_1math_1_1matrix__view_a4b7d56847b14b452caec93a9861a75cb}} 
+\index{std::math::matrix\_view$<$ MDS $>$@{std::math::matrix\_view$<$ MDS $>$}!submatrix\_type@{submatrix\_type}}
+\index{submatrix\_type@{submatrix\_type}!std::math::matrix\_view$<$ MDS $>$@{std::math::matrix\_view$<$ MDS $>$}}
+\doxysubsubsection{\texorpdfstring{submatrix\_type}{submatrix\_type}}
+{\footnotesize\ttfamily template$<$class MDS $>$ \\
+using \mbox{\hyperlink{classstd_1_1math_1_1matrix__view}{std\+::math\+::matrix\+\_\+view}}$<$ MDS $>$\+::submatrix\+\_\+type =  \mbox{\hyperlink{classstd_1_1math_1_1matrix__view}{matrix\+\_\+view}}$<$decltype( \mbox{\hyperlink{namespacestd_1_1math_1_1detail_af274dde876e47ba2ec1b483608c81d69}{detail\+::submdspan}}( declval$<$\mbox{\hyperlink{classstd_1_1math_1_1matrix__view_ae7c837d0c82266e54b4088d2bc7a1f89}{underlying\+\_\+span\+\_\+type}}$>$(), declval$<$\mbox{\hyperlink{classstd_1_1math_1_1matrix__view_a84b17fca1eca916f2535d59c9b94d1de}{tuple\+\_\+type}}$>$(), declval$<$\mbox{\hyperlink{classstd_1_1math_1_1matrix__view_a84b17fca1eca916f2535d59c9b94d1de}{tuple\+\_\+type}}$>$() ) ) $>$}
+
+
+
+mutable view of a submatrix 
+
+\mbox{\Hypertarget{classstd_1_1math_1_1matrix__view_adaeadd58c3e794418d6e2527a0bb795f}\label{classstd_1_1math_1_1matrix__view_adaeadd58c3e794418d6e2527a0bb795f}} 
+\index{std::math::matrix\_view$<$ MDS $>$@{std::math::matrix\_view$<$ MDS $>$}!subtensor\_type@{subtensor\_type}}
+\index{subtensor\_type@{subtensor\_type}!std::math::matrix\_view$<$ MDS $>$@{std::math::matrix\_view$<$ MDS $>$}}
+\doxysubsubsection{\texorpdfstring{subtensor\_type}{subtensor\_type}}
+{\footnotesize\ttfamily template$<$class MDS $>$ \\
+using \mbox{\hyperlink{classstd_1_1math_1_1matrix__view}{std\+::math\+::matrix\+\_\+view}}$<$ MDS $>$\+::subtensor\+\_\+type =  typename \mbox{\hyperlink{classstd_1_1math_1_1tensor__view_a9adecf889933b9d07bc5bf2f697f1c62}{base\+\_\+type\+::subtensor\+\_\+type}}}
+
+
+
+mutable view of a subtensor 
+
+\mbox{\Hypertarget{classstd_1_1math_1_1matrix__view_a84b17fca1eca916f2535d59c9b94d1de}\label{classstd_1_1math_1_1matrix__view_a84b17fca1eca916f2535d59c9b94d1de}} 
+\index{std::math::matrix\_view$<$ MDS $>$@{std::math::matrix\_view$<$ MDS $>$}!tuple\_type@{tuple\_type}}
+\index{tuple\_type@{tuple\_type}!std::math::matrix\_view$<$ MDS $>$@{std::math::matrix\_view$<$ MDS $>$}}
+\doxysubsubsection{\texorpdfstring{tuple\_type}{tuple\_type}}
+{\footnotesize\ttfamily template$<$class MDS $>$ \\
+using \mbox{\hyperlink{classstd_1_1math_1_1matrix__view}{std\+::math\+::matrix\+\_\+view}}$<$ MDS $>$\+::tuple\+\_\+type =  typename \mbox{\hyperlink{classstd_1_1math_1_1tensor__view_ae25efa38cae99f7f9381b667e0182711}{base\+\_\+type\+::tuple\+\_\+type}}}
+
+
+
+Type used to represent a node in the tensor. 
+
+\mbox{\Hypertarget{classstd_1_1math_1_1matrix__view_ae7c837d0c82266e54b4088d2bc7a1f89}\label{classstd_1_1math_1_1matrix__view_ae7c837d0c82266e54b4088d2bc7a1f89}} 
+\index{std::math::matrix\_view$<$ MDS $>$@{std::math::matrix\_view$<$ MDS $>$}!underlying\_span\_type@{underlying\_span\_type}}
+\index{underlying\_span\_type@{underlying\_span\_type}!std::math::matrix\_view$<$ MDS $>$@{std::math::matrix\_view$<$ MDS $>$}}
+\doxysubsubsection{\texorpdfstring{underlying\_span\_type}{underlying\_span\_type}}
+{\footnotesize\ttfamily template$<$class MDS $>$ \\
+using \mbox{\hyperlink{classstd_1_1math_1_1matrix__view}{std\+::math\+::matrix\+\_\+view}}$<$ MDS $>$\+::underlying\+\_\+span\+\_\+type =  typename \mbox{\hyperlink{classstd_1_1math_1_1tensor__view_a2eccea75926b2c3b1a28187d1b7c32df}{base\+\_\+type\+::underlying\+\_\+span\+\_\+type}}}
+
+
+
+Type used to view memory. 
+
+\mbox{\Hypertarget{classstd_1_1math_1_1matrix__view_a9aa5ca7ddfa2601485229fc161ac5005}\label{classstd_1_1math_1_1matrix__view_a9aa5ca7ddfa2601485229fc161ac5005}} 
+\index{std::math::matrix\_view$<$ MDS $>$@{std::math::matrix\_view$<$ MDS $>$}!value\_type@{value\_type}}
+\index{value\_type@{value\_type}!std::math::matrix\_view$<$ MDS $>$@{std::math::matrix\_view$<$ MDS $>$}}
+\doxysubsubsection{\texorpdfstring{value\_type}{value\_type}}
+{\footnotesize\ttfamily template$<$class MDS $>$ \\
+using \mbox{\hyperlink{classstd_1_1math_1_1matrix__view}{std\+::math\+::matrix\+\_\+view}}$<$ MDS $>$\+::value\+\_\+type =  typename \mbox{\hyperlink{classstd_1_1math_1_1tensor__view_a4fac84eaca56034bb9eee7c7b4e52fe0}{base\+\_\+type\+::value\+\_\+type}}}
+
+
+
+Type returned by const index access. 
+
+
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classstd_1_1math_1_1matrix__view_a6915292a866a9d6c5ed6785ffb2ecb36}\label{classstd_1_1math_1_1matrix__view_a6915292a866a9d6c5ed6785ffb2ecb36}} 
+\index{std::math::matrix\_view$<$ MDS $>$@{std::math::matrix\_view$<$ MDS $>$}!````~matrix\_view@{$\sim$matrix\_view}}
+\index{````~matrix\_view@{$\sim$matrix\_view}!std::math::matrix\_view$<$ MDS $>$@{std::math::matrix\_view$<$ MDS $>$}}
+\doxysubsubsection{\texorpdfstring{$\sim$matrix\_view()}{~matrix\_view()}}
+{\footnotesize\ttfamily template$<$class MDS $>$ \\
+\mbox{\hyperlink{classstd_1_1math_1_1matrix__view}{std\+::math\+::matrix\+\_\+view}}$<$ MDS $>$\+::$\sim$\mbox{\hyperlink{classstd_1_1math_1_1matrix__view}{matrix\+\_\+view}} (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [default]}}
+
+
+
+Default destructor. 
+
+\mbox{\Hypertarget{classstd_1_1math_1_1matrix__view_a150dfbd0a7719e27a52f0aca3a434ae2}\label{classstd_1_1math_1_1matrix__view_a150dfbd0a7719e27a52f0aca3a434ae2}} 
+\index{std::math::matrix\_view$<$ MDS $>$@{std::math::matrix\_view$<$ MDS $>$}!matrix\_view@{matrix\_view}}
+\index{matrix\_view@{matrix\_view}!std::math::matrix\_view$<$ MDS $>$@{std::math::matrix\_view$<$ MDS $>$}}
+\doxysubsubsection{\texorpdfstring{matrix\_view()}{matrix\_view()}\hspace{0.1cm}{\footnotesize\ttfamily [1/4]}}
+{\footnotesize\ttfamily template$<$class MDS $>$ \\
+\mbox{\hyperlink{classstd_1_1math_1_1matrix__view}{std\+::math\+::matrix\+\_\+view}}$<$ MDS $>$\+::matrix\+\_\+view (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [default]}}
+
+
+
+Default constructor. 
+
+\mbox{\Hypertarget{classstd_1_1math_1_1matrix__view_ac96250b199bb64304e8929db21d68afe}\label{classstd_1_1math_1_1matrix__view_ac96250b199bb64304e8929db21d68afe}} 
+\index{std::math::matrix\_view$<$ MDS $>$@{std::math::matrix\_view$<$ MDS $>$}!matrix\_view@{matrix\_view}}
+\index{matrix\_view@{matrix\_view}!std::math::matrix\_view$<$ MDS $>$@{std::math::matrix\_view$<$ MDS $>$}}
+\doxysubsubsection{\texorpdfstring{matrix\_view()}{matrix\_view()}\hspace{0.1cm}{\footnotesize\ttfamily [2/4]}}
+{\footnotesize\ttfamily template$<$class MDS $>$ \\
+\mbox{\hyperlink{classstd_1_1math_1_1matrix__view}{std\+::math\+::matrix\+\_\+view}}$<$ MDS $>$\+::matrix\+\_\+view (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classstd_1_1math_1_1matrix__view}{matrix\+\_\+view}}$<$ MDS $>$ \&\&}]{rhs }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [default]}}
+
+
+
+Default move constructor. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em \mbox{\hyperlink{classstd_1_1math_1_1matrix__view}{matrix\+\_\+view}}} & to be moved \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classstd_1_1math_1_1matrix__view_a3ccb591e3b368deb4fd3a46ebd15c0e0}\label{classstd_1_1math_1_1matrix__view_a3ccb591e3b368deb4fd3a46ebd15c0e0}} 
+\index{std::math::matrix\_view$<$ MDS $>$@{std::math::matrix\_view$<$ MDS $>$}!matrix\_view@{matrix\_view}}
+\index{matrix\_view@{matrix\_view}!std::math::matrix\_view$<$ MDS $>$@{std::math::matrix\_view$<$ MDS $>$}}
+\doxysubsubsection{\texorpdfstring{matrix\_view()}{matrix\_view()}\hspace{0.1cm}{\footnotesize\ttfamily [3/4]}}
+{\footnotesize\ttfamily template$<$class MDS $>$ \\
+\mbox{\hyperlink{classstd_1_1math_1_1matrix__view}{std\+::math\+::matrix\+\_\+view}}$<$ MDS $>$\+::matrix\+\_\+view (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classstd_1_1math_1_1matrix__view}{matrix\+\_\+view}}$<$ MDS $>$ \&}]{rhs }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [default]}}
+
+
+
+Default copy constructor. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em \mbox{\hyperlink{classstd_1_1math_1_1matrix__view}{matrix\+\_\+view}}} & to be copied \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classstd_1_1math_1_1matrix__view_a5dc055a767f31114c0985d05d3096213}\label{classstd_1_1math_1_1matrix__view_a5dc055a767f31114c0985d05d3096213}} 
+\index{std::math::matrix\_view$<$ MDS $>$@{std::math::matrix\_view$<$ MDS $>$}!matrix\_view@{matrix\_view}}
+\index{matrix\_view@{matrix\_view}!std::math::matrix\_view$<$ MDS $>$@{std::math::matrix\_view$<$ MDS $>$}}
+\doxysubsubsection{\texorpdfstring{matrix\_view()}{matrix\_view()}\hspace{0.1cm}{\footnotesize\ttfamily [4/4]}}
+{\footnotesize\ttfamily template$<$class MDS $>$ \newline
+requires ( \mbox{\hyperlink{namespacestd_1_1math_1_1detail_a25550b69c908000165785e0db4b8d3bf}{detail\+::is\+\_\+mdspan\+\_\+v}}$<$MDS$>$ \&\& ( MDS\+::extents\+\_\+type\+::rank() == 2 ) \&\& MDS\+::is\+\_\+always\+\_\+unique() )\\
+constexpr \mbox{\hyperlink{classstd_1_1math_1_1matrix__view}{std\+::math\+::matrix\+\_\+view}}$<$ MDS $>$\+::matrix\+\_\+view (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classstd_1_1math_1_1matrix__view_ae7c837d0c82266e54b4088d2bc7a1f89}{underlying\+\_\+span\+\_\+type}} \&}]{view }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [explicit]}, {\ttfamily [constexpr]}, {\ttfamily [noexcept]}}
+
+
+
+Construct from view. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em view} & to be constructed from \\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classstd_1_1math_1_1matrix__view_a7881ff25dfe91d681fd27a2c03aae3a3}\label{classstd_1_1math_1_1matrix__view_a7881ff25dfe91d681fd27a2c03aae3a3}} 
+\index{std::math::matrix\_view$<$ MDS $>$@{std::math::matrix\_view$<$ MDS $>$}!at@{at}}
+\index{at@{at}!std::math::matrix\_view$<$ MDS $>$@{std::math::matrix\_view$<$ MDS $>$}}
+\doxysubsubsection{\texorpdfstring{at()}{at()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily template$<$class MDS $>$ \\
+template$<$class ... Index\+Type$>$ \newline
+requires ( sizeof...(Index\+Type) == extents\+\_\+type\+::rank() ) \&\& ( is\+\_\+convertible\+\_\+v$<$Index\+Type,\mbox{\hyperlink{classstd_1_1math_1_1matrix__view_af13e22ab3477238f46a325a3ee975b17}{index\+\_\+type}}$>$ \&\& ... ) \&\& ( !is\+\_\+const\+\_\+v$<$\mbox{\hyperlink{classstd_1_1math_1_1matrix__view_a0873ce244ca355cf3e9fa32830fef538}{element\+\_\+type}}$>$ )\\
+constexpr \mbox{\hyperlink{classstd_1_1math_1_1tensor__view}{tensor\+\_\+view}}$<$ MDS $>$\mbox{\hyperlink{classstd_1_1math_1_1matrix__view_a034fef9b9480791ea012d9f1c04ef6f6}{\+::reference\+\_\+type}} \mbox{\hyperlink{classstd_1_1math_1_1tensor__view}{std\+::math\+::tensor\+\_\+view}}$<$ MDS $>$\+::at (\begin{DoxyParamCaption}\item[{Index\+Type ...}]{indices }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [constexpr]}}
+
+
+
+Returns a mutable value at (indices...) 
+
+
+\begin{DoxyParams}{Parameters}
+{\em indices} & set indices representing a node in the tensor \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+mutable value at row i, column j, depth k, etc. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classstd_1_1math_1_1matrix__view_a91cb25a72122ef59fce6e353a39cc811}\label{classstd_1_1math_1_1matrix__view_a91cb25a72122ef59fce6e353a39cc811}} 
+\index{std::math::matrix\_view$<$ MDS $>$@{std::math::matrix\_view$<$ MDS $>$}!at@{at}}
+\index{at@{at}!std::math::matrix\_view$<$ MDS $>$@{std::math::matrix\_view$<$ MDS $>$}}
+\doxysubsubsection{\texorpdfstring{at()}{at()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily template$<$class MDS $>$ \\
+template$<$class ... Index\+Type$>$ \newline
+requires ( sizeof...(Index\+Type) == extents\+\_\+type\+::rank() ) \&\& ( is\+\_\+convertible\+\_\+v$<$Index\+Type,\mbox{\hyperlink{classstd_1_1math_1_1matrix__view_af13e22ab3477238f46a325a3ee975b17}{index\+\_\+type}}$>$ \&\& ... )\\
+constexpr \mbox{\hyperlink{classstd_1_1math_1_1tensor__view}{tensor\+\_\+view}}$<$ MDS $>$\mbox{\hyperlink{classstd_1_1math_1_1matrix__view_a9aa5ca7ddfa2601485229fc161ac5005}{\+::value\+\_\+type}} \mbox{\hyperlink{classstd_1_1math_1_1tensor__view}{std\+::math\+::tensor\+\_\+view}}$<$ MDS $>$\+::at (\begin{DoxyParamCaption}\item[{Index\+Type ...}]{indices }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [constexpr]}}
+
+
+
+Returns the value at (indices...) 
+
+
+\begin{DoxyParams}{Parameters}
+{\em indices} & set indices representing a node in the tensor \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+value at row i, column j, depth k, etc. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classstd_1_1math_1_1matrix__view_a0c991b2c621dd3c5e999d2417c4329c5}\label{classstd_1_1math_1_1matrix__view_a0c991b2c621dd3c5e999d2417c4329c5}} 
+\index{std::math::matrix\_view$<$ MDS $>$@{std::math::matrix\_view$<$ MDS $>$}!capacity@{capacity}}
+\index{capacity@{capacity}!std::math::matrix\_view$<$ MDS $>$@{std::math::matrix\_view$<$ MDS $>$}}
+\doxysubsubsection{\texorpdfstring{capacity()}{capacity()}}
+{\footnotesize\ttfamily template$<$class MDS $>$ \\
+constexpr \mbox{\hyperlink{classstd_1_1math_1_1tensor__view}{tensor\+\_\+view}}$<$ MDS $>$\mbox{\hyperlink{classstd_1_1math_1_1matrix__view_a952236a0a976014e1ec15de1162587c3}{\+::extents\+\_\+type}} \mbox{\hyperlink{classstd_1_1math_1_1tensor__view}{std\+::math\+::tensor\+\_\+view}}$<$ MDS $>$\+::capacity\hspace{0.3cm}{\ttfamily [constexpr]}, {\ttfamily [noexcept]}}
+
+
+
+Returns the current capacity of (rows,columns,depth,etc.) 
+
+\begin{DoxyReturn}{Returns}
+capacity of (rows,columns,depth,etc.) 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classstd_1_1math_1_1matrix__view_add6d0088e2e6b8bf333f49e149e12f84}\label{classstd_1_1math_1_1matrix__view_add6d0088e2e6b8bf333f49e149e12f84}} 
+\index{std::math::matrix\_view$<$ MDS $>$@{std::math::matrix\_view$<$ MDS $>$}!column@{column}}
+\index{column@{column}!std::math::matrix\_view$<$ MDS $>$@{std::math::matrix\_view$<$ MDS $>$}}
+\doxysubsubsection{\texorpdfstring{column()}{column()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily template$<$class MDS $>$ \\
+constexpr \mbox{\hyperlink{classstd_1_1math_1_1matrix__view_a637d7c1262d1b946b7d8e47d58fbcbbf}{column\+\_\+type}} \mbox{\hyperlink{classstd_1_1math_1_1matrix__view}{std\+::math\+::matrix\+\_\+view}}$<$ MDS $>$\+::column (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classstd_1_1math_1_1matrix__view_af13e22ab3477238f46a325a3ee975b17}{index\+\_\+type}}}]{j }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [constexpr]}}
+
+
+
+Returns a mutable view of the specified column. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em j} & column \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+mutable view of column 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classstd_1_1math_1_1matrix__view_a1d5c5a9800c1be6f3433d3c267eed419}\label{classstd_1_1math_1_1matrix__view_a1d5c5a9800c1be6f3433d3c267eed419}} 
+\index{std::math::matrix\_view$<$ MDS $>$@{std::math::matrix\_view$<$ MDS $>$}!column@{column}}
+\index{column@{column}!std::math::matrix\_view$<$ MDS $>$@{std::math::matrix\_view$<$ MDS $>$}}
+\doxysubsubsection{\texorpdfstring{column()}{column()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily template$<$class MDS $>$ \\
+constexpr \mbox{\hyperlink{classstd_1_1math_1_1matrix__view_a8242e762f5bb45c96f1453c608f4159f}{const\+\_\+column\+\_\+type}} \mbox{\hyperlink{classstd_1_1math_1_1matrix__view}{std\+::math\+::matrix\+\_\+view}}$<$ MDS $>$\+::column (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classstd_1_1math_1_1matrix__view_af13e22ab3477238f46a325a3ee975b17}{index\+\_\+type}}}]{j }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [constexpr]}}
+
+
+
+Returns a const view of the specified column. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em j} & column \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+const view of column 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classstd_1_1math_1_1matrix__view_a33a2cf46a1ebaca90caea0ba1662c7a8}\label{classstd_1_1math_1_1matrix__view_a33a2cf46a1ebaca90caea0ba1662c7a8}} 
+\index{std::math::matrix\_view$<$ MDS $>$@{std::math::matrix\_view$<$ MDS $>$}!column\_capacity@{column\_capacity}}
+\index{column\_capacity@{column\_capacity}!std::math::matrix\_view$<$ MDS $>$@{std::math::matrix\_view$<$ MDS $>$}}
+\doxysubsubsection{\texorpdfstring{column\_capacity()}{column\_capacity()}}
+{\footnotesize\ttfamily template$<$class MDS $>$ \newline
+requires ( \mbox{\hyperlink{namespacestd_1_1math_1_1detail_a25550b69c908000165785e0db4b8d3bf}{detail\+::is\+\_\+mdspan\+\_\+v}}$<$MDS$>$ \&\& ( MDS\+::extents\+\_\+type\+::rank() == 2 ) \&\& MDS\+::is\+\_\+always\+\_\+unique() )\\
+constexpr \mbox{\hyperlink{classstd_1_1math_1_1matrix__view}{matrix\+\_\+view}}$<$ MDS $>$\mbox{\hyperlink{classstd_1_1math_1_1matrix__view_af13e22ab3477238f46a325a3ee975b17}{\+::index\+\_\+type}} \mbox{\hyperlink{classstd_1_1math_1_1matrix__view}{std\+::math\+::matrix\+\_\+view}}$<$ MDS $>$\+::column\+\_\+capacity\hspace{0.3cm}{\ttfamily [constexpr]}, {\ttfamily [noexcept]}}
+
+
+
+Returns the current column capacity. 
+
+\begin{DoxyReturn}{Returns}
+column capacity 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classstd_1_1math_1_1matrix__view_aefd6cf2093179120cc13ab0086016a64}\label{classstd_1_1math_1_1matrix__view_aefd6cf2093179120cc13ab0086016a64}} 
+\index{std::math::matrix\_view$<$ MDS $>$@{std::math::matrix\_view$<$ MDS $>$}!columns@{columns}}
+\index{columns@{columns}!std::math::matrix\_view$<$ MDS $>$@{std::math::matrix\_view$<$ MDS $>$}}
+\doxysubsubsection{\texorpdfstring{columns()}{columns()}}
+{\footnotesize\ttfamily template$<$class MDS $>$ \newline
+requires ( \mbox{\hyperlink{namespacestd_1_1math_1_1detail_a25550b69c908000165785e0db4b8d3bf}{detail\+::is\+\_\+mdspan\+\_\+v}}$<$MDS$>$ \&\& ( MDS\+::extents\+\_\+type\+::rank() == 2 ) \&\& MDS\+::is\+\_\+always\+\_\+unique() )\\
+constexpr \mbox{\hyperlink{classstd_1_1math_1_1matrix__view}{matrix\+\_\+view}}$<$ MDS $>$\mbox{\hyperlink{classstd_1_1math_1_1matrix__view_af13e22ab3477238f46a325a3ee975b17}{\+::index\+\_\+type}} \mbox{\hyperlink{classstd_1_1math_1_1matrix__view}{std\+::math\+::matrix\+\_\+view}}$<$ MDS $>$\+::columns\hspace{0.3cm}{\ttfamily [constexpr]}, {\ttfamily [noexcept]}}
+
+
+
+Returns current number of columns. 
+
+\begin{DoxyReturn}{Returns}
+number of columns 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classstd_1_1math_1_1matrix__view_a495acd1426e3252f8e303c1ae3bf83df}\label{classstd_1_1math_1_1matrix__view_a495acd1426e3252f8e303c1ae3bf83df}} 
+\index{std::math::matrix\_view$<$ MDS $>$@{std::math::matrix\_view$<$ MDS $>$}!operator=@{operator=}}
+\index{operator=@{operator=}!std::math::matrix\_view$<$ MDS $>$@{std::math::matrix\_view$<$ MDS $>$}}
+\doxysubsubsection{\texorpdfstring{operator=()}{operator=()}\hspace{0.1cm}{\footnotesize\ttfamily [1/3]}}
+{\footnotesize\ttfamily template$<$class MDS $>$ \\
+\mbox{\hyperlink{classstd_1_1math_1_1matrix__view}{matrix\+\_\+view}} \& \mbox{\hyperlink{classstd_1_1math_1_1matrix__view}{std\+::math\+::matrix\+\_\+view}}$<$ MDS $>$\+::operator= (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classstd_1_1math_1_1matrix__view}{matrix\+\_\+view}}$<$ MDS $>$ \&}]{rhs }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [default]}}
+
+
+
+Default copy assignment. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em \mbox{\hyperlink{classstd_1_1math_1_1matrix__view}{matrix\+\_\+view}}} & to be copied \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+self 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classstd_1_1math_1_1matrix__view_a5b53c1f188350f34dd702dca03c1a68a}\label{classstd_1_1math_1_1matrix__view_a5b53c1f188350f34dd702dca03c1a68a}} 
+\index{std::math::matrix\_view$<$ MDS $>$@{std::math::matrix\_view$<$ MDS $>$}!operator=@{operator=}}
+\index{operator=@{operator=}!std::math::matrix\_view$<$ MDS $>$@{std::math::matrix\_view$<$ MDS $>$}}
+\doxysubsubsection{\texorpdfstring{operator=()}{operator=()}\hspace{0.1cm}{\footnotesize\ttfamily [2/3]}}
+{\footnotesize\ttfamily template$<$class MDS $>$ \newline
+requires ( \mbox{\hyperlink{namespacestd_1_1math_1_1detail_a25550b69c908000165785e0db4b8d3bf}{detail\+::is\+\_\+mdspan\+\_\+v}}$<$MDS$>$ \&\& ( MDS\+::extents\+\_\+type\+::rank() == 2 ) \&\& MDS\+::is\+\_\+always\+\_\+unique() )\\
+constexpr \mbox{\hyperlink{classstd_1_1math_1_1matrix__view}{matrix\+\_\+view}}$<$ MDS $>$ \& \mbox{\hyperlink{classstd_1_1math_1_1matrix__view}{std\+::math\+::matrix\+\_\+view}}$<$ MDS $>$\+::operator= (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classstd_1_1math_1_1matrix__view_ae7c837d0c82266e54b4088d2bc7a1f89}{underlying\+\_\+span\+\_\+type}} \&}]{view }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [constexpr]}, {\ttfamily [noexcept]}}
+
+
+
+Assign from view. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em view} & to be assigned \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+self 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classstd_1_1math_1_1matrix__view_a50f9ef7cb04febf37346968a04323724}\label{classstd_1_1math_1_1matrix__view_a50f9ef7cb04febf37346968a04323724}} 
+\index{std::math::matrix\_view$<$ MDS $>$@{std::math::matrix\_view$<$ MDS $>$}!operator=@{operator=}}
+\index{operator=@{operator=}!std::math::matrix\_view$<$ MDS $>$@{std::math::matrix\_view$<$ MDS $>$}}
+\doxysubsubsection{\texorpdfstring{operator=()}{operator=()}\hspace{0.1cm}{\footnotesize\ttfamily [3/3]}}
+{\footnotesize\ttfamily template$<$class MDS $>$ \\
+\mbox{\hyperlink{classstd_1_1math_1_1matrix__view}{matrix\+\_\+view}} \& \mbox{\hyperlink{classstd_1_1math_1_1matrix__view}{std\+::math\+::matrix\+\_\+view}}$<$ MDS $>$\+::operator= (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classstd_1_1math_1_1matrix__view}{matrix\+\_\+view}}$<$ MDS $>$ \&\&}]{rhs }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [default]}}
+
+
+
+Default move assignment. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em \mbox{\hyperlink{classstd_1_1math_1_1matrix__view}{matrix\+\_\+view}}} & to be moved \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+self 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classstd_1_1math_1_1matrix__view_a745ec1b3cade78dfeb7a5868a0994141}\label{classstd_1_1math_1_1matrix__view_a745ec1b3cade78dfeb7a5868a0994141}} 
+\index{std::math::matrix\_view$<$ MDS $>$@{std::math::matrix\_view$<$ MDS $>$}!row@{row}}
+\index{row@{row}!std::math::matrix\_view$<$ MDS $>$@{std::math::matrix\_view$<$ MDS $>$}}
+\doxysubsubsection{\texorpdfstring{row()}{row()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily template$<$class MDS $>$ \\
+constexpr \mbox{\hyperlink{classstd_1_1math_1_1matrix__view_a60175fa7f9d854e052bca48485ae64c7}{row\+\_\+type}} \mbox{\hyperlink{classstd_1_1math_1_1matrix__view}{std\+::math\+::matrix\+\_\+view}}$<$ MDS $>$\+::row (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classstd_1_1math_1_1matrix__view_af13e22ab3477238f46a325a3ee975b17}{index\+\_\+type}}}]{i }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [constexpr]}}
+
+
+
+Returns a mutable view of the specified row. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em i} & row \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+mutable view of row 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classstd_1_1math_1_1matrix__view_a15eae7e61031e20023daebe3cce371ee}\label{classstd_1_1math_1_1matrix__view_a15eae7e61031e20023daebe3cce371ee}} 
+\index{std::math::matrix\_view$<$ MDS $>$@{std::math::matrix\_view$<$ MDS $>$}!row@{row}}
+\index{row@{row}!std::math::matrix\_view$<$ MDS $>$@{std::math::matrix\_view$<$ MDS $>$}}
+\doxysubsubsection{\texorpdfstring{row()}{row()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily template$<$class MDS $>$ \\
+constexpr \mbox{\hyperlink{classstd_1_1math_1_1matrix__view_a6fa803fe591435f26d43100f0f46cde0}{const\+\_\+row\+\_\+type}} \mbox{\hyperlink{classstd_1_1math_1_1matrix__view}{std\+::math\+::matrix\+\_\+view}}$<$ MDS $>$\+::row (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classstd_1_1math_1_1matrix__view_af13e22ab3477238f46a325a3ee975b17}{index\+\_\+type}}}]{i }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [constexpr]}}
+
+
+
+Returns a const view of the specified row. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em i} & row \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+const view of row 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classstd_1_1math_1_1matrix__view_aba303f461420cda85ff0612661132b97}\label{classstd_1_1math_1_1matrix__view_aba303f461420cda85ff0612661132b97}} 
+\index{std::math::matrix\_view$<$ MDS $>$@{std::math::matrix\_view$<$ MDS $>$}!row\_capacity@{row\_capacity}}
+\index{row\_capacity@{row\_capacity}!std::math::matrix\_view$<$ MDS $>$@{std::math::matrix\_view$<$ MDS $>$}}
+\doxysubsubsection{\texorpdfstring{row\_capacity()}{row\_capacity()}}
+{\footnotesize\ttfamily template$<$class MDS $>$ \newline
+requires ( \mbox{\hyperlink{namespacestd_1_1math_1_1detail_a25550b69c908000165785e0db4b8d3bf}{detail\+::is\+\_\+mdspan\+\_\+v}}$<$MDS$>$ \&\& ( MDS\+::extents\+\_\+type\+::rank() == 2 ) \&\& MDS\+::is\+\_\+always\+\_\+unique() )\\
+constexpr \mbox{\hyperlink{classstd_1_1math_1_1matrix__view}{matrix\+\_\+view}}$<$ MDS $>$\mbox{\hyperlink{classstd_1_1math_1_1matrix__view_af13e22ab3477238f46a325a3ee975b17}{\+::index\+\_\+type}} \mbox{\hyperlink{classstd_1_1math_1_1matrix__view}{std\+::math\+::matrix\+\_\+view}}$<$ MDS $>$\+::row\+\_\+capacity\hspace{0.3cm}{\ttfamily [constexpr]}, {\ttfamily [noexcept]}}
+
+
+
+Returns the current row capacity. 
+
+\begin{DoxyReturn}{Returns}
+row capacity 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classstd_1_1math_1_1matrix__view_a4b84ff5e3b7100b1df0d422dceecd2e7}\label{classstd_1_1math_1_1matrix__view_a4b84ff5e3b7100b1df0d422dceecd2e7}} 
+\index{std::math::matrix\_view$<$ MDS $>$@{std::math::matrix\_view$<$ MDS $>$}!rows@{rows}}
+\index{rows@{rows}!std::math::matrix\_view$<$ MDS $>$@{std::math::matrix\_view$<$ MDS $>$}}
+\doxysubsubsection{\texorpdfstring{rows()}{rows()}}
+{\footnotesize\ttfamily template$<$class MDS $>$ \newline
+requires ( \mbox{\hyperlink{namespacestd_1_1math_1_1detail_a25550b69c908000165785e0db4b8d3bf}{detail\+::is\+\_\+mdspan\+\_\+v}}$<$MDS$>$ \&\& ( MDS\+::extents\+\_\+type\+::rank() == 2 ) \&\& MDS\+::is\+\_\+always\+\_\+unique() )\\
+constexpr \mbox{\hyperlink{classstd_1_1math_1_1matrix__view}{matrix\+\_\+view}}$<$ MDS $>$\mbox{\hyperlink{classstd_1_1math_1_1matrix__view_af13e22ab3477238f46a325a3ee975b17}{\+::index\+\_\+type}} \mbox{\hyperlink{classstd_1_1math_1_1matrix__view}{std\+::math\+::matrix\+\_\+view}}$<$ MDS $>$\+::rows\hspace{0.3cm}{\ttfamily [constexpr]}, {\ttfamily [noexcept]}}
+
+
+
+Returns the current number of rows. 
+
+\begin{DoxyReturn}{Returns}
+number of rows 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classstd_1_1math_1_1matrix__view_a82948e145664a06afd2dfba4318d4a30}\label{classstd_1_1math_1_1matrix__view_a82948e145664a06afd2dfba4318d4a30}} 
+\index{std::math::matrix\_view$<$ MDS $>$@{std::math::matrix\_view$<$ MDS $>$}!size@{size}}
+\index{size@{size}!std::math::matrix\_view$<$ MDS $>$@{std::math::matrix\_view$<$ MDS $>$}}
+\doxysubsubsection{\texorpdfstring{size()}{size()}}
+{\footnotesize\ttfamily template$<$class MDS $>$ \\
+constexpr \mbox{\hyperlink{classstd_1_1math_1_1tensor__view}{tensor\+\_\+view}}$<$ MDS $>$\mbox{\hyperlink{classstd_1_1math_1_1matrix__view_a952236a0a976014e1ec15de1162587c3}{\+::extents\+\_\+type}} \mbox{\hyperlink{classstd_1_1math_1_1tensor__view}{std\+::math\+::tensor\+\_\+view}}$<$ MDS $>$\+::size\hspace{0.3cm}{\ttfamily [constexpr]}, {\ttfamily [noexcept]}}
+
+
+
+Returns the current number of (rows,columns,depth,etc.) 
+
+\begin{DoxyReturn}{Returns}
+number of (rows,columns,depth,etc.) 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classstd_1_1math_1_1matrix__view_afc228316fbd1931a0518138b2323cd16}\label{classstd_1_1math_1_1matrix__view_afc228316fbd1931a0518138b2323cd16}} 
+\index{std::math::matrix\_view$<$ MDS $>$@{std::math::matrix\_view$<$ MDS $>$}!span@{span}}
+\index{span@{span}!std::math::matrix\_view$<$ MDS $>$@{std::math::matrix\_view$<$ MDS $>$}}
+\doxysubsubsection{\texorpdfstring{span()}{span()}}
+{\footnotesize\ttfamily template$<$class MDS $>$ \\
+constexpr \mbox{\hyperlink{classstd_1_1math_1_1tensor__view}{tensor\+\_\+view}}$<$ MDS $>$\mbox{\hyperlink{classstd_1_1math_1_1matrix__view_a933d44ad38fda2c086293aa66634c878}{\+::span\+\_\+type}} \mbox{\hyperlink{classstd_1_1math_1_1tensor__view}{std\+::math\+::tensor\+\_\+view}}$<$ MDS $>$\+::span\hspace{0.3cm}{\ttfamily [constexpr]}, {\ttfamily [noexcept]}}
+
+
+
+returns a const view 
+
+\begin{DoxyReturn}{Returns}
+const view 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classstd_1_1math_1_1matrix__view_a133a6d9268d3f9e7a4eb5e72ecb79819}\label{classstd_1_1math_1_1matrix__view_a133a6d9268d3f9e7a4eb5e72ecb79819}} 
+\index{std::math::matrix\_view$<$ MDS $>$@{std::math::matrix\_view$<$ MDS $>$}!submatrix@{submatrix}}
+\index{submatrix@{submatrix}!std::math::matrix\_view$<$ MDS $>$@{std::math::matrix\_view$<$ MDS $>$}}
+\doxysubsubsection{\texorpdfstring{submatrix()}{submatrix()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily template$<$class MDS $>$ \newline
+requires ( !is\+\_\+const\+\_\+v$<$\mbox{\hyperlink{classstd_1_1math_1_1matrix__view_a0873ce244ca355cf3e9fa32830fef538}{element\+\_\+type}}$>$ )\\
+constexpr \mbox{\hyperlink{classstd_1_1math_1_1matrix__view}{matrix\+\_\+view}}$<$ MDS $>$\mbox{\hyperlink{classstd_1_1math_1_1matrix__view_a4b7d56847b14b452caec93a9861a75cb}{\+::submatrix\+\_\+type}} \mbox{\hyperlink{classstd_1_1math_1_1matrix__view}{std\+::math\+::matrix\+\_\+view}}$<$ MDS $>$\+::submatrix (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classstd_1_1math_1_1matrix__view_a84b17fca1eca916f2535d59c9b94d1de}{tuple\+\_\+type}}}]{start,  }\item[{\mbox{\hyperlink{classstd_1_1math_1_1matrix__view_a84b17fca1eca916f2535d59c9b94d1de}{tuple\+\_\+type}}}]{end }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [constexpr]}}
+
+
+
+Returns a mutable view of the specified submatrix. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em start} & (row,column) start of submatrix \\
+\hline
+{\em end} & (row,column) end of submatrix \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+mutable view of the specified submatrix 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classstd_1_1math_1_1matrix__view_afe0281852eafd6cc011b6da5b0a4631a}\label{classstd_1_1math_1_1matrix__view_afe0281852eafd6cc011b6da5b0a4631a}} 
+\index{std::math::matrix\_view$<$ MDS $>$@{std::math::matrix\_view$<$ MDS $>$}!submatrix@{submatrix}}
+\index{submatrix@{submatrix}!std::math::matrix\_view$<$ MDS $>$@{std::math::matrix\_view$<$ MDS $>$}}
+\doxysubsubsection{\texorpdfstring{submatrix()}{submatrix()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily template$<$class MDS $>$ \newline
+requires ( \mbox{\hyperlink{namespacestd_1_1math_1_1detail_a25550b69c908000165785e0db4b8d3bf}{detail\+::is\+\_\+mdspan\+\_\+v}}$<$MDS$>$ \&\& ( MDS\+::extents\+\_\+type\+::rank() == 2 ) \&\& MDS\+::is\+\_\+always\+\_\+unique() )\\
+constexpr \mbox{\hyperlink{classstd_1_1math_1_1matrix__view}{matrix\+\_\+view}}$<$ MDS $>$\mbox{\hyperlink{classstd_1_1math_1_1matrix__view_a9044b16159891679ed08b158ffcddeec}{\+::const\+\_\+submatrix\+\_\+type}} \mbox{\hyperlink{classstd_1_1math_1_1matrix__view}{std\+::math\+::matrix\+\_\+view}}$<$ MDS $>$\+::submatrix (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classstd_1_1math_1_1matrix__view_a84b17fca1eca916f2535d59c9b94d1de}{tuple\+\_\+type}}}]{start,  }\item[{\mbox{\hyperlink{classstd_1_1math_1_1matrix__view_a84b17fca1eca916f2535d59c9b94d1de}{tuple\+\_\+type}}}]{end }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [constexpr]}}
+
+
+
+Returns a const view of the specified submatrix. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em start} & (row,column) start of submatrix \\
+\hline
+{\em end} & (row,column) end of submatrix \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+const view of the specified submatrix 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classstd_1_1math_1_1matrix__view_ad74da9b21db15af7e3696b53030cfc35}\label{classstd_1_1math_1_1matrix__view_ad74da9b21db15af7e3696b53030cfc35}} 
+\index{std::math::matrix\_view$<$ MDS $>$@{std::math::matrix\_view$<$ MDS $>$}!underlying\_span@{underlying\_span}}
+\index{underlying\_span@{underlying\_span}!std::math::matrix\_view$<$ MDS $>$@{std::math::matrix\_view$<$ MDS $>$}}
+\doxysubsubsection{\texorpdfstring{underlying\_span()}{underlying\_span()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily template$<$class MDS $>$ \\
+constexpr \mbox{\hyperlink{classstd_1_1math_1_1tensor__view}{tensor\+\_\+view}}$<$ MDS $>$\mbox{\hyperlink{classstd_1_1math_1_1matrix__view_a100da9d3084ed4a88c79a4f60b6fac2c}{\+::const\+\_\+underlying\+\_\+span\+\_\+type}} \mbox{\hyperlink{classstd_1_1math_1_1tensor__view}{std\+::math\+::tensor\+\_\+view}}$<$ MDS $>$\+::underlying\+\_\+span\hspace{0.3cm}{\ttfamily [constexpr]}, {\ttfamily [noexcept]}}
+
+
+
+returns a const view 
+
+\begin{DoxyReturn}{Returns}
+const view 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classstd_1_1math_1_1matrix__view_aaefbce7851bd5308c3bf3ee523103643}\label{classstd_1_1math_1_1matrix__view_aaefbce7851bd5308c3bf3ee523103643}} 
+\index{std::math::matrix\_view$<$ MDS $>$@{std::math::matrix\_view$<$ MDS $>$}!underlying\_span@{underlying\_span}}
+\index{underlying\_span@{underlying\_span}!std::math::matrix\_view$<$ MDS $>$@{std::math::matrix\_view$<$ MDS $>$}}
+\doxysubsubsection{\texorpdfstring{underlying\_span()}{underlying\_span()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily template$<$class MDS $>$ \\
+constexpr \mbox{\hyperlink{classstd_1_1math_1_1tensor__view}{tensor\+\_\+view}}$<$ MDS $>$\mbox{\hyperlink{classstd_1_1math_1_1matrix__view_ae7c837d0c82266e54b4088d2bc7a1f89}{\+::underlying\+\_\+span\+\_\+type}} \mbox{\hyperlink{classstd_1_1math_1_1tensor__view}{std\+::math\+::tensor\+\_\+view}}$<$ MDS $>$\+::underlying\+\_\+span\hspace{0.3cm}{\ttfamily [constexpr]}, {\ttfamily [noexcept]}}
+
+
+
+the view 
+
+\begin{DoxyReturn}{Returns}
+returns the view 
+\end{DoxyReturn}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+include/experimental/linear\+\_\+algebra/\mbox{\hyperlink{matrix__view_8hpp}{matrix\+\_\+view.\+hpp}}\end{DoxyCompactItemize}

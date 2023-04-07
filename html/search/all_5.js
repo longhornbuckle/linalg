@@ -1,16 +1,5 @@
 var searchData=
 [
-  ['faux_5findex_5fiterator_83',['faux_index_iterator',['../structstd_1_1math_1_1detail_1_1faux__index__iterator.html',1,'std::math::detail']]],
-  ['first_5fmatrix_5ftype_84',['first_matrix_type',['../classstd_1_1math_1_1instant__evaluated__operations_1_1matrix__matrix__product.html#a593ccca8dfbbbec22432b0814a64f71d',1,'std::math::instant_evaluated_operations::matrix_matrix_product']]],
-  ['first_5ftensor_5ftype_85',['first_tensor_type',['../classstd_1_1math_1_1instant__evaluated__operations_1_1addition.html#ae8208bdc4ce66e70b1c7ef8893c7de49',1,'std::math::instant_evaluated_operations::addition::first_tensor_type()'],['../classstd_1_1math_1_1instant__evaluated__operations_1_1subtraction.html#a2bf8c92880991863913afbaa20eb9e76',1,'std::math::instant_evaluated_operations::subtraction::first_tensor_type()']]],
-  ['first_5fvector_5ftype_86',['first_vector_type',['../classstd_1_1math_1_1instant__evaluated__operations_1_1inner__product.html#a2ae0cf91b5c06228f61ed09ab9dc4984',1,'std::math::instant_evaluated_operations::inner_product::first_vector_type()'],['../classstd_1_1math_1_1instant__evaluated__operations_1_1outer__product.html#ad7a6f543c1439f2ee94b67f9677e4d2f',1,'std::math::instant_evaluated_operations::outer_product::first_vector_type()']]],
-  ['fixed_5fsize_5fmatrix_87',['fixed_size_matrix',['../namespacestd_1_1math_1_1concepts.html#adc5d6eb5ffb017e5ca32011f87162d0e',1,'std::math::concepts']]],
-  ['fixed_5fsize_5fmatrix_2ehpp_88',['fixed_size_matrix.hpp',['../fixed__size__matrix_8hpp.html',1,'']]],
-  ['fixed_5fsize_5fmatrix_5fdata_89',['fixed_size_matrix_data',['../namespacestd_1_1math_1_1concepts.html#a384313713b14e8d2da731fa44e6145ca',1,'std::math::concepts']]],
-  ['fixed_5fsize_5ftensor_90',['fixed_size_tensor',['../namespacestd_1_1math_1_1concepts.html#aca9f6608399e0df7b987c04ae6a83b25',1,'std::math::concepts']]],
-  ['fixed_5fsize_5ftensor_2ehpp_91',['fixed_size_tensor.hpp',['../fixed__size__tensor_8hpp.html',1,'']]],
-  ['fixed_5fsize_5ftensor_5fdata_92',['fixed_size_tensor_data',['../namespacestd_1_1math_1_1concepts.html#ad39446424ae6c98638634ec481a68639',1,'std::math::concepts']]],
-  ['fixed_5fsize_5fvector_93',['fixed_size_vector',['../namespacestd_1_1math_1_1concepts.html#a5a779e71ec247c7be113de660e14e7a8',1,'std::math::concepts']]],
-  ['fixed_5fsize_5fvector_2ehpp_94',['fixed_size_vector.hpp',['../fixed__size__vector_8hpp.html',1,'']]],
-  ['fixed_5fsize_5fvector_5fdata_95',['fixed_size_vector_data',['../namespacestd_1_1math_1_1concepts.html#a1b8405c31878e03b2c8c253f90b2e984',1,'std::math::concepts']]]
+  ['get_5fallocator_0',['get_allocator',['../classstd_1_1math_1_1dr__tensor.html#acb0a77f5c11f2a6a032209b5e54ca7c7',1,'std::math::dr_tensor::get_allocator() &amp;&amp;noexcept'],['../classstd_1_1math_1_1dr__tensor.html#a1496ab6d3ba42abe6ff67f750de78d17',1,'std::math::dr_tensor::get_allocator() const &amp;noexcept']]],
+  ['get_5fnth_5flargest_5fstride_5findex_1',['get_nth_largest_stride_index',['../structstd_1_1math_1_1detail_1_1stride__order_3_01experimental_1_1mdspan_3_01_element_type_00_01_f8f73e2541c2dcaca10d4553c112e1f6.html#abf07f615a5380b54603734e8b9fb5574',1,'std::math::detail::stride_order&lt; experimental::mdspan&lt; ElementType, Extents, experimental::layout_left, AccessorPolicy &gt; &gt;::get_nth_largest_stride_index()'],['../structstd_1_1math_1_1detail_1_1stride__order_3_01experimental_1_1mdspan_3_01_element_type_00_01_03d1e1065c63c901ab9987119b89c53f.html#a92f13b8f454b6086fd2b2bfae20c128e',1,'std::math::detail::stride_order&lt; experimental::mdspan&lt; ElementType, Extents, experimental::layout_right, AccessorPolicy &gt; &gt;::get_nth_largest_stride_index()']]]
 ];

@@ -20,9 +20,9 @@ This graph shows which files directly or indirectly include this file\+:
 \doxysubsection*{Namespaces}
 \begin{DoxyCompactItemize}
 \item 
- \mbox{\hyperlink{namespacestd}{std}}
+namespace \mbox{\hyperlink{namespacestd}{std}}
 \item 
- \mbox{\hyperlink{namespacestd_1_1math}{std\+::math}}
+namespace \mbox{\hyperlink{namespacestd_1_1math}{std\+::math}}
 \end{DoxyCompactItemize}
 \doxysubsection*{Functions}
 \begin{DoxyCompactItemize}
@@ -39,17 +39,28 @@ This graph shows which files directly or indirectly include this file\+:
 \item 
 {\footnotesize template$<$concepts\+::tensor\+\_\+data T1, concepts\+::tensor\+\_\+data T2$>$ }\\constexpr decltype(auto) \mbox{\hyperlink{namespacestd_1_1math_a0396356ee67b1983e87decdf75e74917}{std\+::math\+::operator+}} (const T1 \&t1, const T2 \&t2) noexcept(noexcept(operations\+::template addition$<$ T1, T2 $>$\+::add(t1, t2)))
 \item 
-{\footnotesize template$<$concepts\+::tensor\+\_\+data T1, concepts\+::tensor\+\_\+data T2$>$ }\\constexpr T1 \& \mbox{\hyperlink{namespacestd_1_1math_a137f3e3e3397561fa5f2e9a4775bf26a}{std\+::math\+::operator+=}} (T1 \&t1, const T2 \&t2) noexcept(noexcept(operations\+::template addition$<$ T1, T2 $>$\+::add(t1, t2))) requires is\+\_\+convertible\+\_\+v$<$ decltype(declval$<$ typename T1
+{\footnotesize template$<$concepts\+::tensor\+\_\+data T1, concepts\+::tensor\+\_\+data T2$>$ \newline
+requires is\+\_\+convertible\+\_\+v$<$ decltype( declval$<$typename T1\+::value\+\_\+type$>$() + declval$<$typename T2\+::value\+\_\+type$>$() ), typename T1\+::element\+\_\+type $>$}\\constexpr T1 \& \mbox{\hyperlink{namespacestd_1_1math_ac1efb74b1ddfd4881a4cbbe111804abc}{std\+::math\+::operator+=}} (T1 \&t1, const T2 \&t2) noexcept(noexcept(operations\+::template addition$<$ T1, T2 $>$\+::add(t1, t2)))
 \item 
-{\footnotesize template$<$concepts\+::tensor\+\_\+data T1, concepts\+::tensor\+\_\+data T2$>$ }\\constexpr T1 \& \mbox{\hyperlink{namespacestd_1_1math_a125d6e852557b79b0b33eb1d2b3dc167}{std\+::math\+::operator-\/=}} (T1 \&t1, const T2 \&t2) noexcept(noexcept(operations\+::template subtraction$<$ T1, T2 $>$\+::subtract(t1, t2))) requires is\+\_\+convertible\+\_\+v$<$ decltype(declval$<$ typename T1
+{\footnotesize template$<$concepts\+::tensor\+\_\+data T1, concepts\+::tensor\+\_\+data T2$>$ }\\constexpr decltype(auto) \mbox{\hyperlink{namespacestd_1_1math_a6c38bdb9c467d22fd84a7db877a9b003}{std\+::math\+::operator-\/}} (const T1 \&t1, const T2 \&t2) noexcept(noexcept(operations\+::template subtraction$<$ T1, T2 $>$\+::subtract(t1, t2)))
 \item 
-{\footnotesize template$<$concepts\+::tensor\+\_\+data T, class S $>$ }\\constexpr decltype(auto) \mbox{\hyperlink{namespacestd_1_1math_ab5bc66a3683a0227bc33459b4a37bdad}{std\+::math\+::operator$\ast$}} (const T \&t, const S \&s) noexcept(noexcept(operations\+::template scalar\+\_\+product$<$ S, T $>$\+::prod(t, s))) requires requires
+{\footnotesize template$<$concepts\+::tensor\+\_\+data T1, concepts\+::tensor\+\_\+data T2$>$ \newline
+requires is\+\_\+convertible\+\_\+v$<$ decltype( declval$<$typename T1\+::value\+\_\+type$>$() -\/ declval$<$typename T2\+::value\+\_\+type$>$() ), typename T1\+::element\+\_\+type $>$}\\constexpr T1 \& \mbox{\hyperlink{namespacestd_1_1math_a1c2d3f15db6c82288d26d64023154241}{std\+::math\+::operator-\/=}} (T1 \&t1, const T2 \&t2) noexcept(noexcept(operations\+::template subtraction$<$ T1, T2 $>$\+::subtract(t1, t2)))
 \item 
-{\footnotesize template$<$concepts\+::tensor\+\_\+data T, class S $>$ }\\constexpr T \& \mbox{\hyperlink{namespacestd_1_1math_ad849e07d240f8950fc8349c162e31294}{std\+::math\+::operator$\ast$=}} (T \&t, const S \&s) noexcept(noexcept(operations\+::template scalar\+\_\+product$<$ S, T $>$\+::prod(t, s))) requires requires
+{\footnotesize template$<$class S , concepts\+::tensor\+\_\+data T$>$ \newline
+requires requires \{ s $\ast$ declval$<$ typename T\+::value\+\_\+type $>$(); \} \&\& ( !concepts\+::tensor\+\_\+data$<$S$>$ )}\\constexpr decltype(auto) \mbox{\hyperlink{namespacestd_1_1math_a49e56c9886cd363e4855c1355587c285}{std\+::math\+::operator$\ast$}} (const S \&s, const T \&t) noexcept(noexcept(operations\+::template scalar\+\_\+product$<$ S, T $>$\+::prod(s, t)))
 \item 
-{\footnotesize template$<$concepts\+::tensor\+\_\+data T, class S $>$ }\\constexpr decltype(auto) \mbox{\hyperlink{namespacestd_1_1math_a6fba4c921e2dc317387f2f0d8eb1f828}{std\+::math\+::operator/}} (const T \&t, const S \&s) noexcept(noexcept(operations\+::template scalar\+\_\+division$<$ T, S $>$\+::divide(t, s))) requires requires
+{\footnotesize template$<$concepts\+::tensor\+\_\+data T, class S $>$ \newline
+requires requires \{ declval$<$ typename T\+::value\+\_\+type $>$() $\ast$ s; \} \&\& ( !concepts\+::tensor\+\_\+data$<$S$>$ )}\\constexpr decltype(auto) \mbox{\hyperlink{namespacestd_1_1math_a80a67c5251d05cd81c89dc46e2a1c342}{std\+::math\+::operator$\ast$}} (const T \&t, const S \&s) noexcept(noexcept(operations\+::template scalar\+\_\+product$<$ S, T $>$\+::prod(t, s)))
 \item 
-{\footnotesize template$<$concepts\+::tensor\+\_\+data T, class S $>$ }\\constexpr T \& \mbox{\hyperlink{namespacestd_1_1math_a1815325bba1c222186bc522ed16084d3}{std\+::math\+::operator/=}} (T \&t, const S \&s) noexcept(noexcept(operations\+::template scalar\+\_\+division$<$ T, S $>$\+::divide(t, s))) requires requires
+{\footnotesize template$<$concepts\+::tensor\+\_\+data T, class S $>$ \newline
+requires requires \{ declval$<$ typename T\+::value\+\_\+type $>$() $\ast$ s; \} \&\& ( !concepts\+::tensor\+\_\+data$<$S$>$ ) \&\& is\+\_\+convertible\+\_\+v$<$ decltype( declval$<$typename T\+::value\+\_\+type$>$() $\ast$ declval$<$S$>$() ), typename T\+::element\+\_\+type $>$}\\constexpr T \& \mbox{\hyperlink{namespacestd_1_1math_adc521aa60c4af6a8df03dd0343535a7c}{std\+::math\+::operator$\ast$=}} (T \&t, const S \&s) noexcept(noexcept(operations\+::template scalar\+\_\+product$<$ S, T $>$\+::prod(t, s)))
+\item 
+{\footnotesize template$<$concepts\+::tensor\+\_\+data T, class S $>$ \newline
+requires requires \{ declval$<$ typename T\+::value\+\_\+type $>$() / s; \}}\\constexpr decltype(auto) \mbox{\hyperlink{namespacestd_1_1math_a593c6de1d8b08210bf93542d7645eacc}{std\+::math\+::operator/}} (const T \&t, const S \&s) noexcept(noexcept(operations\+::template scalar\+\_\+division$<$ T, S $>$\+::divide(t, s)))
+\item 
+{\footnotesize template$<$concepts\+::tensor\+\_\+data T, class S $>$ \newline
+requires requires \{ declval$<$ typename T\+::value\+\_\+type $>$() / s; \} \&\& ( !concepts\+::tensor\+\_\+data$<$S$>$ ) \&\& is\+\_\+convertible\+\_\+v$<$ decltype( declval$<$typename T\+::value\+\_\+type$>$() / declval$<$S$>$() ), typename T\+::element\+\_\+type $>$}\\constexpr T \& \mbox{\hyperlink{namespacestd_1_1math_a7abbafdd1c2f2304b244108162cf33c0}{std\+::math\+::operator/=}} (T \&t, const S \&s) noexcept(noexcept(operations\+::template scalar\+\_\+division$<$ T, S $>$\+::divide(t, s)))
 \item 
 {\footnotesize template$<$concepts\+::vector\+\_\+data V1, concepts\+::vector\+\_\+data V2$>$ }\\constexpr decltype(auto) \mbox{\hyperlink{namespacestd_1_1math_ae595d72c25d55b2d8d8086ef2b65bfe2}{std\+::math\+::inner\+\_\+prod}} (const V1 \&v1, const V2 \&v2) noexcept(noexcept(operations\+::template inner\+\_\+product$<$ V1, V2 $>$\+::prod(v1, v2)))
 \item 
@@ -57,7 +68,13 @@ This graph shows which files directly or indirectly include this file\+:
 \item 
 {\footnotesize template$<$concepts\+::vector\+\_\+data V, concepts\+::matrix\+\_\+data M$>$ }\\constexpr decltype(auto) \mbox{\hyperlink{namespacestd_1_1math_adf64b13ce0bd2e7f0d73fb960d419b8e}{std\+::math\+::operator$\ast$}} (const V \&v, const M \&m) noexcept(noexcept(operations\+::template vector\+\_\+matrix\+\_\+product$<$ V, M $>$\+::prod(v, m)))
 \item 
-{\footnotesize template$<$concepts\+::vector\+\_\+data V, concepts\+::matrix\+\_\+data M$>$ }\\constexpr V \& \mbox{\hyperlink{namespacestd_1_1math_a1289e50a0256f02ec74aa0b0659bd340}{std\+::math\+::operator$\ast$=}} (V \&v, const M \&m) noexcept(noexcept(operations\+::template vector\+\_\+matrix\+\_\+product$<$ V, M $>$\+::prod(v, m))) requires detail
+{\footnotesize template$<$concepts\+::vector\+\_\+data V, concepts\+::matrix\+\_\+data M$>$ \newline
+requires detail\+::extents\+\_\+may\+\_\+be\+\_\+equal\+\_\+v$<$ typename V\+::extents\+\_\+type, typename decltype( const\+\_\+cast$<$const V\&$>$(v) $\ast$ m )\+::extents\+\_\+type $>$}\\constexpr V \& \mbox{\hyperlink{namespacestd_1_1math_a7587b33b94c9d5f8387030c03fdc58bd}{std\+::math\+::operator$\ast$=}} (V \&v, const M \&m) noexcept(noexcept(operations\+::template vector\+\_\+matrix\+\_\+product$<$ V, M $>$\+::prod(v, m)))
+\item 
+{\footnotesize template$<$concepts\+::matrix\+\_\+data M, concepts\+::vector\+\_\+data V$>$ }\\constexpr decltype(auto) \mbox{\hyperlink{namespacestd_1_1math_ac1502b79be61fb6ca050071c5db4b534}{std\+::math\+::operator$\ast$}} (const M \&m, const V \&v) noexcept(noexcept(operations\+::template vector\+\_\+matrix\+\_\+product$<$ V, M $>$\+::prod(m, v)))
 \item 
 {\footnotesize template$<$concepts\+::matrix\+\_\+data M1, concepts\+::matrix\+\_\+data M2$>$ }\\constexpr decltype(auto) \mbox{\hyperlink{namespacestd_1_1math_a06371be2fd0c2fdccebac1af1fb800a9}{std\+::math\+::operator$\ast$}} (const M1 \&m1, const M2 \&m2) noexcept(noexcept(operations\+::template matrix\+\_\+matrix\+\_\+product$<$ M1, M2 $>$\+::prod(m1, m2)))
+\item 
+{\footnotesize template$<$concepts\+::matrix\+\_\+data M1, concepts\+::matrix\+\_\+data M2$>$ \newline
+requires detail\+::extents\+\_\+may\+\_\+be\+\_\+equal\+\_\+v$<$ typename M1\+::extents\+\_\+type, typename decltype( const\+\_\+cast$<$const M1\&$>$(m1) $\ast$ m2 )\+::extents\+\_\+type $>$}\\constexpr M1 \& \mbox{\hyperlink{namespacestd_1_1math_af76fde7d82fcf2eb67bc2988763c0426}{std\+::math\+::operator$\ast$=}} (M1 \&m1, const M2 \&m2) noexcept(noexcept(operations\+::template matrix\+\_\+matrix\+\_\+product$<$ M1, M2 $>$\+::prod(m1, m2)))
 \end{DoxyCompactItemize}

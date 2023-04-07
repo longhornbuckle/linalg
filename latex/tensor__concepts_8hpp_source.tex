@@ -1,0 +1,261 @@
+\hypertarget{tensor__concepts_8hpp_source}{}\doxysection{tensor\+\_\+concepts.\+hpp}
+\label{tensor__concepts_8hpp_source}\index{include/experimental/linear\_algebra/tensor\_concepts.hpp@{include/experimental/linear\_algebra/tensor\_concepts.hpp}}
+\mbox{\hyperlink{tensor__concepts_8hpp}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#ifndef\ LINEAR\_ALGEBRA\_TENSOR\_CONCEPTS\_HPP}}
+\DoxyCodeLine{00002\ \textcolor{preprocessor}{\#define\ LINEAR\_ALGEBRA\_TENSOR\_CONCEPTS\_HPP}}
+\DoxyCodeLine{00003\ }
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#include\ <\mbox{\hyperlink{linear__algebra_8hpp}{experimental/linear\_algebra.hpp}}>}}
+\DoxyCodeLine{00005\ }
+\DoxyCodeLine{00006\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespacestd}{std}}}
+\DoxyCodeLine{00007\ \{}
+\DoxyCodeLine{00008\ \textcolor{keyword}{namespace\ }math}
+\DoxyCodeLine{00009\ \{}
+\DoxyCodeLine{00010\ \textcolor{keyword}{namespace\ }concepts}
+\DoxyCodeLine{00011\ \{}
+\DoxyCodeLine{00012\ }
+\DoxyCodeLine{00013\ \textcolor{comment}{//=================================================================================================}}
+\DoxyCodeLine{00014\ \textcolor{comment}{//\ \ Tensor\ Concepts}}
+\DoxyCodeLine{00015\ \textcolor{comment}{//=================================================================================================}}
+\DoxyCodeLine{00016\ }
+\DoxyCodeLine{00017\ \textcolor{comment}{//\ All\ tensor\ data\ types\ must\ specify\ a\ value\ and\ index\ type}}
+\DoxyCodeLine{00018\ \textcolor{comment}{//\ All\ tensor\ data\ types\ must\ specify\ an\ extents\ type\ which\ must\ be\ of\ type\ std::extents<...>}}
+\DoxyCodeLine{00019\ \textcolor{comment}{//\ All\ tensor\ data\ types\ must\ support\ size\ /\ capacity\ const\ access\ functions}}
+\DoxyCodeLine{00020\ \textcolor{keyword}{template}\ <\ \textcolor{keyword}{class}\ T\ >}
+\DoxyCodeLine{00021\ \textcolor{keyword}{concept\ }\mbox{\hyperlink{conceptstd_1_1math_1_1concepts_1_1tensor__data}{tensor\_data}}\ =\ \textcolor{keyword}{requires}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Types}}
+\DoxyCodeLine{00022\ \{}
+\DoxyCodeLine{00023\ \ \ \textcolor{keyword}{typename}\ T::value\_type;}
+\DoxyCodeLine{00024\ \ \ \textcolor{keyword}{typename}\ T::index\_type;}
+\DoxyCodeLine{00025\ \ \ \textcolor{keyword}{typename}\ T::size\_type;}
+\DoxyCodeLine{00026\ \ \ \textcolor{keyword}{typename}\ T::extents\_type;}
+\DoxyCodeLine{00027\ \}\ \&\&}
+\DoxyCodeLine{00028\ (\ detail::is\_extents\_v<typename\ T::extents\_type>\ )\ \&\&}
+\DoxyCodeLine{00029\ \textcolor{keyword}{requires}(\ T\&\ t\ )\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Functions}}
+\DoxyCodeLine{00030\ \{}
+\DoxyCodeLine{00031\ \ \ \{\ t.size()\ \}\ \ \ \ \ \textcolor{keyword}{noexcept};}
+\DoxyCodeLine{00032\ \ \ \{\ t.capacity()\ \}\ \textcolor{keyword}{noexcept};}
+\DoxyCodeLine{00033\ \}\ \&\&}
+\DoxyCodeLine{00034\ (\ is\_same\_v<\ decltype(\ declval<T>().size()\ ),\ \textcolor{keyword}{typename}\ T::extents\_type\ >\ ||}
+\DoxyCodeLine{00035\ \ \ (\ is\_same\_v<\ \textcolor{keyword}{decltype}(\ declval<T>().size()\ ),\ \textcolor{keyword}{typename}\ T::size\_type\ >\ \&\&\ (\ T::extents\_type::rank()\ ==\ 1\ )\ )\ )\ \&\&}
+\DoxyCodeLine{00036\ (\ is\_same\_v<\ \textcolor{keyword}{decltype}(\ declval<T>().capacity()\ ),\ \textcolor{keyword}{typename}\ T::extents\_type\ >\ ||}
+\DoxyCodeLine{00037\ \ \ (\ is\_same\_v<\ \textcolor{keyword}{decltype}(\ declval<T>().capacity()\ ),\ \textcolor{keyword}{typename}\ T::size\_type\ >\ \&\&\ (\ T::extents\_type::rank()\ ==\ 1\ )\ )\ );}
+\DoxyCodeLine{00038\ }
+\DoxyCodeLine{00039\ \textcolor{comment}{//\ All\ tensor\ types\ are\ tensor\ data\ types}}
+\DoxyCodeLine{00040\ \textcolor{comment}{//\ All\ tensor\ types\ must\ support\ scalar\ multiply\ and\ divide\ operations}}
+\DoxyCodeLine{00041\ \textcolor{comment}{//\ All\ tensor\ types\ must\ support\ unary\ functions:\ negation}}
+\DoxyCodeLine{00042\ \textcolor{comment}{//\ All\ tensor\ types\ must\ support\ binary\ functions:\ addition\ and\ subtraction}}
+\DoxyCodeLine{00043\ \textcolor{keyword}{template}\ <\ \textcolor{keyword}{class}\ T\ >}
+\DoxyCodeLine{00044\ \textcolor{keyword}{concept\ }\mbox{\hyperlink{conceptstd_1_1math_1_1concepts_1_1tensor}{tensor}}\ =\ \mbox{\hyperlink{conceptstd_1_1math_1_1concepts_1_1tensor__data}{tensor\_data<T>}}\ \&\&}
+\DoxyCodeLine{00045\ \textcolor{keyword}{requires}\ (\ T\&\ t,\ \textcolor{keyword}{typename}\ T::value\_type\ v\ )\ \textcolor{comment}{//\ Scalar\ functions}}
+\DoxyCodeLine{00046\ \{}
+\DoxyCodeLine{00047\ \ \ v\ *\ t;\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Return\ type\ should\ also\ be\ a\ tensor\ or\ a\ derived\ type}}
+\DoxyCodeLine{00048\ \ \ t\ *\ v;\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Return\ type\ should\ also\ be\ a\ tensor\ or\ a\ derived\ type}}
+\DoxyCodeLine{00049\ \ \ t\ /\ v;\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Return\ type\ should\ also\ be\ a\ tensor\ or\ a\ derived\ type}}
+\DoxyCodeLine{00050\ \}\ \&\&}
+\DoxyCodeLine{00051\ \textcolor{keyword}{requires}\ (\ T\ t\ )\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Unary\ operations}}
+\DoxyCodeLine{00052\ \{}
+\DoxyCodeLine{00053\ \ \ -\/t;\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Return\ type\ should\ also\ be\ a\ tensor\ or\ a\ derived\ type}}
+\DoxyCodeLine{00054\ \}\ \&\&}
+\DoxyCodeLine{00055\ \textcolor{keyword}{requires}(\ T\ t\ )\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Binary\ operations}}
+\DoxyCodeLine{00056\ \{}
+\DoxyCodeLine{00057\ \ \ t\ +\ t;\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Return\ type\ should\ also\ be\ a\ tensor\ or\ a\ derived\ type}}
+\DoxyCodeLine{00058\ \ \ t\ -\/\ t;\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Return\ type\ should\ also\ be\ a\ tensor\ or\ a\ derived\ type}}
+\DoxyCodeLine{00059\ \};}
+\DoxyCodeLine{00060\ }
+\DoxyCodeLine{00061\ \textcolor{comment}{//\ Readable\ tensor\ data\ must\ A)\ be\ a\ tensor\ data}}
+\DoxyCodeLine{00062\ \textcolor{comment}{//\ Readable\ tensor\ data\ must\ B)\ provide\ a\ tuple\ type\ of\ extents\_type::rank()\ index\_type}}
+\DoxyCodeLine{00063\ \textcolor{comment}{//\ Readable\ tensor\ data\ must\ C)\ provide\ index\ access}}
+\DoxyCodeLine{00064\ \textcolor{comment}{//\ Readable\ tensor\ data\ must\ D)\ provide\ a\ const\ span\ representation}}
+\DoxyCodeLine{00065\ \textcolor{comment}{//\ Readable\ tensor\ data\ must\ E)\ provide\ an\ implementation\ defined\ view\ of\ the\ underlying\ memory.}}
+\DoxyCodeLine{00066\ \textcolor{comment}{//\ Readable\ tensor\ data\ must\ F)\ provide\ a\ const\ subtensor\ view}}
+\DoxyCodeLine{00067\ \textcolor{keyword}{template}\ <\ \textcolor{keyword}{class}\ T\ >}
+\DoxyCodeLine{00068\ \textcolor{keyword}{concept\ }\mbox{\hyperlink{conceptstd_1_1math_1_1concepts_1_1readable__tensor__data}{readable\_tensor\_data}}\ =\ \mbox{\hyperlink{conceptstd_1_1math_1_1concepts_1_1tensor__data}{tensor\_data<T>}}\ \&\&\ \textcolor{comment}{//\ A)}}
+\DoxyCodeLine{00069\ \textcolor{keyword}{requires}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ B)}}
+\DoxyCodeLine{00070\ \{}
+\DoxyCodeLine{00071\ \ \ \textcolor{keyword}{typename}\ T::tuple\_type;}
+\DoxyCodeLine{00072\ \}\ \&\&}
+\DoxyCodeLine{00073\ detail::is\_homogeneous\_tuple\_v<\ typename\ T::tuple\_type\ >\ \&\&}
+\DoxyCodeLine{00074\ (\ tuple\_size\_v<\ typename\ T::tuple\_type\ >\ ==\ T::extents\_type::rank()\ )\ \&\&}
+\DoxyCodeLine{00075\ \textcolor{keyword}{requires}(\ \textcolor{keyword}{const}\ T\&\ t\ )\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ C)}}
+\DoxyCodeLine{00076\ \{}
+\DoxyCodeLine{00077\ \ \ \textcolor{comment}{//\ TODO:\ language\ support\ doesn't\ really\ exist\ for\ enforcing:}}
+\DoxyCodeLine{00078\ \ \ \textcolor{comment}{//\ \{\ e[indices...]\ \}\ noexcept\ -\/>\ same\_as<typename\ ET::value\_type>}}
+\DoxyCodeLine{00079\ \ \ \textcolor{comment}{//\ \{\ e.at(indices...)\ \}\ -\/>\ same\_as<typename\ ET::value\_type>}}
+\DoxyCodeLine{00080\ \ \ \textcolor{comment}{//\ \ \ given\ sizeof(indices...)\ =\ ET::extents\_type::rank()}}
+\DoxyCodeLine{00081\ \ \ \textcolor{comment}{//\ Parameter\ pack\ not\ allowed\ in\ requires\ parameter\ clause}}
+\DoxyCodeLine{00082\ \ \ t;}
+\DoxyCodeLine{00083\ \}\ \&\&}
+\DoxyCodeLine{00084\ \textcolor{keyword}{requires}(\ \textcolor{keyword}{const}\ T\&\ t\ )\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ D)}}
+\DoxyCodeLine{00085\ \{}
+\DoxyCodeLine{00086\ \ \ \textcolor{keyword}{typename}\ T::span\_type;}
+\DoxyCodeLine{00087\ \ \ \{\ t.span()\ \}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{noexcept}\ -\/>\ same\_as<typename\ T::span\_type>;}
+\DoxyCodeLine{00088\ \}\ \&\&}
+\DoxyCodeLine{00089\ detail::is\_mdspan\_v<\ typename\ T::span\_type\ >\ \&\&\ \textcolor{comment}{//\ span\_type\ must\ be\ an\ mdspan}}
+\DoxyCodeLine{00090\ \textcolor{keyword}{requires}(\ \textcolor{keyword}{const}\ T\&\ t\ )\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ E)}}
+\DoxyCodeLine{00091\ \{}
+\DoxyCodeLine{00092\ \ \ \textcolor{keyword}{typename}\ T::const\_underlying\_span\_type;}
+\DoxyCodeLine{00093\ \ \ \{\ t.underlying\_span()\ \}\ \ \ \ \textcolor{keyword}{noexcept}\ -\/>\ same\_as<typename\ T::const\_underlying\_span\_type>;}
+\DoxyCodeLine{00094\ \}\ \&\&}
+\DoxyCodeLine{00095\ \textcolor{keyword}{requires}(\ \textcolor{keyword}{const}\ T\&\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ t,}
+\DoxyCodeLine{00096\ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{typename}\ T::tuple\_type\ start,}
+\DoxyCodeLine{00097\ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{typename}\ T::tuple\_type\ end\ )\ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ F)}}
+\DoxyCodeLine{00098\ \{}
+\DoxyCodeLine{00099\ \ \ \textcolor{keyword}{typename}\ T::const\_subtensor\_type;}
+\DoxyCodeLine{00100\ \ \ \{\ t.subtensor(start,end)\ \}\ -\/>\ same\_as<typename\ T::const\_subtensor\_type>;}
+\DoxyCodeLine{00101\ \ \ \{\ t.subtensor(start,end)\ \}\ -\/>\ tensor\_data;}
+\DoxyCodeLine{00102\ \};}
+\DoxyCodeLine{00103\ }
+\DoxyCodeLine{00104\ \textcolor{comment}{//\ Readable\ tensor\ must\ be\ a\ readable\ tensor\ data}}
+\DoxyCodeLine{00105\ \textcolor{comment}{//\ Readable\ tensor\ must\ be\ a\ tensor}}
+\DoxyCodeLine{00106\ \textcolor{keyword}{template}\ <\ \textcolor{keyword}{class}\ T\ >}
+\DoxyCodeLine{00107\ \textcolor{keyword}{concept\ }\mbox{\hyperlink{conceptstd_1_1math_1_1concepts_1_1readable__tensor}{readable\_tensor}}\ =\ \mbox{\hyperlink{conceptstd_1_1math_1_1concepts_1_1readable__tensor__data}{readable\_tensor\_data<T>}}\ \&\&\ \mbox{\hyperlink{conceptstd_1_1math_1_1concepts_1_1tensor}{tensor<T>}};}
+\DoxyCodeLine{00108\ }
+\DoxyCodeLine{00109\ \textcolor{comment}{//\ Writable\ tensor\ data\ must\ A)\ be\ a\ readable\ tensor}}
+\DoxyCodeLine{00110\ \textcolor{comment}{//\ Writable\ tensor\ data\ must\ B)\ provide\ a\ mutable\ scalar\ view}}
+\DoxyCodeLine{00111\ \textcolor{comment}{//\ Writable\ tensor\ data\ must\ C)\ provide\ an\ implementation\ defined\ mutable\ view\ of\ the\ underlying\ memory.}}
+\DoxyCodeLine{00112\ \textcolor{comment}{//\ Writable\ tensor\ data\ must\ D)\ provide\ a\ mutable\ subtensor\ view}}
+\DoxyCodeLine{00113\ \textcolor{keyword}{template}\ <\ \textcolor{keyword}{class}\ T\ >}
+\DoxyCodeLine{00114\ \textcolor{keyword}{concept\ }\mbox{\hyperlink{conceptstd_1_1math_1_1concepts_1_1writable__tensor__data}{writable\_tensor\_data}}\ =\ \mbox{\hyperlink{conceptstd_1_1math_1_1concepts_1_1readable__tensor__data}{readable\_tensor\_data<T>}}\ \&\&\ \textcolor{comment}{//\ A)}}
+\DoxyCodeLine{00115\ \textcolor{keyword}{requires}(\ T\&\ t\ )\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ B)}}
+\DoxyCodeLine{00116\ \{}
+\DoxyCodeLine{00117\ \ \ \textcolor{keyword}{typename}\ T::reference\_type;}
+\DoxyCodeLine{00118\ \ \ \textcolor{comment}{//\ TODO:\ language\ support\ doesn't\ really\ exist\ for\ enforcing:}}
+\DoxyCodeLine{00119\ \ \ \textcolor{comment}{//\ \{\ e[indices...]\ \}\ noexcept\ -\/>\ same\_as<typename\ ET::reference\_type>}}
+\DoxyCodeLine{00120\ \ \ \textcolor{comment}{//\ \{\ e.at(indices...)\ \}\ -\/>\ same\_as<typename\ ET::reference\_type>}}
+\DoxyCodeLine{00121\ \ \ \textcolor{comment}{//\ \ \ given\ sizeof(indices...)\ =\ ET::extents\_type::rank()}}
+\DoxyCodeLine{00122\ \ \ \textcolor{comment}{//\ Parameter\ pack\ not\ allowed\ in\ requires\ parameter\ clause}}
+\DoxyCodeLine{00123\ \}\ \&\&}
+\DoxyCodeLine{00124\ (\ !is\_const\_v<\ remove\_reference\_t<\ typename\ T::reference\_type\ >\ >\ )\ \&\&}
+\DoxyCodeLine{00125\ \textcolor{keyword}{requires}(\ T\&\ t\ )\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ C)}}
+\DoxyCodeLine{00126\ \{}
+\DoxyCodeLine{00127\ \ \ \textcolor{keyword}{typename}\ T::underlying\_span\_type;}
+\DoxyCodeLine{00128\ \ \ \{\ t.underlying\_span()\ \}\ \ \ \ \textcolor{keyword}{noexcept}\ -\/>\ same\_as<typename\ T::underlying\_span\_type>;}
+\DoxyCodeLine{00129\ \}\ \&\&}
+\DoxyCodeLine{00130\ \textcolor{keyword}{requires}(\ T\&\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ t,}
+\DoxyCodeLine{00131\ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{typename}\ T::tuple\_type\ start,}
+\DoxyCodeLine{00132\ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{typename}\ T::tuple\_type\ end\ )\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ D)}}
+\DoxyCodeLine{00133\ \{}
+\DoxyCodeLine{00134\ \ \ \textcolor{keyword}{typename}\ T::subtensor\_type;}
+\DoxyCodeLine{00135\ \ \ \{\ t.subtensor(start,end)\ \}\ -\/>\ same\_as<typename\ T::subtensor\_type>;}
+\DoxyCodeLine{00136\ \ \ \{\ t.subtensor(start,end)\ \}\ -\/>\ tensor\_data;}
+\DoxyCodeLine{00137\ \};}
+\DoxyCodeLine{00138\ }
+\DoxyCodeLine{00139\ \textcolor{comment}{//\ Writable\ tensor\ must\ be\ a\ writable\ tensor\ data}}
+\DoxyCodeLine{00140\ \textcolor{comment}{//\ Writable\ tensor\ must\ be\ a\ tensor}}
+\DoxyCodeLine{00141\ \textcolor{keyword}{template}\ <\ \textcolor{keyword}{class}\ T\ >}
+\DoxyCodeLine{00142\ \textcolor{keyword}{concept\ }\mbox{\hyperlink{conceptstd_1_1math_1_1concepts_1_1writable__tensor}{writable\_tensor}}\ =\ \mbox{\hyperlink{conceptstd_1_1math_1_1concepts_1_1writable__tensor__data}{writable\_tensor\_data<T>}}\ \&\&\ \mbox{\hyperlink{conceptstd_1_1math_1_1concepts_1_1readable__tensor}{readable\_tensor<T>}};}
+\DoxyCodeLine{00143\ }
+\DoxyCodeLine{00144\ \textcolor{comment}{//\ Dynamic\ tensor\ data}}
+\DoxyCodeLine{00145\ \textcolor{comment}{//\ Dynamic\ tensor\ data\ must\ be\ resizable}}
+\DoxyCodeLine{00146\ \textcolor{comment}{//\ Dynamic\ tensor\ data\ must\ be\ reservable}}
+\DoxyCodeLine{00147\ \textcolor{comment}{//\ Dynamic\ tensor\ data\ must\ define\ an\ allocator\ type}}
+\DoxyCodeLine{00148\ \textcolor{comment}{//\ Dynamic\ tensor\ data\ must\ be\ constructible\ with\ an\ allocator}}
+\DoxyCodeLine{00149\ \textcolor{comment}{//\ Dynamic\ tensor\ data\ must\ be\ constructible\ with\ an\ allocator\ and\ size}}
+\DoxyCodeLine{00150\ \textcolor{comment}{//\ Dynamic\ tensor\ data\ must\ be\ constructible\ with\ an\ allocator\ and\ size,\ capacity}}
+\DoxyCodeLine{00151\ \textcolor{comment}{//\ Dynamic\ tensor\ data\ must\ provide\ mutable/const\ access\ to\ underlying\ allocator}}
+\DoxyCodeLine{00152\ \textcolor{keyword}{template}\ <\ \textcolor{keyword}{class}\ T\ >}
+\DoxyCodeLine{00153\ \textcolor{keyword}{concept\ }\mbox{\hyperlink{conceptstd_1_1math_1_1concepts_1_1dynamic__tensor__data}{dynamic\_tensor\_data}}\ =\ \mbox{\hyperlink{conceptstd_1_1math_1_1concepts_1_1tensor__data}{tensor\_data<T>}}\ \&\&\ \textcolor{keyword}{requires}}
+\DoxyCodeLine{00154\ \{}
+\DoxyCodeLine{00155\ \ \ \textcolor{keyword}{typename}\ T::allocator\_type;}
+\DoxyCodeLine{00156\ \}\ \&\&}
+\DoxyCodeLine{00157\ \textcolor{keyword}{requires}(\ T\&\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ t,}
+\DoxyCodeLine{00158\ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{typename}\ T::extents\_type\ \ \ \ \ \ \ \ \ \ size,}
+\DoxyCodeLine{00159\ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{typename}\ T::extents\_type\ \ \ \ \ \ \ \ \ \ cap,}
+\DoxyCodeLine{00160\ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{typename}\ T::allocator\_type\&\ alloc\ )}
+\DoxyCodeLine{00161\ \{}
+\DoxyCodeLine{00162\ \ \ \{\ T(\ alloc\ )\};}
+\DoxyCodeLine{00163\ \ \ \{\ T(\ size,\ alloc\ )\ \};}
+\DoxyCodeLine{00164\ \ \ \{\ T(\ size,\ cap,\ alloc\ )\ \};}
+\DoxyCodeLine{00165\ \ \ \{\ t.set\_allocator(\ alloc\ )\ \};}
+\DoxyCodeLine{00166\ \ \ \{\ \textcolor{keyword}{static\_cast<}\textcolor{keyword}{const\ }T\&\textcolor{keyword}{>}(t).get\_allocator()\ \}\ -\/>\ same\_as<const\ typename\ T::allocator\_type\&>;}
+\DoxyCodeLine{00167\ \}\ \&\&}
+\DoxyCodeLine{00168\ (\ \textcolor{keyword}{requires}(\ T\&\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ t,}
+\DoxyCodeLine{00169\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{typename}\ T::extents\_type\ size,}
+\DoxyCodeLine{00170\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{typename}\ T::extents\_type\ cap\ )}
+\DoxyCodeLine{00171\ \ \ \{}
+\DoxyCodeLine{00172\ \ \ \ \ \{\ t.resize(\ size\ )\ \};}
+\DoxyCodeLine{00173\ \ \ \ \ \{\ t.reserve(\ cap\ )\ \};}
+\DoxyCodeLine{00174\ \ \ \}\ ||}
+\DoxyCodeLine{00175\ \ \ (\ \textcolor{keyword}{requires}(\ T\&\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ t,}
+\DoxyCodeLine{00176\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{typename}\ T::size\_type\ size,}
+\DoxyCodeLine{00177\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{typename}\ T::size\_type\ cap\ )}
+\DoxyCodeLine{00178\ \ \ \ \ \{}
+\DoxyCodeLine{00179\ \ \ \ \ \ \ \{\ t.resize(\ size\ )\ \};}
+\DoxyCodeLine{00180\ \ \ \ \ \ \ \{\ t.reserve(\ cap\ )\ \};}
+\DoxyCodeLine{00181\ \ \ \ \ \}\ \&\&\ (\ T::extents\_type::rank()\ ==\ 1\ )}
+\DoxyCodeLine{00182\ \ \ )}
+\DoxyCodeLine{00183\ );}
+\DoxyCodeLine{00184\ }
+\DoxyCodeLine{00185\ \textcolor{comment}{//\ Dynamic\ tensor\ must\ be\ a\ dynamic\ tensor\ data}}
+\DoxyCodeLine{00186\ \textcolor{comment}{//\ Dynamic\ tensor\ must\ be\ a\ tensor}}
+\DoxyCodeLine{00187\ \textcolor{keyword}{template}\ <\ \textcolor{keyword}{class}\ T\ >}
+\DoxyCodeLine{00188\ \textcolor{keyword}{concept\ }\mbox{\hyperlink{conceptstd_1_1math_1_1concepts_1_1dynamic__tensor}{dynamic\_tensor}}\ =\ \mbox{\hyperlink{conceptstd_1_1math_1_1concepts_1_1dynamic__tensor__data}{dynamic\_tensor\_data<T>}}\ \&\&\ \mbox{\hyperlink{conceptstd_1_1math_1_1concepts_1_1tensor}{tensor<T>}};}
+\DoxyCodeLine{00189\ }
+\DoxyCodeLine{00190\ \textcolor{comment}{//\ Fixed\ size\ tensor\ data}}
+\DoxyCodeLine{00191\ \textcolor{comment}{//\ A\ fixed\ size\ tensor\ data\ must\ be\ compile-\/time\ constructible}}
+\DoxyCodeLine{00192\ \textcolor{comment}{//\ A\ fixed\ size\ tensor\ data\ must\ support\ constant\ expression\ size\ functions.}}
+\DoxyCodeLine{00193\ \textcolor{comment}{//\ A\ fixed\ size\ tensor\ data\ must\ support\ constant\ expression\ capacity\ functions.}}
+\DoxyCodeLine{00194\ \textcolor{comment}{//\ A\ fixed\ size\ tensor\ data\ must\ have\ equivalent\ size\ and\ capacity.}}
+\DoxyCodeLine{00195\ \textcolor{keyword}{template}\ <\ \textcolor{keyword}{class}\ T\ >}
+\DoxyCodeLine{00196\ \textcolor{keyword}{concept\ }\mbox{\hyperlink{conceptstd_1_1math_1_1concepts_1_1fixed__size__tensor__data}{fixed\_size\_tensor\_data}}\ =\ \mbox{\hyperlink{conceptstd_1_1math_1_1concepts_1_1tensor__data}{tensor\_data<T>}}\ \&\&}
+\DoxyCodeLine{00197\ detail::extents\_is\_static\_v<typename\ T::extents\_type>\ \&\&}
+\DoxyCodeLine{00198\ \mbox{\hyperlink{namespacestd_1_1math_1_1detail_a6661f390a6c982712ceecc4ce1ea0459}{detail::is\_constexpr}}(\ []\{\ T();\ \}\ )\ \&\&}
+\DoxyCodeLine{00199\ \mbox{\hyperlink{namespacestd_1_1math_1_1detail_a6661f390a6c982712ceecc4ce1ea0459}{detail::is\_constexpr}}(\ []\{\ \textcolor{keyword}{decltype}(\ declval<T>().size()\ )\ \ \ \ \ nodiscard\_warning\ =\ T().size();\ \}\ )\ \&\&}
+\DoxyCodeLine{00200\ \mbox{\hyperlink{namespacestd_1_1math_1_1detail_a6661f390a6c982712ceecc4ce1ea0459}{detail::is\_constexpr}}(\ []\{\ \textcolor{keyword}{decltype}(\ declval<T>().capacity()\ )\ nodiscard\_warning\ =\ T().capacity();\ \}\ )\ \&\&}
+\DoxyCodeLine{00201\ (\ T().size()\ ==\ T().capacity()\ );}
+\DoxyCodeLine{00202\ }
+\DoxyCodeLine{00203\ \textcolor{comment}{//\ Fixed\ size\ tensor\ must\ be\ a\ fixed\ size\ tensor\ data}}
+\DoxyCodeLine{00204\ \textcolor{comment}{//\ Fixed\ size\ tensor\ must\ be\ a\ tensor}}
+\DoxyCodeLine{00205\ \textcolor{keyword}{template}\ <\ \textcolor{keyword}{class}\ T\ >}
+\DoxyCodeLine{00206\ \textcolor{keyword}{concept\ }\mbox{\hyperlink{conceptstd_1_1math_1_1concepts_1_1fixed__size__tensor}{fixed\_size\_tensor}}\ =\ \mbox{\hyperlink{conceptstd_1_1math_1_1concepts_1_1fixed__size__tensor__data}{fixed\_size\_tensor\_data<T>}}\ \&\&\ \mbox{\hyperlink{conceptstd_1_1math_1_1concepts_1_1tensor}{tensor<T>}};}
+\DoxyCodeLine{00207\ }
+\DoxyCodeLine{00208\ \textcolor{comment}{//=================================================================================================}}
+\DoxyCodeLine{00209\ \textcolor{comment}{//\ \ Additional\ Tensor\ Concepts}}
+\DoxyCodeLine{00210\ \textcolor{comment}{//=================================================================================================}}
+\DoxyCodeLine{00211\ }
+\DoxyCodeLine{00212\ \textcolor{comment}{//\ Tensor\ may\ be\ constructible}}
+\DoxyCodeLine{00213\ \textcolor{comment}{//\ Enforces\ both\ types\ are\ tensor\ which\ have\ constructible\ elements}}
+\DoxyCodeLine{00214\ \textcolor{comment}{//\ and\ both\ have\ potentially\ compatible\ extents}}
+\DoxyCodeLine{00215\ \textcolor{keyword}{template}\ <\ \textcolor{keyword}{class}\ From,\ \textcolor{keyword}{class}\ To\ >}
+\DoxyCodeLine{00216\ \textcolor{keyword}{concept\ }\mbox{\hyperlink{conceptstd_1_1math_1_1concepts_1_1tensor__may__be__constructible}{tensor\_may\_be\_constructible}}\ =}
+\DoxyCodeLine{00217\ \mbox{\hyperlink{conceptstd_1_1math_1_1concepts_1_1tensor}{tensor<From>}}\ \&\&\ \mbox{\hyperlink{conceptstd_1_1math_1_1concepts_1_1tensor}{tensor<To>}}\ \&\&}
+\DoxyCodeLine{00218\ (\ is\_constructible\_v<\ typename\ From::value\_type,\ typename\ To::value\_type\ >\ )\ \&\&}
+\DoxyCodeLine{00219\ detail::extents\_may\_be\_equal\_v<\ typename\ From::extents\_type,\ typename\ To::extents\_type\ >;}
+\DoxyCodeLine{00220\ }
+\DoxyCodeLine{00221\ \textcolor{comment}{//\ View\ may\ be\ constructible\ to\ tensor}}
+\DoxyCodeLine{00222\ \textcolor{comment}{//\ Enforces\ view\ is\ an\ mdspan\ of\ rank\ equal\ to\ tensor\ with\ elements}}
+\DoxyCodeLine{00223\ \textcolor{comment}{//\ \ \ Each\ extent\ must\ be\ the\ same\ or\ dynamic}}
+\DoxyCodeLine{00224\ \textcolor{comment}{//\ View\ element\ must\ be\ constructible\ to\ the\ tensor\ elements}}
+\DoxyCodeLine{00225\ \textcolor{keyword}{template}\ <\ \textcolor{keyword}{class}\ From,\ \textcolor{keyword}{class}\ To\ >}
+\DoxyCodeLine{00226\ \textcolor{keyword}{concept\ }\mbox{\hyperlink{conceptstd_1_1math_1_1concepts_1_1view__may__be__constructible__to__tensor}{view\_may\_be\_constructible\_to\_tensor}}\ =}
+\DoxyCodeLine{00227\ detail::is\_mdspan\_v<From>\ \&\&\ \mbox{\hyperlink{conceptstd_1_1math_1_1concepts_1_1tensor}{tensor<To>}}\ \&\&}
+\DoxyCodeLine{00228\ (\ is\_constructible\_v<typename\ From::value\_type,typename\ To::value\_type>\ )\ \&\&}
+\DoxyCodeLine{00229\ detail::extents\_may\_be\_equal\_v<\ typename\ From::extents\_type,\ typename\ To::extents\_type\ >;}
+\DoxyCodeLine{00230\ }
+\DoxyCodeLine{00231\ \textcolor{comment}{//\ View\ is\ constructible\ to\ tensor}}
+\DoxyCodeLine{00232\ \textcolor{comment}{//\ Enforces\ view\ is\ an\ mdspan\ of\ rank\ equal\ to\ tensor\ with\ elements}}
+\DoxyCodeLine{00233\ \textcolor{comment}{//\ \ \ Each\ extent\ must\ be\ the\ same\ (and\ not\ dynamic)}}
+\DoxyCodeLine{00234\ \textcolor{comment}{//\ View\ element\ must\ be\ constructible\ to\ the\ tensor\ elements}}
+\DoxyCodeLine{00235\ \textcolor{keyword}{template}\ <\ \textcolor{keyword}{class}\ From,\ \textcolor{keyword}{class}\ To\ >}
+\DoxyCodeLine{00236\ \textcolor{keyword}{concept\ }\mbox{\hyperlink{conceptstd_1_1math_1_1concepts_1_1view__is__constructible__to__tensor}{view\_is\_constructible\_to\_tensor}}\ =}
+\DoxyCodeLine{00237\ detail::is\_mdspan\_v<From>\ \&\&\ \mbox{\hyperlink{conceptstd_1_1math_1_1concepts_1_1tensor}{tensor<To>}}\ \&\&}
+\DoxyCodeLine{00238\ (\ is\_constructible\_v<typename\ From::value\_type,typename\ To::value\_type>\ )\ \&\&}
+\DoxyCodeLine{00239\ detail::extents\_is\_equal\_v<\ typename\ From::extents\_type,\ typename\ To::extents\_type\ >;}
+\DoxyCodeLine{00240\ }
+\DoxyCodeLine{00241\ \textcolor{comment}{//\ View\ is\ nothrow\ constructible\ to\ tensor}}
+\DoxyCodeLine{00242\ \textcolor{comment}{//\ Enforces\ view\ is\ an\ mdspan\ of\ rank\ equal\ to\ tensor\ with\ elements}}
+\DoxyCodeLine{00243\ \textcolor{comment}{//\ \ \ Each\ extent\ must\ be\ the\ same\ (and\ not\ dynamic)}}
+\DoxyCodeLine{00244\ \textcolor{comment}{//\ View\ element\ must\ be\ nothrow\ constructible\ to\ the\ tensor\ elements}}
+\DoxyCodeLine{00245\ \textcolor{keyword}{template}\ <\ \textcolor{keyword}{class}\ From,\ \textcolor{keyword}{class}\ To\ >}
+\DoxyCodeLine{00246\ \textcolor{keyword}{concept\ }\mbox{\hyperlink{conceptstd_1_1math_1_1concepts_1_1view__is__nothrow__constructible__to__tensor}{view\_is\_nothrow\_constructible\_to\_tensor}}\ =}
+\DoxyCodeLine{00247\ detail::is\_mdspan\_v<From>\ \&\&\ \mbox{\hyperlink{conceptstd_1_1math_1_1concepts_1_1tensor}{tensor<To>}}\ \&\&}
+\DoxyCodeLine{00248\ (\ is\_nothrow\_constructible\_v<typename\ From::value\_type,typename\ To::value\_type>\ )\ \&\&}
+\DoxyCodeLine{00249\ detail::extents\_is\_equal\_v<\ typename\ From::extents\_type,\ typename\ To::extents\_type\ >;}
+\DoxyCodeLine{00250\ }
+\DoxyCodeLine{00251\ \}\ \ \ \ \ \ \ \textcolor{comment}{//-\/\ concepts\ namespace}}
+\DoxyCodeLine{00252\ \}\ \ \ \ \ \ \ \textcolor{comment}{//-\/\ math\ namespace}}
+\DoxyCodeLine{00253\ \}\ \ \ \ \ \ \ \textcolor{comment}{//-\/\ std\ namespace}}
+\DoxyCodeLine{00254\ }
+\DoxyCodeLine{00255\ \textcolor{preprocessor}{\#endif\ \ }\textcolor{comment}{//-\/\ LINEAR\_ALGEBRA\_TENSOR\_CONCEPTS\_HPP}}
+
+\end{DoxyCode}

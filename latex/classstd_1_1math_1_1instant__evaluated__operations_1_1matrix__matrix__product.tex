@@ -1,4 +1,4 @@
-\hypertarget{classstd_1_1math_1_1instant__evaluated__operations_1_1matrix__matrix__product}{}\doxysection{std\+::math\+::instant\+\_\+evaluated\+\_\+operations\+::matrix\+\_\+matrix\+\_\+product$<$ M1, M2 $>$ Class Template Reference}
+\hypertarget{classstd_1_1math_1_1instant__evaluated__operations_1_1matrix__matrix__product}{}\doxysection{std\+::math\+::instant\+\_\+evaluated\+\_\+operations\+::matrix\+\_\+matrix\+\_\+product\texorpdfstring{$<$}{<} M1, M2 \texorpdfstring{$>$}{>} Class Template Reference}
 \label{classstd_1_1math_1_1instant__evaluated__operations_1_1matrix__matrix__product}\index{std::math::instant\_evaluated\_operations::matrix\_matrix\_product$<$ M1, M2 $>$@{std::math::instant\_evaluated\_operations::matrix\_matrix\_product$<$ M1, M2 $>$}}
 
 
@@ -11,12 +11,12 @@ Defines multiplication operation on a pair of matrices.
 
 
 
-Collaboration diagram for std\+::math\+::instant\+\_\+evaluated\+\_\+operations\+::matrix\+\_\+matrix\+\_\+product$<$ M1, M2 $>$\+:
+Collaboration diagram for std\+::math\+::instant\+\_\+evaluated\+\_\+operations\+::matrix\+\_\+matrix\+\_\+product\texorpdfstring{$<$}{<} M1, M2 \texorpdfstring{$>$}{>}\+:
 \nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
-\includegraphics[width=214pt]{classstd_1_1math_1_1instant__evaluated__operations_1_1matrix__matrix__product__coll__graph}
+\includegraphics[width=199pt]{classstd_1_1math_1_1instant__evaluated__operations_1_1matrix__matrix__product__coll__graph}
 \end{center}
 \end{figure}
 \doxysubsection*{Public Types}
@@ -26,12 +26,18 @@ using \mbox{\hyperlink{classstd_1_1math_1_1instant__evaluated__operations_1_1mat
 \begin{DoxyCompactList}\small\item\em First input matrix type. \end{DoxyCompactList}\item 
 using \mbox{\hyperlink{classstd_1_1math_1_1instant__evaluated__operations_1_1matrix__matrix__product_a16f79f1a1484ebaffd448b0780ab1c8c}{second\+\_\+matrix\+\_\+type}} = M2
 \begin{DoxyCompactList}\small\item\em Second input matrix type. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Static Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+static constexpr result\+\_\+matrix\+\_\+type \mbox{\hyperlink{classstd_1_1math_1_1instant__evaluated__operations_1_1matrix__matrix__product_a181ecb7061c10d07e0550069d36856f0}{prod}} (const \mbox{\hyperlink{classstd_1_1math_1_1instant__evaluated__operations_1_1matrix__matrix__product_a593ccca8dfbbbec22432b0814a64f71d}{first\+\_\+matrix\+\_\+type}} \&m1, const \mbox{\hyperlink{classstd_1_1math_1_1instant__evaluated__operations_1_1matrix__matrix__product_a16f79f1a1484ebaffd448b0780ab1c8c}{second\+\_\+matrix\+\_\+type}} \&m2) noexcept(noexcept(\mbox{\hyperlink{namespacestd_1_1math_1_1detail_ae5eb3cf5ea2a6e93d691bfd9f701768e}{detail\+::make\+\_\+from\+\_\+tuple}}$<$ result\+\_\+matrix\+\_\+type $>$(collect\+\_\+ctor\+\_\+args(declval$<$ const \mbox{\hyperlink{classstd_1_1math_1_1instant__evaluated__operations_1_1matrix__matrix__product_a593ccca8dfbbbec22432b0814a64f71d}{first\+\_\+matrix\+\_\+type}} \& $>$(), declval$<$ const \mbox{\hyperlink{classstd_1_1math_1_1instant__evaluated__operations_1_1matrix__matrix__product_a16f79f1a1484ebaffd448b0780ab1c8c}{second\+\_\+matrix\+\_\+type}} \& $>$(), \mbox{[}\&m1,\&m2\mbox{]}$<$ class Index\+Type1, class Index\+Type2 $>$(Index\+Type1 index1, Index\+Type2 index2) constexpr noexcept \{ result\+\_\+value\+\_\+type result=0;for\+\_\+each(execution\+::unseq, \mbox{\hyperlink{structstd_1_1math_1_1detail_1_1faux__index__iterator}{detail\+::faux\+\_\+index\+\_\+iterator}}$<$ typename first\+\_\+matrix\+\_\+type\+::index\+\_\+type $>$(0), \mbox{\hyperlink{structstd_1_1math_1_1detail_1_1faux__index__iterator}{detail\+::faux\+\_\+index\+\_\+iterator}}$<$ typename first\+\_\+matrix\+\_\+type\+::index\+\_\+type $>$(m1.\+size().extent(1)), \mbox{[}\&m1, \&m2, \&index1, \&index2, \&result\mbox{]}(typename first\+\_\+matrix\+\_\+type\+::index\+\_\+type index) constexpr noexcept \{ result+=m1\mbox{[}index1, index\mbox{]} $\ast$m2\mbox{[}index, index2\mbox{]};\});return result;\}))) \&\&(first\+\_\+matrix\+\_\+type\+::extents\+\_\+type\+::static\+\_\+extent(1) !=experimental\+::dynamic\+\_\+extent) \&\&(second\+\_\+matrix\+\_\+type\+::extents\+\_\+type\+::static\+\_\+extent(0) !=experimental\+::dynamic\+\_\+extent))
+\begin{DoxyCompactList}\small\item\em computes m1 $\ast$ m2 \end{DoxyCompactList}\item 
+static constexpr \mbox{\hyperlink{classstd_1_1math_1_1instant__evaluated__operations_1_1matrix__matrix__product_a593ccca8dfbbbec22432b0814a64f71d}{first\+\_\+matrix\+\_\+type}} \& \mbox{\hyperlink{classstd_1_1math_1_1instant__evaluated__operations_1_1matrix__matrix__product_aeec1867bd0a849847dd185f2472b2e25}{prod}} (\mbox{\hyperlink{classstd_1_1math_1_1instant__evaluated__operations_1_1matrix__matrix__product_a593ccca8dfbbbec22432b0814a64f71d}{first\+\_\+matrix\+\_\+type}} \&m1, const \mbox{\hyperlink{classstd_1_1math_1_1instant__evaluated__operations_1_1matrix__matrix__product_a16f79f1a1484ebaffd448b0780ab1c8c}{second\+\_\+matrix\+\_\+type}} \&m2) noexcept(noexcept(m1=move(m1 $\ast$m2)))
+\begin{DoxyCompactList}\small\item\em Returns m1 $\ast$= m2. \end{DoxyCompactList}\end{DoxyCompactItemize}
 
 
 \doxysubsection{Detailed Description}
 \subsubsection*{template$<$concepts\+::matrix\+\_\+data M1, concepts\+::matrix\+\_\+data M2$>$\newline
 class std\+::math\+::instant\+\_\+evaluated\+\_\+operations\+::matrix\+\_\+matrix\+\_\+product$<$ M1, M2 $>$}
-
 Defines multiplication operation on a pair of matrices. 
 
 
@@ -49,7 +55,7 @@ Defines multiplication operation on a pair of matrices.
 \index{first\_matrix\_type@{first\_matrix\_type}!std::math::instant\_evaluated\_operations::matrix\_matrix\_product$<$ M1, M2 $>$@{std::math::instant\_evaluated\_operations::matrix\_matrix\_product$<$ M1, M2 $>$}}
 \doxysubsubsection{\texorpdfstring{first\_matrix\_type}{first\_matrix\_type}}
 {\footnotesize\ttfamily template$<$concepts\+::matrix\+\_\+data M1, concepts\+::matrix\+\_\+data M2$>$ \\
-using \mbox{\hyperlink{classstd_1_1math_1_1instant__evaluated__operations_1_1matrix__matrix__product}{std\+::math\+::instant\+\_\+evaluated\+\_\+operations\+::matrix\+\_\+matrix\+\_\+product}}$<$ M1, M2 $>$\+::\mbox{\hyperlink{classstd_1_1math_1_1instant__evaluated__operations_1_1matrix__matrix__product_a593ccca8dfbbbec22432b0814a64f71d}{first\+\_\+matrix\+\_\+type}} =  M1}
+using \mbox{\hyperlink{classstd_1_1math_1_1instant__evaluated__operations_1_1matrix__matrix__product}{std\+::math\+::instant\+\_\+evaluated\+\_\+operations\+::matrix\+\_\+matrix\+\_\+product}}$<$ M1, M2 $>$\+::first\+\_\+matrix\+\_\+type =  M1}
 
 
 
@@ -60,11 +66,36 @@ First input matrix type.
 \index{second\_matrix\_type@{second\_matrix\_type}!std::math::instant\_evaluated\_operations::matrix\_matrix\_product$<$ M1, M2 $>$@{std::math::instant\_evaluated\_operations::matrix\_matrix\_product$<$ M1, M2 $>$}}
 \doxysubsubsection{\texorpdfstring{second\_matrix\_type}{second\_matrix\_type}}
 {\footnotesize\ttfamily template$<$concepts\+::matrix\+\_\+data M1, concepts\+::matrix\+\_\+data M2$>$ \\
-using \mbox{\hyperlink{classstd_1_1math_1_1instant__evaluated__operations_1_1matrix__matrix__product}{std\+::math\+::instant\+\_\+evaluated\+\_\+operations\+::matrix\+\_\+matrix\+\_\+product}}$<$ M1, M2 $>$\+::\mbox{\hyperlink{classstd_1_1math_1_1instant__evaluated__operations_1_1matrix__matrix__product_a16f79f1a1484ebaffd448b0780ab1c8c}{second\+\_\+matrix\+\_\+type}} =  M2}
+using \mbox{\hyperlink{classstd_1_1math_1_1instant__evaluated__operations_1_1matrix__matrix__product}{std\+::math\+::instant\+\_\+evaluated\+\_\+operations\+::matrix\+\_\+matrix\+\_\+product}}$<$ M1, M2 $>$\+::second\+\_\+matrix\+\_\+type =  M2}
 
 
 
 Second input matrix type. 
+
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classstd_1_1math_1_1instant__evaluated__operations_1_1matrix__matrix__product_a181ecb7061c10d07e0550069d36856f0}\label{classstd_1_1math_1_1instant__evaluated__operations_1_1matrix__matrix__product_a181ecb7061c10d07e0550069d36856f0}} 
+\index{std::math::instant\_evaluated\_operations::matrix\_matrix\_product$<$ M1, M2 $>$@{std::math::instant\_evaluated\_operations::matrix\_matrix\_product$<$ M1, M2 $>$}!prod@{prod}}
+\index{prod@{prod}!std::math::instant\_evaluated\_operations::matrix\_matrix\_product$<$ M1, M2 $>$@{std::math::instant\_evaluated\_operations::matrix\_matrix\_product$<$ M1, M2 $>$}}
+\doxysubsubsection{\texorpdfstring{prod()}{prod()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily template$<$concepts\+::matrix\+\_\+data M1, concepts\+::matrix\+\_\+data M2$>$ \\
+static constexpr result\+\_\+matrix\+\_\+type \mbox{\hyperlink{classstd_1_1math_1_1instant__evaluated__operations_1_1matrix__matrix__product}{std\+::math\+::instant\+\_\+evaluated\+\_\+operations\+::matrix\+\_\+matrix\+\_\+product}}$<$ M1, M2 $>$\+::prod (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classstd_1_1math_1_1instant__evaluated__operations_1_1matrix__matrix__product_a593ccca8dfbbbec22432b0814a64f71d}{first\+\_\+matrix\+\_\+type}} \&}]{m1,  }\item[{const \mbox{\hyperlink{classstd_1_1math_1_1instant__evaluated__operations_1_1matrix__matrix__product_a16f79f1a1484ebaffd448b0780ab1c8c}{second\+\_\+matrix\+\_\+type}} \&}]{m2 }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}, {\ttfamily [constexpr]}, {\ttfamily [noexcept]}}
+
+
+
+computes m1 $\ast$ m2 
+
+\mbox{\Hypertarget{classstd_1_1math_1_1instant__evaluated__operations_1_1matrix__matrix__product_aeec1867bd0a849847dd185f2472b2e25}\label{classstd_1_1math_1_1instant__evaluated__operations_1_1matrix__matrix__product_aeec1867bd0a849847dd185f2472b2e25}} 
+\index{std::math::instant\_evaluated\_operations::matrix\_matrix\_product$<$ M1, M2 $>$@{std::math::instant\_evaluated\_operations::matrix\_matrix\_product$<$ M1, M2 $>$}!prod@{prod}}
+\index{prod@{prod}!std::math::instant\_evaluated\_operations::matrix\_matrix\_product$<$ M1, M2 $>$@{std::math::instant\_evaluated\_operations::matrix\_matrix\_product$<$ M1, M2 $>$}}
+\doxysubsubsection{\texorpdfstring{prod()}{prod()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily template$<$concepts\+::matrix\+\_\+data M1, concepts\+::matrix\+\_\+data M2$>$ \\
+static constexpr \mbox{\hyperlink{classstd_1_1math_1_1instant__evaluated__operations_1_1matrix__matrix__product_a593ccca8dfbbbec22432b0814a64f71d}{first\+\_\+matrix\+\_\+type}} \& \mbox{\hyperlink{classstd_1_1math_1_1instant__evaluated__operations_1_1matrix__matrix__product}{std\+::math\+::instant\+\_\+evaluated\+\_\+operations\+::matrix\+\_\+matrix\+\_\+product}}$<$ M1, M2 $>$\+::prod (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classstd_1_1math_1_1instant__evaluated__operations_1_1matrix__matrix__product_a593ccca8dfbbbec22432b0814a64f71d}{first\+\_\+matrix\+\_\+type}} \&}]{m1,  }\item[{const \mbox{\hyperlink{classstd_1_1math_1_1instant__evaluated__operations_1_1matrix__matrix__product_a16f79f1a1484ebaffd448b0780ab1c8c}{second\+\_\+matrix\+\_\+type}} \&}]{m2 }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}, {\ttfamily [constexpr]}, {\ttfamily [noexcept]}}
+
+
+
+Returns m1 $\ast$= m2. 
 
 
 

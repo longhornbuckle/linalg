@@ -1,0 +1,252 @@
+\hypertarget{arithmetic__operators_8hpp_source}{}\doxysection{arithmetic\+\_\+operators.\+hpp}
+\label{arithmetic__operators_8hpp_source}\index{include/experimental/linear\_algebra/arithmetic\_operators.hpp@{include/experimental/linear\_algebra/arithmetic\_operators.hpp}}
+\mbox{\hyperlink{arithmetic__operators_8hpp}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{comment}{//==================================================================================================}}
+\DoxyCodeLine{00002\ \textcolor{comment}{//\ \ File:\ \ \ \ \ \ \ arithmetic\_operators.hpp}}
+\DoxyCodeLine{00003\ \textcolor{comment}{//}}
+\DoxyCodeLine{00004\ \textcolor{comment}{//\ \ Summary:\ \ \ \ This\ header\ defines\ the\ overloaded\ operators\ that\ implement\ basic\ arithmetic}}
+\DoxyCodeLine{00005\ \textcolor{comment}{//\ \ \ \ \ \ \ \ \ \ \ \ \ \ operations\ on\ vectors,\ matrices,\ and\ tensors.}}
+\DoxyCodeLine{00006\ \textcolor{comment}{//==================================================================================================}}
+\DoxyCodeLine{00007\ \textcolor{comment}{//}}
+\DoxyCodeLine{00008\ \textcolor{preprocessor}{\#ifndef\ LINEAR\_ALGEBRA\_ARITHMETIC\_OPERATORS\_HPP}}
+\DoxyCodeLine{00009\ \textcolor{preprocessor}{\#define\ LINEAR\_ALGEBRA\_ARITHMETIC\_OPERATORS\_HPP}}
+\DoxyCodeLine{00010\ }
+\DoxyCodeLine{00011\ \textcolor{preprocessor}{\#include\ <\mbox{\hyperlink{linear__algebra_8hpp}{experimental/linear\_algebra.hpp}}>}}
+\DoxyCodeLine{00012\ }
+\DoxyCodeLine{00013\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespacestd}{std}}}
+\DoxyCodeLine{00014\ \{}
+\DoxyCodeLine{00015\ \textcolor{keyword}{namespace\ }math}
+\DoxyCodeLine{00016\ \{}
+\DoxyCodeLine{00017\ }
+\DoxyCodeLine{00018\ \textcolor{comment}{//=================================================================================================}}
+\DoxyCodeLine{00019\ \textcolor{comment}{//\ \ Unary\ negation\ operators}}
+\DoxyCodeLine{00020\ \textcolor{comment}{//=================================================================================================}}
+\DoxyCodeLine{00021\ \textcolor{keyword}{template}\ <\ concepts::tensor\_data\ T\ >}
+\DoxyCodeLine{00022\ [[nodiscard]]\ \textcolor{keyword}{inline}\ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{decltype}(\textcolor{keyword}{auto})}
+\DoxyCodeLine{00023\ \textcolor{keyword}{operator}\ -\/\ (\ \textcolor{keyword}{const}\ T\&\ t\ )\ \textcolor{keyword}{noexcept}(\ \textcolor{keyword}{noexcept}(\ operations::template\ negation<T>::negate(\ t\ )\ )\ )}
+\DoxyCodeLine{00024\ \{}
+\DoxyCodeLine{00025\ \ \ \textcolor{keywordflow}{return}\ operations::template\ negation<T>::negate(\ t\ );}
+\DoxyCodeLine{00026\ \}}
+\DoxyCodeLine{00027\ }
+\DoxyCodeLine{00028\ \textcolor{comment}{//=================================================================================================}}
+\DoxyCodeLine{00029\ \textcolor{comment}{//\ \ Unary\ transpose\ operators}}
+\DoxyCodeLine{00030\ \textcolor{comment}{//=================================================================================================}}
+\DoxyCodeLine{00031\ \textcolor{keyword}{template}\ <\ concepts::matrix\_data\ M\ >}
+\DoxyCodeLine{00032\ [[nodiscard]]\ \textcolor{keyword}{inline}\ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{decltype}(\textcolor{keyword}{auto})}
+\DoxyCodeLine{00033\ \mbox{\hyperlink{namespacestd_1_1math_aad19d9284c196e0f59cf9a4e03794b99}{trans}}(\ \textcolor{keyword}{const}\ M\&\ m\ )\ \textcolor{keyword}{noexcept}(\ \textcolor{keyword}{noexcept}(\ operations::template\ transpose\_matrix<M>::trans(\ m\ )\ )\ )}
+\DoxyCodeLine{00034\ \{}
+\DoxyCodeLine{00035\ \ \ \textcolor{keywordflow}{return}\ operations::template\ transpose\_matrix<M>::trans(\ m\ );}
+\DoxyCodeLine{00036\ \}}
+\DoxyCodeLine{00037\ }
+\DoxyCodeLine{00038\ \textcolor{keyword}{template}\ <\ concepts::vector\_data\ V\ >}
+\DoxyCodeLine{00039\ [[nodiscard]]\ \textcolor{keyword}{inline}\ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{decltype}(\textcolor{keyword}{auto})}
+\DoxyCodeLine{00040\ \mbox{\hyperlink{namespacestd_1_1math_aad19d9284c196e0f59cf9a4e03794b99}{trans}}(\ \textcolor{keyword}{const}\ V\&\ v\ )\ \textcolor{keyword}{noexcept}(\ \textcolor{keyword}{noexcept}(\ operations::template\ transpose\_vector<V>::trans(\ v\ )\ )\ )}
+\DoxyCodeLine{00041\ \{}
+\DoxyCodeLine{00042\ \ \ \textcolor{keywordflow}{return}\ operations::template\ transpose\_vector<V>::trans(\ v\ );}
+\DoxyCodeLine{00043\ \}}
+\DoxyCodeLine{00044\ }
+\DoxyCodeLine{00045\ \textcolor{comment}{//=================================================================================================}}
+\DoxyCodeLine{00046\ \textcolor{comment}{//\ \ Unary\ conjugate\ transpose\ operators}}
+\DoxyCodeLine{00047\ \textcolor{comment}{//=================================================================================================}}
+\DoxyCodeLine{00048\ \textcolor{keyword}{template}\ <\ concepts::matrix\_data\ M\ >}
+\DoxyCodeLine{00049\ [[nodiscard]]\ \textcolor{keyword}{inline}\ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{decltype}(\textcolor{keyword}{auto})}
+\DoxyCodeLine{00050\ \mbox{\hyperlink{namespacestd_1_1math_a381ab766e72b583fd5859302b2c643b2}{conj}}(\ \textcolor{keyword}{const}\ M\&\ m\ )\ \textcolor{keyword}{noexcept}(\ \textcolor{keyword}{noexcept}(\ operations::template\ conjugate\_matrix<M>::conjugate(\ m\ )\ )\ )}
+\DoxyCodeLine{00051\ \{}
+\DoxyCodeLine{00052\ \ \ \textcolor{keywordflow}{return}\ operations::template\ conjugate\_matrix<M>::conjugate(\ m\ );}
+\DoxyCodeLine{00053\ \}}
+\DoxyCodeLine{00054\ }
+\DoxyCodeLine{00055\ \textcolor{keyword}{template}\ <\ concepts::vector\_data\ V\ >}
+\DoxyCodeLine{00056\ [[nodiscard]]\ \textcolor{keyword}{inline}\ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{decltype}(\textcolor{keyword}{auto})}
+\DoxyCodeLine{00057\ \mbox{\hyperlink{namespacestd_1_1math_a381ab766e72b583fd5859302b2c643b2}{conj}}(\ \textcolor{keyword}{const}\ V\&\ v\ )\ \textcolor{keyword}{noexcept}(\ \textcolor{keyword}{noexcept}(\ operations::template\ conjugate\_vector<V>::conjugate(\ v\ )\ )\ )}
+\DoxyCodeLine{00058\ \{}
+\DoxyCodeLine{00059\ \ \ \textcolor{keywordflow}{return}\ operations::template\ conjugate\_vector<V>::conjugate(\ v\ );}
+\DoxyCodeLine{00060\ \}}
+\DoxyCodeLine{00061\ }
+\DoxyCodeLine{00062\ \textcolor{comment}{//=================================================================================================}}
+\DoxyCodeLine{00063\ \textcolor{comment}{//\ \ Binary\ addition\ operators}}
+\DoxyCodeLine{00064\ \textcolor{comment}{//=================================================================================================}}
+\DoxyCodeLine{00065\ \textcolor{keyword}{template}\ <\ concepts::tensor\_data\ T1,\ concepts::tensor\_data\ T2\ >}
+\DoxyCodeLine{00066\ [[nodiscard]]\ \textcolor{keyword}{inline}\ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{decltype}(\textcolor{keyword}{auto})}
+\DoxyCodeLine{00067\ \textcolor{keyword}{operator}\ +\ (\ \textcolor{keyword}{const}\ T1\&\ t1,\ \textcolor{keyword}{const}\ T2\&\ t2\ )\ \textcolor{keyword}{noexcept}(\ \textcolor{keyword}{noexcept}(\ operations::template\ addition<T1,T2>::add(\ t1,\ t2\ )\ )\ )}
+\DoxyCodeLine{00068\ \{}
+\DoxyCodeLine{00069\ \ \ \textcolor{keywordflow}{return}\ operations::template\ addition<T1,T2>::add(\ t1,\ t2\ );}
+\DoxyCodeLine{00070\ \}}
+\DoxyCodeLine{00071\ }
+\DoxyCodeLine{00072\ \textcolor{comment}{//=================================================================================================}}
+\DoxyCodeLine{00073\ \textcolor{comment}{//\ \ Binary\ addition\ assignment\ operators}}
+\DoxyCodeLine{00074\ \textcolor{comment}{//=================================================================================================}}
+\DoxyCodeLine{00075\ \textcolor{keyword}{template}\ <\ concepts::tensor\_data\ T1,\ concepts::tensor\_data\ T2\ >}
+\DoxyCodeLine{00076\ [[nodiscard]]\ \textcolor{keyword}{inline}\ \textcolor{keyword}{constexpr}\ T1\&}
+\DoxyCodeLine{00077\ \mbox{\hyperlink{namespacestd_1_1math_ac1efb74b1ddfd4881a4cbbe111804abc}{operator\ +=\ }}(\ T1\&\ t1,\ \textcolor{keyword}{const}\ T2\&\ t2\ )\ \textcolor{keyword}{noexcept}(\ \textcolor{keyword}{noexcept}(\ operations::template\ addition<T1,T2>::add(\ t1,\ t2\ )\ )\ )}
+\DoxyCodeLine{00078\ \ \ \textcolor{keyword}{requires}\ is\_convertible\_v<\ decltype(\ declval<typename\ T1::value\_type>()\ +\ declval<typename\ T2::value\_type>()\ ),\ \textcolor{keyword}{typename}\ T1::element\_type\ >}
+\DoxyCodeLine{00079\ \{}
+\DoxyCodeLine{00080\ \ \ \textcolor{keywordflow}{return}\ operations::template\ addition<T1,T2>::add(\ t1,\ t2\ );}
+\DoxyCodeLine{00081\ \}}
+\DoxyCodeLine{00082\ }
+\DoxyCodeLine{00083\ \textcolor{comment}{//=================================================================================================}}
+\DoxyCodeLine{00084\ \textcolor{comment}{//\ \ Binary\ subtraction\ operators}}
+\DoxyCodeLine{00085\ \textcolor{comment}{//=================================================================================================}}
+\DoxyCodeLine{00086\ \textcolor{keyword}{template}\ <\ concepts::tensor\_data\ T1,\ concepts::tensor\_data\ T2\ >}
+\DoxyCodeLine{00087\ [[nodiscard]]\ \textcolor{keyword}{inline}\ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{decltype}(\textcolor{keyword}{auto})}
+\DoxyCodeLine{00088\ \textcolor{keyword}{operator}\ -\/\ (\ \textcolor{keyword}{const}\ T1\&\ t1,\ \textcolor{keyword}{const}\ T2\&\ t2\ )\ \textcolor{keyword}{noexcept}(\ \textcolor{keyword}{noexcept}(\ operations::template\ subtraction<T1,T2>::subtract(\ t1,\ t2\ )\ )\ )}
+\DoxyCodeLine{00089\ \{}
+\DoxyCodeLine{00090\ \ \ \textcolor{keywordflow}{return}\ operations::template\ subtraction<T1,T2>::subtract(\ t1,\ t2\ );}
+\DoxyCodeLine{00091\ \}}
+\DoxyCodeLine{00092\ }
+\DoxyCodeLine{00093\ \textcolor{comment}{//=================================================================================================}}
+\DoxyCodeLine{00094\ \textcolor{comment}{//\ \ Binary\ subtraction\ assignment\ operators}}
+\DoxyCodeLine{00095\ \textcolor{comment}{//=================================================================================================}}
+\DoxyCodeLine{00096\ \textcolor{keyword}{template}\ <\ concepts::tensor\_data\ T1,\ concepts::tensor\_data\ T2\ >}
+\DoxyCodeLine{00097\ [[nodiscard]]\ \textcolor{keyword}{inline}\ \textcolor{keyword}{constexpr}\ T1\&}
+\DoxyCodeLine{00098\ \mbox{\hyperlink{namespacestd_1_1math_a1c2d3f15db6c82288d26d64023154241}{operator\ -\/=\ }}(\ T1\&\ t1,\ \textcolor{keyword}{const}\ T2\&\ t2\ )\ \textcolor{keyword}{noexcept}(\ \textcolor{keyword}{noexcept}(\ operations::template\ subtraction<T1,T2>::subtract(\ t1,\ t2\ )\ )\ )}
+\DoxyCodeLine{00099\ \ \ \textcolor{keyword}{requires}\ is\_convertible\_v<\ decltype(\ declval<typename\ T1::value\_type>()\ -\/\ declval<typename\ T2::value\_type>()\ ),\ \textcolor{keyword}{typename}\ T1::element\_type\ >}
+\DoxyCodeLine{00100\ \{}
+\DoxyCodeLine{00101\ \ \ \textcolor{keywordflow}{return}\ operations::template\ subtraction<T1,T2>::subtract(\ t1,\ t2\ );}
+\DoxyCodeLine{00102\ \}}
+\DoxyCodeLine{00103\ }
+\DoxyCodeLine{00104\ \textcolor{comment}{//=================================================================================================}}
+\DoxyCodeLine{00105\ \textcolor{comment}{//\ \ Scalar\ pre-\/multiplication\ operators}}
+\DoxyCodeLine{00106\ \textcolor{comment}{//=================================================================================================}}
+\DoxyCodeLine{00107\ \textcolor{keyword}{template}\ <\ \textcolor{keyword}{class}\ S,\ concepts::tensor\_data\ T\ >}
+\DoxyCodeLine{00108\ [[nodiscard]]\ \textcolor{keyword}{inline}\ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{decltype}(\textcolor{keyword}{auto})}
+\DoxyCodeLine{00109\ \textcolor{keyword}{operator}\ *\ (\ \textcolor{keyword}{const}\ S\&\ s,\ \textcolor{keyword}{const}\ T\&\ t\ )}
+\DoxyCodeLine{00110\ \ \ \textcolor{keyword}{noexcept}(\ \textcolor{keyword}{noexcept}(\ operations::template\ scalar\_product<S,T>::prod(s,t)\ )\ )}
+\DoxyCodeLine{00111\ \ \ \textcolor{keyword}{requires}\ \textcolor{keyword}{requires}\ \{\ s\ *\ declval<\ typename\ T::value\_type\ >();\ \}\ \&\&}
+\DoxyCodeLine{00112\ \ \ \ \ \ \ \ \ \ \ \ (\ !concepts::tensor\_data<S>\ )}
+\DoxyCodeLine{00113\ \{}
+\DoxyCodeLine{00114\ \ \ \textcolor{keywordflow}{return}\ operations::template\ scalar\_product<S,T>::prod(s,t);}
+\DoxyCodeLine{00115\ \}}
+\DoxyCodeLine{00116\ }
+\DoxyCodeLine{00117\ \textcolor{comment}{//=================================================================================================}}
+\DoxyCodeLine{00118\ \textcolor{comment}{//\ \ Scalar\ post-\/multiplication\ operators}}
+\DoxyCodeLine{00119\ \textcolor{comment}{//=================================================================================================}}
+\DoxyCodeLine{00120\ \textcolor{keyword}{template}\ <\ concepts::tensor\_data\ T,\ \textcolor{keyword}{class}\ S\ >}
+\DoxyCodeLine{00121\ [[nodiscard]]\ \textcolor{keyword}{inline}\ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{decltype}(\textcolor{keyword}{auto})}
+\DoxyCodeLine{00122\ \textcolor{keyword}{operator}\ *\ (\ \textcolor{keyword}{const}\ T\&\ t,\ \textcolor{keyword}{const}\ S\&\ s\ )}
+\DoxyCodeLine{00123\ \ \ \textcolor{keyword}{noexcept}(\ \textcolor{keyword}{noexcept}(\ operations::template\ scalar\_product<S,T>::prod(t,s)\ )\ )}
+\DoxyCodeLine{00124\ \ \ \textcolor{keyword}{requires}\ \textcolor{keyword}{requires}\ \{\ declval<\ typename\ T::value\_type\ >()\ *\ s;\ \}\ \&\&}
+\DoxyCodeLine{00125\ \ \ \ \ \ \ \ \ \ \ \ (\ !concepts::tensor\_data<S>\ )}
+\DoxyCodeLine{00126\ \{}
+\DoxyCodeLine{00127\ \ \ \textcolor{keywordflow}{return}\ operations::template\ scalar\_product<S,T>::prod(t,s);}
+\DoxyCodeLine{00128\ \}}
+\DoxyCodeLine{00129\ }
+\DoxyCodeLine{00130\ \textcolor{comment}{//=================================================================================================}}
+\DoxyCodeLine{00131\ \textcolor{comment}{//\ \ Scalar\ post-\/multiplication\ assignment\ operators}}
+\DoxyCodeLine{00132\ \textcolor{comment}{//=================================================================================================}}
+\DoxyCodeLine{00133\ \textcolor{keyword}{template}\ <\ concepts::tensor\_data\ T,\ \textcolor{keyword}{class}\ S\ >}
+\DoxyCodeLine{00134\ [[nodiscard]]\ \textcolor{keyword}{inline}\ \textcolor{keyword}{constexpr}\ T\&}
+\DoxyCodeLine{00135\ \mbox{\hyperlink{namespacestd_1_1math_adc521aa60c4af6a8df03dd0343535a7c}{operator\ *=\ }}(\ T\&\ t,\ \textcolor{keyword}{const}\ S\&\ s\ )}
+\DoxyCodeLine{00136\ \ \ \textcolor{keyword}{noexcept}(\ \textcolor{keyword}{noexcept}(\ operations::template\ scalar\_product<S,T>::prod(t,s)\ )\ )}
+\DoxyCodeLine{00137\ \ \ \textcolor{keyword}{requires}\ \textcolor{keyword}{requires}\ \{\ declval<\ typename\ T::value\_type\ >()\ *\ s;\ \}\ \&\&}
+\DoxyCodeLine{00138\ \ \ \ \ \ \ \ \ \ \ \ (\ !concepts::tensor\_data<S>\ )\ \&\&}
+\DoxyCodeLine{00139\ \ \ is\_convertible\_v<\ \textcolor{keyword}{decltype}(\ declval<typename\ T::value\_type>()\ *\ declval<S>()\ ),\ \textcolor{keyword}{typename}\ T::element\_type\ >}
+\DoxyCodeLine{00140\ \{}
+\DoxyCodeLine{00141\ \ \ \textcolor{keywordflow}{return}\ operations::template\ scalar\_product<S,T>::prod(t,s);}
+\DoxyCodeLine{00142\ \}}
+\DoxyCodeLine{00143\ }
+\DoxyCodeLine{00144\ \textcolor{comment}{//=================================================================================================}}
+\DoxyCodeLine{00145\ \textcolor{comment}{//\ \ Scalar\ divison\ operators}}
+\DoxyCodeLine{00146\ \textcolor{comment}{//=================================================================================================}}
+\DoxyCodeLine{00147\ \textcolor{keyword}{template}\ <\ concepts::tensor\_data\ T,\ \textcolor{keyword}{class}\ S\ >}
+\DoxyCodeLine{00148\ [[nodiscard]]\ \textcolor{keyword}{inline}\ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{decltype}(\textcolor{keyword}{auto})}
+\DoxyCodeLine{00149\ \textcolor{keyword}{operator}\ /\ (\ \textcolor{keyword}{const}\ T\&\ t,\ \textcolor{keyword}{const}\ S\&\ s\ )}
+\DoxyCodeLine{00150\ \ \ \textcolor{keyword}{noexcept}(\ \textcolor{keyword}{noexcept}(\ operations::template\ scalar\_division<T,S>::divide(t,s)\ )\ )}
+\DoxyCodeLine{00151\ \ \ \textcolor{keyword}{requires}\ \textcolor{keyword}{requires}\ \{\ declval<\ typename\ T::value\_type\ >()\ /\ s;\ \}}
+\DoxyCodeLine{00152\ \{}
+\DoxyCodeLine{00153\ \ \ \textcolor{keywordflow}{return}\ operations::template\ scalar\_division<T,S>::divide(t,s);}
+\DoxyCodeLine{00154\ \}}
+\DoxyCodeLine{00155\ }
+\DoxyCodeLine{00156\ \textcolor{comment}{//=================================================================================================}}
+\DoxyCodeLine{00157\ \textcolor{comment}{//\ \ Scalar\ divison\ assignment\ operators}}
+\DoxyCodeLine{00158\ \textcolor{comment}{//=================================================================================================}}
+\DoxyCodeLine{00159\ \textcolor{keyword}{template}\ <\ concepts::tensor\_data\ T,\ \textcolor{keyword}{class}\ S\ >}
+\DoxyCodeLine{00160\ [[nodiscard]]\ \textcolor{keyword}{inline}\ \textcolor{keyword}{constexpr}\ T\&}
+\DoxyCodeLine{00161\ \mbox{\hyperlink{namespacestd_1_1math_a7abbafdd1c2f2304b244108162cf33c0}{operator\ /=\ }}(\ T\&\ t,\ \textcolor{keyword}{const}\ S\&\ s\ )}
+\DoxyCodeLine{00162\ \ \ \textcolor{keyword}{noexcept}(\ \textcolor{keyword}{noexcept}(\ operations::template\ scalar\_division<T,S>::divide(t,s)\ )\ )}
+\DoxyCodeLine{00163\ \ \ \textcolor{keyword}{requires}\ \textcolor{keyword}{requires}\ \{\ declval<\ typename\ T::value\_type\ >()\ /\ s;\ \}\ \&\&}
+\DoxyCodeLine{00164\ \ \ \ \ \ \ \ \ \ \ \ (\ !concepts::tensor\_data<S>\ )\ \&\&}
+\DoxyCodeLine{00165\ \ \ is\_convertible\_v<\ \textcolor{keyword}{decltype}(\ declval<typename\ T::value\_type>()\ /\ declval<S>()\ ),\ \textcolor{keyword}{typename}\ T::element\_type\ >}
+\DoxyCodeLine{00166\ \{}
+\DoxyCodeLine{00167\ \ \ \textcolor{keywordflow}{return}\ operations::template\ scalar\_division<T,S>::divide(t,s);}
+\DoxyCodeLine{00168\ \}}
+\DoxyCodeLine{00169\ }
+\DoxyCodeLine{00170\ \textcolor{comment}{//=================================================================================================}}
+\DoxyCodeLine{00171\ \textcolor{comment}{//\ \ Inner\ product}}
+\DoxyCodeLine{00172\ \textcolor{comment}{//=================================================================================================}}
+\DoxyCodeLine{00173\ \textcolor{keyword}{template}\ <\ concepts::vector\_data\ V1,\ concepts::vector\_data\ V2\ >}
+\DoxyCodeLine{00174\ [[nodiscard]]\ \textcolor{keyword}{inline}\ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{decltype}(\textcolor{keyword}{auto})}
+\DoxyCodeLine{00175\ \mbox{\hyperlink{namespacestd_1_1math_ae595d72c25d55b2d8d8086ef2b65bfe2}{inner\_prod}}(\ \textcolor{keyword}{const}\ V1\&\ v1,\ \textcolor{keyword}{const}\ V2\&\ v2\ )\ \textcolor{keyword}{noexcept}(\ \textcolor{keyword}{noexcept}(\ operations::template\ inner\_product<V1,V2>::prod(\ v1,\ v2\ )\ )\ )}
+\DoxyCodeLine{00176\ \{}
+\DoxyCodeLine{00177\ \ \ \textcolor{keywordflow}{return}\ operations::template\ inner\_product<V1,V2>::prod(\ v1,\ v2\ );}
+\DoxyCodeLine{00178\ \}}
+\DoxyCodeLine{00179\ }
+\DoxyCodeLine{00180\ \textcolor{comment}{//=================================================================================================}}
+\DoxyCodeLine{00181\ \textcolor{comment}{//\ \ Outer\ product}}
+\DoxyCodeLine{00182\ \textcolor{comment}{//=================================================================================================}}
+\DoxyCodeLine{00183\ \textcolor{keyword}{template}\ <\ concepts::vector\_data\ V1,\ concepts::vector\_data\ V2\ >}
+\DoxyCodeLine{00184\ [[nodiscard]]\ \textcolor{keyword}{inline}\ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{decltype}(\textcolor{keyword}{auto})}
+\DoxyCodeLine{00185\ \mbox{\hyperlink{namespacestd_1_1math_a16d9bb61f2dd78e168c6318baed2625b}{outer\_prod}}(\ \textcolor{keyword}{const}\ V1\&\ v1,\ \textcolor{keyword}{const}\ V2\&\ v2\ )\ \textcolor{keyword}{noexcept}(\ \textcolor{keyword}{noexcept}(\ operations::template\ outer\_product<V1,V2>::prod(\ v1,\ v2\ )\ )\ )}
+\DoxyCodeLine{00186\ \{}
+\DoxyCodeLine{00187\ \ \ \textcolor{keywordflow}{return}\ operations::template\ outer\_product<V1,V2>::prod(\ v1,\ v2\ );}
+\DoxyCodeLine{00188\ \}}
+\DoxyCodeLine{00189\ }
+\DoxyCodeLine{00190\ \textcolor{comment}{//=================================================================================================}}
+\DoxyCodeLine{00191\ \textcolor{comment}{//\ \ Vector\ Matrix\ product}}
+\DoxyCodeLine{00192\ \textcolor{comment}{//=================================================================================================}}
+\DoxyCodeLine{00193\ \textcolor{keyword}{template}\ <\ concepts::vector\_data\ V,\ concepts::matrix\_data\ M\ >}
+\DoxyCodeLine{00194\ [[nodiscard]]\ \textcolor{keyword}{inline}\ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{decltype}(\textcolor{keyword}{auto})}
+\DoxyCodeLine{00195\ \textcolor{keyword}{operator}\ *\ (\ \textcolor{keyword}{const}\ V\&\ v,\ \textcolor{keyword}{const}\ M\&\ m\ )}
+\DoxyCodeLine{00196\ \ \ \textcolor{keyword}{noexcept}(\ \textcolor{keyword}{noexcept}(\ operations::template\ vector\_matrix\_product<V,M>::prod(v,m)\ )\ )}
+\DoxyCodeLine{00197\ \{}
+\DoxyCodeLine{00198\ \ \ \textcolor{keywordflow}{return}\ operations::template\ vector\_matrix\_product<V,M>::prod(v,m);}
+\DoxyCodeLine{00199\ \}}
+\DoxyCodeLine{00200\ }
+\DoxyCodeLine{00201\ \textcolor{comment}{//=================================================================================================}}
+\DoxyCodeLine{00202\ \textcolor{comment}{//\ \ Vector\ Matrix\ multiplication\ assignment}}
+\DoxyCodeLine{00203\ \textcolor{comment}{//=================================================================================================}}
+\DoxyCodeLine{00204\ \textcolor{keyword}{template}\ <\ concepts::vector\_data\ V,\ concepts::matrix\_data\ M\ >}
+\DoxyCodeLine{00205\ [[nodiscard]]\ \textcolor{keyword}{inline}\ \textcolor{keyword}{constexpr}\ V\&}
+\DoxyCodeLine{00206\ \mbox{\hyperlink{namespacestd_1_1math_adc521aa60c4af6a8df03dd0343535a7c}{operator\ *=\ }}(\ V\&\ v,\ \textcolor{keyword}{const}\ M\&\ m\ )}
+\DoxyCodeLine{00207\ \ \ \textcolor{keyword}{noexcept}(\ \textcolor{keyword}{noexcept}(\ operations::template\ vector\_matrix\_product<V,M>::prod(v,m)\ )\ )}
+\DoxyCodeLine{00208\ \ \ \textcolor{keyword}{requires}\ detail::extents\_may\_be\_equal\_v<\ typename\ V::extents\_type,\ typename\ decltype(\ const\_cast<const\ V\&>(v)\ *\ m\ )::extents\_type\ >}
+\DoxyCodeLine{00209\ \{}
+\DoxyCodeLine{00210\ \ \ \textcolor{keywordflow}{return}\ operations::template\ vector\_matrix\_product<V,M>::prod(v,m);}
+\DoxyCodeLine{00211\ \}}
+\DoxyCodeLine{00212\ }
+\DoxyCodeLine{00213\ \textcolor{comment}{//=================================================================================================}}
+\DoxyCodeLine{00214\ \textcolor{comment}{//\ \ Matrix\ Vector\ product}}
+\DoxyCodeLine{00215\ \textcolor{comment}{//=================================================================================================}}
+\DoxyCodeLine{00216\ \textcolor{keyword}{template}\ <\ concepts::matrix\_data\ M,\ concepts::vector\_data\ V\ >}
+\DoxyCodeLine{00217\ [[nodiscard]]\ \textcolor{keyword}{inline}\ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{decltype}(\textcolor{keyword}{auto})}
+\DoxyCodeLine{00218\ \textcolor{keyword}{operator}\ *\ (\ \textcolor{keyword}{const}\ M\&\ m,\ \textcolor{keyword}{const}\ V\&\ v\ )}
+\DoxyCodeLine{00219\ \ \ \textcolor{keyword}{noexcept}(\ \textcolor{keyword}{noexcept}(\ operations::template\ vector\_matrix\_product<V,M>::prod(m,v)\ )\ )}
+\DoxyCodeLine{00220\ \{}
+\DoxyCodeLine{00221\ \ \ \textcolor{keywordflow}{return}\ operations::template\ vector\_matrix\_product<V,M>::prod(m,v);}
+\DoxyCodeLine{00222\ \}}
+\DoxyCodeLine{00223\ }
+\DoxyCodeLine{00224\ \textcolor{comment}{//=================================================================================================}}
+\DoxyCodeLine{00225\ \textcolor{comment}{//\ \ Matrix\ Matrix\ product}}
+\DoxyCodeLine{00226\ \textcolor{comment}{//=================================================================================================}}
+\DoxyCodeLine{00227\ \textcolor{keyword}{template}\ <\ concepts::matrix\_data\ M1,\ concepts::matrix\_data\ M2\ >}
+\DoxyCodeLine{00228\ [[nodiscard]]\ \textcolor{keyword}{inline}\ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{decltype}(\textcolor{keyword}{auto})}
+\DoxyCodeLine{00229\ \textcolor{keyword}{operator}\ *\ (\ \textcolor{keyword}{const}\ M1\&\ m1,\ \textcolor{keyword}{const}\ M2\&\ m2\ )}
+\DoxyCodeLine{00230\ \ \ \textcolor{keyword}{noexcept}(\ \textcolor{keyword}{noexcept}(\ operations::template\ matrix\_matrix\_product<M1,M2>::prod(m1,m2)\ )\ )}
+\DoxyCodeLine{00231\ \{}
+\DoxyCodeLine{00232\ \ \ \textcolor{keywordflow}{return}\ operations::template\ matrix\_matrix\_product<M1,M2>::prod(m1,m2);}
+\DoxyCodeLine{00233\ \}}
+\DoxyCodeLine{00234\ }
+\DoxyCodeLine{00235\ \textcolor{keyword}{template}\ <\ concepts::matrix\_data\ M1,\ concepts::matrix\_data\ M2\ >}
+\DoxyCodeLine{00236\ [[nodiscard]]\ \textcolor{keyword}{inline}\ \textcolor{keyword}{constexpr}\ M1\&}
+\DoxyCodeLine{00237\ \mbox{\hyperlink{namespacestd_1_1math_adc521aa60c4af6a8df03dd0343535a7c}{operator\ *=\ }}(\ M1\&\ m1,\ \textcolor{keyword}{const}\ M2\&\ m2\ )}
+\DoxyCodeLine{00238\ \ \ \textcolor{keyword}{noexcept}(\ \textcolor{keyword}{noexcept}(\ operations::template\ matrix\_matrix\_product<M1,M2>::prod(m1,m2)\ )\ )}
+\DoxyCodeLine{00239\ \ \ \textcolor{keyword}{requires}\ detail::extents\_may\_be\_equal\_v<\ typename\ M1::extents\_type,\ typename\ decltype(\ const\_cast<const\ M1\&>(m1)\ *\ m2\ )::extents\_type\ >}
+\DoxyCodeLine{00240\ \{}
+\DoxyCodeLine{00241\ \ \ \textcolor{keywordflow}{return}\ operations::template\ matrix\_matrix\_product<M1,M2>::prod(m1,m2);}
+\DoxyCodeLine{00242\ \}}
+\DoxyCodeLine{00243\ }
+\DoxyCodeLine{00244\ \}\ \ \ \ \ \ \ \textcolor{comment}{//-\/\ math\ namespace}}
+\DoxyCodeLine{00245\ \}\ \ \ \ \ \ \ \textcolor{comment}{//-\/\ std\ namespace}}
+\DoxyCodeLine{00246\ \textcolor{preprocessor}{\#endif\ \ }\textcolor{comment}{//-\/\ LINEAR\_ALGEBRA\_ARITHMETIC\_OPERATORS\_HPP}}
+
+\end{DoxyCode}

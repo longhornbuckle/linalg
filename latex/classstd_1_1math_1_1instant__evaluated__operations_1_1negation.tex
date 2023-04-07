@@ -1,4 +1,4 @@
-\hypertarget{classstd_1_1math_1_1instant__evaluated__operations_1_1negation}{}\doxysection{std\+::math\+::instant\+\_\+evaluated\+\_\+operations\+::negation$<$ T $>$ Class Template Reference}
+\hypertarget{classstd_1_1math_1_1instant__evaluated__operations_1_1negation}{}\doxysection{std\+::math\+::instant\+\_\+evaluated\+\_\+operations\+::negation\texorpdfstring{$<$}{<} T \texorpdfstring{$>$}{>} Class Template Reference}
 \label{classstd_1_1math_1_1instant__evaluated__operations_1_1negation}\index{std::math::instant\_evaluated\_operations::negation$<$ T $>$@{std::math::instant\_evaluated\_operations::negation$<$ T $>$}}
 
 
@@ -11,25 +11,29 @@ Defines negation operation on a tensor.
 
 
 
-Collaboration diagram for std\+::math\+::instant\+\_\+evaluated\+\_\+operations\+::negation$<$ T $>$\+:
+Collaboration diagram for std\+::math\+::instant\+\_\+evaluated\+\_\+operations\+::negation\texorpdfstring{$<$}{<} T \texorpdfstring{$>$}{>}\+:
 \nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
-\includegraphics[width=208pt]{classstd_1_1math_1_1instant__evaluated__operations_1_1negation__coll__graph}
+\includegraphics[width=194pt]{classstd_1_1math_1_1instant__evaluated__operations_1_1negation__coll__graph}
 \end{center}
 \end{figure}
 \doxysubsection*{Public Types}
 \begin{DoxyCompactItemize}
 \item 
-using \mbox{\hyperlink{classstd_1_1math_1_1instant__evaluated__operations_1_1negation_a0abbbb64f6d7eae2d8516a068fd20259}{tensor\+\_\+type}} = \mbox{\hyperlink{namespacestd_1_1math_a53983004b9afa750d13aff5975152bf2}{T}}
+using \mbox{\hyperlink{classstd_1_1math_1_1instant__evaluated__operations_1_1negation_a0abbbb64f6d7eae2d8516a068fd20259}{tensor\+\_\+type}} = T
 \begin{DoxyCompactList}\small\item\em Input tensor type. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Static Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+static constexpr auto \mbox{\hyperlink{classstd_1_1math_1_1instant__evaluated__operations_1_1negation_a871eebfdb4d82ac0b7f963870b0438bc}{negate}} (const \mbox{\hyperlink{classstd_1_1math_1_1instant__evaluated__operations_1_1negation_a0abbbb64f6d7eae2d8516a068fd20259}{tensor\+\_\+type}} \&t) noexcept(noexcept(\mbox{\hyperlink{namespacestd_1_1math_1_1detail_ae5eb3cf5ea2a6e93d691bfd9f701768e}{detail\+::make\+\_\+from\+\_\+tuple}}$<$ result\+\_\+tensor\+\_\+type $>$(collect\+\_\+ctor\+\_\+args(declval$<$ const \mbox{\hyperlink{classstd_1_1math_1_1instant__evaluated__operations_1_1negation_a0abbbb64f6d7eae2d8516a068fd20259}{tensor\+\_\+type}} \& $>$(), \mbox{[}\&t\mbox{]}$<$ class ... Index\+Type $>$(Index\+Type ... indices) constexpr noexcept \{ return -\/(t\mbox{[}indices ...\mbox{]});\}))))
+\begin{DoxyCompactList}\small\item\em Returns -\/1 $\ast$ tensor. \end{DoxyCompactList}\end{DoxyCompactItemize}
 
 
 \doxysubsection{Detailed Description}
 \subsubsection*{template$<$concepts\+::tensor\+\_\+data T$>$\newline
 class std\+::math\+::instant\+\_\+evaluated\+\_\+operations\+::negation$<$ T $>$}
-
 Defines negation operation on a tensor. 
 
 \doxysubsection{Member Typedef Documentation}
@@ -38,11 +42,25 @@ Defines negation operation on a tensor.
 \index{tensor\_type@{tensor\_type}!std::math::instant\_evaluated\_operations::negation$<$ T $>$@{std::math::instant\_evaluated\_operations::negation$<$ T $>$}}
 \doxysubsubsection{\texorpdfstring{tensor\_type}{tensor\_type}}
 {\footnotesize\ttfamily template$<$concepts\+::tensor\+\_\+data T$>$ \\
-using \mbox{\hyperlink{classstd_1_1math_1_1instant__evaluated__operations_1_1negation}{std\+::math\+::instant\+\_\+evaluated\+\_\+operations\+::negation}}$<$ \mbox{\hyperlink{namespacestd_1_1math_a53983004b9afa750d13aff5975152bf2}{T}} $>$\+::\mbox{\hyperlink{classstd_1_1math_1_1instant__evaluated__operations_1_1negation_a0abbbb64f6d7eae2d8516a068fd20259}{tensor\+\_\+type}} =  \mbox{\hyperlink{namespacestd_1_1math_a53983004b9afa750d13aff5975152bf2}{T}}}
+using \mbox{\hyperlink{classstd_1_1math_1_1instant__evaluated__operations_1_1negation}{std\+::math\+::instant\+\_\+evaluated\+\_\+operations\+::negation}}$<$ T $>$\+::tensor\+\_\+type =  T}
 
 
 
 Input tensor type. 
+
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classstd_1_1math_1_1instant__evaluated__operations_1_1negation_a871eebfdb4d82ac0b7f963870b0438bc}\label{classstd_1_1math_1_1instant__evaluated__operations_1_1negation_a871eebfdb4d82ac0b7f963870b0438bc}} 
+\index{std::math::instant\_evaluated\_operations::negation$<$ T $>$@{std::math::instant\_evaluated\_operations::negation$<$ T $>$}!negate@{negate}}
+\index{negate@{negate}!std::math::instant\_evaluated\_operations::negation$<$ T $>$@{std::math::instant\_evaluated\_operations::negation$<$ T $>$}}
+\doxysubsubsection{\texorpdfstring{negate()}{negate()}}
+{\footnotesize\ttfamily template$<$concepts\+::tensor\+\_\+data T$>$ \\
+static constexpr auto \mbox{\hyperlink{classstd_1_1math_1_1instant__evaluated__operations_1_1negation}{std\+::math\+::instant\+\_\+evaluated\+\_\+operations\+::negation}}$<$ T $>$\+::negate (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classstd_1_1math_1_1instant__evaluated__operations_1_1negation_a0abbbb64f6d7eae2d8516a068fd20259}{tensor\+\_\+type}} \&}]{t }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}, {\ttfamily [constexpr]}, {\ttfamily [noexcept]}}
+
+
+
+Returns -\/1 $\ast$ tensor. 
 
 
 

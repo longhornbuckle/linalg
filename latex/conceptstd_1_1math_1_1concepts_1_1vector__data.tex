@@ -1,0 +1,14 @@
+\hypertarget{conceptstd_1_1math_1_1concepts_1_1vector__data}{}\doxysection{std\+::math\+::concepts\+::vector\+\_\+data Concept Reference}
+\label{conceptstd_1_1math_1_1concepts_1_1vector__data}\index{std::math::concepts::vector\_data@{std::math::concepts::vector\_data}}
+
+
+{\ttfamily \#include $<$vector\+\_\+concepts.\+hpp$>$}
+
+\doxysubsection{Concept definition}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{keyword}{template}<\textcolor{keyword}{class}\ V>}
+\DoxyCodeLine{\textcolor{keyword}{concept\ }\mbox{\hyperlink{conceptstd_1_1math_1_1concepts_1_1vector__data}{std::math::concepts::vector\_data}}\ =\ \ \mbox{\hyperlink{conceptstd_1_1math_1_1concepts_1_1tensor__data}{tensor\_data<V>}}\ \&\&}
+\DoxyCodeLine{(\ V::extents\_type::rank()\ ==\ 1\ )}
+
+\end{DoxyCode}
