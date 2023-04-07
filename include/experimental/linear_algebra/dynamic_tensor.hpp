@@ -1280,4 +1280,4 @@ template < class T, size_t R, class Alloc, class L , class Access >
 
 }       //- math namespace
 }       //- std namespace
-#endif  //- LINEAR_ALGEBRA_FIXED_SIZE_MATRIX_ENGINE_HPP
+#endif  //- LINEAR_ALGEBRA_DYNAMIC_TENSOR_HPP
