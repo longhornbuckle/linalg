@@ -641,7 +641,7 @@ constexpr dr_tensor<T,R,Alloc,L,Access>::dr_tensor( extents_type s, Lambda&& lam
     // TODO: This requires reference returned from mdspan to be the address of the element
     ::new ( addressof( this->view_[ indices ... ] ) ) element_type( lambda( indices ... ) );
   };
-  detail::apply_all( this->view_, lambda_ctor, execution::unseq );
+  detail::apply_all( this->view_, lambda_ctor, LINALG_EXECUTION_UNSEQ );
 }
   
 template < class  T, size_t R, class Alloc, class L , class Access >
@@ -659,7 +659,7 @@ constexpr dr_tensor<T,R,Alloc,L,Access>::dr_tensor( extents_type s, extents_type
     // TODO: This requires reference returned from mdspan to be the address of the element
     ::new ( addressof( this->view_[ indices ... ] ) ) element_type( lambda( indices ... ) );
   };
-  detail::apply_all( this->view_, lambda_ctor, execution::unseq );
+  detail::apply_all( this->view_, lambda_ctor, LINALG_EXECUTION_UNSEQ );
 }
 
 template < class T, size_t R, class Alloc, class L , class Access >
@@ -1114,7 +1114,7 @@ constexpr void dr_tensor<T,R,Alloc,L,Access>::destroy_all()
   {
     if constexpr ( is_nothrow_destructible_v<element_type> )
     {
-      for_each( execution::unseq,
+      for_each( LINALG_EXECUTION_UNSEQ,
                 this->elems_,
                 this->elems_ + this->view_.size(),
                 []( const element_type& elem ) constexpr noexcept { elem.~element_type(); } );
@@ -1134,7 +1134,7 @@ inline void dr_tensor<T,R,Alloc,L,Access>::destroy_all_except()
   // Cache the last exception to be thrown
   exception_ptr eptr;
   // Attempt to destruct
-  for_each( execution::unseq,
+  for_each( LINALG_EXECUTION_UNSEQ,
             this->elems_,
             this->elems_ + this->view_.size(),
             [this,&eptr]( const element_type& elem ) constexpr { try { this->elem_.~element_type(); } catch ( ... ) { eptr = current_exception(); } } );
@@ -1153,7 +1153,7 @@ constexpr void dr_tensor<T,R,Alloc,L,Access>::construct_all()
 {
   if constexpr ( is_nothrow_constructible_v<element_type> )
   {
-    for_each( execution::unseq,
+    for_each( LINALG_EXECUTION_UNSEQ,
               this->elems_,
               this->elems_ + this->view_.size(),
               []( auto elem ) constexpr noexcept { ::new ( &elem ) element_type; } );
@@ -1173,7 +1173,7 @@ inline void dr_tensor<T,R,Alloc,L,Access>::construct_all_except()
   if constexpr ( is_trivially_destructible_v<element_type> )
   {
     // Attempt to construct
-    for_each( execution::unseq,
+    for_each( LINALG_EXECUTION_UNSEQ,
               this->elems_,
               this->elems_ + this->view_.size(),
               [&eptr]( auto elem ) constexpr { try { ::new (&elem) element_type; } catch ( ... ) { eptr = current_exception(); } } );
@@ -1200,7 +1200,7 @@ inline void dr_tensor<T,R,Alloc,L,Access>::construct_all_except()
     {
       // Attempt to destroy constructed elements.
       // If destruction also throws an exception, then just terminate.
-      for_each( execution::unseq,
+      for_each( LINALG_EXECUTION_UNSEQ,
                 this->elems_,
                 elem_except_ptr,
                 []( auto elem ) constexpr noexcept( is_nothrow_destructible_v<element_type> ){ elem.~element_type(); } );
@@ -1234,7 +1234,7 @@ dr_tensor<T,R,Alloc,L,Access>::resize_impl( extents_type new_size,
     auto destructor = [this]< class ... IndexType >( IndexType ... indices ) constexpr noexcept( is_nothrow_destructible_v<element_type> )
       { this->view_[ indices ... ].~element_type(); };
     // Destroy
-    detail::apply_all( destroy_subview, destructor, execution::unseq );
+    detail::apply_all( destroy_subview, destructor, LINALG_EXECUTION_UNSEQ );
     // Create subview of elements to be constructed
     auto construct_extent = [this,new_size]( SizeType index ) constexpr noexcept
     {
@@ -1248,7 +1248,7 @@ dr_tensor<T,R,Alloc,L,Access>::resize_impl( extents_type new_size,
     auto constructor = [this]< class ... IndexType >( IndexType ... indices ) constexpr noexcept( is_nothrow_default_constructible_v<element_type> )
       { ::new ( addressof( this->view( indices ... ) ) ) element_type(); };
     // Construct
-    detail::apply_all( construct_subview, constructor, execution::unseq );
+    detail::apply_all( construct_subview, constructor, LINALG_EXECUTION_UNSEQ );
   }
   // Create a new view
   this->view_ = this->create_view( new_size );
@@ -1261,7 +1261,7 @@ dr_tensor<T,R,Alloc,L,Access>::max_extents( extents_type extents_a, extents_type
   // Construct array to contain max
   array<index_type,extents_type::rank()> max_extents;
   // Iterate over each dimension and set max
-  for_each( execution::unseq,
+  for_each( LINALG_EXECUTION_UNSEQ,
             detail::faux_index_iterator<index_type>(0),
             detail::faux_index_iterator<index_type>( extents_type::rank() ),
             [&max_extents,&extents_a,&extents_b] ( index_type index ) constexpr noexcept
@@ -1280,4 +1280,4 @@ template < class T, size_t R, class Alloc, class L , class Access >
 
 }       //- math namespace
 }       //- std namespace
-#endif  //- LINEAR_ALGEBRA_DYNAMIC_TENSOR_HPP
+#endif  //- LINEAR_ALGEBRA_DYNAMIC_TENSOR_ENGINE_HPP
