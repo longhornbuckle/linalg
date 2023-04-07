@@ -242,14 +242,22 @@ inline constexpr bool is_defined_v = is_defined<T>::value;
 template < class T >
 struct is_unsequenced : public false_type { };
 
+#if LINALG_EXECUTION_POLICY
+
 template < >
 struct is_unsequenced< execution::parallel_unsequenced_policy > : public true_type { };
+
+#if ! is_same_v< decltype( LINALG_EXECUTION_UNSEQ ), execution::sequenced_policy >
 
 template < >
 struct is_unsequenced< execution::unsequenced_policy > : public true_type { };
 
+#endif
+
 template < class T >
 inline constexpr bool is_unsequenced_v = is_unsequenced<T>::value;
+
+#endif
 
 //==================================================================================================
 //  Apply All applies the lambda expression to all elements in the view
@@ -798,7 +806,7 @@ assign_view( ToView& to_view, const FromView& from_view )
                [ &to_view, &from_view ]< class ... Indices >( Indices ... indices )
                  constexpr noexcept( is_nothrow_convertible_v<typename decay_t<FromView>::reference,typename decay_t<ToView>::reference> )
                  { to_view[ indices ... ] = from_view[ indices ... ]; },
-               execution::unseq );
+               LINALG_EXECUTION_UNSEQq );
   }
   else
   {
@@ -808,7 +816,7 @@ assign_view( ToView& to_view, const FromView& from_view )
                  [ &to_view, &from_view ]< class ... Indices >( Indices ... indices )
                    constexpr noexcept( is_nothrow_convertible_v<typename decay_t<FromView>::reference,typename decay_t<ToView>::reference> )
                    { to_view[ indices ... ] = from_view[ indices ... ]; },
-                 execution::unseq );
+                 LINALG_EXECUTION_UNSEQ );
     }
     else [[unlikely]]
     {
@@ -836,7 +844,7 @@ copy_view( ToView& to_view, const FromView& from_view )
               [ &to_view, &from_view ]< class ... Indices >( Indices ... indices )
                 constexpr noexcept( is_nothrow_convertible_v<typename decay_t<FromView>::reference,typename decay_t<ToView>::reference> )
                 { ::new ( addressof( to_view[ indices ... ] ) ) typename ToView::element_type( from_view[ indices ... ] ); },
-              execution::unseq );
+              LINALG_EXECUTION_UNSEQ );
   }
   else
   {
@@ -846,7 +854,7 @@ copy_view( ToView& to_view, const FromView& from_view )
                 [ &to_view, &from_view ]< class ... Indices >( Indices ... indices )
                   constexpr noexcept( is_nothrow_convertible_v<typename decay_t<FromView>::reference,typename decay_t<ToView>::reference> )
                   { ::new ( addressof( to_view[ indices ... ] ) ) typename ToView::element_type( from_view[ indices ... ] ); },
-                execution::unseq );
+                LINALG_EXECUTION_UNSEQ );
     }
     else [[unlikely]]
     {
