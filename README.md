@@ -21,6 +21,16 @@ Acknowledgements
 ----------------
 This work essentially started out by examining what P1673 might look like if it incorporated mdspan and concepts. Along the way, I started to take very different directions and pretty much started over; however, some of the terminology is kept.
 
+Building
+--------
+This implementation is headers only.
+
+Testing
+-------
+Running provided tests requires CMake.
+- gcc-12
+  - Warning free with `-Wall -pedantic -Wextra  -Wno-unused-function -Wno-unused-variable -Wno-unused-but-set-variable -Wno-unused-local-typedefs` for C++23.
+
 Documentation
 -------------
 Doxygen documentation located [here](https://longhornbuckle.github.io/linalg/html/files.html).
