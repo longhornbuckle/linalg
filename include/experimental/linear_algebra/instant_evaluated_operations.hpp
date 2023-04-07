@@ -871,13 +871,13 @@ class matrix_matrix_product
     using second_matrix_type = M2;
   private:
     // Return the allocator of m1
-    [[nodiscard]] static inline constexpr decltype(auto) get_allocator( const first_matrix_type& m1, const second_matrix_type& m2 ) noexcept
+    [[nodiscard]] static inline constexpr decltype(auto) get_allocator( const first_matrix_type& m1, [[maybe_unused]] const second_matrix_type& m2 ) noexcept
       requires concepts::dynamic_matrix_data< first_matrix_type >
     {
       return m1.get_allocator();
     }
     // Returns the allocator of m2
-    [[nodiscard]] static inline constexpr decltype(auto) get_allocator( const first_matrix_type& m1, const second_matrix_type& m2 ) noexcept
+    [[nodiscard]] static inline constexpr decltype(auto) get_allocator( [[maybe_unused]] const first_matrix_type& m1, const second_matrix_type& m2 ) noexcept
       requires ( concepts::dynamic_matrix_data< second_matrix_type > && !concepts::dynamic_matrix_data< first_matrix_type > )
     {
       return m2.get_allocator();
@@ -1055,13 +1055,13 @@ class outer_product
     using second_vector_type = V2;
   private:
     // Return the allocator of v1
-    [[nodiscard]] static inline constexpr decltype(auto) get_allocator( const first_vector_type& v1, const second_vector_type& v2 ) noexcept
+    [[nodiscard]] static inline constexpr decltype(auto) get_allocator( const first_vector_type& v1, [[maybe_unused]] const second_vector_type& v2 ) noexcept
       requires concepts::dynamic_matrix_data< first_vector_type >
     {
       return v1.get_allocator();
     }
     // Returns the allocator of v2
-    [[nodiscard]] static inline constexpr decltype(auto) get_allocator( const first_vector_type& v1, const second_vector_type& v2 ) noexcept
+    [[nodiscard]] static inline constexpr decltype(auto) get_allocator( [[maybe_unused]] const first_vector_type& v1, const second_vector_type& v2 ) noexcept
       requires ( concepts::dynamic_matrix_data< second_vector_type > && !concepts::dynamic_matrix_data< first_vector_type > )
     {
       return v2.get_allocator();
@@ -1091,18 +1091,6 @@ class outer_product
                                                                                                        experimental::dynamic_extent,
                                                                                                        experimental::dynamic_extent> >,
                                                          detail::rebind_accessor_t<typename first_vector_type::accessor_type,result_value_type> > >;
-    // Return the allocator of v1
-    [[nodiscard]] static inline constexpr decltype(auto) get_allocator( const first_vector_type& v1, const second_vector_type& v2 ) noexcept
-      requires concepts::dynamic_vector_data< first_vector_type >
-    {
-      return v1.get_allocator();
-    }
-    // Returns the allocator of v2
-    [[nodiscard]] static inline constexpr decltype(auto) get_allocator( const first_vector_type& v1, const second_vector_type& v2 ) noexcept
-      requires concepts::dynamic_vector_data< second_vector_type >
-    {
-      return v2.get_allocator();
-    }
     // Gets necessary arguments for constrution
     // If matrix type is fixed size, then the lambda expression is the only argument needed
     template < class Lambda >
