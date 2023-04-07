@@ -381,9 +381,15 @@ class dr_tensor
     // Calls destructor on all elements and deallocates the allocator
     // If an exception is thrown, the last exception to be thrown will be re-thrown.
     constexpr void destroy_all() noexcept( is_nothrow_destructible_v<element_type> );
+    // Calls destructor on all elements and deallocates the allocator
+    // If an exception is thrown, the last exception to be thrown will be re-thrown.
+    inline void destroy_all_except();
     // Default constructs all elements
     // If an exception is to be thrown, will first destruct elements which have been constructed and deallocate
     constexpr void construct_all() noexcept( is_nothrow_constructible_v<element_type> );
+    // Default constructs all elements
+    // If an exception is to be thrown, will first destruct elements which have been constructed and deallocate
+    inline void construct_all_except();
     // Implementation of resize. (Needed a parameter pack of indices for implementation.)
     template < class SizeType, SizeType ... Indices >
     constexpr void resize_impl( extents_type new_size, [[maybe_unused]] integer_sequence<SizeType,Indices...> );
@@ -1117,21 +1123,27 @@ constexpr void dr_tensor<T,R,Alloc,L,Access>::destroy_all()
     }
     else
     {
-      // Cache the last exception to be thrown
-      exception_ptr eptr;
-      // Attempt to destruct
-      for_each( execution::unseq,
-                this->elems_,
-                this->elems_ + this->view_.size(),
-                [this,&eptr]( const element_type& elem ) constexpr { try { this->elem_.~element_type(); } catch ( ... ) { eptr = current_exception(); } } );
-      // Deallocate
-      allocator_traits<allocator_type>::deallocate( this->alloc_, this->elems_, this->linear_capacity() );
-      // If exceptions were thrown, rethrow the last
-      if ( eptr ) [[unlikely]]
-      {
-        rethrow_exception( eptr );
-      }
+      this->destroy_all_except();
     }
+  }
+}
+
+template < class T, size_t R, class Alloc, class L , class Access >
+inline void dr_tensor<T,R,Alloc,L,Access>::destroy_all_except()
+{
+  // Cache the last exception to be thrown
+  exception_ptr eptr;
+  // Attempt to destruct
+  for_each( execution::unseq,
+            this->elems_,
+            this->elems_ + this->view_.size(),
+            [this,&eptr]( const element_type& elem ) constexpr { try { this->elem_.~element_type(); } catch ( ... ) { eptr = current_exception(); } } );
+  // Deallocate
+  allocator_traits<allocator_type>::deallocate( this->alloc_, this->elems_, this->linear_capacity() );
+  // If exceptions were thrown, rethrow the last
+  if ( eptr ) [[unlikely]]
+  {
+    rethrow_exception( eptr );
   }
 }
 
@@ -1148,47 +1160,53 @@ constexpr void dr_tensor<T,R,Alloc,L,Access>::construct_all()
   }
   else
   {
-    // Cache the last exception to be thrown
-    exception_ptr eptr;
-    // If the elements are trivially destructible, then construction can still be unsequential
-    if constexpr ( is_trivially_destructible_v<element_type> )
+    this->construct_all_except();
+  }
+}
+
+template < class T, size_t R, class Alloc, class L , class Access >
+inline void dr_tensor<T,R,Alloc,L,Access>::construct_all_except()
+{
+  // Cache the last exception to be thrown
+  exception_ptr eptr;
+  // If the elements are trivially destructible, then construction can still be unsequential
+  if constexpr ( is_trivially_destructible_v<element_type> )
+  {
+    // Attempt to construct
+    for_each( execution::unseq,
+              this->elems_,
+              this->elems_ + this->view_.size(),
+              [&eptr]( auto elem ) constexpr { try { ::new (&elem) element_type; } catch ( ... ) { eptr = current_exception(); } } );
+    // If exceptions were thrown, rethrow the last
+    if ( eptr )
     {
-      // Attempt to construct
+      // Deallocate
+      allocator_traits<allocator_type>::deallocate( this->alloc_, this->elems_, this->linear_capacity() );
+      // Rethrow
+      rethrow_exception( eptr );
+    }
+  }
+  else
+  {
+    // Cache pointer to constructor which threw exception
+    element_type* elem_except_ptr;
+    // Attempt to construct
+    for_each( execution::seq,
+              this->elems_,
+              this->elems_ + this->view_.size(),
+              [&eptr,&elem_except_ptr]( auto elem ) constexpr { try { ::new (&elem) element_type(); } catch ( ... ) { elem_except_ptr = &elem; eptr = current_exception(); } } );
+    // If exceptions were thrown, destroy all which have already been constructed, then rethrow the last
+    if ( eptr ) [[unlikely]]
+    {
+      // Attempt to destroy constructed elements.
+      // If destruction also throws an exception, then just terminate.
       for_each( execution::unseq,
                 this->elems_,
-                this->elems_ + this->view_.size(),
-                [&eptr]( auto elem ) constexpr { try { ::new (&elem) element_type; } catch ( ... ) { eptr = current_exception(); } } );
-      // If exceptions were thrown, rethrow the last
-      if ( eptr )
-      {
-        // Deallocate
-        allocator_traits<allocator_type>::deallocate( this->alloc_, this->elems_, this->linear_capacity() );
-        // Rethrow
-        rethrow_exception( eptr );
-      }
-    }
-    else
-    {
-      // Cache pointer to constructor which threw exception
-      element_type* elem_except_ptr;
-      // Attempt to construct
-      for_each( execution::seq,
-                this->elems_,
-                this->elems_ + this->view_.size(),
-                [&eptr,&elem_except_ptr]( auto elem ) constexpr { try { ::new (&elem) element_type(); } catch ( ... ) { elem_except_ptr = &elem; eptr = current_exception(); } } );
-      // If exceptions were thrown, destroy all which have already been constructed, then rethrow the last
-      if ( eptr ) [[unlikely]]
-      {
-        // Attempt to destroy constructed elements.
-        // If destruction also throws an exception, then just terminate.
-        for_each( execution::unseq,
-                  this->elems_,
-                  elem_except_ptr,
-                  []( auto elem ) constexpr noexcept( is_nothrow_destructible_v<element_type> ){ elem.~element_type(); } );
-        // Deallocate
-        allocator_traits<allocator_type>::deallocate( this->alloc_, this->elems_, this->linear_capacity() );
-        rethrow_exception( eptr );
-      }
+                elem_except_ptr,
+                []( auto elem ) constexpr noexcept( is_nothrow_destructible_v<element_type> ){ elem.~element_type(); } );
+      // Deallocate
+      allocator_traits<allocator_type>::deallocate( this->alloc_, this->elems_, this->linear_capacity() );
+      rethrow_exception( eptr );
     }
   }
 }
