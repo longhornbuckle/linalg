@@ -234,7 +234,7 @@ tensor_view<MDS>::operator()( IndexType ... indices ) const noexcept
 
 template < class MDS > requires ( detail::is_mdspan_v<MDS> && MDS::is_always_unique() )
 template < class ... IndexType >
-[[nodiscard]] constexpr tensor_view<MDS>::value_type
+[[nodiscard]] constexpr typename tensor_view<MDS>::value_type
 tensor_view<MDS>::at( IndexType ... indices ) const
   requires ( sizeof...(IndexType) == tensor_view<MDS>::extents_type::rank() ) && ( is_convertible_v<IndexType,typename tensor_view<MDS>::index_type> && ... )
 {

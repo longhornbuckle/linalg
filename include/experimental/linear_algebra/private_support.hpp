@@ -815,7 +815,7 @@ assign_view( ToView& to_view, const FromView& from_view )
       apply_all( from_view,
                  [ &to_view, &from_view ]< class ... Indices >( Indices ... indices )
                    constexpr noexcept( is_nothrow_convertible_v<typename decay_t<FromView>::reference,typename decay_t<ToView>::reference> )
-                   { access( to_view, indices ... ) = detail::access( from_view, indices ... ); },
+                   { access( to_view, indices ... ) = access( from_view, indices ... ); },
                  LINALG_EXECUTION_UNSEQ );
     }
     else [[unlikely]]
@@ -843,7 +843,7 @@ copy_view( ToView& to_view, const FromView& from_view )
     apply_all( forward<ToView>( to_view ),
               [ &to_view, &from_view ]< class ... Indices >( Indices ... indices )
                 constexpr noexcept( is_nothrow_convertible_v<typename decay_t<FromView>::reference,typename decay_t<ToView>::reference> )
-                { ::new ( addressof( access( to_view, indices ... ) ) ) typename ToView::element_type( detail::access( from_view, indices ... ) ); },
+                { ::new ( addressof( access( to_view, indices ... ) ) ) typename ToView::element_type( access( from_view, indices ... ) ); },
               LINALG_EXECUTION_UNSEQ );
   }
   else
@@ -853,7 +853,7 @@ copy_view( ToView& to_view, const FromView& from_view )
       apply_all( forward<ToView>( to_view ),
                 [ &to_view, &from_view ]< class ... Indices >( Indices ... indices )
                   constexpr noexcept( is_nothrow_convertible_v<typename decay_t<FromView>::reference,typename decay_t<ToView>::reference> )
-                  { ::new ( addressof( detail::access( to_view, indices ... ) ) ) typename ToView::element_type( detail::access( from_view, indices ... ) ); },
+                  { ::new ( addressof( access( to_view, indices ... ) ) ) typename ToView::element_type( access( from_view, indices ... ) ); },
                 LINALG_EXECUTION_UNSEQ );
     }
     else [[unlikely]]
