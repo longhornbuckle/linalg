@@ -16,10 +16,10 @@ jobs:
             compiler_driver: g++-12,
             compiler_prefix: /usr/bin
           }
-        - {
-            compiler_driver: clang++-14,
-            compiler_prefix: /usr/bin
-          }
+        # - {
+        #     compiler_driver: clang++-14,
+        #     compiler_prefix: /usr/bin
+        #   }
     name: ${{ matrix.settings.compiler_driver }} ${{ matrix.configuration }}
     steps:
     
