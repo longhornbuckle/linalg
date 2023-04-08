@@ -558,7 +558,7 @@ class conjugate_matrix
     [[nodiscard]] static constexpr auto conjugate( const matrix_type& m )
       noexcept( noexcept( detail::make_from_tuple< result_matrix_type >(
         collect_ctor_args( m, [&m]< class IndexType1, class IndexType2 >( IndexType1 index1, IndexType2 index2 ) constexpr noexcept
-          { return ::std::conj( detail::acccess( m, index2, index1 ) ); } ) ) ) )
+          { return ::std::conj( detail::access( m, index2, index1 ) ); } ) ) ) )
     {
       // Define negation operation on each element
       auto conjugate_lambda = [&m]< class IndexType1, class IndexType2 >( IndexType1 index1, IndexType2 index2 ) constexpr noexcept
@@ -1033,7 +1033,7 @@ class inner_product
       result_type result = 0;
       // Define lambda function to sum inner product
       auto inner_prod_lambda = [&v1,&v2,&result]< class ... IndexType >( IndexType ... indices ) constexpr noexcept
-        { result += detail::access( v1, indices ... ) * detail::acccess( v2, indices ... ); };
+        { result += detail::access( v1, indices ... ) * detail::access( v2, indices ... ); };
       // Apply lambda expression
       detail::apply_all( v1.span(), inner_prod_lambda, LINALG_EXECUTION_UNSEQ );
       // Return result
