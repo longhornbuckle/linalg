@@ -558,7 +558,7 @@ namespace
       }
     }
     const std::math::dr_tensor<double,3>& const_dyn_tensor( dyn_tensor );
-    auto subtensor = const_dyn_tensor.subtensor( std::tuple(2,2,2), std::tuple(5,4,3) );
+    auto subtensor = const_dyn_tensor.subtensor( std::tuple(2,5), std::tuple(2,4), std::tuple(2,3) );
     
     EXPECT_EQ( ( subtensor[0,0,0] ), ( dyn_tensor[2,2,2] ) );
     EXPECT_EQ( ( subtensor[1,0,0] ), ( dyn_tensor[3,2,2] ) );
@@ -654,7 +654,7 @@ namespace
       }
     }
     // Get subtensor
-    auto subtensor = dyn_tensor.subtensor( std::tuple(2,2,2), std::tuple(5,4,3) );
+    auto subtensor = dyn_tensor.subtensor( std::tuple(2,5), std::tuple(2,4), std::tuple(2,3) );
     // Modify view
     for ( auto i : { 0, 1, 2 } )
     {
@@ -1484,7 +1484,7 @@ namespace
       }
     }
     const fs_tensor_type& const_fs_tensor( fs_tensor );
-    auto subtensor = const_fs_tensor.subtensor( std::tuple(2,2,2), std::tuple(5,4,3) );
+    auto subtensor = const_fs_tensor.subtensor( std::tuple(2,5), std::tuple(2,4), std::tuple(2,3) );
     
     EXPECT_EQ( ( subtensor[0,0,0] ), ( fs_tensor[2,2,2] ) );
     EXPECT_EQ( ( subtensor[1,0,0] ), ( fs_tensor[3,2,2] ) );
@@ -1581,7 +1581,7 @@ namespace
       }
     }
     // Get subtensor
-    auto subtensor = fs_tensor.subtensor( std::tuple(2,2,2), std::tuple(5,4,3) );
+    auto subtensor = fs_tensor.subtensor( std::tuple(2,5), std::tuple(2,4), std::tuple(2,3) );
     // Modify view
     for ( auto i : { 0, 1, 2 } )
     {

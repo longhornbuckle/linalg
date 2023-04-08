@@ -115,12 +115,26 @@ class tensor_view
     template < class ... IndexType >
     [[nodiscard]] constexpr value_type at( IndexType ... indices ) const
       requires ( sizeof...(IndexType) == extents_type::rank() ) && ( is_convertible_v<IndexType,index_type> && ... );
+    /// @brief Returns a const vector view
+    /// @tparam ...SliceArgs argument types used to get a const vector view
+    /// @param ...args aguments to get a const vector view
+    /// @return const vector view
+    template < class ... SliceArgs >
+    [[nodiscard]] constexpr auto subvector( SliceArgs ... args ) const
+      requires ( decltype( experimental::submdspan( this->underlying_span(), args ... ) )::rank() == 1 );
+    /// @brief Returns a const matrix view
+    /// @tparam ...SliceArgs argument types used to get a const matrix view
+    /// @param ...args aguments to get a const matrix view
+    /// @return const matrix view
+    template < class ... SliceArgs >
+    [[nodiscard]] constexpr auto submatrix( SliceArgs ... args ) const
+      requires ( decltype( experimental::submdspan( this->underlying_span(), args ... ) )::rank() == 2 );
     /// @brief Returns a const view of the specified subtensor
-    /// @param start tuple start of subtensor
-    /// @param end tuple end of subtensor
-    /// @returns const view of the specified subtensor
-    [[nodiscard]] constexpr const_subtensor_type subtensor( tuple_type start,
-                                                            tuple_type end ) const;
+    /// @tparam ...SliceArgs argument types used to get a tensor view
+    /// @param ...args aguments to get a tensor view
+    /// @return const tensor view
+    template < class ... SliceArgs >
+    [[nodiscard]] constexpr auto subtensor( SliceArgs ... args ) const;
 
     //- Mutable views
 
@@ -146,12 +160,26 @@ class tensor_view
     [[nodiscard]] constexpr reference_type at( IndexType ... indices )
       requires ( sizeof...(IndexType) == extents_type::rank() ) && ( is_convertible_v<IndexType,index_type> && ... ) &&
                ( !is_const_v<element_type> );
+    /// @brief Returns a vector view
+    /// @tparam ...SliceArgs argument types used to get a vector view
+    /// @param ...args aguments to get a vector view
+    /// @return vector view
+    template < class ... SliceArgs >
+    [[nodiscard]] constexpr auto subvector( SliceArgs ... args )
+      requires ( decltype( experimental::submdspan( this->underlying_span(), args ... ) )::rank() == 1 );
+    /// @brief Returns a matrix view
+    /// @tparam ...SliceArgs argument types used to get a matrix view
+    /// @param ...args aguments to get a matrix view
+    /// @return matrix view
+    template < class ... SliceArgs >
+    [[nodiscard]] constexpr auto submatrix( SliceArgs ... args )
+      requires ( decltype( experimental::submdspan( this->underlying_span(), args ... ) )::rank() == 2 );
     /// @brief Returns a mutable view of the specified subtensor
-    /// @param start tuple start of subtensor
-    /// @param end tuple end of subtensor
-    /// @returns mutable view of the specified subtensor
-    [[nodiscard]] constexpr subtensor_type subtensor( tuple_type start,
-                                                      tuple_type end ) requires ( !is_const_v<element_type> );
+    /// @tparam ...SliceArgs argument types used to get a tensor view
+    /// @param ...args aguments to get a tensor view
+    /// @return mutable tensor view
+    template < class ... SliceArgs >
+    [[nodiscard]] constexpr auto subtensor( SliceArgs ... args );
 
     //- Data access
     
@@ -242,11 +270,29 @@ tensor_view<MDS>::at( IndexType ... indices ) const
 }
 
 template < class MDS > requires ( detail::is_mdspan_v<MDS> && MDS::is_always_unique() )
-[[nodiscard]] constexpr typename tensor_view<MDS>::const_subtensor_type
-tensor_view<MDS>::subtensor( tuple_type start,
-                                    tuple_type end ) const
+template < class ... SliceArgs >
+[[nodiscard]] constexpr auto tensor_view<MDS>::subvector( SliceArgs ... args ) const
+  requires ( decltype( experimental::submdspan( this->underlying_span(), args ... ) )::rank() == 1 )
 {
-  return const_subtensor_type( detail::submdspan( this->underlying_span(), start, end ) );
+  using subspan_type = decltype( experimental::submdspan( this->underlying_span(), args ... ) );
+  return vector_view<subspan_type>( experimental::submdspan( this->underlying_span(), args ... ) );
+}
+
+template < class MDS > requires ( detail::is_mdspan_v<MDS> && MDS::is_always_unique() )
+template < class ... SliceArgs >
+[[nodiscard]] constexpr auto tensor_view<MDS>::submatrix( SliceArgs ... args ) const
+  requires ( decltype( experimental::submdspan( this->underlying_span(), args ... ) )::rank() == 2 )
+{
+  using subspan_type = decltype( experimental::submdspan( this->underlying_span(), args ... ) );
+  return matrix_view<subspan_type>( experimental::submdspan( this->underlying_span(), args ... ) );
+}
+
+template < class MDS > requires ( detail::is_mdspan_v<MDS> && MDS::is_always_unique() )
+template < class ... SliceArgs >
+[[nodiscard]] constexpr auto tensor_view<MDS>::subtensor( SliceArgs ... args ) const
+{
+  using subspan_type = decltype( experimental::submdspan( this->underlying_span(), args ... ) );
+  return tensor_view<subspan_type>( experimental::submdspan( this->underlying_span(), args ... ) );
 }
 
 //- Mutable views
@@ -286,11 +332,29 @@ tensor_view<MDS>::at( IndexType ... indices )
 }
 
 template < class MDS > requires ( detail::is_mdspan_v<MDS> && MDS::is_always_unique() )
-[[nodiscard]] constexpr typename tensor_view<MDS>::subtensor_type
-tensor_view<MDS>::subtensor( tuple_type start,
-                                    tuple_type end ) requires ( !is_const_v<typename tensor_view<MDS>::element_type> )
+template < class ... SliceArgs >
+[[nodiscard]] constexpr auto tensor_view<MDS>::subvector( SliceArgs ... args )
+  requires ( decltype( experimental::submdspan( this->underlying_span(), args ... ) )::rank() == 1 )
 {
-  return subtensor_type( detail::submdspan( this->underlying_span(), start, end ) );
+  using subspan_type = decltype( experimental::submdspan( this->underlying_span(), args ... ) );
+  return vector_view<subspan_type>( experimental::submdspan( this->underlying_span(), args ... ) );
+}
+
+template < class MDS > requires ( detail::is_mdspan_v<MDS> && MDS::is_always_unique() )
+template < class ... SliceArgs >
+[[nodiscard]] constexpr auto tensor_view<MDS>::submatrix( SliceArgs ... args )
+  requires ( decltype( experimental::submdspan( this->underlying_span(), args ... ) )::rank() == 2 )
+{
+  using subspan_type = decltype( experimental::submdspan( this->underlying_span(), args ... ) );
+  return matrix_view<subspan_type>( experimental::submdspan( this->underlying_span(), args ... ) );
+}
+
+template < class MDS > requires ( detail::is_mdspan_v<MDS> && MDS::is_always_unique() )
+template < class ... SliceArgs >
+[[nodiscard]] constexpr auto tensor_view<MDS>::subtensor( SliceArgs ... args )
+{
+  using subspan_type = decltype( experimental::submdspan( this->underlying_span(), args ... ) );
+  return tensor_view<subspan_type>( experimental::submdspan( this->underlying_span(), args ... ) );
 }
 
 //- Data access

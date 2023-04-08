@@ -199,11 +199,11 @@ class fs_tensor
     [[nodiscard]] constexpr auto submatrix( SliceArgs ... args ) const
       requires ( decltype( experimental::submdspan( this->underlying_span(), args ... ) )::rank() == 2 );
     /// @brief Returns a const view of the specified subtensor
-    /// @param start tuple start of subtensor
-    /// @param end tuple end of subtensor
-    /// @returns const view of the specified subtensor
-    [[nodiscard]] constexpr const_subtensor_type subtensor( tuple_type start,
-                                                            tuple_type end ) const;
+    /// @tparam ...SliceArgs argument types used to get a tensor view
+    /// @param ...args aguments to get a tensor view
+    /// @return const tensor view
+    template < class ... SliceArgs >
+    [[nodiscard]] constexpr auto subtensor( SliceArgs ... args ) const;
 
     //- Mutable views
 
@@ -235,11 +235,11 @@ class fs_tensor
     [[nodiscard]] constexpr auto submatrix( SliceArgs ... args )
       requires ( decltype( experimental::submdspan( this->underlying_span(), args ... ) )::rank() == 2 );
     /// @brief Returns a mutable view of the specified subtensor
-    /// @param start tuple start of subtensor
-    /// @param end tuple end of subtensor
-    /// @returns mutable view of the specified subtensor
-    [[nodiscard]] constexpr subtensor_type subtensor( tuple_type start,
-                                                      tuple_type end );
+    /// @tparam ...SliceArgs argument types used to get a tensor view
+    /// @param ...args aguments to get a tensor view
+    /// @return mutable tensor view
+    template < class ... SliceArgs >
+    [[nodiscard]] constexpr auto subtensor( SliceArgs ... args );
 
   private:
     //- Data
@@ -398,11 +398,11 @@ template < class ... SliceArgs >
 }
 
 template < class T, class L, class A, size_t ... Ds > requires ( ( Ds >= 0 ) && ... )
-[[nodiscard]] constexpr fs_tensor<T,L,A,Ds...>::const_subtensor_type
-fs_tensor<T,L,A,Ds...>::subtensor( tuple_type start,
-                                   tuple_type end ) const
+template < class ... SliceArgs >
+[[nodiscard]] constexpr auto fs_tensor<T,L,A,Ds...>::subtensor( SliceArgs ... args ) const
 {
-  return const_subtensor_type { detail::submdspan( this->underlying_span(), start, end ) };
+  using subspan_type = decltype( experimental::submdspan( this->underlying_span(), args ... ) );
+  return tensor_view<subspan_type>( experimental::submdspan( this->underlying_span(), args ... ) );
 }
 
 //- Mutable views
@@ -451,11 +451,11 @@ template < class ... SliceArgs >
 }
 
 template < class T, class L, class A, size_t ... Ds > requires ( ( Ds >= 0 ) && ... )
-[[nodiscard]] constexpr fs_tensor<T,L,A,Ds...>::subtensor_type
-fs_tensor<T,L,A,Ds...>::subtensor( tuple_type start,
-                                   tuple_type end )
+template < class ... SliceArgs >
+[[nodiscard]] constexpr auto fs_tensor<T,L,A,Ds...>::subtensor( SliceArgs ... args )
 {
-  return subtensor_type { detail::submdspan( this->underlying_span(), start, end ) };
+  using subspan_type = decltype( experimental::submdspan( this->underlying_span(), args ... ) );
+  return tensor_view<subspan_type>( experimental::submdspan( this->underlying_span(), args ... ) );
 }
 
 //- Data access
