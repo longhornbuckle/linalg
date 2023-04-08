@@ -16,9 +16,13 @@ namespace std
 namespace math
 {
   template < class MDS >
-  class vector_view;
+  class vector_view requires ( detail::is_mdspan_v<MDS> &&
+                              ( MDS::extents_type::rank()== 1 ) &&
+                              MDS::is_always_unique() );
   template < class MDS >
-  class matrix_view;
+  class matrix_view requires ( detail::is_mdspan_v<MDS> &&
+                              ( MDS::extents_type::rank()== 2 ) &&
+                              MDS::is_always_unique() );
 }
 }
 
