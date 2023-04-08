@@ -924,7 +924,7 @@ using extents_helper = extents_helper_impl< make_integer_sequence<U,R> >;
 //==================================================================================================
 //  Helper class for encapsulating macro dependent multidimensional access
 //==================================================================================================
-template < class MultiDimOperClass, IndexType ... >
+template < class MultiDimOperClass, class ... IndexType >
 [[nodiscard]] decltype(auto) inline constexpr access( MultDimOperClass&& t, IndexType ... indices )
   noexcept( noexcept( 
     #if LINALG_USE_BRACKET_OPERATOR
