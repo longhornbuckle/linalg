@@ -805,7 +805,7 @@ assign_view( ToView& to_view, const FromView& from_view )
     apply_all( from_view,
                [ &to_view, &from_view ]< class ... Indices >( Indices ... indices )
                  constexpr noexcept( is_nothrow_convertible_v<typename decay_t<FromView>::reference,typename decay_t<ToView>::reference> )
-                 { to_view[ indices ... ] = from_view[ indices ... ]; },
+                 { access( to_view, indices ... ) = access( from_view, indices ... ); },
                LINALG_EXECUTION_UNSEQ );
   }
   else
@@ -815,7 +815,7 @@ assign_view( ToView& to_view, const FromView& from_view )
       apply_all( from_view,
                  [ &to_view, &from_view ]< class ... Indices >( Indices ... indices )
                    constexpr noexcept( is_nothrow_convertible_v<typename decay_t<FromView>::reference,typename decay_t<ToView>::reference> )
-                   { to_view[ indices ... ] = from_view[ indices ... ]; },
+                   { access( to_view, indices ... ) = detail::access( from_view, indices ... ); },
                  LINALG_EXECUTION_UNSEQ );
     }
     else [[unlikely]]
@@ -843,7 +843,7 @@ copy_view( ToView& to_view, const FromView& from_view )
     apply_all( forward<ToView>( to_view ),
               [ &to_view, &from_view ]< class ... Indices >( Indices ... indices )
                 constexpr noexcept( is_nothrow_convertible_v<typename decay_t<FromView>::reference,typename decay_t<ToView>::reference> )
-                { ::new ( addressof( to_view[ indices ... ] ) ) typename ToView::element_type( from_view[ indices ... ] ); },
+                { ::new ( addressof( access( to_view, indices ... ) ) ) typename ToView::element_type( detail::access( from_view, indices ... ) ); },
               LINALG_EXECUTION_UNSEQ );
   }
   else
@@ -853,7 +853,7 @@ copy_view( ToView& to_view, const FromView& from_view )
       apply_all( forward<ToView>( to_view ),
                 [ &to_view, &from_view ]< class ... Indices >( Indices ... indices )
                   constexpr noexcept( is_nothrow_convertible_v<typename decay_t<FromView>::reference,typename decay_t<ToView>::reference> )
-                  { ::new ( addressof( to_view[ indices ... ] ) ) typename ToView::element_type( from_view[ indices ... ] ); },
+                  { ::new ( addressof( detail::access( to_view, indices ... ) ) ) typename ToView::element_type( detail::access( from_view, indices ... ) ); },
                 LINALG_EXECUTION_UNSEQ );
     }
     else [[unlikely]]
@@ -925,7 +925,7 @@ using extents_helper = extents_helper_impl< make_integer_sequence<U,R> >;
 //  Helper class for encapsulating macro dependent multidimensional access
 //==================================================================================================
 template < class MultiDimOperClass, class ... IndexType >
-[[nodiscard]] decltype(auto) inline constexpr access( MultiDimOperClass&& t, IndexType ... indices )
+[[nodiscard]] LINALG_FORCE_INLINE_FUNCTION constexpr decltype(auto) access( MultiDimOperClass&& t, IndexType ... indices )
   noexcept( noexcept( 
     #if LINALG_USE_BRACKET_OPERATOR
     t[ indices ... ]
@@ -940,7 +940,6 @@ template < class MultiDimOperClass, class ... IndexType >
   return t( indices ... );
   #endif
 }
-
 
 }       //- detail namespace
 }       //- math namespace

@@ -29,4 +29,13 @@
 #  endif
 #endif
 
+// Force compiler to inline function
+#ifndef LINALG_FORCE_INLINE_FUNCTION
+#  ifdef LINALG_COMPILER_MSVC
+#    define LINALG_FORCE_INLINE_FUNCTION __forceinline
+#  else
+#    define LINALG_FORCE_INLINE_FUNCTION __attribute__((always_inline))
+#  endif
+#endif
+
 #endif  //- LINEAR_ALGEBRA_MACROS_HPP
