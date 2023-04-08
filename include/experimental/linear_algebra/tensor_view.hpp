@@ -10,6 +10,18 @@
 
 #include <experimental/linear_algebra.hpp>
 
+// Forward declarations
+namespace std
+{
+namespace math
+{
+  template < class MDS >
+  class vector_view;
+  template < class MDS >
+  class matrix_view;
+}
+}
+
 namespace std
 {
 namespace math
