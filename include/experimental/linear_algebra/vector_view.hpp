@@ -104,10 +104,15 @@ class vector_view : public tensor_view<MDS>
 
     //- Const views
 
-    /// @brief Returns the value at index
-    /// @param index the location of the desired element
-    /// @returns value at index
-    [[nodiscard]] constexpr value_type operator[]( index_type index ) const noexcept;
+
+    #if LINALG_USE_BRACKET_OPERATOR
+    using base_type::operator[]; // Brings into scope const and mutable
+    #endif
+    #if LINALG_USE_PAREN_OPERATOR
+    using base_type::operator(); // Brings into scope const and mutable
+    #endif
+    using base_type::at;         // Brings into scope const and mutable
+
     /// @brief Returns the value at index
     /// @param index the location of the desired element
     /// @returns value at index
@@ -121,14 +126,6 @@ class vector_view : public tensor_view<MDS>
 
     //- Mutable views
 
-    /// @brief Returns the value at index
-    /// @param index the location of the desired element
-    /// @returns value at index
-    [[nodiscard]] constexpr reference_type operator[]( index_type index ) noexcept;
-    /// @brief Returns the value at index
-    /// @param index the location of the desired element
-    /// @returns value at index
-    [[nodiscard]] constexpr reference_type at( index_type index );
     /// @brief Returns a mutable view of the specified subvector
     /// @param start (row,column) start of subvector
     /// @param end (row,column) end of subvector
@@ -180,20 +177,6 @@ vector_view<MDS>::capacity() const noexcept
 //- Const views
 
 template < class MDS > requires ( detail::is_mdspan_v<MDS> && ( MDS::extents_type::rank() == 1 ) &&  MDS::is_always_unique() )
-[[nodiscard]] constexpr typename vector_view<MDS>::value_type
-vector_view<MDS>::operator[]( index_type index ) const noexcept
-{
-  return this->underlying_span()[index];
-}
-
-template < class MDS > requires ( detail::is_mdspan_v<MDS> && ( MDS::extents_type::rank() == 1 ) &&  MDS::is_always_unique() )
-[[nodiscard]] constexpr typename vector_view<MDS>::value_type
-vector_view<MDS>::at( index_type index ) const
-{
-  return this->underlying_span()[index];
-}
-
-template < class MDS > requires ( detail::is_mdspan_v<MDS> && ( MDS::extents_type::rank() == 1 ) &&  MDS::is_always_unique() )
 [[nodiscard]] constexpr typename vector_view<MDS>::const_subvector_type
 vector_view<MDS>::subvector( tuple_type start,
                                     tuple_type end ) const
@@ -202,20 +185,6 @@ vector_view<MDS>::subvector( tuple_type start,
 }
 
 //- Mutable views
-
-template < class MDS > requires ( detail::is_mdspan_v<MDS> && ( MDS::extents_type::rank() == 1 ) &&  MDS::is_always_unique() )
-[[nodiscard]] constexpr typename vector_view<MDS>::reference_type
-vector_view<MDS>::operator[]( index_type index ) noexcept
-{
-  return this->underlying_span()[index];
-}
-
-template < class MDS > requires ( detail::is_mdspan_v<MDS> && ( MDS::extents_type::rank() == 1 ) &&  MDS::is_always_unique() )
-[[nodiscard]] constexpr typename vector_view<MDS>::reference_type
-vector_view<MDS>::at( index_type index )
-{
-  return this->underlying_span()[index];
-}
 
 template < class MDS > requires ( detail::is_mdspan_v<MDS> && ( MDS::extents_type::rank() == 1 ) &&  MDS::is_always_unique() )
 [[nodiscard]] constexpr typename vector_view<MDS>::subvector_type

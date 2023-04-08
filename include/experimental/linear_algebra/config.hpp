@@ -72,4 +72,24 @@
 #  define __has_cpp_attribute(x) 0
 #endif
 
+// Determine if operator[](...) is allowable
+#ifndef LINALG_USE_BRACKET_OPERATOR
+#  if defined( __cpp_multidimensional_subscript ) && \
+      ( ( defined( LINALG_COMPILER_GNU ) && ( LINALG_COMPILER_GNU >= 12 ) ) || \
+        ( defined( LINALG_COMPILER_CLANG ) && ( LINALG_COMPILER_CLANG >= 15 ) ) )
+#    define LINALG_USE_BRACKET_OPERATOR 1
+#  else
+#    define LINALG_USE_BRACKET_OPERATOR 0
+#  endif
+#endif
+
+// If operator[](...) is not allowable, then use operator()(...)
+#ifndef LINALG_USE_PAREN_OPERATOR
+#  if !LINALG_USE_BRACKET_OPERATOR
+#    define LINALG_USE_PAREN_OPERATOR 1
+#  else
+#    define LINALG_USE_PAREN_OPERATOR 0
+#  endif
+#endif
+
 #endif  //- LINEAR_ALGEBRA_CONFIG_HPP

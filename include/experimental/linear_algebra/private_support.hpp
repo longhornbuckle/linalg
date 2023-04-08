@@ -901,7 +901,6 @@ struct rebind_layout< LayoutType<OtherType>, ExtentsType > { using type = Layout
 template < class LayoutType, class ExtentsType >
 using rebind_layout_t = typename rebind_layout<LayoutType,ExtentsType>::type;
 
-
 //==================================================================================================
 //  Helper class for manipulating extents
 //==================================================================================================
@@ -921,6 +920,27 @@ class extents_helper_impl< integer_sequence<U,Indices...> >
 };
 template < class U, size_t R >
 using extents_helper = extents_helper_impl< make_integer_sequence<U,R> >;
+
+//==================================================================================================
+//  Helper class for encapsulating macro dependent multidimensional access
+//==================================================================================================
+template < class MultiDimOperClass, IndexType ... >
+[[nodiscard]] decltype(auto) inline constexpr access( MultDimOperClass&& t, IndexType ... indices )
+  noexcept( noexcept( 
+    #if LINALG_USE_BRACKET_OPERATOR
+    t[ indices ... ]
+    #else
+    t( indices ... )
+    #endif
+   ) )
+{
+  #if LINALG_USE_BRACKET_OPERATOR
+  return t[ indices ... ];
+  #else
+  return t( indices ... );
+  #endif
+}
+
 
 }       //- detail namespace
 }       //- math namespace

@@ -60,10 +60,10 @@ class negation
     [[nodiscard]] static constexpr auto negate( const tensor_type& t )
       noexcept( noexcept( detail::make_from_tuple< result_tensor_type >(
         collect_ctor_args( declval<const tensor_type&>(),
-                            [&t]< class ... IndexType >( IndexType ... indices ) constexpr noexcept { return -( t[ indices ... ] ); } ) ) ) )
+                            [&t]< class ... IndexType >( IndexType ... indices ) constexpr noexcept { return -( detail::access( t, indices ... ) ); } ) ) ) )
     {
       // Define negation operation on each element
-      auto negate_lambda = [&t]< class ... IndexType >( IndexType ... indices ) constexpr noexcept { return -( t[ indices ... ] ); };
+      auto negate_lambda = [&t]< class ... IndexType >( IndexType ... indices ) constexpr noexcept { return -( detail::access( t, indices ... ) ); };
       // Construct negated tensor
       return detail::make_from_tuple<result_tensor_type>( collect_ctor_args( t, negate_lambda ) );
     }
@@ -153,7 +153,7 @@ class addition
         collect_ctor_args( declval<const first_tensor_type&>(),
                             declval<const second_tensor_type&>(),
                             [&t1,&t2]< class ... IndexType >( IndexType ... indices ) constexpr noexcept
-                              { return t1[ indices ... ] + t2[ indices ... ]; } ) ) ) )
+                              { return detail::access( t1, indices ... ) + detail::access( t2, indices ... ); } ) ) ) )
     {
       // LEAVING FOR REFERENCE IN CASE NEED LATER
       // Define addition operation on each element pair
@@ -163,7 +163,7 @@ class addition
       //                                                                  result_tensor_type::extents_type::rank() > >::more_helper
       //                     ( t1, t2 ).add_lambda();
       auto add_lambda = [&t1,&t2]< class ... IndexType >( IndexType ... indices ) constexpr noexcept
-        { return t1[ indices ... ] + t2[ indices ... ]; };
+        { return detail::access( t1, indices ... ) + detail::access( t2, indices ... ); };
       // Construct addition tensor
       return detail::make_from_tuple<result_tensor_type>( collect_ctor_args( t1, t2, add_lambda ) );
     }
@@ -171,11 +171,11 @@ class addition
     [[nodiscard]] static constexpr first_tensor_type& add( first_tensor_type& t1, const second_tensor_type& t2 )
       noexcept( noexcept( detail::apply_all( t1.underlying_span(),
                                              [&t1,&t2]< class ... IndexType >( IndexType ... indices ) constexpr noexcept
-                                               { static_cast<void>( t1[ indices ... ] += t2[ indices ... ] ); },
+                                               { static_cast<void>( detail::access( t1, indices ... ) += detail::access( t2, indices ... ) ); },
                                              LINALG_EXECUTION_UNSEQ ) ) )
     {
       auto add_lambda = [&t1,&t2]< class ... IndexType >( IndexType ... indices ) constexpr noexcept
-        { static_cast<void>( t1[ indices ... ] += t2[ indices ... ] ); };
+        { static_cast<void>( detail::access( t1, indices ... ) += detail::access( t2, indices ... ) ); };
       // Apply lamda
       detail::apply_all( t1.underlying_span(), add_lambda, LINALG_EXECUTION_UNSEQ );
       // Return updated tensor
@@ -251,10 +251,10 @@ class subtraction
         collect_ctor_args( declval<const first_tensor_type&>(),
                             declval<const second_tensor_type&>(),
                             [&t1,&t2]< class ... IndexType >( IndexType ... indices ) constexpr noexcept
-                              { return t1[ indices ... ] - t2[ indices ... ]; } ) ) ) )
+                              { return detail::access( t1, indices ... ) - detail::access( t2, indices ... ); } ) ) ) )
     {
       auto subtract_lambda = [&t1,&t2]< class ... IndexType >( IndexType ... indices ) constexpr noexcept
-        { return t1[ indices ... ] - t2[ indices ... ]; };
+        { return detail::access( t1, indices ... ) - detail::access( t2, indices ... ); };
       // Construct addition tensor
       return detail::make_from_tuple<result_tensor_type>( collect_ctor_args( t1, t2, subtract_lambda ) );
     }
@@ -262,11 +262,11 @@ class subtraction
     [[nodiscard]] static constexpr first_tensor_type& subtract( first_tensor_type& t1, const second_tensor_type& t2 )
       noexcept( noexcept( detail::apply_all( t1.underlying_span(),
                                              [&t1,&t2]< class ... IndexType >( IndexType ... indices ) constexpr noexcept
-                                               { static_cast<void>( t1[ indices ... ] -= t2[ indices ... ] ); },
+                                               { static_cast<void>( detail::access( t1, indices ... ) -= detail::access( t2, indices ... ) ); },
                                              LINALG_EXECUTION_UNSEQ ) ) )
     {
       auto subtract_lambda = [&t1,&t2]< class ... IndexType >( IndexType ... indices ) constexpr noexcept
-        { static_cast<void>( t1[ indices ... ] -= t2[ indices ... ] ); };
+        { static_cast<void>( detail::access( t1, indices ... ) -= detail::access( t2, indices ... ) ); };
       // Apply lamda
       detail::apply_all( t1.underlying_span(), subtract_lambda, LINALG_EXECUTION_UNSEQ );
       // Return updated tensor
@@ -320,11 +320,11 @@ class scalar_product
       noexcept( noexcept( detail::make_from_tuple< result_tensor_type >(
         collect_ctor_args( t,
                            [&s,&t]< class ... IndexType >( IndexType ... indices ) constexpr noexcept
-                             { return s * t[ indices ... ]; } ) ) ) )
+                             { return s * detail::access( t, indices ... ); } ) ) ) )
     {
       // Define product operation on each element
       auto prod_lambda = [&s,&t]< class ... IndexType >( IndexType ... indices ) constexpr noexcept
-        { return s * t[ indices ... ]; };
+        { return s * detail::access( t, indices ... ); };
       // Construct product tensor
       return detail::make_from_tuple<result_tensor_type>( collect_ctor_args( t, prod_lambda ) );
     }
@@ -338,12 +338,12 @@ class scalar_product
     [[nodiscard]] static constexpr tensor_type& prod( tensor_type& t, const S& s )
       noexcept( noexcept( detail::apply_all( t.underlying_span(),
                                              [&t,&s]< class ... IndexType >( IndexType ... indices ) constexpr noexcept
-                                               { static_cast<void>( t[ indices ... ] += s ); },
+                                               { static_cast<void>( detail::access( t, indices ... ) += s ); },
                                              LINALG_EXECUTION_UNSEQ ) ) )
     {
       // Define product operation on each element
       auto prod_lambda = [&s,&t]< class ... IndexType >( IndexType ... indices ) constexpr noexcept
-        { static_cast<void>( t[ indices ... ] *= s ); };
+        { static_cast<void>( detail::access( t, indices ... ) *= s ); };
       // Apply lamda
       detail::apply_all( t.underlying_span(), prod_lambda, LINALG_EXECUTION_UNSEQ );
       // Return updated tensor
@@ -397,11 +397,11 @@ struct scalar_division
       noexcept( noexcept( detail::make_from_tuple< result_tensor_type >(
         collect_ctor_args( declval<const tensor_type&>(),
                             [&t,&s]< class ... IndexType >( IndexType ... indices ) constexpr noexcept
-                              { return t[ indices ... ] / s; } ) ) ) )
+                              { return detail::access( t, indices ... ) / s; } ) ) ) )
     {
       // Define division operation on each element
       auto divide_lambda = [&t,&s]< class ... IndexType >( IndexType ... indices ) constexpr noexcept
-        { return t[ indices ... ] / s; };
+        { return detail::access( t, indices ... ) / s; };
       // Construct divided tensor
       return detail::make_from_tuple<result_tensor_type>( collect_ctor_args( t, divide_lambda ) );
     }
@@ -414,7 +414,7 @@ struct scalar_division
     {
       // Define product operation on each element
       auto divide_lambda = [&s,&t]< class ... IndexType >( IndexType ... indices ) constexpr noexcept
-        { static_cast<void>( t[ indices ... ] /= s ); };
+        { static_cast<void>( detail::access( t, indices ... ) /= s ); };
       // Apply lamda
       detail::apply_all( t.underlying_span(), divide_lambda, LINALG_EXECUTION_UNSEQ );
       // Return updated tensor
@@ -472,11 +472,11 @@ class transpose_matrix
     [[nodiscard]] static constexpr auto trans( const matrix_type& m )
       noexcept( noexcept( detail::make_from_tuple< result_matrix_type >(
         collect_ctor_args( m, [&m]< class IndexType1, class IndexType2 >( IndexType1 index1, IndexType2 index2 ) constexpr noexcept
-          { return m[ index2, index1 ]; } ) ) ) )
+          { return detail::access( m, index2, index1 ); } ) ) ) )
     {
       // Define negation operation on each element
       auto transpose_lambda = [&m]< class IndexType1, class IndexType2 >( IndexType1 index1, IndexType2 index2 ) constexpr noexcept
-        { return m[ index2, index1 ]; };
+        { return detail::access( m, index2, index1 ); };
       // Construct transpose matrix
       return detail::make_from_tuple<result_matrix_type>( collect_ctor_args( m, transpose_lambda ) );
     }
@@ -558,11 +558,11 @@ class conjugate_matrix
     [[nodiscard]] static constexpr auto conjugate( const matrix_type& m )
       noexcept( noexcept( detail::make_from_tuple< result_matrix_type >(
         collect_ctor_args( m, [&m]< class IndexType1, class IndexType2 >( IndexType1 index1, IndexType2 index2 ) constexpr noexcept
-          { return ::std::conj( m[ index2, index1 ] ); } ) ) ) )
+          { return ::std::conj( detail::acccess( m, index2, index1 ) ); } ) ) ) )
     {
       // Define negation operation on each element
       auto conjugate_lambda = [&m]< class IndexType1, class IndexType2 >( IndexType1 index1, IndexType2 index2 ) constexpr noexcept
-        { return ::std::conj( m[ index2, index1 ] ); };
+        { return ::std::conj( detail::access( m, index2, index1 ) ); };
       // Construct conjugate transpose matrix
       return detail::make_from_tuple<result_matrix_type>( collect_ctor_args( m, conjugate_lambda ) );
     }
@@ -616,12 +616,12 @@ class conjugate_vector
       noexcept( !detail::is_complex_v<typename vector_type::value_type> ||
                 noexcept( detail::make_from_tuple< result_vector_type >(
                   collect_ctor_args( v,
-                                     [&v]< class ... IndexType >( IndexType ... indices ) constexpr noexcept { return ::std::conj( v[ indices ... ] ); } ) ) ) )
+                                     [&v]< class ... IndexType >( IndexType ... indices ) constexpr noexcept { return ::std::conj( detail::access( v, indices ... ) ); } ) ) ) )
     {
       if constexpr ( detail::is_complex_v<typename vector_type::value_type> )
       {
         // Define conjugate transpose operation on each element
-        auto conj_lambda = [&v]< class ... IndexType >( IndexType ... indices ) constexpr noexcept { return ::std::conj( v[ indices ... ] ); };
+        auto conj_lambda = [&v]< class ... IndexType >( IndexType ... indices ) constexpr noexcept { return ::std::conj( detail::access( v, indices ... ) ); };
         // Construct negated vector
         return detail::make_from_tuple<result_vector_type>( collect_ctor_args( v, conj_lambda ) );
       }
@@ -766,7 +766,7 @@ class vector_matrix_product
                                          detail::faux_index_iterator<typename vector_type::index_type>( 0 ),
                                          detail::faux_index_iterator<typename vector_type::index_type>( v.size().extent(0) ),
                                          [ &v, &m, &index, &result ] ( typename vector_type::index_type index2 ) constexpr noexcept
-                                           { result += v[index2] * m[index2,index]; } );
+                                           { result += detail::access( v, index2 ) * detail::access( m, index2, index ); } );
                                return result;
                              } ) ) ) &&
                 ( ( vector_type::extents_type::static_extent(0) != experimental::dynamic_extent ) &&
@@ -793,7 +793,7 @@ class vector_matrix_product
                   detail::faux_index_iterator<typename vector_type::index_type>( 0 ),
                   detail::faux_index_iterator<typename vector_type::index_type>( v.size().extent(0) ),
                   [ &v, &m, &index, &result ] ( typename vector_type::index_type index2 ) constexpr noexcept
-                    { result += v[index2] * m[index2,index]; } );
+                    { result += detail::access( v, index2 ) * detail::access( m, index2, index ); } );
         return result;
       };
       // Construct multiplication vector
@@ -821,7 +821,7 @@ class vector_matrix_product
                                          detail::faux_index_iterator<typename vector_type::index_type>( 0 ),
                                          detail::faux_index_iterator<typename vector_type::index_type>( v.size().extent(0) ),
                                          [ &v, &m, &index, &result ] ( typename vector_type::index_type index2 ) constexpr noexcept
-                                           { result += m[index,index2] * v[index2]; } );
+                                           { result += detail::access( m, index, index2 ) * detail::access( v, index2 ); } );
                                return result;
                              } ) ) ) &&
                 ( ( matrix_type::extents_type::static_extent(1) != experimental::dynamic_extent ) &&
@@ -848,7 +848,7 @@ class vector_matrix_product
                   detail::faux_index_iterator<typename vector_type::index_type>( 0 ),
                   detail::faux_index_iterator<typename vector_type::index_type>( v.size().extent(0) ),
                   [ &v, &m, &index, &result ] ( typename vector_type::index_type index2 ) constexpr noexcept
-                    { result += m[index,index2] * v[index2]; } );
+                    { result += detail::access( m, index, index2 ) * detail::access( v, index2 ); } );
         return result;
       };
       // Construct multiplication vector
@@ -953,7 +953,7 @@ class matrix_matrix_product
                                        detail::faux_index_iterator<typename first_matrix_type::index_type>( 0 ),
                                        detail::faux_index_iterator<typename first_matrix_type::index_type>( m1.size().extent(1) ),
                                        [ &m1, &m2, &index1, &index2, &result ] ( typename first_matrix_type::index_type index ) constexpr noexcept
-                                         { result += m1[index1,index] * m2[index,index2]; } );
+                                         { result += detail::access( m1, index1, index ) * detail::access( m2, index, index2 ); } );
                              return result;
                            } ) ) ) &&
                 ( first_matrix_type::extents_type::static_extent(1) != experimental::dynamic_extent ) &&
@@ -980,7 +980,7 @@ class matrix_matrix_product
                   detail::faux_index_iterator<typename first_matrix_type::index_type>( 0 ),
                   detail::faux_index_iterator<typename first_matrix_type::index_type>( m1.size().extent(1) ),
                   [ &m1, &m2, &index1, &index2, &result ] ( typename first_matrix_type::index_type index ) constexpr noexcept
-                    { result += m1[index1,index] * m2[index,index2]; } );
+                    { result += detail::access( m1, index1, index ) * detail::access( m2, index, index2 ); } );
         return result;
       };
       // Construct multiplication matrix
@@ -1032,7 +1032,8 @@ class inner_product
       // Store sum of inner product
       result_type result = 0;
       // Define lambda function to sum inner product
-      auto inner_prod_lambda = [&v1,&v2,&result]< class ... IndexType >( IndexType ... indices ) constexpr noexcept { result += v1[ indices ... ] * v2[ indices ... ]; };
+      auto inner_prod_lambda = [&v1,&v2,&result]< class ... IndexType >( IndexType ... indices ) constexpr noexcept
+        { result += detail::access( v1, indices ... ) * detail::acccess( v2, indices ... ); };
       // Apply lambda expression
       detail::apply_all( v1.span(), inner_prod_lambda, LINALG_EXECUTION_UNSEQ );
       // Return result
@@ -1129,12 +1130,12 @@ class outer_product
         collect_ctor_args( v1,
                            v2,
                            [&v1,&v2]< class IndexType1, class IndexType2 >( IndexType1 index1, IndexType2 index2 ) constexpr noexcept
-                             { return v1[index1] * v2[index2]; } ) ) ) )
+                             { return detail::access( v1, index1 ) * detail::access( v2, index2 ); } ) ) ) )
     {
       // Define product operation on each element pair
       auto lambda = [&v1,&v2]< class IndexType1, class IndexType2 >( IndexType1 index1, IndexType2 index2 ) constexpr noexcept
       {
-        return v1[index1] * v2[index2];
+        return detail::access( v1, index1 ) * detail::access( v2, index2 );
       };
       // Construct multiplication vector
       return detail::make_from_tuple<result_matrix_type>( collect_ctor_args( v1, v2, lambda ) );

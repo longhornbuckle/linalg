@@ -174,7 +174,12 @@ class fs_tensor
     /// @brief Returns the value at (indices...) without index bounds checking
     /// @param indices set indices representing a node in the tensor
     /// @returns value at row i, column j, depth k, etc.
+    #if LINALG_USE_BRACKET_OPERATOR
     [[nodiscard]] constexpr value_type operator[]( decltype(Ds) ... indices ) const noexcept;
+    #endif
+    #if LINALG_USE_PAREN_OPERATOR
+    [[nodiscard]] constexpr value_type operator()( decltype(Ds) ... indices ) const noexcept;
+    #endif
     /// @brief Returns the value at (indices...) with index bounds checking
     /// @param indices set indices representing a node in the tensor
     /// @returns value at row i, column j, depth k, etc.
@@ -205,7 +210,12 @@ class fs_tensor
     /// @brief Returns a mutable value at (indices...) without index bounds checking
     /// @param indices set indices representing a node in the tensor
     /// @returns mutable value at row i, column j, depth k, etc.
+    #if LINALG_USE_BRACKET_OPERATOR
     [[nodiscard]] constexpr reference_type operator[]( decltype(Ds) ... indices ) noexcept;
+    #endif
+    #if LINALG_USE_PAREN_OPERATOR
+    [[nodiscard]] constexpr reference_type operator()( decltype(Ds) ... indices ) noexcept;
+    #endif
     /// @brief Returns a mutable value at (indices...) with index bounds checking
     /// @param indices set indices representing a node in the tensor
     /// @returns mutable value at row i, column j, depth k, etc.
@@ -299,7 +309,11 @@ constexpr fs_tensor<T,L,A,Ds...>::fs_tensor( Lambda&& lambda ) noexcept( noexcep
   // Construct all elements from lambda output
   auto ctor = [this,&lambda]< class ... SizeType >( SizeType ... indices ) constexpr noexcept( lambda_is_noexcept )
   {
+    #if LINALG_USE_BRACKET_OPERATOR
     this->underlying_span()[ indices ... ] = lambda( indices ... );
+    #else
+    this->underlying_span()( indices ... ) = lambda( indices ... );
+    #endif
   };
   detail::apply_all( this->underlying_span(), ctor, execution::unseq );
 }
@@ -340,18 +354,29 @@ fs_tensor<T,L,A,Ds...>::capacity() const noexcept
 
 //- Const views
 
+#if LINALG_USE_BRACKET_OPERATOR
 template < class T, class L, class A, size_t ... Ds > requires ( ( Ds >= 0 ) && ... )
 [[nodiscard]] constexpr typename fs_tensor<T,L,A,Ds...>::value_type
 fs_tensor<T,L,A,Ds...>::operator[]( decltype(Ds) ... indices ) const noexcept
 {
   return this->underlying_span()[ indices ... ];
 }
+#endif
+
+#if LINALG_USE_PAREN_OPERATOR
+template < class T, class L, class A, size_t ... Ds > requires ( ( Ds >= 0 ) && ... )
+[[nodiscard]] constexpr typename fs_tensor<T,L,A,Ds...>::value_type
+fs_tensor<T,L,A,Ds...>::operator()( decltype(Ds) ... indices ) const noexcept
+{
+  return this->underlying_span()( indices ... );
+}
+#endif
 
 template < class T, class L, class A, size_t ... Ds > requires ( ( Ds >= 0 ) && ... )
 [[nodiscard]] constexpr typename fs_tensor<T,L,A,Ds...>::value_type
 fs_tensor<T,L,A,Ds...>::at( decltype(Ds) ... indices ) const
 {
-  return this->underlying_span()[ indices ... ];
+  return detail::access( this->underlying_span(), indices ... );
 }
 
 template < class T, class L, class A, size_t ... Ds > requires ( ( Ds >= 0 ) && ... )
@@ -375,25 +400,36 @@ template < class ... SliceArgs >
 template < class T, class L, class A, size_t ... Ds > requires ( ( Ds >= 0 ) && ... )
 [[nodiscard]] constexpr fs_tensor<T,L,A,Ds...>::const_subtensor_type
 fs_tensor<T,L,A,Ds...>::subtensor( tuple_type start,
-                                          tuple_type end ) const
+                                   tuple_type end ) const
 {
   return const_subtensor_type { detail::submdspan( this->underlying_span(), start, end ) };
 }
 
 //- Mutable views
 
+#if LINALG_USE_BRACKET_OPERATOR
 template < class T, class L, class A, size_t ... Ds > requires ( ( Ds >= 0 ) && ... )
 [[nodiscard]] constexpr typename fs_tensor<T,L,A,Ds...>::reference_type
 fs_tensor<T,L,A,Ds...>::operator[]( decltype(Ds) ... indices ) noexcept
 {
   return this->underlying_span()[ indices ... ];
 }
+#endif
+
+#if LINALG_USE_PAREN_OPERATOR
+template < class T, class L, class A, size_t ... Ds > requires ( ( Ds >= 0 ) && ... )
+[[nodiscard]] constexpr typename fs_tensor<T,L,A,Ds...>::reference_type
+fs_tensor<T,L,A,Ds...>::operator()( decltype(Ds) ... indices ) noexcept
+{
+  return this->underlying_span()( indices ... );
+}
+#endif
 
 template < class T, class L, class A, size_t ... Ds > requires ( ( Ds >= 0 ) && ... )
 [[nodiscard]] constexpr typename fs_tensor<T,L,A,Ds...>::reference_type
 fs_tensor<T,L,A,Ds...>::at( decltype(Ds) ... indices )
 {
-  return this->underlying_span()[ indices ... ];
+  return detail::access( this->underlying_span(), indices ... );
 }
 
 template < class T, class L, class A, size_t ... Ds > requires ( ( Ds >= 0 ) && ... )
@@ -417,7 +453,7 @@ template < class ... SliceArgs >
 template < class T, class L, class A, size_t ... Ds > requires ( ( Ds >= 0 ) && ... )
 [[nodiscard]] constexpr fs_tensor<T,L,A,Ds...>::subtensor_type
 fs_tensor<T,L,A,Ds...>::subtensor( tuple_type start,
-                                          tuple_type end )
+                                   tuple_type end )
 {
   return subtensor_type { detail::submdspan( this->underlying_span(), start, end ) };
 }

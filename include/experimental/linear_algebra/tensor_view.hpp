@@ -99,9 +99,16 @@ class tensor_view
     /// @brief Returns the value at (indices...)
     /// @param indices set indices representing a node in the tensor
     /// @returns value at row i, column j, depth k, etc.
+    #if LINALG_USE_BRACKET_OPERATOR
     template < class ... IndexType >
     [[nodiscard]] constexpr value_type operator[]( IndexType ... indices ) const noexcept
       requires ( sizeof...(IndexType) == extents_type::rank() ) && ( is_convertible_v<IndexType,index_type> && ... );
+    #endif
+    #if LINALG_USE_PAREN_OPERATOR
+    template < class ... IndexType >
+    [[nodiscard]] constexpr value_type operator()( IndexType ... indices ) const noexcept
+      requires ( sizeof...(IndexType) == extents_type::rank() ) && ( is_convertible_v<IndexType,index_type> && ... );
+    #endif
     /// @brief Returns the value at (indices...)
     /// @param indices set indices representing a node in the tensor
     /// @returns value at row i, column j, depth k, etc.
@@ -120,10 +127,18 @@ class tensor_view
     /// @brief Returns a mutable value at (indices...)
     /// @param indices set indices representing a node in the tensor
     /// @returns mutable value at row i, column j, depth k, etc.
+    #if LINALG_USE_BRACKET_OPERATOR
     template < class ... IndexType >
     [[nodiscard]] constexpr reference_type operator[]( IndexType ... indices ) noexcept
       requires ( sizeof...(IndexType) == extents_type::rank() ) && ( is_convertible_v<IndexType,index_type> && ... ) &&
                ( !is_const_v<element_type> );
+    #endif
+    #if LINALG_USE_PAREN_OPERATOR
+    template < class ... IndexType >
+    [[nodiscard]] constexpr reference_type operator()( IndexType ... indices ) noexcept
+      requires ( sizeof...(IndexType) == extents_type::rank() ) && ( is_convertible_v<IndexType,index_type> && ... ) &&
+               ( !is_const_v<element_type> );
+    #endif
     /// @brief Returns a mutable value at (indices...)
     /// @param indices set indices representing a node in the tensor
     /// @returns mutable value at row i, column j, depth k, etc.
@@ -195,6 +210,7 @@ tensor_view<MDS>::capacity() const noexcept
 
 //- Const views
 
+#if LINALG_USE_BRACKET_OPERATOR
 template < class MDS > requires ( detail::is_mdspan_v<MDS> && MDS::is_always_unique() )
 template < class ... IndexType >
 [[nodiscard]] constexpr typename tensor_view<MDS>::value_type
@@ -203,6 +219,18 @@ tensor_view<MDS>::operator[]( IndexType ... indices ) const noexcept
 {
   return this->underlying_span()[ indices ... ];
 }
+#endif
+
+#if LINALG_USE_PAREN_OPERATOR
+template < class MDS > requires ( detail::is_mdspan_v<MDS> && MDS::is_always_unique() )
+template < class ... IndexType >
+[[nodiscard]] constexpr typename tensor_view<MDS>::value_type
+tensor_view<MDS>::operator()( IndexType ... indices ) const noexcept
+  requires ( sizeof...(IndexType) == tensor_view<MDS>::extents_type::rank() ) && ( is_convertible_v<IndexType,typename tensor_view<MDS>::index_type> && ... )
+{
+  return this->underlying_span()( indices ... );
+}
+#endif
 
 template < class MDS > requires ( detail::is_mdspan_v<MDS> && MDS::is_always_unique() )
 template < class ... IndexType >
@@ -210,7 +238,7 @@ template < class ... IndexType >
 tensor_view<MDS>::at( IndexType ... indices ) const
   requires ( sizeof...(IndexType) == tensor_view<MDS>::extents_type::rank() ) && ( is_convertible_v<IndexType,typename tensor_view<MDS>::index_type> && ... )
 {
-  return this->underlying_span()[ indices ... ];
+  return detail::access( this->underlying_span(), indices ... );
 }
 
 template < class MDS > requires ( detail::is_mdspan_v<MDS> && MDS::is_always_unique() )
@@ -223,6 +251,7 @@ tensor_view<MDS>::subtensor( tuple_type start,
 
 //- Mutable views
 
+#if LINALG_USE_BRACKET_OPERATOR
 template < class MDS > requires ( detail::is_mdspan_v<MDS> && MDS::is_always_unique() )
 template < class ... IndexType >
 [[nodiscard]] constexpr typename tensor_view<MDS>::reference_type
@@ -232,6 +261,19 @@ tensor_view<MDS>::operator[]( IndexType ... indices ) noexcept
 {
   return forward<typename tensor_view<MDS>::reference_type>( this->underlying_span()[ indices ... ] );
 }
+#endif
+
+#if LINALG_USE_PAREN_OPERATOR
+template < class MDS > requires ( detail::is_mdspan_v<MDS> && MDS::is_always_unique() )
+template < class ... IndexType >
+[[nodiscard]] constexpr typename tensor_view<MDS>::reference_type
+tensor_view<MDS>::operator()( IndexType ... indices ) noexcept
+  requires ( sizeof...(IndexType) == tensor_view<MDS>::extents_type::rank() ) && ( is_convertible_v<IndexType,typename tensor_view<MDS>::index_type> && ... ) &&
+           ( !is_const_v<typename tensor_view<MDS>::element_type> )
+{
+  return forward<typename tensor_view<MDS>::reference_type>( this->underlying_span()( indices ... ) );
+}
+#endif
 
 template < class MDS > requires ( detail::is_mdspan_v<MDS> && MDS::is_always_unique() )
 template < class ... IndexType >
@@ -240,7 +282,7 @@ tensor_view<MDS>::at( IndexType ... indices )
   requires ( sizeof...(IndexType) == tensor_view<MDS>::extents_type::rank() ) && ( is_convertible_v<IndexType,typename tensor_view<MDS>::index_type> && ... ) &&
            ( !is_const_v<typename tensor_view<MDS>::element_type> )
 {
-  return forward<typename tensor_view<MDS>::reference_type>( this->underlying_span()[ indices ... ] );
+  return forward<typename tensor_view<MDS>::reference_type>( detail::access( this->underlying_span(), indices ... ) );
 }
 
 template < class MDS > requires ( detail::is_mdspan_v<MDS> && MDS::is_always_unique() )

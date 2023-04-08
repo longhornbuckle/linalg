@@ -297,9 +297,16 @@ class dr_tensor
     /// @brief Returns the value at (indices...) without index bounds checking
     /// @param indices set indices representing a node in the tensor
     /// @returns value at row i, column j, depth k, etc.
+    #if LINALG_USE_BRACKET_OPERATOR
     template < class ... IndexType >
     [[nodiscard]] constexpr value_type operator[]( IndexType ... indices ) const noexcept
       requires ( sizeof...(IndexType) == R ) && ( is_convertible_v<IndexType,index_type> && ... );
+    #endif
+    #if LINALG_USE_PAREN_OPERATOR
+    template < class ... IndexType >
+    [[nodiscard]] constexpr value_type operator()( IndexType ... indices ) const noexcept
+      requires ( sizeof...(IndexType) == R ) && ( is_convertible_v<IndexType,index_type> && ... );
+    #endif
     /// @brief Returns the value at (indices...) with index bounds checking
     /// @param indices set indices representing a node in the tensor
     /// @returns value at row i, column j, depth k, etc.
@@ -332,9 +339,16 @@ class dr_tensor
     /// @brief Returns a mutable value at (indices...) without index bounds checking
     /// @param indices set indices representing a node in the tensor
     /// @returns mutable value at row i, column j, depth k, etc.
+    #if LINALG_USE_BRACKET_OPERATOR
     template < class ... IndexType >
     [[nodiscard]] constexpr reference_type operator[]( IndexType ... indices ) noexcept
       requires ( sizeof...(IndexType) == R ) && ( is_convertible_v<IndexType,index_type> && ... );
+    #endif
+    #if LINALG_USE_PAREN_OPERATOR
+    template < class ... IndexType >
+    [[nodiscard]] constexpr reference_type operator()( IndexType ... indices ) noexcept
+      requires ( sizeof...(IndexType) == R ) && ( is_convertible_v<IndexType,index_type> && ... );
+    #endif
     /// @brief Returns a mutable value at (indices...) with index bounds checking
     /// @param indices set indices representing a node in the tensor
     /// @returns mutable value at row i, column j, depth k, etc.
@@ -976,6 +990,7 @@ dr_tensor<T,R,Alloc,L,Access>::get_allocator() const & noexcept
 
 //- Const views
 
+#if LINALG_USE_BRACKET_OPERATOR
 template < class T, size_t R, class Alloc, class L , class Access >
 template < class ... IndexType >
 [[nodiscard]] constexpr dr_tensor<T,R,Alloc,L,Access>::value_type
@@ -984,6 +999,18 @@ dr_tensor<T,R,Alloc,L,Access>::operator[]( IndexType ... indices ) const noexcep
 {
   return this->underlying_span()[ indices ... ];
 }
+#endif
+
+#if LINALG_USE_PAREN_OPERATOR
+template < class T, size_t R, class Alloc, class L , class Access >
+template < class ... IndexType >
+[[nodiscard]] constexpr dr_tensor<T,R,Alloc,L,Access>::value_type
+dr_tensor<T,R,Alloc,L,Access>::operator()( IndexType ... indices ) const noexcept
+  requires ( sizeof...(IndexType) == R ) && ( is_convertible_v<IndexType,typename dr_tensor<T,R,Alloc,L,Access>::index_type> && ... )
+{
+  return this->underlying_span()( indices ... );
+}
+#endif
 
 template < class T, size_t R, class Alloc, class L , class Access >
 template < class ... IndexType >
@@ -991,7 +1018,7 @@ template < class ... IndexType >
 dr_tensor<T,R,Alloc,L,Access>::at( IndexType ... indices ) const
   requires ( sizeof...(IndexType) == R ) && ( is_convertible_v<IndexType,typename dr_tensor<T,R,Alloc,L,Access>::index_type> && ... )
 {
-  return this->underlying_span()[ indices ... ];
+  return detail::access( this->underlying_span(), indices ... );
 }
 
 template < class T, size_t R, class Alloc, class L , class Access >
@@ -1022,6 +1049,7 @@ dr_tensor<T,R,Alloc,L,Access>::subtensor( tuple_type start,
 
 //- Mutable views
 
+#if LINALG_USE_BRACKET_OPERATOR
 template < class T, size_t R, class Alloc, class L , class Access >
 template < class ... IndexType >
 [[nodiscard]] constexpr dr_tensor<T,R,Alloc,L,Access>::reference_type
@@ -1030,6 +1058,18 @@ dr_tensor<T,R,Alloc,L,Access>::operator[]( IndexType ... indices ) noexcept
 {
   return this->underlying_span()[ indices ... ];
 }
+#endif
+
+#if LINALG_USE_PAREN_OPERATOR
+template < class T, size_t R, class Alloc, class L , class Access >
+template < class ... IndexType >
+[[nodiscard]] constexpr dr_tensor<T,R,Alloc,L,Access>::reference_type
+dr_tensor<T,R,Alloc,L,Access>::operator()( IndexType ... indices ) noexcept
+  requires ( sizeof...(IndexType) == R ) && ( is_convertible_v<IndexType,typename dr_tensor<T,R,Alloc,L,Access>::index_type> && ... )
+{
+  return this->underlying_span()( indices ... );
+}
+#endif
 
 template < class T, size_t R, class Alloc, class L , class Access >
 template < class ... IndexType >
@@ -1037,7 +1077,7 @@ template < class ... IndexType >
 dr_tensor<T,R,Alloc,L,Access>::at( IndexType ... indices )
   requires ( sizeof...(IndexType) == R ) && ( is_convertible_v<IndexType,typename dr_tensor<T,R,Alloc,L,Access>::index_type> && ... )
 {
-  return this->underlying_span()[ indices ... ];
+  return detail::access( this->underlying_span(), indices ... );
 }
 
 template < class T, size_t R, class Alloc, class L , class Access >

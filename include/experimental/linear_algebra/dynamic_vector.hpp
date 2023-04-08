@@ -208,7 +208,12 @@ class dr_vector : public dr_tensor<T,1,Alloc,L,Access>
 
     //- Const views
 
+    #if LINALG_USE_BRACKET_OPERATOR
     using base_type::operator[]; // Brings into scope const and mutable
+    #endif
+    #if LINALG_USE_PAREN_OPERATOR
+    using base_type::operator(); // Brings into scope const and mutable
+    #endif
     using base_type::at;         // Brings into scope const and mutable
 
     /// @brief Returns a const view of the specified subvector

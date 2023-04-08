@@ -58,7 +58,12 @@ concept readable_matrix_data = matrix_data<M> &&                                
 readable_tensor_data<M> &&                                                           // B)
 requires( const M& m, typename M::index_type index1, typename M::index_type index2 ) // C)
 {
+  #if LINALG_USE_BRACKET_OPERATOR
   { m[index1,index2] }       noexcept -> same_as<typename M::value_type>;
+  #endif
+  #if LINALG_USE_PAREN_OPERATOR
+  { m(index1,index2) }       noexcept -> same_as<typename M::value_type>;
+  #endif
   { m.at(index1,index2) }             -> same_as<typename M::value_type>;
 } &&
 ( M::span_type::extents_type::rank() == 2 ) &&                                       // D)
@@ -100,7 +105,12 @@ writable_tensor_data<M> &&                                                     /
 requires( M& m, typename M::index_type index1, typename M::index_type index2 ) // C)
 {
   typename M::reference_type;
+  #if LINALG_USE_BRACKET_OPERATOR
   { m[index1,index2] }       noexcept -> same_as<typename M::reference_type>;
+  #endif
+  #if LINALG_USE_PAREN_OPERATOR
+  { m(index1,index2) }       noexcept -> same_as<typename M::reference_type>;
+  #endif
   { m.at(index1,index2) }             -> same_as<typename M::reference_type>;
 } &&
 requires( M& m, typename M::index_type index )                                 // D)

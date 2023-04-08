@@ -48,7 +48,12 @@ concept readable_vector_data = vector_data<V> &&     // A)
 readable_tensor_data<V> &&                           // B)
 requires( const V& v, typename V::index_type index ) // C)
 {
+  #if LINALG_USE_BRACKET_OPERATOR
   { v[index] }       noexcept -> same_as<typename V::value_type>;
+  #endif
+  #if LINALG_USE_PAREN_OPERATOR
+  { v(index) }       noexcept -> same_as<typename V::value_type>;
+  #endif
   { v.at(index) }             -> same_as<typename V::value_type>;
 } &&
 ( V::span_type::extents_type::rank() == 1 ) &&       // D)
@@ -76,7 +81,12 @@ writable_tensor_data<V> &&                                // B)
 requires( V& v, typename V::index_type index )            // C)
 {
   typename V::reference_type;
+  #if LINALG_USE_BRACKET_OPERATOR
   { v[index] }       noexcept -> same_as<typename V::reference_type>;
+  #endif
+  #if LINALG_USE_PAREN_OPERATOR
+  { v(index) }       noexcept -> same_as<typename V::reference_type>;
+  #endif
   { v.at(index) }             -> same_as<typename V::reference_type>;
 } &&
 requires( V&                     v,

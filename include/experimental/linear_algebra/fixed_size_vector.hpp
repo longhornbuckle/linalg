@@ -147,7 +147,12 @@ class fs_vector : public fs_tensor<T,L,A,N>
 
     //- Const views
 
+    #if LINALG_USE_BRACKET_OPERATOR
     using base_type::operator[]; // Brings into scope const and mutable
+    #endif
+    #if LINALG_USE_PAREN_OPERATOR
+    using base_type::operator(); // Brings into scope const and mutable
+    #endif
     using base_type::at;         // Brings into scope const and mutable
 
     /// @brief Returns a const view of the specified subvector
