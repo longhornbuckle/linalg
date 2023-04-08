@@ -236,15 +236,14 @@ class dr_tensor
     /// @param  fs_tensor to be copied
     /// @return self
     constexpr dr_tensor& operator = ( const dr_tensor& rhs );
-    // TODO: Define noexcept specification
+    // TODO: Define noexcept specification.
     /// @brief Template copy assignment
     /// @tparam type of tensor to be copied
     /// @param  tensor to be copied
     /// @returns self
     template < concepts::tensor_may_be_constructible< dr_tensor > T2 >
     constexpr dr_tensor& operator = ( const T2& rhs );
-    // TODO: Define noexcept specification. Noexcept will require an mdspan iterator access
-    //       as index operators are not noexcept
+    // TODO: Define noexcept specification.
     /// @brief Construct from an N dimensional view
     /// @tparam type of view to be copied
     /// @param  view to be copied
