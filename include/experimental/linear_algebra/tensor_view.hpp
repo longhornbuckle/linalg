@@ -110,6 +110,18 @@ class tensor_view
     /// @return capacity of (rows,columns,depth,etc.)
     [[nodiscard]] constexpr extents_type capacity() const noexcept;
 
+    //- Data access
+    
+    /// @brief returns a const view
+    /// @returns const view
+    [[nodiscard]] constexpr span_type                  span() const noexcept;
+    /// @brief the view
+    /// @returns returns the view
+    [[nodiscard]] constexpr underlying_span_type       underlying_span() noexcept requires ( !is_const_v<element_type> );
+    /// @brief returns a const view
+    /// @returns const view
+    [[nodiscard]] constexpr const_underlying_span_type underlying_span() const noexcept;
+
     //- Const views
 
     /// @brief Returns the value at (indices...)
@@ -196,18 +208,6 @@ class tensor_view
     /// @return mutable tensor view
     template < class ... SliceArgs >
     [[nodiscard]] constexpr auto subtensor( SliceArgs ... args );
-
-    //- Data access
-    
-    /// @brief returns a const view
-    /// @returns const view
-    [[nodiscard]] constexpr span_type                  span() const noexcept;
-    /// @brief the view
-    /// @returns returns the view
-    [[nodiscard]] constexpr underlying_span_type       underlying_span() noexcept requires ( !is_const_v<element_type> );
-    /// @brief returns a const view
-    /// @returns const view
-    [[nodiscard]] constexpr const_underlying_span_type underlying_span() const noexcept;
 
   private:
     
