@@ -15,14 +15,14 @@ namespace std
 {
 namespace math
 {
-  template < class MDS >
-  class vector_view<MDS> requires ( detail::is_mdspan_v<MDS> &&
+  template < class MDS > requires ( detail::is_mdspan_v<MDS> &&
                                     ( MDS::extents_type::rank()== 1 ) &&
-                                    MDS::is_always_unique() );
-  template < class MDS >
-  class matrix_view<MDS> requires ( detail::is_mdspan_v<MDS> &&
+                                    MDS::is_always_unique() )
+  class vector_view;
+  template < class MDS > requires ( detail::is_mdspan_v<MDS> &&
                                     ( MDS::extents_type::rank()== 2 ) &&
-                                    MDS::is_always_unique() );
+                                    MDS::is_always_unique() )
+  class matrix_view;
 }
 }
 
