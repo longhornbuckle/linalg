@@ -18,6 +18,26 @@ namespace detail
 {
 
 //==================================================================================================
+//  Helper class for encapsulating macro dependent multidimensional access
+//==================================================================================================
+template < class MultiDimOperClass, class ... IndexType >
+[[nodiscard]] LINALG_FORCE_INLINE_FUNCTION constexpr decltype(auto) access( MultiDimOperClass&& t, IndexType ... indices )
+  noexcept( noexcept( 
+    #if LINALG_USE_BRACKET_OPERATOR
+    t[ indices ... ]
+    #else
+    t( indices ... )
+    #endif
+   ) )
+{
+  #if LINALG_USE_BRACKET_OPERATOR
+  return t[ indices ... ];
+  #else
+  return t( indices ... );
+  #endif
+}
+
+//==================================================================================================
 //  Test if type is an mdspan
 //==================================================================================================
 template < class T >
@@ -920,26 +940,6 @@ class extents_helper_impl< integer_sequence<U,Indices...> >
 };
 template < class U, size_t R >
 using extents_helper = extents_helper_impl< make_integer_sequence<U,R> >;
-
-//==================================================================================================
-//  Helper class for encapsulating macro dependent multidimensional access
-//==================================================================================================
-template < class MultiDimOperClass, class ... IndexType >
-[[nodiscard]] LINALG_FORCE_INLINE_FUNCTION constexpr decltype(auto) access( MultiDimOperClass&& t, IndexType ... indices )
-  noexcept( noexcept( 
-    #if LINALG_USE_BRACKET_OPERATOR
-    t[ indices ... ]
-    #else
-    t( indices ... )
-    #endif
-   ) )
-{
-  #if LINALG_USE_BRACKET_OPERATOR
-  return t[ indices ... ];
-  #else
-  return t( indices ... );
-  #endif
-}
 
 }       //- detail namespace
 }       //- math namespace
