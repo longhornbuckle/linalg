@@ -38,4 +38,11 @@
 #  endif
 #endif
 
+// Support for concepts
+#ifndef LINALG_ENABLE_CONCEPTS
+#  if ( __cpp_lib_concepts >= 201907L ) && ( ( LINALG_COMPILER_GNU >= 10 ) || ( LINALG_COMPILER_CLANG >= 16 ) )
+#    define LINALG_ENABLE_CONCEPTS
+#  endif
+#endif
+
 #endif  //- LINEAR_ALGEBRA_MACROS_HPP

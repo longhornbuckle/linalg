@@ -41,7 +41,7 @@
 // Define if clang compiler is being used
 #ifndef LINALG_COMPILER_CLANG
 #  if defined( __clang__ )
-#    define LINALG_COMPILER_CLANG __clang__
+#    define LINALG_COMPILER_CLANG __clang_major__
 #  endif
 #endif
 
@@ -60,7 +60,7 @@
 #endif
 
 // Define if Microsoft Visual Studio compiler is being used
-#if !defined( LINALG_COMPILER_MSVC ) && !defined( LINALG_COMPILER_INTEL )
+#if !defined( LINALG_COMPILER_MSVC ) && !defined( LINALG_COMPILER_INTEL ) && !defined( LINALG_COMPILER_CLANG )
 #  if defined( _MSC_VER )
 #    define _MDSPAN_COMPILER_MSVC _MSC_VER
 #  endif

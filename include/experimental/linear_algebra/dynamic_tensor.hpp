@@ -77,10 +77,6 @@ class dr_tensor
     using span_type                  = const_underlying_span_type;
     /// @brief Type returned by mutable index access
     using reference_type             = typename accessor_type::reference;
-    /// @brief mutable view of a subtensor
-    using subtensor_type             = tensor_view< decltype( detail::submdspan( declval<underlying_span_type>(), declval<tuple_type>(), declval<tuple_type>() ) ) >;
-    /// @brief const view of a subtensor
-    using const_subtensor_type       = tensor_view< decltype( detail::submdspan( declval<const_underlying_span_type>(), declval<tuple_type>(), declval<tuple_type>() ) ) >;
 
   private:
     //- Implementation details
