@@ -10,7 +10,7 @@ namespace math
 namespace concepts
 {
 
-#if LINALG_ENABLE_CONCEPTS
+#ifdef LINALG_ENABLE_CONCEPTS
 
 //=================================================================================================
 //  Tensor Concepts
