@@ -33,8 +33,8 @@ requires( T& t )                                     // Functions
   { t.size() }     noexcept;
   { t.capacity() } noexcept;
 } &&
-( is_same_v< decltype( declval<T>().size() ), typename T::extents_type > &&
-( is_same_v< decltype( declval<T>().capacity() ), typename T::extents_type > );
+is_same_v< decltype( declval<T>().size() ), typename T::extents_type > &&
+is_same_v< decltype( declval<T>().capacity() ), typename T::extents_type >;
 
 // All tensor types are tensor data types
 // All tensor types must support scalar multiply and divide operations

@@ -62,10 +62,6 @@ class fs_matrix : public fs_tensor<T,L,A,R,C>
     using span_type                  = typename base_type::span_type;
     /// @brief Type returned by mutable index access
     using reference_type             = typename base_type::reference_type;
-    /// @brief mutable view of a subtensor
-    using subtensor_type             = typename base_type::subtensor_type;
-    /// @brief const view of a subtensor
-    using const_subtensor_type       = typename base_type::const_subtensor_type;
     /// @brief mutable view of a column vector
     using column_type                = vector_view<decltype( experimental::submdspan( declval<underlying_span_type>(), declval<experimental::full_extent_t>(), declval<index_type>() ) )>;
     /// @brief const view of a column vector
