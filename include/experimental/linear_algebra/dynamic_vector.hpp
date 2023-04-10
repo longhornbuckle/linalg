@@ -492,7 +492,7 @@ constexpr dr_vector<T,Alloc,L,Access>& dr_vector<T,Alloc,L,Access>::operator = (
 
 template < class T, class Alloc, class L, class Access >
 #ifdef LINALG_ENABLE_CONCEPTS
-template < concepts::view_may_be_constructible_to_tensor< dr_matrix<T,Alloc,L,Access> > MDS >
+template < concepts::view_may_be_constructible_to_tensor< dr_vector<T,Alloc,L,Access> > MDS >
 #else
 template < class MDS, typename >
 #endif
