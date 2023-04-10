@@ -131,7 +131,7 @@ class dr_matrix : public dr_tensor<T,2,Alloc,L,Access>
     #ifdef LINALG_ENABLE_CONCEPTS
     template < concepts::view_may_be_constructible_to_tensor< dr_matrix > MDS >
     #else
-    template < class M2, typename = enable_if_t< concepts::view_may_be_constructible_to_tensor<MDS,dr_matrix> && is_default_constructible_v<allocator_type> > >
+    template < class MDS, typename = enable_if_t< concepts::view_may_be_constructible_to_tensor<MDS,dr_matrix> && is_default_constructible_v<allocator_type> > >
     #endif
     explicit constexpr dr_matrix( const MDS& view ) noexcept( noexcept( base_type(view) ) )
     #ifdef LINALG_ENABLE_CONCEPTS
