@@ -396,6 +396,8 @@ class dr_tensor
     [[nodiscard]] constexpr value_type at( IndexType ... indices ) const
     #ifdef LINALG_ENABLE_CONCEPTS
       requires ( sizeof...(IndexType) == R ) && ( is_convertible_v<IndexType,index_type> && ... );
+    #else
+      ;
     #endif
     /// @brief Returns a const vector view
     /// @tparam ...SliceArgs argument types used to get a const vector view
@@ -405,6 +407,8 @@ class dr_tensor
     [[nodiscard]] constexpr auto subvector( SliceArgs ... args ) const
     #ifdef LINALG_ENABLE_CONCEPTS
       requires ( decltype( experimental::submdspan( this->underlying_span(), args ... ) )::rank() == 1 );
+    #else
+      ;
     #endif
     /// @brief Returns a const matrix view
     /// @tparam ...SliceArgs argument types used to get a const matrix view
@@ -414,6 +418,8 @@ class dr_tensor
     [[nodiscard]] constexpr auto submatrix( SliceArgs ... args ) const
     #ifdef LINALG_ENABLE_CONCEPTS
       requires ( decltype( experimental::submdspan( this->underlying_span(), args ... ) )::rank() == 2 );
+    #else
+      ;
     #endif
     /// @brief Returns a const view of the specified subtensor
     /// @tparam ...SliceArgs argument types used to get a tensor view
@@ -452,6 +458,8 @@ class dr_tensor
     [[nodiscard]] constexpr reference_type at( IndexType ... indices )
     #ifdef LINALG_ENABLE_CONCEPTS
       requires ( sizeof...(IndexType) == R ) && ( is_convertible_v<IndexType,index_type> && ... );
+    #else
+      ;
     #endif
     /// @brief Returns a vector view
     /// @tparam ...SliceArgs argument types used to get a vector view
@@ -461,6 +469,8 @@ class dr_tensor
     [[nodiscard]] constexpr auto subvector( SliceArgs ... args )
     #ifdef LINALG_ENABLE_CONCEPTS
       requires ( decltype( experimental::submdspan( this->underlying_span(), args ... ) )::rank() == 1 );
+    #else
+      ;
     #endif
     /// @brief Returns a matrix view
     /// @tparam ...SliceArgs argument types used to get a matrix view
@@ -470,6 +480,8 @@ class dr_tensor
     [[nodiscard]] constexpr auto submatrix( SliceArgs ... args )
     #ifdef LINALG_ENABLE_CONCEPTS
       requires ( decltype( experimental::submdspan( this->underlying_span(), args ... ) )::rank() == 2 );
+    #else
+      ;
     #endif
     /// @brief Returns a mutable view of the specified subtensor
     /// @tparam ...SliceArgs argument types used to get a tensor view
