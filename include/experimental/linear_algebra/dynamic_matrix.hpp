@@ -193,7 +193,7 @@ class dr_matrix : public dr_tensor<T,2,Alloc,L,Access>
                                        is_convertible_to< decltype( declval<Lambda&&>()( declval<index_type>(), declval<index_type>() ) ), element_type > > >
     #endif
     constexpr dr_matrix( extents_type s, extents_type cap, Lambda&& lambda ) noexcept( noexcept( base_type(s,cap,lambda) ) )
-    #if LINALG_ENABLE_CONCEPTS
+    #ifdef LINALG_ENABLE_CONCEPTS
       requires is_default_constructible_v<allocator_type> &&
                requires { { declval<Lambda&&>()( declval<index_type>(), declval<index_type>() ) } -> convertible_to<element_type>; };
     #endif
@@ -230,7 +230,6 @@ class dr_matrix : public dr_tensor<T,2,Alloc,L,Access>
     template < class Lambda,
                typename = enable_if_t< is_convertible_to< decltype( declval<Lambda&&>()( declval<index_type>(), declval<index_type>() ) ), element_type > > >
     #endif
-    template < class Lambda >
     constexpr dr_matrix( extents_type s, Lambda&& lambda, const allocator_type& alloc ) noexcept( noexcept( base_type(s,lambda,alloc) ) )
     #ifdef LINALG_ENABLE_CONCEPTS
       requires requires { { declval<Lambda&&>()( declval<index_type>(), declval<index_type>() ) } -> convertible_to<element_type>; };
