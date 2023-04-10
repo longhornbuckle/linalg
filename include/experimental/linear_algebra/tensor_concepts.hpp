@@ -262,12 +262,12 @@ template < class T > inline constexpr bool has_span_type_v = has_span_type<T>::v
 // Test if T has alias reference_type
 template < class T, class = void > struct has_reference_type : public false_type { };
 template < class T > struct has_reference_type< T, std::enable_if_t< std::is_same_v< typename T::reference_type, typename T::reference_type > > > : public true_type { };
-template < class T > inline constexpr bool has_sreference_type_v = has_reference_type<T>::value;
+template < class T > inline constexpr bool has_reference_type_v = has_reference_type<T>::value;
 
 // Test if T has alias underlying_span_type
 template < class T, class = void > struct has_underlying_span_type : public false_type { };
 template < class T > struct has_underlying_span_type< T, std::enable_if_t< std::is_same_v< typename T::underlying_span_type, typename T::underlying_span_type > > > : public true_type { };
-template < class T > inline constexpr bool has_span_type_v = has_underlying_span_type<T>::value;
+template < class T > inline constexpr bool has_underlying_span_type_v = has_underlying_span_type<T>::value;
 
 // Test if T has alias allocator_type
 template < class T, class = void > struct has_allocator_type : public false_type { };
@@ -288,18 +288,18 @@ template < class T > inline constexpr bool has_capacity_func_v = has_capacity_fu
 
 // Test for scalar pre-multiply
 template < class T, class S = typename T::value_type, class = void > struct has_scalar_premultiply_func : public false_type { };
-template < class T, class S = typename T::value_type > struct has_scalar_premultiply_func< T, std::enable_if_t< std::is_same_v< decltype( declval<S>() * declval<const T>() ), decltype( declval<S>() * declval<const T>() ) > > > : public true_type { };
-template < class T, class S = typename T::value_type > inline constexpr bool has_scalar_premultiply_func_v = has_scalar_premultiply_func<T,S>::value;
+template < class T, class S > struct has_scalar_premultiply_func< T, S, std::enable_if_t< std::is_same_v< decltype( declval<S>() * declval<const T>() ), decltype( declval<S>() * declval<const T>() ) > > > : public true_type { };
+template < class T, class S > inline constexpr bool has_scalar_premultiply_func_v = has_scalar_premultiply_func<T,S>::value;
 
 // Test for scalar post-multiply
 template < class T, class S = typename T::value_type, class = void > struct has_scalar_postmultiply_func : public false_type { };
-template < class T, class S = typename T::value_type > struct has_scalar_postmultiply_func< T, std::enable_if_t< std::is_same_v< decltype( declval<const T>() * declval<S>() ), decltype( declval<const T>() * declval<S>() ) > > > : public true_type { };
-template < class T, class S = typename T::value_type > inline constexpr bool has_scalar_postmultiply_func_v = has_scalar_postmultiply_func<T,S>::value;
+template < class T, class S > struct has_scalar_postmultiply_func< T, S, std::enable_if_t< std::is_same_v< decltype( declval<const T>() * declval<S>() ), decltype( declval<const T>() * declval<S>() ) > > > : public true_type { };
+template < class T, class S > inline constexpr bool has_scalar_postmultiply_func_v = has_scalar_postmultiply_func<T,S>::value;
 
 // Test for scalar divide
 template < class T, class S = typename T::value_type, class = void > struct has_scalar_divide_func : public false_type { };
-template < class T, class S = typename T::value_type > struct has_scalar_divide_func< T, std::enable_if_t< std::is_same_v< decltype( declval<const T>() / declval<S>() ), decltype( declval<const T>() / declval<S>() ) > > > : public true_type { };
-template < class T, class S = typename T::value_type > inline constexpr bool has_scalar_divide_func_v = has_scalar_divide_func<T,S>::value;
+template < class T, class S > struct has_scalar_divide_func< T, S, std::enable_if_t< std::is_same_v< decltype( declval<const T>() / declval<S>() ), decltype( declval<const T>() / declval<S>() ) > > > : public true_type { };
+template < class T, class S > inline constexpr bool has_scalar_divide_func_v = has_scalar_divide_func<T,S>::value;
 
 // Test for negation
 template < class T, class = void > struct has_negate_func : public false_type { };
