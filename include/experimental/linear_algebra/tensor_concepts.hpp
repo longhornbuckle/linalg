@@ -289,17 +289,17 @@ template < class T > inline constexpr bool has_capacity_func_v = has_capacity_fu
 // Test for scalar pre-multiply
 template < class T, class S = typename T::value_type, class = void > struct has_scalar_premultiply_func : public false_type { };
 template < class T, class S > struct has_scalar_premultiply_func< T, S, std::enable_if_t< std::is_same_v< decltype( declval<S>() * declval<const T>() ), decltype( declval<S>() * declval<const T>() ) > > > : public true_type { };
-template < class T, class S > inline constexpr bool has_scalar_premultiply_func_v = has_scalar_premultiply_func<T,S>::value;
+template < class T, class S = typename T::value_type > inline constexpr bool has_scalar_premultiply_func_v = has_scalar_premultiply_func<T,S>::value;
 
 // Test for scalar post-multiply
 template < class T, class S = typename T::value_type, class = void > struct has_scalar_postmultiply_func : public false_type { };
 template < class T, class S > struct has_scalar_postmultiply_func< T, S, std::enable_if_t< std::is_same_v< decltype( declval<const T>() * declval<S>() ), decltype( declval<const T>() * declval<S>() ) > > > : public true_type { };
-template < class T, class S > inline constexpr bool has_scalar_postmultiply_func_v = has_scalar_postmultiply_func<T,S>::value;
+template < class T, class S = typename T::value_type > inline constexpr bool has_scalar_postmultiply_func_v = has_scalar_postmultiply_func<T,S>::value;
 
 // Test for scalar divide
 template < class T, class S = typename T::value_type, class = void > struct has_scalar_divide_func : public false_type { };
 template < class T, class S > struct has_scalar_divide_func< T, S, std::enable_if_t< std::is_same_v< decltype( declval<const T>() / declval<S>() ), decltype( declval<const T>() / declval<S>() ) > > > : public true_type { };
-template < class T, class S > inline constexpr bool has_scalar_divide_func_v = has_scalar_divide_func<T,S>::value;
+template < class T, class S = typename T::value_type > inline constexpr bool has_scalar_divide_func_v = has_scalar_divide_func<T,S>::value;
 
 // Test for negation
 template < class T, class = void > struct has_negate_func : public false_type { };
