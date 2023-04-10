@@ -122,7 +122,7 @@ class fs_tensor
     #ifdef LINALG_ENABLE_CONCEPTS
     template < concepts::view_may_be_constructible_to_tensor< fs_tensor > MDS >
     #else
-    template < class MDS, typename = enable_if_t< concepts::view_may_be_constructible_to_tensor<MDS,fs_tensor> > >
+    template < class MDS, typename = enable_if_t< concepts::view_may_be_constructible_to_tensor<MDS,fs_tensor> >, typename = enable_if_t<true> >
     #endif
     explicit constexpr fs_tensor( const MDS& view ) noexcept( concepts::view_is_nothrow_constructible_to_tensor<MDS,fs_tensor> );
     /// @brief Construct by applying lambda to every element in the tensor
@@ -355,7 +355,7 @@ template < class T, class L, class A, size_t ... Ds >
 #ifdef LINALG_ENABLE_CONCEPTS
 template < concepts::view_may_be_constructible_to_tensor< fs_tensor<T,L,A,Ds...> > MDS >
 #else
-template < class MDS, typename >
+template < class MDS, typename, typename >
 #endif
 constexpr fs_tensor<T,L,A,Ds...>::fs_tensor( const MDS& view )
   noexcept( concepts::view_is_nothrow_constructible_to_tensor< MDS, fs_tensor<T,L,A,Ds...> > )
