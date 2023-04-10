@@ -214,7 +214,6 @@ class fs_vector : public fs_tensor<T,L,A,N>
 
 //- Destructor / Constructors / Assignments
 
-template < class T, size_t N, class L, class A
 #ifdef LINALG_ENABLE_CONCEPTS
 template < class T, size_t N, class L, class A > requires ( N >= 0 )
 template < concepts::tensor_may_be_constructible< fs_vector<T,N,L,A> > V2 >
