@@ -211,17 +211,22 @@ template < class MDS, typename Dummy >
 constexpr matrix_view<MDS,Dummy>::
 #endif
 matrix_view( const underlying_span_type& view ) noexcept :
+#ifdef LINALG_ENABLE_CONCEPTS
   matrix_view<MDS>::base_type( view )
+#else
+  matrix_view<MDS,Dummy>::base_type( view )
+#endif
 {
 }
 
-template < class MDS
 #ifdef LINALG_ENABLE_CONCEPTS
-  > requires ( detail::is_mdspan_v<MDS> && ( MDS::extents_type::rank() == 2 ) && MDS::is_always_unique() )
+template < class MDS > requires ( detail::is_mdspan_v<MDS> && ( MDS::extents_type::rank() == 2 ) && MDS::is_always_unique() )
+constexpr matrix_view<MDS>& matrix_view<MDS>::
 #else
-  , typename >
+template < class MDS, typename Dummy >
+constexpr matrix_view<MDS,Dummy>& matrix_view<MDS,Dummy>::
 #endif
-constexpr matrix_view<MDS>& matrix_view<MDS>::operator = ( const underlying_span_type& view ) noexcept
+operator = ( const underlying_span_type& view ) noexcept
 {
   static_cast<void>( this->base_type::operator=( view ) );
   return *this;
@@ -229,106 +234,104 @@ constexpr matrix_view<MDS>& matrix_view<MDS>::operator = ( const underlying_span
 
 //- Size / Capacity
 
-template < class MDS
 #ifdef LINALG_ENABLE_CONCEPTS
-  > requires ( detail::is_mdspan_v<MDS> && ( MDS::extents_type::rank() == 2 ) && MDS::is_always_unique() )
+template < class MDS > requires ( detail::is_mdspan_v<MDS> && ( MDS::extents_type::rank() == 2 ) && MDS::is_always_unique() )
+[[nodiscard]] constexpr typename matrix_view<MDS>::index_type matrix_view<MDS>::
 #else
-  , typename >
+template < class MDS, typename Dummy >
+[[nodiscard]] constexpr typename matrix_view<MDS>::index_type matrix_view<MDS,Dummy>::
 #endif
-[[nodiscard]] constexpr typename matrix_view<MDS>::index_type
-matrix_view<MDS>::columns() const noexcept
+columns() const noexcept
 {
   return this->size().extent(2);
 }
 
-template < class MDS
 #ifdef LINALG_ENABLE_CONCEPTS
-  > requires ( detail::is_mdspan_v<MDS> && ( MDS::extents_type::rank() == 2 ) && MDS::is_always_unique() )
+template < class MDS > requires ( detail::is_mdspan_v<MDS> && ( MDS::extents_type::rank() == 2 ) && MDS::is_always_unique() )
+[[nodiscard]] constexpr typename matrix_view<MDS>::index_type matrix_view<MDS>::
 #else
-  , typename >
+template < class MDS, typename Dummy >
+[[nodiscard]] constexpr typename matrix_view<MDS>::index_type matrix_view<MDS,Dummy>::
 #endif
-[[nodiscard]] constexpr typename matrix_view<MDS>::index_type
-matrix_view<MDS>::rows() const noexcept
+rows() const noexcept
 {
   return this->size().extent(1);
 }
 
-template < class MDS
 #ifdef LINALG_ENABLE_CONCEPTS
-  > requires ( detail::is_mdspan_v<MDS> && ( MDS::extents_type::rank() == 2 ) && MDS::is_always_unique() )
+template < class MDS > requires ( detail::is_mdspan_v<MDS> && ( MDS::extents_type::rank() == 2 ) && MDS::is_always_unique() )
+[[nodiscard]] constexpr typename matrix_view<MDS>::index_type matrix_view<MDS>::
 #else
-  , typename >
+template < class MDS, typename Dummy >
+[[nodiscard]] constexpr typename matrix_view<MDS>::index_type matrix_view<MDS,Dummy>::
 #endif
-[[nodiscard]] constexpr typename matrix_view<MDS>::index_type
-matrix_view<MDS>::column_capacity() const noexcept
+column_capacity() const noexcept
 {
   return this->capacity.extent(2);
 }
 
-template < class MDS
 #ifdef LINALG_ENABLE_CONCEPTS
-  > requires ( detail::is_mdspan_v<MDS> && ( MDS::extents_type::rank() == 2 ) && MDS::is_always_unique() )
+template < class MDS > requires ( detail::is_mdspan_v<MDS> && ( MDS::extents_type::rank() == 2 ) && MDS::is_always_unique() )
+[[nodiscard]] constexpr typename matrix_view<MDS>::index_type matrix_view<MDS>::
 #else
-  , typename >
+template < class MDS, typename Dummy >
+[[nodiscard]] constexpr typename matrix_view<MDS>::index_type matrix_view<MDS,Dummy>::
 #endif
-[[nodiscard]] constexpr typename matrix_view<MDS>::index_type
-matrix_view<MDS>::row_capacity() const noexcept
+row_capacity() const noexcept
 {
   return this->capacity.extent(1);
 }
 
 //- Const views
 
-template < class MDS
 #ifdef LINALG_ENABLE_CONCEPTS
-  > requires ( detail::is_mdspan_v<MDS> && ( MDS::extents_type::rank() == 2 ) && MDS::is_always_unique() )
+template < class MDS > requires ( detail::is_mdspan_v<MDS> && ( MDS::extents_type::rank() == 2 ) && MDS::is_always_unique() )
+[[nodiscard]] constexpr typename matrix_view<MDS>::const_column_type matrix_view<MDS>::
 #else
-  , typename >
+template < class MDS, typename Dummy >
+[[nodiscard]] constexpr typename matrix_view<MDS>::const_column_type matrix_view<MDS,Dummy>::
 #endif
-[[nodiscard]] constexpr typename matrix_view<MDS>::const_column_type
-matrix_view<MDS>::column( typename matrix_view<MDS>::index_type j ) const
+column( index_type j ) const
 {
   return const_column_type { experimental::submdspan( this->underlying_span(), experimental::full_extent, j ) };
 }
 
-template < class MDS
 #ifdef LINALG_ENABLE_CONCEPTS
-  > requires ( detail::is_mdspan_v<MDS> && ( MDS::extents_type::rank() == 2 ) && MDS::is_always_unique() )
+template < class MDS > requires ( detail::is_mdspan_v<MDS> && ( MDS::extents_type::rank() == 2 ) && MDS::is_always_unique() )
+[[nodiscard]] constexpr typename matrix_view<MDS>::const_row_type matrix_view<MDS>::
 #else
-  , typename >
+template < class MDS, typename Dummy >
+[[nodiscard]] constexpr typename matrix_view<MDS>::const_row_type matrix_view<MDS,Dummy>::
 #endif
-[[nodiscard]] constexpr typename matrix_view<MDS>::const_row_type
-matrix_view<MDS>::row( typename matrix_view<MDS>::index_type i ) const
+row( index_type i ) const
 {
   return const_row_type { experimental::submdspan( this->underlying_span(), i, experimental::full_extent ) };
 }
 
-template < class MDS
 #ifdef LINALG_ENABLE_CONCEPTS
-  > requires ( detail::is_mdspan_v<MDS> && ( MDS::extents_type::rank() == 2 ) && MDS::is_always_unique() )
+template < class MDS > requires ( detail::is_mdspan_v<MDS> && ( MDS::extents_type::rank() == 2 ) && MDS::is_always_unique() )
+[[nodiscard]] constexpr typename matrix_view<MDS>::const_submatrix_type matrix_view<MDS>::
 #else
-  , typename >
+template < class MDS, typename Dummy >
+[[nodiscard]] constexpr typename matrix_view<MDS>::const_submatrix_type matrix_view<MDS,Dummy>::
 #endif
-[[nodiscard]] constexpr typename matrix_view<MDS>::const_submatrix_type
-matrix_view<MDS>::submatrix( tuple_type start,
-                             tuple_type end ) const
+submatrix( tuple_type start,
+           tuple_type end ) const
 {
   return const_submatrix_type { detail::submdspan( this->underlying_span(), start, end ) };
 }
 
 //- Mutable views
 
-template < class MDS
 #ifdef LINALG_ENABLE_CONCEPTS
-  > requires ( detail::is_mdspan_v<MDS> && ( MDS::extents_type::rank() == 2 ) && MDS::is_always_unique() )
+template < class MDS > requires ( detail::is_mdspan_v<MDS> && ( MDS::extents_type::rank() == 2 ) && MDS::is_always_unique() )
+[[nodiscard]] constexpr typename matrix_view<MDS>::column_type matrix_view<MDS>::
 #else
-  , typename >
-#endif
-#ifndef LINALG_ENABLE_CONCEPTS
+template < class MDS, typename Dummy >
 template < typename >
+[[nodiscard]] constexpr typename matrix_view<MDS>::column_type matrix_view<MDS,Dummy>::
 #endif
-[[nodiscard]] constexpr typename matrix_view<MDS>::column_type
-matrix_view<MDS>::column( typename matrix_view<MDS>::index_type j )
+column( index_type j )
 #ifdef LINALG_ENABLE_CONCEPTS
   requires ( !is_const_v<typename matrix_view<MDS>::element_type> )
 #endif
@@ -336,17 +339,15 @@ matrix_view<MDS>::column( typename matrix_view<MDS>::index_type j )
   return column_type { experimental::submdspan( this->underlying_span(), experimental::full_extent, j ) };
 }
 
-template < class MDS
 #ifdef LINALG_ENABLE_CONCEPTS
-  > requires ( detail::is_mdspan_v<MDS> && ( MDS::extents_type::rank() == 2 ) && MDS::is_always_unique() )
+template < class MDS > requires ( detail::is_mdspan_v<MDS> && ( MDS::extents_type::rank() == 2 ) && MDS::is_always_unique() )
+[[nodiscard]] constexpr typename matrix_view<MDS>::row_type matrix_view<MDS>::
 #else
-  , typename >
-#endif
-#ifndef LINALG_ENABLE_CONCEPTS
+template < class MDS, typename Dummy >
 template < typename >
+[[nodiscard]] constexpr typename matrix_view<MDS>::row_type matrix_view<MDS,Dummy>::
 #endif
-[[nodiscard]] constexpr typename matrix_view<MDS>::row_type
-matrix_view<MDS>::row( typename matrix_view<MDS>::index_type i )
+row( index_type i )
 #ifdef LINALG_ENABLE_CONCEPTS
   requires ( !is_const_v<typename matrix_view<MDS>::element_type> )
 #endif
@@ -354,18 +355,16 @@ matrix_view<MDS>::row( typename matrix_view<MDS>::index_type i )
   return row_type { experimental::submdspan( this->underlying_span(), i, experimental::full_extent ) };
 }
 
-template < class MDS
 #ifdef LINALG_ENABLE_CONCEPTS
-  > requires ( detail::is_mdspan_v<MDS> && ( MDS::extents_type::rank() == 2 ) && MDS::is_always_unique() )
+template < class MDS > requires ( detail::is_mdspan_v<MDS> && ( MDS::extents_type::rank() == 2 ) && MDS::is_always_unique() )
+[[nodiscard]] constexpr typename matrix_view<MDS>::submatrix_type matrix_view<MDS>::
 #else
-  , typename >
-#endif
-#ifndef LINALG_ENABLE_CONCEPTS
+template < class MDS, typename Dummy >
 template < typename >
+[[nodiscard]] constexpr typename matrix_view<MDS>::submatrix_type matrix_view<MDS,Dummy>::
 #endif
-[[nodiscard]] constexpr typename matrix_view<MDS>::submatrix_type
-matrix_view<MDS>::submatrix( tuple_type start,
-                             tuple_type end )
+submatrix( tuple_type start,
+           tuple_type end )
 #ifdef LINALG_ENABLE_CONCEPTS
   requires ( !is_const_v<typename matrix_view<MDS>::element_type> )
 #endif
