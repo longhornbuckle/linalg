@@ -22,7 +22,7 @@ namespace math
 //         concepts::vector_view if MDS::element_type is const
 /// @tparam MDS mdspan
 template < class MDS
-#ifdef LINALG_ENABLE_CONEPTS
+#ifdef LINALG_ENABLE_CONCEPTS
   > requires ( detail::is_mdspan_v<MDS> &&
                ( MDS::extents_type::rank()== 1 ) &&
                MDS::is_always_unique() ) // Each element in the mdspan must have a unique mapping. (i.e. span_type and const_underlying_span_type should be the same.)
