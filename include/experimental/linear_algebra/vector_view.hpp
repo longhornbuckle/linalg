@@ -158,24 +158,30 @@ class vector_view : public tensor_view<MDS>
 
 //- Destructor / Constructors / Assignments
 
-template < class MDS
 #ifdef LINALG_ENABLE_CONCEPTS
-  > requires ( detail::is_mdspan_v<MDS> && ( MDS::extents_type::rank()== 1 ) && MDS::is_always_unique() )
+template < class MDS > requires ( detail::is_mdspan_v<MDS> && ( MDS::extents_type::rank()== 1 ) && MDS::is_always_unique() )
+constexpr vector_view<MDS>::
 #else
-  , typename >
+template < class MDS, typename Dummy >
+constexpr vector_view<MDS,Dummy>::
 #endif
-constexpr vector_view<MDS>::vector_view( const underlying_span_type& view ) noexcept :
+vector_view( const underlying_span_type& view ) noexcept :
+#ifdef LINALG_ENABLE_CONCEPTS
   vector_view<MDS>::base_type( view )
+#else
+  vector_view<MDS,Dummy>::base_type( view )
+#endif
 {
 }
 
-template < class MDS
 #ifdef LINALG_ENABLE_CONCEPTS
-  > requires ( detail::is_mdspan_v<MDS> && ( MDS::extents_type::rank()== 1 ) && MDS::is_always_unique() )
+template < class MDS > requires ( detail::is_mdspan_v<MDS> && ( MDS::extents_type::rank()== 1 ) && MDS::is_always_unique() )
+constexpr vector_view<MDS>& vector_view<MDS>::
 #else
-  , typename >
+template < class MDS, typename Dummy >
+constexpr vector_view<MDS,Dummy>& vector_view<MDS,Dummy>::
 #endif
-constexpr vector_view<MDS>& vector_view<MDS>::operator = ( const underlying_span_type& view ) noexcept
+operator = ( const underlying_span_type& view ) noexcept
 {
   static_cast<void>( this->base_type::operator=( view ) );
   return *this;
@@ -183,57 +189,55 @@ constexpr vector_view<MDS>& vector_view<MDS>::operator = ( const underlying_span
 
 //- Size / Capacity
 
-template < class MDS
 #ifdef LINALG_ENABLE_CONCEPTS
-  > requires ( detail::is_mdspan_v<MDS> && ( MDS::extents_type::rank()== 1 ) && MDS::is_always_unique() )
+template < class MDS > requires ( detail::is_mdspan_v<MDS> && ( MDS::extents_type::rank()== 1 ) && MDS::is_always_unique() )
+[[nodiscard]] constexpr typename vector_view<MDS>::size_type vector_view<MDS>::
 #else
-  , typename >
+template < class MDS, typename Dummy >
+[[nodiscard]] constexpr typename vector_view<MDS,Dummy>::size_type vector_view<MDS,Dummy>::
 #endif
-[[nodiscard]] constexpr typename vector_view<MDS>::size_type
-vector_view<MDS>::size() const noexcept
+size() const noexcept
 {
   return detail::template extents_helper<size_type,extents_type::rank()>::size( this->base_type::size() );
 }
 
-template < class MDS
 #ifdef LINALG_ENABLE_CONCEPTS
-  > requires ( detail::is_mdspan_v<MDS> && ( MDS::extents_type::rank()== 1 ) && MDS::is_always_unique() )
+template < class MDS > requires ( detail::is_mdspan_v<MDS> && ( MDS::extents_type::rank()== 1 ) && MDS::is_always_unique() )
+[[nodiscard]] constexpr typename vector_view<MDS>::size_type vector_view<MDS>::
 #else
-  , typename >
+template < class MDS, typename Dummy >
+[[nodiscard]] constexpr typename vector_view<MDS,Dummy>::size_type vector_view<MDS,Dummy>::
 #endif
-[[nodiscard]] constexpr typename vector_view<MDS>::size_type
-vector_view<MDS>::capacity() const noexcept
+capacity() const noexcept
 {
   return detail::template extents_helper<size_type,extents_type::rank()>::size( this->base_type::capacity() );
 }
 
 //- Const views
 
-template < class MDS
 #ifdef LINALG_ENABLE_CONCEPTS
-  > requires ( detail::is_mdspan_v<MDS> && ( MDS::extents_type::rank()== 1 ) && MDS::is_always_unique() )
+template < class MDS > requires ( detail::is_mdspan_v<MDS> && ( MDS::extents_type::rank()== 1 ) && MDS::is_always_unique() )
+[[nodiscard]] constexpr typename vector_view<MDS>::const_subvector_type vector_view<MDS>::
 #else
-  , typename >
+template < class MDS, typename Dummy >
+[[nodiscard]] constexpr typename vector_view<MDS,Dummy>::const_subvector_type vector_view<MDS,Dummy>::
 #endif
-[[nodiscard]] constexpr typename vector_view<MDS>::const_subvector_type
-vector_view<MDS>::subvector( tuple_type start,
-                                    tuple_type end ) const
+subvector( tuple_type start,
+           tuple_type end ) const
 {
   return const_subtensor_type { experimental::submdspan( this->underlying_span(), tuple( start, end ) ) };
 }
 
 //- Mutable views
 
-template < class MDS
 #ifdef LINALG_ENABLE_CONCEPTS
-  > requires ( detail::is_mdspan_v<MDS> && ( MDS::extents_type::rank()== 1 ) && MDS::is_always_unique() )
+template < class MDS > requires ( detail::is_mdspan_v<MDS> && ( MDS::extents_type::rank()== 1 ) && MDS::is_always_unique() )
+[[nodiscard]] constexpr typename vector_view<MDS>::subvector_type vector_view<MDS>::
 #else
-  , typename >
-#endif
-#ifndef LINALG_ENABLE_CONCEPTS
+template < class MDS, typename Dummy >
 template < typename >
+[[nodiscard]] constexpr typename vector_view<MDS,Dummy>::subvector_type vector_view<MDS,Dummy>::
 #endif
-[[nodiscard]] constexpr typename vector_view<MDS>::subvector_type
 vector_view<MDS>::subvector( tuple_type start,
                              tuple_type end )
 #ifdef LINALG_ENABLE_CONCEPTS
