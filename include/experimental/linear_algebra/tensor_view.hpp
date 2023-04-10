@@ -132,7 +132,15 @@ class tensor_view
     [[nodiscard]] constexpr span_type                  span() const noexcept;
     /// @brief the view
     /// @returns returns the view
-    [[nodiscard]] constexpr underlying_span_type       underlying_span() noexcept requires ( !is_const_v<element_type> );
+    #ifndef LINALG_ENABLE_CONCEPTS
+    template < typename = enable_if_t< !is_const_v<element_type> > >
+    #endif
+    [[nodiscard]] constexpr underlying_span_type       underlying_span() noexcept
+    #ifdef LINALG_ENABLE_CONCEPTS
+      requires ( !is_const_v<element_type> );
+    #else
+      ;
+    #endif
     /// @brief returns a const view
     /// @returns const view
     [[nodiscard]] constexpr const_underlying_span_type underlying_span() const noexcept;

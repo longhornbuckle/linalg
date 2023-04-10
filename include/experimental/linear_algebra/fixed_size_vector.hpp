@@ -216,90 +216,103 @@ class fs_vector : public fs_tensor<T,L,A,N>
 
 template < class T, size_t N, class L, class A
 #ifdef LINALG_ENABLE_CONCEPTS
-  > requires ( N >= 0 )
-#else
-  , typename >
-#endif
-#ifdef LINALG_ENABLE_CONCEPTS
+template < class T, size_t N, class L, class A > requires ( N >= 0 )
 template < concepts::tensor_may_be_constructible< fs_vector<T,N,L,A> > V2 >
+constexpr fs_vector<T,N,L,A>::
 #else
+template < class T, size_t N, class L, class A, typename Dummy >
 template < class V2, typename >
+constexpr fs_vector<T,N,L,A,Dummy>::
 #endif
-constexpr fs_vector<T,N,L,A>::fs_vector( const V2& rhs )
+fs_vector( const V2& rhs )
+#ifdef LINALG_ENABLE_CONCEPTS
   noexcept( noexcept( fs_vector<T,N,L,A>::base_type( rhs ) ) ) :
   fs_vector<T,N,L,A>::base_type( rhs )
+#else
+  noexcept( noexcept( fs_vector<T,N,L,A,Dummy>::base_type( rhs ) ) ) :
+  fs_vector<T,N,L,A,Dummy>::base_type( rhs )
+#endif
 {
 }
 
-template < class T, size_t N, class L, class A
 #ifdef LINALG_ENABLE_CONCEPTS
-  > requires ( N >= 0 )
-#else
-  , typename >
-#endif
-#ifdef LINALG_ENABLE_CONCEPTS
+template < class T, size_t N, class L, class A > requires ( N >= 0 )
 template < concepts::view_may_be_constructible_to_tensor< fs_vector<T,N,L,A> > MDS >
+constexpr fs_vector<T,N,L,A>::
 #else
+template < class T, size_t N, class L, class A, typename Dummy >
 template < class MDS, typename >
+constexpr fs_vector<T,N,L,A,Dummy>::
 #endif
-constexpr fs_vector<T,N,L,A>::fs_vector( const MDS& view )
+#ifdef LINALG_ENABLE_CONCEPTS
+#else
+#endif
+fs_vector( const MDS& view )
+#ifdef LINALG_ENABLE_CONCEPTS
   noexcept( noexcept( fs_vector<T,N,L,A>::base_type( view ) ) ) :
   fs_vector<T,N,L,A>::base_type( view )
+#else
+  noexcept( noexcept( fs_vector<T,N,L,A,Dummy>::base_type( view ) ) ) :
+  fs_vector<T,N,L,A,Dummy>::base_type( view )
+#endif
 {
 }
 
-template < class T, size_t N, class L, class A
 #ifdef LINALG_ENABLE_CONCEPTS
-  > requires ( N >= 0 )
-#else
-  , typename >
-#endif
-#ifdef LINALG_ENABLE_CONCEPTS
+template < class T, size_t N, class L, class A > requires ( N >= 0 )
 template < class Lambda >
+constexpr fs_vector<T,N,L,A>::
 #else
+template < class T, size_t N, class L, class A, typename >
 template < class Lambda, typename >
+constexpr fs_vector<T,N,L,A,Dummy>::
 #endif
-constexpr fs_vector<T,N,L,A>::fs_vector( Lambda&& lambda ) noexcept( noexcept( declval<Lambda&&>()( declval<index_type>() ) ) )
+fs_vector( Lambda&& lambda ) noexcept( noexcept( declval<Lambda&&>()( declval<index_type>() ) ) )
 #ifdef LINALG_ENABLE_CONCEPTS
   requires requires { { declval<Lambda&&>()( declval<index_type>() ) } -> convertible_to<element_type>; } :
+  fs_vector<T,N,L,A>::base_type( lambda )
 #else
   :
+  fs_vector<T,N,L,A,Dummy>::base_type( lambda )
 #endif
-  fs_vector<T,N,L,A>::base_type( lambda )
 {
 }
 
-template < class T, size_t N, class L, class A
 #ifdef LINALG_ENABLE_CONCEPTS
-  > requires ( N >= 0 )
-#else
-  , typename >
-#endif
-#ifdef LINALG_ENABLE_CONCEPTS
+template < class T, size_t N, class L, class A > requires ( N >= 0 )
 template < concepts::tensor_may_be_constructible< fs_vector<T,N,L,A> > V2 >
+constexpr fs_vector<T,N,L,A>& fs_vector<T,N,L,A>::
 #else
-template < class V2, typename >
+template < class T, size_t N, class L, class A, typename Dummy >
+template < class V2, typename Dummy >
+constexpr fs_vector<T,N,L,A,Dummy>& fs_vector<T,N,L,A,Dummy>::
 #endif
-constexpr fs_vector<T,N,L,A>& fs_vector<T,N,L,A>::operator = ( const V2& rhs )
+operator = ( const V2& rhs )
+#ifdef LINALG_ENABLE_CONCEPTS
   noexcept( noexcept( declval<typename fs_vector<T,N,L,A>::base_type>() = rhs ) )
+#else
+  noexcept( noexcept( declval<typename fs_vector<T,N,L,A,DUmmy>::base_type>() = rhs ) )
+#endif
 {
   static_cast<void>( this->base_type::operator=(rhs) );
   return *this;
 }
 
-template < class T, size_t N, class L, class A
 #ifdef LINALG_ENABLE_CONCEPTS
-  > requires ( N >= 0 )
-#else
-  , typename >
-#endif
-#ifdef LINALG_ENABLE_CONCEPTS
+template < class T, size_t N, class L, class A > requires ( N >= 0 )
 template < concepts::view_may_be_constructible_to_tensor< fs_vector<T,N,L,A> > MDS >
+constexpr fs_vector<T,N,L,A>& fs_vector<T,N,L,A>::
 #else
+template < class T, size_t N, class L, class A, typename Dummy >
 template < class MDS, typename >
+constexpr fs_vector<T,N,L,A,Dummy>& fs_vector<T,N,L,A,Dummy>::
 #endif
-constexpr fs_vector<T,N,L,A>& fs_vector<T,N,L,A>::operator = ( const MDS& view )
+operator = ( const MDS& view )
+#ifdef LINALG_ENABLE_CONCEPTS
   noexcept( noexcept( declval<typename fs_vector<T,N,L,A>::base_type>() = view ) )
+#else
+  noexcept( noexcept( declval<typename fs_vector<T,N,L,A,Dummy>::base_type>() = view ) )
+#endif
 {
   static_cast<void>( this->base_type::operator=(view) );
   return *this;
@@ -307,30 +320,30 @@ constexpr fs_vector<T,N,L,A>& fs_vector<T,N,L,A>::operator = ( const MDS& view )
 
 //- Const views
 
-template < class T, size_t N, class L, class A
 #ifdef LINALG_ENABLE_CONCEPTS
-  > requires ( N >= 0 )
+template < class T, size_t N, class L, class A > requires ( N >= 0 )
+[[nodiscard]] constexpr typename fs_vector<T,N,L,A>::const_subvector_type fs_vector<T,N,L,A>::
 #else
-  , typename >
+template < class T, size_t N, class L, class A, typename Dummy >
+[[nodiscard]] constexpr typename fs_vector<T,N,L,A,Dummy>::const_subvector_type fs_vector<T,N,L,A,Dummy>::
 #endif
-[[nodiscard]] constexpr typename fs_vector<T,N,L,A>::const_subvector_type
-fs_vector<T,N,L,A>::subvector( index_type start,
-                                      index_type end ) const
+subvector( index_type start,
+           index_type end ) const
 {
   return const_subvector_type { experimental::submdspan( this->underlying_span(), tuple( start, end ) ) };
 }
 
 //- Mutable views
 
-template < class T, size_t N, class L, class A
 #ifdef LINALG_ENABLE_CONCEPTS
-  > requires ( N >= 0 )
+template < class T, size_t N, class L, class A > requires ( N >= 0 )
+[[nodiscard]] constexpr typename fs_vector<T,N,L,A>::subvector_type fs_vector<T,N,L,A>::
 #else
-  , typename >
+template < class T, size_t N, class L, class A, typename Dummy >
+[[nodiscard]] constexpr typename fs_vector<T,N,L,A,Dummy>::subvector_type fs_vector<T,N,L,A,Dummy>::
 #endif
-[[nodiscard]] constexpr typename fs_vector<T,N,L,A>::subvector_type
-fs_vector<T,N,L,A>::subvector( index_type start,
-                                      index_type end )
+subvector( index_type start,
+           index_type end )
 {
   return subvector_type { experimental::submdspan( this->underlying_span(), tuple( start, end ) ) };
 }

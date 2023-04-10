@@ -113,16 +113,16 @@ class matrix_view : public tensor_view<MDS>
 
     /// @brief Returns current number of columns
     /// @return number of columns
-    [[nodiscard]] constexpr index_type columns() const noexcept;
+    [[nodiscard]] constexpr size_type columns() const noexcept;
     /// @brief Returns the current number of rows
     /// @return number of rows
-    [[nodiscard]] constexpr index_type rows() const noexcept;
+    [[nodiscard]] constexpr size_type rows() const noexcept;
     /// @brief Returns the current column capacity
     /// @return column capacity
-    [[nodiscard]] constexpr index_type column_capacity() const noexcept;
+    [[nodiscard]] constexpr size_type column_capacity() const noexcept;
     /// @brief Returns the current row capacity
     /// @return row capacity
-    [[nodiscard]] constexpr index_type row_capacity() const noexcept;
+    [[nodiscard]] constexpr size_type row_capacity() const noexcept;
 
     //- Const views
 
@@ -236,10 +236,10 @@ operator = ( const underlying_span_type& view ) noexcept
 
 #ifdef LINALG_ENABLE_CONCEPTS
 template < class MDS > requires ( detail::is_mdspan_v<MDS> && ( MDS::extents_type::rank() == 2 ) && MDS::is_always_unique() )
-[[nodiscard]] constexpr typename matrix_view<MDS>::index_type matrix_view<MDS>::
+[[nodiscard]] constexpr typename matrix_view<MDS>::size_type matrix_view<MDS>::
 #else
 template < class MDS, typename Dummy >
-[[nodiscard]] constexpr typename matrix_view<MDS,Dummy>::index_type matrix_view<MDS,Dummy>::
+[[nodiscard]] constexpr typename matrix_view<MDS,Dummy>::size_type matrix_view<MDS,Dummy>::
 #endif
 columns() const noexcept
 {
@@ -248,10 +248,10 @@ columns() const noexcept
 
 #ifdef LINALG_ENABLE_CONCEPTS
 template < class MDS > requires ( detail::is_mdspan_v<MDS> && ( MDS::extents_type::rank() == 2 ) && MDS::is_always_unique() )
-[[nodiscard]] constexpr typename matrix_view<MDS>::index_type matrix_view<MDS>::
+[[nodiscard]] constexpr typename matrix_view<MDS>::size_type matrix_view<MDS>::
 #else
 template < class MDS, typename Dummy >
-[[nodiscard]] constexpr typename matrix_view<MDS,Dummy>::index_type matrix_view<MDS,Dummy>::
+[[nodiscard]] constexpr typename matrix_view<MDS,Dummy>::size_type matrix_view<MDS,Dummy>::
 #endif
 rows() const noexcept
 {
@@ -260,10 +260,10 @@ rows() const noexcept
 
 #ifdef LINALG_ENABLE_CONCEPTS
 template < class MDS > requires ( detail::is_mdspan_v<MDS> && ( MDS::extents_type::rank() == 2 ) && MDS::is_always_unique() )
-[[nodiscard]] constexpr typename matrix_view<MDS>::index_type matrix_view<MDS>::
+[[nodiscard]] constexpr typename matrix_view<MDS>::size_type matrix_view<MDS>::
 #else
 template < class MDS, typename Dummy >
-[[nodiscard]] constexpr typename matrix_view<MDS,Dummy>::index_type matrix_view<MDS,Dummy>::
+[[nodiscard]] constexpr typename matrix_view<MDS,Dummy>::size_type matrix_view<MDS,Dummy>::
 #endif
 column_capacity() const noexcept
 {
@@ -272,10 +272,10 @@ column_capacity() const noexcept
 
 #ifdef LINALG_ENABLE_CONCEPTS
 template < class MDS > requires ( detail::is_mdspan_v<MDS> && ( MDS::extents_type::rank() == 2 ) && MDS::is_always_unique() )
-[[nodiscard]] constexpr typename matrix_view<MDS>::index_type matrix_view<MDS>::
+[[nodiscard]] constexpr typename matrix_view<MDS>::size_type matrix_view<MDS>::
 #else
 template < class MDS, typename Dummy >
-[[nodiscard]] constexpr typename matrix_view<MDS,Dummy>::index_type matrix_view<MDS,Dummy>::
+[[nodiscard]] constexpr typename matrix_view<MDS,Dummy>::size_type matrix_view<MDS,Dummy>::
 #endif
 row_capacity() const noexcept
 {
