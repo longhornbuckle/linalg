@@ -159,6 +159,7 @@ class tensor_view
     #else
       ;
     #endif
+    #endif
     /// @brief Returns the value at (indices...)
     /// @param indices set indices representing a node in the tensor
     /// @returns value at row i, column j, depth k, etc.
