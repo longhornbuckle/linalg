@@ -317,11 +317,11 @@ fs_matrix( Lambda&& lambda ) noexcept( noexcept( declval<Lambda&&>()( declval<in
 
 #ifdef LINALG_ENABLE_CONCEPTS
 template < class T, size_t R, size_t C, class L, class A > requires ( ( R >= 0 ) && ( C >= 0 ) )
-template < class Lambda >
+template < concepts::view_may_be_constructible_to_tensor< fs_matrix<T,R,C,L,A> > MDS >
 constexpr fs_matrix<T,R,C,L,A>& fs_matrix<T,R,C,L,A>::
 #else
 template < class T, size_t R, size_t C, class L, class A , typename Dummy >
-template < class Lambda, typename >
+template < class M2, typename >
 constexpr fs_matrix<T,R,C,L,A,Dummy>& fs_matrix<T,R,C,L,A,Dummy>::
 #endif
 operator = ( const M2& rhs )

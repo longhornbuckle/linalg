@@ -33,9 +33,9 @@ namespace math
 template < class      T,
            class      L,
            class      A,
-           size_t ... Ds
+           size_t ... Ds >
 #ifdef LINALG_ENABLE_CONCEPTS
-           > requires ( ( Ds >= 0 ) && ... ) // Each dimension must be >= 0
+  requires ( ( Ds >= 0 ) && ... ) // Each dimension must be >= 0
 #endif
 class fs_tensor
 {
