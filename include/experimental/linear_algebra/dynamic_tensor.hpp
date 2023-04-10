@@ -376,6 +376,8 @@ class dr_tensor
     [[nodiscard]] constexpr value_type operator[]( IndexType ... indices ) const noexcept
     #ifdef LINALG_ENABLE_CONCEPTS
       requires ( sizeof...(IndexType) == R ) && ( is_convertible_v<IndexType,index_type> && ... );
+    #else
+      ;
     #endif
     #endif
     #if LINALG_USE_PAREN_OPERATOR
@@ -383,6 +385,8 @@ class dr_tensor
     [[nodiscard]] constexpr value_type operator()( IndexType ... indices ) const noexcept
     #ifdef LINALG_ENABLE_CONCEPTS
       requires ( sizeof...(IndexType) == R ) && ( is_convertible_v<IndexType,index_type> && ... );
+    #else
+      ;
     #endif
     #endif
     /// @brief Returns the value at (indices...) with index bounds checking
@@ -428,6 +432,8 @@ class dr_tensor
     [[nodiscard]] constexpr reference_type operator[]( IndexType ... indices ) noexcept
     #ifdef LINALG_ENABLE_CONCEPTS
       requires ( sizeof...(IndexType) == R ) && ( is_convertible_v<IndexType,index_type> && ... );
+    #else
+      ;
     #endif
     #endif
     #if LINALG_USE_PAREN_OPERATOR
@@ -435,6 +441,8 @@ class dr_tensor
     [[nodiscard]] constexpr reference_type operator()( IndexType ... indices ) noexcept
     #ifdef LINALG_ENABLE_CONCEPTS
       requires ( sizeof...(IndexType) == R ) && ( is_convertible_v<IndexType,index_type> && ... );
+    #else
+      ;
     #endif
     #endif
     /// @brief Returns a mutable value at (indices...) with index bounds checking
