@@ -374,7 +374,7 @@ template < class T, class Alloc, class L, class Access >
 #ifdef LINALG_ENABLE_CONCEPTS
 template < concepts::view_may_be_constructible_to_tensor< dr_matrix<T,Alloc,L,Access> > MDS >
 #else
-template < class M2, typename >
+template < class MDS, typename >
 #endif
 constexpr dr_matrix<T,Alloc,L,Access>::dr_matrix( const MDS& view )
   noexcept( noexcept( dr_matrix<T,Alloc,L,Access>::base_type(view) ) )

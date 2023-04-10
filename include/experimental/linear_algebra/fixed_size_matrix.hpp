@@ -28,8 +28,12 @@ template < class  T,
            size_t R,
            size_t C,
            class  L = experimental::layout_right,
-           class  A = experimental::default_accessor<T> > requires 
-  ( ( R >= 0 ) && ( C >= 0 ) ) // Row and column must be >= 0
+           class  A = experimental::default_accessor<T>
+#ifdef LINALG_ENABLE_CONCEPTS
+           > requires ( ( R >= 0 ) && ( C >= 0 ) ) // Row and column must be >= 0
+#else
+           , typename = enable_if_t< ( ( R >= 0 ) && ( C >= 0 ) ) > >
+#endif
 class fs_matrix : public fs_tensor<T,L,A,R,C>
 {
   private:
@@ -121,17 +125,35 @@ class fs_matrix : public fs_tensor<T,L,A,R,C>
     fs_matrix( const fs_matrix& ) = default;
     /// @brief Template copy constructor
     /// @tparam matrix to be copied
+    #ifdef LINALG_ENABLE_CONCEPTS
     template < concepts::tensor_may_be_constructible< fs_matrix > M2 >
+    #else
+    template < class M2, typename = enable_if_t< concepts::tensor_may_be_constructible< M2, fs_matrix > > >
+    #endif
     explicit constexpr fs_matrix( const M2& rhs ) noexcept( noexcept( base_type(rhs) ) );
     /// @brief Construct from a view
     /// @tparam A two dimensional view
+    #ifdef LINALG_ENABLE_CONCEPTS
     template < concepts::view_may_be_constructible_to_tensor< fs_matrix > MDS >
+    #else
+    template < class MDS, typename = enable_if_t< concepts::view_may_be_constructible_to_tensor<MDS,fs_matrix> && is_default_constructible_v<allocator_type> > >
+    #endif
     explicit constexpr fs_matrix( const MDS& view ) noexcept( noexcept( base_type(view) ) );
     /// @brief Construct by applying lambda to every element in the matrix
     /// @tparam lambda lambda expression encapsulating operation to be performed on each element
+    #ifdef LINALG_ENABLE_CONCEPTS
     template < class Lambda >
+    #else
+    template < class Lambda,
+               typename = enable_if_t< is_default_constructible_v<allocator_type> &&
+                                       is_convertible_to< decltype( declval<Lambda&&>()( declval<index_type>(), declval<index_type>() ) ), element_type > > >
+    #endif
     explicit constexpr fs_matrix( Lambda&& lambda ) noexcept( noexcept( declval<Lambda&&>()( declval<index_type>(), declval<index_type>() ) ) )
+    #ifdef LINALG_ENABLE_CONCEPTS
       requires requires { { declval<Lambda&&>()( declval<index_type>(), declval<index_type>() ) } -> convertible_to<element_type>; };
+    #else
+      ;
+    #endif
     /// @brief Default move constructor
     /// @param  fs_matrix to be moved
     /// @return self
@@ -144,13 +166,21 @@ class fs_matrix : public fs_tensor<T,L,A,R,C>
     /// @tparam type of matrix to be copied
     /// @param  matrix to be copied
     /// @returns self
+    #ifdef LINALG_ENABLE_CONCEPTS
     template < concepts::tensor_may_be_constructible< fs_matrix > M2 >
+    #else
+    template < class M2, typename = enable_if_t< concepts::tensor_may_be_constructible< M2, fs_matrix > > >
+    #endif
     constexpr fs_matrix& operator = ( const M2& rhs ) noexcept( noexcept( declval<base_type>() = rhs ) );
     /// @brief Construct from a two dimensional view
     /// @tparam type of view to be copied
     /// @param  view to be copied
     /// @returns self
+    #ifdef LINALG_ENABLE_CONCEPTS
     template < concepts::view_may_be_constructible_to_tensor< fs_matrix > MDS >
+    #else
+    template < class MDS, typename = enable_if_t< concepts::view_may_be_constructible_to_tensor<MDS,fs_matrix> > >
+    #endif
     constexpr fs_matrix& operator = ( const MDS& view ) noexcept( noexcept( declval<base_type>() = view ) );
 
     //- Size / Capacity
@@ -226,32 +256,72 @@ class fs_matrix : public fs_tensor<T,L,A,R,C>
 
 //- Destructor / Constructors / Assignments
 
-template < class T, size_t R, size_t C, class L, class A > requires ( ( R >= 0 ) && ( C >= 0 ) )
+template < class T, size_t R, size_t C, class L, class A
+#ifdef LINALG_ENABLE_CONCEPTS
+  > requires ( ( R >= 0 ) && ( C >= 0 ) )
+#else
+  , typename >
+#endif
+#ifdef LINALG_ENABLE_CONCEPTS
 template < concepts::tensor_may_be_constructible< fs_matrix<T,R,C,L,A> > M2 >
+#else
+template < class M2, typename >
+#endif
 constexpr fs_matrix<T,R,C,L,A>::fs_matrix( const M2& rhs )
   noexcept( noexcept( fs_matrix<T,R,C,L,A>::base_type( rhs ) ) ) :
   fs_matrix<T,R,C,L,A>::base_type( rhs )
 {
 }
 
-template < class T, size_t R, size_t C, class L, class A > requires ( ( R >= 0 ) && ( C >= 0 ) )
+template < class T, size_t R, size_t C, class L, class A
+#ifdef LINALG_ENABLE_CONCEPTS
+  > requires ( ( R >= 0 ) && ( C >= 0 ) )
+#else
+  , typename >
+#endif
+#ifdef LINALG_ENABLE_CONCEPTS
 template < concepts::view_may_be_constructible_to_tensor< fs_matrix<T,R,C,L,A> > MDS >
+#else
+template < class MDS, typename >
+#endif
 constexpr fs_matrix<T,R,C,L,A>::fs_matrix( const MDS& view )
   noexcept( noexcept( fs_matrix<T,R,C,L,A>::base_type( view ) ) ) :
   fs_matrix<T,R,C,L,A>::base_type( view )
 {
 }
 
-template < class T, size_t R, size_t C, class L, class A > requires ( ( R >= 0 ) && ( C >= 0 ) )
+template < class T, size_t R, size_t C, class L, class A
+#ifdef LINALG_ENABLE_CONCEPTS
+  > requires ( ( R >= 0 ) && ( C >= 0 ) )
+#else
+  , typename >
+#endif
+#ifdef LINALG_ENABLE_CONCEPTS
 template < class Lambda >
+#else
+template < class Lambda, typename >
+#endif
 constexpr fs_matrix<T,R,C,L,A>::fs_matrix( Lambda&& lambda ) noexcept( noexcept( declval<Lambda&&>()( declval<index_type>(), declval<index_type>() ) ) )
+#ifdef LINALG_ENABLE_CONCEPTS
   requires requires { { declval<Lambda&&>()( declval<index_type>(), declval<index_type>() ) } -> convertible_to<element_type>; } :
+#else
+  :
+#endif
   fs_matrix<T,R,C,L,A>::base_type( lambda )
 {
 }
 
-template < class T, size_t R, size_t C, class L, class A > requires ( ( R >= 0 ) && ( C >= 0 ) )
+template < class T, size_t R, size_t C, class L, class A
+#ifdef LINALG_ENABLE_CONCEPTS
+  > requires ( ( R >= 0 ) && ( C >= 0 ) )
+#else
+  , typename >
+#endif
+#ifdef LINALG_ENABLE_CONCEPTS
 template < concepts::tensor_may_be_constructible< fs_matrix<T,R,C,L,A> > M2 >
+#else
+template < class M2, typename >
+#endif
 constexpr fs_matrix<T,R,C,L,A>& fs_matrix<T,R,C,L,A>::operator = ( const M2& rhs )
   noexcept( noexcept( declval<typename fs_matrix<T,R,C,L,A>::base_type>() = rhs ) )
 {
@@ -259,8 +329,17 @@ constexpr fs_matrix<T,R,C,L,A>& fs_matrix<T,R,C,L,A>::operator = ( const M2& rhs
   return *this;
 }
 
-template < class T, size_t R, size_t C, class L, class A > requires ( ( R >= 0 ) && ( C >= 0 ) )
+template < class T, size_t R, size_t C, class L, class A
+#ifdef LINALG_ENABLE_CONCEPTS
+  > requires ( ( R >= 0 ) && ( C >= 0 ) )
+#else
+  , typename >
+#endif
+#ifdef LINALG_ENABLE_CONCEPTS
 template < concepts::view_may_be_constructible_to_tensor< fs_matrix<T,R,C,L,A> > MDS >
+#else
+template < class MDS, typename >
+#endif
 constexpr fs_matrix<T,R,C,L,A>& fs_matrix<T,R,C,L,A>::operator = ( const MDS& view )
   noexcept( noexcept( declval<typename fs_matrix<T,R,C,L,A>::base_type>() = view ) )
 {
@@ -270,28 +349,48 @@ constexpr fs_matrix<T,R,C,L,A>& fs_matrix<T,R,C,L,A>::operator = ( const MDS& vi
 
 //- Size / Capacity
 
-template < class T, size_t R, size_t C, class L, class A > requires ( ( R >= 0 ) && ( C >= 0 ) )
+template < class T, size_t R, size_t C, class L, class A
+#ifdef LINALG_ENABLE_CONCEPTS
+  > requires ( ( R >= 0 ) && ( C >= 0 ) )
+#else
+  , typename >
+#endif
 [[nodiscard]] constexpr typename fs_matrix<T,R,C,L,A>::size_type
 fs_matrix<T,R,C,L,A>::columns() const noexcept
 {
   return C;
 }
 
-template < class T, size_t R, size_t C, class L, class A > requires ( ( R >= 0 ) && ( C >= 0 ) )
+template < class T, size_t R, size_t C, class L, class A
+#ifdef LINALG_ENABLE_CONCEPTS
+  > requires ( ( R >= 0 ) && ( C >= 0 ) )
+#else
+  , typename >
+#endif
 [[nodiscard]] constexpr typename fs_matrix<T,R,C,L,A>::size_type
 fs_matrix<T,R,C,L,A>::rows() const noexcept
 {
   return R;
 }
 
-template < class T, size_t R, size_t C, class L, class A > requires ( ( R >= 0 ) && ( C >= 0 ) )
+template < class T, size_t R, size_t C, class L, class A
+#ifdef LINALG_ENABLE_CONCEPTS
+  > requires ( ( R >= 0 ) && ( C >= 0 ) )
+#else
+  , typename >
+#endif
 [[nodiscard]] constexpr typename fs_matrix<T,R,C,L,A>::size_type
 fs_matrix<T,R,C,L,A>::column_capacity() const noexcept
 {
   return this->columns();
 }
 
-template < class T, size_t R, size_t C, class L, class A > requires ( ( R >= 0 ) && ( C >= 0 ) )
+template < class T, size_t R, size_t C, class L, class A
+#ifdef LINALG_ENABLE_CONCEPTS
+  > requires ( ( R >= 0 ) && ( C >= 0 ) )
+#else
+  , typename >
+#endif
 [[nodiscard]] constexpr typename fs_matrix<T,R,C,L,A>::size_type
 fs_matrix<T,R,C,L,A>::row_capacity() const noexcept
 {
@@ -300,21 +399,36 @@ fs_matrix<T,R,C,L,A>::row_capacity() const noexcept
 
 //- Const views
 
-template < class T, size_t R, size_t C, class L, class A > requires ( ( R >= 0 ) && ( C >= 0 ) )
+template < class T, size_t R, size_t C, class L, class A
+#ifdef LINALG_ENABLE_CONCEPTS
+  > requires ( ( R >= 0 ) && ( C >= 0 ) )
+#else
+  , typename >
+#endif
 [[nodiscard]] constexpr typename fs_matrix<T,R,C,L,A>::const_column_type
 fs_matrix<T,R,C,L,A>::column( typename fs_matrix<T,R,C,L,A>::index_type j ) const
 {
   return const_column_type { experimental::submdspan( this->underlying_span(), experimental::full_extent, j ) };
 }
 
-template < class T, size_t R, size_t C, class L, class A > requires ( ( R >= 0 ) && ( C >= 0 ) )
+template < class T, size_t R, size_t C, class L, class A
+#ifdef LINALG_ENABLE_CONCEPTS
+  > requires ( ( R >= 0 ) && ( C >= 0 ) )
+#else
+  , typename >
+#endif
 [[nodiscard]] constexpr typename fs_matrix<T,R,C,L,A>::const_row_type
 fs_matrix<T,R,C,L,A>::row( typename fs_matrix<T,R,C,L,A>::index_type i ) const
 {
   return const_row_type { experimental::submdspan( this->underlying_span(), i, experimental::full_extent ) };
 }
 
-template < class T, size_t R, size_t C, class L, class A > requires ( ( R >= 0 ) && ( C >= 0 ) )
+template < class T, size_t R, size_t C, class L, class A
+#ifdef LINALG_ENABLE_CONCEPTS
+  > requires ( ( R >= 0 ) && ( C >= 0 ) )
+#else
+  , typename >
+#endif
 [[nodiscard]] constexpr typename fs_matrix<T,R,C,L,A>::const_submatrix_type
 fs_matrix<T,R,C,L,A>::submatrix( tuple_type start,
                                         tuple_type end ) const
@@ -324,24 +438,39 @@ fs_matrix<T,R,C,L,A>::submatrix( tuple_type start,
 
 //- Mutable views
 
-template < class T, size_t R, size_t C, class L, class A > requires ( ( R >= 0 ) && ( C >= 0 ) )
+template < class T, size_t R, size_t C, class L, class A
+#ifdef LINALG_ENABLE_CONCEPTS
+  > requires ( ( R >= 0 ) && ( C >= 0 ) )
+#else
+  , typename >
+#endif
 [[nodiscard]] constexpr typename fs_matrix<T,R,C,L,A>::column_type
 fs_matrix<T,R,C,L,A>::column( typename fs_matrix<T,R,C,L,A>::index_type j )
 {
   return column_type { experimental::submdspan( this->underlying_span(), experimental::full_extent, j ) };
 }
 
-template < class T, size_t R, size_t C, class L, class A > requires ( ( R >= 0 ) && ( C >= 0 ) )
+template < class T, size_t R, size_t C, class L, class A
+#ifdef LINALG_ENABLE_CONCEPTS
+  > requires ( ( R >= 0 ) && ( C >= 0 ) )
+#else
+  , typename >
+#endif
 [[nodiscard]] constexpr typename fs_matrix<T,R,C,L,A>::row_type
 fs_matrix<T,R,C,L,A>::row( typename fs_matrix<T,R,C,L,A>::index_type i )
 {
   return row_type { experimental::submdspan( this->underlying_span(), i, experimental::full_extent ) };
 }
 
-template < class T, size_t R, size_t C, class L, class A > requires ( ( R >= 0 ) && ( C >= 0 ) )
+template < class T, size_t R, size_t C, class L, class A
+#ifdef LINALG_ENABLE_CONCEPTS
+  > requires ( ( R >= 0 ) && ( C >= 0 ) )
+#else
+  , typename >
+#endif
 [[nodiscard]] constexpr typename fs_matrix<T,R,C,L,A>::submatrix_type
 fs_matrix<T,R,C,L,A>::submatrix( tuple_type start,
-                                        tuple_type end )
+                                 tuple_type end )
 {
   return submatrix_type { detail::submdspan( this->underlying_span(), start, end ) };
 }

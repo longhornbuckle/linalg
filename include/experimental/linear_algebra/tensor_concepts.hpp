@@ -500,8 +500,8 @@ detail::extents_is_equal_v< typename From::extents_type, typename To::extents_ty
 //   Each extent must be the same (and not dynamic)
 // View element must be nothrow constructible to the tensor elements
 template < class From, class To >
-inline constexpr bool view_is_nothrow_constructible_to_tensor_v =
-detail::is_mdspan_v<From> && tensor<To> &&
+inline constexpr bool view_is_nothrow_constructible_to_tensor =
+detail::is_mdspan_v<From> && tensor_v<To> &&
 ( is_nothrow_constructible_v<typename From::value_type,typename To::value_type> ) &&
 detail::extents_is_equal_v< typename From::extents_type, typename To::extents_type >;
 
