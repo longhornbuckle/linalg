@@ -18,7 +18,11 @@ namespace instant_evaluated_operations
 {
 
 /// @brief Defines negation operation on a tensor
+#ifdef LINALG_ENABLE_CONCEPTS
 template < concepts::tensor_data T >
+#else
+template < class T, typename = enable_if_t< concepts::tensor_data_v<T> >
+#endif
 class negation
 {
   public:
@@ -32,15 +36,28 @@ class negation
     using result_tensor_type = typename tensor_type::template rebind_t<result_value_type>;
     // Gets necessary arguments for constrution
     // If engine type is fixed size, then the lambda expression is the only argument needed
+    #ifdef LINALG_ENABLE_CONCEPTS
     template < class Lambda >
+    #else
+    template < class Lambda, typename = enable_if_t< concepts::fixed_size_tensor_data_v<result_tensor_type> >
+    #endif
     [[nodiscard]] static inline constexpr decltype(auto) collect_ctor_args( [[maybe_unused]] const tensor_type&, Lambda&& lambda ) noexcept
-      requires concepts::fixed_size_tensor_data<result_tensor_type> { return tuple( forward<Lambda>( lambda ) ); }
+    #ifdef LINALG_ENABLE_CONCEPTS
+      requires concepts::fixed_size_tensor_data<result_tensor_type>
+    #endif
+    { return tuple( forward<Lambda>( lambda ) ); }
     // If the engine type is dynamic, then size and capacity must be provided along with the lambda expression.
     // Additionally, if all allocators of the desired type are not the same or cannot be default constructed, then it must be
     // passed along as well.
+    #ifdef LINALG_ENABLE_CONCEPTS
     template < class Lambda >
+    #else
+    template < class Lambda, typename = enable_if_t< concepts::dynamic_tensor_data_v<result_tensor_type> >
+    #endif
     [[nodiscard]] static inline constexpr decltype(auto) collect_ctor_args( const tensor_type& t, Lambda&& lambda ) noexcept
+    #ifdef LINALG_ENABLE_CONCEPTS
       requires concepts::dynamic_tensor_data<result_tensor_type>
+    #endif
     {
       if constexpr ( is_default_constructible_v<typename result_tensor_type::allocator_type> &&
                       allocator_traits<typename result_tensor_type::allocator_type>::is_always_equal::value )
@@ -72,7 +89,11 @@ class negation
 /// @brief Defines addition operation on a pair of tensors
 /// @tparam T1 first in pair of tensors to be added
 /// @tparam T2 second in pair of tensors to be added
+#ifdef LINALG_ENABLE_CONCEPTS
 template < concepts::tensor_data T1, concepts::tensor_data T2 >
+#else
+template < class T1, class T2, typename = enable_if_t< concepts::tensor_data_v<T1> && concepts::tensor_data_v<T2> > >
+#endif
 class addition
 {
   public:
@@ -91,19 +112,31 @@ class addition
                                               typename first_tensor_type::template rebind_t<result_value_type> >;
     // Gets necessary arguments for constrution
     // If engine type is fixed size, then the lambda expression is the only argument needed
+    #ifdef LINALG_ENABLE_CONCEPTS
     template < class Lambda >
+    #else
+    template < class Lambda, typename = enable_if_t< concepts::fixed_size_tensor_data_v<result_tensor_type> > >
+    #endif
     [[nodiscard]] static inline constexpr auto collect_ctor_args( [[maybe_unused]] const first_tensor_type&, [[maybe_unused]] const second_tensor_type&, Lambda&& lambda ) noexcept
+    #ifdef LINALG_ENABLE_CONCEPTS
       requires concepts::fixed_size_tensor_data<result_tensor_type>
+    #endif
     { return tuple( forward<Lambda>( lambda ) ); }
     // If the engine type is dynamic, then size and capacity must be provided along with the lambda expression.
     // Additionally, if all allocators of the desired type are not the same or cannot be default cosntructed, then it must be
     // passed along as well.
+    #ifdef LINALG_ENABLE_CONCEPTS
     template < class Lambda >
+    #else
+    template < class Lambda, typename = enable_if_t< concepts::dynamic_tensor_data_v<result_tensor_type> > >
+    #endif
     [[nodiscard]] static inline constexpr auto collect_ctor_args( const first_tensor_type& t1, const second_tensor_type& t2, Lambda&& lambda ) noexcept
+    #ifdef LINALG_ENABLE_CONCEPTS
       requires concepts::dynamic_tensor_data<result_tensor_type>
+    #endif
     {
       if constexpr ( is_default_constructible_v<typename result_tensor_type::allocator_type> &&
-                      allocator_traits<typename result_tensor_type::allocator_type>::is_always_equal::value )
+                     allocator_traits<typename result_tensor_type::allocator_type>::is_always_equal::value )
       {
         if constexpr ( is_same_v<first_tensor_type,result_tensor_type> )
         {
@@ -186,7 +219,11 @@ class addition
 /// @brief Defines subtraction operation on a pair of tensors
 /// @tparam T1 first in pair of tensors to be added
 /// @tparam T2 second in pair of tensors to be added
+#ifdef LINALG_ENABLE_CONCEPTS
 template < concepts::tensor_data T1, concepts::tensor_data T2 >
+#else
+template < class T1, class T2, typename = enable_if_t< concepts::tensor_data_v<T1> && concepts::tensor_data_v<T2> >
+#endif
 class subtraction
 {
   public:
@@ -205,19 +242,31 @@ class subtraction
                                               typename first_tensor_type::template rebind_t<result_value_type> >;
     // Gets necessary arguments for constrution
     // If engine type is fixed size, then the lambda expression is the only argument needed
+    #ifdef LINALG_ENABLE_CONCEPTS
     template < class Lambda >
+    #else
+    template < class Lamda, typename = enable_if_t< concepts::fixed_size_tensor_data_v<result_tensor_type> > >
+    #endif
     [[nodiscard]] static inline constexpr auto collect_ctor_args( [[maybe_unused]] const first_tensor_type&, [[maybe_unused]] const second_tensor_type&, Lambda&& lambda ) noexcept
+    #ifdef LINALG_ENABLE_CONCEPTS
       requires concepts::fixed_size_tensor_data<result_tensor_type>
+    #endif
     { return tuple( forward<Lambda>( lambda ) ); }
     // If the engine type is dynamic, then size and capacity must be provided along with the lambda expression.
     // Additionally, if all allocators of the desired type are not the same or cannot be default cosntructed, then it must be
     // passed along as well.
+    #ifdef LINALG_ENABLE_CONCEPTS
     template < class Lambda >
+    #else
+    template < class Lamda, typename = enable_if_t< concepts::dynamic_tensor_data_v<result_tensor_type> > >
+    #endif
     [[nodiscard]] static inline constexpr auto collect_ctor_args( const first_tensor_type& t1, const second_tensor_type& t2, Lambda&& lambda ) noexcept
+    #ifdef LINALG_ENABLE_CONCEPTS
       requires concepts::dynamic_tensor_data<result_tensor_type>
+    #endif
     {
       if constexpr ( is_default_constructible_v<typename result_tensor_type::allocator_type> &&
-                      allocator_traits<typename result_tensor_type::allocator_type>::is_always_equal::value )
+                     allocator_traits<typename result_tensor_type::allocator_type>::is_always_equal::value )
       {
         if constexpr ( is_same_v<first_tensor_type,result_tensor_type> )
         {
@@ -277,7 +326,11 @@ class subtraction
 /// @brief Defines scalar product operation on a tensor with a scalar
 /// @tparam S scalar
 /// @tparam T tensor
+#ifdef LINALG_ENABLE_CONCEPTS
 template < class S, concepts::tensor_data T >
+#else
+template < class S, class T, typename = enable_if_t< concepts::tensor_data_v<T> > >
+#endif
 class scalar_product
 {
   public:
@@ -291,15 +344,27 @@ class scalar_product
     using result_tensor_type = typename tensor_type::template rebind_t<result_value_type>;
     // Gets necessary arguments for constrution
     // If tensor type is fixed size, then the lambda expression is the only argument needed
+    #ifdef LINALG_ENABLE_CONCEPTS
     template < class Lambda >
+    #else
+    template < class Lambda, typename = enable_if_t< concepts::fixed_size_tensor_data_v<result_tensor_type> > >
+    #endif
     [[nodiscard]] static inline constexpr decltype(auto) collect_ctor_args( [[maybe_unused]] const tensor_type&, Lambda&& lambda ) noexcept
+    #ifdef LINALG_ENABLE_CONCEPTS
       requires concepts::fixed_size_tensor_data<result_tensor_type> { return tuple( forward<Lambda>( lambda ) ); }
+    #endif
     // If the tensor type is dynamic, then size and capacity must be provided along with the lambda expression.
     // Additionally, if all allocators of the desired type are not the same or cannot be default cosntructed, then it must be
     // passed along as well.
+    #ifdef LINALG_ENABLE_CONCEPTS
     template < class Lambda >
+    #else
+    template < class Lambda, typename = enable_if_t< concepts::dynamic_tensor_data_v<result_tensor_type> > >
+    #endif
     [[nodiscard]] static inline constexpr decltype(auto) collect_ctor_args( const tensor_type& t, Lambda&& lambda ) noexcept
+    #ifdef LINALG_ENABLE_CONCEPTS
       requires concepts::dynamic_tensor_data<result_tensor_type>
+    #endif
     {
       if constexpr ( is_default_constructible_v<typename result_tensor_type::allocator_type> &&
                      allocator_traits<typename result_tensor_type::allocator_type>::is_always_equal::value )
@@ -354,7 +419,11 @@ class scalar_product
 /// @brief Defines scalar division operation on a tensor with a scalar
 /// @tparam S scalar
 /// @tparam T tensor
+#ifdef LINALG_ENABLE_CONCEPTS
 template < concepts::tensor_data T, class S >
+#else
+template < class T, class S, enable_if_t< concepts::tensor_data_v<T> > >
+#endif
 struct scalar_division
 {
   public:
@@ -368,15 +437,28 @@ struct scalar_division
     using result_tensor_type = typename tensor_type::template rebind_t<result_value_type>;
     // Gets necessary arguments for constrution
     // If tensor type is fixed size, then the lambda expression is the only argument needed
+    #ifdef LINALG_ENABLE_CONCEPTS
     template < class Lambda >
+    #else LINALG_ENABLE_CONCEPTS
+    template < class Lambda, typename = enable_if_it< concepts::fixed_size_tensor_data_v<result_tensor_type> > >
+    #endif
     [[nodiscard]] static inline constexpr decltype(auto) collect_ctor_args( [[maybe_unused]] const tensor_type&, Lambda&& lambda ) noexcept
-      requires concepts::fixed_size_tensor_data<result_tensor_type> { return tuple( forward<Lambda>( lambda ) ); }
+    #ifdef LINALG_ENABLE_CONCEPTS
+      requires concepts::fixed_size_tensor_data<result_tensor_type>
+    #endif
+    { return tuple( forward<Lambda>( lambda ) ); }
     // If the tensor type is dynamic, then size and capacity must be provided along with the lambda expression.
     // Additionally, if all allocators of the desired type are not the same or cannot be default cosntructed, then it must be
     // passed along as well.
+    #ifdef LINALG_ENABLE_CONCEPTS
     template < class Lambda >
+    #else LINALG_ENABLE_CONCEPTS
+    template < class Lambda, typename = enable_if_it< concepts::dynamic_tensor_data_v<result_tensor_type> > >
+    #endif
     [[nodiscard]] static inline constexpr decltype(auto) collect_ctor_args( const tensor_type& t, Lambda&& lambda ) noexcept
+    #ifdef LINALG_ENABLE_CONCEPTS
       requires concepts::dynamic_tensor_data<result_tensor_type>
+    #endif
     {
       if constexpr ( is_default_constructible_v<typename result_tensor_type::allocator_type> &&
                       allocator_traits<typename result_tensor_type::allocator_type>::is_always_equal::value )
@@ -424,7 +506,11 @@ struct scalar_division
 
 /// @brief Defines transpose operation on a matrix
 /// @tparam M matrix
+#ifdef LINALG_ENABLE_CONCEPTS
 template < concepts::matrix_data M >
+#else
+template < class M, typename = enable_if_t< concepts::matrix_data_v<M> > >
+#endif
 class transpose_matrix
 {
   public:
@@ -437,16 +523,28 @@ class transpose_matrix
     using result_matrix_type = typename matrix_type::transpose_type;
     // Gets necessary arguments for constrution
     // If matrix type is fixed size, then the lambda expression is the only argument needed
+    #ifdef LINALG_ENABLE_CONCEPTS
     template < class Lambda >
+    #else
+    template < class Lambda, typename = enable_if_t< concepts::fixed_size_matrix_data_v<result_matrix_type> > >
+    #endif
     [[nodiscard]] static inline constexpr decltype(auto) collect_ctor_args( [[maybe_unused]] const matrix_type&, Lambda&& lambda ) noexcept
+    #ifdef LINALG_ENABLE_CONCEPTS
       requires concepts::fixed_size_matrix_data<result_matrix_type>
+    #endif
     { return tuple( forward<Lambda>( lambda ) ); }
     // If the matrix type is dynamic, then size and capacity must be provided along with the lambda expression.
     // Additionally, if all allocators of the desired type are not the same or cannot be default constructed, then it must be
     // passed along as well.
+    #ifdef LINALG_ENABLE_CONCEPTS
     template < class Lambda >
+    #else
+    template < class Lambda, typename = enable_if_t< concepts::dynamic_matrix_data_v<result_matrix_type> > >
+    #endif
     [[nodiscard]] static inline constexpr decltype(auto) collect_ctor_args( const matrix_type& m, Lambda&& lambda ) noexcept
+    #ifdef LINALG_ENABLE_CONCEPTS
       requires concepts::dynamic_matrix_data<result_matrix_type>
+    #endif
     {
       using result_extents_type = typename result_matrix_type::extents_type;
       if constexpr ( is_default_constructible_v<typename result_matrix_type::allocator_type> &&
@@ -484,7 +582,11 @@ class transpose_matrix
 
 /// @brief Defines transpose operation on a vector
 /// @tparam V vector
+#ifdef LINALG_ENABLE_CONCEPTS
 template < concepts::vector_data V >
+#else
+template < class V, typename = enable_if_t< concepts::vector_data<T> > >
+#endif
 class transpose_vector
 {
   public:
@@ -507,7 +609,11 @@ class transpose_vector
 
 /// @brief Defines conjugate transpose operation on a matrix
 /// @tparam M matrix
+#ifdef LINALG_ENABLE_CONCEPTS
 template < concepts::matrix_data M >
+#else
+template < class M, typename = enable_if_t< concepts::matrix_data_v<M> > >
+#endif
 class conjugate_matrix
 {
   public:
@@ -523,16 +629,28 @@ class conjugate_matrix
     using result_matrix_type  = typename matrix_type::transpose_type::template rebind_t<result_element_type>;
     // Gets necessary arguments for constrution
     // If matrix type is fixed size, then the lambda expression is the only argument needed
+    #ifdef LINALG_ENABLE_CONCEPTS
     template < class Lambda >
+    #else
+    template < class Lambda, typename = enable_if_t< concepts::fixed_size_matrix_data_v<result_matrix_type> > >
+    #endif
     [[nodiscard]] static inline constexpr decltype(auto) collect_ctor_args( [[maybe_unused]] const matrix_type&, Lambda&& lambda ) noexcept
+    #ifdef LINALG_ENABLE_CONCEPTS
       requires concepts::fixed_size_matrix_data<result_matrix_type>
+    #endif
     { return tuple( forward<Lambda>( lambda ) ); }
     // If the matrix type is dynamic, then size and capacity must be provided along with the lambda expression.
     // Additionally, if all allocators of the desired type are not the same or cannot be default constructed, then it must be
     // passed along as well.
+    #ifdef LINALG_ENABLE_CONCEPTS
     template < class Lambda >
+    #else
+    template < class Lambda, typename = enable_if_t< concepts::dynamic_matrix_data_v<result_matrix_type> > >
+    #endif
     [[nodiscard]] static inline constexpr decltype(auto) collect_ctor_args( const matrix_type& m, Lambda&& lambda ) noexcept
+    #ifdef LINALG_ENABLE_CONCEPTS
       requires concepts::dynamic_matrix_data<result_matrix_type>
+    #endif
     {
       using result_extents_type = typename result_matrix_type::extents_type;
       if constexpr ( is_default_constructible_v<typename result_matrix_type::allocator_type> &&
@@ -570,7 +688,11 @@ class conjugate_matrix
 
 /// @brief Defines conjugate transpose operation on a vector
 /// @tparam V vector
+#ifdef LINALG_ENABLE_CONCEPTS
 template < concepts::vector_data V >
+#else
+template < class V, typename = enable_if_t< concepts::vector_data_v<V> > >
+#endif
 class conjugate_vector
 {
   public:
@@ -586,16 +708,28 @@ class conjugate_vector
     using result_vector_type  = typename vector_type::template rebind_t<result_element_type>;
     // Gets necessary arguments for constrution
     // If vector type is fixed size, then the lambda expression is the only argument needed
+    #ifdef LINALG_ENABLE_CONCEPTS
     template < class Lambda >
+    #else
+    template < class Lambda, typename = enable_if_t< concepts::fixed_size_vector_data_v<result_vector_type> > >
+    #endif
     [[nodiscard]] static inline constexpr decltype(auto) collect_ctor_args( [[maybe_unused]] const vector_type&, Lambda&& lambda ) noexcept
+    #ifdef LINALG_ENABLE_CONCEPTS
       requires concepts::fixed_size_vector_data<result_vector_type>
+    #endif
     { return tuple( forward<Lambda>( lambda ) ); }
     // If the vector type is dynamic, then size and capacity must be provided along with the lambda expression.
     // Additionally, if all allocators of the desired type are not the same or cannot be default constructed, then it must be
     // passed along as well.
+    #ifdef LINALG_ENABLE_CONCEPTS
     template < class Lambda >
+    #else
+    template < class Lambda, typename = enable_if_t< concepts::dynamic_vector_data_v<result_vector_type> > >
+    #endif
     [[nodiscard]] static inline constexpr decltype(auto) collect_ctor_args( const vector_type& v, Lambda&& lambda ) noexcept
+    #ifdef LINALG_ENABLE_CONCEPTS
       requires concepts::dynamic_vector_data<vector_type>
+    #endif
     {
       if constexpr ( is_default_constructible_v<typename result_vector_type::allocator_type> &&
                      allocator_traits<typename result_vector_type::allocator_type>::is_always_equal::value )
@@ -635,7 +769,11 @@ class conjugate_vector
 /// @brief Defines multiplication operation on a matrix and a vector
 /// @tparam V vector
 /// @tparam M matrix
+#ifdef LINALG_ENABLE_CONCEPTS
 template < concepts::vector_data V, concepts::matrix_data M >
+#else
+template < class V, class M, typename = enable_if_t< concepts::vector_data_v<V> && concepts::matrix_data_v<M> > >
+#endif
 class vector_matrix_product
 {
   public:
@@ -647,20 +785,35 @@ class vector_matrix_product
     using matrix_type = M;
   private:
     // Return the allocator
+    #ifndef LINALG_ENABLE_CONCEPTS
+    template < class typename = enable_if_t< concepts::dynamic_matrix_data_v< matrix_type > > >
+    #endif
     [[nodiscard]] static inline constexpr decltype(auto) get_allocator( const matrix_type& m ) noexcept
+    #ifdef LINALG_ENABLE_CONCEPTS
       requires concepts::dynamic_matrix_data< matrix_type >
+    #endif
     {
       return m.get_allocator();
     }
     // Returns the std allocator
+    #ifndef LINALG_ENABLE_CONCEPTS
+    template < class typename = enable_if_t< !concepts::dynamic_matrix_data_v< matrix_type > > >
+    #endif
     [[nodiscard]] static inline constexpr decltype(auto) get_allocator( [[maybe_unused]] const matrix_type& m ) noexcept
+    #ifdef LINALG_ENABLE_CONCEPTS
       requires ( !concepts::dynamic_matrix_data< matrix_type > )
+    #endif
     {
       return std::allocator<result_value_type>();
     }
     // Aliases
     using result_value_type       = decay_t< decltype( declval<typename vector_type::value_type>() * declval<typename matrix_type::value_type>() ) >;
-    using pre_result_vector_type  = conditional_t< concepts::fixed_size_matrix_data<matrix_type>,
+    using pre_result_vector_type  = conditional_t< 
+                                                   #ifdef LINALG_ENABLE_CONCEPTS
+                                                   concepts::fixed_size_matrix_data<matrix_type>,
+                                                   #else
+                                                   concepts::fixed_size_matrix_data_v<matrix_type>,
+                                                   #endif
                                                    fs_vector< result_value_type,
                                                               matrix_type::extents_type::static_extent(1),
                                                               detail::rebind_layout_t<typename vector_type::layout_type,
@@ -673,7 +826,12 @@ class vector_matrix_product
                                                                                       experimental::extents<typename matrix_type::size_type,
                                                                                                             matrix_type::extents_type::static_extent(1)> >,
                                                               detail::rebind_accessor_t<typename vector_type::accessor_type,result_value_type> > >;
-    using post_result_vector_type = conditional_t< concepts::fixed_size_matrix_data<matrix_type>,
+    using post_result_vector_type = conditional_t< 
+                                                   #ifdef LINALG_ENABLE_CONCEPTS
+                                                   concepts::fixed_size_matrix_data<matrix_type>,
+                                                   #else
+                                                   concepts::fixed_size_matrix_data_v<matrix_type>,
+                                                   #endif
                                                    fs_vector< result_value_type,
                                                               matrix_type::extents_type::static_extent(0),
                                                               detail::rebind_layout_t<typename vector_type::layout_type,
@@ -686,18 +844,30 @@ class vector_matrix_product
                                                                                       experimental::extents<typename matrix_type::size_type,
                                                                                                             matrix_type::extents_type::static_extent(0)> >,
                                                               detail::rebind_accessor_t<typename vector_type::accessor_type,result_value_type> > >;
-     // Gets necessary arguments for constrution
+    // Gets necessary arguments for construction
     // If vector type is fixed size, then the lambda expression is the only argument needed
+    #ifdef LINALG_ENABLE_CONCEPTS
     template < class Lambda >
+    #else
+    template < class Lambda, typename = enable_if_t< concepts::fixed_size_vector_data_v<pre_result_vector_type> > ><
+    #endif
     [[nodiscard]] static inline constexpr decltype(auto) collect_ctor_args( [[maybe_unused]] const vector_type&, [[maybe_unused]] const matrix_type&, Lambda&& lambda ) noexcept
+    #ifdef LINALG_ENABLE_CONCEPTS
       requires concepts::fixed_size_vector_data<pre_result_vector_type>
+    #endif
     { return tuple( forward<Lambda>( lambda ) ); }
     // If the vector type is dynamic, then size and capacity must be provided along with the lambda expression.
     // Additionally, if all allocators of the desired type are not the same or cannot be default cosntructed, then it must be
     // passed along as well.
+    #ifdef LINALG_ENABLE_CONCEPTS
     template < class Lambda >
+    #else
+    template < class Lambda, typename = enable_if_t< concepts::dynamic_vector_data_v<pre_result_vector_type> > ><
+    #endif
     [[nodiscard]] static inline constexpr decltype(auto) collect_ctor_args( [[maybe_unused]] const vector_type&, const matrix_type& m, Lambda&& lambda ) noexcept
+    #ifdef LINALG_ENABLE_CONCEPTS
       requires concepts::dynamic_vector_data<pre_result_vector_type>
+    #endif
     {
       using result_vector_type = pre_result_vector_type;
       if constexpr ( is_default_constructible_v<typename result_vector_type::allocator_type> &&
@@ -720,16 +890,28 @@ class vector_matrix_product
     }
     // Gets necessary arguments for constrution
     // If vector type is fixed size, then the lambda expression is the only argument needed
+    #ifdef LINALG_ENABLE_CONCEPTS
     template < class Lambda >
+    #else
+    template < class Lambda, typename = enable_if_t< concepts::fixed_size_vector_data_v<post_result_vector_type> > ><
+    #endif
     [[nodiscard]] static inline constexpr decltype(auto) collect_ctor_args( [[maybe_unused]] const matrix_type&, [[maybe_unused]] const vector_type&, Lambda&& lambda ) noexcept
+    #ifdef LINALG_ENABLE_CONCEPTS
       requires concepts::fixed_size_vector_data<post_result_vector_type>
+    #endif
     { return tuple( forward<Lambda>( lambda ) ); }
     // If the vector type is dynamic, then size and capacity must be provided along with the lambda expression.
     // Additionally, if all allocators of the desired type are not the same or cannot be default cosntructed, then it must be
     // passed along as well.
+    #ifdef LINALG_ENABLE_CONCEPTS
     template < class Lambda >
+    #else
+    template < class Lambda, typename = enable_if_t< concepts::dynamic_vector_data_v<post_result_vector_type> > ><
+    #endif
     [[nodiscard]] static inline constexpr decltype(auto) collect_ctor_args( const matrix_type& m, [[maybe_unused]] const vector_type&, Lambda&& lambda ) noexcept
+    #ifdef LINALG_ENABLE_CONCEPTS
       requires concepts::dynamic_vector_data<post_result_vector_type>
+    #endif
     {
       using result_vector_type = post_result_vector_type;
       if constexpr ( is_default_constructible_v<typename result_vector_type::allocator_type> &&
@@ -754,6 +936,11 @@ class vector_matrix_product
     //- Operations
 
     /// @brief Returns v * m
+    #ifndef LINALG_ENABLE_CONCEPTS
+    template < typename = enable_if_t< ( ( vector_type::extents_type::static_extent(0) == matrix_type::extents_type::static_extent(0) ) ||
+                                         ( vector_type::extents_type::static_extent(0) == experimental::dynamic_extent ) ||
+                                         ( matrix_type::extents_type::static_extent(0) == experimental::dynamic_extent ) ) > >
+    #endif
     [[nodiscard]] static constexpr pre_result_vector_type prod( const vector_type& v, const matrix_type& m )
       noexcept( noexcept(
         detail::make_from_tuple< pre_result_vector_type >(
@@ -771,9 +958,11 @@ class vector_matrix_product
                              } ) ) ) &&
                 ( ( vector_type::extents_type::static_extent(0) != experimental::dynamic_extent ) &&
                   ( matrix_type::extents_type::static_extent(0) != experimental::dynamic_extent ) ) )
+    #ifdef LINALG_ENABLE_CONCEPTS
       requires ( ( vector_type::extents_type::static_extent(0) == matrix_type::extents_type::static_extent(0) ) ||
                   ( vector_type::extents_type::static_extent(0) == experimental::dynamic_extent ) ||
                   ( matrix_type::extents_type::static_extent(0) == experimental::dynamic_extent ) )
+    #endif
     {
       // If the extents are dynamic, then check they are compatable
       if constexpr ( ( vector_type::extents_type::static_extent(0) == experimental::dynamic_extent ) ||
@@ -800,15 +989,27 @@ class vector_matrix_product
       return detail::make_from_tuple<pre_result_vector_type>( collect_ctor_args( v, m, lambda ) );
     }
     /// @brief Returns v *= m
+    #ifndef LINALG_ENABLE_CONCEPTS
+    template < typename = enable_if_t< ( ( vector_type::extents_type::static_extent(0) == matrix_type::extents_type::static_extent(0) ) &&
+                                         ( ( vector_type::extents_type::static_extent(0) == matrix_type::extents_type::static_extent(1) ) ||
+                                           ( vector_type::extents_type::static_extent(0) == experimental::dynamic_extent ) ) ) > >
+    #endif
     [[nodiscard]] static constexpr vector_type& prod( vector_type& v, const matrix_type& m )
       noexcept( noexcept( v = move( v * m ) ) )
+    #ifdef LINALG_ENABLE_CONCEPTS
       requires ( ( vector_type::extents_type::static_extent(0) == matrix_type::extents_type::static_extent(0) ) &&
                  ( ( vector_type::extents_type::static_extent(0) == matrix_type::extents_type::static_extent(1) ) ||
                    ( vector_type::extents_type::static_extent(0) == experimental::dynamic_extent ) ) )
+    #endif
     {
       return v = move( v * m );
     }
     /// @brief Returns m * v
+    #ifndef LINALG_ENABLE_CONCEPTS
+    template < typename = enable_if_t< ( ( matrix_type::extents_type::static_extent(1) == vector_type::extents_type::static_extent(0) ) ||
+                                         ( matrix_type::extents_type::static_extent(1) == experimental::dynamic_extent ) ||
+                                         ( vector_type::extents_type::static_extent(0) == experimental::dynamic_extent ) ) > >
+    #endif
     [[nodiscard]] static constexpr post_result_vector_type prod( const matrix_type& m, const vector_type& v )
       noexcept( noexcept(
         detail::make_from_tuple< post_result_vector_type >(
@@ -826,9 +1027,11 @@ class vector_matrix_product
                              } ) ) ) &&
                 ( ( matrix_type::extents_type::static_extent(1) != experimental::dynamic_extent ) &&
                   ( vector_type::extents_type::static_extent(0) != experimental::dynamic_extent ) ) )
+    #ifdef LINALG_ENABLE_CONCEPTS
       requires ( ( matrix_type::extents_type::static_extent(1) == vector_type::extents_type::static_extent(0) ) ||
                   ( matrix_type::extents_type::static_extent(1) == experimental::dynamic_extent ) ||
                   ( vector_type::extents_type::static_extent(0) == experimental::dynamic_extent ) )
+    #endif
     {
       // If the extents are dynamic, then check they are compatable
       if constexpr ( ( matrix_type::extents_type::static_extent(1) == experimental::dynamic_extent ) ||
@@ -859,7 +1062,11 @@ class vector_matrix_product
 /// @brief Defines multiplication operation on a pair of matrices
 /// @tparam M1 matrix
 /// @tparam M2 matrix
+#ifdef LINALG_ENABLE_CONCEPTS
 template < concepts::matrix_data M1, concepts::matrix_data M2 >
+#else
+template < class M1, class M2, typename = enable_if_t< concepts::matrix_data_v<M1> && concepts::matrix_data_v<M2> > >
+#endif
 class matrix_matrix_product
 {
   public:
@@ -871,27 +1078,46 @@ class matrix_matrix_product
     using second_matrix_type = M2;
   private:
     // Return the allocator of m1
+    #ifndef LINALG_ENABLE_CONCEPTS
+    template < typename = enable_if_t< concepts::dynamic_matrix_data_v< first_matrix_type > > >
+    #endif
     [[nodiscard]] static inline constexpr decltype(auto) get_allocator( const first_matrix_type& m1, [[maybe_unused]] const second_matrix_type& m2 ) noexcept
+    #ifdef LINALG_ENABLE_CONCEPTS
       requires concepts::dynamic_matrix_data< first_matrix_type >
+    #endif
     {
       return m1.get_allocator();
     }
     // Returns the allocator of m2
+    #ifndef LINALG_ENABLE_CONCEPTS
+    template < typename = enable_if_t< concepts::dynamic_matrix_data_v< second_matrix_type > && !concepts::dynamic_matrix_data_v< first_matrix_type > > >
+    #endif
     [[nodiscard]] static inline constexpr decltype(auto) get_allocator( [[maybe_unused]] const first_matrix_type& m1, const second_matrix_type& m2 ) noexcept
+    #ifdef LINALG_ENABLE_CONCEPTS
       requires ( concepts::dynamic_matrix_data< second_matrix_type > && !concepts::dynamic_matrix_data< first_matrix_type > )
+    #endif
     {
       return m2.get_allocator();
     }
     // Returns the std allocator
+    #ifndef LINALG_ENABLE_CONCEPTS
+    template < typename = enable_if_t< !concepts::dynamic_matrix_data_v< first_matrix_type > && !concepts::dynamic_matrix_data_v< second_matrix_type > > >
+    #endif
     [[nodiscard]] static inline constexpr decltype(auto) get_allocator( [[maybe_unused]] const first_matrix_type& m1, [[maybe_unused]] const second_matrix_type& m2 ) noexcept
+    #ifdef LINALG_ENABLE_CONCEPTS
       requires ( !concepts::dynamic_matrix_data< first_matrix_type > && !concepts::dynamic_matrix_data< second_matrix_type > )
+    #endif
     {
       return std::allocator<result_value_type>();
     }
     // Aliases
     using result_value_type  = decay_t< decltype( declval<typename first_matrix_type::value_type>() * declval<typename second_matrix_type::value_type>() ) >;
-    using result_matrix_type = conditional_t< concepts::fixed_size_matrix_data<first_matrix_type> &&
-                                              concepts::fixed_size_matrix_data<second_matrix_type>,
+    using result_matrix_type = conditional_t< 
+                                              #ifdef LINALG_ENABLE_CONCEPTS
+                                              concepts::fixed_size_matrix_data<first_matrix_type> && concepts::fixed_size_matrix_data<second_matrix_type>,
+                                              #else
+                                              concepts::fixed_size_matrix_data_v<first_matrix_type> && concepts::fixed_size_matrix_data_v<second_matrix_type>,
+                                              #endif
                                               fs_matrix< result_value_type,
                                                          first_matrix_type::extents_type::static_extent(0),
                                                          second_matrix_type::extents_type::static_extent(1),
@@ -909,16 +1135,28 @@ class matrix_matrix_product
                                                          detail::rebind_accessor_t<typename first_matrix_type::accessor_type,result_value_type> > >;
     // Gets necessary arguments for constrution
     // If matrix type is fixed size, then the lambda expression is the only argument needed
+    #ifdef LINALG_ENABLE_CONCEPTS
     template < class Lambda >
+    #else
+    template < class Lambda, typename = enable_if_t< concepts::fixed_size_matrix_data_v<result_matrix_type> > >
+    #endif
     [[nodiscard]] static inline constexpr decltype(auto) collect_ctor_args( [[maybe_unused]] const first_matrix_type&, [[maybe_unused]] const second_matrix_type&, Lambda&& lambda ) noexcept
+    #ifdef LINALG_ENABLE_CONCEPTS
       requires concepts::fixed_size_matrix_data<result_matrix_type>
+    #endif
     { return tuple( forward<Lambda>( lambda ) ); }
     // If the matrix type is dynamic, then size and capacity must be provided along with the lambda expression.
     // Additionally, if all allocators of the desired type are not the same or cannot be default constructed, then it must be
     // passed along as well.
+    #ifdef LINALG_ENABLE_CONCEPTS
     template < class Lambda >
+    #else
+    template < class Lambda, typename = enable_if_t< concepts::dynamic_matrix_data_v<result_matrix_type> > >
+    #endif
     [[nodiscard]] static inline constexpr decltype(auto) collect_ctor_args( const first_matrix_type& m1, const second_matrix_type& m2, Lambda&& lambda ) noexcept
+    #ifdef LINALG_ENABLE_CONCEPTS
       requires concepts::dynamic_matrix_data<result_matrix_type>
+    #endif
     {
       if constexpr ( is_default_constructible_v<typename result_matrix_type::allocator_type> &&
                      allocator_traits<typename result_matrix_type::allocator_type>::is_always_equal::value )
@@ -942,6 +1180,11 @@ class matrix_matrix_product
     //- Operations
 
     /// @brief computes m1 * m2
+    #ifndef LINALG_ENABLE_CONCEPTS
+    template < typename = enable_if_t< ( ( first_matrix_type::extents_type::static_extent(1) == second_matrix_type::extents_type::static_extent(0) ) ||
+                                         ( first_matrix_type::extents_type::static_extent(1) == experimental::dynamic_extent ) ||
+                                         ( second_matrix_type::extents_type::static_extent(0) == experimental::dynamic_extent ) ) > >
+    #endif
     [[nodiscard]] static constexpr result_matrix_type prod( const first_matrix_type& m1, const second_matrix_type& m2 )
       noexcept( noexcept( detail::make_from_tuple< result_matrix_type >(
         collect_ctor_args( declval<const first_matrix_type&>(),
@@ -958,9 +1201,11 @@ class matrix_matrix_product
                            } ) ) ) &&
                 ( first_matrix_type::extents_type::static_extent(1) != experimental::dynamic_extent ) &&
                 ( second_matrix_type::extents_type::static_extent(0) != experimental::dynamic_extent ) )
+    #ifdef LINALG_ENABLE_CONCEPTS
       requires ( ( first_matrix_type::extents_type::static_extent(1) == second_matrix_type::extents_type::static_extent(0) ) ||
                  ( first_matrix_type::extents_type::static_extent(1) == experimental::dynamic_extent ) ||
                  ( second_matrix_type::extents_type::static_extent(0) == experimental::dynamic_extent ) )
+    #endif
     {
       // If the extents are dynamic, then check they are compatable
       if constexpr ( ( first_matrix_type::extents_type::static_extent(1) == experimental::dynamic_extent ) ||
@@ -987,11 +1232,18 @@ class matrix_matrix_product
       return detail::make_from_tuple<result_matrix_type>( collect_ctor_args( m1, m2, lambda ) );
     }
     /// @brief Returns m1 *= m2
+    #ifndef LINALG_ENABLE_CONCEPTS
+    template < typename = enable_if_t< ( ( first_matrix_type::extents_type::static_extent(1) == second_matrix_type::extents_type::static_extent(0) ) &&
+                                         ( ( first_matrix_type::extents_type::static_extent(1) == second_matrix_type::extents_type::static_extent(1) ) ||
+                                           ( first_matrix_type::extents_type::static_extent(1) == experimental::dynamic_extent ) ) ) > >
+    #endif
     [[nodiscard]] static constexpr first_matrix_type& prod( first_matrix_type& m1, const second_matrix_type& m2 )
       noexcept( noexcept( m1 = move( m1 * m2 ) ) )
+    #ifdef LINALG_ENABLE_CONCEPTS
       requires ( ( first_matrix_type::extents_type::static_extent(1) == second_matrix_type::extents_type::static_extent(0) ) &&
                  ( ( first_matrix_type::extents_type::static_extent(1) == second_matrix_type::extents_type::static_extent(1) ) ||
                    ( first_matrix_type::extents_type::static_extent(1) == experimental::dynamic_extent ) ) )
+    #endif
     {
       return m1 = move( m1 * m2 );
     }
@@ -1000,7 +1252,11 @@ class matrix_matrix_product
 /// @brief Defines inner product operation on a pair of vectors
 /// @tparam V1 vector
 /// @tparam V2 vector
+#ifdef LINALG_ENABLE_CONCEPTS
 template < concepts::vector_data V1, concepts::vector_data V2 >
+#else
+template < class V1, class V2, enable_if_t< concepts::vector_data_v< V2 > > >
+#endif
 class inner_product
 {
   public:
@@ -1017,9 +1273,14 @@ class inner_product
     //- Operations
 
     /// @brief computes the inner product of v1 and v2
+    #ifndef LINALG_ENABLE_CONCEPTS
+    template < typename = enable_if_t< detail::extents_may_be_equal_v<typename first_vector_type::extents_type,typename second_vector_type::extents_type> > >
+    #endif
     [[nodiscard]] static constexpr auto prod( const first_vector_type& v1, const second_vector_type& v2 )
       noexcept( detail::extents_is_equal_v<typename first_vector_type::extents_type,typename second_vector_type::extents_type> )
+    #ifdef LINALG_ENABLE_CONCEPTS
       requires detail::extents_may_be_equal_v<typename first_vector_type::extents_type,typename second_vector_type::extents_type>
+    #endif
     {
       if constexpr ( !detail::extents_is_equal_v<typename first_vector_type::extents_type,typename second_vector_type::extents_type> )
       {
@@ -1044,7 +1305,11 @@ class inner_product
 /// @brief Defines outer product operation on a pair of vectors
 /// @tparam V1 vector
 /// @tparam V2 vector
+#ifdef LINALG_ENABLE_CONCEPTS
 template < concepts::vector_data V1, concepts::vector_data V2 >
+#else
+template < class V1, class V2, typename = enable_if_t< concepts::vector_data_v<V1> && concepts::vector_data_v<V2> > >
+#endif
 class outer_product
 {
   public:
@@ -1056,27 +1321,46 @@ class outer_product
     using second_vector_type = V2;
   private:
     // Return the allocator of v1
+    #ifndef LINALG_ENABLE_CONCEPTS
+    template < typename = enable_if_t< concepts::dynamic_matrix_data_v< first_vector_type > > >
+    #endif
     [[nodiscard]] static inline constexpr decltype(auto) get_allocator( const first_vector_type& v1, [[maybe_unused]] const second_vector_type& v2 ) noexcept
-      requires concepts::dynamic_matrix_data< first_vector_type >
+    #ifdef LINALG_ENABLE_CONCEPTS
+      requires concepts::dynamic_vector_data< first_vector_type >
+    #endif
     {
       return v1.get_allocator();
     }
     // Returns the allocator of v2
+    #ifndef LINALG_ENABLE_CONCEPTS
+    template < typename = enable_if_t< concepts::dynamic_vector_data_v< second_vector_type > && !concepts::dynamic_vector_data_v< first_vector_type > > >
+    #endif
     [[nodiscard]] static inline constexpr decltype(auto) get_allocator( [[maybe_unused]] const first_vector_type& v1, const second_vector_type& v2 ) noexcept
-      requires ( concepts::dynamic_matrix_data< second_vector_type > && !concepts::dynamic_matrix_data< first_vector_type > )
+    #ifdef LINALG_ENABLE_CONCEPTS
+      requires ( concepts::dynamic_vector_data< second_vector_type > && !concepts::dynamic_vector_data< first_vector_type > )
+    #endif
     {
       return v2.get_allocator();
     }
     // Returns the std allocator
+    #ifndef LINALG_ENABLE_CONCEPTS
+    template < typename = enable_if_t< !concepts::dynamic_vector_data_v< first_vector_type > && !concepts::dynamic_vector_data_v< second_vector_type > > >
+    #endif
     [[nodiscard]] static inline constexpr decltype(auto) get_allocator( [[maybe_unused]] const first_vector_type& v1, [[maybe_unused]] const second_vector_type& v2 ) noexcept
-      requires ( !concepts::dynamic_matrix_data< first_vector_type > && !concepts::dynamic_matrix_data< second_vector_type > )
+    #ifdef LINALG_ENABLE_CONCEPTS
+      requires ( !concepts::dynamic_vector_data< first_vector_type > && !concepts::dynamic_vector_data< second_vector_type > )
+    #endif
     {
       return std::allocator<result_value_type>();
     }
     // Aliases
     using result_value_type  = decay_t< decltype( declval<typename first_vector_type::value_type>() * declval<typename second_vector_type::value_type>() ) >;
-    using result_matrix_type = conditional_t< concepts::fixed_size_vector_data<first_vector_type> &&
-                                              concepts::fixed_size_vector_data<second_vector_type>,
+    using result_matrix_type = conditional_t< 
+                                              #ifdef LINALG_ENABLE_CONCEPTS
+                                              concepts::fixed_size_vector_data<first_vector_type> && concepts::fixed_size_vector_data<second_vector_type>,
+                                              #else
+                                              concepts::fixed_size_vector_data_v<first_vector_type> && concepts::fixed_size_vector_data_v<second_vector_type>,
+                                              #endif
                                               fs_matrix< result_value_type,
                                                          first_vector_type::extents_type::static_extent(0),
                                                          second_vector_type::extents_type::static_extent(0),
@@ -1094,16 +1378,28 @@ class outer_product
                                                          detail::rebind_accessor_t<typename first_vector_type::accessor_type,result_value_type> > >;
     // Gets necessary arguments for constrution
     // If matrix type is fixed size, then the lambda expression is the only argument needed
+    #ifdef LINALG_ENABLE_CONCEPTS
     template < class Lambda >
+    #else
+    template < class Lambda, typename = enable_if_t< concepts::fixed_size_matrix_data_v<result_matrix_type> > >
+    #endif
     [[nodiscard]] static inline constexpr decltype(auto) collect_ctor_args( [[maybe_unused]] const first_vector_type&, [[maybe_unused]] const second_vector_type&, Lambda&& lambda ) noexcept
+    #ifdef LINALG_ENABLE_CONCEPTS
       requires concepts::fixed_size_matrix_data<result_matrix_type>
+    #endif
     { return tuple( forward<Lambda>( lambda ) ); }
     // If the matrix type is dynamic, then size and capacity must be provided along with the lambda expression.
     // Additionally, if all allocators of the desired type are not the same or cannot be default cosntructed, then it must be
     // passed along as well.
+    #ifdef LINALG_ENABLE_CONCEPTS
     template < class Lambda >
+    #else
+    template < class Lambda, typename = enable_if_t< concepts::dynamic_matrix_data_v<result_matrix_type> > >
+    #endif
     [[nodiscard]] static inline constexpr decltype(auto) collect_ctor_args( const first_vector_type& v1, const second_vector_type& v2, Lambda&& lambda ) noexcept
+    #ifdef LINALG_ENABLE_CONCEPTS
       requires concepts::dynamic_matrix_data<result_matrix_type>
+    #endif
     {
       if constexpr ( is_default_constructible_v<typename result_matrix_type::allocator_type> &&
                      allocator_traits<typename result_matrix_type::allocator_type>::is_always_equal::value )
