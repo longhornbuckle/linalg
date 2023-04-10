@@ -119,40 +119,84 @@ class dr_matrix : public dr_tensor<T,2,Alloc,L,Access>
     constexpr dr_matrix( const dr_matrix& ) = default;
     /// @brief Template copy constructor
     /// @tparam matrix to be copied
+    #ifdef LINALG_ENABLE_CONCEPTS
     template < concepts::tensor_may_be_constructible< dr_matrix > M2 >
+    #else
+    template < class M2, typename = enable_if_t< concepts::tensor_may_be_constructible< M2, dr_matrix > > >
+    #endif
     explicit constexpr dr_matrix( const M2& rhs ) noexcept( noexcept( base_type(rhs) ) );
     /// @brief Construct from a view
     /// @tparam A two dimensional view
     /// @param view view of matrix elements
+    #ifdef LINALG_ENABLE_CONCEPTS
     template < concepts::view_may_be_constructible_to_tensor< dr_matrix > MDS >
+    #else
+    template < class M2, typename = enable_if_t< concepts::view_may_be_constructible_to_tensor<MDS,dr_matrix> && is_default_constructible_v<allocator_type> > >
+    #endif
     explicit constexpr dr_matrix( const MDS& view ) noexcept( noexcept( base_type(view) ) )
+    #ifdef LINALG_ENABLE_CONCEPTS
       requires is_default_constructible_v<allocator_type>;
+    #else
+      ;
+    #endif
     /// @brief Attempt to allocate sufficient resources for a size s matrix and construct
     /// @param s defines the rows and columns of the matrix
+    #ifndef LINALG_ENABLE_CONCEPTS
+    template < typename = enable_if_t< is_default_constructible_v<allocator_type> > >
+    #endif
     explicit constexpr dr_matrix( extents_type s ) noexcept( noexcept( base_type(s) ) )
+    #ifdef LINALG_ENABLE_CONCEPTS
       requires is_default_constructible_v<allocator_type>;
+    #else
+      ;
+    #endif
     /// @brief Attempt to allocate sufficient resources for a size s matrix with the input capacity and construct
     /// @param s defines the rows and columns of the matrix
     /// @param cap defines the capacity along each of the dimensions of the matrix
+    #ifndef LINALG_ENABLE_CONCEPTS
+    template < typename = enable_if_t< is_default_constructible_v<allocator_type> > >
+    #endif
     constexpr dr_matrix( extents_type s, extents_type cap ) noexcept( noexcept( base_type(s,cap) ) )
+    #ifdef LINALG_ENABLE_CONCEPTS
       requires is_default_constructible_v<allocator_type>;
+    #else
+      ;
+    #endif
     /// @brief Construct by applying lambda to every element in the matrix
     /// @tparam Lambda lambda expression with an operator()( index1, index2 ) defined
     /// @param s defines the rows and columns of the matrix
     /// @param lambda lambda expression to be performed on each element
+    #ifdef LINALG_ENABLE_CONCEPTS
     template < class Lambda >
+    #else
+    template < class Lambda,
+               typename = enable_if_t< is_default_constructible_v<allocator_type> &&
+                                       is_convertible_to< decltype( declval<Lambda&&>()( declval<index_type>(), declval<index_type>() ) ), element_type > > >
+    #endif
     constexpr dr_matrix( extents_type s, Lambda&& lambda ) noexcept( noexcept( base_type(s,lambda) ) )
+    #ifdef LINALG_ENABLE_CONCEPTS
       requires is_default_constructible_v<allocator_type> &&
                requires { { declval<Lambda&&>()( declval<index_type>(), declval<index_type>() ) } -> convertible_to<element_type>; };
+    #else
+      ;
+    #endif
     /// @brief Construct by applying lambda to every element in the matrix
     /// @tparam Lambda lambda expression with an operator()( index1, index2 ) defined
     /// @param s defines the rows and columns of the matrix
     /// @param cap defines the capacity along each of the dimensions of the matrix
     /// @param lambda lambda expression to be performed on each element
+    #ifdef LINALG_ENABLE_CONCEPTS
     template < class Lambda >
+    #else
+    template < class Lambda,
+               typename = enable_if_t< is_default_constructible_v<allocator_type> &&
+                                       is_convertible_to< decltype( declval<Lambda&&>()( declval<index_type>(), declval<index_type>() ) ), element_type > > >
+    #endif
     constexpr dr_matrix( extents_type s, extents_type cap, Lambda&& lambda ) noexcept( noexcept( base_type(s,cap,lambda) ) )
+    #if LINALG_ENABLE_CONCEPTS
       requires is_default_constructible_v<allocator_type> &&
                requires { { declval<Lambda&&>()( declval<index_type>(), declval<index_type>() ) } -> convertible_to<element_type>; };
+    #endif
     /// @brief Construct empty dimensionless matrix with an allocator
     /// @param alloc allocator to construct with
     explicit constexpr dr_matrix( const allocator_type& alloc ) noexcept( noexcept( base_type(alloc) ) );
@@ -160,7 +204,11 @@ class dr_matrix : public dr_tensor<T,2,Alloc,L,Access>
     /// @tparam An N dimensional view
     /// @param view view of matrix elements
     /// @param alloc allocator to construct with
+    #ifdef LINALG_ENABLE_CONCEPTS
     template < concepts::view_may_be_constructible_to_tensor< dr_matrix > MDS >
+    #else
+    template < class MDS, typename = enable_if_t< concepts::view_may_be_constructible_to_tensor<MDS,dr_matrix> > >
+    #endif
     explicit constexpr dr_matrix( const MDS& view, const allocator_type& alloc ) noexcept( noexcept( base_type(view,alloc) ) );
     /// @brief Attempt to allocate sufficient resources for a size matrix and construct
     /// @param s defines the rows and columns of the matrix
@@ -176,18 +224,37 @@ class dr_matrix : public dr_tensor<T,2,Alloc,L,Access>
     /// @param s defines the rows and columns of the matrix
     /// @param lambda lambda expression to be performed on each element
     /// @param alloc allocator used to construct with
+    #ifdef LINALG_ENABLE_CONCEPTS
+    template < class Lambda >
+    #else
+    template < class Lambda,
+               typename = enable_if_t< is_convertible_to< decltype( declval<Lambda&&>()( declval<index_type>(), declval<index_type>() ) ), element_type > > >
+    #endif
     template < class Lambda >
     constexpr dr_matrix( extents_type s, Lambda&& lambda, const allocator_type& alloc ) noexcept( noexcept( base_type(s,lambda,alloc) ) )
+    #ifdef LINALG_ENABLE_CONCEPTS
       requires requires { { declval<Lambda&&>()( declval<index_type>(), declval<index_type>() ) } -> convertible_to<element_type>; };
+    #else
+      ;
+    #endif
     /// @brief Construct by applying lambda to every element in the matrix
     /// @tparam Lambda lambda expression with an operator()( index1, index2 ) defined
     /// @param s defines the rows and columns of the matrix
     /// @param cap defines the capacity along each of the dimensions of the matrix
     /// @param lambda lambda expression to be performed on each element
     /// @param alloc allocator used to construct with
+    #ifdef LINALG_ENABLE_CONCEPTS
     template < class Lambda >
+    #else
+    template < class Lambda,
+               typename = enable_if_t< is_convertible_to< decltype( declval<Lambda&&>()( declval<index_type>(), declval<index_type>() ) ), element_type > > >
+    #endif
     constexpr dr_matrix( extents_type s, extents_type cap, Lambda&& lambda, const allocator_type& alloc ) noexcept( noexcept( base_type(s,cap,lambda,alloc) ) )
+    #ifdef LINALG_ENABLE_CONCEPTS
       requires requires { { declval<Lambda&&>()( declval<index_type>(), declval<index_type>() ) } -> convertible_to<element_type>; };
+    #else
+      ;
+    #endif
     /// @brief Default move assignment
     /// @param  dr_matrix to be moved
     /// @return self
@@ -200,13 +267,21 @@ class dr_matrix : public dr_tensor<T,2,Alloc,L,Access>
     /// @tparam type of matrix to be copied
     /// @param  matrix to be copied
     /// @returns self
+    #ifdef LINALG_ENABLE_CONCEPTS
     template < concepts::tensor_may_be_constructible< dr_matrix > M2 >
+    #else
+    template < class M2, typename = enable_if_t< concepts::tensor_may_be_constructible< M2, dr_matrix > > >
+    #endif
     constexpr dr_matrix& operator = ( const M2& rhs ) noexcept( noexcept( declval<base_type>() = rhs ) );
     /// @brief Construct from a two dimensional view
     /// @tparam type of view to be copied
     /// @param  view to be copied
     /// @returns self
+    #ifdef LINALG_ENABLE_CONCEPTS
     template < concepts::view_may_be_constructible_to_tensor< dr_matrix > MDS >
+    #else
+    template < class MDS, typename = enable_if_t< concepts::view_may_be_constructible_to_tensor<MDS,dr_matrix> && is_default_constructible_v<allocator_type> > >
+    #endif
     constexpr dr_matrix& operator = ( const MDS& view ) noexcept( noexcept( declval<base_type>() = view ) );
 
     //- Size / Capacity
@@ -285,7 +360,11 @@ class dr_matrix : public dr_tensor<T,2,Alloc,L,Access>
 //- Destructor / Constructors / Assignments
 
 template < class T, class Alloc, class L, class Access >
-template < concepts::tensor_may_be_constructible< dr_matrix<T,Alloc,L,Access> > M2 >
+#ifdef LINALG_ENABLE_CONCEPTS
+template < concepts::tensor_may_be_constructible< dr_matrix > M2 >
+#else
+template < class M2, typename >
+#endif
 constexpr dr_matrix<T,Alloc,L,Access>::dr_matrix( const M2& rhs )
   noexcept( noexcept( dr_matrix<T,Alloc,L,Access>::base_type( rhs ) ) ) :
   dr_matrix<T,Alloc,L,Access>::base_type( rhs )
@@ -293,50 +372,89 @@ constexpr dr_matrix<T,Alloc,L,Access>::dr_matrix( const M2& rhs )
 }
 
 template < class T, class Alloc, class L, class Access >
+#ifdef LINALG_ENABLE_CONCEPTS
 template < concepts::view_may_be_constructible_to_tensor< dr_matrix<T,Alloc,L,Access> > MDS >
+#else
+template < class M2, typename >
+#endif
 constexpr dr_matrix<T,Alloc,L,Access>::dr_matrix( const MDS& view )
   noexcept( noexcept( dr_matrix<T,Alloc,L,Access>::base_type(view) ) )
+#ifdef LINALG_ENABLE_CONCEPTS
   requires is_default_constructible_v<typename dr_matrix<T,Alloc,L,Access>::allocator_type> :
+#else
+  :
+#endif
   dr_matrix<T,Alloc,L,Access>::base_type(view)
 {
 }
   
 template < class T, class Alloc, class L, class Access >
+#ifndef LINALG_ENABLE_CONCEPTS
+template < typename = enable_if_t< is_default_constructible_v<allocator_type> > >
+#endif
 constexpr dr_matrix<T,Alloc,L,Access>::dr_matrix( extents_type s )
   noexcept( noexcept( dr_matrix<T,Alloc,L,Access>::base_type(s) ) )
+#ifdef LINALG_ENABLE_CONCEPTS
   requires is_default_constructible_v<typename dr_matrix<T,Alloc,L,Access>::allocator_type> :
+#else
+  :
+#endif
   dr_matrix<T,Alloc,L,Access>::base_type(s)
 {
 }
 
 template < class T, class Alloc, class L, class Access >
+#ifndef LINALG_ENABLE_CONCEPTS
+template < typename = enable_if_t< is_default_constructible_v<allocator_type> > >
+#endif
 constexpr dr_matrix<T,Alloc,L,Access>::dr_matrix( extents_type s, extents_type cap )
   noexcept( noexcept( dr_matrix<T,Alloc,L,Access>::base_type(s,cap) ) )
+#ifdef LINALG_ENABLE_CONCEPTS
   requires is_default_constructible_v<typename dr_matrix<T,Alloc,L,Access>::allocator_type> :
+#else
+  :
+#endif
   dr_matrix<T,Alloc,L,Access>::base_type(s,cap)
 {
 }
 
 template < class T, class Alloc, class L, class Access >
+#ifdef LINALG_ENABLE_CONCEPTS
+template < class Lambda >
+#else
+template < class Lambda, typename >
+#endif
 template < class Lambda >
 constexpr dr_matrix<T,Alloc,L,Access>::dr_matrix( extents_type s, Lambda&& lambda )
   noexcept( noexcept( dr_matrix<T,Alloc,L,Access>::base_type(s,lambda) ) )
+#ifdef LINALG_ENABLE_CONCEPTS
   requires is_default_constructible_v<typename dr_matrix<T,Alloc,L,Access>::allocator_type> &&
            requires { { declval<Lambda&&>()( declval<typename dr_matrix<T,Alloc,L,Access>::index_type>(),
                                              declval<typename dr_matrix<T,Alloc,L,Access>::index_type>() ) }
                       -> convertible_to<typename dr_matrix<T,Alloc,L,Access>::element_type>; } :
+#else
+  :
+#endif
   dr_matrix<T,Alloc,L,Access>::base_type(s,lambda)
 {
 }
 
 template < class T, class Alloc, class L, class Access >
+#ifdef LINALG_ENABLE_CONCEPTS
 template < class Lambda >
+#else
+template < class Lambda, typename >
+#endif
 constexpr dr_matrix<T,Alloc,L,Access>::dr_matrix( extents_type s, extents_type cap, Lambda&& lambda )
   noexcept( noexcept( dr_matrix<T,Alloc,L,Access>::base_type(s,cap,lambda) ) )
+#ifdef LINALG_ENABLE_CONCEPTS
   requires is_default_constructible_v<typename dr_matrix<T,Alloc,L,Access>::allocator_type> &&
            requires { { declval<Lambda&&>()( declval<typename dr_matrix<T,Alloc,L,Access>::index_type>(),
                                              declval<typename dr_matrix<T,Alloc,L,Access>::index_type>() ) }
                       -> convertible_to<typename dr_matrix<T,Alloc,L,Access>::element_type>; } :
+#else
+  :
+#endif
   dr_matrix<T,Alloc,L,Access>::base_type(s,cap,lambda)
 {
 }
@@ -349,7 +467,11 @@ constexpr dr_matrix<T,Alloc,L,Access>::dr_matrix( const allocator_type& alloc )
 }
 
 template < class T, class Alloc, class L, class Access >
+#ifdef LINALG_ENABLE_CONCEPTS
 template < concepts::view_may_be_constructible_to_tensor< dr_matrix<T,Alloc,L,Access> > MDS >
+#else
+template < class MDS, typename >
+#endif
 constexpr dr_matrix<T,Alloc,L,Access>::dr_matrix( const MDS& view, const allocator_type& alloc )
   noexcept( noexcept( dr_matrix<T,Alloc,L,Access>::base_type(view,alloc) ) ) :
   dr_matrix<T,Alloc,L,Access>::base_type(view,alloc)
@@ -371,29 +493,49 @@ constexpr dr_matrix<T,Alloc,L,Access>::dr_matrix( extents_type s, extents_type c
 }
 
 template < class T, class Alloc, class L, class Access >
+#ifdef LINALG_ENABLE_CONCEPTS
 template < class Lambda >
+#else
+template < class Lambda, typename >
+#endif
 constexpr dr_matrix<T,Alloc,L,Access>::dr_matrix( extents_type s, Lambda&& lambda, const allocator_type& alloc )
   noexcept( noexcept( dr_matrix<T,Alloc,L,Access>::base_type(s,lambda,alloc) ) )
+#ifdef LINALG_ENABLE_CONCEPTS
   requires requires { { declval<Lambda&&>()( declval<typename dr_matrix<T,Alloc,L,Access>::index_type>(),
                                              declval<typename dr_matrix<T,Alloc,L,Access>::index_type>() ) }
                     -> convertible_to<typename dr_matrix<T,Alloc,L,Access>::element_type>; } :
+#else
+  :
+#endif
   dr_matrix<T,Alloc,L,Access>::base_type(s,lambda,alloc)
 {
 }
 
 template < class T, class Alloc, class L, class Access >
+#ifdef LINALG_ENABLE_CONCEPTS
 template < class Lambda >
+#else
+template < class Lambda, typename >
+#endif
 constexpr dr_matrix<T,Alloc,L,Access>::dr_matrix( extents_type s, extents_type cap, Lambda&& lambda, const allocator_type& alloc )
   noexcept( noexcept( dr_matrix<T,Alloc,L,Access>::base_type(s,cap,lambda,alloc) ) )
+#ifdef LINALG_ENABLE_CONCEPTS
   requires requires { { declval<Lambda&&>()( declval<typename dr_matrix<T,Alloc,L,Access>::index_type>(),
                                              declval<typename dr_matrix<T,Alloc,L,Access>::index_type>() ) }
                       -> convertible_to<typename dr_matrix<T,Alloc,L,Access>::element_type>; } :
+#else
+  :
+#endif
   dr_matrix<T,Alloc,L,Access>::base_type(s,cap,lambda,alloc)
 {
 }
 
 template < class T, class Alloc, class L, class Access >
+#ifdef LINALG_ENABLE_CONCEPTS
 template < concepts::tensor_may_be_constructible< dr_matrix<T,Alloc,L,Access> > M2 >
+#else
+template < class M2, typename >
+#endif
 constexpr dr_matrix<T,Alloc,L,Access>& dr_matrix<T,Alloc,L,Access>::operator = ( const M2& rhs )
   noexcept( noexcept( declval<typename dr_matrix<T,Alloc,L,Access>::base_type>() = rhs ) )
 {
@@ -402,7 +544,11 @@ constexpr dr_matrix<T,Alloc,L,Access>& dr_matrix<T,Alloc,L,Access>::operator = (
 }
 
 template < class T, class Alloc, class L, class Access >
+#ifdef LINALG_ENABLE_CONCEPTS
 template < concepts::view_may_be_constructible_to_tensor< dr_matrix<T,Alloc,L,Access> > MDS >
+#else
+template < class MDS, typename >
+#endif
 constexpr dr_matrix<T,Alloc,L,Access>& dr_matrix<T,Alloc,L,Access>::operator = ( const MDS& view )
   noexcept( noexcept( declval<typename dr_matrix<T,Alloc,L,Access>::base_type>() = view ) )
 {
