@@ -122,7 +122,7 @@ class fs_tensor
     #ifdef LINALG_ENABLE_CONCEPTS
     template < concepts::view_may_be_constructible_to_tensor< fs_tensor > MDS >
     #else
-    template < class MDS, typename = enable_if_t< concepts::view_may_be_constructible_to_tensor<MDS,fs_tensor> && is_default_constructible_v<allocator_type> > >
+    template < class MDS, typename = enable_if_t< concepts::view_may_be_constructible_to_tensor<MDS,fs_tensor> > >
     #endif
     explicit constexpr fs_tensor( const MDS& view ) noexcept( concepts::view_is_nothrow_constructible_to_tensor<MDS,fs_tensor> );
     /// @brief Construct by applying lambda to every element in the tensor
