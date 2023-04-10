@@ -21,9 +21,14 @@ namespace math
 //         concepts::vector_view if MDS::element_type is non-const
 //         concepts::vector_view if MDS::element_type is const
 /// @tparam MDS mdspan
-template < class MDS > requires ( detail::is_mdspan_v<MDS> &&
-                                  ( MDS::extents_type::rank()== 1 ) &&
-                                  MDS::is_always_unique() ) // Each element in the mdspan must have a unique mapping. (i.e. span_type and const_underlying_span_type should be the same.)
+template < class MDS
+#ifdef LINALG_ENABLE_CONEPTS
+  > requires ( detail::is_mdspan_v<MDS> &&
+               ( MDS::extents_type::rank()== 1 ) &&
+               MDS::is_always_unique() ) // Each element in the mdspan must have a unique mapping. (i.e. span_type and const_underlying_span_type should be the same.)
+#else
+  , typename = enable_if_t< ( detail::is_mdspan_v<MDS> && ( MDS::extents_type::rank()== 1 ) && MDS::is_always_unique() ) > >
+#endif
 class vector_view : public tensor_view<MDS>
 {
   private:
@@ -68,7 +73,7 @@ class vector_view : public tensor_view<MDS>
     //- Destructor / Constructors / Assignments
 
     /// @brief Default destructor
-    ~vector_view()                                           = default;
+    ~vector_view()                                     = default;
     /// @brief Default constructor
     vector_view()                                      = default;
     /// @brief Default move constructor
@@ -130,8 +135,16 @@ class vector_view : public tensor_view<MDS>
     /// @param start (row,column) start of subvector
     /// @param end (row,column) end of subvector
     /// @returns mutable view of the specified subvector
+    #ifndef LINALG_ENABLE_CONCEPTS
+    template < typename = enable_if_t< !is_const_v<element_type> > >
+    #endif
     [[nodiscard]] constexpr subvector_type subvector( tuple_type start,
-                                                      tuple_type end ) requires ( !is_const_v<element_type> );
+                                                      tuple_type end )
+    #ifdef LINALG_ENABLE_CONCEPTS
+      requires ( !is_const_v<element_type> );
+    #else
+      ;
+    #endif
 
     //- Data access
 
@@ -145,13 +158,23 @@ class vector_view : public tensor_view<MDS>
 
 //- Destructor / Constructors / Assignments
 
-template < class MDS > requires ( detail::is_mdspan_v<MDS> && ( MDS::extents_type::rank() == 1 ) &&  MDS::is_always_unique() )
+template < class MDS
+#ifdef LINALG_ENABLE_CONEPTS
+  > requires ( detail::is_mdspan_v<MDS> && ( MDS::extents_type::rank()== 1 ) && MDS::is_always_unique() )
+#else
+  , typename >
+#endif
 constexpr vector_view<MDS>::vector_view( const underlying_span_type& view ) noexcept :
   vector_view<MDS>::base_type( view )
 {
 }
 
-template < class MDS > requires ( detail::is_mdspan_v<MDS> && ( MDS::extents_type::rank() == 1 ) &&  MDS::is_always_unique() )
+template < class MDS
+#ifdef LINALG_ENABLE_CONEPTS
+  > requires ( detail::is_mdspan_v<MDS> && ( MDS::extents_type::rank()== 1 ) && MDS::is_always_unique() )
+#else
+  , typename >
+#endif
 constexpr vector_view<MDS>& vector_view<MDS>::operator = ( const underlying_span_type& view ) noexcept
 {
   static_cast<void>( this->base_type::operator=( view ) );
@@ -160,14 +183,24 @@ constexpr vector_view<MDS>& vector_view<MDS>::operator = ( const underlying_span
 
 //- Size / Capacity
 
-template < class MDS > requires ( detail::is_mdspan_v<MDS> && ( MDS::extents_type::rank() == 1 ) &&  MDS::is_always_unique() )
+template < class MDS
+#ifdef LINALG_ENABLE_CONEPTS
+  > requires ( detail::is_mdspan_v<MDS> && ( MDS::extents_type::rank()== 1 ) && MDS::is_always_unique() )
+#else
+  , typename >
+#endif
 [[nodiscard]] constexpr typename vector_view<MDS>::size_type
 vector_view<MDS>::size() const noexcept
 {
   return detail::template extents_helper<size_type,extents_type::rank()>::size( this->base_type::size() );
 }
 
-template < class MDS > requires ( detail::is_mdspan_v<MDS> && ( MDS::extents_type::rank() == 1 ) &&  MDS::is_always_unique() )
+template < class MDS
+#ifdef LINALG_ENABLE_CONEPTS
+  > requires ( detail::is_mdspan_v<MDS> && ( MDS::extents_type::rank()== 1 ) && MDS::is_always_unique() )
+#else
+  , typename >
+#endif
 [[nodiscard]] constexpr typename vector_view<MDS>::size_type
 vector_view<MDS>::capacity() const noexcept
 {
@@ -176,7 +209,12 @@ vector_view<MDS>::capacity() const noexcept
 
 //- Const views
 
-template < class MDS > requires ( detail::is_mdspan_v<MDS> && ( MDS::extents_type::rank() == 1 ) &&  MDS::is_always_unique() )
+template < class MDS
+#ifdef LINALG_ENABLE_CONEPTS
+  > requires ( detail::is_mdspan_v<MDS> && ( MDS::extents_type::rank()== 1 ) && MDS::is_always_unique() )
+#else
+  , typename >
+#endif
 [[nodiscard]] constexpr typename vector_view<MDS>::const_subvector_type
 vector_view<MDS>::subvector( tuple_type start,
                                     tuple_type end ) const
@@ -186,10 +224,21 @@ vector_view<MDS>::subvector( tuple_type start,
 
 //- Mutable views
 
-template < class MDS > requires ( detail::is_mdspan_v<MDS> && ( MDS::extents_type::rank() == 1 ) &&  MDS::is_always_unique() )
+template < class MDS
+#ifdef LINALG_ENABLE_CONEPTS
+  > requires ( detail::is_mdspan_v<MDS> && ( MDS::extents_type::rank()== 1 ) && MDS::is_always_unique() )
+#else
+  , typename >
+#endif
+#ifndef LINALG_ENABLE_CONCEPTS
+template < typename >
+#endif
 [[nodiscard]] constexpr typename vector_view<MDS>::subvector_type
 vector_view<MDS>::subvector( tuple_type start,
-                             tuple_type end ) requires ( !is_const_v<typename vector_view<MDS>::element_type> )
+                             tuple_type end )
+#ifdef LINALG_ENABLE_CONCEPTS
+  requires ( !is_const_v<typename vector_view<MDS>::element_type> )
+#endif
 {
   return subtensor_type { experimental::submdspan( this->underlying_span(), tuple( start, end ) ) };
 }

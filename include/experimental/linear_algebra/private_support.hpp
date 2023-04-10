@@ -759,7 +759,9 @@ template < class T, class E, class L, class A, class ... IndexType >
 [[nodiscard]] constexpr auto submdspan( experimental::mdspan<T,E,L,A> mds,
                                         tuple<IndexType...>           start,
                                         tuple<IndexType...>           end ) noexcept
+#ifdef LINALG_ENABLE_CONCEPTS
   requires ( sizeof...(IndexType) == E::rank() )
+#endif
 {
   return submdspan_impl( mds, start, end, make_index_sequence<E::rank()>{} );
 }
@@ -770,7 +772,9 @@ template < class T, class E, class L, class A, class ... IndexType >
 template < class T, class Tuple, size_t ... Indices >
 [[nodiscard]] constexpr T make_from_tuple_impl( Tuple&& t, index_sequence< Indices ... > )
   noexcept( is_nothrow_constructible_v< T, decltype( get<Indices>( declval<Tuple>() ) ) ... > )
+#ifdef LINALG_ENABLE_CONCEPTS
   requires is_constructible_v< T, decltype( get<Indices>( declval<Tuple>() ) ) ... >
+#endif
 {
   return T( get<Indices>( forward<Tuple>(t) ) ... );
 }
@@ -811,10 +815,16 @@ template < class SizeType, class OtherSizeType, size_t ... Extents, size_t ... O
 //==================================================================================================
 //  Assign View assigns views with disparate but compatable types
 //==================================================================================================
-template < class ToView, class FromView > requires
-  is_mdspan_v< ToView > && is_mdspan_v< FromView > &&
-  is_convertible_v<typename FromView::reference,typename ToView::element_type> &&
-  extents_may_be_equal_v<typename FromView::extents_type,typename ToView::extents_type>
+template < class ToView, class FromView
+#ifdef LINALG_ENABLE_CONCEPTS
+  > requires is_mdspan_v< ToView > && is_mdspan_v< FromView > &&
+             is_convertible_v<typename FromView::reference,typename ToView::element_type> &&
+             extents_may_be_equal_v<typename FromView::extents_type,typename ToView::extents_type>
+#else
+  , typename = enable_if_t( is_mdspan_v< ToView > && is_mdspan_v< FromView > &&
+                            is_convertible_v<typename FromView::reference,typename ToView::element_type> &&
+                            extents_may_be_equal_v<typename FromView::extents_type,typename ToView::extents_type> ) > >
+#endif
 constexpr ToView&
 assign_view( ToView& to_view, const FromView& from_view )
   noexcept( extents_is_equal_v<typename FromView::extents_type,typename ToView::extents_type> &&
@@ -849,10 +859,16 @@ assign_view( ToView& to_view, const FromView& from_view )
 //==================================================================================================
 //  Copy View copies inplace views with disparate but compatable types
 //==================================================================================================
-template < class ToView, class FromView > requires
-  is_mdspan_v< ToView > && is_mdspan_v< FromView > &&
-  is_convertible_v<typename FromView::reference,typename ToView::element_type> &&
-  extents_may_be_equal_v<typename FromView::extents_type,typename ToView::extents_type>
+template < class ToView, class FromView
+#ifdef LINALG_ENABLE_CONCEPTS
+  > requires is_mdspan_v< ToView > && is_mdspan_v< FromView > &&
+             is_convertible_v<typename FromView::reference,typename ToView::element_type> &&
+             extents_may_be_equal_v<typename FromView::extents_type,typename ToView::extents_type>
+#else
+  , typename = enable_if_t< ( is_mdspan_v< ToView > && is_mdspan_v< FromView > &&
+                              is_convertible_v<typename FromView::reference,typename ToView::element_type> &&
+                              extents_may_be_equal_v<typename FromView::extents_type,typename ToView::extents_type> ) > >
+#endif
 constexpr void
 copy_view( ToView& to_view, const FromView& from_view )
   noexcept( extents_is_equal_v<typename FromView::extents_type,typename ToView::extents_type> &&
