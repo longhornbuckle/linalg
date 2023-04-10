@@ -210,7 +210,7 @@ class dr_tensor
     #else
     template < class Lambda,
                typename = enable_if_t< is_default_constructible_v<allocator_type> &&
-                                       convertible_lambda_expression_v< Lambda, make_integer_sequence<index_type,R> > >
+                                       convertible_lambda_expression_v< Lambda, make_integer_sequence<index_type,R> > > >
     #endif
     constexpr dr_tensor( extents_type s, Lambda&& lambda )
     #ifdef LINALG_ENABLE_CONCEPTS
@@ -228,7 +228,7 @@ class dr_tensor
     #else
     template < class Lambda,
                typename = enable_if_t< is_default_constructible_v<allocator_type> &&
-                                       convertible_lambda_expression_v< Lambda, make_integer_sequence<index_type,R> > >
+                                       convertible_lambda_expression_v< Lambda, make_integer_sequence<index_type,R> > > >
     #endif
     constexpr dr_tensor( extents_type s, extents_type cap, Lambda&& lambda )
     #ifdef LINALG_ENABLE_CONCEPTS
@@ -267,7 +267,7 @@ class dr_tensor
     template < class Lambda >
     #else
     template < class Lambda,
-               typename = enable_if_t< convertible_lambda_expression_v< Lambda, make_integer_sequence<index_type,R> > >
+               typename = enable_if_t< convertible_lambda_expression_v< Lambda, make_integer_sequence<index_type,R> > > >
     #endif
     constexpr dr_tensor( extents_type s, Lambda&& lambda, const allocator_type& alloc )
     #ifdef LINALG_ENABLE_CONCEPTS
@@ -285,7 +285,7 @@ class dr_tensor
     template < class Lambda >
     #else
     template < class Lambda,
-               typename = enable_if_t< convertible_lambda_expression_v< Lambda, make_integer_sequence<index_type,R> > >
+               typename = enable_if_t< convertible_lambda_expression_v< Lambda, make_integer_sequence<index_type,R> > > >
     #endif
     constexpr dr_tensor( extents_type s, extents_type cap, Lambda&& lambda, const allocator_type& alloc )
     #ifdef LINALG_ENABLE_CONCEPTS
