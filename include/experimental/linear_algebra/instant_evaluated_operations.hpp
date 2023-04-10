@@ -439,7 +439,7 @@ struct scalar_division
     // If tensor type is fixed size, then the lambda expression is the only argument needed
     #ifdef LINALG_ENABLE_CONCEPTS
     template < class Lambda >
-    #else LINALG_ENABLE_CONCEPTS
+    #else
     template < class Lambda, typename = enable_if_it< concepts::fixed_size_tensor_data_v<result_tensor_type> > >
     #endif
     [[nodiscard]] static inline constexpr decltype(auto) collect_ctor_args( [[maybe_unused]] const tensor_type&, Lambda&& lambda ) noexcept
@@ -452,7 +452,7 @@ struct scalar_division
     // passed along as well.
     #ifdef LINALG_ENABLE_CONCEPTS
     template < class Lambda >
-    #else LINALG_ENABLE_CONCEPTS
+    #else
     template < class Lambda, typename = enable_if_it< concepts::dynamic_tensor_data_v<result_tensor_type> > >
     #endif
     [[nodiscard]] static inline constexpr decltype(auto) collect_ctor_args( const tensor_type& t, Lambda&& lambda ) noexcept
