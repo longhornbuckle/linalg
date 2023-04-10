@@ -338,7 +338,7 @@ template < class T > inline constexpr bool has_get_allocator_func_v = has_get_al
 
 // Test for set_allocator function
 template < class T, class = void > struct has_set_allocator_func : public false_type { };
-template < class T > struct has_set_allocator_func< T, std::enable_if_t< std::is_same_v< decltype( declval<T>().set_allocator( declval<const T::allocator_type&>() ) ), void > > > : public true_type { };
+template < class T > struct has_set_allocator_func< T, std::enable_if_t< std::is_same_v< decltype( declval<T>().set_allocator( declval<const typename T::allocator_type&>() ) ), void > > > : public true_type { };
 template < class T > inline constexpr bool has_set_allocator_func_v = has_set_allocator_func<T>::value;
 
 // Test for resize function
@@ -353,12 +353,12 @@ template < class T > inline constexpr bool has_reserve_func_v = has_reserve_func
 
 // Test for construct from allocator
 template < class T, class = void > struct constructible_from_alloc : public false_type { };
-template < class T > struct constructible_from_alloc< T, std::enable_if_t< std::is_same_v< decltype( T( declval<typename T::allocator_type>() ) ) ), T > > > : public true_type { };
+template < class T > struct constructible_from_alloc< T, std::enable_if_t< std::is_same_v< decltype( T( declval<typename T::allocator_type>() ) ), T > > > : public true_type { };
 template < class T > inline constexpr bool constructible_from_alloc_v = constructible_from_alloc<T>::value;
 
 // Test for construct from size and allocator
 template < class T, class = void > struct constructible_from_size_and_alloc : public false_type { };
-template < class T > struct constructible_from_size_and_alloc< T, std::enable_if_t< std::is_same_v< decltype( T( declval<typename T::extents_type>(), declval<typename T::allocator_type>() ) ) ), T > > > : public true_type { };
+template < class T > struct constructible_from_size_and_alloc< T, std::enable_if_t< std::is_same_v< decltype( T( declval<typename T::extents_type>(), declval<typename T::allocator_type>() ) ), T > > > : public true_type { };
 template < class T > inline constexpr bool constructible_from_size_and_alloc_v = constructible_from_size_and_alloc<T>::value;
 
 // Test for construct from size capacity and allocator
@@ -369,12 +369,12 @@ template < class T > inline constexpr bool constructible_from_size_cap_and_alloc
 // Test for transpose
 template < class T, class = void > struct has_trans_func : public false_type { };
 template < class T > struct has_trans_func< T, std::enable_if_t< std::is_same_v< decltype( trans( declval<T>() ) ), decltype( trans( declval<T>() ) ) > > > : public true_type { };
-template < class T > inline constexpr bool has_trans_func_v = typename has_trans_func<T>::value;
+template < class T > inline constexpr bool has_trans_func_v = has_trans_func<T>::value;
 
 // Test for conjugate
 template < class T, class = void > struct has_conj_func : public false_type { };
 template < class T > struct has_conj_func< T, std::enable_if_t< std::is_same_v< decltype( conj( declval<T>() ) ), decltype( conj( declval<T>() ) ) > > > : public true_type { };
-template < class T > inline constexpr bool has_conj_func_v = typename has_conj_func<T>::value;
+template < class T > inline constexpr bool has_conj_func_v = has_conj_func<T>::value;
 
 //- Test for tensors
 
@@ -458,7 +458,7 @@ template < class T > struct fixed_size_tensor_data : public conditional_t<
   detail::is_constexpr( []{ decltype( declval<T>().size() )     nodiscard_warning = T().size(); } ) &&
   detail::is_constexpr( []{ decltype( declval<T>().capacity() ) nodiscard_warning = T().capacity(); } ) &&
   ( T().size() == T().capacity() ), true_type, false_type > { };
-template < class T > inline constexpr bool static_tensor_data_v = static_tensor<T>::value;
+template < class T > inline constexpr bool fixed_size_tensor_data_v = fixed_size_tensor_data<T>::value;
 
 // Fixed size tensor
 template < class T > struct fixed_size_tensor : public conditional_t< 
