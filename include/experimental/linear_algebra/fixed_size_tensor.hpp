@@ -131,7 +131,7 @@ class fs_tensor
     template < class Lambda >
     #else
     template < class Lambda,
-               typename = enable_if_t< is_convertible< decltype( declval<Lambda&&>().operator()( Ds ... ) ), element_type > > >
+               typename = enable_if_t< is_convertible_v< decltype( declval<Lambda&&>().operator()( Ds ... ) ), element_type > > >
     #endif
     explicit constexpr fs_tensor( Lambda&& lambda ) noexcept( noexcept( declval<Lambda&&>()( Ds ... ) ) )
     #ifdef LINALG_ENABLE_CONCEPTS
