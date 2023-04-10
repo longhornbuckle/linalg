@@ -239,7 +239,7 @@ template < class MDS > requires ( detail::is_mdspan_v<MDS> && ( MDS::extents_typ
 [[nodiscard]] constexpr typename matrix_view<MDS>::index_type matrix_view<MDS>::
 #else
 template < class MDS, typename Dummy >
-[[nodiscard]] constexpr typename matrix_view<MDS>::index_type matrix_view<MDS,Dummy>::
+[[nodiscard]] constexpr typename matrix_view<MDS,Dummy>::index_type matrix_view<MDS,Dummy>::
 #endif
 columns() const noexcept
 {
@@ -251,7 +251,7 @@ template < class MDS > requires ( detail::is_mdspan_v<MDS> && ( MDS::extents_typ
 [[nodiscard]] constexpr typename matrix_view<MDS>::index_type matrix_view<MDS>::
 #else
 template < class MDS, typename Dummy >
-[[nodiscard]] constexpr typename matrix_view<MDS>::index_type matrix_view<MDS,Dummy>::
+[[nodiscard]] constexpr typename matrix_view<MDS,Dummy>::index_type matrix_view<MDS,Dummy>::
 #endif
 rows() const noexcept
 {
@@ -263,7 +263,7 @@ template < class MDS > requires ( detail::is_mdspan_v<MDS> && ( MDS::extents_typ
 [[nodiscard]] constexpr typename matrix_view<MDS>::index_type matrix_view<MDS>::
 #else
 template < class MDS, typename Dummy >
-[[nodiscard]] constexpr typename matrix_view<MDS>::index_type matrix_view<MDS,Dummy>::
+[[nodiscard]] constexpr typename matrix_view<MDS,Dummy>::index_type matrix_view<MDS,Dummy>::
 #endif
 column_capacity() const noexcept
 {
@@ -275,7 +275,7 @@ template < class MDS > requires ( detail::is_mdspan_v<MDS> && ( MDS::extents_typ
 [[nodiscard]] constexpr typename matrix_view<MDS>::index_type matrix_view<MDS>::
 #else
 template < class MDS, typename Dummy >
-[[nodiscard]] constexpr typename matrix_view<MDS>::index_type matrix_view<MDS,Dummy>::
+[[nodiscard]] constexpr typename matrix_view<MDS,Dummy>::index_type matrix_view<MDS,Dummy>::
 #endif
 row_capacity() const noexcept
 {
@@ -289,7 +289,7 @@ template < class MDS > requires ( detail::is_mdspan_v<MDS> && ( MDS::extents_typ
 [[nodiscard]] constexpr typename matrix_view<MDS>::const_column_type matrix_view<MDS>::
 #else
 template < class MDS, typename Dummy >
-[[nodiscard]] constexpr typename matrix_view<MDS>::const_column_type matrix_view<MDS,Dummy>::
+[[nodiscard]] constexpr typename matrix_view<MDS,Dummy>::const_column_type matrix_view<MDS,Dummy>::
 #endif
 column( index_type j ) const
 {
@@ -301,7 +301,7 @@ template < class MDS > requires ( detail::is_mdspan_v<MDS> && ( MDS::extents_typ
 [[nodiscard]] constexpr typename matrix_view<MDS>::const_row_type matrix_view<MDS>::
 #else
 template < class MDS, typename Dummy >
-[[nodiscard]] constexpr typename matrix_view<MDS>::const_row_type matrix_view<MDS,Dummy>::
+[[nodiscard]] constexpr typename matrix_view<MDS,Dummy>::const_row_type matrix_view<MDS,Dummy>::
 #endif
 row( index_type i ) const
 {
@@ -313,7 +313,7 @@ template < class MDS > requires ( detail::is_mdspan_v<MDS> && ( MDS::extents_typ
 [[nodiscard]] constexpr typename matrix_view<MDS>::const_submatrix_type matrix_view<MDS>::
 #else
 template < class MDS, typename Dummy >
-[[nodiscard]] constexpr typename matrix_view<MDS>::const_submatrix_type matrix_view<MDS,Dummy>::
+[[nodiscard]] constexpr typename matrix_view<MDS,Dummy>::const_submatrix_type matrix_view<MDS,Dummy>::
 #endif
 submatrix( tuple_type start,
            tuple_type end ) const
@@ -329,7 +329,7 @@ template < class MDS > requires ( detail::is_mdspan_v<MDS> && ( MDS::extents_typ
 #else
 template < class MDS, typename Dummy >
 template < typename >
-[[nodiscard]] constexpr typename matrix_view<MDS>::column_type matrix_view<MDS,Dummy>::
+[[nodiscard]] constexpr typename matrix_view<MDS,Dummy>::column_type matrix_view<MDS,Dummy>::
 #endif
 column( index_type j )
 #ifdef LINALG_ENABLE_CONCEPTS
@@ -345,7 +345,7 @@ template < class MDS > requires ( detail::is_mdspan_v<MDS> && ( MDS::extents_typ
 #else
 template < class MDS, typename Dummy >
 template < typename >
-[[nodiscard]] constexpr typename matrix_view<MDS>::row_type matrix_view<MDS,Dummy>::
+[[nodiscard]] constexpr typename matrix_view<MDS,Dummy>::row_type matrix_view<MDS,Dummy>::
 #endif
 row( index_type i )
 #ifdef LINALG_ENABLE_CONCEPTS
@@ -361,7 +361,7 @@ template < class MDS > requires ( detail::is_mdspan_v<MDS> && ( MDS::extents_typ
 #else
 template < class MDS, typename Dummy >
 template < typename >
-[[nodiscard]] constexpr typename matrix_view<MDS>::submatrix_type matrix_view<MDS,Dummy>::
+[[nodiscard]] constexpr typename matrix_view<MDS,Dummy>::submatrix_type matrix_view<MDS,Dummy>::
 #endif
 submatrix( tuple_type start,
            tuple_type end )

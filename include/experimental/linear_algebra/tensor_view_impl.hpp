@@ -20,24 +20,26 @@ namespace math
 
 //- Destructor / Constructors / Assignments
 
-template < class MDS
 #ifdef LINALG_ENABLE_CONCEPTS
-  > requires ( detail::is_mdspan_v<MDS> && MDS::is_always_unique() )
+template < class MDS > requires ( detail::is_mdspan_v<MDS> && MDS::is_always_unique() )
+constexpr tensor_view<MDS>::
 #else
-  , typename >
+template < class MDS, typename Dummy >
+constexpr tensor_view<MDS,Dummy>::
 #endif
-constexpr tensor_view<MDS>::tensor_view( const underlying_span_type& view ) noexcept :
+tensor_view( const underlying_span_type& view ) noexcept :
   view_(view)
 {
 }
 
-template < class MDS
 #ifdef LINALG_ENABLE_CONCEPTS
-  > requires ( detail::is_mdspan_v<MDS> && MDS::is_always_unique() )
+template < class MDS > requires ( detail::is_mdspan_v<MDS> && MDS::is_always_unique() )
+constexpr tensor_view<MDS>& tensor_view<MDS>::
 #else
-  , typename >
+template < class MDS, typename Dummy >
+constexpr tensor_view<MDS,Dummy>& tensor_view<MDS,Dummy>::
 #endif
-constexpr tensor_view<MDS>& tensor_view<MDS>::operator = ( const underlying_span_type& rhs ) noexcept
+operator = ( const underlying_span_type& rhs ) noexcept
 {
   static_cast<void>( this->view_ = rhs );
   return *this;
@@ -45,26 +47,26 @@ constexpr tensor_view<MDS>& tensor_view<MDS>::operator = ( const underlying_span
 
 //- Size / Capacity
 
-template < class MDS
 #ifdef LINALG_ENABLE_CONCEPTS
-  > requires ( detail::is_mdspan_v<MDS> && MDS::is_always_unique() )
+template < class MDS > requires ( detail::is_mdspan_v<MDS> && MDS::is_always_unique() )
+[[nodiscard]] constexpr typename tensor_view<MDS>::extents_type tensor_view<MDS>::
 #else
-  , typename >
+template < class MDS, typename Dummy >
+[[nodiscard]] constexpr typename tensor_view<MDS,Dummy>::extents_type tensor_view<MDS,Dummy>::
 #endif
-[[nodiscard]] constexpr typename tensor_view<MDS>::extents_type
-tensor_view<MDS>::size() const noexcept
+size() const noexcept
 {
   return this->view_.extents();
 }
 
-template < class MDS
 #ifdef LINALG_ENABLE_CONCEPTS
-  > requires ( detail::is_mdspan_v<MDS> && MDS::is_always_unique() )
+template < class MDS > requires ( detail::is_mdspan_v<MDS> && MDS::is_always_unique() )
+[[nodiscard]] constexpr typename tensor_view<MDS>::extents_type tensor_view<MDS>::
 #else
-  , typename >
+template < class MDS, typename Dummy >
+[[nodiscard]] constexpr typename tensor_view<MDS,Dummy>::extents_type tensor_view<MDS,Dummy>::
 #endif
-[[nodiscard]] constexpr typename tensor_view<MDS>::extents_type
-tensor_view<MDS>::capacity() const noexcept
+capacity() const noexcept
 {
   return this->view_.extents();
 }
@@ -72,15 +74,16 @@ tensor_view<MDS>::capacity() const noexcept
 //- Const views
 
 #if LINALG_USE_BRACKET_OPERATOR
-template < class MDS
 #ifdef LINALG_ENABLE_CONCEPTS
-  > requires ( detail::is_mdspan_v<MDS> && MDS::is_always_unique() )
-#else
-  , typename >
-#endif
+template < class MDS > requires ( detail::is_mdspan_v<MDS> && MDS::is_always_unique() )
 template < class ... IndexType >
-[[nodiscard]] constexpr typename tensor_view<MDS>::value_type
-tensor_view<MDS>::operator[]( IndexType ... indices ) const noexcept
+[[nodiscard]] constexpr typename tensor_view<MDS>::value_type tensor_view<MDS>::
+#else
+template < class MDS, typename Dummy >
+template < class ... IndexType >
+[[nodiscard]] constexpr typename tensor_view<MDS,Dummy>::value_type tensor_view<MDS,Dummy>::
+#endif
+operator[]( IndexType ... indices ) const noexcept
 #ifdef LINALG_ENABLE_CONCEPTS
   requires ( sizeof...(IndexType) == tensor_view<MDS>::extents_type::rank() ) && ( is_convertible_v<IndexType,typename tensor_view<MDS>::index_type> && ... )
 #endif
@@ -90,15 +93,16 @@ tensor_view<MDS>::operator[]( IndexType ... indices ) const noexcept
 #endif
 
 #if LINALG_USE_PAREN_OPERATOR
-template < class MDS
 #ifdef LINALG_ENABLE_CONCEPTS
-  > requires ( detail::is_mdspan_v<MDS> && MDS::is_always_unique() )
-#else
-  , typename >
-#endif
+template < class MDS > requires ( detail::is_mdspan_v<MDS> && MDS::is_always_unique() )
 template < class ... IndexType >
-[[nodiscard]] constexpr typename tensor_view<MDS>::value_type
-tensor_view<MDS>::operator()( IndexType ... indices ) const noexcept
+[[nodiscard]] constexpr typename tensor_view<MDS>::value_type tensor_view<MDS>::
+#else
+template < class MDS, typename Dummy >
+template < class ... IndexType >
+[[nodiscard]] constexpr typename tensor_view<MDS,Dummy>::value_type tensor_view<MDS,Dummy>::
+#endif
+operator()( IndexType ... indices ) const noexcept
 #ifdef LINALG_ENABLE_CONCEPTS
   requires ( sizeof...(IndexType) == tensor_view<MDS>::extents_type::rank() ) && ( is_convertible_v<IndexType,typename tensor_view<MDS>::index_type> && ... )
 #endif
@@ -107,15 +111,17 @@ tensor_view<MDS>::operator()( IndexType ... indices ) const noexcept
 }
 #endif
 
-template < class MDS
+#if LINALG_USE_PAREN_OPERATOR
 #ifdef LINALG_ENABLE_CONCEPTS
-  > requires ( detail::is_mdspan_v<MDS> && MDS::is_always_unique() )
-#else
-  , typename >
-#endif
+template < class MDS > requires ( detail::is_mdspan_v<MDS> && MDS::is_always_unique() )
 template < class ... IndexType >
-[[nodiscard]] constexpr typename tensor_view<MDS>::value_type
-tensor_view<MDS>::at( IndexType ... indices ) const
+[[nodiscard]] constexpr typename tensor_view<MDS>::value_type tensor_view<MDS>::
+#else
+template < class MDS, typename Dummy >
+template < class ... IndexType >
+[[nodiscard]] constexpr typename tensor_view<MDS,Dummy>::value_type tensor_view<MDS,Dummy>::
+#endif
+at( IndexType ... indices ) const
 #ifdef LINALG_ENABLE_CONCEPTS
   requires ( sizeof...(IndexType) == tensor_view<MDS>::extents_type::rank() ) && ( is_convertible_v<IndexType,typename tensor_view<MDS>::index_type> && ... )
 #endif
@@ -123,14 +129,16 @@ tensor_view<MDS>::at( IndexType ... indices ) const
   return detail::access( this->underlying_span(), indices ... );
 }
 
-template < class MDS
 #ifdef LINALG_ENABLE_CONCEPTS
-  > requires ( detail::is_mdspan_v<MDS> && MDS::is_always_unique() )
-#else
-  , typename >
-#endif
+template < class MDS > requires ( detail::is_mdspan_v<MDS> && MDS::is_always_unique() )
 template < class ... SliceArgs >
-[[nodiscard]] constexpr auto tensor_view<MDS>::subvector( SliceArgs ... args ) const
+[[nodiscard]] constexpr auto tensor_view<MDS>::
+#else
+template < class MDS, typename Dummy >
+template < class ... SliceArgs >
+[[nodiscard]] constexpr auto tensor_view<MDS,Dummy>::
+#endif
+subvector( SliceArgs ... args ) const
 #ifdef LINALG_ENABLE_CONCEPTS
   requires ( decltype( experimental::submdspan( this->underlying_span(), args ... ) )::rank() == 1 )
 #endif
@@ -139,14 +147,16 @@ template < class ... SliceArgs >
   return vector_view<subspan_type>( experimental::submdspan( this->underlying_span(), args ... ) );
 }
 
-template < class MDS
 #ifdef LINALG_ENABLE_CONCEPTS
-  > requires ( detail::is_mdspan_v<MDS> && MDS::is_always_unique() )
-#else
-  , typename >
-#endif
+template < class MDS > requires ( detail::is_mdspan_v<MDS> && MDS::is_always_unique() )
 template < class ... SliceArgs >
-[[nodiscard]] constexpr auto tensor_view<MDS>::submatrix( SliceArgs ... args ) const
+[[nodiscard]] constexpr auto tensor_view<MDS>::
+#else
+template < class MDS, typename Dummy >
+template < class ... SliceArgs >
+[[nodiscard]] constexpr auto tensor_view<MDS,Dummy>::
+#endif
+submatrix( SliceArgs ... args ) const
 #ifdef LINALG_ENABLE_CONCEPTS
   requires ( decltype( experimental::submdspan( this->underlying_span(), args ... ) )::rank() == 2 )
 #endif
@@ -155,14 +165,16 @@ template < class ... SliceArgs >
   return matrix_view<subspan_type>( experimental::submdspan( this->underlying_span(), args ... ) );
 }
 
-template < class MDS
 #ifdef LINALG_ENABLE_CONCEPTS
-  > requires ( detail::is_mdspan_v<MDS> && MDS::is_always_unique() )
-#else
-  , typename >
-#endif
+template < class MDS > requires ( detail::is_mdspan_v<MDS> && MDS::is_always_unique() )
 template < class ... SliceArgs >
-[[nodiscard]] constexpr auto tensor_view<MDS>::subtensor( SliceArgs ... args ) const
+[[nodiscard]] constexpr auto tensor_view<MDS>::
+#else
+template < class MDS, typename Dummy >
+template < class ... SliceArgs >
+[[nodiscard]] constexpr auto tensor_view<MDS,Dummy>::
+#endif
+subtensor( SliceArgs ... args ) const
 {
   using subspan_type = decltype( experimental::submdspan( this->underlying_span(), args ... ) );
   return tensor_view<subspan_type>( experimental::submdspan( this->underlying_span(), args ... ) );
@@ -171,68 +183,73 @@ template < class ... SliceArgs >
 //- Mutable views
 
 #if LINALG_USE_BRACKET_OPERATOR
-template < class MDS
 #ifdef LINALG_ENABLE_CONCEPTS
-  > requires ( detail::is_mdspan_v<MDS> && MDS::is_always_unique() )
-#else
-  , typename >
-#endif
+template < class MDS > requires ( detail::is_mdspan_v<MDS> && MDS::is_always_unique() )
 template < class ... IndexType >
-[[nodiscard]] constexpr typename tensor_view<MDS>::reference_type
-tensor_view<MDS>::operator[]( IndexType ... indices ) noexcept
+[[nodiscard]] constexpr typename tensor_view<MDS>::reference_type tensor_view<MDS>::
+#else
+template < class MDS, typename Dummy >
+template < class ... IndexType >
+[[nodiscard]] constexpr typename tensor_view<MDS,Dummy>::reference_type tensor_view<MDS,Dummy>::
+#endif
+operator[]( IndexType ... indices ) noexcept
 #ifdef LINALG_ENABLE_CONCEPTS
   requires ( sizeof...(IndexType) == tensor_view<MDS>::extents_type::rank() ) && ( is_convertible_v<IndexType,typename tensor_view<MDS>::index_type> && ... ) &&
            ( !is_const_v<typename tensor_view<MDS>::element_type> )
 #endif
 {
-  return forward<typename tensor_view<MDS>::reference_type>( this->underlying_span()[ indices ... ] );
+  return forward<reference_type>( this->underlying_span()[ indices ... ] );
 }
 #endif
 
 #if LINALG_USE_PAREN_OPERATOR
-template < class MDS
 #ifdef LINALG_ENABLE_CONCEPTS
-  > requires ( detail::is_mdspan_v<MDS> && MDS::is_always_unique() )
-#else
-  , typename >
-#endif
+template < class MDS > requires ( detail::is_mdspan_v<MDS> && MDS::is_always_unique() )
 template < class ... IndexType >
-[[nodiscard]] constexpr typename tensor_view<MDS>::reference_type
-tensor_view<MDS>::operator()( IndexType ... indices ) noexcept
+[[nodiscard]] constexpr typename tensor_view<MDS>::reference_type tensor_view<MDS>::
+#else
+template < class MDS, typename Dummy >
+template < class ... IndexType >
+[[nodiscard]] constexpr typename tensor_view<MDS,Dummy>::reference_type tensor_view<MDS,Dummy>::
+#endif
+operator()( IndexType ... indices ) noexcept
 #ifdef LINALG_ENABLE_CONCEPTS
   requires ( sizeof...(IndexType) == tensor_view<MDS>::extents_type::rank() ) && ( is_convertible_v<IndexType,typename tensor_view<MDS>::index_type> && ... ) &&
            ( !is_const_v<typename tensor_view<MDS>::element_type> )
 #endif
 {
-  return forward<typename tensor_view<MDS>::reference_type>( this->underlying_span()( indices ... ) );
+  return forward<reference_type>( this->underlying_span()( indices ... ) );
 }
 #endif
 
-template < class MDS
 #ifdef LINALG_ENABLE_CONCEPTS
-  > requires ( detail::is_mdspan_v<MDS> && MDS::is_always_unique() )
-#else
-  , typename >
-#endif
+template < class MDS > requires ( detail::is_mdspan_v<MDS> && MDS::is_always_unique() )
 template < class ... IndexType >
-[[nodiscard]] constexpr typename tensor_view<MDS>::reference_type
-tensor_view<MDS>::at( IndexType ... indices )
+[[nodiscard]] constexpr typename tensor_view<MDS>::reference_type tensor_view<MDS>::
+#else
+template < class MDS, typename Dummy >
+template < class ... IndexType >
+[[nodiscard]] constexpr typename tensor_view<MDS,Dummy>::reference_type tensor_view<MDS,Dummy>::
+#endif
+at( IndexType ... indices )
 #ifdef LINALG_ENABLE_CONCEPTS
   requires ( sizeof...(IndexType) == tensor_view<MDS>::extents_type::rank() ) && ( is_convertible_v<IndexType,typename tensor_view<MDS>::index_type> && ... ) &&
            ( !is_const_v<typename tensor_view<MDS>::element_type> )
 #endif
 {
-  return forward<typename tensor_view<MDS>::reference_type>( detail::access( this->underlying_span(), indices ... ) );
+  return forward<reference_type>( detail::access( this->underlying_span(), indices ... ) );
 }
 
-template < class MDS
 #ifdef LINALG_ENABLE_CONCEPTS
-  > requires ( detail::is_mdspan_v<MDS> && MDS::is_always_unique() )
-#else
-  , typename >
-#endif
+template < class MDS > requires ( detail::is_mdspan_v<MDS> && MDS::is_always_unique() )
 template < class ... SliceArgs >
-[[nodiscard]] constexpr auto tensor_view<MDS>::subvector( SliceArgs ... args )
+[[nodiscard]] constexpr auto tensor_view<MDS>::
+#else
+template < class MDS, typename Dummy >
+template < class ... SliceArgs >
+[[nodiscard]] constexpr auto tensor_view<MDS,Dummy>::
+#endif
+subvector( SliceArgs ... args )
 #ifdef LINALG_ENABLE_CONCEPTS
   requires ( decltype( experimental::submdspan( this->underlying_span(), args ... ) )::rank() == 1 )
 #endif
@@ -241,14 +258,16 @@ template < class ... SliceArgs >
   return vector_view<subspan_type>( experimental::submdspan( this->underlying_span(), args ... ) );
 }
 
-template < class MDS
 #ifdef LINALG_ENABLE_CONCEPTS
-  > requires ( detail::is_mdspan_v<MDS> && MDS::is_always_unique() )
-#else
-  , typename >
-#endif
+template < class MDS > requires ( detail::is_mdspan_v<MDS> && MDS::is_always_unique() )
 template < class ... SliceArgs >
-[[nodiscard]] constexpr auto tensor_view<MDS>::submatrix( SliceArgs ... args )
+[[nodiscard]] constexpr auto tensor_view<MDS>::
+#else
+template < class MDS, typename Dummy >
+template < class ... SliceArgs >
+[[nodiscard]] constexpr auto tensor_view<MDS,Dummy>::
+#endif
+submatrix( SliceArgs ... args )
 #ifdef LINALG_ENABLE_CONCEPTS
   requires ( decltype( experimental::submdspan( this->underlying_span(), args ... ) )::rank() == 2 )
 #endif
@@ -257,14 +276,16 @@ template < class ... SliceArgs >
   return matrix_view<subspan_type>( experimental::submdspan( this->underlying_span(), args ... ) );
 }
 
-template < class MDS
 #ifdef LINALG_ENABLE_CONCEPTS
-  > requires ( detail::is_mdspan_v<MDS> && MDS::is_always_unique() )
-#else
-  , typename >
-#endif
+template < class MDS > requires ( detail::is_mdspan_v<MDS> && MDS::is_always_unique() )
 template < class ... SliceArgs >
-[[nodiscard]] constexpr auto tensor_view<MDS>::subtensor( SliceArgs ... args )
+[[nodiscard]] constexpr auto tensor_view<MDS>::
+#else
+template < class MDS, typename Dummy >
+template < class ... SliceArgs >
+[[nodiscard]] constexpr auto tensor_view<MDS,Dummy>::
+#endif
+subtensor( SliceArgs ... args )
 {
   using subspan_type = decltype( experimental::submdspan( this->underlying_span(), args ... ) );
   return tensor_view<subspan_type>( experimental::submdspan( this->underlying_span(), args ... ) );
@@ -272,38 +293,38 @@ template < class ... SliceArgs >
 
 //- Data access
 
-template < class MDS
 #ifdef LINALG_ENABLE_CONCEPTS
-  > requires ( detail::is_mdspan_v<MDS> && MDS::is_always_unique() )
+template < class MDS > requires ( detail::is_mdspan_v<MDS> && MDS::is_always_unique() )
+[[nodiscard]] constexpr typename tensor_view<MDS>::span_type tensor_view<MDS>::
 #else
-  , typename >
+template < class MDS, typename Dummy >
+[[nodiscard]] constexpr typename tensor_view<MDS,Dummy>::span_type tensor_view<MDS,Dummy>::
 #endif
-[[nodiscard]] constexpr typename tensor_view<MDS>::span_type
-tensor_view<MDS>::span() const noexcept
+span() const noexcept
 {
   return this->const_underlying_span();
 }
 
-template < class MDS
 #ifdef LINALG_ENABLE_CONCEPTS
-  > requires ( detail::is_mdspan_v<MDS> && MDS::is_always_unique() )
+template < class MDS > requires ( detail::is_mdspan_v<MDS> && MDS::is_always_unique() )
+[[nodiscard]] constexpr typename tensor_view<MDS>::underlying_span_type tensor_view<MDS>::
 #else
-  , typename >
+template < class MDS, typename Dummy >
+[[nodiscard]] constexpr typename tensor_view<MDS,Dummy>::underlying_span_type tensor_view<MDS,Dummy>::
 #endif
-[[nodiscard]] constexpr typename tensor_view<MDS>::underlying_span_type
-tensor_view<MDS>::underlying_span() noexcept requires ( !is_const_v<typename tensor_view<MDS>::element_type> )
+underlying_span() noexcept requires ( !is_const_v<typename tensor_view<MDS>::element_type> )
 {
   return this->view_;
 }
 
-template < class MDS
 #ifdef LINALG_ENABLE_CONCEPTS
-  > requires ( detail::is_mdspan_v<MDS> && MDS::is_always_unique() )
+template < class MDS > requires ( detail::is_mdspan_v<MDS> && MDS::is_always_unique() )
+[[nodiscard]] constexpr typename tensor_view<MDS>::const_underlying_span_type tensor_view<MDS>::
 #else
-  , typename >
+template < class MDS, typename Dummy >
+[[nodiscard]] constexpr typename tensor_view<MDS,Dummy>::const_underlying_span_type tensor_view<MDS,Dummy>::
 #endif
-[[nodiscard]] constexpr typename tensor_view<MDS>::const_underlying_span_type
-tensor_view<MDS>::underlying_span() const noexcept
+underlying_span() const noexcept
 {
   return this->view_;
 }
