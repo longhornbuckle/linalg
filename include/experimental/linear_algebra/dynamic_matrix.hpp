@@ -360,7 +360,7 @@ class dr_matrix : public dr_tensor<T,2,Alloc,L,Access>
 
 template < class T, class Alloc, class L, class Access >
 #ifdef LINALG_ENABLE_CONCEPTS
-template < concepts::tensor_may_be_constructible< dr_matrix > M2 >
+template < concepts::tensor_may_be_constructible< dr_matrix<T,Alloc,L,Access> > M2 >
 #else
 template < class M2, typename >
 #endif
