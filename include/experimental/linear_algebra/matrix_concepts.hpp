@@ -246,22 +246,22 @@ template < class T > inline constexpr bool has_submatrix_type_v = has_submatrix_
 
 // Test for rows function
 template < class T, class = void > struct has_rows_func : public false_type { };
-template < class T > struct has_rows_func< T, std::enable_if_t< std::is_same_v< decltype( declval<const T>().rows() ) ), typename T::size_type > > > : public true_type { };
+template < class T > struct has_rows_func< T, std::enable_if_t< std::is_same_v< decltype( declval<const T>().rows() ), typename T::size_type > > > : public true_type { };
 template < class T > inline constexpr bool has_rows_func_v = has_rows_func<T>::value;
 
 // Test for columns function
 template < class T, class = void > struct has_columns_func : public false_type { };
-template < class T > struct has_columns_func< T, std::enable_if_t< std::is_same_v< decltype( declval<const T>().columns() ) ), typename T::size_type > > > : public true_type { };
+template < class T > struct has_columns_func< T, std::enable_if_t< std::is_same_v< decltype( declval<const T>().columns() ), typename T::size_type > > > : public true_type { };
 template < class T > inline constexpr bool has_columns_func_v = has_columns_func<T>::value;
 
 // Test for row_capacity function
 template < class T, class = void > struct has_row_capacity_func : public false_type { };
-template < class T > struct has_row_capacity_func< T, std::enable_if_t< std::is_same_v< decltype( declval<const T>().row_capacity() ) ), typename T::size_type > > > : public true_type { };
+template < class T > struct has_row_capacity_func< T, std::enable_if_t< std::is_same_v< decltype( declval<const T>().row_capacity() ), typename T::size_type > > > : public true_type { };
 template < class T > inline constexpr bool has_row_capacity_func_v = has_row_capacity_func<T>::value;
 
 // Test for column_capacity function
 template < class T, class = void > struct has_column_capacity_func : public false_type { };
-template < class T > struct has_column_capacity_func< T, std::enable_if_t< std::is_same_v< decltype( declval<const T>().column_capacity() ) ), typename T::size_type > > > : public true_type { };
+template < class T > struct has_column_capacity_func< T, std::enable_if_t< std::is_same_v< decltype( declval<const T>().column_capacity() ), typename T::size_type > > > : public true_type { };
 template < class T > inline constexpr bool has_column_capacity_func_v = has_column_capacity_func<T>::value;
 
 // Test for index paren operator
@@ -410,7 +410,7 @@ template < class M > inline constexpr bool fixed_size_matrix_data_v = fixed_size
 template < class M > struct fixed_size_matrix : public conditional_t< 
   fixed_size_matrix_data_v<M> &&
   matrix_v<M>, true_type, false_type > { };
-template < class M > inline constexpr bool fixed_size_matrix_v = fixed_size_matrixM>::value;
+template < class M > inline constexpr bool fixed_size_matrix_v = fixed_size_matrix<M>::value;
 
 // Matrix may be convertible
 // Enforces both types are matrix which have convertible elements

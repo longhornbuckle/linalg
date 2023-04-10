@@ -269,6 +269,12 @@ template < class T, class = void > struct has_underlying_span_type : public fals
 template < class T > struct has_underlying_span_type< T, std::enable_if_t< std::is_same_v< typename T::underlying_span_type, typename T::underlying_span_type > > > : public true_type { };
 template < class T > inline constexpr bool has_underlying_span_type_v = has_underlying_span_type<T>::value;
 
+// Test if T has alias const_underlying_span_type
+template < class T, class = void > struct has_const_underlying_span_type : public false_type { };
+template < class T > struct has_const_underlying_span_type< T, std::enable_if_t< std::is_same_v< typename T::const_underlying_span_type, typename T::const_underlying_span_type > > > : public true_type { };
+template < class T > inline constexpr bool has_const_underlying_span_type_v = has_const_underlying_span_type<T>::value;
+
+
 // Test if T has alias allocator_type
 template < class T, class = void > struct has_allocator_type : public false_type { };
 template < class T > struct has_allocator_type< T, std::enable_if_t< std::is_same_v< typename T::allocator_type, typename T::allocator_type > > > : public true_type { };
@@ -442,7 +448,7 @@ template < class T > struct dynamic_tensor_data : public conditional_t<
   constructible_from_size_cap_and_alloc_v<T> &&
   has_resize_func_v<T> &&
   has_reserve_func_v<T>, true_type, false_type > { };
-template < class T > inline constexpr bool dynamic_tensor_data_v = dynamic_tensor<T>::value;
+template < class T > inline constexpr bool dynamic_tensor_data_v = dynamic_tensor_data<T>::value;
 
 // Dynamic tensor
 template < class T > struct dynamic_tensor : public conditional_t< 

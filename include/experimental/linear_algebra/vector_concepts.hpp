@@ -209,7 +209,7 @@ template < class V > struct readable_vector_data : public conditional_t<
   ( !LINALG_USE_BRACKET_OPERATOR || has_const_index_bracket_oper_one_v<V> ) &&
   ( !LINALG_USE_PAREN_OPERATOR || has_const_index_paren_oper_one_v<V> ) &&
   has_const_subvector_type_v<V> &&
-  has_const_subtensor_func_v<V>, true_type, false_type > { };
+  has_const_subvector_func_v<V>, true_type, false_type > { };
 template < class V > inline constexpr bool readable_vector_data_v = readable_vector_data<V>::value;
 
 // Readable vector
@@ -224,7 +224,7 @@ template < class V > struct writable_vector_data : public conditional_t<
   ( !LINALG_USE_BRACKET_OPERATOR || has_index_bracket_oper_one_v<V> ) &&
   ( !LINALG_USE_PAREN_OPERATOR || has_index_paren_oper_one_v<V> ) &&
   has_subvector_type_v<V> &&
-  has_subtensor_func_v<V>, true_type, false_type > { };
+  has_subvector_func_v<V>, true_type, false_type > { };
 template < class V > inline constexpr bool writable_vector_data_v = writable_vector_data<V>::value;
 
 // Writable vector
