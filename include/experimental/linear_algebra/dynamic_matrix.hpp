@@ -423,7 +423,6 @@ template < class Lambda >
 #else
 template < class Lambda, typename >
 #endif
-template < class Lambda >
 constexpr dr_matrix<T,Alloc,L,Access>::dr_matrix( extents_type s, Lambda&& lambda )
   noexcept( noexcept( dr_matrix<T,Alloc,L,Access>::base_type(s,lambda) ) )
 #ifdef LINALG_ENABLE_CONCEPTS
