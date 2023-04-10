@@ -363,7 +363,7 @@ template < class T > inline constexpr bool constructible_from_size_and_alloc_v =
 
 // Test for construct from size capacity and allocator
 template < class T, class = void > struct constructible_from_size_cap_and_alloc : public false_type { };
-template < class T > struct constructible_from_size_cap_and_alloc< T, std::enable_if_t< std::is_same_v< decltype( T( declval<typename T::extents_type>(), declval<typename T::extents_type>(), declval<typename T::allocator_type>() ) ) ), T > > > : public true_type { };
+template < class T > struct constructible_from_size_cap_and_alloc< T, std::enable_if_t< std::is_same_v< decltype( T( declval<typename T::extents_type>(), declval<typename T::extents_type>(), declval<typename T::allocator_type>() ) ), T > > > : public true_type { };
 template < class T > inline constexpr bool constructible_from_size_cap_and_alloc_v = constructible_from_size_cap_and_alloc<T>::value;
 
 // Test for transpose
@@ -435,7 +435,7 @@ template < class T > inline constexpr bool writable_tensor_v = writable_tensor<T
 
 // Dynamic tensor data
 template < class T > struct dynamic_tensor_data : public conditional_t<
-  has_tensor_data_v<T> &&
+  tensor_data_v<T> &&
   has_allocator_type_v<T> &&
   constructible_from_alloc_v<T> &&
   constructible_from_size_and_alloc_v<T> &&
