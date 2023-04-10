@@ -388,7 +388,7 @@ constexpr fs_tensor<T,L,A,Ds...>::fs_tensor( Lambda&& lambda ) noexcept( noexcep
     this->underlying_span()( indices ... ) = lambda( indices ... );
     #endif
   };
-  detail::apply_all( this->underlying_span(), ctor, execution::unseq );
+  detail::apply_all( this->underlying_span(), ctor, LINALG_EXECUTION_UNSEQ );
 }
 
 template < class T, class L, class A, size_t ... Ds >
