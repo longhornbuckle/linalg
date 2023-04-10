@@ -10,10 +10,19 @@
 
 // Define if STL execution policies are supported.
 #ifndef LINALG_EXECUTION_POLICY
-#  if ( __cpp_lib_execution >= 201603L )
-#    define LINALG_EXECTUION_POLICY
+#  if ( __cpp_lib_execution >= 201603L ) && ( ( LINALG_COMPILER_GNU >= 9 ) || ( LINALG_COMPILER_MSVC >= 1914 ) )
+#    define LINALG_EXECTUION_POLICY 1
 #  else
 #    define LINALG_EXECUTION_POLICY 0
+#  endif
+#endif
+
+// Define execution::seq if available.
+#ifndef LINALG_EXECUTION_SEQ
+#  if LINALG_EXECTUION_POLICY
+#    define LINALG_EXECUTION_SEQ execution::seq
+#  else
+#    define LINALG_EXECUTION_SEQ 0
 #  endif
 #endif
 
@@ -23,10 +32,7 @@
 #  if ( __cpp_lib_execution >= 201902L ) && ( ( LINALG_COMPILER_GNU >= 9 ) || ( LINALG_COMPILER_MSVC >= 1928 ) )
 #    define LINALG_EXECUTION_UNSEQ execution::unseq
 #  elif ( LINALG_EXECUTION_POLICY )
-#    define LINALG_EXECUTION_UNSEQ execution::seq
-#  else
-#    define LINALG_EXECUTION_UNSEQ 0
-#  endif
+#    define LINALG_EXECUTION_UNSEQ LINALG_EXECUTION_SEQ
 #endif
 
 // Force compiler to inline function

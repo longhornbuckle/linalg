@@ -38,6 +38,23 @@ template < class MultiDimOperClass, class ... IndexType >
 }
 
 //==================================================================================================
+// Forwards to std for_each with or without execution policy depending on configuration
+//==================================================================================================
+template< class ExecutionPolicy, class ForwardIt, class UnaryFunction2 >
+constexpr LINALG_FORCE_INLINE_FUNCTION void
+for_each( [[maybe_unused]] ExecutionPolicy&& policy,
+          ForwardIt                          first,
+          ForwardIt                          last,
+          UnaryFunction2                     f )
+{
+  #if LINALG_EXECTUION_POLICY
+  ::std::for_each( policy, first, last, f );
+  #else
+  ::std::for_each( first, last, f );
+  #endif
+}
+
+//==================================================================================================
 //  Test if type is an mdspan
 //==================================================================================================
 template < class T >
@@ -354,6 +371,7 @@ inline void apply_all_strided3_except( View&&                 view,
   // Cache the last exception to be thrown
   exception_ptr eptr;
   // Attempt lambda expression on each element
+  ::std::math::detail::
   for_each( execution_policy,
             faux_index_iterator<decay_t<decltype( get<index>(indices) )> >(0),
             faux_index_iterator<decay_t<decltype( get<index>(indices) )> >(view.extent(index)),
@@ -393,6 +411,7 @@ constexpr void apply_all_strided3( View&&                                       
                                                  get< AfterIndices + sizeof...(BeforeIndices) >( indices ) ... ) );
   if constexpr ( is_noexcept )
   {
+    ::std::math::detail::
     for_each( execution_policy,
               faux_index_iterator<decay_t<decltype( get<index>(indices) )> >(0),
               faux_index_iterator<decay_t<decltype( get<index>(indices) )> >(view.extent(index)),
@@ -444,6 +463,7 @@ inline void apply_all_strided2_except( View&&               view,
   // Cache the last exception to be thrown
   exception_ptr eptr;
   // Attempt lambda expression on each element
+  ::std::math::detail::
   for_each( execution_policy,
             faux_index_iterator<decay_t<decltype( get<index_stride>(indices) )> >(0),
             faux_index_iterator<decay_t<decltype( get<index_stride>(indices) )> >(view.extent(index_stride)),
@@ -485,6 +505,7 @@ constexpr void apply_all_strided2( View&&               view,
   {
     if constexpr ( apply_all_strided2_is_noexcept<Index+1,View,Lambda,ExecutionPolicy,IndexType ...>() )
     {
+      ::std::math::detail::
       for_each( execution_policy,
                 faux_index_iterator<decay_t<decltype( get<index_stride>(indices) )> >(0),
                 faux_index_iterator<decay_t<decltype( get<index_stride>(indices) )> >(view.extent(index_stride)),
@@ -544,6 +565,7 @@ inline void apply_all_impl2_except( View&&              view,
   // Cache the last exception to be thrown
   exception_ptr eptr;
   // Attempt lambda expression on each element
+  ::std::math::detail::
   for_each( execution_policy,
             faux_index_iterator<typename decay_t<View>::size_type>( 0 ),
             faux_index_iterator<typename decay_t<View>::size_type>( view.extent(dim) ),
@@ -572,6 +594,7 @@ constexpr void apply_all_impl2( View&&              view,
   // If lambda expression is noexcept, then just attempt to call using whatever execution policy
   if constexpr ( is_noexcept )
   {
+    ::std::math::detail::
     for_each( execution_policy,
               faux_index_iterator<typename decay_t<View>::size_type>( 0 ),
               faux_index_iterator<typename decay_t<View>::size_type>( view.extent(dim) ),
@@ -629,6 +652,7 @@ inline void apply_all_impl_except( View&&            view,
   // Cache the last exception to be thrown
   exception_ptr eptr;
   // Attempt lambda expression
+  ::std::math::detail::
   for_each( execution_policy,
             faux_index_iterator<typename decay_t<View>::size_type>( 0 ),
             faux_index_iterator<typename decay_t<View>::size_type>( view.extent(FirstExtents) ),
@@ -680,6 +704,7 @@ constexpr void apply_all_impl( View&&                                           
                           forward<Lambda>( lambda ),
                           forward<ExecutionPolicy>( execution_policy ),
                           integer_sequence<ExtentsType,Extents...>{}, indices ..., index ); };
+      ::std::math::detail::
       for_each( execution_policy,
                 faux_index_iterator<typename decay_t<View>::size_type>( 0 ),
                 faux_index_iterator<typename decay_t<View>::size_type>( view.extent(FirstExtents) ),

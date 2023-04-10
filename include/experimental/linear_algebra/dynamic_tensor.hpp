@@ -651,7 +651,11 @@ constexpr dr_tensor<T,R,Alloc,L,Access>::dr_tensor( const T2& rhs ) :
   alloc_( dr_tensor<T,R,Alloc,L,Access>::
     template Alloc_copy_helper< T2,
                                 integral_constant<bool,allocator_traits<typename dr_tensor<T,R,Alloc,L,Access>::allocator_type>::propagate_on_container_copy_assignment::value &&
+  #ifdef LINALG_ENABLE_CONCEPTS
                                                        concepts::dynamic_tensor<T2> > >::
+  #else
+                                                       concepts::dynamic_tensor_v<T2> > >::
+  #endif
       propogate( rhs ) ),
   // Copy capacity extents
   cap_( rhs.capacity() ),
@@ -821,7 +825,7 @@ constexpr dr_tensor<T,R,Alloc,L,Access>::dr_tensor( extents_type s, Lambda&& lam
   auto lambda_ctor = [this,&lambda]< class ... SizeType >( SizeType ... indices ) constexpr noexcept( is_nothrow_copy_constructible_v<element_type> )
   {
     // TODO: This requires reference returned from mdspan to be the address of the element
-    ::new ( addressof( this->view_[ indices ... ] ) ) element_type( lambda( indices ... ) );
+    ::new ( addressof( access( this->view_, indices ... ) ) ) element_type( lambda( indices ... ) );
   };
   detail::apply_all( this->view_, lambda_ctor, LINALG_EXECUTION_UNSEQ );
 }
@@ -847,7 +851,7 @@ constexpr dr_tensor<T,R,Alloc,L,Access>::dr_tensor( extents_type s, extents_type
   auto lambda_ctor = [this,&lambda]< class ... SizeType >( SizeType ... indices ) constexpr noexcept( is_nothrow_copy_constructible_v<element_type> )
   {
     // TODO: This requires reference returned from mdspan to be the address of the element
-    ::new ( addressof( this->view_[ indices ... ] ) ) element_type( lambda( indices ... ) );
+    ::new ( addressof( access( this->view_, indices ... ) ) ) element_type( lambda( indices ... ) );
   };
   detail::apply_all( this->view_, lambda_ctor, LINALG_EXECUTION_UNSEQ );
 }
@@ -1190,7 +1194,7 @@ dr_tensor<T,R,Alloc,L,Access>::operator[]( IndexType ... indices ) const noexcep
 #if LINALG_USE_PAREN_OPERATOR
 template < class T, size_t R, class Alloc, class L , class Access >
 template < class ... IndexType >
-[[nodiscard]] constexpr dr_tensor<T,R,Alloc,L,Access>::value_type
+[[nodiscard]] constexpr typename dr_tensor<T,R,Alloc,L,Access>::value_type
 dr_tensor<T,R,Alloc,L,Access>::operator()( IndexType ... indices ) const noexcept
 #ifdef LINALG_ENABLE_CONCEPTS
   requires ( sizeof...(IndexType) == R ) && ( is_convertible_v<IndexType,typename dr_tensor<T,R,Alloc,L,Access>::index_type> && ... )
@@ -1202,7 +1206,7 @@ dr_tensor<T,R,Alloc,L,Access>::operator()( IndexType ... indices ) const noexcep
 
 template < class T, size_t R, class Alloc, class L , class Access >
 template < class ... IndexType >
-[[nodiscard]] constexpr dr_tensor<T,R,Alloc,L,Access>::value_type
+[[nodiscard]] constexpr typename dr_tensor<T,R,Alloc,L,Access>::value_type
 dr_tensor<T,R,Alloc,L,Access>::at( IndexType ... indices ) const
 #ifdef LINALG_ENABLE_CONCEPTS
   requires ( sizeof...(IndexType) == R ) && ( is_convertible_v<IndexType,typename dr_tensor<T,R,Alloc,L,Access>::index_type> && ... )
@@ -1358,10 +1362,10 @@ constexpr void dr_tensor<T,R,Alloc,L,Access>::destroy_all()
   {
     if constexpr ( is_nothrow_destructible_v<element_type> )
     {
-      for_each( LINALG_EXECUTION_UNSEQ,
-                this->elems_,
-                this->elems_ + this->view_.size(),
-                []( const element_type& elem ) constexpr noexcept { elem.~element_type(); } );
+      detail::for_each( LINALG_EXECUTION_UNSEQ,
+                        this->elems_,
+                        this->elems_ + this->view_.size(),
+                        []( const element_type& elem ) constexpr noexcept { elem.~element_type(); } );
       // Deallocate
       allocator_traits<allocator_type>::deallocate( this->alloc_, this->elems_, this->linear_capacity() );
     }
@@ -1378,10 +1382,10 @@ inline void dr_tensor<T,R,Alloc,L,Access>::destroy_all_except()
   // Cache the last exception to be thrown
   exception_ptr eptr;
   // Attempt to destruct
-  for_each( LINALG_EXECUTION_UNSEQ,
-            this->elems_,
-            this->elems_ + this->view_.size(),
-            [this,&eptr]( const element_type& elem ) constexpr { try { this->elem_.~element_type(); } catch ( ... ) { eptr = current_exception(); } } );
+  detail::for_each( LINALG_EXECUTION_UNSEQ,
+                    this->elems_,
+                    this->elems_ + this->view_.size(),
+                    [this,&eptr]( const element_type& elem ) constexpr { try { this->elem_.~element_type(); } catch ( ... ) { eptr = current_exception(); } } );
   // Deallocate
   allocator_traits<allocator_type>::deallocate( this->alloc_, this->elems_, this->linear_capacity() );
   // If exceptions were thrown, rethrow the last
@@ -1397,10 +1401,10 @@ constexpr void dr_tensor<T,R,Alloc,L,Access>::construct_all()
 {
   if constexpr ( is_nothrow_constructible_v<element_type> )
   {
-    for_each( LINALG_EXECUTION_UNSEQ,
-              this->elems_,
-              this->elems_ + this->view_.size(),
-              []( auto elem ) constexpr noexcept { ::new ( &elem ) element_type; } );
+    detail::for_each( LINALG_EXECUTION_UNSEQ,
+                      this->elems_,
+                      this->elems_ + this->view_.size(),
+                      []( auto elem ) constexpr noexcept { ::new ( &elem ) element_type; } );
   }
   else
   {
@@ -1417,10 +1421,10 @@ inline void dr_tensor<T,R,Alloc,L,Access>::construct_all_except()
   if constexpr ( is_trivially_destructible_v<element_type> )
   {
     // Attempt to construct
-    for_each( LINALG_EXECUTION_UNSEQ,
-              this->elems_,
-              this->elems_ + this->view_.size(),
-              [&eptr]( auto elem ) constexpr { try { ::new (&elem) element_type; } catch ( ... ) { eptr = current_exception(); } } );
+    detail::for_each( LINALG_EXECUTION_UNSEQ,
+                      this->elems_,
+                      this->elems_ + this->view_.size(),
+                      [&eptr]( auto elem ) constexpr { try { ::new (&elem) element_type; } catch ( ... ) { eptr = current_exception(); } } );
     // If exceptions were thrown, rethrow the last
     if ( eptr )
     {
@@ -1435,19 +1439,19 @@ inline void dr_tensor<T,R,Alloc,L,Access>::construct_all_except()
     // Cache pointer to constructor which threw exception
     element_type* elem_except_ptr;
     // Attempt to construct
-    for_each( execution::seq,
-              this->elems_,
-              this->elems_ + this->view_.size(),
-              [&eptr,&elem_except_ptr]( auto elem ) constexpr { try { ::new (&elem) element_type(); } catch ( ... ) { elem_except_ptr = &elem; eptr = current_exception(); } } );
+    detail::for_each( LINALG_EXECUTION_SEQ,
+                      this->elems_,
+                      this->elems_ + this->view_.size(),
+                      [&eptr,&elem_except_ptr]( auto elem ) constexpr { try { ::new (&elem) element_type(); } catch ( ... ) { elem_except_ptr = &elem; eptr = current_exception(); } } );
     // If exceptions were thrown, destroy all which have already been constructed, then rethrow the last
     if ( eptr ) [[unlikely]]
     {
       // Attempt to destroy constructed elements.
       // If destruction also throws an exception, then just terminate.
-      for_each( LINALG_EXECUTION_UNSEQ,
-                this->elems_,
-                elem_except_ptr,
-                []( auto elem ) constexpr noexcept( is_nothrow_destructible_v<element_type> ){ elem.~element_type(); } );
+      detail::for_each( LINALG_EXECUTION_UNSEQ,
+                        this->elems_,
+                        elem_except_ptr,
+                        []( auto elem ) constexpr noexcept( is_nothrow_destructible_v<element_type> ){ elem.~element_type(); } );
       // Deallocate
       allocator_traits<allocator_type>::deallocate( this->alloc_, this->elems_, this->linear_capacity() );
       rethrow_exception( eptr );
@@ -1505,13 +1509,13 @@ dr_tensor<T,R,Alloc,L,Access>::max_extents( extents_type extents_a, extents_type
   // Construct array to contain max
   array<index_type,extents_type::rank()> max_extents;
   // Iterate over each dimension and set max
-  for_each( LINALG_EXECUTION_UNSEQ,
-            detail::faux_index_iterator<index_type>(0),
-            detail::faux_index_iterator<index_type>( extents_type::rank() ),
-            [&max_extents,&extents_a,&extents_b] ( index_type index ) constexpr noexcept
-            {
-              max_extents[index] = ( extents_a.extent(index) > extents_b.extent(index) ) ? extents_a.extent(index) : extents_b.extent(index);
-            } );
+  detail::for_each( LINALG_EXECUTION_UNSEQ,
+                    detail::faux_index_iterator<index_type>(0),
+                    detail::faux_index_iterator<index_type>( extents_type::rank() ),
+                    [&max_extents,&extents_a,&extents_b] ( index_type index ) constexpr noexcept
+                    {
+                      max_extents[index] = ( extents_a.extent(index) > extents_b.extent(index) ) ? extents_a.extent(index) : extents_b.extent(index);
+                    } );
   // Return max
   return extents_type( max_extents );
 }

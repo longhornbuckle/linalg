@@ -949,11 +949,11 @@ class vector_matrix_product
                              [&v,&m]< class IndexType >( IndexType index ) constexpr noexcept
                              {
                                result_value_type result = 0;
-                               for_each( LINALG_EXECUTION_UNSEQ,
-                                         detail::faux_index_iterator<typename vector_type::index_type>( 0 ),
-                                         detail::faux_index_iterator<typename vector_type::index_type>( v.size().extent(0) ),
-                                         [ &v, &m, &index, &result ] ( typename vector_type::index_type index2 ) constexpr noexcept
-                                           { result += detail::access( v, index2 ) * detail::access( m, index2, index ); } );
+                               detail::for_each( LINALG_EXECUTION_UNSEQ,
+                                                 detail::faux_index_iterator<typename vector_type::index_type>( 0 ),
+                                                 detail::faux_index_iterator<typename vector_type::index_type>( v.size().extent(0) ),
+                                                 [ &v, &m, &index, &result ] ( typename vector_type::index_type index2 ) constexpr noexcept
+                                                   { result += detail::access( v, index2 ) * detail::access( m, index2, index ); } );
                                return result;
                              } ) ) ) &&
                 ( ( vector_type::extents_type::static_extent(0) != experimental::dynamic_extent ) &&
