@@ -136,44 +136,44 @@ vector<V>;
 // Test if T has alias const_subvector_type
 template < class T, class = void > struct has_const_subvector_type : public false_type { };
 template < class T > struct has_const_subvector_type< T, std::enable_if_t< std::is_same_v< typename T::const_subvector_type, typename T::const_subvector_type > > > : public true_type { };
-template < class T > inline constexpr bool has_const_subvector_type_v = typename has_const_subvector_type<T>::value;
+template < class T > inline constexpr bool has_const_subvector_type_v = has_const_subvector_type<T>::value;
 
 // Test if T has alias subvector_type
 template < class T, class = void > struct has_subvector_type : public false_type { };
 template < class T > struct has_subvector_type< T, std::enable_if_t< std::is_same_v< typename T::subvector_type, typename T::subvector_type > > > : public true_type { };
-template < class T > inline constexpr bool has_subvector_type_v = typename has_subvector_type<T>::value;
+template < class T > inline constexpr bool has_subvector_type_v = has_subvector_type<T>::value;
 
 //- Test for functions
 
 // Test for inner product
 template < class T, class = void > struct has_inner_prod_func : public false_type { };
 template < class T > struct has_inner_prod_func< T, std::enable_if_t< std::is_same_v< decltype( inner_prod( declval<T>(), declval<T>() ) ), decltype( inner_prod( declval<T>(), declval<T>() ) ) > > > : public true_type { };
-template < class T > inline constexpr bool has_inner_prod_func_v = typename has_inner_prod_func<T>::value;
+template < class T > inline constexpr bool has_inner_prod_func_v = has_inner_prod_func<T>::value;
 
 // Test for outer product
 template < class T, class = void > struct has_outer_prod_func : public false_type { };
 template < class T > struct has_outer_prod_func< T, std::enable_if_t< std::is_same_v< decltype( outer_prod( declval<T>(), declval<T>() ) ), decltype( outer_prod( declval<T>(), declval<T>() ) ) > > > : public true_type { };
-template < class T > inline constexpr bool has_outer_prod_func_v = typename has_outer_prod_func<T>::value;
+template < class T > inline constexpr bool has_outer_prod_func_v = has_outer_prod_func<T>::value;
 
 // Test for index paren operator
 template < class T, class = void > struct has_const_index_paren_oper_one : public false_type { };
 template < class T > struct has_const_index_paren_oper_one< T, std::enable_if_t< std::is_same_v< decltype( declval<const T>().operator()( declval<typename T::index_type>() ) ), typename T::value_type > > > : public true_type { };
-template < class T > inline constexpr bool has_const_index_paren_oper_one_v = typename has_const_index_paren_oper_one<T>::value;
+template < class T > inline constexpr bool has_const_index_paren_oper_one_v = has_const_index_paren_oper_one<T>::value;
 
 // Test for index bracket operator
 template < class T, class = void > struct has_const_index_bracket_oper_one : public false_type { };
 template < class T > struct has_const_index_bracket_oper_one< T, std::enable_if_t< std::is_same_v< decltype( declval<const T>().operator[]( declval<typename T::index_type>() ) ), typename T::value_type > > > : public true_type { };
-template < class T > inline constexpr bool has_const_index_bracket_oper_one_v = typename has_const_index_bracket_oper_one<T>::value;
+template < class T > inline constexpr bool has_const_index_bracket_oper_one_v = has_const_index_bracket_oper_one<T>::value;
 
 // Test for index paren operator
 template < class T, class = void > struct has_index_paren_oper_one : public false_type { };
 template < class T > struct has_index_paren_oper_one< T, std::enable_if_t< std::is_same_v< decltype( declval<T>().operator()( declval<typename T::index_type>() ) ), typename T::reference_type > > > : public true_type { };
-template < class T > inline constexpr bool has_index_paren_oper_one_v = typename has_index_paren_oper_one<T>::value;
+template < class T > inline constexpr bool has_index_paren_oper_one_v = has_index_paren_oper_one<T>::value;
 
 // Test for index bracket operator
 template < class T, class = void > struct has_index_bracket_oper_one : public false_type { };
 template < class T > struct has_index_bracket_oper_one< T, std::enable_if_t< std::is_same_v< decltype( declval<T>().operator[]( declval<typename T::index_type>() ) ), typename T::reference_type > > > : public true_type { };
-template < class T > inline constexpr bool has_index_bracket_oper_one_v = typename has_index_bracket_oper_one<T>::value;
+template < class T > inline constexpr bool has_index_bracket_oper_one_v = has_index_bracket_oper_one<T>::value;
 
 // Test for const subvector function
 template < class T, class = void > struct has_const_subvector_func : public false_type { };

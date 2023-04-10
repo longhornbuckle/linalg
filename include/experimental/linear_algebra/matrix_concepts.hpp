@@ -215,32 +215,32 @@ matrix<To> &&
 // Test if T has alias const_row_type
 template < class T, class = void > struct has_const_row_type : public false_type { };
 template < class T > struct has_const_row_type< T, std::enable_if_t< std::is_same_v< typename T::const_row_type, typename T::const_row_type > > > : public true_type { };
-template < class T > inline constexpr bool has_const_row_type_v = typename has_const_row_type<T>::value;
+template < class T > inline constexpr bool has_const_row_type_v = has_const_row_type<T>::value;
 
 // Test if T has alias const_column_type
 template < class T, class = void > struct has_const_column_type : public false_type { };
 template < class T > struct has_const_column_type< T, std::enable_if_t< std::is_same_v< typename T::const_column_type, typename T::const_column_type > > > : public true_type { };
-template < class T > inline constexpr bool has_const_column_type_v = typename has_const_column_type<T>::value;
+template < class T > inline constexpr bool has_const_column_type_v = has_const_column_type<T>::value;
 
 // Test if T has alias const_submatrix_type
 template < class T, class = void > struct has_const_submatrix_type : public false_type { };
 template < class T > struct has_const_submatrix_type< T, std::enable_if_t< std::is_same_v< typename T::const_submatrix_type, typename T::const_submatrix_type > > > : public true_type { };
-template < class T > inline constexpr bool has_const_submatrix_type_v = typename has_const_submatrix_type<T>::value;
+template < class T > inline constexpr bool has_const_submatrix_type_v = has_const_submatrix_type<T>::value;
 
 // Test if T has alias row_type
 template < class T, class = void > struct has_row_type : public false_type { };
 template < class T > struct has_row_type< T, std::enable_if_t< std::is_same_v< typename T::row_type, typename T::row_type > > > : public true_type { };
-template < class T > inline constexpr bool has_row_type_v = typename has_row_type<T>::value;
+template < class T > inline constexpr bool has_row_type_v = has_row_type<T>::value;
 
 // Test if T has alias column_type
 template < class T, class = void > struct has_column_type : public false_type { };
 template < class T > struct has_column_type< T, std::enable_if_t< std::is_same_v< typename T::column_type, typename T::column_type > > > : public true_type { };
-template < class T > inline constexpr bool has_column_type_v = typename has_column_type<T>::value;
+template < class T > inline constexpr bool has_column_type_v = has_column_type<T>::value;
 
 // Test if T has alias submatrix_type
 template < class T, class = void > struct has_submatrix_type : public false_type { };
 template < class T > struct has_submatrix_type< T, std::enable_if_t< std::is_same_v< typename T::submatrix_type, typename T::submatrix_type > > > : public true_type { };
-template < class T > inline constexpr bool has_submatrix_type_v = typename has_submatrix_type<T>::value;
+template < class T > inline constexpr bool has_submatrix_type_v = has_submatrix_type<T>::value;
 
 //- Test for functions
 
@@ -267,22 +267,22 @@ template < class T > inline constexpr bool has_column_capacity_func_v = has_colu
 // Test for index paren operator
 template < class T, class = void > struct has_const_index_paren_oper_two : public false_type { };
 template < class T > struct has_const_index_paren_oper_two< T, std::enable_if_t< std::is_same_v< decltype( declval<const T>().operator()( declval<typename T::index_type>(), declval<typename T::index_type>() ) ), typename T::value_type > > > : public true_type { };
-template < class T > inline constexpr bool has_const_index_paren_oper_two_v = typename has_const_index_paren_oper_two<T>::value;
+template < class T > inline constexpr bool has_const_index_paren_oper_two_v = has_const_index_paren_oper_two<T>::value;
 
 // Test for index bracket operator
 template < class T, class = void > struct has_const_index_bracket_oper_two : public false_type { };
 template < class T > struct has_const_index_bracket_oper_two< T, std::enable_if_t< std::is_same_v< decltype( declval<const T>().operator[]( declval<typename T::index_type>(), declval<typename T::index_type>() ) ), typename T::value_type > > > : public true_type { };
-template < class T > inline constexpr bool has_const_index_bracket_oper_two_v = typename has_const_index_bracket_oper_two<T>::value;
+template < class T > inline constexpr bool has_const_index_bracket_oper_two_v = has_const_index_bracket_oper_two<T>::value;
 
 // Test for index paren operator
 template < class T, class = void > struct has_index_paren_oper_two : public false_type { };
 template < class T > struct has_index_paren_oper_two< T, std::enable_if_t< std::is_same_v< decltype( declval<T>().operator()( declval<typename T::index_type>(), declval<typename T::index_type>() ) ), typename T::reference_type > > > : public true_type { };
-template < class T > inline constexpr bool has_index_paren_oper_two_v = typename has_index_paren_oper_two<T>::value;
+template < class T > inline constexpr bool has_index_paren_oper_two_v = has_index_paren_oper_two<T>::value;
 
 // Test for index bracket operator
 template < class T, class = void > struct has_index_bracket_oper_two : public false_type { };
 template < class T > struct has_index_bracket_oper_two< T, std::enable_if_t< std::is_same_v< decltype( declval<T>().operator[]( declval<typename T::index_type>(), declval<typename T::index_type>() ) ), typename T::reference_type > > > : public true_type { };
-template < class T > inline constexpr bool has_index_bracket_oper_two_v = typename has_index_bracket_oper_two<T>::value;
+template < class T > inline constexpr bool has_index_bracket_oper_two_v = has_index_bracket_oper_two<T>::value;
 
 // Test for const row function
 template < class T, class = void > struct has_const_row_func : public false_type { };
@@ -317,7 +317,7 @@ template < class T > inline constexpr bool has_submatrix_func_v = has_submatrix_
 // Test for matrix multiplication
 template < class T, class = void > struct has_matrix_multi_func : public false_type { };
 template < class T > struct has_matrix_multi_func< T, std::enable_if_t< std::is_same_v< decltype( declval<T>() * trans( declval<T>() ) ), decltype( declval<T>() * trans( declval<T>() ) ) > > > : public true_type { };
-template < class T > inline constexpr bool has_matrix_multi_func_v = typename has_matrix_multi_func<T>::value;
+template < class T > inline constexpr bool has_matrix_multi_func_v = has_matrix_multi_func<T>::value;
 
 //- Test for matrices
 

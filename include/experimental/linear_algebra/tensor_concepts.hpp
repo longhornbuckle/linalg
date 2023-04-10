@@ -232,47 +232,47 @@ detail::extents_is_equal_v< typename From::extents_type, typename To::extents_ty
 // Test if T has alias value_type
 template < class T, class = void > struct has_value_type : public false_type { };
 template < class T > struct has_value_type< T, std::enable_if_t< std::is_same_v< typename T::value_type, typename T::value_type > > > : public true_type { };
-template < class T > inline constexpr bool has_value_type_v = typename has_value_type<T>::value;
+template < class T > inline constexpr bool has_value_type_v = has_value_type<T>::value;
 
 // Test if T has alias index_type
 template < class T, class = void > struct has_index_type : public false_type { };
 template < class T > struct has_index_type< T, std::enable_if_t< std::is_same_v< typename T::index_type, typename T::index_type > > > : public true_type { };
-template < class T > inline constexpr bool has_index_type_v = typename has_index_type<T>::value;
+template < class T > inline constexpr bool has_index_type_v = has_index_type<T>::value;
 
 // Test if T has alias size_type
 template < class T, class = void > struct has_size_type : public false_type { };
 template < class T > struct has_size_type< T, std::enable_if_t< std::is_same_v< typename T::size_type, typename T::size_type > > > : public true_type { };
-template < class T > inline constexpr bool has_size_type_v = typename has_size_type<T>::value;
+template < class T > inline constexpr bool has_size_type_v = has_size_type<T>::value;
 
 // Test if T has alias extents_type
 template < class T, class = void > struct has_extents_type : public false_type { };
 template < class T > struct has_extents_type< T, std::enable_if_t< std::is_same_v< typename T::extents_type, typename T::extents_type > > > : public true_type { };
-template < class T > inline constexpr bool has_extents_type_v = typename has_extents_type<T>::value;
+template < class T > inline constexpr bool has_extents_type_v = has_extents_type<T>::value;
 
 // Test if T has alias tuple_type
 template < class T, class = void > struct has_tuple_type : public false_type { };
 template < class T > struct has_tuple_type< T, std::enable_if_t< std::is_same_v< typename T::tuple_type, typename T::tuple_type > > > : public true_type { };
-template < class T > inline constexpr bool has_tuple_type_v = typename has_tuple_type<T>::value;
+template < class T > inline constexpr bool has_tuple_type_v = has_tuple_type<T>::value;
 
 // Test if T has alias span_type
 template < class T, class = void > struct has_span_type : public false_type { };
 template < class T > struct has_span_type< T, std::enable_if_t< std::is_same_v< typename T::span_type, typename T::span_type > > > : public true_type { };
-template < class T > inline constexpr bool has_span_type_v = typename has_span_type<T>::value;
+template < class T > inline constexpr bool has_span_type_v = has_span_type<T>::value;
 
 // Test if T has alias reference_type
 template < class T, class = void > struct has_reference_type : public false_type { };
 template < class T > struct has_reference_type< T, std::enable_if_t< std::is_same_v< typename T::reference_type, typename T::reference_type > > > : public true_type { };
-template < class T > inline constexpr bool has_sreference_type_v = typename has_reference_type<T>::value;
+template < class T > inline constexpr bool has_sreference_type_v = has_reference_type<T>::value;
 
 // Test if T has alias underlying_span_type
 template < class T, class = void > struct has_underlying_span_type : public false_type { };
 template < class T > struct has_underlying_span_type< T, std::enable_if_t< std::is_same_v< typename T::underlying_span_type, typename T::underlying_span_type > > > : public true_type { };
-template < class T > inline constexpr bool has_span_type_v = typename has_underlying_span_type<T>::value;
+template < class T > inline constexpr bool has_span_type_v = has_underlying_span_type<T>::value;
 
 // Test if T has alias allocator_type
 template < class T, class = void > struct has_allocator_type : public false_type { };
 template < class T > struct has_allocator_type< T, std::enable_if_t< std::is_same_v< typename T::allocator_type, typename T::allocator_type > > > : public true_type { };
-template < class T > inline constexpr bool has_allocator_type_v = typename has_allocator_type<T>::value;
+template < class T > inline constexpr bool has_allocator_type_v = has_allocator_type<T>::value;
 
 //- Test for functions
 
