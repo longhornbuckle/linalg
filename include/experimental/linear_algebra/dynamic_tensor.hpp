@@ -64,7 +64,7 @@ class dr_tensor
     /// @brief Type returned by const index access
     using value_type                 = remove_cv_t<element_type>;
     /// @brief Type of allocator used to get memory
-    using allocator_type             = allocator_traits<Alloc>::template rebind_alloc<element_type>;
+    using allocator_type             = typename allocator_traits<Alloc>::template rebind_alloc<element_type>;
     /// @brief Type used for indexing
     using index_type                 = ptrdiff_t;
     /// @brief Type used to represent a node in the tensor

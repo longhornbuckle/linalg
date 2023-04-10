@@ -378,7 +378,7 @@ constexpr fs_tensor<T,L,A,Ds...>::fs_tensor( Lambda&& lambda ) noexcept( noexcep
 #endif
 {
   // If expression is no except, then no need to capture last exception
-  static const bool lambda_is_noexcept = is_nothrow_convertible_v< decltype( declval<Lambda&&>()( Ds ... ) ), element_type >;
+  constexpr bool lambda_is_noexcept = is_nothrow_convertible_v< decltype( declval<Lambda&&>()( Ds ... ) ), element_type >;
   // Construct all elements from lambda output
   auto ctor = [this,&lambda]< class ... SizeType >( SizeType ... indices ) constexpr noexcept( lambda_is_noexcept )
   {
