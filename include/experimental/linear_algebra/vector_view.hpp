@@ -238,8 +238,8 @@ template < class MDS, typename Dummy >
 template < typename >
 [[nodiscard]] constexpr typename vector_view<MDS,Dummy>::subvector_type vector_view<MDS,Dummy>::
 #endif
-vector_view<MDS>::subvector( tuple_type start,
-                             tuple_type end )
+subvector( tuple_type start,
+           tuple_type end )
 #ifdef LINALG_ENABLE_CONCEPTS
   requires ( !is_const_v<typename vector_view<MDS>::element_type> )
 #endif

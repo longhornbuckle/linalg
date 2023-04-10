@@ -203,13 +203,14 @@ class matrix_view : public tensor_view<MDS>
 
 //- Destructor / Constructors / Assignments
 
-template < class MDS
 #ifdef LINALG_ENABLE_CONCEPTS
-  > requires ( detail::is_mdspan_v<MDS> && ( MDS::extents_type::rank() == 2 ) && MDS::is_always_unique() )
+template < class MDS > requires ( detail::is_mdspan_v<MDS> && ( MDS::extents_type::rank() == 2 ) && MDS::is_always_unique() )
+constexpr matrix_view<MDS>::
 #else
-  , typename >
+template < class MDS, typename Dummy >
+constexpr matrix_view<MDS,Dummy>::
 #endif
-constexpr matrix_view<MDS>::matrix_view( const underlying_span_type& view ) noexcept :
+matrix_view( const underlying_span_type& view ) noexcept :
   matrix_view<MDS>::base_type( view )
 {
 }
