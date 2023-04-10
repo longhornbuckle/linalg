@@ -286,7 +286,7 @@ outer_prod( const V1& v1, const V2& v2 ) noexcept( noexcept( operations::templat
 //=================================================================================================
 //  Vector Matrix product
 //=================================================================================================
-#if LINALG_ENABLE_CONCEPTS
+#ifdef LINALG_ENABLE_CONCEPTS
 template < concepts::vector_data V, concepts::matrix_data M >
 #else
 template < class V, class M, typename = enable_if_t< concepts::vector_data_v<V> && concepts::matrix_data_v<M> > >
@@ -301,7 +301,7 @@ operator * ( const V& v, const M& m )
 //=================================================================================================
 //  Vector Matrix multiplication assignment
 //=================================================================================================
-#if LINALG_ENABLE_CONCEPTS
+#ifdef LINALG_ENABLE_CONCEPTS
 template < concepts::vector_data V, concepts::matrix_data M >
 #else
 template < class V, class M,
