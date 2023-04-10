@@ -821,9 +821,9 @@ template < class ToView, class FromView
              is_convertible_v<typename FromView::reference,typename ToView::element_type> &&
              extents_may_be_equal_v<typename FromView::extents_type,typename ToView::extents_type>
 #else
-  , typename = enable_if_t( is_mdspan_v< ToView > && is_mdspan_v< FromView > &&
-                            is_convertible_v<typename FromView::reference,typename ToView::element_type> &&
-                            extents_may_be_equal_v<typename FromView::extents_type,typename ToView::extents_type> ) > >
+  , typename = enable_if_t< ( is_mdspan_v< ToView > && is_mdspan_v< FromView > &&
+                              is_convertible_v<typename FromView::reference,typename ToView::element_type> &&
+                              extents_may_be_equal_v<typename FromView::extents_type,typename ToView::extents_type> ) > >
 #endif
 constexpr ToView&
 assign_view( ToView& to_view, const FromView& from_view )
