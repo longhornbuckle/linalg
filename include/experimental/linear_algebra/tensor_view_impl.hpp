@@ -111,7 +111,6 @@ operator()( IndexType ... indices ) const noexcept
 }
 #endif
 
-#if LINALG_USE_PAREN_OPERATOR
 #ifdef LINALG_ENABLE_CONCEPTS
 template < class MDS > requires ( detail::is_mdspan_v<MDS> && MDS::is_always_unique() )
 template < class ... IndexType >
@@ -310,9 +309,13 @@ template < class MDS > requires ( detail::is_mdspan_v<MDS> && MDS::is_always_uni
 [[nodiscard]] constexpr typename tensor_view<MDS>::underlying_span_type tensor_view<MDS>::
 #else
 template < class MDS, typename Dummy >
+template < typename >
 [[nodiscard]] constexpr typename tensor_view<MDS,Dummy>::underlying_span_type tensor_view<MDS,Dummy>::
 #endif
-underlying_span() noexcept requires ( !is_const_v<typename tensor_view<MDS>::element_type> )
+underlying_span() noexcept
+#ifdef LINALG_ENABLE_CONCEPTS
+  requires ( !is_const_v<typename tensor_view<MDS>::element_type> )
+#endif
 {
   return this->view_;
 }
