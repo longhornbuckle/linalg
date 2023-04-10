@@ -170,7 +170,7 @@ class dr_tensor
     #ifdef LINALG_ENABLE_CONCEPTS
     template < concepts::view_may_be_constructible_to_tensor< dr_tensor > MDS >
     #else
-    template < class MDS, typename = enable_if_t< concepts::view_may_be_constructible_to_tensor<MDS,dr_tensor> && is_default_constructible_v<allocator_type> > >
+    template < class MDS, typename = enable_if_t< concepts::view_may_be_constructible_to_tensor<MDS,dr_tensor> && is_default_constructible_v<allocator_type> >, typename = enable_if_t<true> >
     #endif
     explicit constexpr dr_tensor( const MDS& view )
     #ifdef LINALG_ENABLE_CONCEPTS
@@ -322,7 +322,7 @@ class dr_tensor
     #ifdef LINALG_ENABLE_CONCEPTS
     template < concepts::view_may_be_constructible_to_tensor< dr_tensor > MDS >
     #else
-    template < class MDS, typename = enable_if_t< concepts::view_may_be_constructible_to_tensor<MDS,dr_tensor> && is_default_constructible_v<allocator_type> > >
+    template < class MDS, typename = enable_if_t< concepts::view_may_be_constructible_to_tensor<MDS,dr_tensor> && is_default_constructible_v<allocator_type> >, typename = enable_if_t<true> >
     #endif
     constexpr dr_tensor& operator = ( const MDS& view );
 
@@ -648,7 +648,7 @@ template < class T, size_t R, class Alloc, class L , class Access >
 #ifdef LINALG_ENABLE_CONCEPTS
 template < concepts::view_may_be_constructible_to_tensor< dr_tensor<T,R,Alloc,L,Access> > MDS >
 #else
-template < class MDS, typename >
+template < class MDS, typename, typename >
 #endif
 constexpr dr_tensor<T,R,Alloc,L,Access>::dr_tensor( const MDS& view )
 #ifdef LINALG_ENABLE_CONCEPTS
@@ -1024,7 +1024,7 @@ template < class T, size_t R, class Alloc, class L , class Access >
 #ifdef LINALG_ENABLE_CONCEPTS
 template < concepts::view_may_be_constructible_to_tensor< dr_tensor<T,R,Alloc,L,Access> > MDS >
 #else
-template < class MDS, typename >
+template < class MDS, typename, typename >
 #endif
 constexpr dr_tensor<T,R,Alloc,L,Access>& dr_tensor<T,R,Alloc,L,Access>::operator = ( const MDS& view )
 {
