@@ -52,7 +52,7 @@ class negation
     #ifdef LINALG_ENABLE_CONCEPTS
     template < class Lambda >
     #else
-    template < class Lambda, typename = enable_if_t< concepts::dynamic_tensor_data_v<result_tensor_type> > >
+    template < class Lambda, typename = enable_if_t< concepts::dynamic_tensor_data_v<result_tensor_type> >, typename = enable_if_t<true> >
     #endif
     [[nodiscard]] static inline constexpr decltype(auto) collect_ctor_args( const tensor_type& t, Lambda&& lambda ) noexcept
     #ifdef LINALG_ENABLE_CONCEPTS
@@ -106,8 +106,14 @@ class addition
   private:
     // Aliases
     using result_value_type  = decay_t< decltype( declval<typename first_tensor_type::value_type>() + declval<typename second_tensor_type::value_type>() ) >;
-    using result_tensor_type = conditional_t< concepts::dynamic_tensor_data_v<first_tensor_type> &&
+    using result_tensor_type = conditional_t< 
+                                              #ifdef LINALG_ENABLE_CONCEPTS
+                                              concepts::dynamic_tensor_data_v<first_tensor_type> &&
                                                 concepts::fixed_size_tensor_data_v<second_tensor_type>,
+                                              #else
+                                              concepts::dynamic_tensor_data_v<first_tensor_type> &&
+                                                concepts::fixed_size_tensor_data_v<second_tensor_type>,
+                                              #endif
                                               typename second_tensor_type::template rebind_t<result_value_type>,
                                               typename first_tensor_type::template rebind_t<result_value_type> >;
     // Gets necessary arguments for constrution
@@ -128,7 +134,7 @@ class addition
     #ifdef LINALG_ENABLE_CONCEPTS
     template < class Lambda >
     #else
-    template < class Lambda, typename = enable_if_t< concepts::dynamic_tensor_data_v<result_tensor_type> > >
+    template < class Lambda, typename = enable_if_t< concepts::dynamic_tensor_data_v<result_tensor_type> >, typename = enable_if_t<true> >
     #endif
     [[nodiscard]] static inline constexpr auto collect_ctor_args( const first_tensor_type& t1, const second_tensor_type& t2, Lambda&& lambda ) noexcept
     #ifdef LINALG_ENABLE_CONCEPTS
@@ -258,7 +264,7 @@ class subtraction
     #ifdef LINALG_ENABLE_CONCEPTS
     template < class Lambda >
     #else
-    template < class Lamda, typename = enable_if_t< concepts::dynamic_tensor_data_v<result_tensor_type> > >
+    template < class Lamda, typename = enable_if_t< concepts::dynamic_tensor_data_v<result_tensor_type> >, typename = enable_if_t<true> >
     #endif
     [[nodiscard]] static inline constexpr auto collect_ctor_args( const first_tensor_type& t1, const second_tensor_type& t2, Lambda&& lambda ) noexcept
     #ifdef LINALG_ENABLE_CONCEPTS
@@ -359,7 +365,7 @@ class scalar_product
     #ifdef LINALG_ENABLE_CONCEPTS
     template < class Lambda >
     #else
-    template < class Lambda, typename = enable_if_t< concepts::dynamic_tensor_data_v<result_tensor_type> > >
+    template < class Lambda, typename = enable_if_t< concepts::dynamic_tensor_data_v<result_tensor_type> >, typename = enable_if_t<true> >
     #endif
     [[nodiscard]] static inline constexpr decltype(auto) collect_ctor_args( const tensor_type& t, Lambda&& lambda ) noexcept
     #ifdef LINALG_ENABLE_CONCEPTS
@@ -453,7 +459,7 @@ struct scalar_division
     #ifdef LINALG_ENABLE_CONCEPTS
     template < class Lambda >
     #else
-    template < class Lambda, typename = enable_if_it< concepts::dynamic_tensor_data_v<result_tensor_type> > >
+    template < class Lambda, typename = enable_if_it< concepts::dynamic_tensor_data_v<result_tensor_type> >, typename = enable_if_t<true> >
     #endif
     [[nodiscard]] static inline constexpr decltype(auto) collect_ctor_args( const tensor_type& t, Lambda&& lambda ) noexcept
     #ifdef LINALG_ENABLE_CONCEPTS
@@ -539,7 +545,7 @@ class transpose_matrix
     #ifdef LINALG_ENABLE_CONCEPTS
     template < class Lambda >
     #else
-    template < class Lambda, typename = enable_if_t< concepts::dynamic_matrix_data_v<result_matrix_type> > >
+    template < class Lambda, typename = enable_if_t< concepts::dynamic_matrix_data_v<result_matrix_type> >, typename = enable_if_t<true> >
     #endif
     [[nodiscard]] static inline constexpr decltype(auto) collect_ctor_args( const matrix_type& m, Lambda&& lambda ) noexcept
     #ifdef LINALG_ENABLE_CONCEPTS
@@ -645,7 +651,7 @@ class conjugate_matrix
     #ifdef LINALG_ENABLE_CONCEPTS
     template < class Lambda >
     #else
-    template < class Lambda, typename = enable_if_t< concepts::dynamic_matrix_data_v<result_matrix_type> > >
+    template < class Lambda, typename = enable_if_t< concepts::dynamic_matrix_data_v<result_matrix_type> >, typename = enable_if_t<true> >
     #endif
     [[nodiscard]] static inline constexpr decltype(auto) collect_ctor_args( const matrix_type& m, Lambda&& lambda ) noexcept
     #ifdef LINALG_ENABLE_CONCEPTS
@@ -724,7 +730,7 @@ class conjugate_vector
     #ifdef LINALG_ENABLE_CONCEPTS
     template < class Lambda >
     #else
-    template < class Lambda, typename = enable_if_t< concepts::dynamic_vector_data_v<result_vector_type> > >
+    template < class Lambda, typename = enable_if_t< concepts::dynamic_vector_data_v<result_vector_type> >, typename = enable_if_t<true> >
     #endif
     [[nodiscard]] static inline constexpr decltype(auto) collect_ctor_args( const vector_type& v, Lambda&& lambda ) noexcept
     #ifdef LINALG_ENABLE_CONCEPTS
@@ -797,7 +803,7 @@ class vector_matrix_product
     }
     // Returns the std allocator
     #ifndef LINALG_ENABLE_CONCEPTS
-    template < class typename = enable_if_t< !concepts::dynamic_matrix_data_v< matrix_type > > >
+    template < class typename = enable_if_t< !concepts::dynamic_matrix_data_v< matrix_type > >, typename = enable_if_t<true> >
     #endif
     [[nodiscard]] static inline constexpr decltype(auto) get_allocator( [[maybe_unused]] const matrix_type& m ) noexcept
     #ifdef LINALG_ENABLE_CONCEPTS
@@ -849,7 +855,7 @@ class vector_matrix_product
     #ifdef LINALG_ENABLE_CONCEPTS
     template < class Lambda >
     #else
-    template < class Lambda, typename = enable_if_t< concepts::fixed_size_vector_data_v<pre_result_vector_type> > ><
+    template < class Lambda, typename = enable_if_t< concepts::fixed_size_vector_data_v<pre_result_vector_type> > >
     #endif
     [[nodiscard]] static inline constexpr decltype(auto) collect_ctor_args( [[maybe_unused]] const vector_type&, [[maybe_unused]] const matrix_type&, Lambda&& lambda ) noexcept
     #ifdef LINALG_ENABLE_CONCEPTS
@@ -862,7 +868,7 @@ class vector_matrix_product
     #ifdef LINALG_ENABLE_CONCEPTS
     template < class Lambda >
     #else
-    template < class Lambda, typename = enable_if_t< concepts::dynamic_vector_data_v<pre_result_vector_type> > ><
+    template < class Lambda, typename = enable_if_t< concepts::dynamic_vector_data_v<pre_result_vector_type> >, typename = enable_if_t<true> >
     #endif
     [[nodiscard]] static inline constexpr decltype(auto) collect_ctor_args( [[maybe_unused]] const vector_type&, const matrix_type& m, Lambda&& lambda ) noexcept
     #ifdef LINALG_ENABLE_CONCEPTS
@@ -893,7 +899,7 @@ class vector_matrix_product
     #ifdef LINALG_ENABLE_CONCEPTS
     template < class Lambda >
     #else
-    template < class Lambda, typename = enable_if_t< concepts::fixed_size_vector_data_v<post_result_vector_type> > ><
+    template < class Lambda, typename = enable_if_t< concepts::fixed_size_vector_data_v<post_result_vector_type> > >
     #endif
     [[nodiscard]] static inline constexpr decltype(auto) collect_ctor_args( [[maybe_unused]] const matrix_type&, [[maybe_unused]] const vector_type&, Lambda&& lambda ) noexcept
     #ifdef LINALG_ENABLE_CONCEPTS
@@ -906,7 +912,7 @@ class vector_matrix_product
     #ifdef LINALG_ENABLE_CONCEPTS
     template < class Lambda >
     #else
-    template < class Lambda, typename = enable_if_t< concepts::dynamic_vector_data_v<post_result_vector_type> > ><
+    template < class Lambda, typename = enable_if_t< concepts::dynamic_vector_data_v<post_result_vector_type> >, typename = enable_if_t<true> >
     #endif
     [[nodiscard]] static inline constexpr decltype(auto) collect_ctor_args( const matrix_type& m, [[maybe_unused]] const vector_type&, Lambda&& lambda ) noexcept
     #ifdef LINALG_ENABLE_CONCEPTS
@@ -1090,7 +1096,7 @@ class matrix_matrix_product
     }
     // Returns the allocator of m2
     #ifndef LINALG_ENABLE_CONCEPTS
-    template < typename = enable_if_t< concepts::dynamic_matrix_data_v< second_matrix_type > && !concepts::dynamic_matrix_data_v< first_matrix_type > > >
+    template < typename = enable_if_t< concepts::dynamic_matrix_data_v< second_matrix_type > && !concepts::dynamic_matrix_data_v< first_matrix_type > >, typename = enable_if_t<true> >
     #endif
     [[nodiscard]] static inline constexpr decltype(auto) get_allocator( [[maybe_unused]] const first_matrix_type& m1, const second_matrix_type& m2 ) noexcept
     #ifdef LINALG_ENABLE_CONCEPTS
@@ -1101,7 +1107,7 @@ class matrix_matrix_product
     }
     // Returns the std allocator
     #ifndef LINALG_ENABLE_CONCEPTS
-    template < typename = enable_if_t< !concepts::dynamic_matrix_data_v< first_matrix_type > && !concepts::dynamic_matrix_data_v< second_matrix_type > > >
+    template < typename = enable_if_t< !concepts::dynamic_matrix_data_v< first_matrix_type > && !concepts::dynamic_matrix_data_v< second_matrix_type > >, typename = enable_if_t<true>, typename = enable_if_t<true> >
     #endif
     [[nodiscard]] static inline constexpr decltype(auto) get_allocator( [[maybe_unused]] const first_matrix_type& m1, [[maybe_unused]] const second_matrix_type& m2 ) noexcept
     #ifdef LINALG_ENABLE_CONCEPTS
@@ -1151,7 +1157,7 @@ class matrix_matrix_product
     #ifdef LINALG_ENABLE_CONCEPTS
     template < class Lambda >
     #else
-    template < class Lambda, typename = enable_if_t< concepts::dynamic_matrix_data_v<result_matrix_type> > >
+    template < class Lambda, typename = enable_if_t< concepts::dynamic_matrix_data_v<result_matrix_type> >, typename = enable_if_t<true> >
     #endif
     [[nodiscard]] static inline constexpr decltype(auto) collect_ctor_args( const first_matrix_type& m1, const second_matrix_type& m2, Lambda&& lambda ) noexcept
     #ifdef LINALG_ENABLE_CONCEPTS
@@ -1333,7 +1339,7 @@ class outer_product
     }
     // Returns the allocator of v2
     #ifndef LINALG_ENABLE_CONCEPTS
-    template < typename = enable_if_t< concepts::dynamic_vector_data_v< second_vector_type > && !concepts::dynamic_vector_data_v< first_vector_type > > >
+    template < typename = enable_if_t< concepts::dynamic_vector_data_v< second_vector_type > && !concepts::dynamic_vector_data_v< first_vector_type > >, typename = enable_if_t<true> >
     #endif
     [[nodiscard]] static inline constexpr decltype(auto) get_allocator( [[maybe_unused]] const first_vector_type& v1, const second_vector_type& v2 ) noexcept
     #ifdef LINALG_ENABLE_CONCEPTS
@@ -1344,7 +1350,7 @@ class outer_product
     }
     // Returns the std allocator
     #ifndef LINALG_ENABLE_CONCEPTS
-    template < typename = enable_if_t< !concepts::dynamic_vector_data_v< first_vector_type > && !concepts::dynamic_vector_data_v< second_vector_type > > >
+    template < typename = enable_if_t< !concepts::dynamic_vector_data_v< first_vector_type > && !concepts::dynamic_vector_data_v< second_vector_type > >, typename = enable_if_t<true>, typename = enable_if_t<true> >
     #endif
     [[nodiscard]] static inline constexpr decltype(auto) get_allocator( [[maybe_unused]] const first_vector_type& v1, [[maybe_unused]] const second_vector_type& v2 ) noexcept
     #ifdef LINALG_ENABLE_CONCEPTS
@@ -1394,7 +1400,7 @@ class outer_product
     #ifdef LINALG_ENABLE_CONCEPTS
     template < class Lambda >
     #else
-    template < class Lambda, typename = enable_if_t< concepts::dynamic_matrix_data_v<result_matrix_type> > >
+    template < class Lambda, typename = enable_if_t< concepts::dynamic_matrix_data_v<result_matrix_type> >, typename = enable_if_t<true> >
     #endif
     [[nodiscard]] static inline constexpr decltype(auto) collect_ctor_args( const first_vector_type& v1, const second_vector_type& v2, Lambda&& lambda ) noexcept
     #ifdef LINALG_ENABLE_CONCEPTS
