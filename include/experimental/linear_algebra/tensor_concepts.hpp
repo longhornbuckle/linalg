@@ -390,7 +390,7 @@ template < class T > struct tensor_data : public conditional_t<
   has_index_type_v<T> &&
   has_size_type_v<T> &&
   has_extents_type_v<T> &&
-  detail::is_extents_v<typename T::extents_type> &&
+  //detail::is_extents_v<typename T::extents_type> &&
   has_size_func_v<T> &&
   has_capacity_func_v<T>, true_type, false_type > { };
 template < class T > inline constexpr bool tensor_data_v = tensor_data<T>::value;
@@ -410,8 +410,8 @@ template < class T > inline constexpr bool tensor_v = tensor<T>::value;
 template < class T > struct readable_tensor_data : public conditional_t< 
   tensor_data_v<T> &&
   has_tuple_type_v<T> &&
-  detail::is_homogeneous_tuple_v< typename T::tuple_type > &&
-  ( tuple_size_v< typename T::tuple_type > == T::extents_type::rank() ) &&
+  //detail::is_homogeneous_tuple_v< typename T::tuple_type > &&
+  //( tuple_size_v< typename T::tuple_type > == T::extents_type::rank() ) &&
   has_span_type_v<T> &&
   has_const_underlying_span_type_v<T> &&
   has_span_func_v<T> &&
@@ -428,7 +428,7 @@ template < class T > inline constexpr bool readable_tensor_v = readable_tensor<T
 template < class T > struct writable_tensor_data : public conditional_t< 
   readable_tensor_data_v<T> &&
   has_reference_type_v<T> &&
-  ( !is_const_v< remove_reference_t< typename T::reference_type > > ) &&
+  //( !is_const_v< remove_reference_t< typename T::reference_type > > ) &&
   has_underlying_span_type_v<T> &&
   has_underlying_span_func_v<T>, true_type, false_type > { };
 template < class T > inline constexpr bool writable_tensor_data_v = writable_tensor_data<T>::value;

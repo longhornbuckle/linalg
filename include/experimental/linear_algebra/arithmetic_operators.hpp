@@ -312,7 +312,7 @@ template < concepts::vector_data V, concepts::matrix_data M >
 template < class V, class M,
            typename = enable_if_t< concepts::vector_data_v<V> &&
                                    concepts::matrix_data_v<M> &&
-                                   detail::extents_may_be_equal_v< typename V::extents_type, typename decltype( declval<V>() * declval<M>() )::extents_type > >
+                                   detail::extents_may_be_equal_v< typename V::extents_type, typename decltype( declval<V>() * declval<M>() )::extents_type > >,
            typename = enable_if_t<true> >
 #endif
 [[nodiscard]] inline constexpr V&
