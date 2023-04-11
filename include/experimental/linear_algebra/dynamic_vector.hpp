@@ -121,7 +121,7 @@ class dr_vector : public dr_tensor<T,1,Alloc,L,Access>
     #ifdef LINALG_ENABLE_CONCEPTS
     template < concepts::view_may_be_constructible_to_tensor< dr_vector > MDS >
     #else
-    template < class MDS, typename = enable_if_t< concepts::view_may_be_constructible_to_tensor<MDS,dr_vector> && is_default_constructible_v<allocator_type> > >
+    template < class MDS, typename = enable_if_t< concepts::view_may_be_constructible_to_tensor<MDS,dr_vector> && is_default_constructible_v<allocator_type> >, typename = enable_if_t<true> >
     #endif
     explicit constexpr dr_vector( const MDS& view ) noexcept( noexcept( base_type(view) ) )
     #ifdef LINALG_ENABLE_CONCEPTS
@@ -161,7 +161,7 @@ class dr_vector : public dr_tensor<T,1,Alloc,L,Access>
     #else
     template < class Lambda,
                typename = enable_if_t< is_default_constructible_v<allocator_type> &&
-                                       is_convertible_to< decltype( declval<Lambda&&>()( declval<index_type>() ) ), element_type > > >
+                                       is_convertible_v< decltype( declval<Lambda&&>()( declval<index_type>() ) ), element_type > > >
     #endif
     constexpr dr_vector( extents_type s, Lambda&& lambda ) noexcept( noexcept( base_type(s,lambda) ) )
     #ifdef LINALG_ENABLE_CONCEPTS
@@ -180,7 +180,7 @@ class dr_vector : public dr_tensor<T,1,Alloc,L,Access>
     #else
     template < class Lambda,
                typename = enable_if_t< is_default_constructible_v<allocator_type> &&
-                                       is_convertible_to< decltype( declval<Lambda&&>()( declval<index_type>() ) ), element_type > > >
+                                       is_convertible_v< decltype( declval<Lambda&&>()( declval<index_type>() ) ), element_type > > >
     #endif
     constexpr dr_vector( extents_type s, extents_type cap, Lambda&& lambda ) noexcept( noexcept( base_type(s,cap,lambda) ) )
     #ifdef LINALG_ENABLE_CONCEPTS
@@ -217,7 +217,7 @@ class dr_vector : public dr_tensor<T,1,Alloc,L,Access>
     #else
     template < class Lambda,
                typename = enable_if_t< is_default_constructible_v<allocator_type> &&
-                                       is_convertible_to< decltype( declval<Lambda&&>()( declval<index_type>() ) ), element_type > > >
+                                       is_convertible_v< decltype( declval<Lambda&&>()( declval<index_type>() ) ), element_type > > >
     #endif
     constexpr dr_vector( extents_type s, Lambda&& lambda, const allocator_type& alloc ) noexcept( noexcept( base_type(s,lambda,alloc) ) )
     #ifdef LINALG_ENABLE_CONCEPTS
@@ -236,7 +236,7 @@ class dr_vector : public dr_tensor<T,1,Alloc,L,Access>
     #else
     template < class Lambda,
                typename = enable_if_t< is_default_constructible_v<allocator_type> &&
-                                       is_convertible_to< decltype( declval<Lambda&&>()( declval<index_type>() ) ), element_type > > >
+                                       is_convertible_v< decltype( declval<Lambda&&>()( declval<index_type>() ) ), element_type > > >
     #endif
     constexpr dr_vector( extents_type s, extents_type cap, Lambda&& lambda, const allocator_type& alloc ) noexcept( noexcept( base_type(s,cap,lambda,alloc) ) )
     #ifdef LINALG_ENABLE_CONCEPTS
@@ -269,7 +269,7 @@ class dr_vector : public dr_tensor<T,1,Alloc,L,Access>
     #ifdef LINALG_ENABLE_CONCEPTS
     template < concepts::view_may_be_constructible_to_tensor< dr_vector > MDS >
     #else
-    template < class MDS, typename = enable_if_t< concepts::view_may_be_constructible_to_tensor<MDS,dr_vector> && is_default_constructible_v<allocator_type> > >
+    template < class MDS, typename = enable_if_t< concepts::view_may_be_constructible_to_tensor<MDS,dr_vector> && is_default_constructible_v<allocator_type> >, typename = enable_if_t<true> >
     #endif
     constexpr dr_vector& operator = ( const MDS& view ) noexcept( noexcept( declval<base_type>() = view ) );
 
@@ -323,7 +323,7 @@ template < class T, class Alloc, class L, class Access >
 #ifdef LINALG_ENABLE_CONCEPTS
 template < concepts::tensor_may_be_constructible< dr_vector<T,Alloc,L,Access> > V2 >
 #else
-template < class V2, typename = enable_if_t< concepts::tensor_may_be_constructible< V2, dr_vector > > >
+template < class V2, typename >
 #endif
 constexpr dr_vector<T,Alloc,L,Access>::dr_vector( const V2& rhs )
   noexcept( noexcept( typename dr_vector<T,Alloc,L,Access>::base_type( rhs ) ) ) :
@@ -335,7 +335,7 @@ template < class T, class Alloc, class L, class Access >
 #ifdef LINALG_ENABLE_CONCEPTS
 template < concepts::view_may_be_constructible_to_tensor< dr_vector<T,Alloc,L,Access> > MDS >
 #else
-template < class MDS, typename >
+template < class MDS, typename, typename >
 #endif
 constexpr dr_vector<T,Alloc,L,Access>::dr_vector( const MDS& view )
   noexcept( noexcept( dr_vector<T,Alloc,L,Access>::base_type(view) ) )
@@ -350,7 +350,7 @@ constexpr dr_vector<T,Alloc,L,Access>::dr_vector( const MDS& view )
   
 template < class T, class Alloc, class L, class Access >
 #ifndef LINALG_ENABLE_CONCEPTS
-template < typename = enable_if_t< is_default_constructible_v<allocator_type> > >
+template < typename >
 #endif
 constexpr dr_vector<T,Alloc,L,Access>::dr_vector( extents_type s )
   noexcept( noexcept( dr_vector<T,Alloc,L,Access>::base_type(s) ) )
@@ -365,7 +365,7 @@ constexpr dr_vector<T,Alloc,L,Access>::dr_vector( extents_type s )
 
 template < class T, class Alloc, class L, class Access >
 #ifndef LINALG_ENABLE_CONCEPTS
-template < typename = enable_if_t< is_default_constructible_v<allocator_type> > >
+template < typename >
 #endif
 constexpr dr_vector<T,Alloc,L,Access>::dr_vector( extents_type s, extents_type cap )
   noexcept( noexcept( dr_vector<T,Alloc,L,Access>::base_type(s,cap) ) )
@@ -482,7 +482,11 @@ constexpr dr_vector<T,Alloc,L,Access>::dr_vector( extents_type s, extents_type c
 }
 
 template < class T, class Alloc, class L, class Access >
+#ifdef LINALG_ENABLE_CONCEPTS
 template < concepts::tensor_may_be_constructible< dr_vector<T,Alloc,L,Access> > V2 >
+#else
+template < class V2, typename >
+#endif
 constexpr dr_vector<T,Alloc,L,Access>& dr_vector<T,Alloc,L,Access>::operator = ( const V2& rhs )
   noexcept( noexcept( declval<typename dr_vector<T,Alloc,L,Access>::base_type>() = rhs ) )
 {
@@ -494,7 +498,7 @@ template < class T, class Alloc, class L, class Access >
 #ifdef LINALG_ENABLE_CONCEPTS
 template < concepts::view_may_be_constructible_to_tensor< dr_vector<T,Alloc,L,Access> > MDS >
 #else
-template < class MDS, typename >
+template < class MDS, typename, typename >
 #endif
 constexpr dr_vector<T,Alloc,L,Access>& dr_vector<T,Alloc,L,Access>::operator = ( const MDS& view )
   noexcept( noexcept( declval<typename dr_vector<T,Alloc,L,Access>::base_type>() = view ) )

@@ -262,7 +262,7 @@ template < class Lambda >
 constexpr fs_vector<T,N,L,A>::
 #else
 template < class T, size_t N, class L, class A, typename >
-template < class Lambda, typename >
+template < class Lambda, typename Dummy >
 constexpr fs_vector<T,N,L,A,Dummy>::
 #endif
 fs_vector( Lambda&& lambda ) noexcept( noexcept( declval<Lambda&&>()( declval<index_type>() ) ) )
