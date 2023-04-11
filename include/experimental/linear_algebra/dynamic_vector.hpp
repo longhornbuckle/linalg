@@ -346,7 +346,7 @@ constexpr dr_vector<T,Alloc,L,Access>::dr_vector( const MDS& view )
 #ifdef LINALG_ENABLE_CONCEPTS
   requires is_default_constructible_v<typename dr_vector<T,Alloc,L,Access>::allocator_type> :
 #else
-  ;
+  :
 #endif
   dr_vector<T,Alloc,L,Access>::base_type(view)
 {

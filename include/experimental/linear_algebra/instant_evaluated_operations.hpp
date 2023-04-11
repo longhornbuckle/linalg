@@ -21,7 +21,7 @@ namespace instant_evaluated_operations
 #ifdef LINALG_ENABLE_CONCEPTS
 template < concepts::tensor_data T >
 #else
-template < class T, typename = enable_if_t< concepts::tensor_data_v<T> >
+template < class T, typename = enable_if_t< concepts::tensor_data_v<T> > >
 #endif
 class negation
 {
@@ -222,7 +222,7 @@ class addition
 #ifdef LINALG_ENABLE_CONCEPTS
 template < concepts::tensor_data T1, concepts::tensor_data T2 >
 #else
-template < class T1, class T2, typename = enable_if_t< concepts::tensor_data_v<T1> && concepts::tensor_data_v<T2> >
+template < class T1, class T2, typename = enable_if_t< concepts::tensor_data_v<T1> && concepts::tensor_data_v<T2> > >
 #endif
 class subtraction
 {
