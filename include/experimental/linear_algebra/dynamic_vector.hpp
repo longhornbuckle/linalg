@@ -196,7 +196,11 @@ class dr_vector : public dr_tensor<T,1,Alloc,L,Access>
     /// @tparam An N dimensional view
     /// @param view view of vector elements
     /// @param alloc allocator to construct with
+    #ifdef LINALG_ENABLE_CONCEPTS
     template < concepts::view_may_be_constructible_to_tensor< dr_vector > MDS >
+    #else
+    template < class MDS, typename = enable_if_t< concepts::view_may_be_constructible_to_tensor< MDS, dr_vector > > >
+    #endif
     explicit constexpr dr_vector( const MDS& view, const allocator_type& alloc ) noexcept( noexcept( base_type(view,alloc) ) );
     /// @brief Attempt to allocate sufficient resources for a size vector and construct
     /// @param s defines the length of the vector

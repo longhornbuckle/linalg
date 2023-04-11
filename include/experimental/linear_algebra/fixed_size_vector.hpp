@@ -261,8 +261,8 @@ template < class T, size_t N, class L, class A > requires ( N >= 0 )
 template < class Lambda >
 constexpr fs_vector<T,N,L,A>::
 #else
-template < class T, size_t N, class L, class A, typename >
-template < class Lambda, typename Dummy >
+template < class T, size_t N, class L, class A, typename Dummy >
+template < class Lambda, typename >
 constexpr fs_vector<T,N,L,A,Dummy>::
 #endif
 fs_vector( Lambda&& lambda )
