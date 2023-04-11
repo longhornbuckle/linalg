@@ -265,12 +265,13 @@ template < class T, size_t N, class L, class A, typename >
 template < class Lambda, typename Dummy >
 constexpr fs_vector<T,N,L,A,Dummy>::
 #endif
-fs_vector( Lambda&& lambda ) noexcept( noexcept( declval<Lambda&&>()( declval<index_type>() ) ) )
+fs_vector( Lambda&& lambda )
 #ifdef LINALG_ENABLE_CONCEPTS
-  requires requires { { declval<Lambda&&>()( declval<index_type>() ) } -> convertible_to<element_type>; } :
+  noexcept( noexcept( declval<Lambda&&>()( declval<typename fs_vector<T,N,L,A>::index_type>() ) ) )
+  requires requires { { declval<Lambda&&>()( declval<typename fs_vector<T,N,L,A>::index_type>() ) } -> convertible_to<typename fs_vector<T,N,L,A>::element_type>; } :
   fs_vector<T,N,L,A>::base_type( lambda )
 #else
-  :
+  noexcept( noexcept( declval<Lambda&&>()( declval<typename fs_vector<T,N,L,A,Dummy>::index_type>() ) ) ) :
   fs_vector<T,N,L,A,Dummy>::base_type( lambda )
 #endif
 {
@@ -282,14 +283,14 @@ template < concepts::tensor_may_be_constructible< fs_vector<T,N,L,A> > V2 >
 constexpr fs_vector<T,N,L,A>& fs_vector<T,N,L,A>::
 #else
 template < class T, size_t N, class L, class A, typename Dummy >
-template < class V2, typename Dummy >
+template < class V2, typename >
 constexpr fs_vector<T,N,L,A,Dummy>& fs_vector<T,N,L,A,Dummy>::
 #endif
 operator = ( const V2& rhs )
 #ifdef LINALG_ENABLE_CONCEPTS
   noexcept( noexcept( declval<typename fs_vector<T,N,L,A>::base_type>() = rhs ) )
 #else
-  noexcept( noexcept( declval<typename fs_vector<T,N,L,A,DUmmy>::base_type>() = rhs ) )
+  noexcept( noexcept( declval<typename fs_vector<T,N,L,A,Dummy>::base_type>() = rhs ) )
 #endif
 {
   static_cast<void>( this->base_type::operator=(rhs) );
