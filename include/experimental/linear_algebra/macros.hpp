@@ -31,7 +31,7 @@
 #ifndef LINALG_EXECUTION_UNSEQ
 #  if ( __cpp_lib_execution >= 201902L ) && ( ( LINALG_COMPILER_GNU >= 9 ) || ( LINALG_COMPILER_MSVC >= 1928 ) )
 #    define LINALG_EXECUTION_UNSEQ execution::unseq
-#  elif ( LINALG_EXECUTION_POLICY )
+#  else
 #    define LINALG_EXECUTION_UNSEQ LINALG_EXECUTION_SEQ
 #  endif
 #endif

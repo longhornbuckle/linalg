@@ -825,7 +825,7 @@ constexpr dr_tensor<T,R,Alloc,L,Access>::dr_tensor( extents_type s, Lambda&& lam
   auto lambda_ctor = [this,&lambda]< class ... SizeType >( SizeType ... indices ) constexpr noexcept( is_nothrow_copy_constructible_v<element_type> )
   {
     // TODO: This requires reference returned from mdspan to be the address of the element
-    ::new ( addressof( access( this->view_, indices ... ) ) ) element_type( lambda( indices ... ) );
+    ::new ( addressof( detail::access( this->view_, indices ... ) ) ) element_type( lambda( indices ... ) );
   };
   detail::apply_all( this->view_, lambda_ctor, LINALG_EXECUTION_UNSEQ );
 }
@@ -851,7 +851,7 @@ constexpr dr_tensor<T,R,Alloc,L,Access>::dr_tensor( extents_type s, extents_type
   auto lambda_ctor = [this,&lambda]< class ... SizeType >( SizeType ... indices ) constexpr noexcept( is_nothrow_copy_constructible_v<element_type> )
   {
     // TODO: This requires reference returned from mdspan to be the address of the element
-    ::new ( addressof( access( this->view_, indices ... ) ) ) element_type( lambda( indices ... ) );
+    ::new ( addressof( detail::access( this->view_, indices ... ) ) ) element_type( lambda( indices ... ) );
   };
   detail::apply_all( this->view_, lambda_ctor, LINALG_EXECUTION_UNSEQ );
 }

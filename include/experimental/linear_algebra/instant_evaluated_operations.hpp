@@ -978,11 +978,11 @@ class vector_matrix_product
       auto lambda = [&v,&m]< class IndexType >( IndexType index ) constexpr noexcept
       {
         result_value_type result = 0;
-        for_each( LINALG_EXECUTION_UNSEQ,
-                  detail::faux_index_iterator<typename vector_type::index_type>( 0 ),
-                  detail::faux_index_iterator<typename vector_type::index_type>( v.size().extent(0) ),
-                  [ &v, &m, &index, &result ] ( typename vector_type::index_type index2 ) constexpr noexcept
-                    { result += detail::access( v, index2 ) * detail::access( m, index2, index ); } );
+        detail::for_each( LINALG_EXECUTION_UNSEQ,
+                          detail::faux_index_iterator<typename vector_type::index_type>( 0 ),
+                          detail::faux_index_iterator<typename vector_type::index_type>( v.size().extent(0) ),
+                          [ &v, &m, &index, &result ] ( typename vector_type::index_type index2 ) constexpr noexcept
+                            { result += detail::access( v, index2 ) * detail::access( m, index2, index ); } );
         return result;
       };
       // Construct multiplication vector
@@ -1018,11 +1018,11 @@ class vector_matrix_product
                              [&v,&m]< class IndexType >( IndexType index ) constexpr noexcept
                              {
                                result_value_type result = 0;
-                               for_each( LINALG_EXECUTION_UNSEQ,
-                                         detail::faux_index_iterator<typename vector_type::index_type>( 0 ),
-                                         detail::faux_index_iterator<typename vector_type::index_type>( v.size().extent(0) ),
-                                         [ &v, &m, &index, &result ] ( typename vector_type::index_type index2 ) constexpr noexcept
-                                           { result += detail::access( m, index, index2 ) * detail::access( v, index2 ); } );
+                               detail::for_each( LINALG_EXECUTION_UNSEQ,
+                                                 detail::faux_index_iterator<typename vector_type::index_type>( 0 ),
+                                                 detail::faux_index_iterator<typename vector_type::index_type>( v.size().extent(0) ),
+                                                 [ &v, &m, &index, &result ] ( typename vector_type::index_type index2 ) constexpr noexcept
+                                                   { result += detail::access( m, index, index2 ) * detail::access( v, index2 ); } );
                                return result;
                              } ) ) ) &&
                 ( ( matrix_type::extents_type::static_extent(1) != experimental::dynamic_extent ) &&
@@ -1047,11 +1047,11 @@ class vector_matrix_product
       auto lambda = [&v,&m]< class IndexType >( IndexType index ) constexpr noexcept
       {
         result_value_type result = 0;
-        for_each( LINALG_EXECUTION_UNSEQ,
-                  detail::faux_index_iterator<typename vector_type::index_type>( 0 ),
-                  detail::faux_index_iterator<typename vector_type::index_type>( v.size().extent(0) ),
-                  [ &v, &m, &index, &result ] ( typename vector_type::index_type index2 ) constexpr noexcept
-                    { result += detail::access( m, index, index2 ) * detail::access( v, index2 ); } );
+        detail::for_each( LINALG_EXECUTION_UNSEQ,
+                          detail::faux_index_iterator<typename vector_type::index_type>( 0 ),
+                          detail::faux_index_iterator<typename vector_type::index_type>( v.size().extent(0) ),
+                          [ &v, &m, &index, &result ] ( typename vector_type::index_type index2 ) constexpr noexcept
+                            { result += detail::access( m, index, index2 ) * detail::access( v, index2 ); } );
         return result;
       };
       // Construct multiplication vector
@@ -1192,11 +1192,11 @@ class matrix_matrix_product
                            [&m1,&m2]< class IndexType1, class IndexType2 >( IndexType1 index1, IndexType2 index2 ) constexpr noexcept
                            {
                              result_value_type result = 0;
-                             for_each( LINALG_EXECUTION_UNSEQ,
-                                       detail::faux_index_iterator<typename first_matrix_type::index_type>( 0 ),
-                                       detail::faux_index_iterator<typename first_matrix_type::index_type>( m1.size().extent(1) ),
-                                       [ &m1, &m2, &index1, &index2, &result ] ( typename first_matrix_type::index_type index ) constexpr noexcept
-                                         { result += detail::access( m1, index1, index ) * detail::access( m2, index, index2 ); } );
+                             detail::for_each( LINALG_EXECUTION_UNSEQ,
+                                               detail::faux_index_iterator<typename first_matrix_type::index_type>( 0 ),
+                                               detail::faux_index_iterator<typename first_matrix_type::index_type>( m1.size().extent(1) ),
+                                               [ &m1, &m2, &index1, &index2, &result ] ( typename first_matrix_type::index_type index ) constexpr noexcept
+                                                 { result += detail::access( m1, index1, index ) * detail::access( m2, index, index2 ); } );
                              return result;
                            } ) ) ) &&
                 ( first_matrix_type::extents_type::static_extent(1) != experimental::dynamic_extent ) &&
