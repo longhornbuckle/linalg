@@ -284,7 +284,7 @@ class subtraction
     #ifdef LINALG_ENABLE_CONCEPTS
     template < class Lambda >
     #else
-    template < class Lamda, typename = enable_if_t< concepts::dynamic_tensor_data_v<result_tensor_type> >, typename = enable_if_t<true> >
+    template < class Lambda, typename = enable_if_t< concepts::dynamic_tensor_data_v<result_tensor_type> >, typename = enable_if_t<true> >
     #endif
     [[nodiscard]] static inline constexpr auto collect_ctor_args( const first_tensor_type& t1, const second_tensor_type& t2, Lambda&& lambda ) noexcept
     #ifdef LINALG_ENABLE_CONCEPTS
@@ -869,7 +869,7 @@ class vector_matrix_product
     }
     // Returns the std allocator
     #ifndef LINALG_ENABLE_CONCEPTS
-    template < class typename = enable_if_t< !concepts::dynamic_matrix_data_v< matrix_type > >, typename = enable_if_t<true> >
+    template < typename = enable_if_t< !concepts::dynamic_matrix_data_v< matrix_type > >, typename = enable_if_t<true> >
     #endif
     [[nodiscard]] static inline constexpr decltype(auto) get_allocator( [[maybe_unused]] const matrix_type& m ) noexcept
     #ifdef LINALG_ENABLE_CONCEPTS
@@ -1355,7 +1355,7 @@ class inner_product
     using second_vector_type = V2;
   private:
     // Aliases
-    using result_type        = decltype( auto( declval<typename first_vector_type::value_type>() * declval<typename second_vector_type::value_type>() ) );
+    using result_type        = decltype( declval<typename first_vector_type::value_type>() * declval<typename second_vector_type::value_type>() );
   public:
     //- Operations
 
