@@ -132,7 +132,7 @@ class fs_vector : public fs_tensor<T,L,A,N>
     template < class Lambda >
     #else
     template < class Lambda,
-               typename = enable_if_t< is_convertible_to< decltype( declval<Lambda&&>()( declval<index_type>() ) ), element_type > > >
+               typename = enable_if_t< is_convertible_v< decltype( declval<Lambda&&>()( declval<index_type>() ) ), element_type > > >
     #endif
     explicit constexpr fs_vector( Lambda&& lambda ) noexcept( noexcept( declval<Lambda&&>()( declval<index_type>() ) ) )
     #ifdef LINALG_ENABLE_CONCEPTS

@@ -145,7 +145,7 @@ class fs_matrix : public fs_tensor<T,L,A,R,C>
     template < class Lambda >
     #else
     template < class Lambda,
-               typename = enable_if_t< is_convertible_to< decltype( declval<Lambda&&>()( declval<index_type>(), declval<index_type>() ) ), element_type > > >
+               typename = enable_if_t< is_convertible_v< decltype( declval<Lambda&&>()( declval<index_type>(), declval<index_type>() ) ), element_type > > >
     #endif
     explicit constexpr fs_matrix( Lambda&& lambda ) noexcept( noexcept( declval<Lambda&&>()( declval<index_type>(), declval<index_type>() ) ) )
     #ifdef LINALG_ENABLE_CONCEPTS
@@ -405,7 +405,7 @@ template < class T, size_t R, size_t C, class L, class A > requires ( ( R >= 0 )
 template < class T, size_t R, size_t C, class L, class A, typename Dummy >
 [[nodiscard]] constexpr typename fs_matrix<T,R,C,L,A,Dummy>::const_column_type fs_matrix<T,R,C,L,A,Dummy>::
 #endif
-column( typename fs_matrix<T,R,C,L,A>::index_type j ) const
+column( index_type j ) const
 {
   return const_column_type { experimental::submdspan( this->underlying_span(), experimental::full_extent, j ) };
 }
@@ -417,7 +417,7 @@ template < class T, size_t R, size_t C, class L, class A > requires ( ( R >= 0 )
 template < class T, size_t R, size_t C, class L, class A, typename Dummy >
 [[nodiscard]] constexpr typename fs_matrix<T,R,C,L,A,Dummy>::const_row_type fs_matrix<T,R,C,L,A,Dummy>::
 #endif
-row( typename fs_matrix<T,R,C,L,A>::index_type i ) const
+row( index_type i ) const
 {
   return const_row_type { experimental::submdspan( this->underlying_span(), i, experimental::full_extent ) };
 }
@@ -444,7 +444,7 @@ template < class T, size_t R, size_t C, class L, class A > requires ( ( R >= 0 )
 template < class T, size_t R, size_t C, class L, class A, typename Dummy >
 [[nodiscard]] constexpr typename fs_matrix<T,R,C,L,A,Dummy>::column_type fs_matrix<T,R,C,L,A,Dummy>::
 #endif
-column( typename fs_matrix<T,R,C,L,A>::index_type j )
+column( index_type j )
 {
   return column_type { experimental::submdspan( this->underlying_span(), experimental::full_extent, j ) };
 }
@@ -456,7 +456,7 @@ template < class T, size_t R, size_t C, class L, class A > requires ( ( R >= 0 )
 template < class T, size_t R, size_t C, class L, class A, typename Dummy >
 [[nodiscard]] constexpr typename fs_matrix<T,R,C,L,A,Dummy>::row_type fs_matrix<T,R,C,L,A,Dummy>::
 #endif
-row( typename fs_matrix<T,R,C,L,A>::index_type i )
+row( index_type i )
 {
   return row_type { experimental::submdspan( this->underlying_span(), i, experimental::full_extent ) };
 }

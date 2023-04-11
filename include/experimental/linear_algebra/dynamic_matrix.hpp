@@ -171,7 +171,7 @@ class dr_matrix : public dr_tensor<T,2,Alloc,L,Access>
     #else
     template < class Lambda,
                typename = enable_if_t< is_default_constructible_v<allocator_type> &&
-                                       is_convertible_to< decltype( declval<Lambda&&>()( declval<index_type>(), declval<index_type>() ) ), element_type > > >
+                                       is_convertible_v< decltype( declval<Lambda&&>()( declval<index_type>(), declval<index_type>() ) ), element_type > > >
     #endif
     constexpr dr_matrix( extents_type s, Lambda&& lambda ) noexcept( noexcept( base_type(s,lambda) ) )
     #ifdef LINALG_ENABLE_CONCEPTS
@@ -190,12 +190,14 @@ class dr_matrix : public dr_tensor<T,2,Alloc,L,Access>
     #else
     template < class Lambda,
                typename = enable_if_t< is_default_constructible_v<allocator_type> &&
-                                       is_convertible_to< decltype( declval<Lambda&&>()( declval<index_type>(), declval<index_type>() ) ), element_type > > >
+                                       is_convertible_v< decltype( declval<Lambda&&>()( declval<index_type>(), declval<index_type>() ) ), element_type > > >
     #endif
     constexpr dr_matrix( extents_type s, extents_type cap, Lambda&& lambda ) noexcept( noexcept( base_type(s,cap,lambda) ) )
     #ifdef LINALG_ENABLE_CONCEPTS
       requires is_default_constructible_v<allocator_type> &&
                requires { { declval<Lambda&&>()( declval<index_type>(), declval<index_type>() ) } -> convertible_to<element_type>; };
+    #else
+      ;
     #endif
     /// @brief Construct empty dimensionless matrix with an allocator
     /// @param alloc allocator to construct with
@@ -228,7 +230,7 @@ class dr_matrix : public dr_tensor<T,2,Alloc,L,Access>
     template < class Lambda >
     #else
     template < class Lambda,
-               typename = enable_if_t< is_convertible_to< decltype( declval<Lambda&&>()( declval<index_type>(), declval<index_type>() ) ), element_type > > >
+               typename = enable_if_t< is_convertible_v< decltype( declval<Lambda&&>()( declval<index_type>(), declval<index_type>() ) ), element_type > > >
     #endif
     constexpr dr_matrix( extents_type s, Lambda&& lambda, const allocator_type& alloc ) noexcept( noexcept( base_type(s,lambda,alloc) ) )
     #ifdef LINALG_ENABLE_CONCEPTS
@@ -246,7 +248,7 @@ class dr_matrix : public dr_tensor<T,2,Alloc,L,Access>
     template < class Lambda >
     #else
     template < class Lambda,
-               typename = enable_if_t< is_convertible_to< decltype( declval<Lambda&&>()( declval<index_type>(), declval<index_type>() ) ), element_type > > >
+               typename = enable_if_t< is_convertible_v< decltype( declval<Lambda&&>()( declval<index_type>(), declval<index_type>() ) ), element_type > > >
     #endif
     constexpr dr_matrix( extents_type s, extents_type cap, Lambda&& lambda, const allocator_type& alloc ) noexcept( noexcept( base_type(s,cap,lambda,alloc) ) )
     #ifdef LINALG_ENABLE_CONCEPTS
@@ -589,14 +591,14 @@ dr_matrix<T,Alloc,L,Access>::row_capacity() const noexcept
 
 template < class T, class Alloc, class L, class Access >
 [[nodiscard]] constexpr typename dr_matrix<T,Alloc,L,Access>::const_column_type
-dr_matrix<T,Alloc,L,Access>::column( typename dr_matrix<T,Alloc,L,Access>::index_type j ) const
+dr_matrix<T,Alloc,L,Access>::column( index_type j ) const
 {
   return const_column_type { experimental::submdspan( this->underlying_span(), experimental::full_extent, j ) };
 }
 
 template < class T, class Alloc, class L, class Access >
 [[nodiscard]] constexpr typename dr_matrix<T,Alloc,L,Access>::const_row_type
-dr_matrix<T,Alloc,L,Access>::row( typename dr_matrix<T,Alloc,L,Access>::index_type i ) const
+dr_matrix<T,Alloc,L,Access>::row( index_type i ) const
 {
   return const_row_type { experimental::submdspan( this->underlying_span(), i, experimental::full_extent ) };
 }
@@ -613,14 +615,14 @@ dr_matrix<T,Alloc,L,Access>::submatrix( tuple_type start,
 
 template < class T, class Alloc, class L, class Access >
 [[nodiscard]] constexpr typename dr_matrix<T,Alloc,L,Access>::column_type
-dr_matrix<T,Alloc,L,Access>::column( typename dr_matrix<T,Alloc,L,Access>::index_type j )
+dr_matrix<T,Alloc,L,Access>::column( index_type j )
 {
   return column_type { experimental::submdspan( this->underlying_span(), experimental::full_extent, j ) };
 }
 
 template < class T, class Alloc, class L, class Access >
 [[nodiscard]] constexpr typename dr_matrix<T,Alloc,L,Access>::row_type
-dr_matrix<T,Alloc,L,Access>::row( typename dr_matrix<T,Alloc,L,Access>::index_type i )
+dr_matrix<T,Alloc,L,Access>::row( index_type i )
 {
   return row_type { experimental::submdspan( this->underlying_span(), i, experimental::full_extent ) };
 }
