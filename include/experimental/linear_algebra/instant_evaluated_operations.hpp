@@ -66,7 +66,7 @@ class negation
       }
       else
       {
-        using result_alloc_type = allocator_traits<typename tensor_type::allocator_type>::template rebind_alloc<result_value_type>;
+        using result_alloc_type = typename allocator_traits<typename tensor_type::allocator_type>::template rebind_alloc<result_value_type>;
         return tuple( t.size(), t.capacity(), forward<Lambda>( lambda ), result_alloc_type( t.get_allocator() ) );
       }
     }
@@ -79,7 +79,7 @@ class negation
         collect_ctor_args( declval<const tensor_type&>(),
         #ifndef LINALG_COMPILER_CLANG
                            [&t]< class ... IndexType >( IndexType ... indices ) constexpr noexcept { return -( detail::access( t, indices ... ) ); } ) ) ) )
-        #else
+        #else // Clang does not allow use of input variables in lambda expression inside noexcept specification
                            []< class ... IndexType >( IndexType ... indices ) constexpr noexcept { return tensor_type::value_type(); } ) ) ) )
         #endif
     {
@@ -161,12 +161,12 @@ class addition
       {
         if constexpr ( is_same_v<first_tensor_type,result_tensor_type> )
         {
-          using result_alloc_type = allocator_traits<typename first_tensor_type::allocator_type>::template rebind_alloc<result_value_type>;
+          using result_alloc_type = typename allocator_traits<typename first_tensor_type::allocator_type>::template rebind_alloc<result_value_type>;
           return tuple( t1.size(), t1.capacity(), forward<Lambda>( lambda ), result_alloc_type( t1.get_allocator() ) );
         }
         else
         {
-          using result_alloc_type = allocator_traits<typename second_tensor_type::allocator_type>::template rebind_alloc<result_value_type>;
+          using result_alloc_type = typename allocator_traits<typename second_tensor_type::allocator_type>::template rebind_alloc<result_value_type>;
           return tuple( t2.size(), t2.capacity(), forward<Lambda>( lambda ), result_alloc_type( t2.get_allocator() ) );
         }
       }
@@ -195,8 +195,13 @@ class addition
       noexcept( noexcept( detail::make_from_tuple< result_tensor_type >(
         collect_ctor_args( declval<const first_tensor_type&>(),
                             declval<const second_tensor_type&>(),
+        #ifndef LINALG_COMPILER_CLANG
                             [&t1,&t2]< class ... IndexType >( IndexType ... indices ) constexpr noexcept
                               { return detail::access( t1, indices ... ) + detail::access( t2, indices ... ); } ) ) ) )
+        #else // Clang does not allow use of input variables in lambda expression inside noexcept specification
+                            []< class ... IndexType >( IndexType ... indices ) constexpr noexcept
+                              { return typename result_tensor_type::value_type(); } ) ) ) )
+        #endif
     {
       // LEAVING FOR REFERENCE IN CASE NEED LATER
       // Define addition operation on each element pair
@@ -213,8 +218,13 @@ class addition
     /// @brief Returns t1 += t2
     [[nodiscard]] static constexpr first_tensor_type& add( first_tensor_type& t1, const second_tensor_type& t2 )
       noexcept( noexcept( detail::apply_all( t1.underlying_span(),
+      #ifndef LINALG_COMPILER_CLANG
                                              [&t1,&t2]< class ... IndexType >( IndexType ... indices ) constexpr noexcept
                                                { static_cast<void>( detail::access( t1, indices ... ) += detail::access( t2, indices ... ) ); },
+      #else // Clang does not allow use of input variables in lambda expression inside noexcept specification
+                                             []< class ... IndexType >( IndexType ... indices ) constexpr noexcept
+                                               { return typename first_tensor_type::value_type(); },
+      #endif
                                              LINALG_EXECUTION_UNSEQ ) ) )
     {
       auto add_lambda = [&t1,&t2]< class ... IndexType >( IndexType ... indices ) constexpr noexcept
@@ -291,12 +301,12 @@ class subtraction
       {
         if constexpr ( is_same_v<first_tensor_type,result_tensor_type> )
         {
-          using result_alloc_type = allocator_traits<typename first_tensor_type::allocator_type>::template rebind_alloc<result_value_type>;
+          using result_alloc_type = typename allocator_traits<typename first_tensor_type::allocator_type>::template rebind_alloc<result_value_type>;
           return tuple( t1.size(), t1.capacity(), forward<Lambda>( lambda ), result_alloc_type( t1.get_allocator() ) );
         }
         else
         {
-          using result_alloc_type = allocator_traits<typename second_tensor_type::allocator_type>::template rebind_alloc<result_value_type>;
+          using result_alloc_type = typename allocator_traits<typename second_tensor_type::allocator_type>::template rebind_alloc<result_value_type>;
           return tuple( t2.size(), t2.capacity(), forward<Lambda>( lambda ), result_alloc_type( t2.get_allocator() ) );
         }
       }
@@ -309,8 +319,13 @@ class subtraction
       noexcept( noexcept( detail::make_from_tuple< result_tensor_type >(
         collect_ctor_args( declval<const first_tensor_type&>(),
                             declval<const second_tensor_type&>(),
+        #ifndef LINALG_COMPILER_CLANG
                             [&t1,&t2]< class ... IndexType >( IndexType ... indices ) constexpr noexcept
                               { return detail::access( t1, indices ... ) - detail::access( t2, indices ... ); } ) ) ) )
+        #else // Clang does not allow use of input variables in lambda expression inside noexcept specification
+                            []< class ... IndexType >( IndexType ... indices ) constexpr noexcept
+                              { return typename result_tensor_type::value_type(); } ) ) ) )
+        #endif
     {
       auto subtract_lambda = [&t1,&t2]< class ... IndexType >( IndexType ... indices ) constexpr noexcept
         { return detail::access( t1, indices ... ) - detail::access( t2, indices ... ); };
@@ -320,8 +335,13 @@ class subtraction
     /// @brief Returns t1 -= t2
     [[nodiscard]] static constexpr first_tensor_type& subtract( first_tensor_type& t1, const second_tensor_type& t2 )
       noexcept( noexcept( detail::apply_all( t1.underlying_span(),
+        #ifndef LINALG_COMPILER_CLANG
                                              [&t1,&t2]< class ... IndexType >( IndexType ... indices ) constexpr noexcept
                                                { static_cast<void>( detail::access( t1, indices ... ) -= detail::access( t2, indices ... ) ); },
+        #else // Clang does not allow use of input variables in lambda expression inside noexcept specification
+                                             []< class ... IndexType >( IndexType ... indices ) constexpr noexcept
+                                               { return typename first_tensor_type::value_type(); },
+        #endif
                                              LINALG_EXECUTION_UNSEQ ) ) )
     {
       auto subtract_lambda = [&t1,&t2]< class ... IndexType >( IndexType ... indices ) constexpr noexcept
@@ -383,7 +403,7 @@ class scalar_product
       }
       else
       {
-        using result_alloc_type = allocator_traits<typename tensor_type::allocator_type>::template rebind_alloc<result_value_type>;
+        using result_alloc_type = typename allocator_traits<typename tensor_type::allocator_type>::template rebind_alloc<result_value_type>;
         return tuple( t.size(), t.capacity(), forward<Lambda>( lambda ), result_alloc_type( t.get_allocator() ) );
       }
     }
@@ -394,8 +414,13 @@ class scalar_product
     [[nodiscard]] static constexpr auto prod( const S& s, const tensor_type& t )
       noexcept( noexcept( detail::make_from_tuple< result_tensor_type >(
         collect_ctor_args( t,
+        #ifndef LINALG_COMPILER_CLANG
                            [&s,&t]< class ... IndexType >( IndexType ... indices ) constexpr noexcept
                              { return s * detail::access( t, indices ... ); } ) ) ) )
+        #else // Clang does not allow use of input variables in lambda expression inside noexcept specification
+                           []< class ... IndexType >( IndexType ... indices ) constexpr noexcept
+                             { return typename result_tensor_type::value_type(); } ) ) ) )
+        #endif
     {
       // Define product operation on each element
       auto prod_lambda = [&s,&t]< class ... IndexType >( IndexType ... indices ) constexpr noexcept
@@ -412,8 +437,13 @@ class scalar_product
     /// @brief Returns t *= s
     [[nodiscard]] static constexpr tensor_type& prod( tensor_type& t, const S& s )
       noexcept( noexcept( detail::apply_all( t.underlying_span(),
+      #ifndef LINALG_COMPILER_CLANG
                                              [&t,&s]< class ... IndexType >( IndexType ... indices ) constexpr noexcept
                                                { static_cast<void>( detail::access( t, indices ... ) += s ); },
+      #else // Clang does not allow use of input variables in lambda expression inside noexcept specification
+                                             []< class ... IndexType >( IndexType ... indices ) constexpr noexcept
+                                               { return typename tensor_type::value_type(); },
+      #endif
                                              LINALG_EXECUTION_UNSEQ ) ) )
     {
       // Define product operation on each element
@@ -477,7 +507,7 @@ struct scalar_division
       }
       else
       {
-        using result_alloc_type = allocator_traits<typename tensor_type::allocator_type>::template rebind_alloc<result_value_type>;
+        using result_alloc_type = typename allocator_traits<typename tensor_type::allocator_type>::template rebind_alloc<result_value_type>;
         return tuple( t.size(), t.capacity(), forward<Lambda>( lambda ), result_alloc_type( t.get_allocator() ) );
       }
     }
@@ -748,7 +778,7 @@ class conjugate_vector
       }
       else
       {
-        using result_alloc_type = allocator_traits<typename vector_type::allocator_type>::template rebind_alloc<result_element_type>;
+        using result_alloc_type = typename allocator_traits<typename vector_type::allocator_type>::template rebind_alloc<result_element_type>;
         return tuple( v.size(), v.capacity(), forward<Lambda>( lambda ), result_alloc_type( v.get_allocator() ) );
       }
     }
