@@ -39,7 +39,7 @@ class negation
     #ifdef LINALG_ENABLE_CONCEPTS
     template < class Lambda >
     #else
-    template < class Lambda, typename = enable_if_t< concepts::fixed_size_tensor_data_v<result_tensor_type> >
+    template < class Lambda, typename = enable_if_t< concepts::fixed_size_tensor_data_v<result_tensor_type> > >
     #endif
     [[nodiscard]] static inline constexpr decltype(auto) collect_ctor_args( [[maybe_unused]] const tensor_type&, Lambda&& lambda ) noexcept
     #ifdef LINALG_ENABLE_CONCEPTS
@@ -106,8 +106,8 @@ class addition
   private:
     // Aliases
     using result_value_type  = decay_t< decltype( declval<typename first_tensor_type::value_type>() + declval<typename second_tensor_type::value_type>() ) >;
-    using result_tensor_type = conditional_t< concepts::dynamic_tensor_data<first_tensor_type> &&
-                                                concepts::fixed_size_tensor_data<second_tensor_type>,
+    using result_tensor_type = conditional_t< concepts::dynamic_tensor_data_v<first_tensor_type> &&
+                                                concepts::fixed_size_tensor_data_v<second_tensor_type>,
                                               typename second_tensor_type::template rebind_t<result_value_type>,
                                               typename first_tensor_type::template rebind_t<result_value_type> >;
     // Gets necessary arguments for constrution
