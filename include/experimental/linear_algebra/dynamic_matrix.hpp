@@ -391,7 +391,7 @@ constexpr dr_matrix<T,Alloc,L,Access>::dr_matrix( const MDS& view )
   
 template < class T, class Alloc, class L, class Access >
 #ifndef LINALG_ENABLE_CONCEPTS
-template < typename = enable_if_t< is_default_constructible_v<allocator_type> > >
+template < typename = enable_if_t< is_default_constructible_v<typename dr_matrix<T,Alloc,L,Access>::allocator_type> > >
 #endif
 constexpr dr_matrix<T,Alloc,L,Access>::dr_matrix( extents_type s )
   noexcept( noexcept( dr_matrix<T,Alloc,L,Access>::base_type(s) ) )
@@ -406,7 +406,7 @@ constexpr dr_matrix<T,Alloc,L,Access>::dr_matrix( extents_type s )
 
 template < class T, class Alloc, class L, class Access >
 #ifndef LINALG_ENABLE_CONCEPTS
-template < typename = enable_if_t< is_default_constructible_v<allocator_type> > >
+template < typename = enable_if_t< is_default_constructible_v<typename dr_matrix<T,Alloc,L,Access>::allocator_type> > >
 #endif
 constexpr dr_matrix<T,Alloc,L,Access>::dr_matrix( extents_type s, extents_type cap )
   noexcept( noexcept( dr_matrix<T,Alloc,L,Access>::base_type(s,cap) ) )

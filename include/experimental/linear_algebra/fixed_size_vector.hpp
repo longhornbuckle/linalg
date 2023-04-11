@@ -30,7 +30,7 @@ template < class  T,
 #ifdef LINALG_ENABLE_CONCEPTS
            > requires ( N >= 0 ) // Number of elements must be >= 0
 #else
-           typename = enable_if_t< ( N >= 0 ) > >
+           , typename = enable_if_t< ( N >= 0 ) > >
 #endif
 class fs_vector : public fs_tensor<T,L,A,N>
 {
