@@ -991,7 +991,11 @@ constexpr dr_tensor<T,R,Alloc,L,Access>& dr_tensor<T,R,Alloc,L,Access>::operator
       allocator_traits<allocator_type>::deallocate( this->alloc_, this->elems_, this->linear_capacity() );
       // Propogate allocator
       if constexpr ( typename allocator_traits<allocator_type>::propagate_on_container_copy_assignment() &&
+      #ifdef LINALG_ENABLE_CONCEPTS
                      concepts::dynamic_tensor<T2> )
+      #else
+                     concepts::dynamic_tensor_v<T2> )
+      #endif
       {
         this->alloc_ = rhs.get_allocator();
       }
@@ -1028,7 +1032,11 @@ constexpr dr_tensor<T,R,Alloc,L,Access>& dr_tensor<T,R,Alloc,L,Access>::operator
     this->destroy_all();
     // Propogate allocator
     if constexpr ( typename allocator_traits<allocator_type>::propagate_on_container_copy_assignment() &&
+    #ifdef LINALG_ENABLE_CONCEPTS
                    concepts::dynamic_tensor<T2> )
+    #else
+                   concepts::dynamic_tensor_v<T2> )
+    #endif
     {
       this->alloc_ = rhs.get_allocator();
     }
@@ -1250,32 +1258,32 @@ template < class ... SliceArgs >
 #if LINALG_USE_BRACKET_OPERATOR
 template < class T, size_t R, class Alloc, class L , class Access >
 template < class ... IndexType >
-[[nodiscard]] constexpr dr_tensor<T,R,Alloc,L,Access>::reference_type
+[[nodiscard]] constexpr typename dr_tensor<T,R,Alloc,L,Access>::reference_type
 dr_tensor<T,R,Alloc,L,Access>::operator[]( IndexType ... indices ) noexcept
 #ifdef LINALG_ENABLE_CONCEPTS
   requires ( sizeof...(IndexType) == R ) && ( is_convertible_v<IndexType,typename dr_tensor<T,R,Alloc,L,Access>::index_type> && ... )
 #endif
 {
-  return this->underlying_span()[ indices ... ];
+  return detail::access( this->underlying_span(), indices ... );
 }
 #endif
 
 #if LINALG_USE_PAREN_OPERATOR
 template < class T, size_t R, class Alloc, class L , class Access >
 template < class ... IndexType >
-[[nodiscard]] constexpr dr_tensor<T,R,Alloc,L,Access>::reference_type
+[[nodiscard]] constexpr typename dr_tensor<T,R,Alloc,L,Access>::reference_type
 dr_tensor<T,R,Alloc,L,Access>::operator()( IndexType ... indices ) noexcept
 #ifdef LINALG_ENABLE_CONCEPTS
   requires ( sizeof...(IndexType) == R ) && ( is_convertible_v<IndexType,typename dr_tensor<T,R,Alloc,L,Access>::index_type> && ... )
 #endif
 {
-  return this->underlying_span()( indices ... );
+  return detail::access( this->underlying_span(), indices ... );
 }
 #endif
 
 template < class T, size_t R, class Alloc, class L , class Access >
 template < class ... IndexType >
-[[nodiscard]] constexpr dr_tensor<T,R,Alloc,L,Access>::reference_type
+[[nodiscard]] constexpr typename dr_tensor<T,R,Alloc,L,Access>::reference_type
 dr_tensor<T,R,Alloc,L,Access>::at( IndexType ... indices )
 #ifdef LINALG_ENABLE_CONCEPTS
   requires ( sizeof...(IndexType) == R ) && ( is_convertible_v<IndexType,typename dr_tensor<T,R,Alloc,L,Access>::index_type> && ... )

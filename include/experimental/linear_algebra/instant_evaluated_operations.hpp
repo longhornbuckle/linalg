@@ -1221,11 +1221,11 @@ class matrix_matrix_product
       auto lambda = [&m1,&m2]< class IndexType1, class IndexType2 >( IndexType1 index1, IndexType2 index2 ) constexpr noexcept
       {
         result_value_type result = 0;
-        for_each( LINALG_EXECUTION_UNSEQ,
-                  detail::faux_index_iterator<typename first_matrix_type::index_type>( 0 ),
-                  detail::faux_index_iterator<typename first_matrix_type::index_type>( m1.size().extent(1) ),
-                  [ &m1, &m2, &index1, &index2, &result ] ( typename first_matrix_type::index_type index ) constexpr noexcept
-                    { result += detail::access( m1, index1, index ) * detail::access( m2, index, index2 ); } );
+        detail::for_each( LINALG_EXECUTION_UNSEQ,
+                          detail::faux_index_iterator<typename first_matrix_type::index_type>( 0 ),
+                          detail::faux_index_iterator<typename first_matrix_type::index_type>( m1.size().extent(1) ),
+                          [ &m1, &m2, &index1, &index2, &result ] ( typename first_matrix_type::index_type index ) constexpr noexcept
+                            { result += detail::access( m1, index1, index ) * detail::access( m2, index, index2 ); } );
         return result;
       };
       // Construct multiplication matrix
