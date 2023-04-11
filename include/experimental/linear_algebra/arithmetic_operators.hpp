@@ -291,7 +291,8 @@ outer_prod( const V1& v1, const V2& v2 ) noexcept( noexcept( operations::templat
 template < concepts::vector_data V, concepts::matrix_data M >
 #else
 template < class V, class M,
-           typename = enable_if_t< concepts::vector_data_v<V> && concepts::matrix_data_v<M> >,
+           typename = enable_if_t< concepts::vector_data_v<V> &&
+                                   concepts::matrix_data_v<M> >,
            typename = enable_if_t<true>,
            typename = enable_if_t<true> >
 #endif
@@ -311,7 +312,7 @@ template < concepts::vector_data V, concepts::matrix_data M >
 template < class V, class M,
            typename = enable_if_t< concepts::vector_data_v<V> &&
                                    concepts::matrix_data_v<M> &&
-                                   detail::extents_may_be_equal_v< typename V::extents_type, typename decltype( const_cast<const V&>(v) * m )::extents_type > > >
+                                   detail::extents_may_be_equal_v< typename V::extents_type, typename decltype( declval<V>() * declval<M>() )::extents_type > > >
 #endif
 [[nodiscard]] inline constexpr V&
 operator *= ( V& v, const M& m )
