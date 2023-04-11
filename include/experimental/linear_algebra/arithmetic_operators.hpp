@@ -46,7 +46,7 @@ trans( const M& m ) noexcept( noexcept( operations::template transpose_matrix<M>
 #ifdef LINALG_ENABLE_CONCEPTS
 template < concepts::vector_data V >
 #else
-template < class V, typename = enable_if_t< concepts::vector_data_v<V> > >
+template < class V, typename = enable_if_t< concepts::vector_data_v<V> >, typename = enable_if_t<true> >
 #endif
 [[nodiscard]] inline constexpr decltype(auto)
 trans( const V& v ) noexcept( noexcept( operations::template transpose_vector<V>::trans( v ) ) )
@@ -71,7 +71,7 @@ conj( const M& m ) noexcept( noexcept( operations::template conjugate_matrix<M>:
 #ifdef LINALG_ENABLE_CONCEPTS
 template < concepts::vector_data V >
 #else
-template < class V, typename = enable_if_t< concepts::vector_data_v<V> > >
+template < class V, typename = enable_if_t< concepts::vector_data_v<V> >, typename = enable_if_t<true> >
 #endif
 [[nodiscard]] inline constexpr decltype(auto)
 conj( const V& v ) noexcept( noexcept( operations::template conjugate_vector<V>::conjugate( v ) ) )
@@ -155,7 +155,7 @@ template < class S, concepts::tensor_data T >
 #else
 template < class S, class T,
            typename = enable_if_t< concepts::tensor_data_v<T> &&
-                                   has_scalar_premultiply_func_v<T,S> > >
+                                   concepts::has_scalar_premultiply_func_v<T,S> > >
 #endif
 [[nodiscard]] inline constexpr decltype(auto)
 operator * ( const S& s, const T& t )
@@ -176,7 +176,7 @@ template < concepts::tensor_data T, class S >
 #else
 template < class T, class S,
            typename = enable_if_t< concepts::tensor_data_v<T> &&
-                                   has_scalar_postmultiply_func_v<T,S> > >
+                                   concepts::has_scalar_postmultiply_func_v<T,S> > >
 #endif
 [[nodiscard]] inline constexpr decltype(auto)
 operator * ( const T& t, const S& s )
@@ -197,7 +197,7 @@ template < concepts::tensor_data T, class S >
 #else
 template < class T, class S,
            typename = enable_if_t< concepts::tensor_data_v<T> &&
-                                   has_scalar_postmultiply_func_v<T,S> &&
+                                   concepts::has_scalar_postmultiply_func_v<T,S> &&
                                    is_convertible_v< decltype( declval<typename T::value_type>() * declval<S>() ), typename T::element_type > > >
 #endif
 [[nodiscard]] inline constexpr T&
@@ -220,7 +220,7 @@ template < concepts::tensor_data T, class S >
 #else
 template < class T, class S,
            typename = enable_if_t< concepts::tensor_data_v<T> &&
-                                   has_scalar_divide_func_v<T,S> > >
+                                   concepts::has_scalar_divide_func_v<T,S> > >
 #endif
 [[nodiscard]] inline constexpr decltype(auto)
 operator / ( const T& t, const S& s )
@@ -240,7 +240,7 @@ template < concepts::tensor_data T, class S >
 #else
 template < class T, class S,
            typename = enable_if_t< concepts::tensor_data_v<T> &&
-                                   has_scalar_divide_func_v<T,S> &&
+                                   concepts::has_scalar_divide_func_v<T,S> &&
                                    is_convertible_v< decltype( declval<typename T::value_type>() * declval<S>() ), typename T::element_type > > >
 #endif
 [[nodiscard]] inline constexpr T&
