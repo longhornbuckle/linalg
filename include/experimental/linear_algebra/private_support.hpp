@@ -152,13 +152,13 @@ inline constexpr bool extents_may_be_equal_v = extents_may_be_equal<T,U>::value;
 //  Test if type extents is equal
 //==================================================================================================
 template < class T, class U >
-struct extents_is_equal : public
+struct extents_are_equal : public
   conditional_t< extents_may_be_equal_v<T,U> && extents_is_static_v<T> && extents_is_static_v<U>,
                  true_type,
                  false_type > {};
 
 template < class T, class U >
-inline constexpr bool extents_is_equal_v = extents_is_equal<T,U>::value;
+inline constexpr bool extents_are_equal_v = extents_are_equal<T,U>::value;
 
 //==================================================================================================
 //  Returns the number of dimensions with non-dynamic extent greater than one
@@ -853,10 +853,10 @@ template < class ToView, class FromView
 #endif
 constexpr ToView&
 assign_view( ToView& to_view, const FromView& from_view )
-  noexcept( extents_is_equal_v<typename FromView::extents_type,typename ToView::extents_type> &&
+  noexcept( extents_are_equal_v<typename FromView::extents_type,typename ToView::extents_type> &&
             is_nothrow_convertible_v<typename FromView::reference,typename ToView::element_type> )
 {
-  if constexpr ( extents_is_equal_v<typename FromView::extents_type,typename ToView::extents_type> )
+  if constexpr ( extents_are_equal_v<typename FromView::extents_type,typename ToView::extents_type> )
   {
     apply_all( from_view,
                [ &to_view, &from_view ]< class ... Indices >( Indices ... indices )
@@ -897,10 +897,10 @@ template < class ToView, class FromView
 #endif
 constexpr void
 copy_view( ToView& to_view, const FromView& from_view )
-  noexcept( extents_is_equal_v<typename FromView::extents_type,typename ToView::extents_type> &&
+  noexcept( extents_are_equal_v<typename FromView::extents_type,typename ToView::extents_type> &&
             is_nothrow_convertible_v<typename FromView::reference,typename ToView::element_type> )
 {
-  if constexpr ( extents_is_equal_v<typename FromView::extents_type,typename ToView::extents_type> )
+  if constexpr ( extents_are_equal_v<typename FromView::extents_type,typename ToView::extents_type> )
   {
     apply_all( forward<ToView>( to_view ),
               [ &to_view, &from_view ]< class ... Indices >( Indices ... indices )

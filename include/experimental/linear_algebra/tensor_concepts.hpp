@@ -213,7 +213,7 @@ template < class From, class To >
 concept view_is_constructible_to_tensor =
 detail::is_mdspan_v<From> && tensor<To> &&
 ( is_constructible_v<typename From::value_type,typename To::value_type> ) &&
-detail::extents_is_equal_v< typename From::extents_type, typename To::extents_type >;
+detail::extents_are_equal_v< typename From::extents_type, typename To::extents_type >;
 
 // View is nothrow constructible to tensor
 // Enforces view is an mdspan of rank equal to tensor with elements
@@ -223,7 +223,7 @@ template < class From, class To >
 concept view_is_nothrow_constructible_to_tensor =
 detail::is_mdspan_v<From> && tensor<To> &&
 ( is_nothrow_constructible_v<typename From::value_type,typename To::value_type> ) &&
-detail::extents_is_equal_v< typename From::extents_type, typename To::extents_type >;
+detail::extents_are_equal_v< typename From::extents_type, typename To::extents_type >;
 
 #else
 
@@ -382,6 +382,18 @@ template < class T, class = void > struct has_conj_func : public false_type { };
 template < class T > struct has_conj_func< T, std::enable_if_t< std::is_same_v< decltype( conj( declval<T>() ) ), decltype( conj( declval<T>() ) ) > > > : public true_type { };
 template < class T > inline constexpr bool has_conj_func_v = has_conj_func<T>::value;
 
+//- Additional tests
+
+// Test for extents which may be equal
+template < class T, class U, class = void > struct extents_may_be_equal : public false_type { };
+template < class T, class U > struct extents_may_be_equal< T, std::enable_if_t< detail::extents_may_be_equal_v< typename T::extents_type, typename U::extents_type > > > : public true_type { };
+template < class T, class U > inline constexpr bool extents_may_be_equal_v = extents_may_be_equal<T>::value;
+
+// Test for extents which are equal
+template < class T, class U, class = void > struct extents_are_equal : public false_type { };
+template < class T, class U > struct extents_are_equal< T, std::enable_if_t< detail::extents_are_equal_v< typename T::extents_type, typename U::extents_type > > > : public true_type { };
+template < class T, class U > inline constexpr bool extents_are_equal_v = extents_is_be_equal<T>::value;
+
 //- Test for tensors
 
 // Tensor data
@@ -479,7 +491,7 @@ template < class From, class To >
 inline constexpr bool tensor_may_be_constructible =
 tensor_v<From> && tensor_v<To> &&
 ( is_constructible_v< typename From::value_type, typename To::value_type > ) &&
-detail::extents_may_be_equal_v< typename From::extents_type, typename To::extents_type >;
+extents_may_be_equal_v< From, To >;
 
 // View may be constructible to tensor
 // Enforces view is an mdspan of rank equal to tensor with elements
@@ -489,7 +501,7 @@ template < class From, class To >
 inline constexpr bool view_may_be_constructible_to_tensor =
 detail::is_mdspan_v<From> && tensor_v<To> &&
 ( is_constructible_v<typename From::value_type,typename To::value_type> ) &&
-detail::extents_may_be_equal_v< typename From::extents_type, typename To::extents_type >;
+extents_may_be_equal_v< From, To >;
 
 // View is constructible to tensor
 // Enforces view is an mdspan of rank equal to tensor with elements
@@ -499,7 +511,7 @@ template < class From, class To >
 inline constexpr bool view_is_constructible_to_tensor =
 detail::is_mdspan_v<From> && tensor_v<To> &&
 ( is_constructible_v<typename From::value_type,typename To::value_type> ) &&
-detail::extents_is_equal_v< typename From::extents_type, typename To::extents_type >;
+extents_are_equal_v< From, To >;
 
 // View is nothrow constructible to tensor
 // Enforces view is an mdspan of rank equal to tensor with elements
@@ -509,7 +521,7 @@ template < class From, class To >
 inline constexpr bool view_is_nothrow_constructible_to_tensor =
 detail::is_mdspan_v<From> && tensor_v<To> &&
 ( is_nothrow_constructible_v<typename From::value_type,typename To::value_type> ) &&
-detail::extents_is_equal_v< typename From::extents_type, typename To::extents_type >;
+extents_are_equal_v< From, To >;
 
 #endif
 

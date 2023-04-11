@@ -1365,12 +1365,12 @@ class inner_product
     template < typename = enable_if_t< detail::extents_may_be_equal_v<typename first_vector_type::extents_type,typename second_vector_type::extents_type> > >
     #endif
     [[nodiscard]] static constexpr auto prod( const first_vector_type& v1, const second_vector_type& v2 )
-      noexcept( detail::extents_is_equal_v<typename first_vector_type::extents_type,typename second_vector_type::extents_type> )
+      noexcept( detail::extents_are_equal_v<typename first_vector_type::extents_type,typename second_vector_type::extents_type> )
     #ifdef LINALG_ENABLE_CONCEPTS
       requires detail::extents_may_be_equal_v<typename first_vector_type::extents_type,typename second_vector_type::extents_type>
     #endif
     {
-      if constexpr ( !detail::extents_is_equal_v<typename first_vector_type::extents_type,typename second_vector_type::extents_type> )
+      if constexpr ( !detail::extents_are_equal_v<typename first_vector_type::extents_type,typename second_vector_type::extents_type> )
       {
         // Check if sizes are equal
         if ( !( v1.size() == v2.size() ) ) [[unlikely]]
