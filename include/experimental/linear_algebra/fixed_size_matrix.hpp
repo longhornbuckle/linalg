@@ -136,7 +136,7 @@ class fs_matrix : public fs_tensor<T,L,A,R,C>
     #ifdef LINALG_ENABLE_CONCEPTS
     template < concepts::view_may_be_constructible_to_tensor< fs_matrix > MDS >
     #else
-    template < class MDS, typename = enable_if_t< concepts::view_may_be_constructible_to_tensor<MDS,fs_matrix> && is_default_constructible_v<allocator_type> > >
+    template < class MDS, typename = enable_if_t< concepts::view_may_be_constructible_to_tensor<MDS,fs_matrix> > >
     #endif
     explicit constexpr fs_matrix( const MDS& view ) noexcept( noexcept( base_type(view) ) );
     /// @brief Construct by applying lambda to every element in the matrix

@@ -1011,7 +1011,11 @@ constexpr dr_tensor<T,R,Alloc,L,Access>& dr_tensor<T,R,Alloc,L,Access>::operator
     else
     {
       if constexpr ( typename allocator_traits<allocator_type>::propagate_on_container_copy_assignment() &&
+      #ifdef LINALG_ENABLE_CONCEPTS
                      concepts::dynamic_tensor<T2> )
+      #else
+                     concepts::dynamic_tensor_v<T2> )
+      #endif
       {
         // Deallocate
         allocator_traits<allocator_type>::deallocate( this->alloc_, this->elems_, this->linear_capacity() );
@@ -1488,7 +1492,7 @@ dr_tensor<T,R,Alloc,L,Access>::resize_impl( extents_type new_size,
                                                     destroy_extent(Indices) ...  );
     // Define destructor lambda
     auto destructor = [this]< class ... IndexType >( IndexType ... indices ) constexpr noexcept( is_nothrow_destructible_v<element_type> )
-      { this->view_[ indices ... ].~element_type(); };
+      { detail::access( this->view_, indices ... ).~element_type(); };
     // Destroy
     detail::apply_all( destroy_subview, destructor, LINALG_EXECUTION_UNSEQ );
     // Create subview of elements to be constructed
@@ -1502,7 +1506,7 @@ dr_tensor<T,R,Alloc,L,Access>::resize_impl( extents_type new_size,
                                                       construct_extent(Indices) ...  );
     // Define constructor lambda
     auto constructor = [this]< class ... IndexType >( IndexType ... indices ) constexpr noexcept( is_nothrow_default_constructible_v<element_type> )
-      { ::new ( addressof( this->view( indices ... ) ) ) element_type(); };
+      { ::new ( addressof( detail::access( this->view_, indices ... ) ) ) element_type(); };
     // Construct
     detail::apply_all( construct_subview, constructor, LINALG_EXECUTION_UNSEQ );
   }
@@ -1519,7 +1523,7 @@ dr_tensor<T,R,Alloc,L,Access>::max_extents( extents_type extents_a, extents_type
   // Iterate over each dimension and set max
   detail::for_each( LINALG_EXECUTION_UNSEQ,
                     detail::faux_index_iterator<index_type>(0),
-                    detail::faux_index_iterator<index_type>( extents_type::rank() ),
+                    detail::faux_index_iterator<index_type>( index_type(extents_type::rank()) ),
                     [&max_extents,&extents_a,&extents_b] ( index_type index ) constexpr noexcept
                     {
                       max_extents[index] = ( extents_a.extent(index) > extents_b.extent(index) ) ? extents_a.extent(index) : extents_b.extent(index);
