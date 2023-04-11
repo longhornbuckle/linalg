@@ -261,7 +261,7 @@ class subtraction
                                               concepts::dynamic_tensor_data<first_tensor_type> &&
                                                 concepts::fixed_size_tensor_data<second_tensor_type>,
                                               #else
-                                              concepts::dynamic_tensor_data_v<first_tensor_type>
+                                              concepts::dynamic_tensor_data_v<first_tensor_type> &&
                                                 concepts::fixed_size_tensor_data_v<second_tensor_type>,
                                               #endif
                                               typename second_tensor_type::template rebind_t<result_value_type>,
