@@ -131,7 +131,7 @@ class dr_matrix : public dr_tensor<T,2,Alloc,L,Access>
     #ifdef LINALG_ENABLE_CONCEPTS
     template < concepts::view_may_be_constructible_to_tensor< dr_matrix > MDS >
     #else
-    template < class MDS, typename = enable_if_t< concepts::view_may_be_constructible_to_tensor<MDS,dr_matrix> && is_default_constructible_v<allocator_type> > >
+    template < class MDS, typename = enable_if_t< concepts::view_may_be_constructible_to_tensor<MDS,dr_matrix> && is_default_constructible_v<allocator_type> >, typename = enable_if_t<true> >
     #endif
     explicit constexpr dr_matrix( const MDS& view ) noexcept( noexcept( base_type(view) ) )
     #ifdef LINALG_ENABLE_CONCEPTS
@@ -281,7 +281,7 @@ class dr_matrix : public dr_tensor<T,2,Alloc,L,Access>
     #ifdef LINALG_ENABLE_CONCEPTS
     template < concepts::view_may_be_constructible_to_tensor< dr_matrix > MDS >
     #else
-    template < class MDS, typename = enable_if_t< concepts::view_may_be_constructible_to_tensor<MDS,dr_matrix> && is_default_constructible_v<allocator_type> > >
+    template < class MDS, typename = enable_if_t< concepts::view_may_be_constructible_to_tensor<MDS,dr_matrix> && is_default_constructible_v<allocator_type> >, typename = enable_if_t<true> >
     #endif
     constexpr dr_matrix& operator = ( const MDS& view ) noexcept( noexcept( declval<base_type>() = view ) );
 
@@ -376,7 +376,7 @@ template < class T, class Alloc, class L, class Access >
 #ifdef LINALG_ENABLE_CONCEPTS
 template < concepts::view_may_be_constructible_to_tensor< dr_matrix<T,Alloc,L,Access> > MDS >
 #else
-template < class MDS, typename >
+template < class MDS, typename, typename >
 #endif
 constexpr dr_matrix<T,Alloc,L,Access>::dr_matrix( const MDS& view )
   noexcept( noexcept( dr_matrix<T,Alloc,L,Access>::base_type(view) ) )
@@ -547,7 +547,7 @@ template < class T, class Alloc, class L, class Access >
 #ifdef LINALG_ENABLE_CONCEPTS
 template < concepts::view_may_be_constructible_to_tensor< dr_matrix<T,Alloc,L,Access> > MDS >
 #else
-template < class MDS, typename >
+template < class MDS, typename, typename >
 #endif
 constexpr dr_matrix<T,Alloc,L,Access>& dr_matrix<T,Alloc,L,Access>::operator = ( const MDS& view )
   noexcept( noexcept( declval<typename dr_matrix<T,Alloc,L,Access>::base_type>() = view ) )
