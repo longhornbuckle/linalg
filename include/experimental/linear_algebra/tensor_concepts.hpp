@@ -386,13 +386,13 @@ template < class T > inline constexpr bool has_conj_func_v = has_conj_func<T>::v
 
 // Test for extents which may be equal
 template < class T, class U, class = void > struct extents_may_be_equal : public false_type { };
-template < class T, class U > struct extents_may_be_equal< T, std::enable_if_t< detail::extents_may_be_equal_v< typename T::extents_type, typename U::extents_type > > > : public true_type { };
-template < class T, class U > inline constexpr bool extents_may_be_equal_v = extents_may_be_equal<T>::value;
+template < class T, class U > struct extents_may_be_equal< T, U, std::enable_if_t< detail::extents_may_be_equal_v< typename T::extents_type, typename U::extents_type > > > : public true_type { };
+template < class T, class U > inline constexpr bool extents_may_be_equal_v = extents_may_be_equal<T,U>::value;
 
 // Test for extents which are equal
 template < class T, class U, class = void > struct extents_are_equal : public false_type { };
-template < class T, class U > struct extents_are_equal< T, std::enable_if_t< detail::extents_are_equal_v< typename T::extents_type, typename U::extents_type > > > : public true_type { };
-template < class T, class U > inline constexpr bool extents_are_equal_v = extents_is_be_equal<T>::value;
+template < class T, class U > struct extents_are_equal< T, U, std::enable_if_t< detail::extents_are_equal_v< typename T::extents_type, typename U::extents_type > > > : public true_type { };
+template < class T, class U > inline constexpr bool extents_are_equal_v = extents_is_be_equal<T,U>::value;
 
 //- Test for tensors
 
