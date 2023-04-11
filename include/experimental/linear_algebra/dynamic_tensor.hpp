@@ -1522,8 +1522,8 @@ dr_tensor<T,R,Alloc,L,Access>::max_extents( extents_type extents_a, extents_type
   array<index_type,extents_type::rank()> max_extents;
   // Iterate over each dimension and set max
   detail::for_each( LINALG_EXECUTION_UNSEQ,
-                    detail::faux_index_iterator<index_type>( index_type(0) ),
-                    detail::faux_index_iterator<index_type>( index_type(extents_type::rank()) ),
+                    detail::faux_index_iterator<index_type>( 0) ),
+                    detail::faux_index_iterator<index_type>( extents_type::rank() ),
                     [&max_extents,&extents_a,&extents_b] ( index_type index ) constexpr noexcept
                     {
                       max_extents[index] = ( extents_a.extent(index) > extents_b.extent(index) ) ? extents_a.extent(index) : extents_b.extent(index);

@@ -221,22 +221,23 @@ struct faux_index_iterator
   using reference         = T&;
   using pointer           = T*;
   using iterator_category = random_access_iterator_tag;
-  constexpr faux_index_iterator&              operator++  ()                                 noexcept { static_cast<void>(this->index++); return *this; }
-  constexpr faux_index_iterator&              operator--  ()                                 noexcept { static_cast<void>(this->index--); return *this; }
-  constexpr faux_index_iterator&              operator+=  ( const difference_type n )        noexcept { static_cast<void>(this->index+=n); return *this; }
-  constexpr faux_index_iterator&              operator-=  ( const difference_type n )        noexcept { static_cast<void>(this->index-=n); return *this; }
-  [[nodiscard]] constexpr faux_index_iterator operator+   ( const difference_type n )        noexcept { return faux_index_iterator( this->index + n ); }
-  [[nodiscard]] constexpr faux_index_iterator operator-   ( const difference_type n )        noexcept { return faux_index_iterator( this->index - n ); }
-  [[nodiscard]] constexpr difference_type     operator -  ( const faux_index_iterator& rhs ) noexcept { return difference_type( this->index - rhs.index ); }
-  [[nodiscard]] constexpr reference           operator *  ()                                 noexcept { return this->index; }
-  [[nodiscard]] constexpr pointer             operator -> ()                                 noexcept { return &(this->index); }
-  [[nodiscard]] constexpr bool                operator == ( const faux_index_iterator& rhs ) noexcept { return ( this->index == rhs.index ); }
-  [[nodiscard]] constexpr bool                operator >  ( const faux_index_iterator& rhs ) noexcept { return ( this->index > rhs.index ); }
-  [[nodiscard]] constexpr bool                operator <  ( const faux_index_iterator& rhs ) noexcept { return ( this->index < rhs.index ); }
-  [[nodiscard]] constexpr bool                operator != ( const faux_index_iterator& rhs ) noexcept { return !( *this == rhs ); }
-  [[nodiscard]] constexpr bool                operator >= ( const faux_index_iterator& rhs ) noexcept { return !( *this > rhs ); }
-  [[nodiscard]] constexpr bool                operator <= ( const faux_index_iterator& rhs ) noexcept { return !( *this < rhs ); }
-  [[nodiscard]] constexpr value_type          operator[]  ( const difference_type n )        noexcept { return this->index + n; }
+  LINALG_FORCE_INLINE_FUNCTION constexpr faux_index_iterator( T t ) noexcept : index(t) { }
+  LINALG_FORCE_INLINE_FUNCTION constexpr faux_index_iterator&              operator++  ()                                 noexcept { static_cast<void>(this->index++); return *this; }
+  LINALG_FORCE_INLINE_FUNCTION constexpr faux_index_iterator&              operator--  ()                                 noexcept { static_cast<void>(this->index--); return *this; }
+  LINALG_FORCE_INLINE_FUNCTION constexpr faux_index_iterator&              operator+=  ( const difference_type n )        noexcept { static_cast<void>(this->index+=n); return *this; }
+  LINALG_FORCE_INLINE_FUNCTION constexpr faux_index_iterator&              operator-=  ( const difference_type n )        noexcept { static_cast<void>(this->index-=n); return *this; }
+  [[nodiscard]] LINALG_FORCE_INLINE_FUNCTION constexpr faux_index_iterator operator+   ( const difference_type n )        noexcept { return faux_index_iterator( this->index + n ); }
+  [[nodiscard]] LINALG_FORCE_INLINE_FUNCTION constexpr faux_index_iterator operator-   ( const difference_type n )        noexcept { return faux_index_iterator( this->index - n ); }
+  [[nodiscard]] LINALG_FORCE_INLINE_FUNCTION constexpr difference_type     operator -  ( const faux_index_iterator& rhs ) noexcept { return difference_type( this->index - rhs.index ); }
+  [[nodiscard]] LINALG_FORCE_INLINE_FUNCTION constexpr reference           operator *  ()                                 noexcept { return this->index; }
+  [[nodiscard]] LINALG_FORCE_INLINE_FUNCTION constexpr pointer             operator -> ()                                 noexcept { return &(this->index); }
+  [[nodiscard]] LINALG_FORCE_INLINE_FUNCTION constexpr bool                operator == ( const faux_index_iterator& rhs ) noexcept { return ( this->index == rhs.index ); }
+  [[nodiscard]] LINALG_FORCE_INLINE_FUNCTION constexpr bool                operator >  ( const faux_index_iterator& rhs ) noexcept { return ( this->index > rhs.index ); }
+  [[nodiscard]] LINALG_FORCE_INLINE_FUNCTION constexpr bool                operator <  ( const faux_index_iterator& rhs ) noexcept { return ( this->index < rhs.index ); }
+  [[nodiscard]] LINALG_FORCE_INLINE_FUNCTION constexpr bool                operator != ( const faux_index_iterator& rhs ) noexcept { return !( *this == rhs ); }
+  [[nodiscard]] LINALG_FORCE_INLINE_FUNCTION constexpr bool                operator >= ( const faux_index_iterator& rhs ) noexcept { return !( *this > rhs ); }
+  [[nodiscard]] LINALG_FORCE_INLINE_FUNCTION constexpr bool                operator <= ( const faux_index_iterator& rhs ) noexcept { return !( *this < rhs ); }
+  [[nodiscard]] LINALG_FORCE_INLINE_FUNCTION constexpr value_type          operator[]  ( const difference_type n )        noexcept { return this->index + n; }
   T index;
 };
 
