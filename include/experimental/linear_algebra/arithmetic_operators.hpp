@@ -312,7 +312,8 @@ template < concepts::vector_data V, concepts::matrix_data M >
 template < class V, class M,
            typename = enable_if_t< concepts::vector_data_v<V> &&
                                    concepts::matrix_data_v<M> &&
-                                   detail::extents_may_be_equal_v< typename V::extents_type, typename decltype( declval<V>() * declval<M>() )::extents_type > > >
+                                   detail::extents_may_be_equal_v< typename V::extents_type, typename decltype( declval<V>() * declval<M>() )::extents_type > >
+           typename = enable_if_t<true> >
 #endif
 [[nodiscard]] inline constexpr V&
 operator *= ( V& v, const M& m )
@@ -369,7 +370,7 @@ template < concepts::matrix_data M1, concepts::matrix_data M2 >
 template < class M1, class M2,
            typename = enable_if_t< concepts::matrix_data_v<M1> &&
                                    concepts::matrix_data_v<M2> &&
-                                   detail::extents_may_be_equal_v< typename M1::extents_type, typename decltype( const_cast<const M1&>(m1) * m2 )::extents_type > > >
+                                   detail::extents_may_be_equal_v< typename M1::extents_type, typename decltype( declval<M1>() * declval<M2>() )::extents_type > > >
 #endif
 [[nodiscard]] inline constexpr M1&
 operator *= ( M1& m1, const M2& m2 )
