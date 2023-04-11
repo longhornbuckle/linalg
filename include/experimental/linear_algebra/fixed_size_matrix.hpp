@@ -136,7 +136,7 @@ class fs_matrix : public fs_tensor<T,L,A,R,C>
     #ifdef LINALG_ENABLE_CONCEPTS
     template < concepts::view_may_be_constructible_to_tensor< fs_matrix > MDS >
     #else
-    template < class MDS, typename = enable_if_t< concepts::view_may_be_constructible_to_tensor<MDS,fs_matrix> > >
+    template < class MDS, typename = enable_if_t< concepts::view_may_be_constructible_to_tensor<MDS,fs_matrix> >, typename = enable_if_t<true> >
     #endif
     explicit constexpr fs_matrix( const MDS& view ) noexcept( noexcept( base_type(view) ) );
     /// @brief Construct by applying lambda to every element in the matrix
@@ -145,8 +145,7 @@ class fs_matrix : public fs_tensor<T,L,A,R,C>
     template < class Lambda >
     #else
     template < class Lambda,
-               typename = enable_if_t< is_default_constructible_v<allocator_type> &&
-                                       is_convertible_to< decltype( declval<Lambda&&>()( declval<index_type>(), declval<index_type>() ) ), element_type > > >
+               typename = enable_if_t< is_convertible_to< decltype( declval<Lambda&&>()( declval<index_type>(), declval<index_type>() ) ), element_type > > >
     #endif
     explicit constexpr fs_matrix( Lambda&& lambda ) noexcept( noexcept( declval<Lambda&&>()( declval<index_type>(), declval<index_type>() ) ) )
     #ifdef LINALG_ENABLE_CONCEPTS
@@ -179,7 +178,7 @@ class fs_matrix : public fs_tensor<T,L,A,R,C>
     #ifdef LINALG_ENABLE_CONCEPTS
     template < concepts::view_may_be_constructible_to_tensor< fs_matrix > MDS >
     #else
-    template < class MDS, typename = enable_if_t< concepts::view_may_be_constructible_to_tensor<MDS,fs_matrix> > >
+    template < class MDS, typename = enable_if_t< concepts::view_may_be_constructible_to_tensor<MDS,fs_matrix> >, typename = enable_if_t<true> >
     #endif
     constexpr fs_matrix& operator = ( const MDS& view ) noexcept( noexcept( declval<base_type>() = view ) );
 
@@ -282,7 +281,7 @@ template < concepts::view_may_be_constructible_to_tensor< fs_matrix<T,R,C,L,A> >
 constexpr fs_matrix<T,R,C,L,A>::
 #else
 template < class T, size_t R, size_t C, class L, class A , typename Dummy >
-template < class MDS, typename >
+template < class MDS, typename, typename >
 constexpr fs_matrix<T,R,C,L,A,Dummy>::
 #endif
 fs_matrix( const MDS& view )
@@ -337,7 +336,7 @@ template < concepts::view_may_be_constructible_to_tensor< fs_matrix<T,R,C,L,A> >
 constexpr fs_matrix<T,R,C,L,A>& fs_matrix<T,R,C,L,A>::
 #else
 template < class T, size_t R, size_t C, class L, class A , typename Dummy >
-template < class MDS, typename >
+template < class MDS, typename, typename >
 constexpr fs_matrix<T,R,C,L,A,Dummy>& fs_matrix<T,R,C,L,A,Dummy>::
 #endif
 operator = ( const MDS& view )

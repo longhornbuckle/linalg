@@ -98,9 +98,9 @@ class dr_vector : public dr_tensor<T,1,Alloc,L,Access>
     //- Destructor / Constructors / Assignments
 
     /// @brief Default destructor
-    ~dr_vector()                                   = default;
+    ~dr_vector()                            = default;
     /// @brief Default constructor
-    constexpr dr_vector()                          = default;
+    constexpr dr_vector()                   = default;
     /// @brief Default move constructor
     /// @param dr_vector to be moved
     constexpr dr_vector( dr_vector&& )      = default;

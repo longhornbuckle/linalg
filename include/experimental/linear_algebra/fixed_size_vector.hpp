@@ -123,7 +123,7 @@ class fs_vector : public fs_tensor<T,L,A,N>
     #ifdef LINALG_ENABLE_CONCEPTS
     template < concepts::view_may_be_constructible_to_tensor< fs_vector > MDS >
     #else
-    template < class MDS, typename = enable_if_t< concepts::view_may_be_constructible_to_tensor<MDS,fs_vector> && is_default_constructible_v<allocator_type> > >
+    template < class MDS, typename = enable_if_t< concepts::view_may_be_constructible_to_tensor<MDS,fs_vector> >, typename = enable_if_t<true> >
     #endif
     explicit constexpr fs_vector( const MDS& view ) noexcept( noexcept( base_type(view) ) );
     /// @brief Construct by applying lambda to every element in the vector
@@ -132,8 +132,7 @@ class fs_vector : public fs_tensor<T,L,A,N>
     template < class Lambda >
     #else
     template < class Lambda,
-               typename = enable_if_t< is_default_constructible_v<allocator_type> &&
-                                       is_convertible_to< decltype( declval<Lambda&&>()( declval<index_type>() ) ), element_type > > >
+               typename = enable_if_t< is_convertible_to< decltype( declval<Lambda&&>()( declval<index_type>() ) ), element_type > > >
     #endif
     explicit constexpr fs_vector( Lambda&& lambda ) noexcept( noexcept( declval<Lambda&&>()( declval<index_type>() ) ) )
     #ifdef LINALG_ENABLE_CONCEPTS
@@ -166,7 +165,7 @@ class fs_vector : public fs_tensor<T,L,A,N>
     #ifdef LINALG_ENABLE_CONCEPTS
     template < concepts::view_may_be_constructible_to_tensor< fs_vector > MDS >
     #else
-    template < class MDS, typename = enable_if_t< concepts::view_may_be_constructible_to_tensor<MDS,fs_vector> > >
+    template < class MDS, typename = enable_if_t< concepts::view_may_be_constructible_to_tensor<MDS,fs_vector> >, typename = enable_if_t<true> >
     #endif
     constexpr fs_vector& operator = ( const MDS& view ) noexcept( noexcept( declval<base_type>() = view ) );
 
@@ -240,7 +239,7 @@ template < concepts::view_may_be_constructible_to_tensor< fs_vector<T,N,L,A> > M
 constexpr fs_vector<T,N,L,A>::
 #else
 template < class T, size_t N, class L, class A, typename Dummy >
-template < class MDS, typename >
+template < class MDS, typename, typename >
 constexpr fs_vector<T,N,L,A,Dummy>::
 #endif
 #ifdef LINALG_ENABLE_CONCEPTS
@@ -303,7 +302,7 @@ template < concepts::view_may_be_constructible_to_tensor< fs_vector<T,N,L,A> > M
 constexpr fs_vector<T,N,L,A>& fs_vector<T,N,L,A>::
 #else
 template < class T, size_t N, class L, class A, typename Dummy >
-template < class MDS, typename >
+template < class MDS, typename, typename >
 constexpr fs_vector<T,N,L,A,Dummy>& fs_vector<T,N,L,A,Dummy>::
 #endif
 operator = ( const MDS& view )
