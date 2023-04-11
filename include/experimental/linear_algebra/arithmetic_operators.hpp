@@ -370,7 +370,9 @@ template < concepts::matrix_data M1, concepts::matrix_data M2 >
 template < class M1, class M2,
            typename = enable_if_t< concepts::matrix_data_v<M1> &&
                                    concepts::matrix_data_v<M2> &&
-                                   detail::extents_may_be_equal_v< typename M1::extents_type, typename decltype( declval<M1>() * declval<M2>() )::extents_type > > >
+                                   detail::extents_may_be_equal_v< typename M1::extents_type, typename decltype( declval<M1>() * declval<M2>() )::extents_type > >,
+           typename = enable_if_t<true>,
+           typename = enable_if_t<true> >
 #endif
 [[nodiscard]] inline constexpr M1&
 operator *= ( M1& m1, const M2& m2 )

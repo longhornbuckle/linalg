@@ -324,7 +324,7 @@ template < class T > inline constexpr bool has_matrix_multi_func_v = has_matrix_
 // Matrix data
 template < class M > struct matrix_data : public conditional_t< 
   tensor_data_v<M> &&
-  ( M::extents_type::rank() == 2 ) &&
+  //( M::extents_type::rank() == 2 ) &&
   has_rows_func_v<M> &&
   has_columns_func_v<M> &&
   has_row_capacity_func_v<M> &&
@@ -347,8 +347,8 @@ template < class M > struct readable_matrix_data : public conditional_t<
   ( !LINALG_USE_PAREN_OPERATOR || has_const_index_paren_oper_two_v<M> ) &&
   has_const_row_type_v<M> &&
   has_const_row_func_v<M> &&
-  readable_vector_data_v<typename M::const_row_vector_type> &&
-  readable_vector_data_v<typename M::const_column_vector_type> &&
+  //readable_vector_data_v<typename M::const_row_vector_type> &&
+  //readable_vector_data_v<typename M::const_column_vector_type> &&
   has_const_column_type_v<M> &&
   has_const_column_func_v<M> &&
   has_const_submatrix_type_v<M> &&
@@ -368,8 +368,8 @@ template < class M > struct writable_matrix_data : public conditional_t<
   ( !LINALG_USE_PAREN_OPERATOR || has_index_paren_oper_two_v<M> ) &&
   has_row_type_v<M> &&
   has_row_func_v<M> &&
-  writable_vector_data_v<typename M::row_vector_type> &&
-  writable_vector_data_v<typename M::column_vector_type> &&
+  //writable_vector_data_v<typename M::row_vector_type> &&
+  //writable_vector_data_v<typename M::column_vector_type> &&
   has_column_type_v<M> &&
   has_column_func_v<M> &&
   has_submatrix_type_v<M> &&
