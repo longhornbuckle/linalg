@@ -176,7 +176,8 @@ template < concepts::tensor_data T, class S >
 #else
 template < class T, class S,
            typename = enable_if_t< concepts::tensor_data_v<T> &&
-                                   concepts::has_scalar_postmultiply_func_v<T,S> > >
+                                   concepts::has_scalar_postmultiply_func_v<T,S> >,
+           typename = enable_if_t<true> >
 #endif
 [[nodiscard]] inline constexpr decltype(auto)
 operator * ( const T& t, const S& s )
@@ -289,7 +290,10 @@ outer_prod( const V1& v1, const V2& v2 ) noexcept( noexcept( operations::templat
 #ifdef LINALG_ENABLE_CONCEPTS
 template < concepts::vector_data V, concepts::matrix_data M >
 #else
-template < class V, class M, typename = enable_if_t< concepts::vector_data_v<V> && concepts::matrix_data_v<M> > >
+template < class V, class M,
+           typename = enable_if_t< concepts::vector_data_v<V> && concepts::matrix_data_v<M> >,
+           typename = enable_if_t<true>,
+           typename = enable_if_t<true> >
 #endif
 [[nodiscard]] inline constexpr decltype(auto)
 operator * ( const V& v, const M& m )
@@ -325,7 +329,11 @@ operator *= ( V& v, const M& m )
 #ifdef LINALG_ENABLE_CONCEPTS
 template < concepts::matrix_data M, concepts::vector_data V >
 #else
-template < class M, class V, typename = enable_if_t< concepts::matrix_data_v<M> && concepts::vector_data_v<V> > >
+template < class M, class V,
+           typename = enable_if_t< concepts::matrix_data_v<M> && concepts::vector_data_v<V> >,
+           typename = enable_if_t<true>,
+           typename = enable_if_t<true>,
+           typename = enable_if_t<true> >
 #endif
 [[nodiscard]] inline constexpr decltype(auto)
 operator * ( const M& m, const V& v )
@@ -340,7 +348,12 @@ operator * ( const M& m, const V& v )
 #ifdef LINALG_ENABLE_CONCEPTS
 template < concepts::matrix_data M1, concepts::matrix_data M2 >
 #else
-template < class M1, class M2, typename = enable_if_t< concepts::matrix_data_v<M1> && concepts::matrix_data_v<M2> > >
+template < class M1, class M2,
+           typename = enable_if_t< concepts::matrix_data_v<M1> && concepts::matrix_data_v<M2> >,
+           typename = enable_if_t<true>,
+           typename = enable_if_t<true>,
+           typename = enable_if_t<true>,
+           typename = enable_if_t<true> >
 #endif
 [[nodiscard]] inline constexpr decltype(auto)
 operator * ( const M1& m1, const M2& m2 )

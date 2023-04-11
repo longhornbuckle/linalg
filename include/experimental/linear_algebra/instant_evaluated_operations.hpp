@@ -469,7 +469,7 @@ class scalar_product
 #ifdef LINALG_ENABLE_CONCEPTS
 template < concepts::tensor_data T, class S >
 #else
-template < class T, class S, enable_if_t< concepts::tensor_data_v<T> > >
+template < class T, class S, typename = enable_if_t< concepts::tensor_data_v<T> > >
 #endif
 struct scalar_division
 {
@@ -1343,7 +1343,7 @@ class matrix_matrix_product
 #ifdef LINALG_ENABLE_CONCEPTS
 template < concepts::vector_data V1, concepts::vector_data V2 >
 #else
-template < class V1, class V2, enable_if_t< concepts::vector_data_v< V2 > > >
+template < class V1, class V2, typename = enable_if_t< concepts::vector_data_v< V2 > > >
 #endif
 class inner_product
 {
