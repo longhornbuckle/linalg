@@ -77,7 +77,7 @@ class negation
     [[nodiscard]] static constexpr auto negate( const tensor_type& t )
       noexcept( noexcept( detail::make_from_tuple< result_tensor_type >(
         collect_ctor_args( declval<const tensor_type&>(),
-                           [&t]< class ... IndexType >( IndexType ... indices ) constexpr noexcept { return -( detail::access( t, indices ... ) ); } ) ) ) )
+                           [t]< class ... IndexType >( IndexType ... indices ) constexpr noexcept { return -( detail::access( t, indices ... ) ); } ) ) ) )
     {
       // Define negation operation on each element
       auto negate_lambda = [&t]< class ... IndexType >( IndexType ... indices ) constexpr noexcept { return -( detail::access( t, indices ... ) ); };
@@ -108,8 +108,8 @@ class addition
     using result_value_type  = decay_t< decltype( declval<typename first_tensor_type::value_type>() + declval<typename second_tensor_type::value_type>() ) >;
     using result_tensor_type = conditional_t< 
                                               #ifdef LINALG_ENABLE_CONCEPTS
-                                              concepts::dynamic_tensor_data_v<first_tensor_type> &&
-                                                concepts::fixed_size_tensor_data_v<second_tensor_type>,
+                                              concepts::dynamic_tensor_data<first_tensor_type> &&
+                                                concepts::fixed_size_tensor_data<second_tensor_type>,
                                               #else
                                               concepts::dynamic_tensor_data_v<first_tensor_type> &&
                                                 concepts::fixed_size_tensor_data_v<second_tensor_type>,
