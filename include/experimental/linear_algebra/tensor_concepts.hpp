@@ -292,20 +292,23 @@ template < class T, class = void > struct has_capacity_func : public false_type 
 template < class T > struct has_capacity_func< T, std::enable_if_t< std::is_same_v< decltype( declval<const T>().capacity() ), typename T::extents_type > > > : public true_type { };
 template < class T > inline constexpr bool has_capacity_func_v = has_capacity_func<T>::value;
 
+template < class T, typename = void > struct value_type_helper { using type = void; };
+template < class T > struct value_type_helper< T, std::enable_if_t< has_value_type_v<T> > > { using type = typename T::value_type; };
+
 // Test for scalar pre-multiply
-template < class T, class S = typename T::value_type, class = void > struct has_scalar_premultiply_func : public false_type { };
+template < class T, class S = void, class = void > struct has_scalar_premultiply_func : public false_type { };
 template < class T, class S > struct has_scalar_premultiply_func< T, S, std::enable_if_t< std::is_same_v< decltype( declval<S>() * declval<const T>() ), decltype( declval<S>() * declval<const T>() ) > > > : public true_type { };
-template < class T, class S = typename T::value_type > inline constexpr bool has_scalar_premultiply_func_v = has_scalar_premultiply_func<T,S>::value;
+template < class T, class S = typename value_type_helper<T>::type > inline constexpr bool has_scalar_premultiply_func_v = has_scalar_premultiply_func<T,S>::value;
 
 // Test for scalar post-multiply
-template < class T, class S = typename T::value_type, class = void > struct has_scalar_postmultiply_func : public false_type { };
+template < class T, class S = void, class = void > struct has_scalar_postmultiply_func : public false_type { };
 template < class T, class S > struct has_scalar_postmultiply_func< T, S, std::enable_if_t< std::is_same_v< decltype( declval<const T>() * declval<S>() ), decltype( declval<const T>() * declval<S>() ) > > > : public true_type { };
-template < class T, class S = typename T::value_type > inline constexpr bool has_scalar_postmultiply_func_v = has_scalar_postmultiply_func<T,S>::value;
+template < class T, class S = typename value_type_helper<T>::type > inline constexpr bool has_scalar_postmultiply_func_v = has_scalar_postmultiply_func<T,S>::value;
 
 // Test for scalar divide
-template < class T, class S = typename T::value_type, class = void > struct has_scalar_divide_func : public false_type { };
+template < class T, class S = void, class = void > struct has_scalar_divide_func : public false_type { };
 template < class T, class S > struct has_scalar_divide_func< T, S, std::enable_if_t< std::is_same_v< decltype( declval<const T>() / declval<S>() ), decltype( declval<const T>() / declval<S>() ) > > > : public true_type { };
-template < class T, class S = typename T::value_type > inline constexpr bool has_scalar_divide_func_v = has_scalar_divide_func<T,S>::value;
+template < class T, class S = typename value_type_helper<T>::type > inline constexpr bool has_scalar_divide_func_v = has_scalar_divide_func<T,S>::value;
 
 // Test for negation
 template < class T, class = void > struct has_negate_func : public false_type { };
@@ -344,17 +347,17 @@ template < class T > inline constexpr bool has_get_allocator_func_v = has_get_al
 
 // Test for set_allocator function
 template < class T, class = void > struct has_set_allocator_func : public false_type { };
-template < class T > struct has_set_allocator_func< T, std::enable_if_t< std::is_same_v< decltype( declval<T>().set_allocator( declval<const typename T::allocator_type&>() ) ), void > > > : public true_type { };
+template < class T > struct has_set_allocator_func< T, std::enable_if_t< std::is_same_v< decltype( declval<T>().set_allocator( declval<const typename T::allocator_type&>() ) ), decltype( declval<T>().set_allocator( declval<const typename T::allocator_type&>() ) ) > > > : public true_type { };
 template < class T > inline constexpr bool has_set_allocator_func_v = has_set_allocator_func<T>::value;
 
 // Test for resize function
 template < class T, class = void > struct has_resize_func : public false_type { };
-template < class T > struct has_resize_func< T, std::enable_if_t< std::is_same_v< decltype( declval<const T>().resize( declval<typename T::extents_type>() ) ), void > > > : public true_type { };
+template < class T > struct has_resize_func< T, std::enable_if_t< std::is_same_v< decltype( declval<T>().resize( declval<typename T::extents_type>() ) ), decltype( declval<T>().resize( declval<typename T::extents_type>() ) ) > > > : public true_type { };
 template < class T > inline constexpr bool has_resize_func_v = has_resize_func<T>::value;
 
 // Test for reserve function
 template < class T, class = void > struct has_reserve_func : public false_type { };
-template < class T > struct has_reserve_func< T, std::enable_if_t< std::is_same_v< decltype( declval<const T>().reserve( declval<typename T::extents_type>() ) ), void > > > : public true_type { };
+template < class T > struct has_reserve_func< T, std::enable_if_t< std::is_same_v< decltype( declval<T>().reserve( declval<typename T::extents_type>() ) ), decltype( declval<T>().reserve( declval<typename T::extents_type>() ) ) > > > : public true_type { };
 template < class T > inline constexpr bool has_reserve_func_v = has_reserve_func<T>::value;
 
 // Test for construct from allocator
@@ -403,6 +406,31 @@ template < class T, class U > inline constexpr bool values_are_constructible_v =
 template < class T, class U, class = void > struct values_are_nothrow_constructible : public false_type { };
 template < class T, class U > struct values_are_nothrow_constructible< T, U, std::enable_if_t< is_nothrow_constructible_v< typename T::value_type, typename U::value_type > > > : public true_type { };
 template < class T, class U > inline constexpr bool values_are_nothrow_constructible_v = values_are_nothrow_constructible<T,U>::value;
+
+// Test addition exists
+template < class T, class U, class = void > struct addition_exists : public false_type { };
+template < class T, class U > struct addition_exists< T, U, std::enable_if_t< is_same_v< decltype( declval<T>() + declval<U>() ), decltype( declval<T>() + declval<U>() ) > > > : public true_type { };
+template < class T, class U > inline constexpr bool addition_exists_v = addition_exists<T,U>::value;
+
+// Test subtraction exists
+template < class T, class U, class = void > struct subtraction_exists : public false_type { };
+template < class T, class U > struct subtraction_exists< T, U, std::enable_if_t< is_same_v< decltype( declval<T>() - declval<U>() ), decltype( declval<T>() - declval<U>() ) > > > : public true_type { };
+template < class T, class U > inline constexpr bool subtraction_exists_v = subtraction_exists<T,U>::value;
+
+// Test product exists
+template < class T, class U, class = void > struct product_exists : public false_type { };
+template < class T, class U > struct product_exists< T, U, std::enable_if_t< is_same_v< decltype( declval<T>() * declval<U>() ), decltype( declval<T>() * declval<U>() ) > > > : public true_type { };
+template < class T, class U > inline constexpr bool product_exists_v = product_exists<T,U>::value;
+
+// Test division exists
+template < class T, class U, class = void > struct division_exists : public false_type { };
+template < class T, class U > struct division_exists< T, U, std::enable_if_t< is_same_v< decltype( declval<T>() / declval<U>() ), decltype( declval<T>() / declval<U>() ) > > > : public true_type { };
+template < class T, class U > inline constexpr bool division_exists_v = division_exists<T,U>::value;
+
+// Test for rank N tensor
+template < class T, size_t N, class = void > struct is_rank : public false_type { };
+template < class T, size_t N > struct is_rank< T, N, std::enable_if_t< T::extents_type::rank() == N > > : public true_type { };
+template < class T, size_t N > inline constexpr bool is_rank_v = is_rank<T,N>::value;
 
 //- Test for tensors
 
@@ -464,12 +492,12 @@ template < class T > inline constexpr bool writable_tensor_v = writable_tensor<T
 // Dynamic tensor data
 template < class T > struct dynamic_tensor_data : public conditional_t<
   tensor_data_v<T> &&
-  has_allocator_type_v<T> &&
+  has_allocator_type_v<T> /* &&
   constructible_from_alloc_v<T> &&
   constructible_from_size_and_alloc_v<T> &&
   constructible_from_size_cap_and_alloc_v<T> &&
   has_resize_func_v<T> &&
-  has_reserve_func_v<T>, true_type, false_type > { };
+  has_reserve_func_v<T>*/, true_type, false_type > { };
 template < class T > inline constexpr bool dynamic_tensor_data_v = dynamic_tensor_data<T>::value;
 
 // Dynamic tensor
@@ -509,9 +537,9 @@ extents_may_be_equal_v<From,To>;
 // View element must be constructible to the tensor elements
 template < class From, class To >
 inline constexpr bool view_may_be_constructible_to_tensor =
-detail::is_mdspan_v<From> && tensor_v<To> &&
+detail::is_mdspan_v<From> && tensor_v<To> /*&&
 values_are_constructible_v<From,To> &&
-extents_may_be_equal_v<From,To>;
+extents_may_be_equal_v<From,To>*/;
 
 // View is constructible to tensor
 // Enforces view is an mdspan of rank equal to tensor with elements

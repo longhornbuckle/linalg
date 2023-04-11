@@ -324,7 +324,7 @@ template < class T > inline constexpr bool has_matrix_multi_func_v = has_matrix_
 // Matrix data
 template < class M > struct matrix_data : public conditional_t< 
   tensor_data_v<M> &&
-  //( M::extents_type::rank() == 2 ) &&
+  is_rank_v<M,2> &&
   has_rows_func_v<M> &&
   has_columns_func_v<M> &&
   has_row_capacity_func_v<M> &&

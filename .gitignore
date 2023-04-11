@@ -41,4 +41,7 @@
 build/
 CMakeFiles/
 
+# Develop environment
+.devcontainer/
+
 CMakeCache.txt

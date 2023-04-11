@@ -155,7 +155,8 @@ template < class S, concepts::tensor_data T >
 #else
 template < class S, class T,
            typename = enable_if_t< concepts::tensor_data_v<T> &&
-                                   concepts::has_scalar_premultiply_func_v<T,S> > >
+                                   !concepts::tensor_data_v<S> &&
+                                   concepts::product_exists_v< typename T::value_type, S > > >
 #endif
 [[nodiscard]] inline constexpr decltype(auto)
 operator * ( const S& s, const T& t )
@@ -176,7 +177,8 @@ template < concepts::tensor_data T, class S >
 #else
 template < class T, class S,
            typename = enable_if_t< concepts::tensor_data_v<T> &&
-                                   concepts::has_scalar_postmultiply_func_v<T,S> >,
+                                   !concepts::tensor_data_v<S> &&
+                                   concepts::product_exists_v< typename T::value_type, S > >,
            typename = enable_if_t<true> >
 #endif
 [[nodiscard]] inline constexpr decltype(auto)
@@ -198,7 +200,8 @@ template < concepts::tensor_data T, class S >
 #else
 template < class T, class S,
            typename = enable_if_t< concepts::tensor_data_v<T> &&
-                                   concepts::has_scalar_postmultiply_func_v<T,S> &&
+                                   !concepts::tensor_data_v<S> &&
+                                   concepts::product_exists_v< typename T::value_type, S > &&
                                    is_convertible_v< decltype( declval<typename T::value_type>() * declval<S>() ), typename T::element_type > > >
 #endif
 [[nodiscard]] inline constexpr T&
@@ -221,7 +224,7 @@ template < concepts::tensor_data T, class S >
 #else
 template < class T, class S,
            typename = enable_if_t< concepts::tensor_data_v<T> &&
-                                   concepts::has_scalar_divide_func_v<T,S> > >
+                                   concepts::division_exists_v< typename T::value_type, S > > >
 #endif
 [[nodiscard]] inline constexpr decltype(auto)
 operator / ( const T& t, const S& s )
@@ -241,7 +244,7 @@ template < concepts::tensor_data T, class S >
 #else
 template < class T, class S,
            typename = enable_if_t< concepts::tensor_data_v<T> &&
-                                   concepts::has_scalar_divide_func_v<T,S> &&
+                                   concepts::division_exists_v< typename T::value_type, S > &&
                                    is_convertible_v< decltype( declval<typename T::value_type>() * declval<S>() ), typename T::element_type > > >
 #endif
 [[nodiscard]] inline constexpr T&

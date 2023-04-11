@@ -189,9 +189,8 @@ template < class T > inline constexpr bool has_subvector_func_v = has_subvector_
 
 // Vector data
 template < class V > struct vector_data : public conditional_t< 
-  tensor_data_v<V>
-  //&& ( V::extents_type::rank() == 1 )
-  , true_type, false_type > { };
+  tensor_data_v<V> &&
+  is_rank_v<V,1>, true_type, false_type > { };
 template < class V > inline constexpr bool vector_data_v = vector_data<V>::value;
 
 // Vector

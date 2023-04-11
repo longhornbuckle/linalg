@@ -772,19 +772,26 @@ constexpr void apply_all( View&&            view,
 //==================================================================================================
 //  Submdspan calls submdspan using a pair of tuples instead of a parameter pack
 //==================================================================================================
-template < class T, class E, class L, class A, class ... IndexType, size_t ... Indices >
-[[nodiscard]] constexpr auto submdspan_impl( experimental::mdspan<T,E,L,A> mds,
-                                             tuple<IndexType...>           start,
-                                             tuple<IndexType...>           end,
-                                             [[maybe_unused]] index_sequence<Indices...> ) noexcept
+template < size_t Index, class ... IndexType >
+[[nodiscard]] LINALG_FORCE_INLINE_FUNCTION constexpr auto submdspan_impl2( tuple<IndexType...> start,
+                                                                           tuple<IndexType...> end ) noexcept
 {
-  return experimental::submdspan( mds, tuple( get<Indices>(start), get<Indices>(end) ) ... );
+  return tuple( get<Index>(start), get<Index>(end) );
+}
+
+template < class T, class E, class L, class A, class ... IndexType, size_t ... Indices >
+[[nodiscard]] LINALG_FORCE_INLINE_FUNCTION constexpr auto submdspan_impl( experimental::mdspan<T,E,L,A> mds,
+                                                                          tuple<IndexType...>           start,
+                                                                          tuple<IndexType...>           end,
+                                                                          [[maybe_unused]] index_sequence<Indices...> ) noexcept
+{
+  return experimental::submdspan( mds, submdspan_impl2<Indices>( start, end ) ... );
 }
 
 template < class T, class E, class L, class A, class ... IndexType >
-[[nodiscard]] constexpr auto submdspan( experimental::mdspan<T,E,L,A> mds,
-                                        tuple<IndexType...>           start,
-                                        tuple<IndexType...>           end ) noexcept
+[[nodiscard]] LINALG_FORCE_INLINE_FUNCTION constexpr auto submdspan( experimental::mdspan<T,E,L,A> mds,
+                                                                     tuple<IndexType...>           start,
+                                                                     tuple<IndexType...>           end ) noexcept
 #ifdef LINALG_ENABLE_CONCEPTS
   requires ( sizeof...(IndexType) == E::rank() )
 #endif

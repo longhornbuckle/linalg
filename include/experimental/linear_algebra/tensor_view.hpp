@@ -133,7 +133,7 @@ class tensor_view
     /// @brief the view
     /// @returns returns the view
     #ifndef LINALG_ENABLE_CONCEPTS
-    template < typename = enable_if_t< !is_const_v<element_type> > >
+    template < typename Elem = element_type, typename = enable_if_t< !is_const_v<Elem> > >
     #endif
     [[nodiscard]] constexpr underlying_span_type       underlying_span() noexcept
     #ifdef LINALG_ENABLE_CONCEPTS

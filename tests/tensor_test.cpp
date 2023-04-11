@@ -15,25 +15,25 @@ namespace
     // Construct
     std::math::dr_tensor<double,3> dyn_tensor{ std::experimental::extents<size_t,2,2,2>(), std::experimental::extents<size_t,3,3,3>() };
     // Populate via mutable index access
-    dyn_tensor[0,0,0] = 1.0;
-    dyn_tensor[0,0,1] = 2.0;
-    dyn_tensor[0,1,0] = 3.0;
-    dyn_tensor[0,1,1] = 4.0;
-    dyn_tensor[1,0,0] = 5.0;
-    dyn_tensor[1,0,1] = 6.0;
-    dyn_tensor[1,1,0] = 7.0;
-    dyn_tensor[1,1,1] = 8.0;
+    std::math::detail::access( dyn_tensor, 0, 0, 0 ) = 1.0;
+    std::math::detail::access( dyn_tensor, 0, 0, 1 ) = 2.0;
+    std::math::detail::access( dyn_tensor, 0, 1, 0 ) = 3.0;
+    std::math::detail::access( dyn_tensor, 0, 1, 1 ) = 4.0;
+    std::math::detail::access( dyn_tensor, 1, 0, 0 ) = 5.0;
+    std::math::detail::access( dyn_tensor, 1, 0, 1 ) = 6.0;
+    std::math::detail::access( dyn_tensor, 1, 1, 0 ) = 7.0;
+    std::math::detail::access( dyn_tensor, 1, 1, 1 ) = 8.0;
     // Get a const reference
     const std::math::dr_tensor<double,3>& const_dyn_tensor( dyn_tensor );
     // Access elements from const fs tensor
-    auto val1 = const_dyn_tensor[0,0,0];
-    auto val2 = const_dyn_tensor[0,0,1];
-    auto val3 = const_dyn_tensor[0,1,0];
-    auto val4 = const_dyn_tensor[0,1,1];
-    auto val5 = const_dyn_tensor[1,0,0];
-    auto val6 = const_dyn_tensor[1,0,1];
-    auto val7 = const_dyn_tensor[1,1,0];
-    auto val8 = const_dyn_tensor[1,1,1];
+    auto val1 = std::math::detail::access( const_dyn_tensor, 0, 0, 0 );
+    auto val2 = std::math::detail::access( const_dyn_tensor, 0, 0, 1 );
+    auto val3 = std::math::detail::access( const_dyn_tensor, 0, 1, 0 );
+    auto val4 = std::math::detail::access( const_dyn_tensor, 0, 1, 1 );
+    auto val5 = std::math::detail::access( const_dyn_tensor, 1, 0, 0 );
+    auto val6 = std::math::detail::access( const_dyn_tensor, 1, 0, 1 );
+    auto val7 = std::math::detail::access( const_dyn_tensor, 1, 1, 0 );
+    auto val8 = std::math::detail::access( const_dyn_tensor, 1, 1, 1 );
     // Check the fs tensor was populated correctly and provided the correct values
     EXPECT_EQ( val1, 1.0 );
     EXPECT_EQ( val2, 2.0 );
@@ -50,27 +50,27 @@ namespace
     // Construct
     std::math::dr_tensor<double,3> dyn_tensor{ std::experimental::extents<size_t,2,2,2>(), std::experimental::extents<size_t,3,3,3>() };
     // Populate via mutable index access
-    dyn_tensor[0,0,0] = 1.0;
-    dyn_tensor[0,0,1] = 2.0;
-    dyn_tensor[0,1,0] = 3.0;
-    dyn_tensor[0,1,1] = 4.0;
-    dyn_tensor[1,0,0] = 5.0;
-    dyn_tensor[1,0,1] = 6.0;
-    dyn_tensor[1,1,0] = 7.0;
-    dyn_tensor[1,1,1] = 8.0;
+    std::math::detail::access( dyn_tensor, 0, 0, 0 ) = 1.0;
+    std::math::detail::access( dyn_tensor, 0, 0, 1 ) = 2.0;
+    std::math::detail::access( dyn_tensor, 0, 1, 0 ) = 3.0;
+    std::math::detail::access( dyn_tensor, 0, 1, 1 ) = 4.0;
+    std::math::detail::access( dyn_tensor, 1, 0, 0 ) = 5.0;
+    std::math::detail::access( dyn_tensor, 1, 0, 1 ) = 6.0;
+    std::math::detail::access( dyn_tensor, 1, 1, 0 ) = 7.0;
+    std::math::detail::access( dyn_tensor, 1, 1, 1 ) = 8.0;
     // Copy construct
     std::math::dr_tensor<double,3> dyn_tensor_copy{ dyn_tensor };
     // Get a const reference to copy
     const std::math::dr_tensor<double,3>& const_dyn_tensor( dyn_tensor_copy );
     // Access elements from const dyn tensor
-    auto val1 = const_dyn_tensor[0,0,0];
-    auto val2 = const_dyn_tensor[0,0,1];
-    auto val3 = const_dyn_tensor[0,1,0];
-    auto val4 = const_dyn_tensor[0,1,1];
-    auto val5 = const_dyn_tensor[1,0,0];
-    auto val6 = const_dyn_tensor[1,0,1];
-    auto val7 = const_dyn_tensor[1,1,0];
-    auto val8 = const_dyn_tensor[1,1,1];
+    auto val1 = std::math::detail::access( const_dyn_tensor, 0, 0, 0 );
+    auto val2 = std::math::detail::access( const_dyn_tensor, 0, 0, 1 );
+    auto val3 = std::math::detail::access( const_dyn_tensor, 0, 1, 0 );
+    auto val4 = std::math::detail::access( const_dyn_tensor, 0, 1, 1 );
+    auto val5 = std::math::detail::access( const_dyn_tensor, 1, 0, 0 );
+    auto val6 = std::math::detail::access( const_dyn_tensor, 1, 0, 1 );
+    auto val7 = std::math::detail::access( const_dyn_tensor, 1, 1, 0 );
+    auto val8 = std::math::detail::access( const_dyn_tensor, 1, 1, 1 );
     // Check the dyn tensor was populated correctly and provided the correct values
     EXPECT_EQ( val1, 1.0 );
     EXPECT_EQ( val2, 2.0 );
@@ -87,27 +87,27 @@ namespace
     // Construct
     std::math::dr_tensor<double,3> dyn_tensor{ std::experimental::extents<size_t,2,2,2>(), std::experimental::extents<size_t,3,3,3>() };
     // Populate via mutable index access
-    dyn_tensor[0,0,0] = 1.0;
-    dyn_tensor[0,0,1] = 2.0;
-    dyn_tensor[0,1,0] = 3.0;
-    dyn_tensor[0,1,1] = 4.0;
-    dyn_tensor[1,0,0] = 5.0;
-    dyn_tensor[1,0,1] = 6.0;
-    dyn_tensor[1,1,0] = 7.0;
-    dyn_tensor[1,1,1] = 8.0;
+    std::math::detail::access( dyn_tensor, 0, 0, 0 ) = 1.0;
+    std::math::detail::access( dyn_tensor, 0, 0, 1 ) = 2.0;
+    std::math::detail::access( dyn_tensor, 0, 1, 0 ) = 3.0;
+    std::math::detail::access( dyn_tensor, 0, 1, 1 ) = 4.0;
+    std::math::detail::access( dyn_tensor, 1, 0, 0 ) = 5.0;
+    std::math::detail::access( dyn_tensor, 1, 0, 1 ) = 6.0;
+    std::math::detail::access( dyn_tensor, 1, 1, 0 ) = 7.0;
+    std::math::detail::access( dyn_tensor, 1, 1, 1 ) = 8.0;
     // Move construct
     std::math::dr_tensor<double,3> dyn_tensor_move{ std::move( dyn_tensor ) };
     // Get a const reference to moved tensor
     const std::math::dr_tensor<double,3>& const_dyn_tensor( dyn_tensor_move );
     // Access elements from const fs tensor
-    auto val1 = const_dyn_tensor[0,0,0];
-    auto val2 = const_dyn_tensor[0,0,1];
-    auto val3 = const_dyn_tensor[0,1,0];
-    auto val4 = const_dyn_tensor[0,1,1];
-    auto val5 = const_dyn_tensor[1,0,0];
-    auto val6 = const_dyn_tensor[1,0,1];
-    auto val7 = const_dyn_tensor[1,1,0];
-    auto val8 = const_dyn_tensor[1,1,1];
+    auto val1 = std::math::detail::access( const_dyn_tensor, 0, 0, 0 );
+    auto val2 = std::math::detail::access( const_dyn_tensor, 0, 0, 1 );
+    auto val3 = std::math::detail::access( const_dyn_tensor, 0, 1, 0 );
+    auto val4 = std::math::detail::access( const_dyn_tensor, 0, 1, 1 );
+    auto val5 = std::math::detail::access( const_dyn_tensor, 1, 0, 0 );
+    auto val6 = std::math::detail::access( const_dyn_tensor, 1, 0, 1 );
+    auto val7 = std::math::detail::access( const_dyn_tensor, 1, 1, 0 );
+    auto val8 = std::math::detail::access( const_dyn_tensor, 1, 1, 1 );
     // Check the fs tensor was populated correctly and provided the correct values
     EXPECT_EQ( val1, 1.0 );
     EXPECT_EQ( val2, 2.0 );
@@ -124,27 +124,27 @@ namespace
     // Construct
     std::math::dr_tensor<double,3> dyn_tensor{ std::experimental::extents<size_t,2,2,2>(), std::experimental::extents<size_t,3,3,3>() };
     // Populate via mutable index access
-    dyn_tensor[0,0,0] = 1.0;
-    dyn_tensor[0,0,1] = 2.0;
-    dyn_tensor[0,1,0] = 3.0;
-    dyn_tensor[0,1,1] = 4.0;
-    dyn_tensor[1,0,0] = 5.0;
-    dyn_tensor[1,0,1] = 6.0;
-    dyn_tensor[1,1,0] = 7.0;
-    dyn_tensor[1,1,1] = 8.0;
+    std::math::detail::access( dyn_tensor, 0, 0, 0 ) = 1.0;
+    std::math::detail::access( dyn_tensor, 0, 0, 1 ) = 2.0;
+    std::math::detail::access( dyn_tensor, 0, 1, 0 ) = 3.0;
+    std::math::detail::access( dyn_tensor, 0, 1, 1 ) = 4.0;
+    std::math::detail::access( dyn_tensor, 1, 0, 0 ) = 5.0;
+    std::math::detail::access( dyn_tensor, 1, 0, 1 ) = 6.0;
+    std::math::detail::access( dyn_tensor, 1, 1, 0 ) = 7.0;
+    std::math::detail::access( dyn_tensor, 1, 1, 1 ) = 8.0;
     // Construct from view
     std::math::dr_tensor<double,3> dyn_tensor_view{ dyn_tensor.span() };
     // Get a const reference to constructed tensor
     const std::math::dr_tensor<double,3>& const_dyn_tensor( dyn_tensor_view );
     // Access elements from const dyn tensor
-    auto val1 = const_dyn_tensor[0,0,0];
-    auto val2 = const_dyn_tensor[0,0,1];
-    auto val3 = const_dyn_tensor[0,1,0];
-    auto val4 = const_dyn_tensor[0,1,1];
-    auto val5 = const_dyn_tensor[1,0,0];
-    auto val6 = const_dyn_tensor[1,0,1];
-    auto val7 = const_dyn_tensor[1,1,0];
-    auto val8 = const_dyn_tensor[1,1,1];
+    auto val1 = std::math::detail::access( const_dyn_tensor, 0, 0, 0 );
+    auto val2 = std::math::detail::access( const_dyn_tensor, 0, 0, 1 );
+    auto val3 = std::math::detail::access( const_dyn_tensor, 0, 1, 0 );
+    auto val4 = std::math::detail::access( const_dyn_tensor, 0, 1, 1 );
+    auto val5 = std::math::detail::access( const_dyn_tensor, 1, 0, 0 );
+    auto val6 = std::math::detail::access( const_dyn_tensor, 1, 0, 1 );
+    auto val7 = std::math::detail::access( const_dyn_tensor, 1, 1, 0 );
+    auto val8 = std::math::detail::access( const_dyn_tensor, 1, 1, 1 );
     // Check the fs tensor was populated correctly and provided the correct values
     EXPECT_EQ( val1, 1.0 );
     EXPECT_EQ( val2, 2.0 );
@@ -163,25 +163,25 @@ namespace
     // Default construct
     float_left_tensor_type fs_tensor;
     // Populate via mutable index access
-    fs_tensor[0,0,0] = 1.0;
-    fs_tensor[0,0,1] = 2.0;
-    fs_tensor[0,1,0] = 3.0;
-    fs_tensor[0,1,1] = 4.0;
-    fs_tensor[1,0,0] = 5.0;
-    fs_tensor[1,0,1] = 6.0;
-    fs_tensor[1,1,0] = 7.0;
-    fs_tensor[1,1,1] = 8.0;
+    std::math::detail::access( fs_tensor, 0, 0, 0 ) = 1.0;
+    std::math::detail::access( fs_tensor, 0, 0, 1 ) = 2.0;
+    std::math::detail::access( fs_tensor, 0, 1, 0 ) = 3.0;
+    std::math::detail::access( fs_tensor, 0, 1, 1 ) = 4.0;
+    std::math::detail::access( fs_tensor, 1, 0, 0 ) = 5.0;
+    std::math::detail::access( fs_tensor, 1, 0, 1 ) = 6.0;
+    std::math::detail::access( fs_tensor, 1, 1, 0 ) = 7.0;
+    std::math::detail::access( fs_tensor, 1, 1, 1 ) = 8.0;
     // Construct from float tensor
     double_right_tensor_type dyn_tensor_copy{ fs_tensor };
     // Access elements from const fs tensor
-    auto val1 = dyn_tensor_copy[0,0,0];
-    auto val2 = dyn_tensor_copy[0,0,1];
-    auto val3 = dyn_tensor_copy[0,1,0];
-    auto val4 = dyn_tensor_copy[0,1,1];
-    auto val5 = dyn_tensor_copy[1,0,0];
-    auto val6 = dyn_tensor_copy[1,0,1];
-    auto val7 = dyn_tensor_copy[1,1,0];
-    auto val8 = dyn_tensor_copy[1,1,1];
+    auto val1 = std::math::detail::access( dyn_tensor_copy, 0, 0, 0 );
+    auto val2 = std::math::detail::access( dyn_tensor_copy, 0, 0, 1 );
+    auto val3 = std::math::detail::access( dyn_tensor_copy, 0, 1, 0 );
+    auto val4 = std::math::detail::access( dyn_tensor_copy, 0, 1, 1 );
+    auto val5 = std::math::detail::access( dyn_tensor_copy, 1, 0, 0 );
+    auto val6 = std::math::detail::access( dyn_tensor_copy, 1, 0, 1 );
+    auto val7 = std::math::detail::access( dyn_tensor_copy, 1, 1, 0 );
+    auto val8 = std::math::detail::access( dyn_tensor_copy, 1, 1, 1 );
     // Check the fs tensor was populated correctly and provided the correct values
     EXPECT_EQ( val1, 1.0 );
     EXPECT_EQ( val2, 2.0 );
@@ -199,29 +199,29 @@ namespace
     // Default construct
     fs_tensor_type fs_tensor;
     // Populate via mutable index access
-    fs_tensor[0,0,0] = 1.0;
-    fs_tensor[0,0,1] = 2.0;
-    fs_tensor[0,1,0] = 3.0;
-    fs_tensor[0,1,1] = 4.0;
-    fs_tensor[1,0,0] = 5.0;
-    fs_tensor[1,0,1] = 6.0;
-    fs_tensor[1,1,0] = 7.0;
-    fs_tensor[1,1,1] = 8.0;
+    std::math::detail::access( fs_tensor, 0, 0, 0 ) = 1.0;
+    std::math::detail::access( fs_tensor, 0, 0, 1 ) = 2.0;
+    std::math::detail::access( fs_tensor, 0, 1, 0 ) = 3.0;
+    std::math::detail::access( fs_tensor, 0, 1, 1 ) = 4.0;
+    std::math::detail::access( fs_tensor, 1, 0, 0 ) = 5.0;
+    std::math::detail::access( fs_tensor, 1, 0, 1 ) = 6.0;
+    std::math::detail::access( fs_tensor, 1, 1, 0 ) = 7.0;
+    std::math::detail::access( fs_tensor, 1, 1, 1 ) = 8.0;
     // Get underling view
     auto view = fs_tensor.span();
     // Create a lambda expression from view
-    auto lambda = [&view]< class ... SizeType >( SizeType ... indices ) { return view[indices...]; };
+    auto lambda = [&view]< class ... SizeType >( SizeType ... indices ) { return std::math::detail::access( view, indices ... ); };
     // Construct from lambda
     std::math::dr_tensor<double,3> dyn_tensor_copy( std::experimental::extents<size_t,2,2,2>(), lambda );
     // Access elements from const fs tensor tensor
-    auto val1 = dyn_tensor_copy[0,0,0];
-    auto val2 = dyn_tensor_copy[0,0,1];
-    auto val3 = dyn_tensor_copy[0,1,0];
-    auto val4 = dyn_tensor_copy[0,1,1];
-    auto val5 = dyn_tensor_copy[1,0,0];
-    auto val6 = dyn_tensor_copy[1,0,1];
-    auto val7 = dyn_tensor_copy[1,1,0];
-    auto val8 = dyn_tensor_copy[1,1,1];
+    auto val1 = std::math::detail::access( dyn_tensor_copy, 0, 0, 0 );
+    auto val2 = std::math::detail::access( dyn_tensor_copy, 0, 0, 1 );
+    auto val3 = std::math::detail::access( dyn_tensor_copy, 0, 1, 0 );
+    auto val4 = std::math::detail::access( dyn_tensor_copy, 0, 1, 1 );
+    auto val5 = std::math::detail::access( dyn_tensor_copy, 1, 0, 0 );
+    auto val6 = std::math::detail::access( dyn_tensor_copy, 1, 0, 1 );
+    auto val7 = std::math::detail::access( dyn_tensor_copy, 1, 1, 0 );
+    auto val8 = std::math::detail::access( dyn_tensor_copy, 1, 1, 1 );
     // Check the fs tensor tensor was populated correctly and provided the correct values
     EXPECT_EQ( val1, 1.0 );
     EXPECT_EQ( val2, 2.0 );
@@ -238,26 +238,26 @@ namespace
     // Construct
     std::math::dr_tensor<double,3> dyn_tensor{ std::experimental::extents<size_t,2,2,2>(), std::experimental::extents<size_t,3,3,3>() };
     // Populate via mutable index access
-    dyn_tensor[0,0,0] = 1.0;
-    dyn_tensor[0,0,1] = 2.0;
-    dyn_tensor[0,1,0] = 3.0;
-    dyn_tensor[0,1,1] = 4.0;
-    dyn_tensor[1,0,0] = 5.0;
-    dyn_tensor[1,0,1] = 6.0;
-    dyn_tensor[1,1,0] = 7.0;
-    dyn_tensor[1,1,1] = 8.0;
+    std::math::detail::access( dyn_tensor, 0, 0, 0 ) = 1.0;
+    std::math::detail::access( dyn_tensor, 0, 0, 1 ) = 2.0;
+    std::math::detail::access( dyn_tensor, 0, 1, 0 ) = 3.0;
+    std::math::detail::access( dyn_tensor, 0, 1, 1 ) = 4.0;
+    std::math::detail::access( dyn_tensor, 1, 0, 0 ) = 5.0;
+    std::math::detail::access( dyn_tensor, 1, 0, 1 ) = 6.0;
+    std::math::detail::access( dyn_tensor, 1, 1, 0 ) = 7.0;
+    std::math::detail::access( dyn_tensor, 1, 1, 1 ) = 8.0;
     // Default construct and assign
     std::math::dr_tensor<double,3> dyn_tensor_copy;
     dyn_tensor_copy = dyn_tensor;
     // Access elements from dyn tensor
-    auto val1 = dyn_tensor_copy[0,0,0];
-    auto val2 = dyn_tensor_copy[0,0,1];
-    auto val3 = dyn_tensor_copy[0,1,0];
-    auto val4 = dyn_tensor_copy[0,1,1];
-    auto val5 = dyn_tensor_copy[1,0,0];
-    auto val6 = dyn_tensor_copy[1,0,1];
-    auto val7 = dyn_tensor_copy[1,1,0];
-    auto val8 = dyn_tensor_copy[1,1,1];
+    auto val1 = std::math::detail::access( dyn_tensor_copy, 0, 0, 0 );
+    auto val2 = std::math::detail::access( dyn_tensor_copy, 0, 0, 1 );
+    auto val3 = std::math::detail::access( dyn_tensor_copy, 0, 1, 0 );
+    auto val4 = std::math::detail::access( dyn_tensor_copy, 0, 1, 1 );
+    auto val5 = std::math::detail::access( dyn_tensor_copy, 1, 0, 0 );
+    auto val6 = std::math::detail::access( dyn_tensor_copy, 1, 0, 1 );
+    auto val7 = std::math::detail::access( dyn_tensor_copy, 1, 1, 0 );
+    auto val8 = std::math::detail::access( dyn_tensor_copy, 1, 1, 1 );
     // Check the fs tensor was populated correctly and provided the correct values
     EXPECT_EQ( val1, 1.0 );
     EXPECT_EQ( val2, 2.0 );
@@ -275,26 +275,26 @@ namespace
     // Default construct
     float_left_tensor_type fs_tensor;
     // Populate via mutable index access
-    fs_tensor[0,0,0] = 1.0;
-    fs_tensor[0,0,1] = 2.0;
-    fs_tensor[0,1,0] = 3.0;
-    fs_tensor[0,1,1] = 4.0;
-    fs_tensor[1,0,0] = 5.0;
-    fs_tensor[1,0,1] = 6.0;
-    fs_tensor[1,1,0] = 7.0;
-    fs_tensor[1,1,1] = 8.0;
+    std::math::detail::access( fs_tensor, 0, 0, 0 ) = 1.0;
+    std::math::detail::access( fs_tensor, 0, 0, 1 ) = 2.0;
+    std::math::detail::access( fs_tensor, 0, 1, 0 ) = 3.0;
+    std::math::detail::access( fs_tensor, 0, 1, 1 ) = 4.0;
+    std::math::detail::access( fs_tensor, 1, 0, 0 ) = 5.0;
+    std::math::detail::access( fs_tensor, 1, 0, 1 ) = 6.0;
+    std::math::detail::access( fs_tensor, 1, 1, 0 ) = 7.0;
+    std::math::detail::access( fs_tensor, 1, 1, 1 ) = 8.0;
     // Default construct and then assign
     std::math::dr_tensor<double,3> dyn_tensor_copy;
     dyn_tensor_copy = fs_tensor;
     // Access elements from const fs tensor tensor
-    auto val1 = dyn_tensor_copy[0,0,0];
-    auto val2 = dyn_tensor_copy[0,0,1];
-    auto val3 = dyn_tensor_copy[0,1,0];
-    auto val4 = dyn_tensor_copy[0,1,1];
-    auto val5 = dyn_tensor_copy[1,0,0];
-    auto val6 = dyn_tensor_copy[1,0,1];
-    auto val7 = dyn_tensor_copy[1,1,0];
-    auto val8 = dyn_tensor_copy[1,1,1];
+    auto val1 = std::math::detail::access( dyn_tensor_copy, 0, 0, 0 );
+    auto val2 = std::math::detail::access( dyn_tensor_copy, 0, 0, 1 );
+    auto val3 = std::math::detail::access( dyn_tensor_copy, 0, 1, 0 );
+    auto val4 = std::math::detail::access( dyn_tensor_copy, 0, 1, 1 );
+    auto val5 = std::math::detail::access( dyn_tensor_copy, 1, 0, 0 );
+    auto val6 = std::math::detail::access( dyn_tensor_copy, 1, 0, 1 );
+    auto val7 = std::math::detail::access( dyn_tensor_copy, 1, 1, 0 );
+    auto val8 = std::math::detail::access( dyn_tensor_copy, 1, 1, 1 );
     // Check the fs tensor was populated correctly and provided the correct values
     EXPECT_EQ( val1, 1.0 );
     EXPECT_EQ( val2, 2.0 );
@@ -312,26 +312,26 @@ namespace
     // Default construct
     fs_tensor_type fs_tensor;
     // Populate via mutable index access
-    fs_tensor[0,0,0] = 1.0;
-    fs_tensor[0,0,1] = 2.0;
-    fs_tensor[0,1,0] = 3.0;
-    fs_tensor[0,1,1] = 4.0;
-    fs_tensor[1,0,0] = 5.0;
-    fs_tensor[1,0,1] = 6.0;
-    fs_tensor[1,1,0] = 7.0;
-    fs_tensor[1,1,1] = 8.0;
+    std::math::detail::access( fs_tensor, 0, 0, 0 ) = 1.0;
+    std::math::detail::access( fs_tensor, 0, 0, 1 ) = 2.0;
+    std::math::detail::access( fs_tensor, 0, 1, 0 ) = 3.0;
+    std::math::detail::access( fs_tensor, 0, 1, 1 ) = 4.0;
+    std::math::detail::access( fs_tensor, 1, 0, 0 ) = 5.0;
+    std::math::detail::access( fs_tensor, 1, 0, 1 ) = 6.0;
+    std::math::detail::access( fs_tensor, 1, 1, 0 ) = 7.0;
+    std::math::detail::access( fs_tensor, 1, 1, 1 ) = 8.0;
     // Construct and assign from view
     std::math::dr_tensor<double,3> dyn_tensor_view;
     dyn_tensor_view = fs_tensor.span();
     // Access elements from const fs tensor
-    auto val1 = dyn_tensor_view[0,0,0];
-    auto val2 = dyn_tensor_view[0,0,1];
-    auto val3 = dyn_tensor_view[0,1,0];
-    auto val4 = dyn_tensor_view[0,1,1];
-    auto val5 = dyn_tensor_view[1,0,0];
-    auto val6 = dyn_tensor_view[1,0,1];
-    auto val7 = dyn_tensor_view[1,1,0];
-    auto val8 = dyn_tensor_view[1,1,1];
+    auto val1 = std::math::detail::access( dyn_tensor_view, 0, 0, 0 );
+    auto val2 = std::math::detail::access( dyn_tensor_view, 0, 0, 1 );
+    auto val3 = std::math::detail::access( dyn_tensor_view, 0, 1, 0 );
+    auto val4 = std::math::detail::access( dyn_tensor_view, 0, 1, 1 );
+    auto val5 = std::math::detail::access( dyn_tensor_view, 1, 0, 0 );
+    auto val6 = std::math::detail::access( dyn_tensor_view, 1, 0, 1 );
+    auto val7 = std::math::detail::access( dyn_tensor_view, 1, 1, 0 );
+    auto val8 = std::math::detail::access( dyn_tensor_view, 1, 1, 1 );
     // Check the fs tensor was populated correctly and provided the correct values
     EXPECT_EQ( val1, 1.0 );
     EXPECT_EQ( val2, 2.0 );
@@ -362,63 +362,63 @@ namespace
     // Construct
     std::math::dr_tensor<double,3> dyn_tensor{ std::experimental::extents<size_t,2,2,2>(), std::experimental::extents<size_t,3,3,3>() };
     // Populate via mutable index access
-    dyn_tensor[0,0,0] = 1.0;
-    dyn_tensor[0,0,1] = 2.0;
-    dyn_tensor[0,1,0] = 3.0;
-    dyn_tensor[0,1,1] = 4.0;
-    dyn_tensor[1,0,0] = 5.0;
-    dyn_tensor[1,0,1] = 6.0;
-    dyn_tensor[1,1,0] = 7.0;
-    dyn_tensor[1,1,1] = 8.0;
+    std::math::detail::access( dyn_tensor, 0, 0, 0 ) = 1.0;
+    std::math::detail::access( dyn_tensor, 0, 0, 1 ) = 2.0;
+    std::math::detail::access( dyn_tensor, 0, 1, 0 ) = 3.0;
+    std::math::detail::access( dyn_tensor, 0, 1, 1 ) = 4.0;
+    std::math::detail::access( dyn_tensor, 1, 0, 0 ) = 5.0;
+    std::math::detail::access( dyn_tensor, 1, 0, 1 ) = 6.0;
+    std::math::detail::access( dyn_tensor, 1, 1, 0 ) = 7.0;
+    std::math::detail::access( dyn_tensor, 1, 1, 1 ) = 8.0;
     // Resize
     dyn_tensor.resize( std::experimental::extents<size_t,3,3,3>() );
-    dyn_tensor[0,0,2] = 9.0;
-    dyn_tensor[0,1,2] = 10.0;
-    dyn_tensor[0,2,0] = 11.0;
-    dyn_tensor[0,2,1] = 12.0;
-    dyn_tensor[0,2,2] = 13.0;
-    dyn_tensor[1,0,2] = 14.0;
-    dyn_tensor[1,1,2] = 15.0;
-    dyn_tensor[1,2,0] = 16.0;
-    dyn_tensor[1,2,1] = 17.0;
-    dyn_tensor[1,2,2] = 18.0;
-    dyn_tensor[2,0,0] = 19.0;
-    dyn_tensor[2,0,1] = 20.0;
-    dyn_tensor[2,0,2] = 21.0;
-    dyn_tensor[2,1,0] = 22.0;
-    dyn_tensor[2,1,1] = 23.0;
-    dyn_tensor[2,1,2] = 24.0;
-    dyn_tensor[2,2,0] = 25.0;
-    dyn_tensor[2,2,1] = 26.0;
-    dyn_tensor[2,2,2] = 27.0;
+    std::math::detail::access( dyn_tensor, 0, 0, 2 ) = 9.0;
+    std::math::detail::access( dyn_tensor, 0, 1, 2 ) = 10.0;
+    std::math::detail::access( dyn_tensor, 0, 2, 0 ) = 11.0;
+    std::math::detail::access( dyn_tensor, 0, 2, 1 ) = 12.0;
+    std::math::detail::access( dyn_tensor, 0, 2, 2 ) = 13.0;
+    std::math::detail::access( dyn_tensor, 1, 0, 2 ) = 14.0;
+    std::math::detail::access( dyn_tensor, 1, 1, 2 ) = 15.0;
+    std::math::detail::access( dyn_tensor, 1, 2, 0 ) = 16.0;
+    std::math::detail::access( dyn_tensor, 1, 2, 1 ) = 17.0;
+    std::math::detail::access( dyn_tensor, 1, 2, 2 ) = 18.0;
+    std::math::detail::access( dyn_tensor, 2, 0, 0 ) = 19.0;
+    std::math::detail::access( dyn_tensor, 2, 0, 1 ) = 20.0;
+    std::math::detail::access( dyn_tensor, 2, 0, 2 ) = 21.0;
+    std::math::detail::access( dyn_tensor, 2, 1, 0 ) = 22.0;
+    std::math::detail::access( dyn_tensor, 2, 1, 1 ) = 23.0;
+    std::math::detail::access( dyn_tensor, 2, 1, 2 ) = 24.0;
+    std::math::detail::access( dyn_tensor, 2, 2, 0 ) = 25.0;
+    std::math::detail::access( dyn_tensor, 2, 2, 1 ) = 26.0;
+    std::math::detail::access( dyn_tensor, 2, 2, 2 ) = 27.0;
     // Get values
-    auto val1  = dyn_tensor[0,0,0];
-    auto val2  = dyn_tensor[0,0,1];
-    auto val3  = dyn_tensor[0,1,0];
-    auto val4  = dyn_tensor[0,1,1];
-    auto val5  = dyn_tensor[1,0,0];
-    auto val6  = dyn_tensor[1,0,1];
-    auto val7  = dyn_tensor[1,1,0];
-    auto val8  = dyn_tensor[1,1,1];
-    auto val9  = dyn_tensor[0,0,2];
-    auto val10 = dyn_tensor[0,1,2];
-    auto val11 = dyn_tensor[0,2,0];
-    auto val12 = dyn_tensor[0,2,1];
-    auto val13 = dyn_tensor[0,2,2];
-    auto val14 = dyn_tensor[1,0,2];
-    auto val15 = dyn_tensor[1,1,2];
-    auto val16 = dyn_tensor[1,2,0];
-    auto val17 = dyn_tensor[1,2,1];
-    auto val18 = dyn_tensor[1,2,2];
-    auto val19 = dyn_tensor[2,0,0];
-    auto val20 = dyn_tensor[2,0,1];
-    auto val21 = dyn_tensor[2,0,2];
-    auto val22 = dyn_tensor[2,1,0];
-    auto val23 = dyn_tensor[2,1,1];
-    auto val24 = dyn_tensor[2,1,2];
-    auto val25 = dyn_tensor[2,2,0];
-    auto val26 = dyn_tensor[2,2,1];
-    auto val27 = dyn_tensor[2,2,2];
+    auto val1  = std::math::detail::access( dyn_tensor, 0, 0, 0 );
+    auto val2  = std::math::detail::access( dyn_tensor, 0, 0, 1 );
+    auto val3  = std::math::detail::access( dyn_tensor, 0, 1, 0 );
+    auto val4  = std::math::detail::access( dyn_tensor, 0, 1, 1 );
+    auto val5  = std::math::detail::access( dyn_tensor, 1, 0, 0 );
+    auto val6  = std::math::detail::access( dyn_tensor, 1, 0, 1 );
+    auto val7  = std::math::detail::access( dyn_tensor, 1, 1, 0 );
+    auto val8  = std::math::detail::access( dyn_tensor, 1, 1, 1 );
+    auto val9  = std::math::detail::access( dyn_tensor, 0, 0, 2 );
+    auto val10 = std::math::detail::access( dyn_tensor, 0, 1, 2 );
+    auto val11 = std::math::detail::access( dyn_tensor, 0, 2, 0 );
+    auto val12 = std::math::detail::access( dyn_tensor, 0, 2, 1 );
+    auto val13 = std::math::detail::access( dyn_tensor, 0, 2, 2 );
+    auto val14 = std::math::detail::access( dyn_tensor, 1, 0, 2 );
+    auto val15 = std::math::detail::access( dyn_tensor, 1, 1, 2 );
+    auto val16 = std::math::detail::access( dyn_tensor, 1, 2, 0 );
+    auto val17 = std::math::detail::access( dyn_tensor, 1, 2, 1 );
+    auto val18 = std::math::detail::access( dyn_tensor, 1, 2, 2 );
+    auto val19 = std::math::detail::access( dyn_tensor, 2, 0, 0 );
+    auto val20 = std::math::detail::access( dyn_tensor, 2, 0, 1 );
+    auto val21 = std::math::detail::access( dyn_tensor, 2, 0, 2 );
+    auto val22 = std::math::detail::access( dyn_tensor, 2, 1, 0 );
+    auto val23 = std::math::detail::access( dyn_tensor, 2, 1, 1 );
+    auto val24 = std::math::detail::access( dyn_tensor, 2, 1, 2 );
+    auto val25 = std::math::detail::access( dyn_tensor, 2, 2, 0 );
+    auto val26 = std::math::detail::access( dyn_tensor, 2, 2, 1 );
+    auto val27 = std::math::detail::access( dyn_tensor, 2, 2, 2 );
     // Check the values are correct
     EXPECT_EQ( val1, 1.0 );
     EXPECT_EQ( val2, 2.0 );
@@ -454,25 +454,25 @@ namespace
     // Construct
     std::math::dr_tensor<double,3> dyn_tensor{ std::experimental::extents<size_t,2,2,2>(), std::experimental::extents<size_t,2,2,2>() };
     // Populate via mutable index access
-    dyn_tensor[0,0,0] = 1.0;
-    dyn_tensor[0,0,1] = 2.0;
-    dyn_tensor[0,1,0] = 3.0;
-    dyn_tensor[0,1,1] = 4.0;
-    dyn_tensor[1,0,0] = 5.0;
-    dyn_tensor[1,0,1] = 6.0;
-    dyn_tensor[1,1,0] = 7.0;
-    dyn_tensor[1,1,1] = 8.0;
+    std::math::detail::access( dyn_tensor, 0, 0, 0 ) = 1.0;
+    std::math::detail::access( dyn_tensor, 0, 0, 1 ) = 2.0;
+    std::math::detail::access( dyn_tensor, 0, 1, 0 ) = 3.0;
+    std::math::detail::access( dyn_tensor, 0, 1, 1 ) = 4.0;
+    std::math::detail::access( dyn_tensor, 1, 0, 0 ) = 5.0;
+    std::math::detail::access( dyn_tensor, 1, 0, 1 ) = 6.0;
+    std::math::detail::access( dyn_tensor, 1, 1, 0 ) = 7.0;
+    std::math::detail::access( dyn_tensor, 1, 1, 1 ) = 8.0;
     // Resize
     dyn_tensor.reserve( std::experimental::extents<size_t,4,4,4>() );
     // Get values
-    auto val1  = dyn_tensor[0,0,0];
-    auto val2  = dyn_tensor[0,0,1];
-    auto val3  = dyn_tensor[0,1,0];
-    auto val4  = dyn_tensor[0,1,1];
-    auto val5  = dyn_tensor[1,0,0];
-    auto val6  = dyn_tensor[1,0,1];
-    auto val7  = dyn_tensor[1,1,0];
-    auto val8  = dyn_tensor[1,1,1];
+    auto val1  = std::math::detail::access( dyn_tensor, 0, 0, 0 );
+    auto val2  = std::math::detail::access( dyn_tensor, 0, 0, 1 );
+    auto val3  = std::math::detail::access( dyn_tensor, 0, 1, 0 );
+    auto val4  = std::math::detail::access( dyn_tensor, 0, 1, 1 );
+    auto val5  = std::math::detail::access( dyn_tensor, 1, 0, 0 );
+    auto val6  = std::math::detail::access( dyn_tensor, 1, 0, 1 );
+    auto val7  = std::math::detail::access( dyn_tensor, 1, 1, 0 );
+    auto val8  = std::math::detail::access( dyn_tensor, 1, 1, 1 );
     // Check the values are correct
     EXPECT_EQ( val1, 1.0 );
     EXPECT_EQ( val2, 2.0 );
@@ -495,7 +495,7 @@ namespace
       {
         for ( auto k : { 0, 1, 2, 3, 4 } )
         {
-          dyn_tensor[i,j,k] = val;
+          std::math::detail::access( dyn_tensor, i, j, k ) = val;
           val = 2 * val;
         }
       }
@@ -503,11 +503,11 @@ namespace
     const std::math::dr_tensor<double,3>& const_dyn_tensor( dyn_tensor );
     auto subvector = const_dyn_tensor.subvector( 0, std::experimental::full_extent, 1 );
     
-    EXPECT_EQ( ( subvector[0] ), ( dyn_tensor[0,0,1] ) );
-    EXPECT_EQ( ( subvector[1] ), ( dyn_tensor[0,1,1] ) );
-    EXPECT_EQ( ( subvector[2] ), ( dyn_tensor[0,2,1] ) );
-    EXPECT_EQ( ( subvector[3] ), ( dyn_tensor[0,3,1] ) );
-    EXPECT_EQ( ( subvector[4] ), ( dyn_tensor[0,4,1] ) );
+    EXPECT_EQ( ( std::math::detail::access( subvector, 0 ) ), ( std::math::detail::access( dyn_tensor, 0, 0, 1 ) ) );
+    EXPECT_EQ( ( std::math::detail::access( subvector, 1 ) ), ( std::math::detail::access( dyn_tensor, 0, 1, 1 ) ) );
+    EXPECT_EQ( ( std::math::detail::access( subvector, 2 ) ), ( std::math::detail::access( dyn_tensor, 0, 2, 1 ) ) );
+    EXPECT_EQ( ( std::math::detail::access( subvector, 3 ) ), ( std::math::detail::access( dyn_tensor, 0, 3, 1 ) ) );
+    EXPECT_EQ( ( std::math::detail::access( subvector, 4 ) ), ( std::math::detail::access( dyn_tensor, 0, 4, 1 ) ) );
   }
 
   TEST( DR_TENSOR, CONST_SUBMATRIX )
@@ -521,7 +521,7 @@ namespace
       {
         for ( auto k : { 0, 1, 2, 3, 4 } )
         {
-          dyn_tensor[i,j,k] = val;
+          std::math::detail::access( dyn_tensor, i,j, k ) = val;
           val = 2 * val;
         }
       }
@@ -529,16 +529,16 @@ namespace
     const std::math::dr_tensor<double,3>& const_dyn_tensor( dyn_tensor );
     auto submatrix = const_dyn_tensor.submatrix( 0, std::experimental::full_extent, std::tuple(0,1) );
     
-    EXPECT_EQ( ( submatrix[0,0] ), ( dyn_tensor[0,0,0] ) );
-    EXPECT_EQ( ( submatrix[1,0] ), ( dyn_tensor[0,1,0] ) );
-    EXPECT_EQ( ( submatrix[2,0] ), ( dyn_tensor[0,2,0] ) );
-    EXPECT_EQ( ( submatrix[3,0] ), ( dyn_tensor[0,3,0] ) );
-    EXPECT_EQ( ( submatrix[4,0] ), ( dyn_tensor[0,4,0] ) );
-    EXPECT_EQ( ( submatrix[0,1] ), ( dyn_tensor[0,0,1] ) );
-    EXPECT_EQ( ( submatrix[1,1] ), ( dyn_tensor[0,1,1] ) );
-    EXPECT_EQ( ( submatrix[2,1] ), ( dyn_tensor[0,2,1] ) );
-    EXPECT_EQ( ( submatrix[3,1] ), ( dyn_tensor[0,3,1] ) );
-    EXPECT_EQ( ( submatrix[4,1] ), ( dyn_tensor[0,4,1] ) );
+    EXPECT_EQ( ( std::math::detail::access( submatrix, 0, 0 ) ), ( std::math::detail::access( dyn_tensor, 0, 0, 0 ) ) );
+    EXPECT_EQ( ( std::math::detail::access( submatrix, 1, 0 ) ), ( std::math::detail::access( dyn_tensor, 0, 1, 0 ) ) );
+    EXPECT_EQ( ( std::math::detail::access( submatrix, 2, 0 ) ), ( std::math::detail::access( dyn_tensor, 0, 2, 0 ) ) );
+    EXPECT_EQ( ( std::math::detail::access( submatrix, 3, 0 ) ), ( std::math::detail::access( dyn_tensor, 0, 3, 0 ) ) );
+    EXPECT_EQ( ( std::math::detail::access( submatrix, 4, 0 ) ), ( std::math::detail::access( dyn_tensor, 0, 4, 0 ) ) );
+    EXPECT_EQ( ( std::math::detail::access( submatrix, 0, 1 ) ), ( std::math::detail::access( dyn_tensor, 0, 0, 1 ) ) );
+    EXPECT_EQ( ( std::math::detail::access( submatrix, 1, 1 ) ), ( std::math::detail::access( dyn_tensor, 0, 1, 1 ) ) );
+    EXPECT_EQ( ( std::math::detail::access( submatrix, 2, 1 ) ), ( std::math::detail::access( dyn_tensor, 0, 2, 1 ) ) );
+    EXPECT_EQ( ( std::math::detail::access( submatrix, 3, 1 ) ), ( std::math::detail::access( dyn_tensor, 0, 3, 1 ) ) );
+    EXPECT_EQ( ( std::math::detail::access( submatrix, 4, 1 ) ), ( std::math::detail::access( dyn_tensor, 0, 4, 1 ) ) );
   }
 
   TEST( DR_TENSOR, CONST_SUBTENSOR )
@@ -552,7 +552,7 @@ namespace
       {
         for ( auto k : { 0, 1, 2, 3, 4 } )
         {
-          dyn_tensor[i,j,k] = val;
+          std::math::detail::access( dyn_tensor, i, j, k ) = val;
           val = 2 * val;
         }
       }
@@ -560,12 +560,12 @@ namespace
     const std::math::dr_tensor<double,3>& const_dyn_tensor( dyn_tensor );
     auto subtensor = const_dyn_tensor.subtensor( std::tuple(2,5), std::tuple(2,4), std::tuple(2,3) );
     
-    EXPECT_EQ( ( subtensor[0,0,0] ), ( dyn_tensor[2,2,2] ) );
-    EXPECT_EQ( ( subtensor[1,0,0] ), ( dyn_tensor[3,2,2] ) );
-    EXPECT_EQ( ( subtensor[2,0,0] ), ( dyn_tensor[4,2,2] ) );
-    EXPECT_EQ( ( subtensor[0,1,0] ), ( dyn_tensor[2,3,2] ) );
-    EXPECT_EQ( ( subtensor[1,1,0] ), ( dyn_tensor[3,3,2] ) );
-    EXPECT_EQ( ( subtensor[2,1,0] ), ( dyn_tensor[4,3,2] ) );
+    EXPECT_EQ( ( std::math::detail::access( subtensor, 0, 0, 0 ) ), ( std::math::detail::access( dyn_tensor, 2, 2, 2 ) ) );
+    EXPECT_EQ( ( std::math::detail::access( subtensor, 1, 0, 0 ) ), ( std::math::detail::access( dyn_tensor, 3, 2, 2 ) ) );
+    EXPECT_EQ( ( std::math::detail::access( subtensor, 2, 0, 0 ) ), ( std::math::detail::access( dyn_tensor, 4, 2, 2 ) ) );
+    EXPECT_EQ( ( std::math::detail::access( subtensor, 0, 1, 0 ) ), ( std::math::detail::access( dyn_tensor, 2, 3, 2 ) ) );
+    EXPECT_EQ( ( std::math::detail::access( subtensor, 1, 1, 0 ) ), ( std::math::detail::access( dyn_tensor, 3, 3, 2 ) ) );
+    EXPECT_EQ( ( std::math::detail::access( subtensor, 2, 1, 0 ) ), ( std::math::detail::access( dyn_tensor, 4, 3, 2 ) ) );
   }
 
   TEST( DR_TENSOR, SUBVECTOR )
@@ -580,7 +580,7 @@ namespace
       {
         for ( auto k : { 0, 1, 2, 3, 4 } )
         {
-          dyn_tensor[i,j,k] = val;
+          std::math::detail::access( dyn_tensor, i, j, k ) = val;
           val = 2 * val;
         }
       }
@@ -590,13 +590,13 @@ namespace
     // Modify view
     for ( auto i : { 1, 2, 3 } )
     {
-      subvector[i] = val;
+      std::math::detail::access( subvector, i ) = val;
       val = 2 * val;
     }
     // Assert original tensor has been modified as well
-    EXPECT_EQ( ( subvector[1] ), ( dyn_tensor[1,1,0] ) );
-    EXPECT_EQ( ( subvector[2] ), ( dyn_tensor[1,2,0] ) );
-    EXPECT_EQ( ( subvector[3] ), ( dyn_tensor[1,3,0] ) );
+    EXPECT_EQ( ( std::math::detail::access( subvector, 1 ) ), ( std::math::detail::access( dyn_tensor, 1, 1, 0 ) ) );
+    EXPECT_EQ( ( std::math::detail::access( subvector, 2 ) ), ( std::math::detail::access( dyn_tensor, 1, 2, 0 ) ) );
+    EXPECT_EQ( ( std::math::detail::access( subvector, 3 ) ), ( std::math::detail::access( dyn_tensor, 1, 3, 0 ) ) );
   }
 
   TEST( DR_TENSOR, SUBMATRIX )
@@ -611,7 +611,7 @@ namespace
       {
         for ( auto k : { 0, 1, 2, 3, 4 } )
         {
-          dyn_tensor[i,j,k] = val;
+          std::math::detail::access( dyn_tensor, i,j, k ) = val;
           val = 2 * val;
         }
       }
@@ -623,17 +623,17 @@ namespace
     {
       for ( auto j : { 0, 1 } )
       {
-        submatrix[i,j] = val;
+        std::math::detail::access( submatrix, i, j ) = val;
         val = 2 * val;
       }
     }
     // Assert original tensor has been modified as well
-    EXPECT_EQ( ( submatrix[1,0] ), ( dyn_tensor[1,1,1] ) );
-    EXPECT_EQ( ( submatrix[2,0] ), ( dyn_tensor[1,2,1] ) );
-    EXPECT_EQ( ( submatrix[3,0] ), ( dyn_tensor[1,3,1] ) );
-    EXPECT_EQ( ( submatrix[1,1] ), ( dyn_tensor[1,1,2] ) );
-    EXPECT_EQ( ( submatrix[2,1] ), ( dyn_tensor[1,2,2] ) );
-    EXPECT_EQ( ( submatrix[3,1] ), ( dyn_tensor[1,3,2] ) );
+    EXPECT_EQ( ( std::math::detail::access( submatrix, 1, 0 ) ), ( std::math::detail::access( dyn_tensor, 1, 1, 1 ) ) );
+    EXPECT_EQ( ( std::math::detail::access( submatrix, 2, 0 ) ), ( std::math::detail::access( dyn_tensor, 1, 2, 1 ) ) );
+    EXPECT_EQ( ( std::math::detail::access( submatrix, 3, 0 ) ), ( std::math::detail::access( dyn_tensor, 1, 3, 1 ) ) );
+    EXPECT_EQ( ( std::math::detail::access( submatrix, 1, 1 ) ), ( std::math::detail::access( dyn_tensor, 1, 1, 2 ) ) );
+    EXPECT_EQ( ( std::math::detail::access( submatrix, 2, 1 ) ), ( std::math::detail::access( dyn_tensor, 1, 2, 2 ) ) );
+    EXPECT_EQ( ( std::math::detail::access( submatrix, 3, 1 ) ), ( std::math::detail::access( dyn_tensor, 1, 3, 2 ) ) );
   }
 
   TEST( DR_TENSOR, SUBTENSOR )
@@ -648,7 +648,7 @@ namespace
       {
         for ( auto k : { 0, 1, 2, 3, 4 } )
         {
-          dyn_tensor[i,j,k] = val;
+          std::math::detail::access( dyn_tensor, i, j, k ) = val;
           val = 2 * val;
         }
       }
@@ -662,18 +662,18 @@ namespace
       {
         for ( auto k : { 0 } )
         {
-          subtensor[i,j,k] = val;
+          std::math::detail::access( subtensor, i,j, k ) = val;
           val = 2 * val;
         }
       }
     }
     // Assert original tensor has been modified as well
-    EXPECT_EQ( ( subtensor[0,0,0] ), ( dyn_tensor[2,2,2] ) );
-    EXPECT_EQ( ( subtensor[1,0,0] ), ( dyn_tensor[3,2,2] ) );
-    EXPECT_EQ( ( subtensor[2,0,0] ), ( dyn_tensor[4,2,2] ) );
-    EXPECT_EQ( ( subtensor[0,1,0] ), ( dyn_tensor[2,3,2] ) );
-    EXPECT_EQ( ( subtensor[1,1,0] ), ( dyn_tensor[3,3,2] ) );
-    EXPECT_EQ( ( subtensor[2,1,0] ), ( dyn_tensor[4,3,2] ) );
+    EXPECT_EQ( ( std::math::detail::access( subtensor, 0, 0, 0 ) ), ( std::math::detail::access( dyn_tensor, 2, 2, 2 ) ) );
+    EXPECT_EQ( ( std::math::detail::access( subtensor, 1, 0, 0 ) ), ( std::math::detail::access( dyn_tensor, 3, 2, 2 ) ) );
+    EXPECT_EQ( ( std::math::detail::access( subtensor, 2, 0, 0 ) ), ( std::math::detail::access( dyn_tensor, 4, 2, 2 ) ) );
+    EXPECT_EQ( ( std::math::detail::access( subtensor, 0, 1, 0 ) ), ( std::math::detail::access( dyn_tensor, 2, 3, 2 ) ) );
+    EXPECT_EQ( ( std::math::detail::access( subtensor, 1, 1, 0 ) ), ( std::math::detail::access( dyn_tensor, 3, 3, 2 ) ) );
+    EXPECT_EQ( ( std::math::detail::access( subtensor, 2, 1, 0 ) ), ( std::math::detail::access( dyn_tensor, 4, 3, 2 ) ) );
   }
 
   TEST( DR_TENSOR, NEGATION )
@@ -682,27 +682,27 @@ namespace
     // Construct
     tensor_type tensor{ std::experimental::extents<size_t,2,2,2>(), std::experimental::extents<size_t,3,3,3>() };
     // Populate via mutable index access
-    tensor[0,0,0] = 1.0;
-    tensor[0,0,1] = 2.0;
-    tensor[0,1,0] = 3.0;
-    tensor[0,1,1] = 4.0;
-    tensor[1,0,0] = 5.0;
-    tensor[1,0,1] = 6.0;
-    tensor[1,1,0] = 7.0;
-    tensor[1,1,1] = 8.0;
+    std::math::detail::access( tensor, 0, 0, 0 ) = 1.0;
+    std::math::detail::access( tensor, 0, 0, 1 ) = 2.0;
+    std::math::detail::access( tensor, 0, 1, 0 ) = 3.0;
+    std::math::detail::access( tensor, 0, 1, 1 ) = 4.0;
+    std::math::detail::access( tensor, 1, 0, 0 ) = 5.0;
+    std::math::detail::access( tensor, 1, 0, 1 ) = 6.0;
+    std::math::detail::access( tensor, 1, 1, 0 ) = 7.0;
+    std::math::detail::access( tensor, 1, 1, 1 ) = 8.0;
     // Copy construct
     tensor_type tensor_copy{ tensor };
     // Negate the tensor
     tensor_type negate_tensor { -tensor };
     // Access elements from const tensor
-    auto val1 = negate_tensor[0,0,0];
-    auto val2 = negate_tensor[0,0,1];
-    auto val3 = negate_tensor[0,1,0];
-    auto val4 = negate_tensor[0,1,1];
-    auto val5 = negate_tensor[1,0,0];
-    auto val6 = negate_tensor[1,0,1];
-    auto val7 = negate_tensor[1,1,0];
-    auto val8 = negate_tensor[1,1,1];
+    auto val1 = std::math::detail::access( negate_tensor, 0, 0, 0 );
+    auto val2 = std::math::detail::access( negate_tensor, 0, 0, 1 );
+    auto val3 = std::math::detail::access( negate_tensor, 0, 1, 0 );
+    auto val4 = std::math::detail::access( negate_tensor, 0, 1, 1 );
+    auto val5 = std::math::detail::access( negate_tensor, 1, 0, 0 );
+    auto val6 = std::math::detail::access( negate_tensor, 1, 0, 1 );
+    auto val7 = std::math::detail::access( negate_tensor, 1, 1, 0 );
+    auto val8 = std::math::detail::access( negate_tensor, 1, 1, 1 );
     // Check the tensor copy was populated correctly and provided the correct values
     EXPECT_EQ( val1, -1.0 );
     EXPECT_EQ( val2, -2.0 );
@@ -720,27 +720,27 @@ namespace
     // Construct
     tensor_type tensor{ std::experimental::extents<size_t,2,2,2>(), std::experimental::extents<size_t,3,3,3>() };
     // Populate via mutable index access
-    tensor[0,0,0] = 1.0;
-    tensor[0,0,1] = 2.0;
-    tensor[0,1,0] = 3.0;
-    tensor[0,1,1] = 4.0;
-    tensor[1,0,0] = 5.0;
-    tensor[1,0,1] = 6.0;
-    tensor[1,1,0] = 7.0;
-    tensor[1,1,1] = 8.0;
+    std::math::detail::access( tensor, 0, 0, 0 ) = 1.0;
+    std::math::detail::access( tensor, 0, 0, 1 ) = 2.0;
+    std::math::detail::access( tensor, 0, 1, 0 ) = 3.0;
+    std::math::detail::access( tensor, 0, 1, 1 ) = 4.0;
+    std::math::detail::access( tensor, 1, 0, 0 ) = 5.0;
+    std::math::detail::access( tensor, 1, 0, 1 ) = 6.0;
+    std::math::detail::access( tensor, 1, 1, 0 ) = 7.0;
+    std::math::detail::access( tensor, 1, 1, 1 ) = 8.0;
     // Copy construct
     tensor_type tensor_copy{ tensor };
     // Add the two tensors together
     tensor_type tensor_sum { tensor + tensor_copy };
     // Access elements from const tensor
-    auto val1 = tensor_sum[0,0,0];
-    auto val2 = tensor_sum[0,0,1];
-    auto val3 = tensor_sum[0,1,0];
-    auto val4 = tensor_sum[0,1,1];
-    auto val5 = tensor_sum[1,0,0];
-    auto val6 = tensor_sum[1,0,1];
-    auto val7 = tensor_sum[1,1,0];
-    auto val8 = tensor_sum[1,1,1];
+    auto val1 = std::math::detail::access( tensor_sum, 0, 0, 0 );
+    auto val2 = std::math::detail::access( tensor_sum, 0, 0, 1 );
+    auto val3 = std::math::detail::access( tensor_sum, 0, 1, 0 );
+    auto val4 = std::math::detail::access( tensor_sum, 0, 1, 1 );
+    auto val5 = std::math::detail::access( tensor_sum, 1, 0, 0 );
+    auto val6 = std::math::detail::access( tensor_sum, 1, 0, 1 );
+    auto val7 = std::math::detail::access( tensor_sum, 1, 1, 0 );
+    auto val8 = std::math::detail::access( tensor_sum, 1, 1, 1 );
     // Check the tensor copy was populated correctly and provided the correct values
     EXPECT_EQ( val1, 2.0 );
     EXPECT_EQ( val2, 4.0 );
@@ -758,27 +758,27 @@ namespace
     // Construct
     tensor_type tensor{ std::experimental::extents<size_t,2,2,2>(), std::experimental::extents<size_t,3,3,3>() };
     // Populate via mutable index access
-    tensor[0,0,0] = 1.0;
-    tensor[0,0,1] = 2.0;
-    tensor[0,1,0] = 3.0;
-    tensor[0,1,1] = 4.0;
-    tensor[1,0,0] = 5.0;
-    tensor[1,0,1] = 6.0;
-    tensor[1,1,0] = 7.0;
-    tensor[1,1,1] = 8.0;
+    std::math::detail::access( tensor, 0, 0, 0 ) = 1.0;
+    std::math::detail::access( tensor, 0, 0, 1 ) = 2.0;
+    std::math::detail::access( tensor, 0, 1, 0 ) = 3.0;
+    std::math::detail::access( tensor, 0, 1, 1 ) = 4.0;
+    std::math::detail::access( tensor, 1, 0, 0 ) = 5.0;
+    std::math::detail::access( tensor, 1, 0, 1 ) = 6.0;
+    std::math::detail::access( tensor, 1, 1, 0 ) = 7.0;
+    std::math::detail::access( tensor, 1, 1, 1 ) = 8.0;
     // Copy construct
     tensor_type tensor_copy{ tensor };
     // Add the two tensors together
     static_cast<void>( tensor += tensor_copy );
     // Access elements from const tensor
-    auto val1 = tensor[0,0,0];
-    auto val2 = tensor[0,0,1];
-    auto val3 = tensor[0,1,0];
-    auto val4 = tensor[0,1,1];
-    auto val5 = tensor[1,0,0];
-    auto val6 = tensor[1,0,1];
-    auto val7 = tensor[1,1,0];
-    auto val8 = tensor[1,1,1];
+    auto val1 = std::math::detail::access( tensor, 0, 0, 0 );
+    auto val2 = std::math::detail::access( tensor, 0, 0, 1 );
+    auto val3 = std::math::detail::access( tensor, 0, 1, 0 );
+    auto val4 = std::math::detail::access( tensor, 0, 1, 1 );
+    auto val5 = std::math::detail::access( tensor, 1, 0, 0 );
+    auto val6 = std::math::detail::access( tensor, 1, 0, 1 );
+    auto val7 = std::math::detail::access( tensor, 1, 1, 0 );
+    auto val8 = std::math::detail::access( tensor, 1, 1, 1 );
     // Check the tensor copy was populated correctly and provided the correct values
     EXPECT_EQ( val1, 2.0 );
     EXPECT_EQ( val2, 4.0 );
@@ -796,27 +796,27 @@ namespace
     // Construct
     tensor_type tensor{ std::experimental::extents<size_t,2,2,2>(), std::experimental::extents<size_t,3,3,3>() };
     // Populate via mutable index access
-    tensor[0,0,0] = 1.0;
-    tensor[0,0,1] = 2.0;
-    tensor[0,1,0] = 3.0;
-    tensor[0,1,1] = 4.0;
-    tensor[1,0,0] = 5.0;
-    tensor[1,0,1] = 6.0;
-    tensor[1,1,0] = 7.0;
-    tensor[1,1,1] = 8.0;
+    std::math::detail::access( tensor, 0, 0, 0 ) = 1.0;
+    std::math::detail::access( tensor, 0, 0, 1 ) = 2.0;
+    std::math::detail::access( tensor, 0, 1, 0 ) = 3.0;
+    std::math::detail::access( tensor, 0, 1, 1 ) = 4.0;
+    std::math::detail::access( tensor, 1, 0, 0 ) = 5.0;
+    std::math::detail::access( tensor, 1, 0, 1 ) = 6.0;
+    std::math::detail::access( tensor, 1, 1, 0 ) = 7.0;
+    std::math::detail::access( tensor, 1, 1, 1 ) = 8.0;
     // Copy construct
     tensor_type tensor_copy{ tensor };
     // Subtract the two tensors
     tensor_type tensor_diff { tensor - tensor_copy };
     // Access elements from const tensor
-    auto val1 = tensor_diff[0,0,0];
-    auto val2 = tensor_diff[0,0,1];
-    auto val3 = tensor_diff[0,1,0];
-    auto val4 = tensor_diff[0,1,1];
-    auto val5 = tensor_diff[1,0,0];
-    auto val6 = tensor_diff[1,0,1];
-    auto val7 = tensor_diff[1,1,0];
-    auto val8 = tensor_diff[1,1,1];
+    auto val1 = std::math::detail::access( tensor_diff, 0, 0, 0 );
+    auto val2 = std::math::detail::access( tensor_diff, 0, 0, 1 );
+    auto val3 = std::math::detail::access( tensor_diff, 0, 1, 0 );
+    auto val4 = std::math::detail::access( tensor_diff, 0, 1, 1 );
+    auto val5 = std::math::detail::access( tensor_diff, 1, 0, 0 );
+    auto val6 = std::math::detail::access( tensor_diff, 1, 0, 1 );
+    auto val7 = std::math::detail::access( tensor_diff, 1, 1, 0 );
+    auto val8 = std::math::detail::access( tensor_diff, 1, 1, 1 );
     // Check the tensor copy was populated correctly and provided the correct values
     EXPECT_EQ( val1, 0 );
     EXPECT_EQ( val2, 0 );
@@ -834,27 +834,27 @@ namespace
     // Construct
     tensor_type tensor{ std::experimental::extents<size_t,2,2,2>(), std::experimental::extents<size_t,3,3,3>() };
     // Populate via mutable index access
-    tensor[0,0,0] = 1.0;
-    tensor[0,0,1] = 2.0;
-    tensor[0,1,0] = 3.0;
-    tensor[0,1,1] = 4.0;
-    tensor[1,0,0] = 5.0;
-    tensor[1,0,1] = 6.0;
-    tensor[1,1,0] = 7.0;
-    tensor[1,1,1] = 8.0;
+    std::math::detail::access( tensor, 0, 0, 0 ) = 1.0;
+    std::math::detail::access( tensor, 0, 0, 1 ) = 2.0;
+    std::math::detail::access( tensor, 0, 1, 0 ) = 3.0;
+    std::math::detail::access( tensor, 0, 1, 1 ) = 4.0;
+    std::math::detail::access( tensor, 1, 0, 0 ) = 5.0;
+    std::math::detail::access( tensor, 1, 0, 1 ) = 6.0;
+    std::math::detail::access( tensor, 1, 1, 0 ) = 7.0;
+    std::math::detail::access( tensor, 1, 1, 1 ) = 8.0;
     // Copy construct
     tensor_type tensor_copy{ tensor };
     // Subtract the two tensors
     static_cast<void>( tensor -= tensor_copy );
     // Access elements from const tensor
-    auto val1 = tensor[0,0,0];
-    auto val2 = tensor[0,0,1];
-    auto val3 = tensor[0,1,0];
-    auto val4 = tensor[0,1,1];
-    auto val5 = tensor[1,0,0];
-    auto val6 = tensor[1,0,1];
-    auto val7 = tensor[1,1,0];
-    auto val8 = tensor[1,1,1];
+    auto val1 = std::math::detail::access( tensor, 0, 0, 0 );
+    auto val2 = std::math::detail::access( tensor, 0, 0, 1 );
+    auto val3 = std::math::detail::access( tensor, 0, 1, 0 );
+    auto val4 = std::math::detail::access( tensor, 0, 1, 1 );
+    auto val5 = std::math::detail::access( tensor, 1, 0, 0 );
+    auto val6 = std::math::detail::access( tensor, 1, 0, 1 );
+    auto val7 = std::math::detail::access( tensor, 1, 1, 0 );
+    auto val8 = std::math::detail::access( tensor, 1, 1, 1 );
     // Check the tensor copy was populated correctly and provided the correct values
     EXPECT_EQ( val1, 0 );
     EXPECT_EQ( val2, 0 );
@@ -872,25 +872,25 @@ namespace
     // Construct
     tensor_type tensor{ std::experimental::extents<size_t,2,2,2>(), std::experimental::extents<size_t,3,3,3>() };
     // Populate via mutable index access
-    tensor[0,0,0] = 1.0;
-    tensor[0,0,1] = 2.0;
-    tensor[0,1,0] = 3.0;
-    tensor[0,1,1] = 4.0;
-    tensor[1,0,0] = 5.0;
-    tensor[1,0,1] = 6.0;
-    tensor[1,1,0] = 7.0;
-    tensor[1,1,1] = 8.0;
+    std::math::detail::access( tensor, 0, 0, 0 ) = 1.0;
+    std::math::detail::access( tensor, 0, 0, 1 ) = 2.0;
+    std::math::detail::access( tensor, 0, 1, 0 ) = 3.0;
+    std::math::detail::access( tensor, 0, 1, 1 ) = 4.0;
+    std::math::detail::access( tensor, 1, 0, 0 ) = 5.0;
+    std::math::detail::access( tensor, 1, 0, 1 ) = 6.0;
+    std::math::detail::access( tensor, 1, 1, 0 ) = 7.0;
+    std::math::detail::access( tensor, 1, 1, 1 ) = 8.0;
     // Pre multiply
     tensor_type tensor_prod { 2 * tensor };
     // Access elements from const tensor
-    auto val1 = tensor_prod[0,0,0];
-    auto val2 = tensor_prod[0,0,1];
-    auto val3 = tensor_prod[0,1,0];
-    auto val4 = tensor_prod[0,1,1];
-    auto val5 = tensor_prod[1,0,0];
-    auto val6 = tensor_prod[1,0,1];
-    auto val7 = tensor_prod[1,1,0];
-    auto val8 = tensor_prod[1,1,1];
+    auto val1 = std::math::detail::access( tensor_prod, 0, 0, 0 );
+    auto val2 = std::math::detail::access( tensor_prod, 0, 0, 1 );
+    auto val3 = std::math::detail::access( tensor_prod, 0, 1, 0 );
+    auto val4 = std::math::detail::access( tensor_prod, 0, 1, 1 );
+    auto val5 = std::math::detail::access( tensor_prod, 1, 0, 0 );
+    auto val6 = std::math::detail::access( tensor_prod, 1, 0, 1 );
+    auto val7 = std::math::detail::access( tensor_prod, 1, 1, 0 );
+    auto val8 = std::math::detail::access( tensor_prod, 1, 1, 1 );
     // Check the tensor was populated correctly and provided the correct values
     EXPECT_EQ( val1, 2.0 );
     EXPECT_EQ( val2, 4.0 );
@@ -908,25 +908,25 @@ namespace
     // Construct
     tensor_type tensor{ std::experimental::extents<size_t,2,2,2>(), std::experimental::extents<size_t,3,3,3>() };
     // Populate via mutable index access
-    tensor[0,0,0] = 1.0;
-    tensor[0,0,1] = 2.0;
-    tensor[0,1,0] = 3.0;
-    tensor[0,1,1] = 4.0;
-    tensor[1,0,0] = 5.0;
-    tensor[1,0,1] = 6.0;
-    tensor[1,1,0] = 7.0;
-    tensor[1,1,1] = 8.0;
+    std::math::detail::access( tensor, 0, 0, 0 ) = 1.0;
+    std::math::detail::access( tensor, 0, 0, 1 ) = 2.0;
+    std::math::detail::access( tensor, 0, 1, 0 ) = 3.0;
+    std::math::detail::access( tensor, 0, 1, 1 ) = 4.0;
+    std::math::detail::access( tensor, 1, 0, 0 ) = 5.0;
+    std::math::detail::access( tensor, 1, 0, 1 ) = 6.0;
+    std::math::detail::access( tensor, 1, 1, 0 ) = 7.0;
+    std::math::detail::access( tensor, 1, 1, 1 ) = 8.0;
     // Post multiply
     tensor_type tensor_prod { tensor * 2 };
     // Access elements from const tensor
-    auto val1 = tensor_prod[0,0,0];
-    auto val2 = tensor_prod[0,0,1];
-    auto val3 = tensor_prod[0,1,0];
-    auto val4 = tensor_prod[0,1,1];
-    auto val5 = tensor_prod[1,0,0];
-    auto val6 = tensor_prod[1,0,1];
-    auto val7 = tensor_prod[1,1,0];
-    auto val8 = tensor_prod[1,1,1];
+    auto val1 = std::math::detail::access( tensor_prod, 0, 0, 0 );
+    auto val2 = std::math::detail::access( tensor_prod, 0, 0, 1 );
+    auto val3 = std::math::detail::access( tensor_prod, 0, 1, 0 );
+    auto val4 = std::math::detail::access( tensor_prod, 0, 1, 1 );
+    auto val5 = std::math::detail::access( tensor_prod, 1, 0, 0 );
+    auto val6 = std::math::detail::access( tensor_prod, 1, 0, 1 );
+    auto val7 = std::math::detail::access( tensor_prod, 1, 1, 0 );
+    auto val8 = std::math::detail::access( tensor_prod, 1, 1, 1 );
     // Check the tensor was populated correctly and provided the correct values
     EXPECT_EQ( val1, 2.0 );
     EXPECT_EQ( val2, 4.0 );
@@ -944,25 +944,25 @@ namespace
     // Construct
     tensor_type tensor{ std::experimental::extents<size_t,2,2,2>(), std::experimental::extents<size_t,3,3,3>() };
     // Populate via mutable index access
-    tensor[0,0,0] = 1.0;
-    tensor[0,0,1] = 2.0;
-    tensor[0,1,0] = 3.0;
-    tensor[0,1,1] = 4.0;
-    tensor[1,0,0] = 5.0;
-    tensor[1,0,1] = 6.0;
-    tensor[1,1,0] = 7.0;
-    tensor[1,1,1] = 8.0;
+    std::math::detail::access( tensor, 0, 0, 0 ) = 1.0;
+    std::math::detail::access( tensor, 0, 0, 1 ) = 2.0;
+    std::math::detail::access( tensor, 0, 1, 0 ) = 3.0;
+    std::math::detail::access( tensor, 0, 1, 1 ) = 4.0;
+    std::math::detail::access( tensor, 1, 0, 0 ) = 5.0;
+    std::math::detail::access( tensor, 1, 0, 1 ) = 6.0;
+    std::math::detail::access( tensor, 1, 1, 0 ) = 7.0;
+    std::math::detail::access( tensor, 1, 1, 1 ) = 8.0;
     // Post multiply
     static_cast<void>( tensor *= 2 );
     // Access elements from tensor
-    auto val1 = tensor[0,0,0];
-    auto val2 = tensor[0,0,1];
-    auto val3 = tensor[0,1,0];
-    auto val4 = tensor[0,1,1];
-    auto val5 = tensor[1,0,0];
-    auto val6 = tensor[1,0,1];
-    auto val7 = tensor[1,1,0];
-    auto val8 = tensor[1,1,1];
+    auto val1 = std::math::detail::access( tensor, 0, 0, 0 );
+    auto val2 = std::math::detail::access( tensor, 0, 0, 1 );
+    auto val3 = std::math::detail::access( tensor, 0, 1, 0 );
+    auto val4 = std::math::detail::access( tensor, 0, 1, 1 );
+    auto val5 = std::math::detail::access( tensor, 1, 0, 0 );
+    auto val6 = std::math::detail::access( tensor, 1, 0, 1 );
+    auto val7 = std::math::detail::access( tensor, 1, 1, 0 );
+    auto val8 = std::math::detail::access( tensor, 1, 1, 1 );
     // Check the tensor was populated correctly and provided the correct values
     EXPECT_EQ( val1, 2.0 );
     EXPECT_EQ( val2, 4.0 );
@@ -980,25 +980,25 @@ namespace
     // Construct
     tensor_type tensor{ std::experimental::extents<size_t,2,2,2>(), std::experimental::extents<size_t,3,3,3>() };
     // Populate via mutable index access
-    tensor[0,0,0] = 1.0;
-    tensor[0,0,1] = 2.0;
-    tensor[0,1,0] = 3.0;
-    tensor[0,1,1] = 4.0;
-    tensor[1,0,0] = 5.0;
-    tensor[1,0,1] = 6.0;
-    tensor[1,1,0] = 7.0;
-    tensor[1,1,1] = 8.0;
+    std::math::detail::access( tensor, 0, 0, 0 ) = 1.0;
+    std::math::detail::access( tensor, 0, 0, 1 ) = 2.0;
+    std::math::detail::access( tensor, 0, 1, 0 ) = 3.0;
+    std::math::detail::access( tensor, 0, 1, 1 ) = 4.0;
+    std::math::detail::access( tensor, 1, 0, 0 ) = 5.0;
+    std::math::detail::access( tensor, 1, 0, 1 ) = 6.0;
+    std::math::detail::access( tensor, 1, 1, 0 ) = 7.0;
+    std::math::detail::access( tensor, 1, 1, 1 ) = 8.0;
     // Divide
     tensor_type tensor_divide { tensor / 2 };
     // Access elements from const tensor
-    auto val1 = tensor_divide[0,0,0];
-    auto val2 = tensor_divide[0,0,1];
-    auto val3 = tensor_divide[0,1,0];
-    auto val4 = tensor_divide[0,1,1];
-    auto val5 = tensor_divide[1,0,0];
-    auto val6 = tensor_divide[1,0,1];
-    auto val7 = tensor_divide[1,1,0];
-    auto val8 = tensor_divide[1,1,1];
+    auto val1 = std::math::detail::access( tensor_divide, 0, 0, 0 );
+    auto val2 = std::math::detail::access( tensor_divide, 0, 0, 1 );
+    auto val3 = std::math::detail::access( tensor_divide, 0, 1, 0 );
+    auto val4 = std::math::detail::access( tensor_divide, 0, 1, 1 );
+    auto val5 = std::math::detail::access( tensor_divide, 1, 0, 0 );
+    auto val6 = std::math::detail::access( tensor_divide, 1, 0, 1 );
+    auto val7 = std::math::detail::access( tensor_divide, 1, 1, 0 );
+    auto val8 = std::math::detail::access( tensor_divide, 1, 1, 1 );
     // Check the tensor was populated correctly and provided the correct values
     EXPECT_EQ( val1, 0.5 );
     EXPECT_EQ( val2, 1.0 );
@@ -1016,25 +1016,25 @@ namespace
     // Construct
     tensor_type tensor{ std::experimental::extents<size_t,2,2,2>(), std::experimental::extents<size_t,3,3,3>() };
     // Populate via mutable index access
-    tensor[0,0,0] = 1.0;
-    tensor[0,0,1] = 2.0;
-    tensor[0,1,0] = 3.0;
-    tensor[0,1,1] = 4.0;
-    tensor[1,0,0] = 5.0;
-    tensor[1,0,1] = 6.0;
-    tensor[1,1,0] = 7.0;
-    tensor[1,1,1] = 8.0;
+    std::math::detail::access( tensor, 0, 0, 0 ) = 1.0;
+    std::math::detail::access( tensor, 0, 0, 1 ) = 2.0;
+    std::math::detail::access( tensor, 0, 1, 0 ) = 3.0;
+    std::math::detail::access( tensor, 0, 1, 1 ) = 4.0;
+    std::math::detail::access( tensor, 1, 0, 0 ) = 5.0;
+    std::math::detail::access( tensor, 1, 0, 1 ) = 6.0;
+    std::math::detail::access( tensor, 1, 1, 0 ) = 7.0;
+    std::math::detail::access( tensor, 1, 1, 1 ) = 8.0;
     // Divide
     static_cast<void>( tensor /= 2 );
     // Access elements from tensor
-    auto val1 = tensor[0,0,0];
-    auto val2 = tensor[0,0,1];
-    auto val3 = tensor[0,1,0];
-    auto val4 = tensor[0,1,1];
-    auto val5 = tensor[1,0,0];
-    auto val6 = tensor[1,0,1];
-    auto val7 = tensor[1,1,0];
-    auto val8 = tensor[1,1,1];
+    auto val1 = std::math::detail::access( tensor, 0, 0, 0 );
+    auto val2 = std::math::detail::access( tensor, 0, 0, 1 );
+    auto val3 = std::math::detail::access( tensor, 0, 1, 0 );
+    auto val4 = std::math::detail::access( tensor, 0, 1, 1 );
+    auto val5 = std::math::detail::access( tensor, 1, 0, 0 );
+    auto val6 = std::math::detail::access( tensor, 1, 0, 1 );
+    auto val7 = std::math::detail::access( tensor, 1, 1, 0 );
+    auto val8 = std::math::detail::access( tensor, 1, 1, 1 );
     // Check the tensor was populated correctly and provided the correct values
     EXPECT_EQ( val1, 0.5 );
     EXPECT_EQ( val2, 1.0 );
@@ -1059,25 +1059,25 @@ namespace
     // Default construct
     fs_tensor_type fs_tensor;
     // Populate via mutable index access
-    fs_tensor[0,0,0] = 1.0;
-    fs_tensor[0,0,1] = 2.0;
-    fs_tensor[0,1,0] = 3.0;
-    fs_tensor[0,1,1] = 4.0;
-    fs_tensor[1,0,0] = 5.0;
-    fs_tensor[1,0,1] = 6.0;
-    fs_tensor[1,1,0] = 7.0;
-    fs_tensor[1,1,1] = 8.0;
+    std::math::detail::access( fs_tensor, 0, 0, 0 ) = 1.0;
+    std::math::detail::access( fs_tensor, 0, 0, 1 ) = 2.0;
+    std::math::detail::access( fs_tensor, 0, 1, 0 ) = 3.0;
+    std::math::detail::access( fs_tensor, 0, 1, 1 ) = 4.0;
+    std::math::detail::access( fs_tensor, 1, 0, 0 ) = 5.0;
+    std::math::detail::access( fs_tensor, 1, 0, 1 ) = 6.0;
+    std::math::detail::access( fs_tensor, 1, 1, 0 ) = 7.0;
+    std::math::detail::access( fs_tensor, 1, 1, 1 ) = 8.0;
     // Get a const reference
     const fs_tensor_type& const_fs_tensor( fs_tensor );
     // Access elements from const fs tensor
-    auto val1 = const_fs_tensor[0,0,0];
-    auto val2 = const_fs_tensor[0,0,1];
-    auto val3 = const_fs_tensor[0,1,0];
-    auto val4 = const_fs_tensor[0,1,1];
-    auto val5 = const_fs_tensor[1,0,0];
-    auto val6 = const_fs_tensor[1,0,1];
-    auto val7 = const_fs_tensor[1,1,0];
-    auto val8 = const_fs_tensor[1,1,1];
+    auto val1 = std::math::detail::access( const_fs_tensor, 0, 0, 0 );
+    auto val2 = std::math::detail::access( const_fs_tensor, 0, 0, 1 );
+    auto val3 = std::math::detail::access( const_fs_tensor, 0, 1, 0 );
+    auto val4 = std::math::detail::access( const_fs_tensor, 0, 1, 1 );
+    auto val5 = std::math::detail::access( const_fs_tensor, 1, 0, 0 );
+    auto val6 = std::math::detail::access( const_fs_tensor, 1, 0, 1 );
+    auto val7 = std::math::detail::access( const_fs_tensor, 1, 1, 0 );
+    auto val8 = std::math::detail::access( const_fs_tensor, 1, 1, 1 );
     // Check the fs tensor was populated correctly and provided the correct values
     EXPECT_EQ( val1, 1.0 );
     EXPECT_EQ( val2, 2.0 );
@@ -1095,27 +1095,27 @@ namespace
     // Default construct
     fs_tensor_type fs_tensor;
     // Populate via mutable index access
-    fs_tensor[0,0,0] = 1.0;
-    fs_tensor[0,0,1] = 2.0;
-    fs_tensor[0,1,0] = 3.0;
-    fs_tensor[0,1,1] = 4.0;
-    fs_tensor[1,0,0] = 5.0;
-    fs_tensor[1,0,1] = 6.0;
-    fs_tensor[1,1,0] = 7.0;
-    fs_tensor[1,1,1] = 8.0;
+    std::math::detail::access( fs_tensor, 0, 0, 0 ) = 1.0;
+    std::math::detail::access( fs_tensor, 0, 0, 1 ) = 2.0;
+    std::math::detail::access( fs_tensor, 0, 1, 0 ) = 3.0;
+    std::math::detail::access( fs_tensor, 0, 1, 1 ) = 4.0;
+    std::math::detail::access( fs_tensor, 1, 0, 0 ) = 5.0;
+    std::math::detail::access( fs_tensor, 1, 0, 1 ) = 6.0;
+    std::math::detail::access( fs_tensor, 1, 1, 0 ) = 7.0;
+    std::math::detail::access( fs_tensor, 1, 1, 1 ) = 8.0;
     // Copy construct
     fs_tensor_type fs_tensor_copy{ fs_tensor };
     // Get a const reference to copy
     const fs_tensor_type& const_fs_tensor( fs_tensor_copy );
     // Access elements from const fs tensor
-    auto val1 = const_fs_tensor[0,0,0];
-    auto val2 = const_fs_tensor[0,0,1];
-    auto val3 = const_fs_tensor[0,1,0];
-    auto val4 = const_fs_tensor[0,1,1];
-    auto val5 = const_fs_tensor[1,0,0];
-    auto val6 = const_fs_tensor[1,0,1];
-    auto val7 = const_fs_tensor[1,1,0];
-    auto val8 = const_fs_tensor[1,1,1];
+    auto val1 = std::math::detail::access( const_fs_tensor, 0, 0, 0 );
+    auto val2 = std::math::detail::access( const_fs_tensor, 0, 0, 1 );
+    auto val3 = std::math::detail::access( const_fs_tensor, 0, 1, 0 );
+    auto val4 = std::math::detail::access( const_fs_tensor, 0, 1, 1 );
+    auto val5 = std::math::detail::access( const_fs_tensor, 1, 0, 0 );
+    auto val6 = std::math::detail::access( const_fs_tensor, 1, 0, 1 );
+    auto val7 = std::math::detail::access( const_fs_tensor, 1, 1, 0 );
+    auto val8 = std::math::detail::access( const_fs_tensor, 1, 1, 1 );
     // Check the fs tensor was populated correctly and provided the correct values
     EXPECT_EQ( val1, 1.0 );
     EXPECT_EQ( val2, 2.0 );
@@ -1133,27 +1133,27 @@ namespace
     // Default construct
     fs_tensor_type fs_tensor;
     // Populate via mutable index access
-    fs_tensor[0,0,0] = 1.0;
-    fs_tensor[0,0,1] = 2.0;
-    fs_tensor[0,1,0] = 3.0;
-    fs_tensor[0,1,1] = 4.0;
-    fs_tensor[1,0,0] = 5.0;
-    fs_tensor[1,0,1] = 6.0;
-    fs_tensor[1,1,0] = 7.0;
-    fs_tensor[1,1,1] = 8.0;
+    std::math::detail::access( fs_tensor, 0, 0, 0 ) = 1.0;
+    std::math::detail::access( fs_tensor, 0, 0, 1 ) = 2.0;
+    std::math::detail::access( fs_tensor, 0, 1, 0 ) = 3.0;
+    std::math::detail::access( fs_tensor, 0, 1, 1 ) = 4.0;
+    std::math::detail::access( fs_tensor, 1, 0, 0 ) = 5.0;
+    std::math::detail::access( fs_tensor, 1, 0, 1 ) = 6.0;
+    std::math::detail::access( fs_tensor, 1, 1, 0 ) = 7.0;
+    std::math::detail::access( fs_tensor, 1, 1, 1 ) = 8.0;
     // Move construct
     fs_tensor_type fs_tensor_move{ std::move( fs_tensor ) };
     // Get a const reference to moved tensor
     const fs_tensor_type& const_fs_tensor( fs_tensor_move );
     // Access elements from const fs tensor
-    auto val1 = const_fs_tensor[0,0,0];
-    auto val2 = const_fs_tensor[0,0,1];
-    auto val3 = const_fs_tensor[0,1,0];
-    auto val4 = const_fs_tensor[0,1,1];
-    auto val5 = const_fs_tensor[1,0,0];
-    auto val6 = const_fs_tensor[1,0,1];
-    auto val7 = const_fs_tensor[1,1,0];
-    auto val8 = const_fs_tensor[1,1,1];
+    auto val1 = std::math::detail::access( const_fs_tensor, 0, 0, 0 );
+    auto val2 = std::math::detail::access( const_fs_tensor, 0, 0, 1 );
+    auto val3 = std::math::detail::access( const_fs_tensor, 0, 1, 0 );
+    auto val4 = std::math::detail::access( const_fs_tensor, 0, 1, 1 );
+    auto val5 = std::math::detail::access( const_fs_tensor, 1, 0, 0 );
+    auto val6 = std::math::detail::access( const_fs_tensor, 1, 0, 1 );
+    auto val7 = std::math::detail::access( const_fs_tensor, 1, 1, 0 );
+    auto val8 = std::math::detail::access( const_fs_tensor, 1, 1, 1 );
     // Check the fs tensor was populated correctly and provided the correct values
     EXPECT_EQ( val1, 1.0 );
     EXPECT_EQ( val2, 2.0 );
@@ -1171,27 +1171,27 @@ namespace
     // Default construct
     fs_tensor_type fs_tensor;
     // Populate via mutable index access
-    fs_tensor[0,0,0] = 1.0;
-    fs_tensor[0,0,1] = 2.0;
-    fs_tensor[0,1,0] = 3.0;
-    fs_tensor[0,1,1] = 4.0;
-    fs_tensor[1,0,0] = 5.0;
-    fs_tensor[1,0,1] = 6.0;
-    fs_tensor[1,1,0] = 7.0;
-    fs_tensor[1,1,1] = 8.0;
+    std::math::detail::access( fs_tensor, 0, 0, 0 ) = 1.0;
+    std::math::detail::access( fs_tensor, 0, 0, 1 ) = 2.0;
+    std::math::detail::access( fs_tensor, 0, 1, 0 ) = 3.0;
+    std::math::detail::access( fs_tensor, 0, 1, 1 ) = 4.0;
+    std::math::detail::access( fs_tensor, 1, 0, 0 ) = 5.0;
+    std::math::detail::access( fs_tensor, 1, 0, 1 ) = 6.0;
+    std::math::detail::access( fs_tensor, 1, 1, 0 ) = 7.0;
+    std::math::detail::access( fs_tensor, 1, 1, 1 ) = 8.0;
     // Construct from view
     fs_tensor_type fs_tensor_view{ fs_tensor.span() };
     // Get a const reference to constructed tensor
     const fs_tensor_type& const_fs_tensor( fs_tensor_view );
     // Access elements from const fs tensor
-    auto val1 = const_fs_tensor[0,0,0];
-    auto val2 = const_fs_tensor[0,0,1];
-    auto val3 = const_fs_tensor[0,1,0];
-    auto val4 = const_fs_tensor[0,1,1];
-    auto val5 = const_fs_tensor[1,0,0];
-    auto val6 = const_fs_tensor[1,0,1];
-    auto val7 = const_fs_tensor[1,1,0];
-    auto val8 = const_fs_tensor[1,1,1];
+    auto val1 = std::math::detail::access( const_fs_tensor, 0, 0, 0 );
+    auto val2 = std::math::detail::access( const_fs_tensor, 0, 0, 1 );
+    auto val3 = std::math::detail::access( const_fs_tensor, 0, 1, 0 );
+    auto val4 = std::math::detail::access( const_fs_tensor, 0, 1, 1 );
+    auto val5 = std::math::detail::access( const_fs_tensor, 1, 0, 0 );
+    auto val6 = std::math::detail::access( const_fs_tensor, 1, 0, 1 );
+    auto val7 = std::math::detail::access( const_fs_tensor, 1, 1, 0 );
+    auto val8 = std::math::detail::access( const_fs_tensor, 1, 1, 1 );
     // Check the fs tensor tensor was populated correctly and provided the correct values
     EXPECT_EQ( val1, 1.0 );
     EXPECT_EQ( val2, 2.0 );
@@ -1210,25 +1210,25 @@ namespace
     // Default construct
     float_left_tensor_type fs_tensor;
     // Populate via mutable index access
-    fs_tensor[0,0,0] = 1.0;
-    fs_tensor[0,0,1] = 2.0;
-    fs_tensor[0,1,0] = 3.0;
-    fs_tensor[0,1,1] = 4.0;
-    fs_tensor[1,0,0] = 5.0;
-    fs_tensor[1,0,1] = 6.0;
-    fs_tensor[1,1,0] = 7.0;
-    fs_tensor[1,1,1] = 8.0;
+    std::math::detail::access( fs_tensor, 0, 0, 0 ) = 1.0;
+    std::math::detail::access( fs_tensor, 0, 0, 1 ) = 2.0;
+    std::math::detail::access( fs_tensor, 0, 1, 0 ) = 3.0;
+    std::math::detail::access( fs_tensor, 0, 1, 1 ) = 4.0;
+    std::math::detail::access( fs_tensor, 1, 0, 0 ) = 5.0;
+    std::math::detail::access( fs_tensor, 1, 0, 1 ) = 6.0;
+    std::math::detail::access( fs_tensor, 1, 1, 0 ) = 7.0;
+    std::math::detail::access( fs_tensor, 1, 1, 1 ) = 8.0;
     // Construct from float tensor
     double_right_tensor_type fs_tensor_copy{ fs_tensor };
     // Access elements from const fs tensor tensor
-    auto val1 = fs_tensor_copy[0,0,0];
-    auto val2 = fs_tensor_copy[0,0,1];
-    auto val3 = fs_tensor_copy[0,1,0];
-    auto val4 = fs_tensor_copy[0,1,1];
-    auto val5 = fs_tensor_copy[1,0,0];
-    auto val6 = fs_tensor_copy[1,0,1];
-    auto val7 = fs_tensor_copy[1,1,0];
-    auto val8 = fs_tensor_copy[1,1,1];
+    auto val1 = std::math::detail::access( fs_tensor_copy, 0, 0, 0 );
+    auto val2 = std::math::detail::access( fs_tensor_copy, 0, 0, 1 );
+    auto val3 = std::math::detail::access( fs_tensor_copy, 0, 1, 0 );
+    auto val4 = std::math::detail::access( fs_tensor_copy, 0, 1, 1 );
+    auto val5 = std::math::detail::access( fs_tensor_copy, 1, 0, 0 );
+    auto val6 = std::math::detail::access( fs_tensor_copy, 1, 0, 1 );
+    auto val7 = std::math::detail::access( fs_tensor_copy, 1, 1, 0 );
+    auto val8 = std::math::detail::access( fs_tensor_copy, 1, 1, 1 );
     // Check the fs tensor tensor was populated correctly and provided the correct values
     EXPECT_EQ( val1, 1.0 );
     EXPECT_EQ( val2, 2.0 );
@@ -1246,29 +1246,29 @@ namespace
     // Default construct
     fs_tensor_type fs_tensor;
     // Populate via mutable index access
-    fs_tensor[0,0,0] = 1.0;
-    fs_tensor[0,0,1] = 2.0;
-    fs_tensor[0,1,0] = 3.0;
-    fs_tensor[0,1,1] = 4.0;
-    fs_tensor[1,0,0] = 5.0;
-    fs_tensor[1,0,1] = 6.0;
-    fs_tensor[1,1,0] = 7.0;
-    fs_tensor[1,1,1] = 8.0;
+    std::math::detail::access( fs_tensor, 0, 0, 0 ) = 1.0;
+    std::math::detail::access( fs_tensor, 0, 0, 1 ) = 2.0;
+    std::math::detail::access( fs_tensor, 0, 1, 0 ) = 3.0;
+    std::math::detail::access( fs_tensor, 0, 1, 1 ) = 4.0;
+    std::math::detail::access( fs_tensor, 1, 0, 0 ) = 5.0;
+    std::math::detail::access( fs_tensor, 1, 0, 1 ) = 6.0;
+    std::math::detail::access( fs_tensor, 1, 1, 0 ) = 7.0;
+    std::math::detail::access( fs_tensor, 1, 1, 1 ) = 8.0;
     // Get underling view
     auto view = fs_tensor.span();
     // Create a lambda expression from view
-    auto lambda = [&view]< class ... SizeType >( SizeType ... indices ) { return view[indices...]; };
+    auto lambda = [&view]< class ... SizeType >( SizeType ... indices ) { return std::math::detail::access( view, indices ... ); };
     // Construct from lambda
     fs_tensor_type fs_tensor_copy( lambda );
     // Access elements from const fs tensor
-    auto val1 = fs_tensor_copy[0,0,0];
-    auto val2 = fs_tensor_copy[0,0,1];
-    auto val3 = fs_tensor_copy[0,1,0];
-    auto val4 = fs_tensor_copy[0,1,1];
-    auto val5 = fs_tensor_copy[1,0,0];
-    auto val6 = fs_tensor_copy[1,0,1];
-    auto val7 = fs_tensor_copy[1,1,0];
-    auto val8 = fs_tensor_copy[1,1,1];
+    auto val1 = std::math::detail::access( fs_tensor_copy, 0, 0, 0 );
+    auto val2 = std::math::detail::access( fs_tensor_copy, 0, 0, 1 );
+    auto val3 = std::math::detail::access( fs_tensor_copy, 0, 1, 0 );
+    auto val4 = std::math::detail::access( fs_tensor_copy, 0, 1, 1 );
+    auto val5 = std::math::detail::access( fs_tensor_copy, 1, 0, 0 );
+    auto val6 = std::math::detail::access( fs_tensor_copy, 1, 0, 1 );
+    auto val7 = std::math::detail::access( fs_tensor_copy, 1, 1, 0 );
+    auto val8 = std::math::detail::access( fs_tensor_copy, 1, 1, 1 );
     // Check the fs tensor was populated correctly and provided the correct values
     EXPECT_EQ( val1, 1.0 );
     EXPECT_EQ( val2, 2.0 );
@@ -1286,26 +1286,26 @@ namespace
     // Default construct
     fs_tensor_type fs_tensor;
     // Populate via mutable index access
-    fs_tensor[0,0,0] = 1.0;
-    fs_tensor[0,0,1] = 2.0;
-    fs_tensor[0,1,0] = 3.0;
-    fs_tensor[0,1,1] = 4.0;
-    fs_tensor[1,0,0] = 5.0;
-    fs_tensor[1,0,1] = 6.0;
-    fs_tensor[1,1,0] = 7.0;
-    fs_tensor[1,1,1] = 8.0;
+    std::math::detail::access( fs_tensor, 0, 0, 0 ) = 1.0;
+    std::math::detail::access( fs_tensor, 0, 0, 1 ) = 2.0;
+    std::math::detail::access( fs_tensor, 0, 1, 0 ) = 3.0;
+    std::math::detail::access( fs_tensor, 0, 1, 1 ) = 4.0;
+    std::math::detail::access( fs_tensor, 1, 0, 0 ) = 5.0;
+    std::math::detail::access( fs_tensor, 1, 0, 1 ) = 6.0;
+    std::math::detail::access( fs_tensor, 1, 1, 0 ) = 7.0;
+    std::math::detail::access( fs_tensor, 1, 1, 1 ) = 8.0;
     // Construct from lambda
     fs_tensor_type fs_tensor_copy;
     fs_tensor_copy = fs_tensor;
     // Access elements from const fs tensor
-    auto val1 = fs_tensor_copy[0,0,0];
-    auto val2 = fs_tensor_copy[0,0,1];
-    auto val3 = fs_tensor_copy[0,1,0];
-    auto val4 = fs_tensor_copy[0,1,1];
-    auto val5 = fs_tensor_copy[1,0,0];
-    auto val6 = fs_tensor_copy[1,0,1];
-    auto val7 = fs_tensor_copy[1,1,0];
-    auto val8 = fs_tensor_copy[1,1,1];
+    auto val1 = std::math::detail::access( fs_tensor_copy, 0, 0, 0 );
+    auto val2 = std::math::detail::access( fs_tensor_copy, 0, 0, 1 );
+    auto val3 = std::math::detail::access( fs_tensor_copy, 0, 1, 0 );
+    auto val4 = std::math::detail::access( fs_tensor_copy, 0, 1, 1 );
+    auto val5 = std::math::detail::access( fs_tensor_copy, 1, 0, 0 );
+    auto val6 = std::math::detail::access( fs_tensor_copy, 1, 0, 1 );
+    auto val7 = std::math::detail::access( fs_tensor_copy, 1, 1, 0 );
+    auto val8 = std::math::detail::access( fs_tensor_copy, 1, 1, 1 );
     // Check the fs tensor was populated correctly and provided the correct values
     EXPECT_EQ( val1, 1.0 );
     EXPECT_EQ( val2, 2.0 );
@@ -1324,26 +1324,26 @@ namespace
     // Default construct
     float_left_tensor_type fs_tensor;
     // Populate via mutable index access
-    fs_tensor[0,0,0] = 1.0;
-    fs_tensor[0,0,1] = 2.0;
-    fs_tensor[0,1,0] = 3.0;
-    fs_tensor[0,1,1] = 4.0;
-    fs_tensor[1,0,0] = 5.0;
-    fs_tensor[1,0,1] = 6.0;
-    fs_tensor[1,1,0] = 7.0;
-    fs_tensor[1,1,1] = 8.0;
+    std::math::detail::access( fs_tensor, 0, 0, 0 ) = 1.0;
+    std::math::detail::access( fs_tensor, 0, 0, 1 ) = 2.0;
+    std::math::detail::access( fs_tensor, 0, 1, 0 ) = 3.0;
+    std::math::detail::access( fs_tensor, 0, 1, 1 ) = 4.0;
+    std::math::detail::access( fs_tensor, 1, 0, 0 ) = 5.0;
+    std::math::detail::access( fs_tensor, 1, 0, 1 ) = 6.0;
+    std::math::detail::access( fs_tensor, 1, 1, 0 ) = 7.0;
+    std::math::detail::access( fs_tensor, 1, 1, 1 ) = 8.0;
     // Default construct and then assign
     double_right_tensor_type fs_tensor_copy;
     fs_tensor_copy = fs_tensor;
     // Access elements from const fs tensor
-    auto val1 = fs_tensor_copy[0,0,0];
-    auto val2 = fs_tensor_copy[0,0,1];
-    auto val3 = fs_tensor_copy[0,1,0];
-    auto val4 = fs_tensor_copy[0,1,1];
-    auto val5 = fs_tensor_copy[1,0,0];
-    auto val6 = fs_tensor_copy[1,0,1];
-    auto val7 = fs_tensor_copy[1,1,0];
-    auto val8 = fs_tensor_copy[1,1,1];
+    auto val1 = std::math::detail::access( fs_tensor_copy, 0, 0, 0 );
+    auto val2 = std::math::detail::access( fs_tensor_copy, 0, 0, 1 );
+    auto val3 = std::math::detail::access( fs_tensor_copy, 0, 1, 0 );
+    auto val4 = std::math::detail::access( fs_tensor_copy, 0, 1, 1 );
+    auto val5 = std::math::detail::access( fs_tensor_copy, 1, 0, 0 );
+    auto val6 = std::math::detail::access( fs_tensor_copy, 1, 0, 1 );
+    auto val7 = std::math::detail::access( fs_tensor_copy, 1, 1, 0 );
+    auto val8 = std::math::detail::access( fs_tensor_copy, 1, 1, 1 );
     // Check the fs tensor was populated correctly and provided the correct values
     EXPECT_EQ( val1, 1.0 );
     EXPECT_EQ( val2, 2.0 );
@@ -1361,28 +1361,28 @@ namespace
     // Default construct
     fs_tensor_type fs_tensor;
     // Populate via mutable index access
-    fs_tensor[0,0,0] = 1.0;
-    fs_tensor[0,0,1] = 2.0;
-    fs_tensor[0,1,0] = 3.0;
-    fs_tensor[0,1,1] = 4.0;
-    fs_tensor[1,0,0] = 5.0;
-    fs_tensor[1,0,1] = 6.0;
-    fs_tensor[1,1,0] = 7.0;
-    fs_tensor[1,1,1] = 8.0;
+    std::math::detail::access( fs_tensor, 0, 0, 0 ) = 1.0;
+    std::math::detail::access( fs_tensor, 0, 0, 1 ) = 2.0;
+    std::math::detail::access( fs_tensor, 0, 1, 0 ) = 3.0;
+    std::math::detail::access( fs_tensor, 0, 1, 1 ) = 4.0;
+    std::math::detail::access( fs_tensor, 1, 0, 0 ) = 5.0;
+    std::math::detail::access( fs_tensor, 1, 0, 1 ) = 6.0;
+    std::math::detail::access( fs_tensor, 1, 1, 0 ) = 7.0;
+    std::math::detail::access( fs_tensor, 1, 1, 1 ) = 8.0;
     // Default construct and assign from view
     fs_tensor_type fs_tensor_view;
     fs_tensor_view = fs_tensor.span();
     // Get a const reference to constructed tensor
     const fs_tensor_type& const_fs_tensor( fs_tensor_view );
     // Access elements from const fs tensor tensor
-    auto val1 = const_fs_tensor[0,0,0];
-    auto val2 = const_fs_tensor[0,0,1];
-    auto val3 = const_fs_tensor[0,1,0];
-    auto val4 = const_fs_tensor[0,1,1];
-    auto val5 = const_fs_tensor[1,0,0];
-    auto val6 = const_fs_tensor[1,0,1];
-    auto val7 = const_fs_tensor[1,1,0];
-    auto val8 = const_fs_tensor[1,1,1];
+    auto val1 = std::math::detail::access( const_fs_tensor, 0, 0, 0 );
+    auto val2 = std::math::detail::access( const_fs_tensor, 0, 0, 1 );
+    auto val3 = std::math::detail::access( const_fs_tensor, 0, 1, 0 );
+    auto val4 = std::math::detail::access( const_fs_tensor, 0, 1, 1 );
+    auto val5 = std::math::detail::access( const_fs_tensor, 1, 0, 0 );
+    auto val6 = std::math::detail::access( const_fs_tensor, 1, 0, 1 );
+    auto val7 = std::math::detail::access( const_fs_tensor, 1, 1, 0 );
+    auto val8 = std::math::detail::access( const_fs_tensor, 1, 1, 1 );
     // Check the fs tensor tensor was populated correctly and provided the correct values
     EXPECT_EQ( val1, 1.0 );
     EXPECT_EQ( val2, 2.0 );
@@ -1420,7 +1420,7 @@ namespace
       {
         for ( auto k : { 0, 1, 2, 3, 4 } )
         {
-          fs_tensor[i,j,k] = val;
+          std::math::detail::access( fs_tensor, i, j, k ) = val;
           val = 2 * val;
         }
       }
@@ -1428,11 +1428,11 @@ namespace
     const auto& const_fs_tensor( fs_tensor );
     auto subvector = const_fs_tensor.subvector( 0, std::experimental::full_extent, 1 );
     
-    EXPECT_EQ( ( subvector[0] ), ( fs_tensor[0,0,1] ) );
-    EXPECT_EQ( ( subvector[1] ), ( fs_tensor[0,1,1] ) );
-    EXPECT_EQ( ( subvector[2] ), ( fs_tensor[0,2,1] ) );
-    EXPECT_EQ( ( subvector[3] ), ( fs_tensor[0,3,1] ) );
-    EXPECT_EQ( ( subvector[4] ), ( fs_tensor[0,4,1] ) );
+    EXPECT_EQ( ( std::math::detail::access( subvector, 0 ) ), ( std::math::detail::access( fs_tensor, 0, 0, 1 ) ) );
+    EXPECT_EQ( ( std::math::detail::access( subvector, 1 ) ), ( std::math::detail::access( fs_tensor, 0, 1, 1 ) ) );
+    EXPECT_EQ( ( std::math::detail::access( subvector, 2 ) ), ( std::math::detail::access( fs_tensor, 0, 2, 1 ) ) );
+    EXPECT_EQ( ( std::math::detail::access( subvector, 3 ) ), ( std::math::detail::access( fs_tensor, 0, 3, 1 ) ) );
+    EXPECT_EQ( ( std::math::detail::access( subvector, 4 ) ), ( std::math::detail::access( fs_tensor, 0, 4, 1 ) ) );
   }
 
   TEST( FS_TENSOR, CONST_SUBMATRIX )
@@ -1446,7 +1446,7 @@ namespace
       {
         for ( auto k : { 0, 1, 2, 3, 4 } )
         {
-          fs_tensor[i,j,k] = val;
+          std::math::detail::access( fs_tensor, i, j, k ) = val;
           val = 2 * val;
         }
       }
@@ -1454,16 +1454,16 @@ namespace
     const auto& const_fs_tensor( fs_tensor );
     auto submatrix = const_fs_tensor.submatrix( 0, std::experimental::full_extent, std::tuple(0,1) );
     
-    EXPECT_EQ( ( submatrix[0,0] ), ( fs_tensor[0,0,0] ) );
-    EXPECT_EQ( ( submatrix[1,0] ), ( fs_tensor[0,1,0] ) );
-    EXPECT_EQ( ( submatrix[2,0] ), ( fs_tensor[0,2,0] ) );
-    EXPECT_EQ( ( submatrix[3,0] ), ( fs_tensor[0,3,0] ) );
-    EXPECT_EQ( ( submatrix[4,0] ), ( fs_tensor[0,4,0] ) );
-    EXPECT_EQ( ( submatrix[0,1] ), ( fs_tensor[0,0,1] ) );
-    EXPECT_EQ( ( submatrix[1,1] ), ( fs_tensor[0,1,1] ) );
-    EXPECT_EQ( ( submatrix[2,1] ), ( fs_tensor[0,2,1] ) );
-    EXPECT_EQ( ( submatrix[3,1] ), ( fs_tensor[0,3,1] ) );
-    EXPECT_EQ( ( submatrix[4,1] ), ( fs_tensor[0,4,1] ) );
+    EXPECT_EQ( ( std::math::detail::access( submatrix, 0, 0 ) ), ( std::math::detail::access( fs_tensor, 0, 0, 0 ) ) );
+    EXPECT_EQ( ( std::math::detail::access( submatrix, 1, 0 ) ), ( std::math::detail::access( fs_tensor, 0, 1, 0 ) ) );
+    EXPECT_EQ( ( std::math::detail::access( submatrix, 2, 0 ) ), ( std::math::detail::access( fs_tensor, 0, 2, 0 ) ) );
+    EXPECT_EQ( ( std::math::detail::access( submatrix, 3, 0 ) ), ( std::math::detail::access( fs_tensor, 0, 3, 0 ) ) );
+    EXPECT_EQ( ( std::math::detail::access( submatrix, 4, 0 ) ), ( std::math::detail::access( fs_tensor, 0, 4, 0 ) ) );
+    EXPECT_EQ( ( std::math::detail::access( submatrix, 0, 1 ) ), ( std::math::detail::access( fs_tensor, 0, 0, 1 ) ) );
+    EXPECT_EQ( ( std::math::detail::access( submatrix, 1, 1 ) ), ( std::math::detail::access( fs_tensor, 0, 1, 1 ) ) );
+    EXPECT_EQ( ( std::math::detail::access( submatrix, 2, 1 ) ), ( std::math::detail::access( fs_tensor, 0, 2, 1 ) ) );
+    EXPECT_EQ( ( std::math::detail::access( submatrix, 3, 1 ) ), ( std::math::detail::access( fs_tensor ,0, 3, 1 ) ) );
+    EXPECT_EQ( ( std::math::detail::access( submatrix, 4, 1 ) ), ( std::math::detail::access( fs_tensor, 0, 4, 1 ) ) );
   }
 
   TEST( FS_TENSOR, CONST_SUBTENSOR )
@@ -1478,7 +1478,7 @@ namespace
       {
         for ( auto k : { 0, 1, 2, 3, 4 } )
         {
-          fs_tensor[i,j,k] = val;
+          std::math::detail::access( fs_tensor, i, j, k ) = val;
           val = 2 * val;
         }
       }
@@ -1486,12 +1486,12 @@ namespace
     const fs_tensor_type& const_fs_tensor( fs_tensor );
     auto subtensor = const_fs_tensor.subtensor( std::tuple(2,5), std::tuple(2,4), std::tuple(2,3) );
     
-    EXPECT_EQ( ( subtensor[0,0,0] ), ( fs_tensor[2,2,2] ) );
-    EXPECT_EQ( ( subtensor[1,0,0] ), ( fs_tensor[3,2,2] ) );
-    EXPECT_EQ( ( subtensor[2,0,0] ), ( fs_tensor[4,2,2] ) );
-    EXPECT_EQ( ( subtensor[0,1,0] ), ( fs_tensor[2,3,2] ) );
-    EXPECT_EQ( ( subtensor[1,1,0] ), ( fs_tensor[3,3,2] ) );
-    EXPECT_EQ( ( subtensor[2,1,0] ), ( fs_tensor[4,3,2] ) );
+    EXPECT_EQ( ( std::math::detail::access( subtensor, 0, 0, 0 ) ), ( std::math::detail::access( fs_tensor, 2,2, 2 ) ) );
+    EXPECT_EQ( ( std::math::detail::access( subtensor, 1, 0, 0 ) ), ( std::math::detail::access( fs_tensor, 3,2, 2 ) ) );
+    EXPECT_EQ( ( std::math::detail::access( subtensor, 2, 0, 0 ) ), ( std::math::detail::access( fs_tensor, 4,2, 2 ) ) );
+    EXPECT_EQ( ( std::math::detail::access( subtensor, 0, 1, 0 ) ), ( std::math::detail::access( fs_tensor, 2,3, 2 ) ) );
+    EXPECT_EQ( ( std::math::detail::access( subtensor, 1, 1, 0 ) ), ( std::math::detail::access( fs_tensor, 3,3, 2 ) ) );
+    EXPECT_EQ( ( std::math::detail::access( subtensor, 2, 1, 0 ) ), ( std::math::detail::access( fs_tensor, 4,3, 2 ) ) );
   }
 
   TEST( FS_TENSOR, SUBVECTOR )
@@ -1506,7 +1506,7 @@ namespace
       {
         for ( auto k : { 0, 1, 2, 3, 4 } )
         {
-          fs_tensor[i,j,k] = val;
+          std::math::detail::access( fs_tensor, i, j, k ) = val;
           val = 2 * val;
         }
       }
@@ -1516,13 +1516,13 @@ namespace
     // Modify view
     for ( auto i : { 1, 2, 3 } )
     {
-      subvector[i] = val;
+      std::math::detail::access( subvector, i ) = val;
       val = 2 * val;
     }
     // Assert original tensor has been modified as well
-    EXPECT_EQ( ( subvector[1] ), ( fs_tensor[1,1,0] ) );
-    EXPECT_EQ( ( subvector[2] ), ( fs_tensor[1,2,0] ) );
-    EXPECT_EQ( ( subvector[3] ), ( fs_tensor[1,3,0] ) );
+    EXPECT_EQ( ( std::math::detail::access( subvector, 1 ) ), ( std::math::detail::access( fs_tensor, 1, 1, 0 ) ) );
+    EXPECT_EQ( ( std::math::detail::access( subvector, 2 ) ), ( std::math::detail::access( fs_tensor, 1, 2, 0 ) ) );
+    EXPECT_EQ( ( std::math::detail::access( subvector, 3 ) ), ( std::math::detail::access( fs_tensor ,1, 3, 0 ) ) );
   }
 
   TEST( FS_TENSOR, SUBMATRIX )
@@ -1537,7 +1537,7 @@ namespace
       {
         for ( auto k : { 0, 1, 2, 3, 4 } )
         {
-          fs_tensor[i,j,k] = val;
+          std::math::detail::access( fs_tensor, i, j, k ) = val;
           val = 2 * val;
         }
       }
@@ -1549,17 +1549,17 @@ namespace
     {
       for ( auto j : { 0, 1 } )
       {
-        submatrix[i,j] = val;
+        std::math::detail::access( submatrix, i, j ) = val;
         val = 2 * val;
       }
     }
     // Assert original tensor has been modified as well
-    EXPECT_EQ( ( submatrix[1,0] ), ( fs_tensor[1,1,1] ) );
-    EXPECT_EQ( ( submatrix[2,0] ), ( fs_tensor[1,2,1] ) );
-    EXPECT_EQ( ( submatrix[3,0] ), ( fs_tensor[1,3,1] ) );
-    EXPECT_EQ( ( submatrix[1,1] ), ( fs_tensor[1,1,2] ) );
-    EXPECT_EQ( ( submatrix[2,1] ), ( fs_tensor[1,2,2] ) );
-    EXPECT_EQ( ( submatrix[3,1] ), ( fs_tensor[1,3,2] ) );
+    EXPECT_EQ( ( std::math::detail::access( submatrix, 1, 0 ) ), ( std::math::detail::access( fs_tensor, 1, 1, 1 ) ) );
+    EXPECT_EQ( ( std::math::detail::access( submatrix, 2, 0 ) ), ( std::math::detail::access( fs_tensor, 1, 2, 1 ) ) );
+    EXPECT_EQ( ( std::math::detail::access( submatrix, 3, 0 ) ), ( std::math::detail::access( fs_tensor, 1, 3, 1 ) ) );
+    EXPECT_EQ( ( std::math::detail::access( submatrix, 1, 1 ) ), ( std::math::detail::access( fs_tensor, 1, 1, 2 ) ) );
+    EXPECT_EQ( ( std::math::detail::access( submatrix, 2, 1 ) ), ( std::math::detail::access( fs_tensor, 1, 2, 2 ) ) );
+    EXPECT_EQ( ( std::math::detail::access( submatrix, 3, 1 ) ), ( std::math::detail::access( fs_tensor, 1, 3, 2 ) ) );
   }
 
   TEST( FS_TENSOR, SUBTENSOR )
@@ -1575,7 +1575,7 @@ namespace
       {
         for ( auto k : { 0, 1, 2, 3, 4 } )
         {
-          fs_tensor[i,j,k] = val;
+          std::math::detail::access( fs_tensor, i, j, k ) = val;
           val = 2 * val;
         }
       }
@@ -1589,18 +1589,18 @@ namespace
       {
         for ( auto k : { 0 } )
         {
-          subtensor[i,j,k] = val;
+          std::math::detail::access( subtensor, i,j, k ) = val;
           val = 2 * val;
         }
       }
     }
     // Assert original tensor has been modified as well
-    EXPECT_EQ( ( subtensor[0,0,0] ), ( fs_tensor[2,2,2] ) );
-    EXPECT_EQ( ( subtensor[1,0,0] ), ( fs_tensor[3,2,2] ) );
-    EXPECT_EQ( ( subtensor[2,0,0] ), ( fs_tensor[4,2,2] ) );
-    EXPECT_EQ( ( subtensor[0,1,0] ), ( fs_tensor[2,3,2] ) );
-    EXPECT_EQ( ( subtensor[1,1,0] ), ( fs_tensor[3,3,2] ) );
-    EXPECT_EQ( ( subtensor[2,1,0] ), ( fs_tensor[4,3,2] ) );
+    EXPECT_EQ( ( std::math::detail::access( subtensor, 0, 0, 0 ) ), ( std::math::detail::access( fs_tensor, 2, 2, 2 ) ) );
+    EXPECT_EQ( ( std::math::detail::access( subtensor, 1, 0, 0 ) ), ( std::math::detail::access( fs_tensor, 3, 2, 2 ) ) );
+    EXPECT_EQ( ( std::math::detail::access( subtensor, 2, 0, 0 ) ), ( std::math::detail::access( fs_tensor, 4, 2, 2 ) ) );
+    EXPECT_EQ( ( std::math::detail::access( subtensor, 0, 1, 0 ) ), ( std::math::detail::access( fs_tensor, 2, 3, 2 ) ) );
+    EXPECT_EQ( ( std::math::detail::access( subtensor, 1, 1, 0 ) ), ( std::math::detail::access( fs_tensor, 3, 3, 2 ) ) );
+    EXPECT_EQ( ( std::math::detail::access( subtensor, 2, 1, 0 ) ), ( std::math::detail::access( fs_tensor, 4, 3, 2 ) ) );
   }
 
   TEST( FS_TENSOR, NEGATION )
@@ -1609,27 +1609,27 @@ namespace
     // Construct
     tensor_type tensor { };
     // Populate via mutable index access
-    tensor[0,0,0] = 1.0;
-    tensor[0,0,1] = 2.0;
-    tensor[0,1,0] = 3.0;
-    tensor[0,1,1] = 4.0;
-    tensor[1,0,0] = 5.0;
-    tensor[1,0,1] = 6.0;
-    tensor[1,1,0] = 7.0;
-    tensor[1,1,1] = 8.0;
+    std::math::detail::access( tensor, 0, 0, 0 ) = 1.0;
+    std::math::detail::access( tensor, 0, 0, 1 ) = 2.0;
+    std::math::detail::access( tensor, 0, 1, 0 ) = 3.0;
+    std::math::detail::access( tensor, 0, 1, 1 ) = 4.0;
+    std::math::detail::access( tensor, 1, 0, 0 ) = 5.0;
+    std::math::detail::access( tensor, 1, 0, 1 ) = 6.0;
+    std::math::detail::access( tensor, 1, 1, 0 ) = 7.0;
+    std::math::detail::access( tensor, 1, 1, 1 ) = 8.0;
     // Copy construct
     tensor_type tensor_copy{ tensor };
     // Negate the tensor
     tensor_type negate_tensor { -tensor };
     // Access elements from const tensor
-    auto val1 = negate_tensor[0,0,0];
-    auto val2 = negate_tensor[0,0,1];
-    auto val3 = negate_tensor[0,1,0];
-    auto val4 = negate_tensor[0,1,1];
-    auto val5 = negate_tensor[1,0,0];
-    auto val6 = negate_tensor[1,0,1];
-    auto val7 = negate_tensor[1,1,0];
-    auto val8 = negate_tensor[1,1,1];
+    auto val1 = std::math::detail::access( negate_tensor, 0, 0, 0 );
+    auto val2 = std::math::detail::access( negate_tensor, 0, 0, 1 );
+    auto val3 = std::math::detail::access( negate_tensor, 0, 1, 0 );
+    auto val4 = std::math::detail::access( negate_tensor, 0, 1, 1 );
+    auto val5 = std::math::detail::access( negate_tensor, 1, 0, 0 );
+    auto val6 = std::math::detail::access( negate_tensor, 1, 0, 1 );
+    auto val7 = std::math::detail::access( negate_tensor, 1, 1, 0 );
+    auto val8 = std::math::detail::access( negate_tensor, 1, 1, 1 );
     // Check the tensor copy was populated correctly and provided the correct values
     EXPECT_EQ( val1, -1.0 );
     EXPECT_EQ( val2, -2.0 );
@@ -1647,27 +1647,27 @@ namespace
     // Construct
     tensor_type tensor { };
     // Populate via mutable index access
-    tensor[0,0,0] = 1.0;
-    tensor[0,0,1] = 2.0;
-    tensor[0,1,0] = 3.0;
-    tensor[0,1,1] = 4.0;
-    tensor[1,0,0] = 5.0;
-    tensor[1,0,1] = 6.0;
-    tensor[1,1,0] = 7.0;
-    tensor[1,1,1] = 8.0;
+    std::math::detail::access( tensor, 0, 0, 0 ) = 1.0;
+    std::math::detail::access( tensor, 0, 0, 1 ) = 2.0;
+    std::math::detail::access( tensor, 0, 1, 0 ) = 3.0;
+    std::math::detail::access( tensor, 0, 1, 1 ) = 4.0;
+    std::math::detail::access( tensor, 1, 0, 0 ) = 5.0;
+    std::math::detail::access( tensor, 1, 0, 1 ) = 6.0;
+    std::math::detail::access( tensor, 1, 1, 0 ) = 7.0;
+    std::math::detail::access( tensor, 1, 1, 1 ) = 8.0;
     // Copy construct
     tensor_type tensor_copy{ tensor };
     // Add the two tensors together
     tensor_type tensor_sum { tensor + tensor_copy };
     // Access elements from const tensor
-    auto val1 = tensor_sum[0,0,0];
-    auto val2 = tensor_sum[0,0,1];
-    auto val3 = tensor_sum[0,1,0];
-    auto val4 = tensor_sum[0,1,1];
-    auto val5 = tensor_sum[1,0,0];
-    auto val6 = tensor_sum[1,0,1];
-    auto val7 = tensor_sum[1,1,0];
-    auto val8 = tensor_sum[1,1,1];
+    auto val1 = std::math::detail::access( tensor_sum, 0, 0, 0 );
+    auto val2 = std::math::detail::access( tensor_sum, 0, 0, 1 );
+    auto val3 = std::math::detail::access( tensor_sum, 0, 1, 0 );
+    auto val4 = std::math::detail::access( tensor_sum, 0, 1, 1 );
+    auto val5 = std::math::detail::access( tensor_sum, 1, 0, 0 );
+    auto val6 = std::math::detail::access( tensor_sum, 1, 0, 1 );
+    auto val7 = std::math::detail::access( tensor_sum, 1, 1, 0 );
+    auto val8 = std::math::detail::access( tensor_sum, 1, 1, 1 );
     // Check the tensor copy was populated correctly and provided the correct values
     EXPECT_EQ( val1, 2.0 );
     EXPECT_EQ( val2, 4.0 );
@@ -1685,27 +1685,27 @@ namespace
     // Construct
     tensor_type tensor { };
     // Populate via mutable index access
-    tensor[0,0,0] = 1.0;
-    tensor[0,0,1] = 2.0;
-    tensor[0,1,0] = 3.0;
-    tensor[0,1,1] = 4.0;
-    tensor[1,0,0] = 5.0;
-    tensor[1,0,1] = 6.0;
-    tensor[1,1,0] = 7.0;
-    tensor[1,1,1] = 8.0;
+    std::math::detail::access( tensor, 0, 0, 0 ) = 1.0;
+    std::math::detail::access( tensor, 0, 0, 1 ) = 2.0;
+    std::math::detail::access( tensor, 0, 1, 0 ) = 3.0;
+    std::math::detail::access( tensor, 0, 1, 1 ) = 4.0;
+    std::math::detail::access( tensor, 1, 0, 0 ) = 5.0;
+    std::math::detail::access( tensor, 1, 0, 1 ) = 6.0;
+    std::math::detail::access( tensor, 1, 1, 0 ) = 7.0;
+    std::math::detail::access( tensor, 1, 1, 1 ) = 8.0;
     // Copy construct
     tensor_type tensor_copy{ tensor };
     // Add the two tensors together
     static_cast<void>( tensor += tensor_copy );
     // Access elements from tensor
-    auto val1 = tensor[0,0,0];
-    auto val2 = tensor[0,0,1];
-    auto val3 = tensor[0,1,0];
-    auto val4 = tensor[0,1,1];
-    auto val5 = tensor[1,0,0];
-    auto val6 = tensor[1,0,1];
-    auto val7 = tensor[1,1,0];
-    auto val8 = tensor[1,1,1];
+    auto val1 = std::math::detail::access( tensor, 0, 0, 0 );
+    auto val2 = std::math::detail::access( tensor, 0, 0, 1 );
+    auto val3 = std::math::detail::access( tensor, 0, 1, 0 );
+    auto val4 = std::math::detail::access( tensor, 0, 1, 1 );
+    auto val5 = std::math::detail::access( tensor, 1, 0, 0 );
+    auto val6 = std::math::detail::access( tensor, 1, 0, 1 );
+    auto val7 = std::math::detail::access( tensor, 1, 1, 0 );
+    auto val8 = std::math::detail::access( tensor, 1, 1, 1 );
     // Check the tensor was populated correctly and provided the correct values
     EXPECT_EQ( val1, 2.0 );
     EXPECT_EQ( val2, 4.0 );
@@ -1723,27 +1723,27 @@ namespace
     // Construct
     tensor_type tensor { };
     // Populate via mutable index access
-    tensor[0,0,0] = 1.0;
-    tensor[0,0,1] = 2.0;
-    tensor[0,1,0] = 3.0;
-    tensor[0,1,1] = 4.0;
-    tensor[1,0,0] = 5.0;
-    tensor[1,0,1] = 6.0;
-    tensor[1,1,0] = 7.0;
-    tensor[1,1,1] = 8.0;
+    std::math::detail::access( tensor, 0, 0, 0 ) = 1.0;
+    std::math::detail::access( tensor, 0, 0, 1 ) = 2.0;
+    std::math::detail::access( tensor, 0, 1, 0 ) = 3.0;
+    std::math::detail::access( tensor, 0, 1, 1 ) = 4.0;
+    std::math::detail::access( tensor, 1, 0, 0 ) = 5.0;
+    std::math::detail::access( tensor, 1, 0, 1 ) = 6.0;
+    std::math::detail::access( tensor, 1, 1, 0 ) = 7.0;
+    std::math::detail::access( tensor, 1, 1, 1 ) = 8.0;
     // Copy construct
     tensor_type tensor_copy{ tensor };
     // Subtract the two tensors
     tensor_type tensor_diff { tensor - tensor_copy };
     // Access elements from const tensor
-    auto val1 = tensor_diff[0,0,0];
-    auto val2 = tensor_diff[0,0,1];
-    auto val3 = tensor_diff[0,1,0];
-    auto val4 = tensor_diff[0,1,1];
-    auto val5 = tensor_diff[1,0,0];
-    auto val6 = tensor_diff[1,0,1];
-    auto val7 = tensor_diff[1,1,0];
-    auto val8 = tensor_diff[1,1,1];
+    auto val1 = std::math::detail::access( tensor_diff, 0, 0, 0 );
+    auto val2 = std::math::detail::access( tensor_diff, 0, 0, 1 );
+    auto val3 = std::math::detail::access( tensor_diff, 0, 1, 0 );
+    auto val4 = std::math::detail::access( tensor_diff, 0, 1, 1 );
+    auto val5 = std::math::detail::access( tensor_diff, 1, 0, 0 );
+    auto val6 = std::math::detail::access( tensor_diff, 1, 0, 1 );
+    auto val7 = std::math::detail::access( tensor_diff, 1, 1, 0 );
+    auto val8 = std::math::detail::access( tensor_diff, 1, 1, 1 );
     // Check the tensor copy was populated correctly and provided the correct values
     EXPECT_EQ( val1, 0 );
     EXPECT_EQ( val2, 0 );
@@ -1761,27 +1761,27 @@ namespace
     // Construct
     tensor_type tensor { };
     // Populate via mutable index access
-    tensor[0,0,0] = 1.0;
-    tensor[0,0,1] = 2.0;
-    tensor[0,1,0] = 3.0;
-    tensor[0,1,1] = 4.0;
-    tensor[1,0,0] = 5.0;
-    tensor[1,0,1] = 6.0;
-    tensor[1,1,0] = 7.0;
-    tensor[1,1,1] = 8.0;
+    std::math::detail::access( tensor, 0, 0, 0 ) = 1.0;
+    std::math::detail::access( tensor, 0, 0, 1 ) = 2.0;
+    std::math::detail::access( tensor, 0, 1, 0 ) = 3.0;
+    std::math::detail::access( tensor, 0, 1, 1 ) = 4.0;
+    std::math::detail::access( tensor, 1, 0, 0 ) = 5.0;
+    std::math::detail::access( tensor, 1, 0, 1 ) = 6.0;
+    std::math::detail::access( tensor, 1, 1, 0 ) = 7.0;
+    std::math::detail::access( tensor, 1, 1, 1 ) = 8.0;
     // Copy construct
     tensor_type tensor_copy{ tensor };
     // Subtract the two tensors
     static_cast<void>( tensor -= tensor_copy );
     // Access elements from tensor
-    auto val1 = tensor[0,0,0];
-    auto val2 = tensor[0,0,1];
-    auto val3 = tensor[0,1,0];
-    auto val4 = tensor[0,1,1];
-    auto val5 = tensor[1,0,0];
-    auto val6 = tensor[1,0,1];
-    auto val7 = tensor[1,1,0];
-    auto val8 = tensor[1,1,1];
+    auto val1 = std::math::detail::access( tensor, 0, 0, 0 );
+    auto val2 = std::math::detail::access( tensor, 0, 0, 1 );
+    auto val3 = std::math::detail::access( tensor, 0, 1, 0 );
+    auto val4 = std::math::detail::access( tensor, 0, 1, 1 );
+    auto val5 = std::math::detail::access( tensor, 1, 0, 0 );
+    auto val6 = std::math::detail::access( tensor, 1, 0, 1 );
+    auto val7 = std::math::detail::access( tensor, 1, 1, 0 );
+    auto val8 = std::math::detail::access( tensor, 1, 1, 1 );
     // Check the tensor was populated correctly and provided the correct values
     EXPECT_EQ( val1, 0 );
     EXPECT_EQ( val2, 0 );
@@ -1799,25 +1799,25 @@ namespace
     // Construct
     tensor_type tensor { };
     // Populate via mutable index access
-    tensor[0,0,0] = 1.0;
-    tensor[0,0,1] = 2.0;
-    tensor[0,1,0] = 3.0;
-    tensor[0,1,1] = 4.0;
-    tensor[1,0,0] = 5.0;
-    tensor[1,0,1] = 6.0;
-    tensor[1,1,0] = 7.0;
-    tensor[1,1,1] = 8.0;
+    std::math::detail::access( tensor, 0, 0, 0 ) = 1.0;
+    std::math::detail::access( tensor, 0, 0, 1 ) = 2.0;
+    std::math::detail::access( tensor, 0, 1, 0 ) = 3.0;
+    std::math::detail::access( tensor, 0, 1, 1 ) = 4.0;
+    std::math::detail::access( tensor, 1, 0, 0 ) = 5.0;
+    std::math::detail::access( tensor, 1, 0, 1 ) = 6.0;
+    std::math::detail::access( tensor, 1, 1, 0 ) = 7.0;
+    std::math::detail::access( tensor, 1, 1, 1 ) = 8.0;
     // Pre multiply
     tensor_type tensor_prod { 2 * tensor };
     // Access elements from const tensor
-    auto val1 = tensor_prod[0,0,0];
-    auto val2 = tensor_prod[0,0,1];
-    auto val3 = tensor_prod[0,1,0];
-    auto val4 = tensor_prod[0,1,1];
-    auto val5 = tensor_prod[1,0,0];
-    auto val6 = tensor_prod[1,0,1];
-    auto val7 = tensor_prod[1,1,0];
-    auto val8 = tensor_prod[1,1,1];
+    auto val1 = std::math::detail::access( tensor_prod, 0, 0, 0 );
+    auto val2 = std::math::detail::access( tensor_prod, 0, 0, 1 );
+    auto val3 = std::math::detail::access( tensor_prod, 0, 1, 0 );
+    auto val4 = std::math::detail::access( tensor_prod, 0, 1, 1 );
+    auto val5 = std::math::detail::access( tensor_prod, 1, 0, 0 );
+    auto val6 = std::math::detail::access( tensor_prod, 1, 0, 1 );
+    auto val7 = std::math::detail::access( tensor_prod, 1, 1, 0 );
+    auto val8 = std::math::detail::access( tensor_prod, 1, 1, 1 );
     // Check the tensor was populated correctly and provided the correct values
     EXPECT_EQ( val1, 2.0 );
     EXPECT_EQ( val2, 4.0 );
@@ -1835,25 +1835,25 @@ namespace
     // Construct
     tensor_type tensor { };
     // Populate via mutable index access
-    tensor[0,0,0] = 1.0;
-    tensor[0,0,1] = 2.0;
-    tensor[0,1,0] = 3.0;
-    tensor[0,1,1] = 4.0;
-    tensor[1,0,0] = 5.0;
-    tensor[1,0,1] = 6.0;
-    tensor[1,1,0] = 7.0;
-    tensor[1,1,1] = 8.0;
+    std::math::detail::access( tensor, 0, 0, 0 ) = 1.0;
+    std::math::detail::access( tensor, 0, 0, 1 ) = 2.0;
+    std::math::detail::access( tensor, 0, 1, 0 ) = 3.0;
+    std::math::detail::access( tensor, 0, 1, 1 ) = 4.0;
+    std::math::detail::access( tensor, 1, 0, 0 ) = 5.0;
+    std::math::detail::access( tensor, 1, 0, 1 ) = 6.0;
+    std::math::detail::access( tensor, 1, 1, 0 ) = 7.0;
+    std::math::detail::access( tensor, 1, 1, 1 ) = 8.0;
     // Post multiply
     tensor_type tensor_prod { tensor * 2 };
     // Access elements from const tensor
-    auto val1 = tensor_prod[0,0,0];
-    auto val2 = tensor_prod[0,0,1];
-    auto val3 = tensor_prod[0,1,0];
-    auto val4 = tensor_prod[0,1,1];
-    auto val5 = tensor_prod[1,0,0];
-    auto val6 = tensor_prod[1,0,1];
-    auto val7 = tensor_prod[1,1,0];
-    auto val8 = tensor_prod[1,1,1];
+    auto val1 = std::math::detail::access( tensor_prod, 0,0, 0 );
+    auto val2 = std::math::detail::access( tensor_prod, 0,0, 1 );
+    auto val3 = std::math::detail::access( tensor_prod, 0,1, 0 );
+    auto val4 = std::math::detail::access( tensor_prod, 0,1, 1 );
+    auto val5 = std::math::detail::access( tensor_prod, 1,0, 0 );
+    auto val6 = std::math::detail::access( tensor_prod, 1,0, 1 );
+    auto val7 = std::math::detail::access( tensor_prod, 1,1, 0 );
+    auto val8 = std::math::detail::access( tensor_prod, 1,1, 1 );
     // Check the tensor was populated correctly and provided the correct values
     EXPECT_EQ( val1, 2.0 );
     EXPECT_EQ( val2, 4.0 );
@@ -1871,25 +1871,25 @@ namespace
     // Construct
     tensor_type tensor { };
     // Populate via mutable index access
-    tensor[0,0,0] = 1.0;
-    tensor[0,0,1] = 2.0;
-    tensor[0,1,0] = 3.0;
-    tensor[0,1,1] = 4.0;
-    tensor[1,0,0] = 5.0;
-    tensor[1,0,1] = 6.0;
-    tensor[1,1,0] = 7.0;
-    tensor[1,1,1] = 8.0;
+    std::math::detail::access( tensor, 0, 0, 0 ) = 1.0;
+    std::math::detail::access( tensor, 0, 0, 1 ) = 2.0;
+    std::math::detail::access( tensor, 0, 1, 0 ) = 3.0;
+    std::math::detail::access( tensor, 0, 1, 1 ) = 4.0;
+    std::math::detail::access( tensor, 1, 0, 0 ) = 5.0;
+    std::math::detail::access( tensor, 1, 0, 1 ) = 6.0;
+    std::math::detail::access( tensor, 1, 1, 0 ) = 7.0;
+    std::math::detail::access( tensor, 1, 1, 1 ) = 8.0;
     // Post multiply
     static_cast<void>( tensor *= 2 );
     // Access elements from const tensor
-    auto val1 = tensor[0,0,0];
-    auto val2 = tensor[0,0,1];
-    auto val3 = tensor[0,1,0];
-    auto val4 = tensor[0,1,1];
-    auto val5 = tensor[1,0,0];
-    auto val6 = tensor[1,0,1];
-    auto val7 = tensor[1,1,0];
-    auto val8 = tensor[1,1,1];
+    auto val1 = std::math::detail::access( tensor, 0, 0, 0 );
+    auto val2 = std::math::detail::access( tensor, 0, 0, 1 );
+    auto val3 = std::math::detail::access( tensor, 0, 1, 0 );
+    auto val4 = std::math::detail::access( tensor, 0, 1, 1 );
+    auto val5 = std::math::detail::access( tensor, 1, 0, 0 );
+    auto val6 = std::math::detail::access( tensor, 1, 0, 1 );
+    auto val7 = std::math::detail::access( tensor, 1, 1, 0 );
+    auto val8 = std::math::detail::access( tensor, 1, 1, 1 );
     // Check the tensor was populated correctly and provided the correct values
     EXPECT_EQ( val1, 2.0 );
     EXPECT_EQ( val2, 4.0 );
@@ -1907,25 +1907,25 @@ namespace
     // Construct
     tensor_type tensor { };
     // Populate via mutable index access
-    tensor[0,0,0] = 1.0;
-    tensor[0,0,1] = 2.0;
-    tensor[0,1,0] = 3.0;
-    tensor[0,1,1] = 4.0;
-    tensor[1,0,0] = 5.0;
-    tensor[1,0,1] = 6.0;
-    tensor[1,1,0] = 7.0;
-    tensor[1,1,1] = 8.0;
+    std::math::detail::access( tensor, 0, 0, 0 ) = 1.0;
+    std::math::detail::access( tensor, 0, 0, 1 ) = 2.0;
+    std::math::detail::access( tensor, 0, 1, 0 ) = 3.0;
+    std::math::detail::access( tensor, 0, 1, 1 ) = 4.0;
+    std::math::detail::access( tensor, 1, 0, 0 ) = 5.0;
+    std::math::detail::access( tensor, 1, 0, 1 ) = 6.0;
+    std::math::detail::access( tensor, 1, 1, 0 ) = 7.0;
+    std::math::detail::access( tensor, 1, 1, 1 ) = 8.0;
     // Divide
     tensor_type tensor_divide { tensor / 2 };
     // Access elements from const tensor
-    auto val1 = tensor_divide[0,0,0];
-    auto val2 = tensor_divide[0,0,1];
-    auto val3 = tensor_divide[0,1,0];
-    auto val4 = tensor_divide[0,1,1];
-    auto val5 = tensor_divide[1,0,0];
-    auto val6 = tensor_divide[1,0,1];
-    auto val7 = tensor_divide[1,1,0];
-    auto val8 = tensor_divide[1,1,1];
+    auto val1 = std::math::detail::access( tensor_divide, 0, 0, 0 );
+    auto val2 = std::math::detail::access( tensor_divide, 0, 0, 1 );
+    auto val3 = std::math::detail::access( tensor_divide, 0, 1, 0 );
+    auto val4 = std::math::detail::access( tensor_divide, 0, 1, 1 );
+    auto val5 = std::math::detail::access( tensor_divide, 1, 0, 0 );
+    auto val6 = std::math::detail::access( tensor_divide, 1, 0, 1 );
+    auto val7 = std::math::detail::access( tensor_divide, 1, 1, 0 );
+    auto val8 = std::math::detail::access( tensor_divide, 1, 1, 1 );
     // Check the tensor was populated correctly and provided the correct values
     EXPECT_EQ( val1, 0.5 );
     EXPECT_EQ( val2, 1.0 );
@@ -1943,25 +1943,25 @@ namespace
     // Construct
     tensor_type tensor { };
     // Populate via mutable index access
-    tensor[0,0,0] = 1.0;
-    tensor[0,0,1] = 2.0;
-    tensor[0,1,0] = 3.0;
-    tensor[0,1,1] = 4.0;
-    tensor[1,0,0] = 5.0;
-    tensor[1,0,1] = 6.0;
-    tensor[1,1,0] = 7.0;
-    tensor[1,1,1] = 8.0;
+    std::math::detail::access( tensor, 0, 0, 0 ) = 1.0;
+    std::math::detail::access( tensor, 0, 0, 1 ) = 2.0;
+    std::math::detail::access( tensor, 0, 1, 0 ) = 3.0;
+    std::math::detail::access( tensor, 0, 1, 1 ) = 4.0;
+    std::math::detail::access( tensor, 1, 0, 0 ) = 5.0;
+    std::math::detail::access( tensor, 1, 0, 1 ) = 6.0;
+    std::math::detail::access( tensor, 1, 1, 0 ) = 7.0;
+    std::math::detail::access( tensor, 1, 1, 1 ) = 8.0;
     // Divide
     static_cast<void>( tensor /= 2 );
     // Access elements from const tensor
-    auto val1 = tensor[0,0,0];
-    auto val2 = tensor[0,0,1];
-    auto val3 = tensor[0,1,0];
-    auto val4 = tensor[0,1,1];
-    auto val5 = tensor[1,0,0];
-    auto val6 = tensor[1,0,1];
-    auto val7 = tensor[1,1,0];
-    auto val8 = tensor[1,1,1];
+    auto val1 = std::math::detail::access( tensor, 0, 0, 0 );
+    auto val2 = std::math::detail::access( tensor, 0, 0, 1 );
+    auto val3 = std::math::detail::access( tensor, 0, 1, 0 );
+    auto val4 = std::math::detail::access( tensor, 0, 1, 1 );
+    auto val5 = std::math::detail::access( tensor, 1, 0, 0 );
+    auto val6 = std::math::detail::access( tensor, 1, 0, 1 );
+    auto val7 = std::math::detail::access( tensor, 1, 1, 0 );
+    auto val8 = std::math::detail::access( tensor, 1, 1, 1 );
     // Check the tensor was populated correctly and provided the correct values
     EXPECT_EQ( val1, 0.5 );
     EXPECT_EQ( val2, 1.0 );

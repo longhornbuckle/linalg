@@ -15,17 +15,17 @@ namespace
     // Construct
     std::math::dr_vector<double> dyn_vector{ std::experimental::extents<size_t,4>(), std::experimental::extents<size_t,10>() };
     // Populate via mutable index access
-    dyn_vector[0] = 1.0;
-    dyn_vector[1] = 2.0;
-    dyn_vector[2] = 3.0;
-    dyn_vector[3] = 4.0;
+    std::math::detail::access( dyn_vector, 0 ) = 1.0;
+    std::math::detail::access( dyn_vector, 1 ) = 2.0;
+    std::math::detail::access( dyn_vector, 2 ) = 3.0;
+    std::math::detail::access( dyn_vector, 3 ) = 4.0;
     // Get a const reference
     const std::math::dr_vector<double>& const_dyn_vector( dyn_vector );
     // Access elements from const dyn vector
-    auto val1 = const_dyn_vector[0];
-    auto val2 = const_dyn_vector[1];
-    auto val3 = const_dyn_vector[2];
-    auto val4 = const_dyn_vector[3];
+    auto val1 = std::math::detail::access( const_dyn_vector, 0 );
+    auto val2 = std::math::detail::access( const_dyn_vector, 1 );
+    auto val3 = std::math::detail::access( const_dyn_vector, 2 );
+    auto val4 = std::math::detail::access( const_dyn_vector, 3 );
     // Check the dyn vector was populated correctly and provided the correct values
     EXPECT_EQ( val1, 1.0 );
     EXPECT_EQ( val2, 2.0 );
@@ -38,19 +38,19 @@ namespace
     // Construct
     std::math::dr_vector<double> dyn_vector{ std::experimental::extents<size_t,4>(), std::experimental::extents<size_t,6>() };
     // Populate via mutable index access
-    dyn_vector[0] = 1.0;
-    dyn_vector[1] = 2.0;
-    dyn_vector[2] = 3.0;
-    dyn_vector[3] = 4.0;
+    std::math::detail::access( dyn_vector, 0 ) = 1.0;
+    std::math::detail::access( dyn_vector, 1 ) = 2.0;
+    std::math::detail::access( dyn_vector, 2 ) = 3.0;
+    std::math::detail::access( dyn_vector, 3 ) = 4.0;
     // Copy construct
     std::math::dr_vector<double> dyn_vector_copy{ dyn_vector };
     // Get a const reference to copy
     const std::math::dr_vector<double>& const_dyn_vector( dyn_vector_copy );
     // Access elements from const dyn vector
-    auto val1 = const_dyn_vector[0];
-    auto val2 = const_dyn_vector[1];
-    auto val3 = const_dyn_vector[2];
-    auto val4 = const_dyn_vector[3];
+    auto val1 = std::math::detail::access( const_dyn_vector, 0 );
+    auto val2 = std::math::detail::access( const_dyn_vector, 1 );
+    auto val3 = std::math::detail::access( const_dyn_vector, 2 );
+    auto val4 = std::math::detail::access( const_dyn_vector, 3 );
     // Check the dyn vector was populated correctly and provided the correct values
     EXPECT_EQ( val1, 1.0 );
     EXPECT_EQ( val2, 2.0 );
@@ -63,19 +63,19 @@ namespace
     // Construct
     std::math::dr_vector<double> dyn_vector{ std::experimental::extents<size_t,4>(), std::experimental::extents<size_t,6>() };
     // Populate via mutable index access
-    dyn_vector[0] = 1.0;
-    dyn_vector[1] = 2.0;
-    dyn_vector[2] = 3.0;
-    dyn_vector[3] = 4.0;
+    std::math::detail::access( dyn_vector, 0 ) = 1.0;
+    std::math::detail::access( dyn_vector, 1 ) = 2.0;
+    std::math::detail::access( dyn_vector, 2 ) = 3.0;
+    std::math::detail::access( dyn_vector, 3 ) = 4.0;
     // Move construct
     std::math::dr_vector<double> dyn_vector_move{ std::move( dyn_vector ) };
     // Get a const reference to moved vector
     const std::math::dr_vector<double>& const_dyn_vector( dyn_vector_move );
     // Access elements from const dyn vector
-    auto val1 = const_dyn_vector[0];
-    auto val2 = const_dyn_vector[1];
-    auto val3 = const_dyn_vector[2];
-    auto val4 = const_dyn_vector[3];
+    auto val1 = std::math::detail::access( const_dyn_vector, 0 );
+    auto val2 = std::math::detail::access( const_dyn_vector, 1 );
+    auto val3 = std::math::detail::access( const_dyn_vector, 2 );
+    auto val4 = std::math::detail::access( const_dyn_vector, 3 );
     // Check the dyn vector was populated correctly and provided the correct values
     EXPECT_EQ( val1, 1.0 );
     EXPECT_EQ( val2, 2.0 );
@@ -88,19 +88,19 @@ namespace
     // Construct
     std::math::dr_vector<double> dyn_vector{ std::experimental::extents<size_t,4>(), std::experimental::extents<size_t,6>() };
     // Populate via mutable index access
-    dyn_vector[0] = 1.0;
-    dyn_vector[1] = 2.0;
-    dyn_vector[2] = 3.0;
-    dyn_vector[3] = 4.0;
+    std::math::detail::access( dyn_vector, 0 ) = 1.0;
+    std::math::detail::access( dyn_vector, 1 ) = 2.0;
+    std::math::detail::access( dyn_vector, 2 ) = 3.0;
+    std::math::detail::access( dyn_vector, 3 ) = 4.0;
     // Construct from view
     std::math::dr_vector<double> dyn_vector_view{ dyn_vector.span() };
     // Get a const reference to constructed vector
     const std::math::dr_vector<double>& const_dyn_vector( dyn_vector_view );
     // Access elements from const dyn vector
-    auto val1 = const_dyn_vector[0];
-    auto val2 = const_dyn_vector[1];
-    auto val3 = const_dyn_vector[2];
-    auto val4 = const_dyn_vector[3];
+    auto val1 = std::math::detail::access( const_dyn_vector, 0 );
+    auto val2 = std::math::detail::access( const_dyn_vector, 1 );
+    auto val3 = std::math::detail::access( const_dyn_vector, 2 );
+    auto val4 = std::math::detail::access( const_dyn_vector, 3 );
     // Check the dyn vector was populated correctly and provided the correct values
     EXPECT_EQ( val1, 1.0 );
     EXPECT_EQ( val2, 2.0 );
@@ -115,17 +115,17 @@ namespace
     // Default construct
     float_left_vector_type fs_vector;
     // Populate via mutable index access
-    fs_vector[0] = 1.0;
-    fs_vector[1] = 2.0;
-    fs_vector[2] = 3.0;
-    fs_vector[3] = 4.0;
+    std::math::detail::access( fs_vector, 0 ) = 1.0;
+    std::math::detail::access( fs_vector, 1 ) = 2.0;
+    std::math::detail::access( fs_vector, 2 ) = 3.0;
+    std::math::detail::access( fs_vector, 3 ) = 4.0;
     // Construct from float vector
     double_right_vector_type dyn_vector_copy{ fs_vector };
     // Access elements from dyn vector
-    auto val1 = dyn_vector_copy[0];
-    auto val2 = dyn_vector_copy[1];
-    auto val3 = dyn_vector_copy[2];
-    auto val4 = dyn_vector_copy[3];
+    auto val1 = std::math::detail::access( dyn_vector_copy, 0 );
+    auto val2 = std::math::detail::access( dyn_vector_copy, 1 );
+    auto val3 = std::math::detail::access( dyn_vector_copy, 2 );
+    auto val4 = std::math::detail::access( dyn_vector_copy, 3 );
     // Check the dyn vector was populated correctly and provided the correct values
     EXPECT_EQ( val1, 1.0 );
     EXPECT_EQ( val2, 2.0 );
@@ -139,21 +139,21 @@ namespace
     // Default construct
     fs_vector_type fs_vector;
     // Populate via mutable index access
-    fs_vector[0] = 1.0;
-    fs_vector[1] = 2.0;
-    fs_vector[2] = 3.0;
-    fs_vector[3] = 4.0;
+    std::math::detail::access( fs_vector, 0 ) = 1.0;
+    std::math::detail::access( fs_vector, 1 ) = 2.0;
+    std::math::detail::access( fs_vector, 2 ) = 3.0;
+    std::math::detail::access( fs_vector, 3 ) = 4.0;
     // Get underling view
     auto view = fs_vector.span();
     // Create a lambda expression from view
-    auto lambda = [&view]< class ... SizeType >( SizeType ... indices ) { return view[indices...]; };
+    auto lambda = [&view]< class ... SizeType >( SizeType ... indices ) { return std::math::detail::access( view, indices ... ); };
     // Construct from lambda
     std::math::dr_vector<double> dyn_vector_copy( std::experimental::extents<size_t,4>(), lambda );
     // Access elements from const dyn vector
-    auto val1 = dyn_vector_copy[0];
-    auto val2 = dyn_vector_copy[1];
-    auto val3 = dyn_vector_copy[2];
-    auto val4 = dyn_vector_copy[3];
+    auto val1 = std::math::detail::access( dyn_vector_copy, 0 );
+    auto val2 = std::math::detail::access( dyn_vector_copy, 1 );
+    auto val3 = std::math::detail::access( dyn_vector_copy, 2 );
+    auto val4 = std::math::detail::access( dyn_vector_copy, 3 );
     // Check the dyn vector was populated correctly and provided the correct values
     EXPECT_EQ( val1, 1.0 );
     EXPECT_EQ( val2, 2.0 );
@@ -166,18 +166,18 @@ namespace
     // Construct
     std::math::dr_vector<double> dyn_vector{ std::experimental::extents<size_t,4>(), std::experimental::extents<size_t,5>() };
     // Populate via mutable index access
-    dyn_vector[0] = 1.0;
-    dyn_vector[1] = 2.0;
-    dyn_vector[2] = 3.0;
-    dyn_vector[3] = 4.0;
+    std::math::detail::access( dyn_vector, 0 ) = 1.0;
+    std::math::detail::access( dyn_vector, 1 ) = 2.0;
+    std::math::detail::access( dyn_vector, 2 ) = 3.0;
+    std::math::detail::access( dyn_vector, 3 ) = 4.0;
     // Default construct and assign
     std::math::dr_vector<double> dyn_vector_copy;
     dyn_vector_copy = dyn_vector;
     // Access elements from dyn vector
-    auto val1 = dyn_vector_copy[0];
-    auto val2 = dyn_vector_copy[1];
-    auto val3 = dyn_vector_copy[2];
-    auto val4 = dyn_vector_copy[3];
+    auto val1 = std::math::detail::access( dyn_vector_copy, 0 );
+    auto val2 = std::math::detail::access( dyn_vector_copy, 1 );
+    auto val3 = std::math::detail::access( dyn_vector_copy, 2 );
+    auto val4 = std::math::detail::access( dyn_vector_copy, 3 );
     // Check the dyn vector was populated correctly and provided the correct values
     EXPECT_EQ( val1, 1.0 );
     EXPECT_EQ( val2, 2.0 );
@@ -191,18 +191,18 @@ namespace
     // Default construct
     float_left_vector_type fs_vector { };
     // Populate via mutable index access
-    fs_vector[0] = 1.0;
-    fs_vector[1] = 2.0;
-    fs_vector[2] = 3.0;
-    fs_vector[3] = 4.0;
+    std::math::detail::access( fs_vector, 0 ) = 1.0;
+    std::math::detail::access( fs_vector, 1 ) = 2.0;
+    std::math::detail::access( fs_vector, 2 ) = 3.0;
+    std::math::detail::access( fs_vector, 3 ) = 4.0;
     // Default construct and then assign
     std::math::dr_vector<double> dyn_vector_copy;
     dyn_vector_copy = fs_vector;
     // Access elements from const dyn vector
-    auto val1 = dyn_vector_copy[0];
-    auto val2 = dyn_vector_copy[1];
-    auto val3 = dyn_vector_copy[2];
-    auto val4 = dyn_vector_copy[3];
+    auto val1 = std::math::detail::access( dyn_vector_copy, 0 );
+    auto val2 = std::math::detail::access( dyn_vector_copy, 1 );
+    auto val3 = std::math::detail::access( dyn_vector_copy, 2 );
+    auto val4 = std::math::detail::access( dyn_vector_copy, 3 );
     // Check the dyn vector was populated correctly and provided the correct values
     EXPECT_EQ( val1, 1.0 );
     EXPECT_EQ( val2, 2.0 );
@@ -216,18 +216,18 @@ namespace
     // Default construct
     fs_vector_type fs_vector;
     // Populate via mutable index access
-    fs_vector[0] = 1.0;
-    fs_vector[1] = 2.0;
-    fs_vector[2] = 3.0;
-    fs_vector[3] = 4.0;
+    std::math::detail::access( fs_vector, 0 ) = 1.0;
+    std::math::detail::access( fs_vector, 1 ) = 2.0;
+    std::math::detail::access( fs_vector, 2 ) = 3.0;
+    std::math::detail::access( fs_vector, 3 ) = 4.0;
     // Construct and assign from view
     std::math::dr_vector<double> dyn_vector_view;
     dyn_vector_view = fs_vector.span();
     // Access elements from const dyn vector
-    auto val1 = dyn_vector_view[0];
-    auto val2 = dyn_vector_view[1];
-    auto val3 = dyn_vector_view[2];
-    auto val4 = dyn_vector_view[3];
+    auto val1 = std::math::detail::access( dyn_vector_view, 0 );
+    auto val2 = std::math::detail::access( dyn_vector_view, 1 );
+    auto val3 = std::math::detail::access( dyn_vector_view, 2 );
+    auto val4 = std::math::detail::access( dyn_vector_view, 3 );
     // Check the dyn vector was populated correctly and provided the correct values
     EXPECT_EQ( val1, 1.0 );
     EXPECT_EQ( val2, 2.0 );
@@ -248,27 +248,27 @@ namespace
     // Construct
     std::math::dr_vector<double> dyn_vector{ std::experimental::extents<size_t,4>(), std::experimental::extents<size_t,9>() };
     // Populate via mutable index access
-    dyn_vector[0] = 1.0;
-    dyn_vector[1] = 2.0;
-    dyn_vector[2] = 3.0;
-    dyn_vector[3] = 4.0;
+    std::math::detail::access( dyn_vector, 0 ) = 1.0;
+    std::math::detail::access( dyn_vector, 1 ) = 2.0;
+    std::math::detail::access( dyn_vector, 2 ) = 3.0;
+    std::math::detail::access( dyn_vector, 3 ) = 4.0;
     // Resize
     dyn_vector.resize( 9 );
-    dyn_vector[4] = 5.0;
-    dyn_vector[5] = 6.0;
-    dyn_vector[6] = 7.0;
-    dyn_vector[7] = 8.0;
-    dyn_vector[8] = 9.0;
+    std::math::detail::access( dyn_vector, 4 ) = 5.0;
+    std::math::detail::access( dyn_vector, 5 ) = 6.0;
+    std::math::detail::access( dyn_vector, 6 ) = 7.0;
+    std::math::detail::access( dyn_vector, 7 ) = 8.0;
+    std::math::detail::access( dyn_vector, 8 ) = 9.0;
     // Get values
-    auto val1 = dyn_vector[0];
-    auto val2 = dyn_vector[1];
-    auto val3 = dyn_vector[2];
-    auto val4 = dyn_vector[3];
-    auto val5 = dyn_vector[4];
-    auto val6 = dyn_vector[5];
-    auto val7 = dyn_vector[6];
-    auto val8 = dyn_vector[7];
-    auto val9 = dyn_vector[8];
+    auto val1 = std::math::detail::access( dyn_vector, 0 );
+    auto val2 = std::math::detail::access( dyn_vector, 1 );
+    auto val3 = std::math::detail::access( dyn_vector, 2 );
+    auto val4 = std::math::detail::access( dyn_vector, 3 );
+    auto val5 = std::math::detail::access( dyn_vector, 4 );
+    auto val6 = std::math::detail::access( dyn_vector, 5 );
+    auto val7 = std::math::detail::access( dyn_vector, 6 );
+    auto val8 = std::math::detail::access( dyn_vector, 7 );
+    auto val9 = std::math::detail::access( dyn_vector, 8 );
     // Check the values are correct
     EXPECT_EQ( val1, 1.0 );
     EXPECT_EQ( val2, 2.0 );
@@ -286,17 +286,17 @@ namespace
     // Construct
     std::math::dr_vector<double> dyn_vector{ std::experimental::extents<size_t,4>(), std::experimental::extents<size_t,4>() };
     // Populate via mutable index access
-    dyn_vector[0] = 1.0;
-    dyn_vector[1] = 2.0;
-    dyn_vector[2] = 3.0;
-    dyn_vector[3] = 4.0;
+    std::math::detail::access( dyn_vector, 0 ) = 1.0;
+    std::math::detail::access( dyn_vector, 1 ) = 2.0;
+    std::math::detail::access( dyn_vector, 2 ) = 3.0;
+    std::math::detail::access( dyn_vector, 3 ) = 4.0;
     // Resize
     dyn_vector.reserve( 16 );
     // Get values
-    auto val1  = dyn_vector[0];
-    auto val2  = dyn_vector[1];
-    auto val3  = dyn_vector[2];
-    auto val4  = dyn_vector[3];
+    auto val1  = std::math::detail::access( dyn_vector, 0 );
+    auto val2  = std::math::detail::access( dyn_vector, 1 );
+    auto val3  = std::math::detail::access( dyn_vector, 2 );
+    auto val4  = std::math::detail::access( dyn_vector, 3 );
     // Check the values are correct
     EXPECT_EQ( val1, 1.0 );
     EXPECT_EQ( val2, 2.0 );
@@ -311,15 +311,15 @@ namespace
     double val = 1;
     for ( auto i : { 0, 1, 2, 3, 4 } )
     {
-      dyn_vector[i] = val;
+      std::math::detail::access( dyn_vector, i ) = val;
       val = 2 * val;
     }
     const std::math::dr_vector<double>& const_dyn_vector( dyn_vector );
     auto subvector = const_dyn_vector.subvector( 2, 5 );
     // Assert subvector maps to original vector
-    EXPECT_EQ( ( subvector[0] ), ( dyn_vector[2] ) );
-    EXPECT_EQ( ( subvector[1] ), ( dyn_vector[3] ) );
-    EXPECT_EQ( ( subvector[2] ), ( dyn_vector[4] ) );
+    EXPECT_EQ( ( std::math::detail::access( subvector, 0 ) ),  ( std::math::detail::access( dyn_vector, 2 ) ) );
+    EXPECT_EQ( ( std::math::detail::access( subvector, 1 ) ),  ( std::math::detail::access( dyn_vector, 3 ) ) );
+    EXPECT_EQ( ( std::math::detail::access( subvector, 2 ) ),  ( std::math::detail::access( dyn_vector, 4 ) ) );
   }
 
   TEST( DR_VECTOR, SUBVECTOR )
@@ -330,7 +330,7 @@ namespace
     double val = 1;
     for ( auto i : { 0, 1, 2, 3, 4 } )
     {
-      dyn_vector[i] = val;
+      std::math::detail::access( dyn_vector, i ) = val;
       val = 2 * val;
     }
     // Get subvector
@@ -338,13 +338,13 @@ namespace
     // Modify view
     for ( auto i : { 0, 1, 2 } )
     {
-      subvector[i] = val;
+      std::math::detail::access( subvector, i ) = val;
       val = 2 * val;
     }
     // Assert original vector has been modified as well
-    EXPECT_EQ( ( subvector[0] ), ( dyn_vector[2] ) );
-    EXPECT_EQ( ( subvector[1] ), ( dyn_vector[3] ) );
-    EXPECT_EQ( ( subvector[2] ), ( dyn_vector[4] ) );
+    EXPECT_EQ( ( std::math::detail::access( subvector, 0 ) ),  ( std::math::detail::access( dyn_vector, 2 ) ) );
+    EXPECT_EQ( ( std::math::detail::access( subvector, 1 ) ),  ( std::math::detail::access( dyn_vector, 3 ) ) );
+    EXPECT_EQ( ( std::math::detail::access( subvector, 2 ) ),  ( std::math::detail::access( dyn_vector, 4 ) ) );
   }
 
   TEST( DR_VECTOR, NEGATION )
@@ -353,17 +353,17 @@ namespace
     // Construct
     vector_type vector{ 4 };
     // Populate via mutable index access
-    vector[0] = 1.0;
-    vector[1] = 2.0;
-    vector[2] = 3.0;
-    vector[3] = 4.0;
+    std::math::detail::access( vector, 0 ) = 1.0;
+    std::math::detail::access( vector, 1 ) = 2.0;
+    std::math::detail::access( vector, 2 ) = 3.0;
+    std::math::detail::access( vector, 3 ) = 4.0;
     // Negate the vector
     vector_type negate_vector { -vector };
     // Access elements from const vector
-    auto val1 = negate_vector[0];
-    auto val2 = negate_vector[1];
-    auto val3 = negate_vector[2];
-    auto val4 = negate_vector[3];
+    auto val1 = std::math::detail::access( negate_vector, 0 );
+    auto val2 = std::math::detail::access( negate_vector, 1 );
+    auto val3 = std::math::detail::access( negate_vector, 2 );
+    auto val4 = std::math::detail::access( negate_vector, 3 );
     // Check the vector was populated correctly and provided the correct values
     EXPECT_EQ( val1, -1.0 );
     EXPECT_EQ( val2, -2.0 );
@@ -377,15 +377,15 @@ namespace
     // Construct
     vector_type vector { };
     // Populate via mutable index access
-    vector[0] = 1.0;
-    vector[1] = 2.0;
-    vector[2] = 3.0;
+    std::math::detail::access( vector, 0 ) = 1.0;
+    std::math::detail::access( vector, 1 ) = 2.0;
+    std::math::detail::access( vector, 2 ) = 3.0;
     // Transpose the vector
     auto transpose_vector { trans(vector) };
     // Access elements from transpose vector
-    auto val1 = transpose_vector[0];
-    auto val2 = transpose_vector[1];
-    auto val3 = transpose_vector[2];
+    auto val1 = std::math::detail::access( transpose_vector, 0 );
+    auto val2 = std::math::detail::access( transpose_vector, 1 );
+    auto val3 = std::math::detail::access( transpose_vector, 2 );
     // Check the vector was populated correctly and provided the correct values
     EXPECT_EQ( val1, 1.0 );
     EXPECT_EQ( val2, 2.0 );
@@ -398,15 +398,15 @@ namespace
     // Construct
     vector_type vector { 3 };
     // Populate via mutable index access
-    vector[0] = std::complex<double>( 1.0, 1.0 );
-    vector[1] = std::complex<double>( 2.0, 2.0 );
-    vector[2] = std::complex<double>( 3.0, 3.0 );
+    std::math::detail::access( vector, 0 ) = std::complex<double>( 1.0, 1.0 );
+    std::math::detail::access( vector, 1 ) = std::complex<double>( 2.0, 2.0 );
+    std::math::detail::access( vector, 2 ) = std::complex<double>( 3.0, 3.0 );
     // Conjugate the vector
     auto conjugate_vector { conj(vector) };
     // Access elements from conjugate vector
-    auto val1 = conjugate_vector[0];
-    auto val2 = conjugate_vector[1];
-    auto val3 = conjugate_vector[2];
+    auto val1 = std::math::detail::access( conjugate_vector, 0 );
+    auto val2 = std::math::detail::access( conjugate_vector, 1 );
+    auto val3 = std::math::detail::access( conjugate_vector, 2 );
     // Check the vector was populated correctly and provided the correct values
     EXPECT_EQ( val1, std::complex<double>( 1.0, -1.0 ) );
     EXPECT_EQ( val2, std::complex<double>( 2.0, -2.0 ) );
@@ -419,19 +419,19 @@ namespace
     // Construct
     vector_type vector{ 4 };
     // Populate via mutable index access
-    vector[0] = 1.0;
-    vector[1] = 2.0;
-    vector[2] = 3.0;
-    vector[3] = 4.0;
+    std::math::detail::access( vector, 0 ) = 1.0;
+    std::math::detail::access( vector, 1 ) = 2.0;
+    std::math::detail::access( vector, 2 ) = 3.0;
+    std::math::detail::access( vector, 3 ) = 4.0;
     // Copy construct
     vector_type vector_copy{ vector };
     // Add the two vectors together
     vector_type vector_sum { vector + vector_copy };
     // Access elements from const vector
-    auto val1 = vector_sum[0];
-    auto val2 = vector_sum[1];
-    auto val3 = vector_sum[2];
-    auto val4 = vector_sum[3];
+    auto val1 = std::math::detail::access( vector_sum, 0 );
+    auto val2 = std::math::detail::access( vector_sum, 1 );
+    auto val3 = std::math::detail::access( vector_sum, 2 );
+    auto val4 = std::math::detail::access( vector_sum, 3 );
     // Check the vector copy was populated correctly and provided the correct values
     EXPECT_EQ( val1, 2.0 );
     EXPECT_EQ( val2, 4.0 );
@@ -445,19 +445,19 @@ namespace
     // Construct
     vector_type vector{ 4 };
     // Populate via mutable index access
-    vector[0] = 1.0;
-    vector[1] = 2.0;
-    vector[2] = 3.0;
-    vector[3] = 4.0;
+    std::math::detail::access( vector, 0 ) = 1.0;
+    std::math::detail::access( vector, 1 ) = 2.0;
+    std::math::detail::access( vector, 2 ) = 3.0;
+    std::math::detail::access( vector, 3 ) = 4.0;
     // Copy construct
     vector_type vector_copy{ vector };
     // Add the two vectors together
     static_cast<void>( vector += vector_copy );
     // Access elements from vector
-    auto val1 = vector[0];
-    auto val2 = vector[1];
-    auto val3 = vector[2];
-    auto val4 = vector[3];
+    auto val1 = std::math::detail::access( vector, 0 );
+    auto val2 = std::math::detail::access( vector, 1 );
+    auto val3 = std::math::detail::access( vector, 2 );
+    auto val4 = std::math::detail::access( vector, 3 );
     // Check the vector was populated correctly and provided the correct values
     EXPECT_EQ( val1, 2.0 );
     EXPECT_EQ( val2, 4.0 );
@@ -471,19 +471,19 @@ namespace
     // Construct
     vector_type vector{ 4 };
     // Populate via mutable index access
-    vector[0] = 1.0;
-    vector[1] = 2.0;
-    vector[2] = 3.0;
-    vector[3] = 4.0;
+    std::math::detail::access( vector, 0 ) = 1.0;
+    std::math::detail::access( vector, 1 ) = 2.0;
+    std::math::detail::access( vector, 2 ) = 3.0;
+    std::math::detail::access( vector, 3 ) = 4.0;
     // Copy construct
     vector_type vector_copy{ vector };
     // Subtract the two vectors
     vector_type vector_diff { vector - vector_copy };
     // Access elements from const vector
-    auto val1 = vector_diff[0];
-    auto val2 = vector_diff[1];
-    auto val3 = vector_diff[2];
-    auto val4 = vector_diff[3];
+    auto val1 = std::math::detail::access( vector_diff, 0 );
+    auto val2 = std::math::detail::access( vector_diff, 1 );
+    auto val3 = std::math::detail::access( vector_diff, 2 );
+    auto val4 = std::math::detail::access( vector_diff, 3 );
     // Check the vector copy was populated correctly and provided the correct values
     EXPECT_EQ( val1, 0 );
     EXPECT_EQ( val2, 0 );
@@ -497,19 +497,19 @@ namespace
     // Construct
     vector_type vector{ 4 };
     // Populate via mutable index access
-    vector[0] = 1.0;
-    vector[1] = 2.0;
-    vector[2] = 3.0;
-    vector[3] = 4.0;
+    std::math::detail::access( vector, 0 ) = 1.0;
+    std::math::detail::access( vector, 1 ) = 2.0;
+    std::math::detail::access( vector, 2 ) = 3.0;
+    std::math::detail::access( vector, 3 ) = 4.0;
     // Copy construct
     vector_type vector_copy{ vector };
     // Subtract the two vectors
     static_cast<void>( vector -= vector_copy );
     // Access elements from vector
-    auto val1 = vector[0];
-    auto val2 = vector[1];
-    auto val3 = vector[2];
-    auto val4 = vector[3];
+    auto val1 = std::math::detail::access( vector, 0 );
+    auto val2 = std::math::detail::access( vector, 1 );
+    auto val3 = std::math::detail::access( vector, 2 );
+    auto val4 = std::math::detail::access( vector, 3 );
     // Check the vector was populated correctly and provided the correct values
     EXPECT_EQ( val1, 0 );
     EXPECT_EQ( val2, 0 );
@@ -523,17 +523,17 @@ namespace
     // Construct
     vector_type vector{ 4 };
     // Populate via mutable index access
-    vector[0] = 1.0;
-    vector[1] = 2.0;
-    vector[2] = 3.0;
-    vector[3] = 4.0;
+    std::math::detail::access( vector, 0 ) = 1.0;
+    std::math::detail::access( vector, 1 ) = 2.0;
+    std::math::detail::access( vector, 2 ) = 3.0;
+    std::math::detail::access( vector, 3 ) = 4.0;
     // Pre multiply
     vector_type vector_prod { 2 * vector };
     // Access elements from const vector
-    auto val1 = vector_prod[0];
-    auto val2 = vector_prod[1];
-    auto val3 = vector_prod[2];
-    auto val4 = vector_prod[3];
+    auto val1 = std::math::detail::access( vector_prod, 0 );
+    auto val2 = std::math::detail::access( vector_prod, 1 );
+    auto val3 = std::math::detail::access( vector_prod, 2 );
+    auto val4 = std::math::detail::access( vector_prod, 3 );
     // Check the vector was populated correctly and provided the correct values
     EXPECT_EQ( val1, 2.0 );
     EXPECT_EQ( val2, 4.0 );
@@ -547,17 +547,17 @@ namespace
     // Construct
     vector_type vector{ 4 };
     // Populate via mutable index access
-    vector[0] = 1.0;
-    vector[1] = 2.0;
-    vector[2] = 3.0;
-    vector[3] = 4.0;
+    std::math::detail::access( vector, 0 ) = 1.0;
+    std::math::detail::access( vector, 1 ) = 2.0;
+    std::math::detail::access( vector, 2 ) = 3.0;
+    std::math::detail::access( vector, 3 ) = 4.0;
     // Post multiply
     vector_type vector_prod { vector * 2 };
     // Access elements from const vector
-    auto val1 = vector_prod[0];
-    auto val2 = vector_prod[1];
-    auto val3 = vector_prod[2];
-    auto val4 = vector_prod[3];
+    auto val1 = std::math::detail::access( vector_prod, 0 );
+    auto val2 = std::math::detail::access( vector_prod, 1 );
+    auto val3 = std::math::detail::access( vector_prod, 2 );
+    auto val4 = std::math::detail::access( vector_prod, 3 );
     // Check the vector was populated correctly and provided the correct values
     EXPECT_EQ( val1, 2.0 );
     EXPECT_EQ( val2, 4.0 );
@@ -571,17 +571,17 @@ namespace
     // Construct
     vector_type vector{ 4 };
     // Populate via mutable index access
-    vector[0] = 1.0;
-    vector[1] = 2.0;
-    vector[2] = 3.0;
-    vector[3] = 4.0;
+    std::math::detail::access( vector, 0 ) = 1.0;
+    std::math::detail::access( vector, 1 ) = 2.0;
+    std::math::detail::access( vector, 2 ) = 3.0;
+    std::math::detail::access( vector, 3 ) = 4.0;
     // Post multiply
     static_cast<void>( vector *= 2 );
     // Access elements from vector
-    auto val1 = vector[0];
-    auto val2 = vector[1];
-    auto val3 = vector[2];
-    auto val4 = vector[3];
+    auto val1 = std::math::detail::access( vector, 0 );
+    auto val2 = std::math::detail::access( vector, 1 );
+    auto val3 = std::math::detail::access( vector, 2 );
+    auto val4 = std::math::detail::access( vector, 3 );
     // Check the vector was populated correctly and provided the correct values
     EXPECT_EQ( val1, 2.0 );
     EXPECT_EQ( val2, 4.0 );
@@ -595,17 +595,17 @@ namespace
     // Construct
     vector_type vector{ 4 };
     // Populate via mutable index access
-    vector[0] = 1.0;
-    vector[1] = 2.0;
-    vector[2] = 3.0;
-    vector[3] = 4.0;
+    std::math::detail::access( vector, 0 ) = 1.0;
+    std::math::detail::access( vector, 1 ) = 2.0;
+    std::math::detail::access( vector, 2 ) = 3.0;
+    std::math::detail::access( vector, 3 ) = 4.0;
     // Divide
     vector_type vector_divide { vector / 2 };
     // Access elements from const vector
-    auto val1 = vector_divide[0];
-    auto val2 = vector_divide[1];
-    auto val3 = vector_divide[2];
-    auto val4 = vector_divide[3];
+    auto val1 = std::math::detail::access( vector_divide, 0 );
+    auto val2 = std::math::detail::access( vector_divide, 1 );
+    auto val3 = std::math::detail::access( vector_divide, 2 );
+    auto val4 = std::math::detail::access( vector_divide, 3 );
     // Check the vector was populated correctly and provided the correct values
     EXPECT_EQ( val1, 0.5 );
     EXPECT_EQ( val2, 1.0 );
@@ -619,17 +619,17 @@ namespace
     // Construct
     vector_type vector{ 4 };
     // Populate via mutable index access
-    vector[0] = 1.0;
-    vector[1] = 2.0;
-    vector[2] = 3.0;
-    vector[3] = 4.0;
+    std::math::detail::access( vector, 0 ) = 1.0;
+    std::math::detail::access( vector, 1 ) = 2.0;
+    std::math::detail::access( vector, 2 ) = 3.0;
+    std::math::detail::access( vector, 3 ) = 4.0;
     // Divide
     static_cast<void>( vector /= 2 );
     // Access elements from vector
-    auto val1 = vector[0];
-    auto val2 = vector[1];
-    auto val3 = vector[2];
-    auto val4 = vector[3];
+    auto val1 = std::math::detail::access( vector, 0 );
+    auto val2 = std::math::detail::access( vector, 1 );
+    auto val3 = std::math::detail::access( vector, 2 );
+    auto val4 = std::math::detail::access( vector, 3 );
     // Check the vector was populated correctly and provided the correct values
     EXPECT_EQ( val1, 0.5 );
     EXPECT_EQ( val2, 1.0 );
@@ -643,12 +643,12 @@ namespace
     // Construct
     vector_type vector{ 6 };
     // Populate via mutable index access
-    vector[0] = 1.0;
-    vector[1] = 2.0;
-    vector[2] = 3.0;
-    vector[3] = 4.0;
-    vector[4] = 5.0;
-    vector[5] = 6.0;
+    std::math::detail::access( vector, 0 ) = 1.0;
+    std::math::detail::access( vector, 1 ) = 2.0;
+    std::math::detail::access( vector, 2 ) = 3.0;
+    std::math::detail::access( vector, 3 ) = 4.0;
+    std::math::detail::access( vector, 4 ) = 5.0;
+    std::math::detail::access( vector, 5 ) = 6.0;
     // Compute inner product
     auto inner_product_val = inner_prod( vector, vector );
     // Check the inner product was properly computed
@@ -661,21 +661,21 @@ namespace
     // Construct
     vector_type vector{ 3 };
     // Populate via mutable index access
-    vector[0] = 1.0;
-    vector[1] = 2.0;
-    vector[2] = 3.0;
+    std::math::detail::access( vector, 0 ) = 1.0;
+    std::math::detail::access( vector, 1 ) = 2.0;
+    std::math::detail::access( vector, 2 ) = 3.0;
     // Compute outer product
     auto outer_product = outer_prod( vector, vector );
     // Access elements from outer product
-    auto val1 = outer_product[0,0];
-    auto val2 = outer_product[0,1];
-    auto val3 = outer_product[0,2];
-    auto val4 = outer_product[1,0];
-    auto val5 = outer_product[1,1];
-    auto val6 = outer_product[1,2];
-    auto val7 = outer_product[2,0];
-    auto val8 = outer_product[2,1];
-    auto val9 = outer_product[2,2];
+    auto val1 = std::math::detail::access( outer_product, 0, 0 );
+    auto val2 = std::math::detail::access( outer_product, 0, 1 );
+    auto val3 = std::math::detail::access( outer_product, 0, 2 );
+    auto val4 = std::math::detail::access( outer_product, 1, 0 );
+    auto val5 = std::math::detail::access( outer_product, 1, 1 );
+    auto val6 = std::math::detail::access( outer_product, 1, 2 );
+    auto val7 = std::math::detail::access( outer_product, 2, 0 );
+    auto val8 = std::math::detail::access( outer_product, 2, 1 );
+    auto val9 = std::math::detail::access( outer_product, 2, 2 );
     // Check the vector was populated correctly and provided the correct values
     EXPECT_EQ( val1, 1.0 );
     EXPECT_EQ( val2, 2.0 );
@@ -695,23 +695,23 @@ namespace
     // Construct matrix
     matrix_type matrix{ std::experimental::extents<size_t,2,3>(), std::experimental::extents<size_t,3,3>() };
     // Populate via mutable index access
-    matrix[0,0] = 1.0;
-    matrix[0,1] = 2.0;
-    matrix[0,2] = 3.0;
-    matrix[1,0] = 4.0;
-    matrix[1,1] = 5.0;
-    matrix[1,2] = 6.0;
+    std::math::detail::access( matrix, 0, 0 ) = 1.0;
+    std::math::detail::access( matrix, 0, 1 ) = 2.0;
+    std::math::detail::access( matrix, 0, 2 ) = 3.0;
+    std::math::detail::access( matrix, 1, 0 ) = 4.0;
+    std::math::detail::access( matrix, 1, 1 ) = 5.0;
+    std::math::detail::access( matrix, 1, 2 ) = 6.0;
     // Construct vector
     vector_type vector{ std::experimental::extents<size_t,2>(), std::experimental::extents<size_t,4>() };
     // Populate via mutable index access
-    vector[0] = 1.0;
-    vector[1] = 2.0;
+    std::math::detail::access( vector, 0 ) = 1.0;
+    std::math::detail::access( vector, 1 ) = 2.0;
     // Multiply vector with matrix
     auto vector_multiply { vector * matrix };
     // Access elements from vector
-    auto val1 = vector_multiply[0];
-    auto val2 = vector_multiply[1];
-    auto val3 = vector_multiply[2];
+    auto val1 = std::math::detail::access( vector_multiply, 0 );
+    auto val2 = std::math::detail::access( vector_multiply, 1 );
+    auto val3 = std::math::detail::access( vector_multiply, 2 );
     // Check the vector was populated correctly and provided the correct values
     EXPECT_EQ( val1, 9.0 );
     EXPECT_EQ( val2, 12.0 );
@@ -725,23 +725,23 @@ namespace
     // Construct matrix
     matrix_type matrix{ std::experimental::extents<size_t,2,3>(), std::experimental::extents<size_t,3,3>() };
     // Populate via mutable index access
-    matrix[0,0] = 1.0;
-    matrix[0,1] = 2.0;
-    matrix[0,2] = 3.0;
-    matrix[1,0] = 4.0;
-    matrix[1,1] = 5.0;
-    matrix[1,2] = 6.0;
+    std::math::detail::access( matrix, 0, 0 ) = 1.0;
+    std::math::detail::access( matrix, 0, 1 ) = 2.0;
+    std::math::detail::access( matrix, 0, 2 ) = 3.0;
+    std::math::detail::access( matrix, 1, 0 ) = 4.0;
+    std::math::detail::access( matrix, 1, 1 ) = 5.0;
+    std::math::detail::access( matrix, 1, 2 ) = 6.0;
     // Construct vector
     vector_type vector{ std::experimental::extents<size_t,3>(), std::experimental::extents<size_t,4>() };
     // Populate via mutable index access
-    vector[0] = 1.0;
-    vector[1] = 2.0;
-    vector[2] = 3.0;
+    std::math::detail::access( vector, 0 ) = 1.0;
+    std::math::detail::access( vector, 1 ) = 2.0;
+    std::math::detail::access( vector, 2 ) = 3.0;
     // Multiply matrix with vector
     auto vector_multiply { matrix * vector };
     // Access elements from vector
-    auto val1 = vector_multiply[0];
-    auto val2 = vector_multiply[1];
+    auto val1 = std::math::detail::access( vector_multiply, 0 );
+    auto val2 = std::math::detail::access( vector_multiply, 1 );
     // Check the vector was populated correctly and provided the correct values
     EXPECT_EQ( val1, 14.0 );
     EXPECT_EQ( val2, 32.0 );
@@ -754,23 +754,23 @@ namespace
     // Construct matrix
     matrix_type matrix{ std::experimental::extents<size_t,2,3>(), std::experimental::extents<size_t,3,3>() };
     // Populate via mutable index access
-    matrix[0,0] = 1.0;
-    matrix[0,1] = 2.0;
-    matrix[0,2] = 3.0;
-    matrix[1,0] = 4.0;
-    matrix[1,1] = 5.0;
-    matrix[1,2] = 6.0;
+    std::math::detail::access( matrix, 0, 0 ) = 1.0;
+    std::math::detail::access( matrix, 0, 1 ) = 2.0;
+    std::math::detail::access( matrix, 0, 2 ) = 3.0;
+    std::math::detail::access( matrix, 1, 0 ) = 4.0;
+    std::math::detail::access( matrix, 1, 1 ) = 5.0;
+    std::math::detail::access( matrix, 1, 2 ) = 6.0;
     // Construct vector
     vector_type vector{ std::experimental::extents<size_t,2>(), std::experimental::extents<size_t,4>() };
     // Populate via mutable index access
-    vector[0] = 1.0;
-    vector[1] = 2.0;
+    std::math::detail::access( vector, 0 ) = 1.0;
+    std::math::detail::access( vector, 1 ) = 2.0;
     // Multiply matrix with vector
     static_cast<void>( vector *= matrix );
     // Access elements from vector
-    auto val1 = vector[0];
-    auto val2 = vector[1];
-    auto val3 = vector[2];
+    auto val1 = std::math::detail::access( vector, 0 );
+    auto val2 = std::math::detail::access( vector, 1 );
+    auto val3 = std::math::detail::access( vector, 2 );
     // Check the vector was populated correctly and provided the correct values
     EXPECT_EQ( val1, 9.0 );
     EXPECT_EQ( val2, 12.0 );
@@ -790,17 +790,17 @@ namespace
     // Default construct
     fs_vector_type fs_vector;
     // Populate via mutable index access
-    fs_vector[0] = 1.0;
-    fs_vector[1] = 2.0;
-    fs_vector[2] = 3.0;
-    fs_vector[3] = 4.0;
+    std::math::detail::access( fs_vector, 0 ) = 1.0;
+    std::math::detail::access( fs_vector, 1 ) = 2.0;
+    std::math::detail::access( fs_vector, 2 ) = 3.0;
+    std::math::detail::access( fs_vector, 3 ) = 4.0;
     // Get a const reference
     const fs_vector_type& const_fs_vector( fs_vector );
     // Access elements from const fs vector
-    auto val1 = const_fs_vector[0];
-    auto val2 = const_fs_vector[1];
-    auto val3 = const_fs_vector[2];
-    auto val4 = const_fs_vector[3];
+    auto val1 = std::math::detail::access( const_fs_vector, 0 );
+    auto val2 = std::math::detail::access( const_fs_vector, 1 );
+    auto val3 = std::math::detail::access( const_fs_vector, 2 );
+    auto val4 = std::math::detail::access( const_fs_vector, 3 );
     // Check the fs vector was populated correctly and provided the correct values
     EXPECT_EQ( val1, 1.0 );
     EXPECT_EQ( val2, 2.0 );
@@ -814,19 +814,19 @@ namespace
     // Default construct
     fs_vector_type fs_vector;
     // Populate via mutable index access
-    fs_vector[0] = 1.0;
-    fs_vector[1] = 2.0;
-    fs_vector[2] = 3.0;
-    fs_vector[3] = 4.0;
+    std::math::detail::access( fs_vector, 0 ) = 1.0;
+    std::math::detail::access( fs_vector, 1 ) = 2.0;
+    std::math::detail::access( fs_vector, 2 ) = 3.0;
+    std::math::detail::access( fs_vector, 3 ) = 4.0;
     // Copy construct
     fs_vector_type fs_vector_copy{ fs_vector };
     // Get a const reference to copy
     const fs_vector_type& const_fs_vector( fs_vector_copy );
     // Access elements from const fs vector
-    auto val1 = const_fs_vector[0];
-    auto val2 = const_fs_vector[1];
-    auto val3 = const_fs_vector[2];
-    auto val4 = const_fs_vector[3];
+    auto val1 = std::math::detail::access( const_fs_vector, 0 );
+    auto val2 = std::math::detail::access( const_fs_vector, 1 );
+    auto val3 = std::math::detail::access( const_fs_vector, 2 );
+    auto val4 = std::math::detail::access( const_fs_vector, 3 );
     // Check the fs vector was populated correctly and provided the correct values
     EXPECT_EQ( val1, 1.0 );
     EXPECT_EQ( val2, 2.0 );
@@ -840,19 +840,19 @@ namespace
     // Default construct
     fs_vector_type fs_vector;
     // Populate via mutable index access
-    fs_vector[0] = 1.0;
-    fs_vector[1] = 2.0;
-    fs_vector[2] = 3.0;
-    fs_vector[3] = 4.0;
+    std::math::detail::access( fs_vector, 0 ) = 1.0;
+    std::math::detail::access( fs_vector, 1 ) = 2.0;
+    std::math::detail::access( fs_vector, 2 ) = 3.0;
+    std::math::detail::access( fs_vector, 3 ) = 4.0;
     // Move construct
     fs_vector_type fs_vector_move{ std::move( fs_vector ) };
     // Get a const reference to moved vector
     const fs_vector_type& const_fs_vector( fs_vector_move );
     // Access elements from const fs vector
-    auto val1 = const_fs_vector[0];
-    auto val2 = const_fs_vector[1];
-    auto val3 = const_fs_vector[2];
-    auto val4 = const_fs_vector[3];
+    auto val1 = std::math::detail::access( const_fs_vector, 0 );
+    auto val2 = std::math::detail::access( const_fs_vector, 1 );
+    auto val3 = std::math::detail::access( const_fs_vector, 2 );
+    auto val4 = std::math::detail::access( const_fs_vector, 3 );
     // Check the fs vector was populated correctly and provided the correct values
     EXPECT_EQ( val1, 1.0 );
     EXPECT_EQ( val2, 2.0 );
@@ -866,19 +866,19 @@ namespace
     // Default construct
     fs_vector_type fs_vector;
     // Populate via mutable index access
-    fs_vector[0] = 1.0;
-    fs_vector[1] = 2.0;
-    fs_vector[2] = 3.0;
-    fs_vector[3] = 4.0;
+    std::math::detail::access( fs_vector, 0 ) = 1.0;
+    std::math::detail::access( fs_vector, 1 ) = 2.0;
+    std::math::detail::access( fs_vector, 2 ) = 3.0;
+    std::math::detail::access( fs_vector, 3 ) = 4.0;
     // Construct from view
     fs_vector_type fs_vector_view{ fs_vector.span() };
     // Get a const reference to constructed vector
     const fs_vector_type& const_fs_vector( fs_vector_view );
     // Access elements from const fs vector
-    auto val1 = const_fs_vector[0];
-    auto val2 = const_fs_vector[1];
-    auto val3 = const_fs_vector[2];
-    auto val4 = const_fs_vector[3];
+    auto val1 = std::math::detail::access( const_fs_vector, 0 );
+    auto val2 = std::math::detail::access( const_fs_vector, 1 );
+    auto val3 = std::math::detail::access( const_fs_vector, 2 );
+    auto val4 = std::math::detail::access( const_fs_vector, 3 );
     // Check the fs vector was populated correctly and provided the correct values
     EXPECT_EQ( val1, 1.0 );
     EXPECT_EQ( val2, 2.0 );
@@ -893,17 +893,17 @@ namespace
     // Default construct
     float_left_vector_type fs_vector;
     // Populate via mutable index access
-    fs_vector[0] = 1.0;
-    fs_vector[1] = 2.0;
-    fs_vector[2] = 3.0;
-    fs_vector[3] = 4.0;
+    std::math::detail::access( fs_vector, 0 ) = 1.0;
+    std::math::detail::access( fs_vector, 1 ) = 2.0;
+    std::math::detail::access( fs_vector, 2 ) = 3.0;
+    std::math::detail::access( fs_vector, 3 ) = 4.0;
     // Construct from float vector
     double_right_vector_type fs_vector_copy{ fs_vector };
     // Access elements from const fs vector
-    auto val1 = fs_vector_copy[0];
-    auto val2 = fs_vector_copy[1];
-    auto val3 = fs_vector_copy[2];
-    auto val4 = fs_vector_copy[3];
+    auto val1 = std::math::detail::access( fs_vector_copy, 0 );
+    auto val2 = std::math::detail::access( fs_vector_copy, 1 );
+    auto val3 = std::math::detail::access( fs_vector_copy, 2 );
+    auto val4 = std::math::detail::access( fs_vector_copy, 3 );
     // Check the fs vector was populated correctly and provided the correct values
     EXPECT_EQ( val1, 1.0 );
     EXPECT_EQ( val2, 2.0 );
@@ -917,21 +917,21 @@ namespace
     // Default construct
     fs_vector_type fs_vector;
     // Populate via mutable index access
-    fs_vector[0] = 1.0;
-    fs_vector[1] = 2.0;
-    fs_vector[2] = 3.0;
-    fs_vector[3] = 4.0;
+    std::math::detail::access( fs_vector, 0 ) = 1.0;
+    std::math::detail::access( fs_vector, 1 ) = 2.0;
+    std::math::detail::access( fs_vector, 2 ) = 3.0;
+    std::math::detail::access( fs_vector, 3 ) = 4.0;
     // Get underling view
     auto view = fs_vector.span();
     // Create a lambda expression from view
-    auto lambda = [&view]< class ... SizeType >( SizeType ... indices ) { return view[indices...]; };
+    auto lambda = [&view]< class ... SizeType >( SizeType ... indices ) { return std::math::detail::access( view, indices ... ); };
     // Construct from lambda
     fs_vector_type fs_vector_copy( lambda );
     // Access elements from const fs vector
-    auto val1 = fs_vector_copy[0];
-    auto val2 = fs_vector_copy[1];
-    auto val3 = fs_vector_copy[2];
-    auto val4 = fs_vector_copy[3];
+    auto val1 = std::math::detail::access( fs_vector_copy, 0 );
+    auto val2 = std::math::detail::access( fs_vector_copy, 1 );
+    auto val3 = std::math::detail::access( fs_vector_copy, 2 );
+    auto val4 = std::math::detail::access( fs_vector_copy, 3 );
     // Check the fs vector was populated correctly and provided the correct values
     EXPECT_EQ( val1, 1.0 );
     EXPECT_EQ( val2, 2.0 );
@@ -945,18 +945,18 @@ namespace
     // Default construct
     fs_vector_type fs_vector;
     // Populate via mutable index access
-    fs_vector[0] = 1.0;
-    fs_vector[1] = 2.0;
-    fs_vector[2] = 3.0;
-    fs_vector[3] = 4.0;
+    std::math::detail::access( fs_vector, 0 ) = 1.0;
+    std::math::detail::access( fs_vector, 1 ) = 2.0;
+    std::math::detail::access( fs_vector, 2 ) = 3.0;
+    std::math::detail::access( fs_vector, 3 ) = 4.0;
     // Construct from lambda
     fs_vector_type fs_vector_copy;
     fs_vector_copy = fs_vector;
     // Access elements from const fs vector
-    auto val1 = fs_vector_copy[0];
-    auto val2 = fs_vector_copy[1];
-    auto val3 = fs_vector_copy[2];
-    auto val4 = fs_vector_copy[3];
+    auto val1 = std::math::detail::access( fs_vector_copy, 0 );
+    auto val2 = std::math::detail::access( fs_vector_copy, 1 );
+    auto val3 = std::math::detail::access( fs_vector_copy, 2 );
+    auto val4 = std::math::detail::access( fs_vector_copy, 3 );
     // Check the fs vector was populated correctly and provided the correct values
     EXPECT_EQ( val1, 1.0 );
     EXPECT_EQ( val2, 2.0 );
@@ -971,18 +971,18 @@ namespace
     // Default construct
     float_left_vector_type fs_vector;
     // Populate via mutable index access
-    fs_vector[0] = 1.0;
-    fs_vector[1] = 2.0;
-    fs_vector[2] = 3.0;
-    fs_vector[3] = 4.0;
+    std::math::detail::access( fs_vector, 0 ) = 1.0;
+    std::math::detail::access( fs_vector, 1 ) = 2.0;
+    std::math::detail::access( fs_vector, 2 ) = 3.0;
+    std::math::detail::access( fs_vector, 3 ) = 4.0;
     // Default construct and then assign
     double_right_vector_type fs_vector_copy;
     fs_vector_copy = fs_vector;
     // Access elements from const fs vector
-    auto val1 = fs_vector_copy[0];
-    auto val2 = fs_vector_copy[1];
-    auto val3 = fs_vector_copy[2];
-    auto val4 = fs_vector_copy[3];
+    auto val1 = std::math::detail::access( fs_vector_copy, 0 );
+    auto val2 = std::math::detail::access( fs_vector_copy, 1 );
+    auto val3 = std::math::detail::access( fs_vector_copy, 2 );
+    auto val4 = std::math::detail::access( fs_vector_copy, 3 );
     // Check the fs vector vector was populated correctly and provided the correct values
     EXPECT_EQ( val1, 1.0 );
     EXPECT_EQ( val2, 2.0 );
@@ -996,20 +996,20 @@ namespace
     // Default construct
     fs_vector_type fs_vector;
     // Populate via mutable index access
-    fs_vector[0] = 1.0;
-    fs_vector[1] = 2.0;
-    fs_vector[2] = 3.0;
-    fs_vector[3] = 4.0;
+    std::math::detail::access( fs_vector, 0 ) = 1.0;
+    std::math::detail::access( fs_vector, 1 ) = 2.0;
+    std::math::detail::access( fs_vector, 2 ) = 3.0;
+    std::math::detail::access( fs_vector, 3 ) = 4.0;
     // Default construct and assign from view
     fs_vector_type fs_vector_view;
     fs_vector_view = fs_vector.span();
     // Get a const reference to constructed vector
     const fs_vector_type& const_fs_vector( fs_vector_view );
     // Access elements from const fs vector
-    auto val1 = const_fs_vector[0];
-    auto val2 = const_fs_vector[1];
-    auto val3 = const_fs_vector[2];
-    auto val4 = const_fs_vector[3];
+    auto val1 = std::math::detail::access( const_fs_vector, 0 );
+    auto val2 = std::math::detail::access( const_fs_vector, 1 );
+    auto val3 = std::math::detail::access( const_fs_vector, 2 );
+    auto val4 = std::math::detail::access( const_fs_vector, 3 );
     // Check the fs vector was populated correctly and provided the correct values
     EXPECT_EQ( val1, 1.0 );
     EXPECT_EQ( val2, 2.0 );
@@ -1034,15 +1034,15 @@ namespace
     double val = 1;
     for ( auto i : { 0, 1, 2, 3, 4 } )
     {
-      fs_vector[i] = val;
+      std::math::detail::access( fs_vector, i ) = val;
       val = 2 * val;
     }
     const fs_vector_type& const_fs_vector( fs_vector );
     auto subvector = const_fs_vector.subvector( 2, 5 );
     
-    EXPECT_EQ( ( subvector[0] ), ( fs_vector[2] ) );
-    EXPECT_EQ( ( subvector[1] ), ( fs_vector[3] ) );
-    EXPECT_EQ( ( subvector[2] ), ( fs_vector[4] ) );
+    EXPECT_EQ( ( std::math::detail::access( subvector, 0 ) ),  ( std::math::detail::access( fs_vector, 2 ) ) );
+    EXPECT_EQ( ( std::math::detail::access( subvector, 1 ) ),  ( std::math::detail::access( fs_vector, 3 ) ) );
+    EXPECT_EQ( ( std::math::detail::access( subvector, 2 ) ),  ( std::math::detail::access( fs_vector, 4 ) ) );
   }
 
   TEST( FS_VECTOR, SUBVECTOR )
@@ -1054,7 +1054,7 @@ namespace
     double val = 1;
     for ( auto i : { 0, 1, 2, 3, 4 } )
     {
-      fs_vector[i] = val;
+      std::math::detail::access( fs_vector, i ) = val;
       val = 2 * val;
     }
     // Get subvector
@@ -1062,13 +1062,13 @@ namespace
     // Modify view
     for ( auto i : { 0, 1, 2 } )
     {
-      subvector[i] = val;
+      std::math::detail::access( subvector, i ) = val;
       val = 2 * val;
     }
     // Assert original vector has been modified as well
-    EXPECT_EQ( ( subvector[0] ), ( fs_vector[2] ) );
-    EXPECT_EQ( ( subvector[1] ), ( fs_vector[3] ) );
-    EXPECT_EQ( ( subvector[2] ), ( fs_vector[4] ) );
+    EXPECT_EQ( ( std::math::detail::access( subvector, 0 ) ),  ( std::math::detail::access( fs_vector, 2 ) ) );
+    EXPECT_EQ( ( std::math::detail::access( subvector, 1 ) ),  ( std::math::detail::access( fs_vector, 3 ) ) );
+    EXPECT_EQ( ( std::math::detail::access( subvector, 2 ) ),  ( std::math::detail::access( fs_vector, 4 ) ) );
   }
 
   TEST( FS_VECTOR, NEGATION )
@@ -1077,17 +1077,17 @@ namespace
     // Construct
     vector_type vector{ };
     // Populate via mutable index access
-    vector[0] = 1.0;
-    vector[1] = 2.0;
-    vector[2] = 3.0;
-    vector[3] = 4.0;
+    std::math::detail::access( vector, 0 ) = 1.0;
+    std::math::detail::access( vector, 1 ) = 2.0;
+    std::math::detail::access( vector, 2 ) = 3.0;
+    std::math::detail::access( vector, 3 ) = 4.0;
     // Negate the vector
     vector_type negate_vector { -vector };
     // Access elements from const vector
-    auto val1 = negate_vector[0];
-    auto val2 = negate_vector[1];
-    auto val3 = negate_vector[2];
-    auto val4 = negate_vector[3];
+    auto val1 = std::math::detail::access( negate_vector, 0 );
+    auto val2 = std::math::detail::access( negate_vector, 1 );
+    auto val3 = std::math::detail::access( negate_vector, 2 );
+    auto val4 = std::math::detail::access( negate_vector, 3 );
     // Check the vector was populated correctly and provided the correct values
     EXPECT_EQ( val1, -1.0 );
     EXPECT_EQ( val2, -2.0 );
@@ -1101,15 +1101,15 @@ namespace
     // Construct
     vector_type vector;
     // Populate via mutable index access
-    vector[0] = 1.0;
-    vector[1] = 2.0;
-    vector[2] = 3.0;
+    std::math::detail::access( vector, 0 ) = 1.0;
+    std::math::detail::access( vector, 1 ) = 2.0;
+    std::math::detail::access( vector, 2 ) = 3.0;
     // Transpose the vector
     auto transpose_vector { trans(vector) };
     // Access elements from transpose vector
-    auto val1 = transpose_vector[0];
-    auto val2 = transpose_vector[1];
-    auto val3 = transpose_vector[2];
+    auto val1 = std::math::detail::access( transpose_vector, 0 );
+    auto val2 = std::math::detail::access( transpose_vector, 1 );
+    auto val3 = std::math::detail::access( transpose_vector, 2 );
     // Check the vector was populated correctly and provided the correct values
     EXPECT_EQ( val1, 1.0 );
     EXPECT_EQ( val2, 2.0 );
@@ -1122,15 +1122,15 @@ namespace
     // Construct
     vector_type vector { };
     // Populate via mutable index access
-    vector[0] = std::complex<double>( 1.0, 1.0 );
-    vector[1] = std::complex<double>( 2.0, 2.0 );
-    vector[2] = std::complex<double>( 3.0, 3.0 );
+    std::math::detail::access( vector, 0 ) = std::complex<double>( 1.0, 1.0 );
+    std::math::detail::access( vector, 1 ) = std::complex<double>( 2.0, 2.0 );
+    std::math::detail::access( vector, 2 ) = std::complex<double>( 3.0, 3.0 );
     // Conjugate the vector
     auto conjugate_vector { conj(vector) };
     // Access elements from conjugate vector
-    auto val1 = conjugate_vector[0];
-    auto val2 = conjugate_vector[1];
-    auto val3 = conjugate_vector[2];
+    auto val1 = std::math::detail::access( conjugate_vector, 0 );
+    auto val2 = std::math::detail::access( conjugate_vector, 1 );
+    auto val3 = std::math::detail::access( conjugate_vector, 2 );
     // Check the vector was populated correctly and provided the correct values
     EXPECT_EQ( val1, std::complex<double>( 1.0, -1.0 ) );
     EXPECT_EQ( val2, std::complex<double>( 2.0, -2.0 ) );
@@ -1143,19 +1143,19 @@ namespace
     // Construct
     vector_type vector{ };
     // Populate via mutable index access
-    vector[0] = 1.0;
-    vector[1] = 2.0;
-    vector[2] = 3.0;
-    vector[3] = 4.0;
+    std::math::detail::access( vector, 0 ) = 1.0;
+    std::math::detail::access( vector, 1 ) = 2.0;
+    std::math::detail::access( vector, 2 ) = 3.0;
+    std::math::detail::access( vector, 3 ) = 4.0;
     // Copy construct
     vector_type vector_copy{ vector };
     // Add the two vectors together
     vector_type vector_sum { vector + vector_copy };
     // Access elements from const vector
-    auto val1 = vector_sum[0];
-    auto val2 = vector_sum[1];
-    auto val3 = vector_sum[2];
-    auto val4 = vector_sum[3];
+    auto val1 = std::math::detail::access( vector_sum, 0 );
+    auto val2 = std::math::detail::access( vector_sum, 1 );
+    auto val3 = std::math::detail::access( vector_sum, 2 );
+    auto val4 = std::math::detail::access( vector_sum, 3 );
     // Check the vector copy was populated correctly and provided the correct values
     EXPECT_EQ( val1, 2.0 );
     EXPECT_EQ( val2, 4.0 );
@@ -1169,19 +1169,19 @@ namespace
     // Construct
     vector_type vector{ };
     // Populate via mutable index access
-    vector[0] = 1.0;
-    vector[1] = 2.0;
-    vector[2] = 3.0;
-    vector[3] = 4.0;
+    std::math::detail::access( vector, 0 ) = 1.0;
+    std::math::detail::access( vector, 1 ) = 2.0;
+    std::math::detail::access( vector, 2 ) = 3.0;
+    std::math::detail::access( vector, 3 ) = 4.0;
     // Copy construct
     vector_type vector_copy{ vector };
     // Add the two vectors together
     static_cast<void>( vector += vector_copy );
     // Access elements from vector
-    auto val1 = vector[0];
-    auto val2 = vector[1];
-    auto val3 = vector[2];
-    auto val4 = vector[3];
+    auto val1 = std::math::detail::access( vector, 0 );
+    auto val2 = std::math::detail::access( vector, 1 );
+    auto val3 = std::math::detail::access( vector, 2 );
+    auto val4 = std::math::detail::access( vector, 3 );
     // Check the vector was populated correctly and provided the correct values
     EXPECT_EQ( val1, 2.0 );
     EXPECT_EQ( val2, 4.0 );
@@ -1195,19 +1195,19 @@ namespace
     // Construct
     vector_type vector{ };
     // Populate via mutable index access
-    vector[0] = 1.0;
-    vector[1] = 2.0;
-    vector[2] = 3.0;
-    vector[3] = 4.0;
+    std::math::detail::access( vector, 0 ) = 1.0;
+    std::math::detail::access( vector, 1 ) = 2.0;
+    std::math::detail::access( vector, 2 ) = 3.0;
+    std::math::detail::access( vector, 3 ) = 4.0;
     // Copy construct
     vector_type vector_copy{ vector };
     // Subtract the two vectors
     vector_type vector_diff { vector - vector_copy };
     // Access elements from const vector
-    auto val1 = vector_diff[0];
-    auto val2 = vector_diff[1];
-    auto val3 = vector_diff[2];
-    auto val4 = vector_diff[3];
+    auto val1 = std::math::detail::access( vector_diff, 0 );
+    auto val2 = std::math::detail::access( vector_diff, 1 );
+    auto val3 = std::math::detail::access( vector_diff, 2 );
+    auto val4 = std::math::detail::access( vector_diff, 3 );
     // Check the vector copy was populated correctly and provided the correct values
     EXPECT_EQ( val1, 0 );
     EXPECT_EQ( val2, 0 );
@@ -1221,19 +1221,19 @@ namespace
     // Construct
     vector_type vector{ };
     // Populate via mutable index access
-    vector[0] = 1.0;
-    vector[1] = 2.0;
-    vector[2] = 3.0;
-    vector[3] = 4.0;
+    std::math::detail::access( vector, 0 ) = 1.0;
+    std::math::detail::access( vector, 1 ) = 2.0;
+    std::math::detail::access( vector, 2 ) = 3.0;
+    std::math::detail::access( vector, 3 ) = 4.0;
     // Copy construct
     vector_type vector_copy{ vector };
     // Subtract the two vectors
     static_cast<void>( vector -= vector_copy );
     // Access elements from vector
-    auto val1 = vector[0];
-    auto val2 = vector[1];
-    auto val3 = vector[2];
-    auto val4 = vector[3];
+    auto val1 = std::math::detail::access( vector, 0 );
+    auto val2 = std::math::detail::access( vector, 1 );
+    auto val3 = std::math::detail::access( vector, 2 );
+    auto val4 = std::math::detail::access( vector, 3 );
     // Check the vector copy was populated correctly and provided the correct values
     EXPECT_EQ( val1, 0 );
     EXPECT_EQ( val2, 0 );
@@ -1247,17 +1247,17 @@ namespace
     // Construct
     vector_type vector{ };
     // Populate via mutable index access
-    vector[0] = 1.0;
-    vector[1] = 2.0;
-    vector[2] = 3.0;
-    vector[3] = 4.0;
+    std::math::detail::access( vector, 0 ) = 1.0;
+    std::math::detail::access( vector, 1 ) = 2.0;
+    std::math::detail::access( vector, 2 ) = 3.0;
+    std::math::detail::access( vector, 3 ) = 4.0;
     // Pre multiply
     vector_type vector_prod { 2 * vector };
     // Access elements from const vector
-    auto val1 = vector_prod[0];
-    auto val2 = vector_prod[1];
-    auto val3 = vector_prod[2];
-    auto val4 = vector_prod[3];
+    auto val1 = std::math::detail::access( vector_prod, 0 );
+    auto val2 = std::math::detail::access( vector_prod, 1 );
+    auto val3 = std::math::detail::access( vector_prod, 2 );
+    auto val4 = std::math::detail::access( vector_prod, 3 );
     // Check the vector was populated correctly and provided the correct values
     EXPECT_EQ( val1, 2.0 );
     EXPECT_EQ( val2, 4.0 );
@@ -1271,17 +1271,17 @@ namespace
     // Construct
     vector_type vector{ };
     // Populate via mutable index access
-    vector[0] = 1.0;
-    vector[1] = 2.0;
-    vector[2] = 3.0;
-    vector[3] = 4.0;
+    std::math::detail::access( vector, 0 ) = 1.0;
+    std::math::detail::access( vector, 1 ) = 2.0;
+    std::math::detail::access( vector, 2 ) = 3.0;
+    std::math::detail::access( vector, 3 ) = 4.0;
     // Post multiply
     vector_type vector_prod { vector * 2 };
     // Access elements from const vector
-    auto val1 = vector_prod[0];
-    auto val2 = vector_prod[1];
-    auto val3 = vector_prod[2];
-    auto val4 = vector_prod[3];
+    auto val1 = std::math::detail::access( vector_prod, 0 );
+    auto val2 = std::math::detail::access( vector_prod, 1 );
+    auto val3 = std::math::detail::access( vector_prod, 2 );
+    auto val4 = std::math::detail::access( vector_prod, 3 );
     // Check the vector was populated correctly and provided the correct values
     EXPECT_EQ( val1, 2.0 );
     EXPECT_EQ( val2, 4.0 );
@@ -1295,17 +1295,17 @@ namespace
     // Construct
     vector_type vector{ };
     // Populate via mutable index access
-    vector[0] = 1.0;
-    vector[1] = 2.0;
-    vector[2] = 3.0;
-    vector[3] = 4.0;
+    std::math::detail::access( vector, 0 ) = 1.0;
+    std::math::detail::access( vector, 1 ) = 2.0;
+    std::math::detail::access( vector, 2 ) = 3.0;
+    std::math::detail::access( vector, 3 ) = 4.0;
     // Post multiply
     static_cast<void>( vector *= 2 );
     // Access elements from vector
-    auto val1 = vector[0];
-    auto val2 = vector[1];
-    auto val3 = vector[2];
-    auto val4 = vector[3];
+    auto val1 = std::math::detail::access( vector, 0 );
+    auto val2 = std::math::detail::access( vector, 1 );
+    auto val3 = std::math::detail::access( vector, 2 );
+    auto val4 = std::math::detail::access( vector, 3 );
     // Check the vector was populated correctly and provided the correct values
     EXPECT_EQ( val1, 2.0 );
     EXPECT_EQ( val2, 4.0 );
@@ -1319,17 +1319,17 @@ namespace
     // Construct
     vector_type vector{ };
     // Populate via mutable index access
-    vector[0] = 1.0;
-    vector[1] = 2.0;
-    vector[2] = 3.0;
-    vector[3] = 4.0;
+    std::math::detail::access( vector, 0 ) = 1.0;
+    std::math::detail::access( vector, 1 ) = 2.0;
+    std::math::detail::access( vector, 2 ) = 3.0;
+    std::math::detail::access( vector, 3 ) = 4.0;
     // Divide
     vector_type vector_divide { vector / 2 };
     // Access elements from const vector
-    auto val1 = vector_divide[0];
-    auto val2 = vector_divide[1];
-    auto val3 = vector_divide[2];
-    auto val4 = vector_divide[3];
+    auto val1 = std::math::detail::access( vector_divide, 0 );
+    auto val2 = std::math::detail::access( vector_divide, 1 );
+    auto val3 = std::math::detail::access( vector_divide, 2 );
+    auto val4 = std::math::detail::access( vector_divide, 3 );
     // Check the vector was populated correctly and provided the correct values
     EXPECT_EQ( val1, 0.5 );
     EXPECT_EQ( val2, 1.0 );
@@ -1343,17 +1343,17 @@ namespace
     // Construct
     vector_type vector{ };
     // Populate via mutable index access
-    vector[0] = 1.0;
-    vector[1] = 2.0;
-    vector[2] = 3.0;
-    vector[3] = 4.0;
+    std::math::detail::access( vector, 0 ) = 1.0;
+    std::math::detail::access( vector, 1 ) = 2.0;
+    std::math::detail::access( vector, 2 ) = 3.0;
+    std::math::detail::access( vector, 3 ) = 4.0;
     // Divide
     static_cast<void>( vector /= 2 );
     // Access elements from vector
-    auto val1 = vector[0];
-    auto val2 = vector[1];
-    auto val3 = vector[2];
-    auto val4 = vector[3];
+    auto val1 = std::math::detail::access( vector, 0 );
+    auto val2 = std::math::detail::access( vector, 1 );
+    auto val3 = std::math::detail::access( vector, 2 );
+    auto val4 = std::math::detail::access( vector, 3 );
     // Check the vector was populated correctly and provided the correct values
     EXPECT_EQ( val1, 0.5 );
     EXPECT_EQ( val2, 1.0 );
@@ -1367,12 +1367,12 @@ namespace
     // Construct
     vector_type vector{ };
     // Populate via mutable index access
-    vector[0] = 1.0;
-    vector[1] = 2.0;
-    vector[2] = 3.0;
-    vector[3] = 4.0;
-    vector[4] = 5.0;
-    vector[5] = 6.0;
+    std::math::detail::access( vector, 0 ) = 1.0;
+    std::math::detail::access( vector, 1 ) = 2.0;
+    std::math::detail::access( vector, 2 ) = 3.0;
+    std::math::detail::access( vector, 3 ) = 4.0;
+    std::math::detail::access( vector, 4 ) = 5.0;
+    std::math::detail::access( vector, 5 ) = 6.0;
     // Compute inner product
     auto inner_product_val = inner_prod( vector, vector );
     // Check the inner product was properly computed
@@ -1385,21 +1385,21 @@ namespace
     // Construct
     vector_type vector{ };
     // Populate via mutable index access
-    vector[0] = 1.0;
-    vector[1] = 2.0;
-    vector[2] = 3.0;
+    std::math::detail::access( vector, 0 ) = 1.0;
+    std::math::detail::access( vector, 1 ) = 2.0;
+    std::math::detail::access( vector, 2 ) = 3.0;
     // Compute outer product
     auto outer_product = outer_prod( vector, vector );
     // Access elements from outer product
-    auto val1 = outer_product[0,0];
-    auto val2 = outer_product[0,1];
-    auto val3 = outer_product[0,2];
-    auto val4 = outer_product[1,0];
-    auto val5 = outer_product[1,1];
-    auto val6 = outer_product[1,2];
-    auto val7 = outer_product[2,0];
-    auto val8 = outer_product[2,1];
-    auto val9 = outer_product[2,2];
+    auto val1 = std::math::detail::access( outer_product, 0, 0 );
+    auto val2 = std::math::detail::access( outer_product, 0, 1 );
+    auto val3 = std::math::detail::access( outer_product, 0, 2 );
+    auto val4 = std::math::detail::access( outer_product, 1, 0 );
+    auto val5 = std::math::detail::access( outer_product, 1, 1 );
+    auto val6 = std::math::detail::access( outer_product, 1, 2 );
+    auto val7 = std::math::detail::access( outer_product, 2, 0 );
+    auto val8 = std::math::detail::access( outer_product, 2, 1 );
+    auto val9 = std::math::detail::access( outer_product, 2, 2 );
     // Check the vector was populated correctly and provided the correct values
     EXPECT_EQ( val1, 1.0 );
     EXPECT_EQ( val2, 2.0 );
@@ -1419,23 +1419,23 @@ namespace
     // Construct matrix
     matrix_type matrix{ };
     // Populate via mutable index access
-    matrix[0,0] = 1.0;
-    matrix[0,1] = 2.0;
-    matrix[0,2] = 3.0;
-    matrix[1,0] = 4.0;
-    matrix[1,1] = 5.0;
-    matrix[1,2] = 6.0;
+    std::math::detail::access( matrix, 0, 0 ) = 1.0;
+    std::math::detail::access( matrix, 0, 1 ) = 2.0;
+    std::math::detail::access( matrix, 0, 2 ) = 3.0;
+    std::math::detail::access( matrix, 1, 0 ) = 4.0;
+    std::math::detail::access( matrix, 1, 1 ) = 5.0;
+    std::math::detail::access( matrix, 1, 2 ) = 6.0;
     // Construct vector
     vector_type vector{ };
     // Populate via mutable index access
-    vector[0] = 1.0;
-    vector[1] = 2.0;
+    std::math::detail::access( vector, 0 ) = 1.0;
+    std::math::detail::access( vector, 1 ) = 2.0;
     // Multiply vector with matrix
     auto vector_multiply { vector * matrix };
     // Access elements from vector
-    auto val1 = vector_multiply[0];
-    auto val2 = vector_multiply[1];
-    auto val3 = vector_multiply[2];
+    auto val1 = std::math::detail::access( vector_multiply, 0 );
+    auto val2 = std::math::detail::access( vector_multiply, 1 );
+    auto val3 = std::math::detail::access( vector_multiply, 2 );
     // Check the vector was populated correctly and provided the correct values
     EXPECT_EQ( val1, 9.0 );
     EXPECT_EQ( val2, 12.0 );
@@ -1449,23 +1449,23 @@ namespace
     // Construct matrix
     matrix_type matrix{ };
     // Populate via mutable index access
-    matrix[0,0] = 1.0;
-    matrix[0,1] = 2.0;
-    matrix[0,2] = 3.0;
-    matrix[1,0] = 4.0;
-    matrix[1,1] = 5.0;
-    matrix[1,2] = 6.0;
+    std::math::detail::access( matrix, 0, 0 ) = 1.0;
+    std::math::detail::access( matrix, 0, 1 ) = 2.0;
+    std::math::detail::access( matrix, 0, 2 ) = 3.0;
+    std::math::detail::access( matrix, 1, 0 ) = 4.0;
+    std::math::detail::access( matrix, 1, 1 ) = 5.0;
+    std::math::detail::access( matrix, 1, 2 ) = 6.0;
     // Construct vector
     vector_type vector{ };
     // Populate via mutable index access
-    vector[0] = 1.0;
-    vector[1] = 2.0;
-    vector[2] = 3.0;
+    std::math::detail::access( vector, 0 ) = 1.0;
+    std::math::detail::access( vector, 1 ) = 2.0;
+    std::math::detail::access( vector, 2 ) = 3.0;
     // Multiply matrix with vector
     auto vector_multiply { matrix * vector };
     // Access elements from vector
-    auto val1 = vector_multiply[0];
-    auto val2 = vector_multiply[1];
+    auto val1 = std::math::detail::access( vector_multiply, 0 );
+    auto val2 = std::math::detail::access( vector_multiply, 1 );
     // Check the vector was populated correctly and provided the correct values
     EXPECT_EQ( val1, 14.0 );
     EXPECT_EQ( val2, 32.0 );
@@ -1478,27 +1478,27 @@ namespace
     // Construct matrix
     matrix_type matrix{ };
     // Populate via mutable index access
-    matrix[0,0] = 1.0;
-    matrix[0,1] = 2.0;
-    matrix[0,2] = 3.0;
-    matrix[1,0] = 4.0;
-    matrix[1,1] = 5.0;
-    matrix[1,2] = 6.0;
-    matrix[2,0] = 7.0;
-    matrix[2,1] = 8.0;
-    matrix[2,2] = 9.0;
+    std::math::detail::access( matrix, 0, 0 ) = 1.0;
+    std::math::detail::access( matrix, 0, 1 ) = 2.0;
+    std::math::detail::access( matrix, 0, 2 ) = 3.0;
+    std::math::detail::access( matrix, 1, 0 ) = 4.0;
+    std::math::detail::access( matrix, 1, 1 ) = 5.0;
+    std::math::detail::access( matrix, 1, 2 ) = 6.0;
+    std::math::detail::access( matrix, 2, 0 ) = 7.0;
+    std::math::detail::access( matrix, 2, 1 ) = 8.0;
+    std::math::detail::access( matrix, 2, 2 ) = 9.0;
     // Construct vector
     vector_type vector{ };
     // Populate via mutable index access
-    vector[0] = 1.0;
-    vector[1] = 2.0;
-    vector[2] = 3.0;
+    std::math::detail::access( vector, 0 ) = 1.0;
+    std::math::detail::access( vector, 1 ) = 2.0;
+    std::math::detail::access( vector, 2 ) = 3.0;
     // Multiply matrix with vector
     static_cast<void>( vector *= matrix );
     // Access elements from vector
-    auto val1 = vector[0];
-    auto val2 = vector[1];
-    auto val3 = vector[2];
+    auto val1 = std::math::detail::access( vector, 0 );
+    auto val2 = std::math::detail::access( vector, 1 );
+    auto val3 = std::math::detail::access( vector, 2 );
     // Check the vector was populated correctly and provided the correct values
     EXPECT_EQ( val1, 30.0 );
     EXPECT_EQ( val2, 36.0 );

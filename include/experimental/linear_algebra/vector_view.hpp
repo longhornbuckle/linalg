@@ -136,7 +136,7 @@ class vector_view : public tensor_view<MDS>
     /// @param end (row,column) end of subvector
     /// @returns mutable view of the specified subvector
     #ifndef LINALG_ENABLE_CONCEPTS
-    template < typename = enable_if_t< !is_const_v<element_type> > >
+    template < typename Elem = element_type, typename = enable_if_t< !is_const_v<Elem> > >
     #endif
     [[nodiscard]] constexpr subvector_type subvector( tuple_type start,
                                                       tuple_type end )
@@ -235,7 +235,7 @@ template < class MDS > requires ( detail::is_mdspan_v<MDS> && ( MDS::extents_typ
 [[nodiscard]] constexpr typename vector_view<MDS>::subvector_type vector_view<MDS>::
 #else
 template < class MDS, typename Dummy >
-template < typename >
+template < typename Elem, typename >
 [[nodiscard]] constexpr typename vector_view<MDS,Dummy>::subvector_type vector_view<MDS,Dummy>::
 #endif
 subvector( tuple_type start,

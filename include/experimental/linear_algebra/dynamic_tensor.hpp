@@ -506,6 +506,8 @@ class dr_tensor
     
     // Create a new view given the current capacity and a new size
     [[nodiscard]] constexpr underlying_span_type create_view( const extents_type s ) noexcept;
+    template < size_t ... Indices >
+    [[nodiscard]] constexpr underlying_span_type create_view_impl( const extents_type s, [[maybe_unused]] index_sequence<Indices...> ) noexcept;
     // Calls destructor on all elements and deallocates the allocator
     // If an exception is thrown, the last exception to be thrown will be re-thrown.
     constexpr void destroy_all() noexcept( is_nothrow_destructible_v<element_type> );
@@ -563,15 +565,15 @@ constexpr dr_tensor<T,R,Alloc,L,Access>::dr_tensor( dr_tensor&& rhs )
   // Move capacity extents
   cap_( move( rhs.capacity() ) ),
   // If the allocator has moved or if all allocator types are equal, then just set element pointer; otherwise, allocate new pointer
-  elems_( [ &rhs, this ] () constexpr { if constexpr ( typename allocator_traits<allocator_type>::propagate_on_container_move_assignment{} ||
-                                                       typename allocator_traits<allocator_type>::is_always_equal{} )
-                                        { return move( rhs.elems_ ); } else
-                                        { return allocator_traits<allocator_type>::allocate( this->alloc_, this->linear_capacity() ); } }() ),
+  elems_( [&] () constexpr { if constexpr ( typename allocator_traits<allocator_type>::propagate_on_container_move_assignment{} ||
+                                            typename allocator_traits<allocator_type>::is_always_equal{} )
+                             { return move( rhs.elems_ ); } else
+                             { return allocator_traits<allocator_type>::allocate( this->alloc_, this->linear_capacity() ); } }() ),
   // If the allocator has moved or if all allocator types are equal, then move view; otherwise, construct new view on new elements
-  view_( [ &rhs, this ] () constexpr { if constexpr ( typename allocator_traits<allocator_type>::propagate_on_container_move_assignment() ||
-                                                      typename allocator_traits<allocator_type>::is_always_equal() )
-                                       { return move( rhs.underlying_span() ); } else
-                                       { return move( this->create_view( rhs.underlying_span().extents() ) ); } }() )
+  view_( [&] () constexpr { if constexpr ( typename allocator_traits<allocator_type>::propagate_on_container_move_assignment() ||
+                                           typename allocator_traits<allocator_type>::is_always_equal() )
+                            { return move( rhs.underlying_span() ); } else
+                            { return move( this->create_view( rhs.underlying_span().extents() ) ); } }() )
 {
   // If the allocator was not moved, then elements have to be copied.
   if constexpr ( !allocator_traits<allocator_type>::propagate_on_container_move_assignment::value )
@@ -1353,9 +1355,15 @@ template < class T, size_t R, class Alloc, class L , class Access >
 [[nodiscard]] constexpr typename dr_tensor<T,R,Alloc,L,Access>::underlying_span_type dr_tensor<T,R,Alloc,L,Access>::
 create_view( const extents_type s ) noexcept
 {
-  return detail::submdspan( capacity_span_type( this->elems_, this->cap_ ),
-                            detail::template extents_helper<size_type,R>::zero_tuple(),
-                            detail::template extents_helper<size_type,R>::to_tuple( s ) );
+  return this->create_view_impl( s, make_index_sequence<extents_type::rank()>() );
+}
+
+template < class T, size_t R, class Alloc, class L , class Access >
+template < size_t ... Indices >
+[[nodiscard]] constexpr typename dr_tensor<T,R,Alloc,L,Access>::underlying_span_type dr_tensor<T,R,Alloc,L,Access>::
+create_view_impl( const extents_type s, [[maybe_unused]] index_sequence<Indices...> ) noexcept
+{
+  return experimental::submdspan( capacity_span_type( this->elems_, this->cap_ ), tuple( 0, s.extent(Indices) ) ... );
 }
 
 template < class T, size_t R, class Alloc, class L , class Access >

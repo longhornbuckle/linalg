@@ -456,9 +456,21 @@ class scalar_product
     }
     /// @brief Returns t * s
     [[nodiscard]] static constexpr auto prod( const tensor_type& t, const S& s )
-      noexcept( noexcept( prod( s, t ) ) )
+      noexcept( noexcept( detail::make_from_tuple< result_tensor_type >(
+        collect_ctor_args( t,
+        #ifndef LINALG_COMPILER_CLANG
+                           [&s,&t]< class ... IndexType >( IndexType ... indices ) constexpr noexcept
+                             { return detail::access( t, indices ... ) * s; } ) ) ) )
+        #else // Clang does not allow use of input variables in lambda expression inside noexcept specification
+                           []< class ... IndexType >( IndexType ... indices ) constexpr noexcept
+                             { return typename result_tensor_type::value_type(); } ) ) ) )
+        #endif
     {
-      return prod( s, t );
+      // Define product operation on each element
+      auto prod_lambda = [&s,&t]< class ... IndexType >( IndexType ... indices ) constexpr noexcept
+        { return detail::access( t, indices ... ) * s; };
+      // Construct product tensor
+      return detail::make_from_tuple<result_tensor_type>( collect_ctor_args( t, prod_lambda ) );
     }
     /// @brief Returns t *= s
     [[nodiscard]] static constexpr tensor_type& prod( tensor_type& t, const S& s )
@@ -1062,9 +1074,11 @@ class vector_matrix_product
 
     /// @brief Returns v * m
     #ifndef LINALG_ENABLE_CONCEPTS
-    template < typename = enable_if_t< ( ( vector_type::extents_type::static_extent(0) == matrix_type::extents_type::static_extent(0) ) ||
-                                         ( vector_type::extents_type::static_extent(0) == experimental::dynamic_extent ) ||
-                                         ( matrix_type::extents_type::static_extent(0) == experimental::dynamic_extent ) ) > >
+    template < typename Vec = vector_type,
+               typename Mat = matrix_type,
+               typename = enable_if_t< ( ( Vec::extents_type::static_extent(0) == Mat::extents_type::static_extent(0) ) ||
+                                         ( Vec::extents_type::static_extent(0) == experimental::dynamic_extent ) ||
+                                         ( Mat::extents_type::static_extent(0) == experimental::dynamic_extent ) ) > >
     #endif
     [[nodiscard]] static constexpr pre_result_vector_type prod( const vector_type& v, const matrix_type& m )
       noexcept( noexcept(
@@ -1120,9 +1134,11 @@ class vector_matrix_product
     }
     /// @brief Returns v *= m
     #ifndef LINALG_ENABLE_CONCEPTS
-    template < typename = enable_if_t< ( ( vector_type::extents_type::static_extent(0) == matrix_type::extents_type::static_extent(0) ) &&
-                                         ( ( vector_type::extents_type::static_extent(0) == matrix_type::extents_type::static_extent(1) ) ||
-                                           ( vector_type::extents_type::static_extent(0) == experimental::dynamic_extent ) ) ) > >
+    template < typename Vec = vector_type,
+               typename Mat = matrix_type,
+               typename = enable_if_t< ( ( Vec::extents_type::static_extent(0) == Mat::extents_type::static_extent(0) ) &&
+                                         ( ( Vec::extents_type::static_extent(0) == Mat::extents_type::static_extent(1) ) ||
+                                           ( Vec::extents_type::static_extent(0) == experimental::dynamic_extent ) ) ) > >
     #endif
     [[nodiscard]] static constexpr vector_type& prod( vector_type& v, const matrix_type& m )
       noexcept( noexcept( v = move( v * m ) ) )
@@ -1136,9 +1152,11 @@ class vector_matrix_product
     }
     /// @brief Returns m * v
     #ifndef LINALG_ENABLE_CONCEPTS
-    template < typename = enable_if_t< ( ( matrix_type::extents_type::static_extent(1) == vector_type::extents_type::static_extent(0) ) ||
-                                         ( matrix_type::extents_type::static_extent(1) == experimental::dynamic_extent ) ||
-                                         ( vector_type::extents_type::static_extent(0) == experimental::dynamic_extent ) ) > >
+    template < typename Vec = vector_type,
+               typename Mat = matrix_type,
+               typename = enable_if_t< ( ( Mat::extents_type::static_extent(1) == Vec::extents_type::static_extent(0) ) ||
+                                         ( Mat::extents_type::static_extent(1) == experimental::dynamic_extent ) ||
+                                         ( Vec::extents_type::static_extent(0) == experimental::dynamic_extent ) ) > >
     #endif
     [[nodiscard]] static constexpr post_result_vector_type prod( const matrix_type& m, const vector_type& v )
       noexcept( noexcept(
@@ -1329,9 +1347,11 @@ class matrix_matrix_product
 
     /// @brief computes m1 * m2
     #ifndef LINALG_ENABLE_CONCEPTS
-    template < typename = enable_if_t< ( ( first_matrix_type::extents_type::static_extent(1) == second_matrix_type::extents_type::static_extent(0) ) ||
-                                         ( first_matrix_type::extents_type::static_extent(1) == experimental::dynamic_extent ) ||
-                                         ( second_matrix_type::extents_type::static_extent(0) == experimental::dynamic_extent ) ) > >
+    template < typename First_mat = first_matrix_type,
+               typename Second_mat = second_matrix_type,
+               typename = enable_if_t< ( ( First_mat::extents_type::static_extent(1) == Second_mat::extents_type::static_extent(0) ) ||
+                                         ( First_mat::extents_type::static_extent(1) == experimental::dynamic_extent ) ||
+                                         ( Second_mat::extents_type::static_extent(0) == experimental::dynamic_extent ) ) > >
     #endif
     [[nodiscard]] static constexpr result_matrix_type prod( const first_matrix_type& m1, const second_matrix_type& m2 )
       noexcept( noexcept( detail::make_from_tuple< result_matrix_type >(
@@ -1386,9 +1406,11 @@ class matrix_matrix_product
     }
     /// @brief Returns m1 *= m2
     #ifndef LINALG_ENABLE_CONCEPTS
-    template < typename = enable_if_t< ( ( first_matrix_type::extents_type::static_extent(1) == second_matrix_type::extents_type::static_extent(0) ) &&
-                                         ( ( first_matrix_type::extents_type::static_extent(1) == second_matrix_type::extents_type::static_extent(1) ) ||
-                                           ( first_matrix_type::extents_type::static_extent(1) == experimental::dynamic_extent ) ) ) > >
+    template < typename First_mat = first_matrix_type,
+               typename Second_mat = second_matrix_type,
+               typename = enable_if_t< ( ( First_mat::extents_type::static_extent(1) == Second_mat::extents_type::static_extent(0) ) &&
+                                         ( ( First_mat::extents_type::static_extent(1) == Second_mat::extents_type::static_extent(1) ) ||
+                                           ( First_mat::extents_type::static_extent(1) == experimental::dynamic_extent ) ) ) > >
     #endif
     [[nodiscard]] static constexpr first_matrix_type& prod( first_matrix_type& m1, const second_matrix_type& m2 )
       noexcept( noexcept( m1 = move( m1 * m2 ) ) )
@@ -1478,7 +1500,7 @@ class outer_product
     // Return the allocator of v1
     #ifndef LINALG_ENABLE_CONCEPTS
     template < typename First_vector = first_vector_type,
-               typename = enable_if_t< concepts::dynamic_matrix_data_v< First_vector > > >
+               typename = enable_if_t< concepts::dynamic_vector_data_v< First_vector > > >
     #endif
     [[nodiscard]] static inline constexpr decltype(auto) get_allocator( const first_vector_type& v1, [[maybe_unused]] const second_vector_type& v2 ) noexcept
     #ifdef LINALG_ENABLE_CONCEPTS

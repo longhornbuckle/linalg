@@ -309,7 +309,7 @@ template < class MDS > requires ( detail::is_mdspan_v<MDS> && MDS::is_always_uni
 [[nodiscard]] constexpr typename tensor_view<MDS>::underlying_span_type tensor_view<MDS>::
 #else
 template < class MDS, typename Dummy >
-template < typename >
+template < typename Elem, typename >
 [[nodiscard]] constexpr typename tensor_view<MDS,Dummy>::underlying_span_type tensor_view<MDS,Dummy>::
 #endif
 underlying_span() noexcept
