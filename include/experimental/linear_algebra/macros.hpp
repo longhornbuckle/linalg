@@ -33,6 +33,7 @@
 #    define LINALG_EXECUTION_UNSEQ execution::unseq
 #  elif ( LINALG_EXECUTION_POLICY )
 #    define LINALG_EXECUTION_UNSEQ LINALG_EXECUTION_SEQ
+#  endif
 #endif
 
 // Force compiler to inline function
