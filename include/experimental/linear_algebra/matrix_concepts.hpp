@@ -398,10 +398,10 @@ template < class M > inline constexpr bool dynamic_matrix_v = dynamic_matrix<M>:
 template < class M > struct fixed_size_matrix_data : public conditional_t< 
   matrix_data_v<M> &&
   fixed_size_tensor_data_v<M> &&
-  detail::is_constexpr( []{ decltype( declval<M>().rows() )            nodiscard_warning = M().rows(); } ) &&
-  detail::is_constexpr( []{ decltype( declval<M>().columns() )         nodiscard_warning = M().columns(); } ) &&
-  detail::is_constexpr( []{ decltype( declval<M>().row_capacity() )    nodiscard_warning = M().row_capacity(); } ) &&
-  detail::is_constexpr( []{ decltype( declval<M>().column_capacity() ) nodiscard_warning = M().column_capacity(); } ) &&
+  detail::is_constexpr( []{ [[maybe_unused]] decltype( declval<M>().rows() )            nodiscard_warning = M().rows(); } ) &&
+  detail::is_constexpr( []{ [[maybe_unused]] decltype( declval<M>().columns() )         nodiscard_warning = M().columns(); } ) &&
+  detail::is_constexpr( []{ [[maybe_unused]] decltype( declval<M>().row_capacity() )    nodiscard_warning = M().row_capacity(); } ) &&
+  detail::is_constexpr( []{ [[maybe_unused]] decltype( declval<M>().column_capacity() ) nodiscard_warning = M().column_capacity(); } ) &&
   ( M().rows()    == M().row_capacity() ) &&
   ( M().columns() == M().column_capacity() ), true_type, false_type > { };
 template < class M > inline constexpr bool fixed_size_matrix_data_v = fixed_size_matrix_data<M>::value;

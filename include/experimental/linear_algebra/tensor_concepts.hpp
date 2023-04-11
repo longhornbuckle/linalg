@@ -392,7 +392,7 @@ template < class T, class U > inline constexpr bool extents_may_be_equal_v = ext
 // Test for extents which are equal
 template < class T, class U, class = void > struct extents_are_equal : public false_type { };
 template < class T, class U > struct extents_are_equal< T, U, std::enable_if_t< detail::extents_are_equal_v< typename T::extents_type, typename U::extents_type > > > : public true_type { };
-template < class T, class U > inline constexpr bool extents_are_equal_v = extents_is_be_equal<T,U>::value;
+template < class T, class U > inline constexpr bool extents_are_equal_v = extents_are_equal<T,U>::value;
 
 //- Test for tensors
 
@@ -473,8 +473,8 @@ template < class T > struct fixed_size_tensor_data : public conditional_t<
   tensor_data_v<T> &&
   detail::extents_is_static_v<typename T::extents_type> &&
   detail::is_constexpr( []{ T(); } ) &&
-  detail::is_constexpr( []{ decltype( declval<T>().size() )     nodiscard_warning = T().size(); } ) &&
-  detail::is_constexpr( []{ decltype( declval<T>().capacity() ) nodiscard_warning = T().capacity(); } ) &&
+  detail::is_constexpr( []{ [[maybe_unused]] decltype( declval<T>().size() )     nodiscard_warning = T().size(); } ) &&
+  detail::is_constexpr( []{ [[maybe_unused]] decltype( declval<T>().capacity() ) nodiscard_warning = T().capacity(); } ) &&
   ( T().size() == T().capacity() ), true_type, false_type > { };
 template < class T > inline constexpr bool fixed_size_tensor_data_v = fixed_size_tensor_data<T>::value;
 
