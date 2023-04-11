@@ -387,8 +387,9 @@ class scalar_product
     #endif
     [[nodiscard]] static inline constexpr decltype(auto) collect_ctor_args( [[maybe_unused]] const tensor_type&, Lambda&& lambda ) noexcept
     #ifdef LINALG_ENABLE_CONCEPTS
-      requires concepts::fixed_size_tensor_data<result_tensor_type> { return tuple( forward<Lambda>( lambda ) ); }
+      requires concepts::fixed_size_tensor_data<result_tensor_type>
     #endif
+    { return tuple( forward<Lambda>( lambda ) ); }
     // If the tensor type is dynamic, then size and capacity must be provided along with the lambda expression.
     // Additionally, if all allocators of the desired type are not the same or cannot be default cosntructed, then it must be
     // passed along as well.
@@ -647,7 +648,7 @@ class transpose_matrix
 #ifdef LINALG_ENABLE_CONCEPTS
 template < concepts::vector_data V >
 #else
-template < class V, typename = enable_if_t< concepts::vector_data<V> > >
+template < class V, typename = enable_if_t< concepts::vector_data_v<V> > >
 #endif
 class transpose_vector
 {

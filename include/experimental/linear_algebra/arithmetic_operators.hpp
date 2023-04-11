@@ -60,7 +60,7 @@ trans( const V& v ) noexcept( noexcept( operations::template transpose_vector<V>
 #ifdef LINALG_ENABLE_CONCEPTS
 template < concepts::matrix_data M >
 #else
-template < class M, typename = enable_if_t< concepts::matrix_data_v<T> > >
+template < class M, typename = enable_if_t< concepts::matrix_data_v<M> > >
 #endif
 [[nodiscard]] inline constexpr decltype(auto)
 conj( const M& m ) noexcept( noexcept( operations::template conjugate_matrix<M>::conjugate( m ) ) )
@@ -71,7 +71,7 @@ conj( const M& m ) noexcept( noexcept( operations::template conjugate_matrix<M>:
 #ifdef LINALG_ENABLE_CONCEPTS
 template < concepts::vector_data V >
 #else
-template < class V, typename = enable_if_t< concepts::vector_data_v<T> > >
+template < class V, typename = enable_if_t< concepts::vector_data_v<V> > >
 #endif
 [[nodiscard]] inline constexpr decltype(auto)
 conj( const V& v ) noexcept( noexcept( operations::template conjugate_vector<V>::conjugate( v ) ) )
