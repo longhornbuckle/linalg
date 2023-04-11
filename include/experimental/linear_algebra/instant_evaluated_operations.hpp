@@ -77,7 +77,11 @@ class negation
     [[nodiscard]] static constexpr auto negate( const tensor_type& t )
       noexcept( noexcept( detail::make_from_tuple< result_tensor_type >(
         collect_ctor_args( declval<const tensor_type&>(),
+        #ifndef LINALG_COMPILER_CLANG
                            [&t]< class ... IndexType >( IndexType ... indices ) constexpr noexcept { return -( detail::access( t, indices ... ) ); } ) ) ) )
+        #else
+                           []< class ... IndexType >( IndexType ... indices ) constexpr noexcept { return tensor_type::value_type(); } ) ) ) )
+        #endif
     {
       // Define negation operation on each element
       auto negate_lambda = [&t]< class ... IndexType >( IndexType ... indices ) constexpr noexcept { return -( detail::access( t, indices ... ) ); };
