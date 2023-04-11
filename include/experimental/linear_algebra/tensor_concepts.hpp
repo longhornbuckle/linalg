@@ -394,6 +394,16 @@ template < class T, class U, class = void > struct extents_are_equal : public fa
 template < class T, class U > struct extents_are_equal< T, U, std::enable_if_t< detail::extents_are_equal_v< typename T::extents_type, typename U::extents_type > > > : public true_type { };
 template < class T, class U > inline constexpr bool extents_are_equal_v = extents_are_equal<T,U>::value;
 
+// Test values are convertible
+template < class T, class U, class = void > struct values_are_constructible : public false_type { };
+template < class T, class U > struct values_are_constructible< T, U, std::enable_if_t< is_constructible_v< typename T::value_type, typename U::value_type > > > : public true_type { };
+template < class T, class U > inline constexpr bool values_are_constructible_v = values_are_constructible<T,U>::value;
+
+// Test values are convertible
+template < class T, class U, class = void > struct values_are_nothrow_constructible : public false_type { };
+template < class T, class U > struct values_are_nothrow_constructible< T, U, std::enable_if_t< is_nothrow_constructible_v< typename T::value_type, typename U::value_type > > > : public true_type { };
+template < class T, class U > inline constexpr bool values_are_nothrow_constructible_v = values_are_nothrow_constructible<T,U>::value;
+
 //- Test for tensors
 
 // Tensor data
@@ -490,8 +500,8 @@ template < class T > inline constexpr bool fixed_size_tensor_v = fixed_size_tens
 template < class From, class To >
 inline constexpr bool tensor_may_be_constructible =
 tensor_v<From> && tensor_v<To> &&
-( is_constructible_v< typename From::value_type, typename To::value_type > ) &&
-extents_may_be_equal_v< From, To >;
+values_are_constructible_v<From,To> &&
+extents_may_be_equal_v<From,To>;
 
 // View may be constructible to tensor
 // Enforces view is an mdspan of rank equal to tensor with elements
@@ -500,8 +510,8 @@ extents_may_be_equal_v< From, To >;
 template < class From, class To >
 inline constexpr bool view_may_be_constructible_to_tensor =
 detail::is_mdspan_v<From> && tensor_v<To> &&
-( is_constructible_v<typename From::value_type,typename To::value_type> ) &&
-extents_may_be_equal_v< From, To >;
+values_are_constructible_v<From,To> &&
+extents_may_be_equal_v<From,To>;
 
 // View is constructible to tensor
 // Enforces view is an mdspan of rank equal to tensor with elements
@@ -510,8 +520,8 @@ extents_may_be_equal_v< From, To >;
 template < class From, class To >
 inline constexpr bool view_is_constructible_to_tensor =
 detail::is_mdspan_v<From> && tensor_v<To> &&
-( is_constructible_v<typename From::value_type,typename To::value_type> ) &&
-extents_are_equal_v< From, To >;
+values_are_constructible_v<From,To> &&
+extents_are_equal_v<From,To>;
 
 // View is nothrow constructible to tensor
 // Enforces view is an mdspan of rank equal to tensor with elements
@@ -520,7 +530,7 @@ extents_are_equal_v< From, To >;
 template < class From, class To >
 inline constexpr bool view_is_nothrow_constructible_to_tensor =
 detail::is_mdspan_v<From> && tensor_v<To> &&
-( is_nothrow_constructible_v<typename From::value_type,typename To::value_type> ) &&
+values_are_nothrow_constructible_v<From,To> &&
 extents_are_equal_v< From, To >;
 
 #endif

@@ -84,7 +84,7 @@ class negation
         #ifndef LINALG_COMPILER_CLANG
                            [&t]< class ... IndexType >( IndexType ... indices ) constexpr noexcept { return -( detail::access( t, indices ... ) ); } ) ) ) )
         #else // Clang does not allow use of input variables in lambda expression inside noexcept specification
-                           []< class ... IndexType >( IndexType ... indices ) constexpr noexcept { return tensor_type::value_type(); } ) ) ) )
+                           []< class ... IndexType >( IndexType ... indices ) constexpr noexcept { return typename tensor_type::value_type(); } ) ) ) )
         #endif
     {
       // Define negation operation on each element
