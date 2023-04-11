@@ -52,7 +52,7 @@ class negation
     #ifdef LINALG_ENABLE_CONCEPTS
     template < class Lambda >
     #else
-    template < class Lambda, typename = enable_if_t< concepts::dynamic_tensor_data_v<result_tensor_type> >
+    template < class Lambda, typename = enable_if_t< concepts::dynamic_tensor_data_v<result_tensor_type> > >
     #endif
     [[nodiscard]] static inline constexpr decltype(auto) collect_ctor_args( const tensor_type& t, Lambda&& lambda ) noexcept
     #ifdef LINALG_ENABLE_CONCEPTS
@@ -60,7 +60,7 @@ class negation
     #endif
     {
       if constexpr ( is_default_constructible_v<typename result_tensor_type::allocator_type> &&
-                      allocator_traits<typename result_tensor_type::allocator_type>::is_always_equal::value )
+                     allocator_traits<typename result_tensor_type::allocator_type>::is_always_equal::value )
       {
         return tuple( t.size(), t.capacity(), forward<Lambda>( lambda ) );
       }
@@ -77,7 +77,7 @@ class negation
     [[nodiscard]] static constexpr auto negate( const tensor_type& t )
       noexcept( noexcept( detail::make_from_tuple< result_tensor_type >(
         collect_ctor_args( declval<const tensor_type&>(),
-                            [&t]< class ... IndexType >( IndexType ... indices ) constexpr noexcept { return -( detail::access( t, indices ... ) ); } ) ) ) )
+                           [&t]< class ... IndexType >( IndexType ... indices ) constexpr noexcept { return -( detail::access( t, indices ... ) ); } ) ) ) )
     {
       // Define negation operation on each element
       auto negate_lambda = [&t]< class ... IndexType >( IndexType ... indices ) constexpr noexcept { return -( detail::access( t, indices ... ) ); };

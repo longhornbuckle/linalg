@@ -428,7 +428,11 @@ constexpr dr_vector<T,Alloc,L,Access>::dr_vector( const allocator_type& alloc )
 }
 
 template < class T, class Alloc, class L, class Access >
+#ifdef LINALG_ENABLE_CONCEPTS
 template < concepts::view_may_be_constructible_to_tensor< dr_vector<T,Alloc,L,Access> > MDS >
+#else
+template < class MDS, typename >
+#endif
 constexpr dr_vector<T,Alloc,L,Access>::dr_vector( const MDS& view, const allocator_type& alloc )
   noexcept( noexcept( dr_vector<T,Alloc,L,Access>::base_type(view,alloc) ) ) :
   dr_vector<T,Alloc,L,Access>::base_type(view,alloc)
