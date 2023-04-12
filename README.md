@@ -28,7 +28,7 @@ Running provided tests requires CMake.
   - Warning free with `-Wall -pedantic -Wextra  -Wno-unused-function -Wno-unused-variable -Wno-unused-but-set-variable -Wno-unused-local-typedefs`
   - C++23.
 
-- clang-14 / 3.22.2
+- clang-14 / cmake 3.22.2
   - Warning free with `-Wall -pedantic -Wextra  -Wno-unused-function -Wno-unused-variable -Wno-unused-but-set-variable -Wno-unused-local-typedefs`
   - C++20
   - No use of multi-dimensional index operator\[\](...). Use operator()(...).
