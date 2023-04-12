@@ -203,9 +203,9 @@ public:
   operator IndexType() noexcept { return this->extent(0); }
 
   // Comparison operators
-  template < class OtherIndexType >
+  template < class OtherIndexType, typename = enable_if_t< !detail::__is_extents_v<OtherIndexType> > >
   MDSPAN_INLINE_FUNCTION
-  constexpr bool operator==( OtherIndexType const& rhs ) noexcept requires ( !detail::__is_extents_v<OtherIndexType> ) {
+  constexpr bool operator==( OtherIndexType const& rhs ) noexcept {
     return this->extent(0) == index_type(rhs);
   }
 };

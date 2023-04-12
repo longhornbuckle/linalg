@@ -68,19 +68,6 @@ template < class T >
 inline constexpr bool is_mdspan_v = is_mdspan<T>::value;
 
 //==================================================================================================
-//  Test if type is a span
-//==================================================================================================
-template < class T >
-struct is_span : false_type {};
-
-template < class T, size_t Extents >
-struct is_span< span<T,Extents> > : true_type {};
-/// @brief True iff T is a span
-/// @tparam T 
-template < class T >
-inline constexpr bool is_span_v = is_span<T>::value;
-
-//==================================================================================================
 //  Test if type is an extents
 //==================================================================================================
 template < class T >
@@ -169,7 +156,7 @@ struct nondynamic_rank;
 template < template < class, size_t ... > class E, class T, size_t ... Extents >
 struct nondynamic_rank< E<T,Extents...> > : public integral_constant< size_t, ( ( ( Extents > 1 ) && ( Extents != experimental::dynamic_extent ) ) + ... ) > {};
 
-template < class E > requires is_extents_v<E>
+template < class E, typename = enable_if_t< is_extents_v<E> > >
 inline constexpr size_t nondynamic_rank_v = nondynamic_rank<E>::value;
 
 //==================================================================================================
@@ -196,10 +183,10 @@ constexpr bool is_constexpr(Lambda) { return true; }
 constexpr bool is_constexpr(...) { return false; }
 
 //==================================================================================================
-//  Consteval Product
+//  Constexpr Product
 //==================================================================================================
 template < class T, class ... Ts >
-[[nodiscard]] consteval auto product( T t, Ts ... ts )
+[[nodiscard]] constexpr auto product( T t, Ts ... ts )
 {
   if constexpr ( sizeof...(Ts) == 0 )
   {
@@ -432,7 +419,7 @@ template < size_t    Index,
            class     Lambda,
            class     ExecutionPolicy,
            class ... IndexType >
-[[nodiscard]] consteval bool apply_all_strided2_is_noexcept() noexcept
+[[nodiscard]] constexpr bool apply_all_strided2_is_noexcept() noexcept
 {
   constexpr size_t index_stride = stride_order< decay_t<View> >::get_nth_largest_stride_index( Index );
   if constexpr ( Index == sizeof...(IndexType) - 1 )
@@ -526,7 +513,7 @@ constexpr void apply_all_strided2( View&&               view,
 template < class View,
            class Lambda,
            class ExecutionPolicy >
-[[nodiscard]] consteval bool apply_all_strided_is_noexcept() noexcept
+[[nodiscard]] constexpr bool apply_all_strided_is_noexcept() noexcept
 {
   constexpr auto rank = decay_t<View>::rank();
   auto indices = apply_all_strided_helper< make_integer_sequence< typename decay_t<View>::size_type, rank > >::initial_indices();
@@ -615,7 +602,7 @@ template < class           View,
            class           ExtentsType,
            ExtentsType     FirstExtents,
            ExtentsType ... Extents >
-[[nodiscard]] consteval bool apply_all_impl_is_noexcept( [[maybe_unused]] integer_sequence<ExtentsType,FirstExtents,Extents...> ) noexcept
+[[nodiscard]] constexpr bool apply_all_impl_is_noexcept( [[maybe_unused]] integer_sequence<ExtentsType,FirstExtents,Extents...> ) noexcept
 {
   if constexpr ( sizeof...(Extents) == 0 )
   {
@@ -978,13 +965,13 @@ template < class U, size_t ... Indices >
 class extents_helper_impl< integer_sequence<U,Indices...> >
 {
   private:
-    static consteval U dyn_ext( [[maybe_unused]] U index ) noexcept { return experimental::dynamic_extent; }
+    static constexpr U dyn_ext( [[maybe_unused]] U index ) noexcept { return experimental::dynamic_extent; }
   public:
     using extents_type = experimental::extents<U,dyn_ext(Indices)...>;
     using tuple_type   = tuple<decltype(Indices)...>;
     [[nodiscard]] static constexpr U size( const extents_type& e ) noexcept { return ( e.extent(Indices) * ... ); }
-    [[nodiscard]] static consteval extents_type zero() noexcept { return extents_type( U( 0 * Indices ) ... ); }
-    [[nodiscard]] static consteval auto zero_tuple() noexcept { return tuple( U( 0 * Indices ) ... ); }
+    [[nodiscard]] static constexpr extents_type zero() noexcept { return extents_type( U( 0 * Indices ) ... ); }
+    [[nodiscard]] static constexpr auto zero_tuple() noexcept { return tuple( U( 0 * Indices ) ... ); }
     [[nodiscard]] static constexpr auto to_tuple( const extents_type& e ) noexcept { return tuple( U( e.extent(Indices) ) ... ); }
 };
 template < class U, size_t R >
