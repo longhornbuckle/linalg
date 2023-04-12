@@ -2,18 +2,14 @@ Linear Algebra implementation
 ==========================================
 This repository is intended to explore a possible implementation of a math vector, matrix, and tensor using [P0009](https://github.com/kokkos/mdspan)'s reference implementation for C++23 mdspan and incorporating C++20 concepts. Hopefully, this motivates further discussion and collaboration on the right direction to go.
 
-In Work
--------
-- Working on clang conformant implementation.
-
 TODO
 ----
-- Backport to C++20 and C++17
+- Backport to C++17
+- MSVC support
 - Integrate P1673 where appropriate
 
 Requirements
 ------------
-- C++23 support for multidimensional subscript operator
 - P0009 reference implementation for mdspan
 - P2630 reference implementation for submdspan (same repo as P0009)
 
@@ -28,8 +24,19 @@ This implementation is headers only.
 Testing
 -------
 Running provided tests requires CMake.
-- gcc-12
-  - Warning free with `-Wall -pedantic -Wextra  -Wno-unused-function -Wno-unused-variable -Wno-unused-but-set-variable -Wno-unused-local-typedefs` for C++23.
+- gcc-12 / cmake 3.22.2
+  - Warning free with `-Wall -pedantic -Wextra  -Wno-unused-function -Wno-unused-variable -Wno-unused-but-set-variable -Wno-unused-local-typedefs`
+  - C++23.
+
+- clang-14 / 3.22.2
+  - Warning free with `-Wall -pedantic -Wextra  -Wno-unused-function -Wno-unused-variable -Wno-unused-but-set-variable -Wno-unused-local-typedefs`
+  - C++20
+  - No use of multi-dimensional index operator\[\](...). Use operator()(...).
+  - No use of concepts. Out-of-class member function definitions with concepts unsupported until clang-16.
+  - No use execution policies.
+  - No use of -stdc++. Results in linker error.
+
+NOTE: If reviewing tests, detail::access( ... ) is used to obscure use of operator\(\)( ... ) or operator\[\]( ... ) depending on build environment. The appropriate index operator should be available for tested configurations.
 
 Documentation
 -------------
@@ -88,6 +95,27 @@ Critical Design Decisions
  - Unlike P1385, vectors, matrices, and tensors do not split their behavior between engine types and operation types.
  
    *Rationale*: Overall, it felt clunky and unnecessary to do so. I got pretty far down this path and just didn't like the direction. There were a lot of functions that were disable or enabled dependent on the underlying engine type which made for a complicated interface. The methods for determining the operation type to use for performing a particular operation seemed too complicated and it felt unrealistic that anyone would delve deep enough into it to overload that behavior. As far as backwards compatibility, if the code were to eventually evolve to incorporate expression types - I would think those naturally would be convertible such that any legacy code would still work. If there was a desire to simultaneously support both instantly evaluated operations and expression types, then I think an approach similar to the std::pmr::allocators might be appropriate where different implementations exist in different namespaces (rather than being tied to the type of a more generic and complicated template class).
+
+Critical Questions
+------------------
+- Is the inheritance relationship between tensors and matrices / vectors appropriate? Inheritance often is not the best choice. It will constrain future development of tensors; however, it seemed to fit naturally and reasonably approximate the mathematic relationship between tensors, matrices, and vectors. I could not think of reasonably generic tensor functions that should not work on vectors and matrices; however, I don't use higher order tensors all that much.
+
+- What concept definitions are appropriate? I tended toward the side of verbosity for the sake of meaningful conversation.
+
+- Which feels more natural?
+  - submatrix( { start row, start column }, { end row, end column } )
+  - submatrix( { start row, end row }, { start column, end column } )
+  I implemented the former; however, I may be biased from previous experience. The latter is similar to the interface used by subtensor( SliceArgs ... ) which essentially forwards to submdspan( ... ).
+
+- Is a partially fixed size partially dynamic tensor useful? I felt like it would be complicated to implement and potentially confusing to use. There is some benefit if they are used in such a way that the final product size is now known at compile time; however, much of that benefit is negated by implementing expression types.
+
+- Is the construction from a constrained lambda expression the right way to go? I found it *very* useful to support inplace construction. I could see additional benefit in somehow being to optionally express an iteration scheme to define the order in which the lambda expression is called. (Currently, it is called once for each possible index set in any order.)
+
+- Should dense tensor operations somehow support parallel execution policies? I felt like such support should be reserved for an entirely different class if needed.
+
+- Is at(...) desired? It felt like something I maybe should add for consistency with the way STL containers support index operations; however, mdspan doesn't support it. I could also see C++ taking a different approach to safe memory access that could make the function moot.
+
+- Is there a good motivating use case for which an operation traits approach like what is done in [P1385](https://github.com/BobSteagall/wg21) is strongly desirable?
 
 In Regards To Existing Proposals
 --------------------------------

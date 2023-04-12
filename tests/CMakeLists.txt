@@ -3,7 +3,11 @@ macro( linalg_add_test name )
     set_source_files_properties( ${name} PROPERTIES LANGUAGE ${LINALG_TEST_LANGUAGE} )
   endif()
   add_executable( ${name} ${name}.cpp )
-  set_property( TARGET ${name} PROPERTY CXX_STANDARD 23 ) # set c++ version
+  if ( EXISTS CMAKE_CXX_STANDARD )
+    set_property( TARGET ${name} PROPERTY CXX_STANDARD CMAKE_CXX_STANDARD ) # set c++ version
+  else()
+    set_property( TARGET ${name} PROPERTY CXX_STANDARD 23 ) # set c++ version
+  endif()
   set( CMAKE_CXX_STANDARD_REQUIRED YES)
   set( CMAKE_CXX_EXTENSIONS NO )
   target_link_libraries( ${name} linalg gtest_main gtest )
