@@ -18,6 +18,11 @@ jobs:
             compiler_version: 23
           }
         - {
+            compiler_driver: g++-12,
+            compiler_prefix: /usr/bin,
+            compiler_version: 20
+          }
+        - {
             compiler_driver: clang++-14,
             compiler_prefix: /usr/bin,
             compiler_version: 20
