@@ -33,7 +33,7 @@ Running provided tests requires CMake.
   - C++20
   - No use of multi-dimensional index operator\[\](...). Use operator()(...).
   - No use of concepts. Out-of-class member function definitions with concepts unsupported until clang-16.
-  - No use execution policies.
+  - No use of execution policies.
   - No use of -stdc++. Results in linker error.
 
 NOTE: If reviewing tests, detail::access( ... ) is used to obscure use of operator\(\)( ... ) or operator\[\]( ... ) depending on build environment. The appropriate index operator should be available for tested configurations.
