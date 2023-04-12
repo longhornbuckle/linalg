@@ -246,7 +246,7 @@ template < class T > inline constexpr bool has_size_type_v = has_size_type<T>::v
 
 // Test if T has alias extents_type
 template < class T, class = void > struct has_extents_type : public false_type { };
-template < class T > struct has_extents_type< T, std::enable_if_t< std::is_same_v< typename T::extents_type, typename T::extents_type > > > : public true_type { };
+template < class T > struct has_extents_type< T, std::enable_if_t< std::is_same_v< typename T::extents_type, typename T::extents_type > && detail::is_extents_v< typename T::extents_type > > > : public true_type { };
 template < class T > inline constexpr bool has_extents_type_v = has_extents_type<T>::value;
 
 // Test if T has alias tuple_type
@@ -362,17 +362,17 @@ template < class T > inline constexpr bool has_reserve_func_v = has_reserve_func
 
 // Test for construct from allocator
 template < class T, class = void > struct constructible_from_alloc : public false_type { };
-template < class T > struct constructible_from_alloc< T, std::enable_if_t< std::is_same_v< decltype( T( declval<typename T::allocator_type>() ) ), T > > > : public true_type { };
+template < class T > struct constructible_from_alloc< T, std::enable_if_t< is_constructible_v< T, typename T::allocator_type > > > : public true_type { };
 template < class T > inline constexpr bool constructible_from_alloc_v = constructible_from_alloc<T>::value;
 
 // Test for construct from size and allocator
 template < class T, class = void > struct constructible_from_size_and_alloc : public false_type { };
-template < class T > struct constructible_from_size_and_alloc< T, std::enable_if_t< std::is_same_v< decltype( T( declval<typename T::extents_type>(), declval<typename T::allocator_type>() ) ), T > > > : public true_type { };
+template < class T > struct constructible_from_size_and_alloc< T, std::enable_if_t< is_constructible_v< T, typename T::extents_type, typename T::allocator_type > > > : public true_type { };
 template < class T > inline constexpr bool constructible_from_size_and_alloc_v = constructible_from_size_and_alloc<T>::value;
 
 // Test for construct from size capacity and allocator
 template < class T, class = void > struct constructible_from_size_cap_and_alloc : public false_type { };
-template < class T > struct constructible_from_size_cap_and_alloc< T, std::enable_if_t< std::is_same_v< decltype( T( declval<typename T::extents_type>(), declval<typename T::extents_type>(), declval<typename T::allocator_type>() ) ), T > > > : public true_type { };
+template < class T > struct constructible_from_size_cap_and_alloc< T, std::enable_if_t< is_constructible_v< T, typename T::extents_type, typename T::extents_type, typename T::allocator_type > > > : public true_type { };
 template < class T > inline constexpr bool constructible_from_size_cap_and_alloc_v = constructible_from_size_cap_and_alloc<T>::value;
 
 // Test for transpose
@@ -432,6 +432,11 @@ template < class T, size_t N, class = void > struct is_rank : public false_type 
 template < class T, size_t N > struct is_rank< T, N, std::enable_if_t< T::extents_type::rank() == N > > : public true_type { };
 template < class T, size_t N > inline constexpr bool is_rank_v = is_rank<T,N>::value;
 
+// Test for constant tensor
+template < class T, class = void > struct is_const_tensor : public false_type { };
+template < class T > struct is_const_tensor< T, std::enable_if_t< std::is_const_v< std::remove_reference_t< typename T::reference_type > > > > : public true_type { };
+template < class T > inline constexpr bool is_const_tensor_v = is_const_tensor<T>::value;
+
 //- Test for tensors
 
 // Tensor data
@@ -440,7 +445,6 @@ template < class T > struct tensor_data : public conditional_t<
   has_index_type_v<T> &&
   has_size_type_v<T> &&
   has_extents_type_v<T> &&
-  //detail::is_extents_v<typename T::extents_type> &&
   has_size_func_v<T> &&
   has_capacity_func_v<T>, true_type, false_type > { };
 template < class T > inline constexpr bool tensor_data_v = tensor_data<T>::value;
@@ -478,7 +482,7 @@ template < class T > inline constexpr bool readable_tensor_v = readable_tensor<T
 template < class T > struct writable_tensor_data : public conditional_t< 
   readable_tensor_data_v<T> &&
   has_reference_type_v<T> &&
-  //( !is_const_v< remove_reference_t< typename T::reference_type > > ) &&
+  is_const_tensor_v<T> &&
   has_underlying_span_type_v<T> &&
   has_underlying_span_func_v<T>, true_type, false_type > { };
 template < class T > inline constexpr bool writable_tensor_data_v = writable_tensor_data<T>::value;
@@ -492,12 +496,12 @@ template < class T > inline constexpr bool writable_tensor_v = writable_tensor<T
 // Dynamic tensor data
 template < class T > struct dynamic_tensor_data : public conditional_t<
   tensor_data_v<T> &&
-  has_allocator_type_v<T> /* &&
+  has_allocator_type_v<T> /*&&
   constructible_from_alloc_v<T> &&
   constructible_from_size_and_alloc_v<T> &&
-  constructible_from_size_cap_and_alloc_v<T> &&
+  constructible_from_size_cap_and_alloc_v<T>*/ &&
   has_resize_func_v<T> &&
-  has_reserve_func_v<T>*/, true_type, false_type > { };
+  has_reserve_func_v<T>, true_type, false_type > { };
 template < class T > inline constexpr bool dynamic_tensor_data_v = dynamic_tensor_data<T>::value;
 
 // Dynamic tensor
@@ -537,9 +541,9 @@ extents_may_be_equal_v<From,To>;
 // View element must be constructible to the tensor elements
 template < class From, class To >
 inline constexpr bool view_may_be_constructible_to_tensor =
-detail::is_mdspan_v<From> && tensor_v<To> /*&&
+detail::is_mdspan_v<From> && tensor_v<To> &&
 values_are_constructible_v<From,To> &&
-extents_may_be_equal_v<From,To>*/;
+extents_may_be_equal_v<From,To>;
 
 // View is constructible to tensor
 // Enforces view is an mdspan of rank equal to tensor with elements
