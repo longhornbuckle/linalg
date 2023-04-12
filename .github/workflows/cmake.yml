@@ -27,7 +27,7 @@ jobs:
             compiler_prefix: /usr/bin,
             compiler_version: 20
           }
-    name: ${{ matrix.settings.compiler_driver }}, C++${{ matrix.settings.compiiler_version }}, ${{ matrix.configuration }}
+    name: ${{ matrix.settings.compiler_driver }}, C++${{ matrix.settings.compiler_version }}, ${{ matrix.configuration }}
     steps:
     
     - name: Install gtest manually
