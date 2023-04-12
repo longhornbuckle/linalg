@@ -146,7 +146,7 @@ namespace
     // Get underling view
     auto view = fs_vector.span();
     // Create a lambda expression from view
-    auto lambda = [&view]< class ... SizeType >( SizeType ... indices ) { return std::math::detail::access( view, indices ... ); };
+    auto lambda = [&view]( auto index ) { return std::math::detail::access( view, index ); };
     // Construct from lambda
     std::math::dr_vector<double> dyn_vector_copy( std::experimental::extents<size_t,4>(), lambda );
     // Access elements from const dyn vector
@@ -924,7 +924,7 @@ namespace
     // Get underling view
     auto view = fs_vector.span();
     // Create a lambda expression from view
-    auto lambda = [&view]< class ... SizeType >( SizeType ... indices ) { return std::math::detail::access( view, indices ... ); };
+    auto lambda = [&view]( auto index ) { return std::math::detail::access( view, index ); };
     // Construct from lambda
     fs_vector_type fs_vector_copy( lambda );
     // Access elements from const fs vector

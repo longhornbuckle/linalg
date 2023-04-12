@@ -380,7 +380,7 @@ constexpr fs_tensor<T,L,A,Ds...>::fs_tensor( Lambda&& lambda ) noexcept( noexcep
   // If expression is no except, then no need to capture last exception
   constexpr bool lambda_is_noexcept = is_nothrow_convertible_v< decltype( declval<Lambda&&>()( Ds ... ) ), element_type >;
   // Construct all elements from lambda output
-  auto ctor = [this,&lambda]< class ... SizeType >( SizeType ... indices ) constexpr noexcept( lambda_is_noexcept )
+  auto ctor = [this,&lambda]( auto ... indices ) constexpr noexcept( lambda_is_noexcept )
   {
     #if LINALG_USE_BRACKET_OPERATOR
     this->underlying_span()[ indices ... ] = lambda( indices ... );

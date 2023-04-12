@@ -866,7 +866,7 @@ assign_view( ToView& to_view, const FromView& from_view )
   if constexpr ( extents_are_equal_v<typename FromView::extents_type,typename ToView::extents_type> )
   {
     apply_all( from_view,
-               [ &to_view, &from_view ]< class ... Indices >( Indices ... indices )
+               [ &to_view, &from_view ]( auto ... indices )
                  constexpr noexcept( is_nothrow_convertible_v<typename decay_t<FromView>::reference,typename decay_t<ToView>::reference> )
                  { access( to_view, indices ... ) = access( from_view, indices ... ); },
                LINALG_EXECUTION_UNSEQ );
@@ -876,7 +876,7 @@ assign_view( ToView& to_view, const FromView& from_view )
     if ( sufficient_extents( to_view.extents(), from_view.extents() ) ) [[likely]]
     {
       apply_all( from_view,
-                 [ &to_view, &from_view ]< class ... Indices >( Indices ... indices )
+                 [ &to_view, &from_view ]( auto ... indices )
                    constexpr noexcept( is_nothrow_convertible_v<typename decay_t<FromView>::reference,typename decay_t<ToView>::reference> )
                    { access( to_view, indices ... ) = access( from_view, indices ... ); },
                  LINALG_EXECUTION_UNSEQ );
@@ -910,7 +910,7 @@ copy_view( ToView& to_view, const FromView& from_view )
   if constexpr ( extents_are_equal_v<typename FromView::extents_type,typename ToView::extents_type> )
   {
     apply_all( forward<ToView>( to_view ),
-              [ &to_view, &from_view ]< class ... Indices >( Indices ... indices )
+              [ &to_view, &from_view ]( auto ... indices )
                 constexpr noexcept( is_nothrow_convertible_v<typename decay_t<FromView>::reference,typename decay_t<ToView>::reference> )
                 { ::new ( addressof( access( to_view, indices ... ) ) ) typename ToView::element_type( access( from_view, indices ... ) ); },
               LINALG_EXECUTION_UNSEQ );
@@ -920,7 +920,7 @@ copy_view( ToView& to_view, const FromView& from_view )
     if ( sufficient_extents( to_view.extents(), from_view.extents() ) ) [[likely]]
     {
       apply_all( forward<ToView>( to_view ),
-                [ &to_view, &from_view ]< class ... Indices >( Indices ... indices )
+                [ &to_view, &from_view ]( auto ... indices )
                   constexpr noexcept( is_nothrow_convertible_v<typename decay_t<FromView>::reference,typename decay_t<ToView>::reference> )
                   { ::new ( addressof( access( to_view, indices ... ) ) ) typename ToView::element_type( access( from_view, indices ... ) ); },
                 LINALG_EXECUTION_UNSEQ );

@@ -824,7 +824,7 @@ constexpr dr_tensor<T,R,Alloc,L,Access>::dr_tensor( extents_type s, Lambda&& lam
   view_( this->create_view( this->cap_ ) )
 {
   // Construct all elements from lambda expression
-  auto lambda_ctor = [this,&lambda]< class ... SizeType >( SizeType ... indices ) constexpr noexcept( is_nothrow_copy_constructible_v<element_type> )
+  auto lambda_ctor = [this,&lambda]( auto ... indices ) constexpr noexcept( is_nothrow_copy_constructible_v<element_type> )
   {
     // TODO: This requires reference returned from mdspan to be the address of the element
     ::new ( addressof( detail::access( this->view_, indices ... ) ) ) element_type( lambda( indices ... ) );
@@ -850,7 +850,7 @@ constexpr dr_tensor<T,R,Alloc,L,Access>::dr_tensor( extents_type s, extents_type
   view_( this->create_view( s ) )
 {
   // Construct all elements from lambda expression
-  auto lambda_ctor = [this,&lambda]< class ... SizeType >( SizeType ... indices ) constexpr noexcept( is_nothrow_copy_constructible_v<element_type> )
+  auto lambda_ctor = [this,&lambda]( auto ... indices ) constexpr noexcept( is_nothrow_copy_constructible_v<element_type> )
   {
     // TODO: This requires reference returned from mdspan to be the address of the element
     ::new ( addressof( detail::access( this->view_, indices ... ) ) ) element_type( lambda( indices ... ) );
@@ -1219,17 +1219,6 @@ dr_tensor<T,R,Alloc,L,Access>::operator()( IndexType ... indices ) const noexcep
 #endif
 
 template < class T, size_t R, class Alloc, class L , class Access >
-template < class ... IndexType >
-[[nodiscard]] constexpr typename dr_tensor<T,R,Alloc,L,Access>::value_type
-dr_tensor<T,R,Alloc,L,Access>::at( IndexType ... indices ) const
-#ifdef LINALG_ENABLE_CONCEPTS
-  requires ( sizeof...(IndexType) == R ) && ( is_convertible_v<IndexType,typename dr_tensor<T,R,Alloc,L,Access>::index_type> && ... )
-#endif
-{
-  return detail::access( this->underlying_span(), indices ... );
-}
-
-template < class T, size_t R, class Alloc, class L , class Access >
 template < class ... SliceArgs >
 [[nodiscard]] constexpr auto dr_tensor<T,R,Alloc,L,Access>::subvector( SliceArgs ... args ) const
 #ifdef LINALG_ENABLE_CONCEPTS
@@ -1286,17 +1275,6 @@ dr_tensor<T,R,Alloc,L,Access>::operator()( IndexType ... indices ) noexcept
   return detail::access( this->underlying_span(), indices ... );
 }
 #endif
-
-template < class T, size_t R, class Alloc, class L , class Access >
-template < class ... IndexType >
-[[nodiscard]] constexpr typename dr_tensor<T,R,Alloc,L,Access>::reference_type
-dr_tensor<T,R,Alloc,L,Access>::at( IndexType ... indices )
-#ifdef LINALG_ENABLE_CONCEPTS
-  requires ( sizeof...(IndexType) == R ) && ( is_convertible_v<IndexType,typename dr_tensor<T,R,Alloc,L,Access>::index_type> && ... )
-#endif
-{
-  return detail::access( this->underlying_span(), indices ... );
-}
 
 template < class T, size_t R, class Alloc, class L , class Access >
 template < class ... SliceArgs >
@@ -1499,7 +1477,7 @@ dr_tensor<T,R,Alloc,L,Access>::resize_impl( extents_type new_size,
     auto destroy_subview = experimental::submdspan( this->underlying_span(),
                                                     destroy_extent(Indices) ...  );
     // Define destructor lambda
-    auto destructor = [this]< class ... IndexType >( IndexType ... indices ) constexpr noexcept( is_nothrow_destructible_v<element_type> )
+    auto destructor = [this]( auto ... indices ) constexpr noexcept( is_nothrow_destructible_v<element_type> )
       { detail::access( this->view_, indices ... ).~element_type(); };
     // Destroy
     detail::apply_all( destroy_subview, destructor, LINALG_EXECUTION_UNSEQ );
@@ -1513,7 +1491,7 @@ dr_tensor<T,R,Alloc,L,Access>::resize_impl( extents_type new_size,
     auto construct_subview = experimental::submdspan( this->underlying_span(),
                                                       construct_extent(Indices) ...  );
     // Define constructor lambda
-    auto constructor = [this]< class ... IndexType >( IndexType ... indices ) constexpr noexcept( is_nothrow_default_constructible_v<element_type> )
+    auto constructor = [this]( auto ... indices ) constexpr noexcept( is_nothrow_default_constructible_v<element_type> )
       { ::new ( addressof( detail::access( this->view_, indices ... ) ) ) element_type(); };
     // Construct
     detail::apply_all( construct_subview, constructor, LINALG_EXECUTION_UNSEQ );

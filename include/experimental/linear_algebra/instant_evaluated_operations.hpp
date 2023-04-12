@@ -82,13 +82,13 @@ class negation
       noexcept( noexcept( detail::make_from_tuple< result_tensor_type >(
         collect_ctor_args( declval<const tensor_type&>(),
         #ifndef LINALG_COMPILER_CLANG
-                           [&t]< class ... IndexType >( IndexType ... indices ) constexpr noexcept { return -( detail::access( t, indices ... ) ); } ) ) ) )
+                           [&t]( auto ... indices ) constexpr noexcept { return -( detail::access( t, indices ... ) ); } ) ) ) )
         #else // Clang does not allow use of input variables in lambda expression inside noexcept specification
-                           []< class ... IndexType >( IndexType ... indices ) constexpr noexcept { return typename tensor_type::value_type(); } ) ) ) )
+                           []( auto ... indices ) constexpr noexcept { return typename tensor_type::value_type(); } ) ) ) )
         #endif
     {
       // Define negation operation on each element
-      auto negate_lambda = [&t]< class ... IndexType >( IndexType ... indices ) constexpr noexcept { return -( detail::access( t, indices ... ) ); };
+      auto negate_lambda = [&t]( auto ... indices ) constexpr noexcept { return -( detail::access( t, indices ... ) ); };
       // Construct negated tensor
       return detail::make_from_tuple<result_tensor_type>( collect_ctor_args( t, negate_lambda ) );
     }
@@ -205,10 +205,10 @@ class addition
         collect_ctor_args( declval<const first_tensor_type&>(),
                             declval<const second_tensor_type&>(),
         #ifndef LINALG_COMPILER_CLANG
-                            [&t1,&t2]< class ... IndexType >( IndexType ... indices ) constexpr noexcept
+                            [&t1,&t2]( auto ... indices ) constexpr noexcept
                               { return detail::access( t1, indices ... ) + detail::access( t2, indices ... ); } ) ) ) )
         #else // Clang does not allow use of input variables in lambda expression inside noexcept specification
-                            []< class ... IndexType >( IndexType ... indices ) constexpr noexcept
+                            []( auto ... indices ) constexpr noexcept
                               { return typename result_tensor_type::value_type(); } ) ) ) )
         #endif
     {
@@ -219,7 +219,7 @@ class addition
       //                                           make_integer_sequence< typename result_tensor_type::index_type,
       //                                                                  result_tensor_type::extents_type::rank() > >::more_helper
       //                     ( t1, t2 ).add_lambda();
-      auto add_lambda = [&t1,&t2]< class ... IndexType >( IndexType ... indices ) constexpr noexcept
+      auto add_lambda = [&t1,&t2]( auto ... indices ) constexpr noexcept
         { return detail::access( t1, indices ... ) + detail::access( t2, indices ... ); };
       // Construct addition tensor
       return detail::make_from_tuple<result_tensor_type>( collect_ctor_args( t1, t2, add_lambda ) );
@@ -228,15 +228,15 @@ class addition
     [[nodiscard]] static constexpr first_tensor_type& add( first_tensor_type& t1, const second_tensor_type& t2 )
       noexcept( noexcept( detail::apply_all( t1.underlying_span(),
       #ifndef LINALG_COMPILER_CLANG
-                                             [&t1,&t2]< class ... IndexType >( IndexType ... indices ) constexpr noexcept
+                                             [&t1,&t2]( auto ... indices ) constexpr noexcept
                                                { static_cast<void>( detail::access( t1, indices ... ) += detail::access( t2, indices ... ) ); },
       #else // Clang does not allow use of input variables in lambda expression inside noexcept specification
-                                             []< class ... IndexType >( IndexType ... indices ) constexpr noexcept
+                                             []( auto ... indices ) constexpr noexcept
                                                { },
       #endif
                                              LINALG_EXECUTION_UNSEQ ) ) )
     {
-      auto add_lambda = [&t1,&t2]< class ... IndexType >( IndexType ... indices ) constexpr noexcept
+      auto add_lambda = [&t1,&t2]( auto ... indices ) constexpr noexcept
         { static_cast<void>( detail::access( t1, indices ... ) += detail::access( t2, indices ... ) ); };
       // Apply lamda
       detail::apply_all( t1.underlying_span(), add_lambda, LINALG_EXECUTION_UNSEQ );
@@ -340,14 +340,14 @@ class subtraction
         collect_ctor_args( declval<const first_tensor_type&>(),
                            declval<const second_tensor_type&>(),
         #ifndef LINALG_COMPILER_CLANG
-                           [&t1,&t2]< class ... IndexType >( IndexType ... indices ) constexpr noexcept
+                           [&t1,&t2]( auto ... indices ) constexpr noexcept
                              { return detail::access( t1, indices ... ) - detail::access( t2, indices ... ); } ) ) ) )
         #else // Clang does not allow use of input variables in lambda expression inside noexcept specification
-                             []< class ... IndexType >( IndexType ... indices ) constexpr noexcept
+                             []( auto ... indices ) constexpr noexcept
                                { return typename result_tensor_type::value_type(); } ) ) ) )
         #endif
     {
-      auto subtract_lambda = [&t1,&t2]< class ... IndexType >( IndexType ... indices ) constexpr noexcept
+      auto subtract_lambda = [&t1,&t2]( auto ... indices ) constexpr noexcept
         { return detail::access( t1, indices ... ) - detail::access( t2, indices ... ); };
       // Construct addition tensor
       return detail::make_from_tuple<result_tensor_type>( collect_ctor_args( t1, t2, subtract_lambda ) );
@@ -356,15 +356,15 @@ class subtraction
     [[nodiscard]] static constexpr first_tensor_type& subtract( first_tensor_type& t1, const second_tensor_type& t2 )
       noexcept( noexcept( detail::apply_all( t1.underlying_span(),
         #ifndef LINALG_COMPILER_CLANG
-                                             [&t1,&t2]< class ... IndexType >( IndexType ... indices ) constexpr noexcept
+                                             [&t1,&t2]( auto ... indices ) constexpr noexcept
                                                { static_cast<void>( detail::access( t1, indices ... ) -= detail::access( t2, indices ... ) ); },
         #else // Clang does not allow use of input variables in lambda expression inside noexcept specification
-                                             []< class ... IndexType >( IndexType ... indices ) constexpr noexcept
+                                             []( auto ... indices ) constexpr noexcept
                                                { },
         #endif
                                              LINALG_EXECUTION_UNSEQ ) ) )
     {
-      auto subtract_lambda = [&t1,&t2]< class ... IndexType >( IndexType ... indices ) constexpr noexcept
+      auto subtract_lambda = [&t1,&t2]( auto ... indices ) constexpr noexcept
         { static_cast<void>( detail::access( t1, indices ... ) -= detail::access( t2, indices ... ) ); };
       // Apply lamda
       detail::apply_all( t1.underlying_span(), subtract_lambda, LINALG_EXECUTION_UNSEQ );
@@ -441,15 +441,15 @@ class scalar_product
       noexcept( noexcept( detail::make_from_tuple< result_tensor_type >(
         collect_ctor_args( t,
         #ifndef LINALG_COMPILER_CLANG
-                           [&s,&t]< class ... IndexType >( IndexType ... indices ) constexpr noexcept
+                           [&s,&t]( auto ... indices ) constexpr noexcept
                              { return s * detail::access( t, indices ... ); } ) ) ) )
         #else // Clang does not allow use of input variables in lambda expression inside noexcept specification
-                           []< class ... IndexType >( IndexType ... indices ) constexpr noexcept
+                           []( auto ... indices ) constexpr noexcept
                              { return typename result_tensor_type::value_type(); } ) ) ) )
         #endif
     {
       // Define product operation on each element
-      auto prod_lambda = [&s,&t]< class ... IndexType >( IndexType ... indices ) constexpr noexcept
+      auto prod_lambda = [&s,&t]( auto ... indices ) constexpr noexcept
         { return s * detail::access( t, indices ... ); };
       // Construct product tensor
       return detail::make_from_tuple<result_tensor_type>( collect_ctor_args( t, prod_lambda ) );
@@ -459,15 +459,15 @@ class scalar_product
       noexcept( noexcept( detail::make_from_tuple< result_tensor_type >(
         collect_ctor_args( t,
         #ifndef LINALG_COMPILER_CLANG
-                           [&s,&t]< class ... IndexType >( IndexType ... indices ) constexpr noexcept
+                           [&s,&t]( auto ... indices ) constexpr noexcept
                              { return detail::access( t, indices ... ) * s; } ) ) ) )
         #else // Clang does not allow use of input variables in lambda expression inside noexcept specification
-                           []< class ... IndexType >( IndexType ... indices ) constexpr noexcept
+                           []( auto ... indices ) constexpr noexcept
                              { return typename result_tensor_type::value_type(); } ) ) ) )
         #endif
     {
       // Define product operation on each element
-      auto prod_lambda = [&s,&t]< class ... IndexType >( IndexType ... indices ) constexpr noexcept
+      auto prod_lambda = [&s,&t]( auto ... indices ) constexpr noexcept
         { return detail::access( t, indices ... ) * s; };
       // Construct product tensor
       return detail::make_from_tuple<result_tensor_type>( collect_ctor_args( t, prod_lambda ) );
@@ -476,16 +476,16 @@ class scalar_product
     [[nodiscard]] static constexpr tensor_type& prod( tensor_type& t, const S& s )
       noexcept( noexcept( detail::apply_all( t.underlying_span(),
       #ifndef LINALG_COMPILER_CLANG
-                                             [&t,&s]< class ... IndexType >( IndexType ... indices ) constexpr noexcept
+                                             [&t,&s]( auto ... indices ) constexpr noexcept
                                                { static_cast<void>( detail::access( t, indices ... ) += s ); },
       #else // Clang does not allow use of input variables in lambda expression inside noexcept specification
-                                             []< class ... IndexType >( IndexType ... indices ) constexpr noexcept
+                                             []( auto ... indices ) constexpr noexcept
                                                { },
       #endif
                                              LINALG_EXECUTION_UNSEQ ) ) )
     {
       // Define product operation on each element
-      auto prod_lambda = [&s,&t]< class ... IndexType >( IndexType ... indices ) constexpr noexcept
+      auto prod_lambda = [&s,&t]( auto ... indices ) constexpr noexcept
         { static_cast<void>( detail::access( t, indices ... ) *= s ); };
       // Apply lamda
       detail::apply_all( t.underlying_span(), prod_lambda, LINALG_EXECUTION_UNSEQ );
@@ -562,15 +562,15 @@ struct scalar_division
       noexcept( noexcept( detail::make_from_tuple< result_tensor_type >(
         collect_ctor_args( declval<const tensor_type&>(),
         #ifndef LINALG_COMPILER_CLANG
-                            [&t,&s]< class ... IndexType >( IndexType ... indices ) constexpr noexcept
+                            [&t,&s]( auto ... indices ) constexpr noexcept
                               { return detail::access( t, indices ... ) / s; } ) ) ) )
         #else // Clang does not allow use of input variables in lambda expression inside noexcept specification
-                            []< class ... IndexType >( IndexType ... indices ) constexpr noexcept
+                            []( auto ... indices ) constexpr noexcept
                               { return typename result_tensor_type::value_type(); } ) ) ) )
         #endif
     {
       // Define division operation on each element
-      auto divide_lambda = [&t,&s]< class ... IndexType >( IndexType ... indices ) constexpr noexcept
+      auto divide_lambda = [&t,&s]( auto ... indices ) constexpr noexcept
         { return detail::access( t, indices ... ) / s; };
       // Construct divided tensor
       return detail::make_from_tuple<result_tensor_type>( collect_ctor_args( t, divide_lambda ) );
@@ -579,16 +579,16 @@ struct scalar_division
     [[nodiscard]] static constexpr tensor_type& divide( tensor_type& t, const S& s )
       noexcept( noexcept( detail::apply_all( t.underlying_span(),
       #ifndef LINALG_COMPILER_CLANG
-                                             [&t,&s]< class ... IndexType >( IndexType ... indices ) constexpr noexcept
+                                             [&t,&s]( auto ... indices ) constexpr noexcept
                                                { static_cast<void>( t[ indices ... ] /= s ); },
       #else
-                                             []< class ... IndexType >( IndexType ... indices ) constexpr noexcept
+                                             []( auto ... indices ) constexpr noexcept
                                                { },
       #endif
                                              LINALG_EXECUTION_UNSEQ ) ) )
     {
       // Define product operation on each element
-      auto divide_lambda = [&s,&t]< class ... IndexType >( IndexType ... indices ) constexpr noexcept
+      auto divide_lambda = [&s,&t]( auto ... indices ) constexpr noexcept
         { static_cast<void>( detail::access( t, indices ... ) /= s ); };
       // Apply lamda
       detail::apply_all( t.underlying_span(), divide_lambda, LINALG_EXECUTION_UNSEQ );
@@ -669,15 +669,15 @@ class transpose_matrix
       noexcept( noexcept( detail::make_from_tuple< result_matrix_type >(
         collect_ctor_args( m,
         #ifndef LINALG_COMPILER_CLANG
-          [&m]< class IndexType1, class IndexType2 >( IndexType1 index1, IndexType2 index2 ) constexpr noexcept
+          [&m]( auto index1, auto index2 ) constexpr noexcept
             { return detail::access( m, index2, index1 ); } ) ) ) )
         #else // Clang does not allow use of input variables in lambda expression inside noexcept specification
-          []< class IndexType1, class IndexType2 >( IndexType1 index1, IndexType2 index2 ) constexpr noexcept
+          []( auto index1, auto index2 ) constexpr noexcept
             { return typename matrix_type::value_type(); } ) ) ) )
         #endif
     {
       // Define negation operation on each element
-      auto transpose_lambda = [&m]< class IndexType1, class IndexType2 >( IndexType1 index1, IndexType2 index2 ) constexpr noexcept
+      auto transpose_lambda = [&m]( auto index1, auto index2 ) constexpr noexcept
         { return detail::access( m, index2, index1 ); };
       // Construct transpose matrix
       return detail::make_from_tuple<result_matrix_type>( collect_ctor_args( m, transpose_lambda ) );
@@ -786,15 +786,15 @@ class conjugate_matrix
       noexcept( noexcept( detail::make_from_tuple< result_matrix_type >(
         collect_ctor_args( m,
         #ifndef LINALG_COMPILER_CLANG
-          [&m]< class IndexType1, class IndexType2 >( IndexType1 index1, IndexType2 index2 ) constexpr noexcept
+          [&m]( auto index1, auto index2 ) constexpr noexcept
             { return ::std::conj( detail::access( m, index2, index1 ) ); } ) ) ) )
         #else // Clang does not allow use of input variables in lambda expression inside noexcept specification
-          []< class IndexType1, class IndexType2 >( IndexType1 index1, IndexType2 index2 ) constexpr noexcept
+          []( auto index1, auto index2 ) constexpr noexcept
             { return ::std::conj( typename matrix_type::value_type() ); } ) ) ) )
         #endif
     {
       // Define negation operation on each element
-      auto conjugate_lambda = [&m]< class IndexType1, class IndexType2 >( IndexType1 index1, IndexType2 index2 ) constexpr noexcept
+      auto conjugate_lambda = [&m]( auto index1, auto index2 ) constexpr noexcept
         { return ::std::conj( detail::access( m, index2, index1 ) ); };
       // Construct conjugate transpose matrix
       return detail::make_from_tuple<result_matrix_type>( collect_ctor_args( m, conjugate_lambda ) );
@@ -871,15 +871,15 @@ class conjugate_vector
                 noexcept( detail::make_from_tuple< result_vector_type >(
                   collect_ctor_args( v,
                 #ifndef LINALG_COMPILER_CLANG
-                                     [&v]< class ... IndexType >( IndexType ... indices ) constexpr noexcept { return ::std::conj( detail::access( v, indices ... ) ); } ) ) ) )
+                                     [&v]( auto index ) constexpr noexcept { return ::std::conj( detail::access( v, index ) ); } ) ) ) )
                 #else // Clang does not allow use of input variables in lambda expression inside noexcept specification
-                                     []< class ... IndexType >( IndexType ... indices ) constexpr noexcept { return ::std::conj( typename vector_type::value_type() ); } ) ) ) )
+                                     []( auto index ) constexpr noexcept { return ::std::conj( typename vector_type::value_type() ); } ) ) ) )
                 #endif
     {
       if constexpr ( detail::is_complex_v<typename vector_type::value_type> )
       {
         // Define conjugate transpose operation on each element
-        auto conj_lambda = [&v]< class ... IndexType >( IndexType ... indices ) constexpr noexcept { return ::std::conj( detail::access( v, indices ... ) ); };
+        auto conj_lambda = [&v]( auto index ) constexpr noexcept { return ::std::conj( detail::access( v, index ) ); };
         // Construct negated vector
         return detail::make_from_tuple<result_vector_type>( collect_ctor_args( v, conj_lambda ) );
       }
@@ -1086,7 +1086,7 @@ class vector_matrix_product
           collect_ctor_args( v,
                              m,
                              #ifndef LINALG_COMPILER_CLANG
-                             [&v,&m]< class IndexType >( IndexType index ) constexpr noexcept
+                             [&v,&m]( auto index ) constexpr noexcept
                              {
                                result_value_type result = 0;
                                detail::for_each( LINALG_EXECUTION_UNSEQ,
@@ -1096,7 +1096,7 @@ class vector_matrix_product
                                                    { result += detail::access( v, index2 ) * detail::access( m, index2, index ); } );
                                return result; }
                              #else // Clang does not allow use of input variables in lambda expression inside noexcept specification
-                             []< class IndexType >( IndexType index ) constexpr noexcept
+                             []( auto index ) constexpr noexcept
                              { return result_value_type(); }
                              #endif
                              ) ) ) &&
@@ -1119,7 +1119,7 @@ class vector_matrix_product
         }
       }
       // Define product operation on each element pair
-      auto lambda = [&v,&m]< class IndexType >( IndexType index ) constexpr noexcept
+      auto lambda = [&v,&m]( auto index ) constexpr noexcept
       {
         result_value_type result = 0;
         detail::for_each( LINALG_EXECUTION_UNSEQ,
@@ -1164,7 +1164,7 @@ class vector_matrix_product
           collect_ctor_args( declval<const vector_type&>(),
                              declval<const matrix_type&>(),
                              #ifndef LINALG_COMPILER_CLANG
-                             [&v,&m]< class IndexType >( IndexType index ) constexpr noexcept
+                             [&v,&m]( auto index ) constexpr noexcept
                              {
                                result_value_type result = 0;
                                detail::for_each( LINALG_EXECUTION_UNSEQ,
@@ -1174,7 +1174,7 @@ class vector_matrix_product
                                                    { result += detail::access( m, index, index2 ) * detail::access( v, index2 ); } );
                                return result; }
                              #else // Clang does not allow use of input variables in lambda expression inside noexcept specification
-                             []< class IndexType >( IndexType index ) constexpr noexcept
+                             []( auto index ) constexpr noexcept
                              { return result_value_type(); }
                              #endif
                              ) ) ) &&
@@ -1197,7 +1197,7 @@ class vector_matrix_product
         }
       }
       // Define product operation on each element pair
-      auto lambda = [&v,&m]< class IndexType >( IndexType index ) constexpr noexcept
+      auto lambda = [&v,&m]( auto index ) constexpr noexcept
       {
         result_value_type result = 0;
         detail::for_each( LINALG_EXECUTION_UNSEQ,
@@ -1358,7 +1358,7 @@ class matrix_matrix_product
         collect_ctor_args( declval<const first_matrix_type&>(),
                            declval<const second_matrix_type&>(),
                            #ifndef LINALG_COMPILER_CLANG
-                           [&m1,&m2]< class IndexType1, class IndexType2 >( IndexType1 index1, IndexType2 index2 ) constexpr noexcept
+                           [&m1,&m2]( auto index1, auto index2 ) constexpr noexcept
                            {
                              result_value_type result = 0;
                              detail::for_each( LINALG_EXECUTION_UNSEQ,
@@ -1368,7 +1368,7 @@ class matrix_matrix_product
                                                  { result += detail::access( m1, index1, index ) * detail::access( m2, index, index2 ); } );
                              return result; }
                           #else // Clang does not allow use of input variables in lambda expression inside noexcept specification
-                           []< class IndexType1, class IndexType2 >( IndexType1 index1, IndexType2 index2 ) constexpr noexcept
+                           []( auto index1, auto index2 ) constexpr noexcept
                            { return result_value_type(); }
                           #endif
                            ) ) ) &&
@@ -1391,7 +1391,7 @@ class matrix_matrix_product
         }
       }
       // Define product operation on each element pair
-      auto lambda = [&m1,&m2]< class IndexType1, class IndexType2 >( IndexType1 index1, IndexType2 index2 ) constexpr noexcept
+      auto lambda = [&m1,&m2]( auto index1, auto index2 ) constexpr noexcept
       {
         result_value_type result = 0;
         detail::for_each( LINALG_EXECUTION_UNSEQ,
@@ -1470,8 +1470,8 @@ class inner_product
       // Store sum of inner product
       result_type result = 0;
       // Define lambda function to sum inner product
-      auto inner_prod_lambda = [&v1,&v2,&result]< class ... IndexType >( IndexType ... indices ) constexpr noexcept
-        { result += detail::access( v1, indices ... ) * detail::access( v2, indices ... ); };
+      auto inner_prod_lambda = [&v1,&v2,&result]( auto index ) constexpr noexcept
+        { result += detail::access( v1, index ) * detail::access( v2, index ); };
       // Apply lambda expression
       detail::apply_all( v1.span(), inner_prod_lambda, LINALG_EXECUTION_UNSEQ );
       // Return result
@@ -1616,15 +1616,15 @@ class outer_product
         collect_ctor_args( v1,
                            v2,
                            #ifndef LINALG_COMPILER_CLANG
-                           [&v1,&v2]< class IndexType1, class IndexType2 >( IndexType1 index1, IndexType2 index2 ) constexpr noexcept
+                           [&v1,&v2]( auto index1, auto index2 ) constexpr noexcept
                              { return detail::access( v1, index1 ) * detail::access( v2, index2 ); } ) ) ) )
                            #else // Clang does not allow use of input variables in lambda expression inside noexcept specification
-                           []< class IndexType1, class IndexType2 >( IndexType1 index1, IndexType2 index2 ) constexpr noexcept
+                           []( auto index1, auto index2 ) constexpr noexcept
                              { return typename result_matrix_type::value_type(); } ) ) ) )
                            #endif
     {
       // Define product operation on each element pair
-      auto lambda = [&v1,&v2]< class IndexType1, class IndexType2 >( IndexType1 index1, IndexType2 index2 ) constexpr noexcept
+      auto lambda = [&v1,&v2]( auto index1, auto index2 ) constexpr noexcept
       {
         return detail::access( v1, index1 ) * detail::access( v2, index2 );
       };

@@ -210,7 +210,7 @@ namespace
     // Get underling view
     auto view = fs_tensor.span();
     // Create a lambda expression from view
-    auto lambda = [&view]< class ... SizeType >( SizeType ... indices ) { return std::math::detail::access( view, indices ... ); };
+    auto lambda = [&view]( auto index1, auto index2, auto index3 ) { return std::math::detail::access( view, index1, index2, index3 ); };
     // Construct from lambda
     std::math::dr_tensor<double,3> dyn_tensor_copy( std::experimental::extents<size_t,2,2,2>(), lambda );
     // Access elements from const fs tensor tensor
@@ -1257,7 +1257,7 @@ namespace
     // Get underling view
     auto view = fs_tensor.span();
     // Create a lambda expression from view
-    auto lambda = [&view]< class ... SizeType >( SizeType ... indices ) { return std::math::detail::access( view, indices ... ); };
+    auto lambda = [&view]( auto index1, auto index2, auto index3 ) { return std::math::detail::access( view, index1, index2, index3 ); };
     // Construct from lambda
     fs_tensor_type fs_tensor_copy( lambda );
     // Access elements from const fs tensor
