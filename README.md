@@ -33,6 +33,7 @@ Running provided tests requires CMake.
   - C++20
   - No use of multi-dimensional index operator\[\](...). Use operator()(...).
   - No use of concepts. Out-of-class member function definitions with concepts unsupported until clang-16.
+    -  Some constraints are not quite the same or are unenforceable without concepts.
   - No use of execution policies.
   - No use of -stdc++. Results in linker error.
 
@@ -42,8 +43,8 @@ Documentation
 -------------
 Doxygen documentation located [here](https://longhornbuckle.github.io/linalg/html/files.html).
 
-Capabilities
-------------
+Functionality Provided
+----------------------
 - fs_vector: fixed-size fixed-capacity vector
 - fs_matrix: fixed-size fixed-capacity tensor
 - fs_tensor: fixed-size fixed-capacity tensor
