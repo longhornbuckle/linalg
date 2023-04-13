@@ -155,8 +155,8 @@ template < class S, concepts::tensor_data T >
 #else
 template < class S, class T,
            typename = enable_if_t< concepts::tensor_data_v<T> &&
-                                   !concepts::tensor_data_v<S> &&
-                                   concepts::product_exists_v< typename T::value_type, S > > >
+                                   !concepts::tensor_data_v<S> >,
+           typename = enable_if_t< concepts::product_exists_v< typename T::value_type, S > > >
 #endif
 [[nodiscard]] inline constexpr decltype(auto)
 operator * ( const S& s, const T& t )
@@ -177,8 +177,8 @@ template < concepts::tensor_data T, class S >
 #else
 template < class T, class S,
            typename = enable_if_t< concepts::tensor_data_v<T> &&
-                                   !concepts::tensor_data_v<S> &&
-                                   concepts::product_exists_v< typename T::value_type, S > >,
+                                   !concepts::tensor_data_v<S> >,
+           typename = enable_if_t< concepts::product_exists_v< typename T::value_type, S > >,
            typename = enable_if_t<true> >
 #endif
 [[nodiscard]] inline constexpr decltype(auto)
@@ -297,6 +297,7 @@ template < class V, class M,
            typename = enable_if_t< concepts::vector_data_v<V> &&
                                    concepts::matrix_data_v<M> >,
            typename = enable_if_t<true>,
+           typename = enable_if_t<true>,
            typename = enable_if_t<true> >
 #endif
 [[nodiscard]] inline constexpr decltype(auto)
@@ -338,6 +339,7 @@ template < class M, class V,
            typename = enable_if_t< concepts::matrix_data_v<M> && concepts::vector_data_v<V> >,
            typename = enable_if_t<true>,
            typename = enable_if_t<true>,
+           typename = enable_if_t<true>,
            typename = enable_if_t<true> >
 #endif
 [[nodiscard]] inline constexpr decltype(auto)
@@ -355,6 +357,7 @@ template < concepts::matrix_data M1, concepts::matrix_data M2 >
 #else
 template < class M1, class M2,
            typename = enable_if_t< concepts::matrix_data_v<M1> && concepts::matrix_data_v<M2> >,
+           typename = enable_if_t<true>,
            typename = enable_if_t<true>,
            typename = enable_if_t<true>,
            typename = enable_if_t<true>,
