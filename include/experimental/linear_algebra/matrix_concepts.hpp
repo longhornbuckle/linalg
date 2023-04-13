@@ -319,6 +319,26 @@ template < class T, class = void > struct has_matrix_multi_func : public false_t
 template < class T > struct has_matrix_multi_func< T, std::enable_if_t< std::is_same_v< decltype( declval<T>() * trans( declval<T>() ) ), decltype( declval<T>() * trans( declval<T>() ) ) > > > : public true_type { };
 template < class T > inline constexpr bool has_matrix_multi_func_v = has_matrix_multi_func<T>::value;
 
+// Test if T has a readable row vector type
+template < class T, class = void > struct has_readable_row_vector_type : public false_type { };
+template < class T > struct has_readable_row_vector_type< T, std::enable_if_t< readable_vector_data_v< typename T::const_row_vector_type > > > : public true_type { };
+template < class T > inline constexpr bool has_readable_row_vector_type_v = has_readable_row_vector_type<T>::value;
+
+// Test if T has a readable column vector type
+template < class T, class = void > struct has_readable_column_vector_type : public false_type { };
+template < class T > struct has_readable_column_vector_type< T, std::enable_if_t< readable_vector_data_v< typename T::const_column_vector_type > > > : public true_type { };
+template < class T > inline constexpr bool has_readable_column_vector_type_v = has_readable_column_vector_type<T>::value;
+
+// Test if T has a writable row vector type
+template < class T, class = void > struct has_writable_row_vector_type : public false_type { };
+template < class T > struct has_writable_row_vector_type< T, std::enable_if_t< writable_vector_data_v< typename T::row_vector_type > > > : public true_type { };
+template < class T > inline constexpr bool has_writable_row_vector_type_v = has_writable_row_vector_type<T>::value;
+
+// Test if T has a writable column vector type
+template < class T, class = void > struct has_writable_column_vector_type : public false_type { };
+template < class T > struct has_writable_column_vector_type< T, std::enable_if_t< writable_vector_data_v< typename T::column_vector_type > > > : public true_type { };
+template < class T > inline constexpr bool has_writable_column_vector_type_v = has_writable_column_vector_type<T>::value;
+
 //- Test for matrices
 
 // Matrix data
@@ -347,8 +367,8 @@ template < class M > struct readable_matrix_data : public conditional_t<
   ( !LINALG_USE_PAREN_OPERATOR || has_const_index_paren_oper_two_v<M> ) &&
   has_const_row_type_v<M> &&
   has_const_row_func_v<M> &&
-  //readable_vector_data_v<typename M::const_row_vector_type> &&
-  //readable_vector_data_v<typename M::const_column_vector_type> &&
+  has_readable_row_vector_type_v<M> &&
+  has_readable_column_vector_type_v<M> &&
   has_const_column_type_v<M> &&
   has_const_column_func_v<M> &&
   has_const_submatrix_type_v<M> &&
@@ -368,8 +388,8 @@ template < class M > struct writable_matrix_data : public conditional_t<
   ( !LINALG_USE_PAREN_OPERATOR || has_index_paren_oper_two_v<M> ) &&
   has_row_type_v<M> &&
   has_row_func_v<M> &&
-  //writable_vector_data_v<typename M::row_vector_type> &&
-  //writable_vector_data_v<typename M::column_vector_type> &&
+  has_writable_row_vector_type_v<M> &&
+  has_writable_column_vector_type_v<M> &&
   has_column_type_v<M> &&
   has_column_func_v<M> &&
   has_submatrix_type_v<M> &&
@@ -397,13 +417,16 @@ template < class M > inline constexpr bool dynamic_matrix_v = dynamic_matrix<M>:
 // Fixed size matrix data
 template < class M > struct fixed_size_matrix_data : public conditional_t< 
   matrix_data_v<M> &&
-  fixed_size_tensor_data_v<M> &&
-  detail::is_constexpr( []{ [[maybe_unused]] decltype( declval<M>().rows() )            nodiscard_warning = M().rows(); } ) &&
+  fixed_size_tensor_data_v<M>
+#if LINALG_HAS_CXX_20
+  && detail::is_constexpr( []{ [[maybe_unused]] decltype( declval<M>().rows() )            nodiscard_warning = M().rows(); } ) &&
   detail::is_constexpr( []{ [[maybe_unused]] decltype( declval<M>().columns() )         nodiscard_warning = M().columns(); } ) &&
   detail::is_constexpr( []{ [[maybe_unused]] decltype( declval<M>().row_capacity() )    nodiscard_warning = M().row_capacity(); } ) &&
   detail::is_constexpr( []{ [[maybe_unused]] decltype( declval<M>().column_capacity() ) nodiscard_warning = M().column_capacity(); } ) &&
   ( M().rows()    == M().row_capacity() ) &&
-  ( M().columns() == M().column_capacity() ), true_type, false_type > { };
+  ( M().columns() == M().column_capacity() )
+#endif
+  , true_type, false_type > { };
 template < class M > inline constexpr bool fixed_size_matrix_data_v = fixed_size_matrix_data<M>::value;
 
 // Fixed size matrix

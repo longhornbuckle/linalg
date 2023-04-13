@@ -55,6 +55,22 @@ for_each( [[maybe_unused]] ExecutionPolicy&& policy,
 }
 
 //==================================================================================================
+// is_nothrow_convertible_v implementation (for C++17)
+//==================================================================================================
+#ifdef LINALG_NO_THROW_CONVERTIBLE
+template < class From, class To >
+struct is_nothrow_convertible : public std::is_nothrow_convertible< From, To > { };
+#else
+template < class From, class To, typename = void >
+struct is_nothrow_convertible : std::conjunction< std::is_void< From >, std::is_void< To > > { };
+ 
+template < class From, class To >
+struct is_nothrow_convertible< From, To, std::enable_if< std::is_same_v< decltype( std::declval<void(&)(To) noexcept>()( std::declval<From>() ) ), decltype( std::declval<void(&)(To) noexcept>()( std::declval<From>() ) ) > > > : std::true_type { };
+#endif
+template < class From, class To >
+inline constexpr bool is_nothrow_convertible_v = is_nothrow_convertible< From, To >::value;
+
+//==================================================================================================
 //  Test if type is an mdspan
 //==================================================================================================
 template < class T >
@@ -244,8 +260,14 @@ constexpr void constexpr_for( F&& f )
 //==================================================================================================
 //  Has Index Operator concept is met if lambda has operator()( Indices ... ) defined
 //==================================================================================================
+template < class Lambda, class Enable, class IndexType, IndexType ... Indices >
+struct has_index_operator_impl : public false_type { };
 template < class Lambda, class IndexType, IndexType ... Indices >
-concept has_index_operator = requires ( Lambda&& lambda ) { lambda( Indices ... ); };
+struct has_index_operator_impl< Lambda, std::enable_if_t< std::is_same_v< decltype( declval<Lambda&&>()( Indices ... ) ), decltype( declval<Lambda&&>()( Indices ... ) ) >, void >, IndexType, Indices ... > : public true_type { };
+template < class Lambda, class IndexType, IndexType ... Indices >
+struct has_index_operator : public has_index_operator_impl< Lambda, void, IndexType, Indices ... > { };
+template < class Lambda, class IndexType, IndexType ... Indices >
+inline constexpr bool has_index_operator_v = has_index_operator< Lambda, IndexType, Indices ... >::value;
 
 //==================================================================================================
 //  Is Defined is true if the class has been defined
@@ -363,13 +385,13 @@ inline void apply_all_strided3_except( View&&                 view,
   for_each( execution_policy,
             faux_index_iterator<decay_t<decltype( get<index>(indices) )> >(0),
             faux_index_iterator<decay_t<decltype( get<index>(indices) )> >(view.extent(index)),
-            [&lambda,&indices,&eptr] ( decay_t<decltype( get<index>(indices) )> curr_index ) constexpr noexcept
+            [&lambda,&indices,&eptr] ( decay_t<decltype( get<index>(indices) )> curr_index ) noexcept
               {
                 try { lambda( get<BeforeIndices>(indices) ..., curr_index, get<AfterIndices+index>(indices) ... ); }
                 catch ( ... ) { eptr = current_exception(); }
               } );
   // If exceptions were thrown, rethrow the last
-  if ( eptr ) [[unlikely]]
+  if ( eptr ) LINALG_UNLIKELY
   {
     rethrow_exception( eptr );
   }
@@ -442,6 +464,17 @@ template < size_t    Index,
            class     Lambda,
            class     ExecutionPolicy,
            class ... IndexType >
+constexpr void apply_all_strided2( View&&               view,
+                                   Lambda&&             lambda,
+                                   ExecutionPolicy&&    execution_policy,
+                                   tuple<IndexType...>& indices )
+  noexcept( apply_all_strided2_is_noexcept<Index,View,Lambda,ExecutionPolicy,IndexType ...>() );
+
+template < size_t    Index,
+           class     View,
+           class     Lambda,
+           class     ExecutionPolicy,
+           class ... IndexType >
 inline void apply_all_strided2_except( View&&               view,
                                        Lambda&&             lambda,
                                        ExecutionPolicy&&    execution_policy,
@@ -455,14 +488,14 @@ inline void apply_all_strided2_except( View&&               view,
   for_each( execution_policy,
             faux_index_iterator<decay_t<decltype( get<index_stride>(indices) )> >(0),
             faux_index_iterator<decay_t<decltype( get<index_stride>(indices) )> >(view.extent(index_stride)),
-            [&view,&lambda,&execution_policy,&indices,&eptr,index_stride] ( decay_t<decltype( get<index_stride>(indices) )> index ) constexpr noexcept
+            [&view,&lambda,&execution_policy,&indices,&eptr,index_stride] ( decay_t<decltype( get<index_stride>(indices) )> index ) noexcept
               {
                 get<index_stride>(indices) = index;
                 try { apply_all_strided2<Index+1>( view, lambda, execution_policy, indices ); }
                 catch ( ... ) { eptr = current_exception(); }
               } );
   // If exceptions were thrown, rethrow the last
-  if ( eptr ) [[unlikely]]
+  if ( eptr ) LINALG_UNLIKELY
   {
     rethrow_exception( eptr );
   }
@@ -557,10 +590,10 @@ inline void apply_all_impl2_except( View&&              view,
   for_each( execution_policy,
             faux_index_iterator<typename decay_t<View>::size_type>( 0 ),
             faux_index_iterator<typename decay_t<View>::size_type>( view.extent(dim) ),
-            [ &lambda, &before_indices..., &eptr ]( typename decay_t<View>::size_type index ) constexpr noexcept
+            [ &lambda, &before_indices..., &eptr ]( typename decay_t<View>::size_type index ) noexcept
               { try { lambda( before_indices ..., index ); } catch ( ... ) { eptr = current_exception(); } } );
   // If exceptions were thrown, rethrow the last
-  if ( eptr ) [[unlikely]]
+  if ( eptr ) LINALG_UNLIKELY
   {
     rethrow_exception( eptr );
   }
@@ -625,6 +658,20 @@ template < class           View,
            class           ExtentsType,
            ExtentsType     FirstExtents,
            ExtentsType ... Extents >
+constexpr void apply_all_impl( View&&                                                                 view,
+                               Lambda&&                                                               lambda,
+                               ExecutionPolicy&&                                                      execution_policy,
+                               [[maybe_unused]] integer_sequence<ExtentsType,FirstExtents,Extents...> first_extents,
+                               SizeType ...                                                           indices )
+  noexcept( apply_all_impl_is_noexcept<View,Lambda,ExecutionPolicy,SizeType...>( integer_sequence<ExtentsType,FirstExtents,Extents...>{} ) );
+
+template < class           View,
+           class           Lambda,
+           class           ExecutionPolicy,
+           class ...       SizeType,
+           class           ExtentsType,
+           ExtentsType     FirstExtents,
+           ExtentsType ... Extents >
 inline void apply_all_impl_except( View&&            view,
                                    Lambda&&          lambda,
                                    ExecutionPolicy&& execution_policy,
@@ -644,10 +691,10 @@ inline void apply_all_impl_except( View&&            view,
   for_each( execution_policy,
             faux_index_iterator<typename decay_t<View>::size_type>( 0 ),
             faux_index_iterator<typename decay_t<View>::size_type>( view.extent(FirstExtents) ),
-            [ &for_each_lambda, &eptr ] ( typename decay_t<View>::size_type index ) constexpr noexcept
+            [ &for_each_lambda, &eptr ] ( typename decay_t<View>::size_type index ) noexcept
               { try { for_each_lambda(index); } catch ( ... ) { eptr = current_exception(); } } );
   // If exceptions were thrown, rethrow the last
-  if ( eptr ) [[unlikely]]
+  if ( eptr ) LINALG_UNLIKELY
   {
     rethrow_exception( eptr );
   }
@@ -860,7 +907,7 @@ assign_view( ToView& to_view, const FromView& from_view )
   }
   else
   {
-    if ( sufficient_extents( to_view.extents(), from_view.extents() ) ) [[likely]]
+    if ( sufficient_extents( to_view.extents(), from_view.extents() ) ) LINALG_LIKELY
     {
       apply_all( from_view,
                  [ &to_view, &from_view ]( auto ... indices )
@@ -868,7 +915,7 @@ assign_view( ToView& to_view, const FromView& from_view )
                    { access( to_view, indices ... ) = access( from_view, indices ... ); },
                  LINALG_EXECUTION_UNSEQ );
     }
-    else [[unlikely]]
+    else LINALG_UNLIKELY
     {
       throw length_error( "Multi-dimensional spans mismatch." );
     }
@@ -904,7 +951,7 @@ copy_view( ToView& to_view, const FromView& from_view )
   }
   else
   {
-    if ( sufficient_extents( to_view.extents(), from_view.extents() ) ) [[likely]]
+    if ( sufficient_extents( to_view.extents(), from_view.extents() ) ) LINALG_LIKELY
     {
       apply_all( forward<ToView>( to_view ),
                 [ &to_view, &from_view ]( auto ... indices )
@@ -912,7 +959,7 @@ copy_view( ToView& to_view, const FromView& from_view )
                   { ::new ( addressof( access( to_view, indices ... ) ) ) typename ToView::element_type( access( from_view, indices ... ) ); },
                 LINALG_EXECUTION_UNSEQ );
     }
-    else [[unlikely]]
+    else LINALG_UNLIKELY
     {
       throw length_error( "Multi-dimensional spans mismatch." );
     }

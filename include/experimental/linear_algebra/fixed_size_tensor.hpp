@@ -98,8 +98,6 @@ class fs_tensor
 
     //- Destructor / Constructors / Assignments
 
-    /// @brief Destructor
-    constexpr ~fs_tensor()                  noexcept( is_nothrow_destructible_v<element_type> );
     /// @brief Default constructor
     constexpr fs_tensor()                   noexcept( is_nothrow_default_constructible_v<element_type> );
     /// @brief Default move constructor
@@ -298,15 +296,6 @@ template < class T, class L, class A, size_t ... Ds >
 #ifdef LINALG_ENABLE_CONCEPTS
   requires ( ( Ds >= 0 ) && ... )
 #endif
-constexpr fs_tensor<T,L,A,Ds...>::~fs_tensor()
-  noexcept( is_nothrow_destructible_v<element_type> )
-{
-}
-
-template < class T, class L, class A, size_t ... Ds >
-#ifdef LINALG_ENABLE_CONCEPTS
-  requires ( ( Ds >= 0 ) && ... )
-#endif
 constexpr fs_tensor<T,L,A,Ds...>::fs_tensor()
   noexcept( is_nothrow_default_constructible_v<typename fs_tensor<T,L,A,Ds...>::element_type> )
 {
@@ -378,7 +367,7 @@ constexpr fs_tensor<T,L,A,Ds...>::fs_tensor( Lambda&& lambda ) noexcept( noexcep
 #endif
 {
   // If expression is no except, then no need to capture last exception
-  constexpr bool lambda_is_noexcept = is_nothrow_convertible_v< decltype( declval<Lambda&&>()( Ds ... ) ), element_type >;
+  constexpr bool lambda_is_noexcept = detail::is_nothrow_convertible_v< decltype( declval<Lambda&&>()( Ds ... ) ), element_type >;
   // Construct all elements from lambda output
   auto ctor = [this,&lambda]( auto ... indices ) constexpr noexcept( lambda_is_noexcept )
   {

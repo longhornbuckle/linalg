@@ -6,7 +6,7 @@ macro( linalg_add_test name )
   if ( EXISTS CMAKE_CXX_STANDARD )
     set_property( TARGET ${name} PROPERTY CXX_STANDARD CMAKE_CXX_STANDARD ) # set c++ version
   else()
-    set_property( TARGET ${name} PROPERTY CXX_STANDARD 23 ) # set c++ version
+    set_property( TARGET ${name} PROPERTY CXX_STANDARD 17 ) # set c++ version
   endif()
   set( CMAKE_CXX_STANDARD_REQUIRED YES)
   set( CMAKE_CXX_EXTENSIONS NO )

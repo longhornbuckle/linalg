@@ -79,6 +79,7 @@ class negation
 
     /// @brief Returns -1 * tensor
     [[nodiscard]] static constexpr auto negate( const tensor_type& t )
+      #ifdef LINALG_UNEVALUATED_LAMBDA
       noexcept( noexcept( detail::make_from_tuple< result_tensor_type >(
         collect_ctor_args( declval<const tensor_type&>(),
         #ifndef LINALG_COMPILER_CLANG
@@ -86,6 +87,9 @@ class negation
         #else // Clang does not allow use of input variables in lambda expression inside noexcept specification
                            []( auto ... indices ) constexpr noexcept { return typename tensor_type::value_type(); } ) ) ) )
         #endif
+      #else
+      // Cannot assume the constructor is noexcept. Just leave with no exception specification declared.
+      #endif
     {
       // Define negation operation on each element
       auto negate_lambda = [&t]( auto ... indices ) constexpr noexcept { return -( detail::access( t, indices ... ) ); };
@@ -201,6 +205,7 @@ class addition
 
     /// @brief Returns t1 + t2
     [[nodiscard]] static constexpr auto add( const first_tensor_type& t1, const second_tensor_type& t2 )
+      #ifdef LINALG_UNEVALUATED_LAMBDA
       noexcept( noexcept( detail::make_from_tuple< result_tensor_type >(
         collect_ctor_args( declval<const first_tensor_type&>(),
                             declval<const second_tensor_type&>(),
@@ -211,6 +216,9 @@ class addition
                             []( auto ... indices ) constexpr noexcept
                               { return typename result_tensor_type::value_type(); } ) ) ) )
         #endif
+      #else
+      // Cannot assume the constructor is noexcept. Just leave with no exception specification declared.
+      #endif
     {
       // LEAVING FOR REFERENCE IN CASE NEED LATER
       // Define addition operation on each element pair
@@ -226,6 +234,7 @@ class addition
     }
     /// @brief Returns t1 += t2
     [[nodiscard]] static constexpr first_tensor_type& add( first_tensor_type& t1, const second_tensor_type& t2 )
+      #ifdef LINALG_UNEVALUATED_LAMBDA
       noexcept( noexcept( detail::apply_all( t1.underlying_span(),
       #ifndef LINALG_COMPILER_CLANG
                                              [&t1,&t2]( auto ... indices ) constexpr noexcept
@@ -235,6 +244,9 @@ class addition
                                                { },
       #endif
                                              LINALG_EXECUTION_UNSEQ ) ) )
+      #else
+      // Cannot assume the constructor is noexcept. Just leave with no exception specification declared.
+      #endif
     {
       auto add_lambda = [&t1,&t2]( auto ... indices ) constexpr noexcept
         { static_cast<void>( detail::access( t1, indices ... ) += detail::access( t2, indices ... ) ); };
@@ -336,6 +348,7 @@ class subtraction
 
     /// @brief Returns t1 - t2
     [[nodiscard]] static constexpr auto subtract( const first_tensor_type& t1, const second_tensor_type& t2 )
+      #ifdef LINALG_UNEVALUATED_LAMBDA
       noexcept( noexcept( detail::make_from_tuple< result_tensor_type >(
         collect_ctor_args( declval<const first_tensor_type&>(),
                            declval<const second_tensor_type&>(),
@@ -346,6 +359,9 @@ class subtraction
                              []( auto ... indices ) constexpr noexcept
                                { return typename result_tensor_type::value_type(); } ) ) ) )
         #endif
+      #else
+      // Cannot assume the constructor is noexcept. Just leave with no exception specification declared.
+      #endif
     {
       auto subtract_lambda = [&t1,&t2]( auto ... indices ) constexpr noexcept
         { return detail::access( t1, indices ... ) - detail::access( t2, indices ... ); };
@@ -354,6 +370,7 @@ class subtraction
     }
     /// @brief Returns t1 -= t2
     [[nodiscard]] static constexpr first_tensor_type& subtract( first_tensor_type& t1, const second_tensor_type& t2 )
+      #ifdef LINALG_UNEVALUATED_LAMBDA
       noexcept( noexcept( detail::apply_all( t1.underlying_span(),
         #ifndef LINALG_COMPILER_CLANG
                                              [&t1,&t2]( auto ... indices ) constexpr noexcept
@@ -363,6 +380,9 @@ class subtraction
                                                { },
         #endif
                                              LINALG_EXECUTION_UNSEQ ) ) )
+      #else
+      // Cannot assume the constructor is noexcept. Just leave with no exception specification declared.
+      #endif
     {
       auto subtract_lambda = [&t1,&t2]( auto ... indices ) constexpr noexcept
         { static_cast<void>( detail::access( t1, indices ... ) -= detail::access( t2, indices ... ) ); };
@@ -438,6 +458,7 @@ class scalar_product
 
     /// @brief Returns s * t
     [[nodiscard]] static constexpr auto prod( const S& s, const tensor_type& t )
+      #ifdef LINALG_UNEVALUATED_LAMBDA
       noexcept( noexcept( detail::make_from_tuple< result_tensor_type >(
         collect_ctor_args( t,
         #ifndef LINALG_COMPILER_CLANG
@@ -447,6 +468,9 @@ class scalar_product
                            []( auto ... indices ) constexpr noexcept
                              { return typename result_tensor_type::value_type(); } ) ) ) )
         #endif
+      #else
+      // Cannot assume the constructor is noexcept. Just leave with no exception specification declared.
+      #endif
     {
       // Define product operation on each element
       auto prod_lambda = [&s,&t]( auto ... indices ) constexpr noexcept
@@ -456,6 +480,7 @@ class scalar_product
     }
     /// @brief Returns t * s
     [[nodiscard]] static constexpr auto prod( const tensor_type& t, const S& s )
+      #ifdef LINALG_UNEVALUATED_LAMBDA
       noexcept( noexcept( detail::make_from_tuple< result_tensor_type >(
         collect_ctor_args( t,
         #ifndef LINALG_COMPILER_CLANG
@@ -465,6 +490,9 @@ class scalar_product
                            []( auto ... indices ) constexpr noexcept
                              { return typename result_tensor_type::value_type(); } ) ) ) )
         #endif
+      #else
+      // Cannot assume the constructor is noexcept. Just leave with no exception specification declared.
+      #endif
     {
       // Define product operation on each element
       auto prod_lambda = [&s,&t]( auto ... indices ) constexpr noexcept
@@ -474,6 +502,7 @@ class scalar_product
     }
     /// @brief Returns t *= s
     [[nodiscard]] static constexpr tensor_type& prod( tensor_type& t, const S& s )
+      #ifdef LINALG_UNEVALUATED_LAMBDA
       noexcept( noexcept( detail::apply_all( t.underlying_span(),
       #ifndef LINALG_COMPILER_CLANG
                                              [&t,&s]( auto ... indices ) constexpr noexcept
@@ -483,6 +512,9 @@ class scalar_product
                                                { },
       #endif
                                              LINALG_EXECUTION_UNSEQ ) ) )
+      #else
+      // Cannot assume the constructor is noexcept. Just leave with no exception specification declared.
+      #endif
     {
       // Define product operation on each element
       auto prod_lambda = [&s,&t]( auto ... indices ) constexpr noexcept
@@ -559,6 +591,7 @@ struct scalar_division
 
     /// @brief Returns t / s
     [[nodiscard]] static constexpr auto divide( const tensor_type& t, const S& s )
+      #ifdef LINALG_UNEVALUATED_LAMBDA
       noexcept( noexcept( detail::make_from_tuple< result_tensor_type >(
         collect_ctor_args( declval<const tensor_type&>(),
         #ifndef LINALG_COMPILER_CLANG
@@ -568,6 +601,9 @@ struct scalar_division
                             []( auto ... indices ) constexpr noexcept
                               { return typename result_tensor_type::value_type(); } ) ) ) )
         #endif
+      #else
+      // Cannot assume the constructor is noexcept. Just leave with no exception specification declared.
+      #endif
     {
       // Define division operation on each element
       auto divide_lambda = [&t,&s]( auto ... indices ) constexpr noexcept
@@ -577,6 +613,7 @@ struct scalar_division
     }
     /// @brief Returns t /= s
     [[nodiscard]] static constexpr tensor_type& divide( tensor_type& t, const S& s )
+      #ifdef LINALG_UNEVALUATED_LAMBDA
       noexcept( noexcept( detail::apply_all( t.underlying_span(),
       #ifndef LINALG_COMPILER_CLANG
                                              [&t,&s]( auto ... indices ) constexpr noexcept
@@ -586,6 +623,9 @@ struct scalar_division
                                                { },
       #endif
                                              LINALG_EXECUTION_UNSEQ ) ) )
+      #else
+      // Cannot assume the constructor is noexcept. Just leave with no exception specification declared.
+      #endif
     {
       // Define product operation on each element
       auto divide_lambda = [&s,&t]( auto ... indices ) constexpr noexcept
@@ -666,6 +706,7 @@ class transpose_matrix
 
     /// @brief Returns transpose( matrix )
     [[nodiscard]] static constexpr auto trans( const matrix_type& m )
+      #ifdef LINALG_UNEVALUATED_LAMBDA
       noexcept( noexcept( detail::make_from_tuple< result_matrix_type >(
         collect_ctor_args( m,
         #ifndef LINALG_COMPILER_CLANG
@@ -675,6 +716,9 @@ class transpose_matrix
           []( auto index1, auto index2 ) constexpr noexcept
             { return typename matrix_type::value_type(); } ) ) ) )
         #endif
+      #else
+      // Cannot assume the constructor is noexcept. Just leave with no exception specification declared.
+      #endif
     {
       // Define negation operation on each element
       auto transpose_lambda = [&m]( auto index1, auto index2 ) constexpr noexcept
@@ -783,6 +827,7 @@ class conjugate_matrix
 
     /// @brief Returns transpose conjugate( matrix )
     [[nodiscard]] static constexpr auto conjugate( const matrix_type& m )
+      #ifdef LINALG_UNEVALUATED_LAMBDA
       noexcept( noexcept( detail::make_from_tuple< result_matrix_type >(
         collect_ctor_args( m,
         #ifndef LINALG_COMPILER_CLANG
@@ -792,6 +837,9 @@ class conjugate_matrix
           []( auto index1, auto index2 ) constexpr noexcept
             { return ::std::conj( typename matrix_type::value_type() ); } ) ) ) )
         #endif
+      #else
+      // Cannot assume the constructor is noexcept. Just leave with no exception specification declared.
+      #endif
     {
       // Define negation operation on each element
       auto conjugate_lambda = [&m]( auto index1, auto index2 ) constexpr noexcept
@@ -867,6 +915,7 @@ class conjugate_vector
 
     /// @brief Returns conjugate( vector )
     [[nodiscard]] static constexpr auto conjugate( const vector_type& v )
+      #ifdef LINALG_UNEVALUATED_LAMBDA
       noexcept( !detail::is_complex_v<typename vector_type::value_type> ||
                 noexcept( detail::make_from_tuple< result_vector_type >(
                   collect_ctor_args( v,
@@ -875,6 +924,9 @@ class conjugate_vector
                 #else // Clang does not allow use of input variables in lambda expression inside noexcept specification
                                      []( auto index ) constexpr noexcept { return ::std::conj( typename vector_type::value_type() ); } ) ) ) )
                 #endif
+      #else
+      // Cannot assume the constructor is noexcept. Just leave with no exception specification declared.
+      #endif
     {
       if constexpr ( detail::is_complex_v<typename vector_type::value_type> )
       {
@@ -1081,6 +1133,7 @@ class vector_matrix_product
                                          ( Mat::extents_type::static_extent(0) == experimental::dynamic_extent ) ) > >
     #endif
     [[nodiscard]] static constexpr pre_result_vector_type prod( const vector_type& v, const matrix_type& m )
+      #ifdef LINALG_UNEVALUATED_LAMBDA
       noexcept( noexcept(
         detail::make_from_tuple< pre_result_vector_type >(
           collect_ctor_args( v,
@@ -1102,6 +1155,9 @@ class vector_matrix_product
                              ) ) ) &&
                 ( ( vector_type::extents_type::static_extent(0) != experimental::dynamic_extent ) &&
                   ( matrix_type::extents_type::static_extent(0) != experimental::dynamic_extent ) ) )
+      #else
+      // Cannot assume the constructor is noexcept. Just leave with no exception specification declared.
+      #endif
     #ifdef LINALG_ENABLE_CONCEPTS
       requires ( ( vector_type::extents_type::static_extent(0) == matrix_type::extents_type::static_extent(0) ) ||
                   ( vector_type::extents_type::static_extent(0) == experimental::dynamic_extent ) ||
@@ -1113,7 +1169,7 @@ class vector_matrix_product
                      ( matrix_type::extents_type::static_extent(0) == experimental::dynamic_extent ) )
       {
         // If sizes are not compatable, then throw exception
-        if ( v.size() != m.size().extent(0) ) [[unlikely]]
+        if ( v.size() != m.size().extent(0) ) LINALG_UNLIKELY
         {
           throw length_error( "Matrix and vector sizes are incompatable." );
         }
@@ -1159,6 +1215,7 @@ class vector_matrix_product
                                          ( Vec::extents_type::static_extent(0) == experimental::dynamic_extent ) ) > >
     #endif
     [[nodiscard]] static constexpr post_result_vector_type prod( const matrix_type& m, const vector_type& v )
+      #ifdef LINALG_UNEVALUATED_LAMBDA
       noexcept( noexcept(
         detail::make_from_tuple< post_result_vector_type >(
           collect_ctor_args( declval<const vector_type&>(),
@@ -1180,6 +1237,9 @@ class vector_matrix_product
                              ) ) ) &&
                 ( ( matrix_type::extents_type::static_extent(1) != experimental::dynamic_extent ) &&
                   ( vector_type::extents_type::static_extent(0) != experimental::dynamic_extent ) ) )
+      #else
+      // Cannot assume the constructor is noexcept. Just leave with no exception specification declared.
+      #endif
     #ifdef LINALG_ENABLE_CONCEPTS
       requires ( ( matrix_type::extents_type::static_extent(1) == vector_type::extents_type::static_extent(0) ) ||
                   ( matrix_type::extents_type::static_extent(1) == experimental::dynamic_extent ) ||
@@ -1191,7 +1251,7 @@ class vector_matrix_product
                      ( vector_type::extents_type::static_extent(0) == experimental::dynamic_extent ) )
       {
         // If sizes are not compatable, then throw exception
-        if ( v.size() != m.size().extent(1) ) [[unlikely]]
+        if ( v.size() != m.size().extent(1) ) LINALG_UNLIKELY
         {
           throw length_error( "Matrix and vector sizes are incompatable." );
         }
@@ -1354,6 +1414,7 @@ class matrix_matrix_product
                                          ( Second_mat::extents_type::static_extent(0) == experimental::dynamic_extent ) ) > >
     #endif
     [[nodiscard]] static constexpr result_matrix_type prod( const first_matrix_type& m1, const second_matrix_type& m2 )
+      #ifdef LINALG_UNEVALUATED_LAMBDA
       noexcept( noexcept( detail::make_from_tuple< result_matrix_type >(
         collect_ctor_args( declval<const first_matrix_type&>(),
                            declval<const second_matrix_type&>(),
@@ -1374,6 +1435,9 @@ class matrix_matrix_product
                            ) ) ) &&
                 ( first_matrix_type::extents_type::static_extent(1) != experimental::dynamic_extent ) &&
                 ( second_matrix_type::extents_type::static_extent(0) != experimental::dynamic_extent ) )
+      #else
+      // Cannot assume the constructor is noexcept. Just leave with no exception specification declared.
+      #endif
     #ifdef LINALG_ENABLE_CONCEPTS
       requires ( ( first_matrix_type::extents_type::static_extent(1) == second_matrix_type::extents_type::static_extent(0) ) ||
                  ( first_matrix_type::extents_type::static_extent(1) == experimental::dynamic_extent ) ||
@@ -1385,7 +1449,7 @@ class matrix_matrix_product
                      ( second_matrix_type::extents_type::static_extent(0) == experimental::dynamic_extent ) )
       {
         // If sizes are not compatable, then throw exception
-        if ( m1.size().extent(1) != m2.size().extent(0) ) [[unlikely]]
+        if ( m1.size().extent(1) != m2.size().extent(0) ) LINALG_UNLIKELY
         {
           throw length_error( "Matrix sizes are incompatable." );
         }
@@ -1462,7 +1526,7 @@ class inner_product
       if constexpr ( !detail::extents_are_equal_v<typename first_vector_type::extents_type,typename second_vector_type::extents_type> )
       {
         // Check if sizes are equal
-        if ( !( v1.size() == v2.size() ) ) [[unlikely]]
+        if ( !( v1.size() == v2.size() ) ) LINALG_UNLIKELY
         {
           throw length_error( "Vectors must have same size." );
         }
@@ -1612,6 +1676,7 @@ class outer_product
   public:
     /// @brief Computes the outer product of v1 and v2
     [[nodiscard]] static constexpr result_matrix_type prod( const first_vector_type& v1, const second_vector_type& v2 )
+      #ifdef LINALG_UNEVALUATED_LAMBDA
       noexcept( noexcept( detail::make_from_tuple< result_matrix_type >(
         collect_ctor_args( v1,
                            v2,
@@ -1622,6 +1687,9 @@ class outer_product
                            []( auto index1, auto index2 ) constexpr noexcept
                              { return typename result_matrix_type::value_type(); } ) ) ) )
                            #endif
+      #else
+      // Cannot assume the constructor is noexcept. Just leave with no exception specification declared.
+      #endif
     {
       // Define product operation on each element pair
       auto lambda = [&v1,&v2]( auto index1, auto index2 ) constexpr noexcept

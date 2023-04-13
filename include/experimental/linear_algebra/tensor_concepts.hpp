@@ -428,14 +428,29 @@ template < class T, class U > struct division_exists< T, U, std::enable_if_t< is
 template < class T, class U > inline constexpr bool division_exists_v = division_exists<T,U>::value;
 
 // Test for rank N tensor
-template < class T, size_t N, class = void > struct is_rank : public false_type { };
-template < class T, size_t N > struct is_rank< T, N, std::enable_if_t< T::extents_type::rank() == N > > : public true_type { };
-template < class T, size_t N > inline constexpr bool is_rank_v = is_rank<T,N>::value;
+template < class T, auto N, class = void > struct is_rank : public false_type { };
+template < class T, auto N > struct is_rank< T, N, std::enable_if_t< T::extents_type::rank() == N > > : public true_type { };
+template < class T, auto N > inline constexpr bool is_rank_v = is_rank<T,N>::value;
 
 // Test for constant tensor
 template < class T, class = void > struct is_const_tensor : public false_type { };
 template < class T > struct is_const_tensor< T, std::enable_if_t< std::is_const_v< std::remove_reference_t< typename T::reference_type > > > > : public true_type { };
 template < class T > inline constexpr bool is_const_tensor_v = is_const_tensor<T>::value;
+
+// Test for static extents
+template < class T, class = void > struct has_static_extents : public false_type { };
+template < class T > struct has_static_extents< T, std::enable_if_t< detail::extents_is_static_v<typename T::extents_type> > > : public true_type { };
+template < class T > inline constexpr bool has_static_extents_v = has_static_extents<T>::value;
+
+// Test for homogeneous tuple type
+template < class T, class = void > struct has_homogeneous_tuple_type : public false_type { };
+template < class T > struct has_homogeneous_tuple_type< T, std::enable_if_t< detail::is_homogeneous_tuple_v< typename T::tuple_type > > > : public true_type { };
+template < class T > inline constexpr bool has_homogeneous_tuple_type_v = has_homogeneous_tuple_type<T>::value;
+
+// Test for capabitible tuple size
+template < class T, class = void > struct has_capatible_tuple_size : public false_type { };
+template < class T > struct has_capatible_tuple_size< T, std::enable_if_t< ( tuple_size_v< typename T::tuple_type > == T::extents_type::rank() ) > > : public true_type { };
+template < class T > inline constexpr bool has_capatible_tuple_size_v = has_capatible_tuple_size<T>::value;
 
 //- Test for tensors
 
@@ -464,8 +479,8 @@ template < class T > inline constexpr bool tensor_v = tensor<T>::value;
 template < class T > struct readable_tensor_data : public conditional_t< 
   tensor_data_v<T> &&
   has_tuple_type_v<T> &&
-  //detail::is_homogeneous_tuple_v< typename T::tuple_type > &&
-  //( tuple_size_v< typename T::tuple_type > == T::extents_type::rank() ) &&
+  has_homogeneous_tuple_type_v<T> &&
+  has_capatible_tuple_size_v<T> &&
   has_span_type_v<T> &&
   has_const_underlying_span_type_v<T> &&
   has_span_func_v<T> &&
@@ -513,11 +528,14 @@ template < class T > inline constexpr bool dynamic_tensor_v = dynamic_tensor<T>:
 // Fixed size tensor data
 template < class T > struct fixed_size_tensor_data : public conditional_t< 
   tensor_data_v<T> &&
-  detail::extents_is_static_v<typename T::extents_type> &&
-  detail::is_constexpr( []{ T(); } ) &&
+  has_static_extents_v<T>
+#if LINALG_HAS_CXX_20
+  && detail::is_constexpr( []{ T(); } ) &&
   detail::is_constexpr( []{ [[maybe_unused]] decltype( declval<T>().size() )     nodiscard_warning = T().size(); } ) &&
   detail::is_constexpr( []{ [[maybe_unused]] decltype( declval<T>().capacity() ) nodiscard_warning = T().capacity(); } ) &&
-  ( T().size() == T().capacity() ), true_type, false_type > { };
+  ( T().size() == T().capacity() )
+#endif
+  , true_type, false_type > { };
 template < class T > inline constexpr bool fixed_size_tensor_data_v = fixed_size_tensor_data<T>::value;
 
 // Fixed size tensor

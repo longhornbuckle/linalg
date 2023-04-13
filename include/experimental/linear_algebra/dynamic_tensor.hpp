@@ -52,9 +52,9 @@ class dr_tensor
 
     /// @brief Type used to view the const memory within capacity
     using const_capacity_span_type   = experimental::mdspan< const element_type,
-                                                           extents_type,
-                                                           layout_type,
-                                                           typename detail::rebind_accessor_t< accessor_type,const element_type > >;
+                                                             extents_type,
+                                                             layout_type,
+                                                             typename detail::rebind_accessor_t< accessor_type,const element_type > >;
     /// @brief Type used to view the memory within capacity
     using capacity_span_type         = experimental::mdspan< element_type, extents_type, layout_type, accessor_type >;
 
@@ -105,11 +105,11 @@ class dr_tensor
                class IndexType,
                IndexType ... Indices >
     struct convertible_lambda_expression< Lambda, Seq<IndexType,Indices...> > :
-      public convertible_lambda_expression_impl< Lambda, Seq<IndexType,Indices...>, detail::has_index_operator<Lambda,IndexType,Indices...> > { };
+      public convertible_lambda_expression_impl< Lambda, Seq<IndexType,Indices...>, detail::has_index_operator_v<Lambda,IndexType,Indices...> > { };
     template < class Lambda,
                class Seq >
     static inline constexpr bool convertible_lambda_expression_v = convertible_lambda_expression<Lambda,Seq>::value;
-
+    
   public:
     //- Rebind
 
@@ -144,7 +144,7 @@ class dr_tensor
     //- Destructor / Constructors / Assignments
 
     /// @brief Destructor
-    constexpr ~dr_tensor() noexcept( is_nothrow_destructible_v<element_type> );
+    LINALG_CONSTEXPR_DESTRUCTOR ~dr_tensor() noexcept( is_nothrow_destructible_v<element_type> );
     /// @brief Default constructor
     constexpr dr_tensor() noexcept;
     /// @brief Move constructor
@@ -508,6 +508,9 @@ class dr_tensor
     [[nodiscard]] constexpr underlying_span_type create_view( const extents_type s ) noexcept;
     template < size_t ... Indices >
     [[nodiscard]] constexpr underlying_span_type create_view_impl( const extents_type s, [[maybe_unused]] index_sequence<Indices...> ) noexcept;
+    // Attempts to copy view. If an exception is thrown, deallocates and rethrows
+    template < class MDS >
+    inline void copy_view_except( MDS&& span );
     // Calls destructor on all elements and deallocates the allocator
     // If an exception is thrown, the last exception to be thrown will be re-thrown.
     constexpr void destroy_all() noexcept( is_nothrow_destructible_v<element_type> );
@@ -537,7 +540,7 @@ class dr_tensor
 //- Destructor / Constructors / Assignments
 
 template < class T, size_t R, class Alloc, class L , class Access >
-constexpr dr_tensor<T,R,Alloc,L,Access>::~dr_tensor()
+LINALG_CONSTEXPR_DESTRUCTOR dr_tensor<T,R,Alloc,L,Access>::~dr_tensor()
   noexcept( is_nothrow_destructible_v<typename dr_tensor<T,R,Alloc,L,Access>::element_type> )
 {
   // If the elements pointer has been set, then destroy and deallocate
@@ -585,18 +588,8 @@ constexpr dr_tensor<T,R,Alloc,L,Access>::dr_tensor( dr_tensor&& rhs )
     }
     else
     {
-      try
-      {
-        // Copy construct all elements
-        detail::copy_view( this->view_, rhs.span() );
-      }
-      catch ( ... )
-      {
-        // Deallocate
-        allocator_traits<allocator_type>::deallocate( this->alloc_, this->elems_, this->linear_capacity() );
-        // Rethrow
-        rethrow_exception( current_exception() );
-      }
+      // Copy all elements - handling possible exceptions
+      this->copy_view_except( rhs.span() );
     }
   }
   else
@@ -627,18 +620,8 @@ constexpr dr_tensor<T,R,Alloc,L,Access>::dr_tensor( const dr_tensor& rhs ) :
   }
   else
   {
-    try
-    {
-      // Copy construct all elements
-      detail::copy_view( this->view_, rhs.span() );
-    }
-    catch ( ... )
-    {
-      // Deallocate
-      allocator_traits<allocator_type>::deallocate( this->alloc_, this->elems_, this->linear_capacity() );
-      // Rethrow
-      rethrow_exception( current_exception() );
-    }
+    // Copy all elements - handling possible exceptions
+    this->copy_view_except( rhs.span() );
   }
 }
 
@@ -1345,6 +1328,24 @@ create_view_impl( const extents_type s, [[maybe_unused]] index_sequence<Indices.
 }
 
 template < class T, size_t R, class Alloc, class L , class Access >
+template < class MDS >
+inline void dr_tensor<T,R,Alloc,L,Access>::copy_view_except( MDS&& span )
+{
+  try
+  {
+    // Copy construct all elements
+    detail::copy_view( this->view_, span );
+  }
+  catch ( ... )
+  {
+    // Deallocate
+    allocator_traits<allocator_type>::deallocate( this->alloc_, this->elems_, this->linear_capacity() );
+    // Rethrow
+    rethrow_exception( current_exception() );
+  }
+}
+
+template < class T, size_t R, class Alloc, class L , class Access >
 constexpr void dr_tensor<T,R,Alloc,L,Access>::destroy_all()
   noexcept( is_nothrow_destructible_v<typename dr_tensor<T,R,Alloc,L,Access>::element_type> )
 {
@@ -1383,11 +1384,11 @@ inline void dr_tensor<T,R,Alloc,L,Access>::destroy_all_except()
   detail::for_each( LINALG_EXECUTION_UNSEQ,
                     this->elems_,
                     this->elems_ + this->view_.size(),
-                    [this,&eptr]( const element_type& elem ) constexpr { try { this->elem_.~element_type(); } catch ( ... ) { eptr = current_exception(); } } );
+                    [this,&eptr]( const element_type& elem ) { try { this->elem_.~element_type(); } catch ( ... ) { eptr = current_exception(); } } );
   // Deallocate
   allocator_traits<allocator_type>::deallocate( this->alloc_, this->elems_, this->linear_capacity() );
   // If exceptions were thrown, rethrow the last
-  if ( eptr ) [[unlikely]]
+  if ( eptr ) LINALG_UNLIKELY
   {
     rethrow_exception( eptr );
   }
@@ -1422,7 +1423,7 @@ inline void dr_tensor<T,R,Alloc,L,Access>::construct_all_except()
     detail::for_each( LINALG_EXECUTION_UNSEQ,
                       this->elems_,
                       this->elems_ + this->view_.size(),
-                      [&eptr]( auto elem ) constexpr { try { ::new (&elem) element_type; } catch ( ... ) { eptr = current_exception(); } } );
+                      [&eptr]( auto elem ) { try { ::new (&elem) element_type; } catch ( ... ) { eptr = current_exception(); } } );
     // If exceptions were thrown, rethrow the last
     if ( eptr )
     {
@@ -1440,9 +1441,9 @@ inline void dr_tensor<T,R,Alloc,L,Access>::construct_all_except()
     detail::for_each( LINALG_EXECUTION_SEQ,
                       this->elems_,
                       this->elems_ + this->view_.size(),
-                      [&eptr,&elem_except_ptr]( auto elem ) constexpr { try { ::new (&elem) element_type(); } catch ( ... ) { elem_except_ptr = &elem; eptr = current_exception(); } } );
+                      [&eptr,&elem_except_ptr]( auto elem ) { try { ::new (&elem) element_type(); } catch ( ... ) { elem_except_ptr = &elem; eptr = current_exception(); } } );
     // If exceptions were thrown, destroy all which have already been constructed, then rethrow the last
-    if ( eptr ) [[unlikely]]
+    if ( eptr ) LINALG_UNLIKELY
     {
       // Attempt to destroy constructed elements.
       // If destruction also throws an exception, then just terminate.

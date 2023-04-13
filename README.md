@@ -4,9 +4,10 @@ This repository is intended to explore a possible implementation of a math vecto
 
 TODO
 ----
-- Backport to C++17
 - MSVC support
 - Integrate P1673 where appropriate
+- Additional testing - particularly of views.
+- Add set_subtensor / set_submatrix / set_subvector
 
 Requirements
 ------------
@@ -30,14 +31,32 @@ Running provided tests requires CMake.
 - gcc-12 / C++20 / cmake 3.22.2
   - Warning free with `-Wall -pedantic -Wextra  -Wno-unused-function -Wno-unused-variable -Wno-unused-but-set-variable -Wno-unused-local-typedefs`
   - No use of multi-dimensional index operator\[\](...). Use operator()(...).
-  
+
+- gcc-12 / C++17 / cmake 3.22.2
+  - Warning free with `-Wall -pedantic -Wextra  -Wno-unused-function -Wno-unused-variable -Wno-unused-but-set-variable -Wno-unused-local-typedefs`
+  - No use of multi-dimensional index operator\[\](...). Use operator()(...).
+  - No use of concepts.
+    -  Some constraints are not quite the same or are unenforceable without concepts.
+  - Some destructors are no longer marked constexpr
+  - \[\[likely\]\] and \[\[unlikely\]\] are not supported
+  - lambda expressions cannot be used in unevaluated contexts resulting in some functions no longer having a noexcept specification.
+
 - clang-14 / C++20 / cmake 3.22.2
   - Warning free with `-Wall -pedantic -Wextra  -Wno-unused-function -Wno-unused-variable -Wno-unused-but-set-variable -Wno-unused-local-typedefs`
   - No use of multi-dimensional index operator\[\](...). Use operator()(...).
   - No use of concepts. Out-of-class member function definitions with concepts unsupported until clang-16.
     -  Some constraints are not quite the same or are unenforceable without concepts.
   - No use of execution policies.
-  - No use of -stdc++. Results in linker error.
+
+- clang-14 / C++17 / cmake 3.22.2
+  - Warning free with `-Wall -pedantic -Wextra  -Wno-unused-function -Wno-unused-variable -Wno-unused-but-set-variable -Wno-unused-local-typedefs`
+  - No use of multi-dimensional index operator\[\](...). Use operator()(...).
+  - No use of concepts.
+    -  Some constraints are not quite the same or are unenforceable without concepts.
+  - No use of execution policies.
+  - Some destructors are no longer marked constexpr
+  - \[\[likely\]\] and \[\[unlikely\]\] are not supported
+  - lambda expressions cannot be used in unevaluated contexts resulting in some functions no longer having a noexcept specification.
 
 NOTE: If reviewing tests, detail::access( ... ) is used to obscure use of operator\(\)( ... ) or operator\[\]( ... ) depending on build environment. The appropriate index operator should be available for tested configurations.
 
