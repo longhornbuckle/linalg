@@ -12,31 +12,31 @@ jobs:
         configuration: [ "Release", "Debug" ]
         settings:
         - {
-            os: ubuntu-latest
+            os: ubuntu-latest,
             cxx: g++-12,
             cxx_path: /usr/bin,
             cxx_ver: 23
           }
         - {
-            os: ubuntu-latest
+            os: ubuntu-latest,
             cxx: g++-12,
             cxx_path: /usr/bin,
             cxx_ver: 20
           }
         - {
-            os: ubuntu-latest
+            os: ubuntu-latest,
             cxx: g++-12,
             cxx_path: /usr/bin,
             cxx_ver: 17
           }
         - {
-            os: ubuntu-latest
+            os: ubuntu-latest,
             cxx: clang++-14,
             cxx_path: /usr/bin,
             cxx_ver: 20
           }
         - {
-            os: ubuntu-latest
+            os: ubuntu-latest,
             cxx: clang++-14,
             cxx_path: /usr/bin,
             cxx_ver: 17
