@@ -6,38 +6,43 @@ on:
 
 jobs:
   linalg-build:
-    runs-on: ubuntu-latest
     strategy:
       fail-fast: false
       matrix:
         configuration: [ "Release", "Debug" ]
         settings:
         - {
-            compiler_driver: g++-12,
-            compiler_prefix: /usr/bin,
-            compiler_version: 23
+            os: ubuntu-latest
+            cxx: g++-12,
+            cxx_path: /usr/bin,
+            cxx_ver: 23
           }
         - {
-            compiler_driver: g++-12,
-            compiler_prefix: /usr/bin,
-            compiler_version: 20
+            os: ubuntu-latest
+            cxx: g++-12,
+            cxx_path: /usr/bin,
+            cxx_ver: 20
           }
         - {
-            compiler_driver: g++-12,
-            compiler_prefix: /usr/bin,
-            compiler_version: 17
+            os: ubuntu-latest
+            cxx: g++-12,
+            cxx_path: /usr/bin,
+            cxx_ver: 17
           }
         - {
-            compiler_driver: clang++-14,
-            compiler_prefix: /usr/bin,
-            compiler_version: 20
+            os: ubuntu-latest
+            cxx: clang++-14,
+            cxx_path: /usr/bin,
+            cxx_ver: 20
           }
         - {
-            compiler_driver: clang++-14,
-            compiler_prefix: /usr/bin,
-            compiler_version: 17
+            os: ubuntu-latest
+            cxx: clang++-14,
+            cxx_path: /usr/bin,
+            cxx_ver: 17
           }
-    name: ${{ matrix.settings.compiler_driver }}, C++${{ matrix.settings.compiler_version }}, ${{ matrix.configuration }}
+    runs-on: ${{ matrix.settings.os }}
+    name: ${{ matrix.settings.cxx }}, C++${{ matrix.settings.cxx_ver }}, ${{ matrix.configuration }}
     steps:
     
     - name: Install gtest manually
@@ -61,9 +66,9 @@ jobs:
     - name: Configure CMake
       shell: bash
       working-directory: ${{github.workspace}}/linalg-build
-      run: CMAKE_CXX_COMPILER=${{ matrix.settings.compiler_prefix}}/${{ matrix.settings.compiler_driver }}
-           CXX=${{ matrix.settings.compiler_prefix}}/${{ matrix.settings.compiler_driver }} 
-           CMAKE_CXX_STANDARD=${{ matrix.settings.compiler_version }}
+      run: CMAKE_CXX_COMPILER=${{ matrix.settings.cxx_path}}/${{ matrix.settings.cxx }}
+           CXX=${{ matrix.settings.cxx_path}}/${{ matrix.settings.cxx }} 
+           CMAKE_CXX_STANDARD=${{ matrix.settings.cxx_ver }}
            cmake $GITHUB_WORKSPACE/linalg-src -DCMAKE_BUILD_TYPE=$BUILD_TYPE -DCMAKE_INSTALL_PREFIX=$GITHUB_WORKSPACE/linalg-install
 
     - name: Build
