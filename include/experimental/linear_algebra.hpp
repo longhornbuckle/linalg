@@ -37,7 +37,7 @@
 
 #include <experimental/mdspan>
 #include <experimental/mdspan_improvements.hpp>
-using std::experimental::dynamic_extent;
+using ::std::experimental::dynamic_extent;
 
 //- Restore the compiler's diagnostic state.
 //

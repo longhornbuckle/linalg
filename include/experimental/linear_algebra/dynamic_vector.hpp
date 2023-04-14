@@ -24,9 +24,9 @@ namespace math
 /// @tparam L      layout defines the ordering of elements in memory
 /// @tparam Access accessor policy defines how elements are accessed
 template < class T,
-           class Alloc  = allocator<T>,
-           class L      = experimental::layout_right,
-           class Access = experimental::default_accessor<T> >
+           class Alloc  = ::std::allocator<T>,
+           class L      = ::std::experimental::layout_right,
+           class Access = ::std::experimental::default_accessor<T> >
 class dr_vector : public dr_tensor<T,1,Alloc,L,Access>
 {
   private:
@@ -60,11 +60,11 @@ class dr_vector : public dr_tensor<T,1,Alloc,L,Access>
     /// @brief Type used to portray tensor as an N dimensional view
     using span_type                  = typename base_type::span_type;
     /// @brief Type returned by mutable index access
-    using reference_type             = typename base_type::reference_type;
+    using reference                  = typename base_type::reference;
     /// @brief mutable view of a subtensor
-    using subvector_type             = vector_view<decltype( experimental::submdspan( declval<underlying_span_type>(), declval< tuple<index_type,index_type> >() ) ) >;
+    using subvector_type             = vector_view<decltype( ::std::experimental::submdspan( ::std::declval<underlying_span_type>(), ::std::declval< ::std::tuple<index_type,index_type> >() ) ) >;
     /// @brief const view of a subtensor
-    using const_subvector_type       = vector_view<decltype( experimental::submdspan( declval<const_underlying_span_type>(), declval< tuple<index_type,index_type> >() ) ) >;
+    using const_subvector_type       = vector_view<decltype( ::std::experimental::submdspan( ::std::declval<const_underlying_span_type>(), ::std::declval< ::std::tuple<index_type,index_type> >() ) ) >;
 
     //- Rebind
 
@@ -82,7 +82,7 @@ class dr_vector : public dr_tensor<T,1,Alloc,L,Access>
       using rebind_element_type  = typename rebind_accessor_type::element_type;
     public:
       using type = dr_vector< ValueType,
-                              typename allocator_traits<allocator_type>::template rebind_alloc<rebind_element_type>,
+                              typename ::std::allocator_traits<allocator_type>::template rebind_alloc<rebind_element_type>,
                               LayoutType,
                               rebind_accessor_type >;
     };
@@ -112,7 +112,7 @@ class dr_vector : public dr_tensor<T,1,Alloc,L,Access>
     #ifdef LINALG_ENABLE_CONCEPTS
     template < concepts::tensor_may_be_constructible< dr_vector > V2 >
     #else
-    template < class V2, typename = enable_if_t< concepts::tensor_may_be_constructible< V2, dr_vector > > >
+    template < class V2, typename = ::std::enable_if_t< concepts::tensor_may_be_constructible< V2, dr_vector > > >
     #endif
     explicit constexpr dr_vector( const V2& rhs ) noexcept( noexcept( base_type(rhs) ) );
     /// @brief Construct from a view
@@ -121,22 +121,22 @@ class dr_vector : public dr_tensor<T,1,Alloc,L,Access>
     #ifdef LINALG_ENABLE_CONCEPTS
     template < concepts::view_may_be_constructible_to_tensor< dr_vector > MDS >
     #else
-    template < class MDS, typename = enable_if_t< concepts::view_may_be_constructible_to_tensor<MDS,dr_vector> && is_default_constructible_v<allocator_type> >, typename = enable_if_t<true> >
+    template < class MDS, typename = ::std::enable_if_t< concepts::view_may_be_constructible_to_tensor<MDS,dr_vector> && ::std::is_default_constructible_v<allocator_type> >, typename = ::std::enable_if_t<true> >
     #endif
     explicit constexpr dr_vector( const MDS& view ) noexcept( noexcept( base_type(view) ) )
     #ifdef LINALG_ENABLE_CONCEPTS
-      requires is_default_constructible_v<allocator_type>;
+      requires ::std::is_default_constructible_v<allocator_type>;
     #else
       ;
     #endif
     /// @brief Attempt to allocate sufficient resources for a size s vector and construct
     /// @param s defines the length of the vector
     #ifndef LINALG_ENABLE_CONCEPTS
-    template < typename = enable_if_t< is_default_constructible_v<allocator_type> > >
+    template < typename = ::std::enable_if_t< ::std::is_default_constructible_v<allocator_type> > >
     #endif
     explicit constexpr dr_vector( extents_type s ) noexcept( noexcept( base_type(s) ) )
     #ifdef LINALG_ENABLE_CONCEPTS
-      requires is_default_constructible_v<allocator_type>;
+      requires ::std::is_default_constructible_v<allocator_type>;
     #else
       ;
     #endif
@@ -144,11 +144,11 @@ class dr_vector : public dr_tensor<T,1,Alloc,L,Access>
     /// @param s defines the length of the vector
     /// @param cap defines the capacity of the vector
     #ifndef LINALG_ENABLE_CONCEPTS
-    template < typename = enable_if_t< is_default_constructible_v<allocator_type> > >
+    template < typename = ::std::enable_if_t< ::std::is_default_constructible_v<allocator_type> > >
     #endif
     constexpr dr_vector( extents_type s, extents_type cap ) noexcept( noexcept( base_type(s,cap) ) )
     #ifdef LINALG_ENABLE_CONCEPTS
-      requires is_default_constructible_v<allocator_type>;
+      requires ::std::is_default_constructible_v<allocator_type>;
     #else
       ;
     #endif
@@ -160,13 +160,13 @@ class dr_vector : public dr_tensor<T,1,Alloc,L,Access>
     template < class Lambda >
     #else
     template < class Lambda,
-               typename = enable_if_t< is_default_constructible_v<allocator_type> &&
-                                       is_convertible_v< decltype( declval<Lambda&&>()( declval<index_type>() ) ), element_type > > >
+               typename = ::std::enable_if_t< ::std::is_default_constructible_v<allocator_type> &&
+                                              ::std::is_convertible_v< decltype( ::std::declval<Lambda&&>()( ::std::declval<index_type>() ) ), element_type > > >
     #endif
     constexpr dr_vector( extents_type s, Lambda&& lambda ) noexcept( noexcept( base_type(s,lambda) ) )
     #ifdef LINALG_ENABLE_CONCEPTS
-      requires is_default_constructible_v<allocator_type> &&
-               requires { { declval<Lambda&&>()( declval<index_type>() ) } -> convertible_to<element_type>; };
+      requires ::std::is_default_constructible_v<allocator_type> &&
+               requires { { ::std::declval<Lambda&&>()( ::std::declval<index_type>() ) } -> ::std::convertible_to<element_type>; };
     #else
       ;
     #endif
@@ -179,13 +179,13 @@ class dr_vector : public dr_tensor<T,1,Alloc,L,Access>
     template < class Lambda >
     #else
     template < class Lambda,
-               typename = enable_if_t< is_default_constructible_v<allocator_type> &&
-                                       is_convertible_v< decltype( declval<Lambda&&>()( declval<index_type>() ) ), element_type > > >
+               typename = ::std::enable_if_t< ::std::is_default_constructible_v<allocator_type> &&
+                                              ::std::is_convertible_v< decltype( ::std::declval<Lambda&&>()( ::std::declval<index_type>() ) ), element_type > > >
     #endif
     constexpr dr_vector( extents_type s, extents_type cap, Lambda&& lambda ) noexcept( noexcept( base_type(s,cap,lambda) ) )
     #ifdef LINALG_ENABLE_CONCEPTS
-      requires is_default_constructible_v<allocator_type> &&
-               requires { { declval<Lambda&&>()( declval<index_type>() ) } -> convertible_to<element_type>; };
+      requires ::std::is_default_constructible_v<allocator_type> &&
+               requires { { ::std::declval<Lambda&&>()( ::std::declval<index_type>() ) } -> ::std::convertible_to<element_type>; };
     #else
       ;
     #endif
@@ -199,7 +199,7 @@ class dr_vector : public dr_tensor<T,1,Alloc,L,Access>
     #ifdef LINALG_ENABLE_CONCEPTS
     template < concepts::view_may_be_constructible_to_tensor< dr_vector > MDS >
     #else
-    template < class MDS, typename = enable_if_t< concepts::view_may_be_constructible_to_tensor< MDS, dr_vector > > >
+    template < class MDS, typename = ::std::enable_if_t< concepts::view_may_be_constructible_to_tensor< MDS, dr_vector > > >
     #endif
     explicit constexpr dr_vector( const MDS& view, const allocator_type& alloc ) noexcept( noexcept( base_type(view,alloc) ) );
     /// @brief Attempt to allocate sufficient resources for a size vector and construct
@@ -220,12 +220,12 @@ class dr_vector : public dr_tensor<T,1,Alloc,L,Access>
     template < class Lambda >
     #else
     template < class Lambda,
-               typename = enable_if_t< is_default_constructible_v<allocator_type> &&
-                                       is_convertible_v< decltype( declval<Lambda&&>()( declval<index_type>() ) ), element_type > > >
+               typename = ::std::enable_if_t< ::std::is_default_constructible_v<allocator_type> &&
+                                              ::std::is_convertible_v< decltype( ::std::declval<Lambda&&>()( ::std::declval<index_type>() ) ), element_type > > >
     #endif
     constexpr dr_vector( extents_type s, Lambda&& lambda, const allocator_type& alloc ) noexcept( noexcept( base_type(s,lambda,alloc) ) )
     #ifdef LINALG_ENABLE_CONCEPTS
-      requires requires { { declval<Lambda&&>()( declval<index_type>() ) } -> convertible_to<element_type>; };
+      requires requires { { ::std::declval<Lambda&&>()( ::std::declval<index_type>() ) } -> ::std::convertible_to<element_type>; };
     #else
       ;
     #endif
@@ -239,12 +239,12 @@ class dr_vector : public dr_tensor<T,1,Alloc,L,Access>
     template < class Lambda >
     #else
     template < class Lambda,
-               typename = enable_if_t< is_default_constructible_v<allocator_type> &&
-                                       is_convertible_v< decltype( declval<Lambda&&>()( declval<index_type>() ) ), element_type > > >
+               typename = ::std::enable_if_t< ::std::is_default_constructible_v<allocator_type> &&
+                                              ::std::is_convertible_v< decltype( ::std::declval<Lambda&&>()( ::std::declval<index_type>() ) ), element_type > > >
     #endif
     constexpr dr_vector( extents_type s, extents_type cap, Lambda&& lambda, const allocator_type& alloc ) noexcept( noexcept( base_type(s,cap,lambda,alloc) ) )
     #ifdef LINALG_ENABLE_CONCEPTS
-      requires requires { { declval<Lambda&&>()( declval<index_type>() ) } -> convertible_to<element_type>; };
+      requires requires { { ::std::declval<Lambda&&>()( ::std::declval<index_type>() ) } -> ::std::convertible_to<element_type>; };
     #else
       ;
     #endif
@@ -263,9 +263,9 @@ class dr_vector : public dr_tensor<T,1,Alloc,L,Access>
     #ifdef LINALG_ENABLE_CONCEPTS
     template < concepts::tensor_may_be_constructible< dr_vector > V2 >
     #else
-    template < class V2, typename = enable_if_t< concepts::tensor_may_be_constructible< V2, dr_vector > > >
+    template < class V2, typename = ::std::enable_if_t< concepts::tensor_may_be_constructible< V2, dr_vector > > >
     #endif
-    constexpr dr_vector& operator = ( const V2& rhs ) noexcept( noexcept( declval<base_type>() = rhs ) );
+    constexpr dr_vector& operator = ( const V2& rhs ) noexcept( noexcept( ::std::declval<base_type>() = rhs ) );
     /// @brief Construct from a two dimensional view
     /// @tparam type of view to be copied
     /// @param  view to be copied
@@ -273,9 +273,9 @@ class dr_vector : public dr_tensor<T,1,Alloc,L,Access>
     #ifdef LINALG_ENABLE_CONCEPTS
     template < concepts::view_may_be_constructible_to_tensor< dr_vector > MDS >
     #else
-    template < class MDS, typename = enable_if_t< concepts::view_may_be_constructible_to_tensor<MDS,dr_vector> && is_default_constructible_v<allocator_type> >, typename = enable_if_t<true> >
+    template < class MDS, typename = ::std::enable_if_t< concepts::view_may_be_constructible_to_tensor<MDS,dr_vector> && ::std::is_default_constructible_v<allocator_type> >, typename = ::std::enable_if_t<true> >
     #endif
-    constexpr dr_vector& operator = ( const MDS& view ) noexcept( noexcept( declval<base_type>() = view ) );
+    constexpr dr_vector& operator = ( const MDS& view ) noexcept( noexcept( ::std::declval<base_type>() = view ) );
 
     //- Size / Capacity
 
@@ -344,7 +344,7 @@ template < class MDS, typename, typename >
 constexpr dr_vector<T,Alloc,L,Access>::dr_vector( const MDS& view )
   noexcept( noexcept( dr_vector<T,Alloc,L,Access>::base_type(view) ) )
 #ifdef LINALG_ENABLE_CONCEPTS
-  requires is_default_constructible_v<typename dr_vector<T,Alloc,L,Access>::allocator_type> :
+  requires ::std::is_default_constructible_v<typename dr_vector<T,Alloc,L,Access>::allocator_type> :
 #else
   :
 #endif
@@ -359,7 +359,7 @@ template < typename >
 constexpr dr_vector<T,Alloc,L,Access>::dr_vector( extents_type s )
   noexcept( noexcept( dr_vector<T,Alloc,L,Access>::base_type(s) ) )
 #ifdef LINALG_ENABLE_CONCEPTS
-  requires is_default_constructible_v<typename dr_vector<T,Alloc,L,Access>::allocator_type> :
+  requires ::std::is_default_constructible_v<typename dr_vector<T,Alloc,L,Access>::allocator_type> :
 #else
   :
 #endif
@@ -374,7 +374,7 @@ template < typename >
 constexpr dr_vector<T,Alloc,L,Access>::dr_vector( extents_type s, extents_type cap )
   noexcept( noexcept( dr_vector<T,Alloc,L,Access>::base_type(s,cap) ) )
 #ifdef LINALG_ENABLE_CONCEPTS
-  requires is_default_constructible_v<typename dr_vector<T,Alloc,L,Access>::allocator_type> :
+  requires ::std::is_default_constructible_v<typename dr_vector<T,Alloc,L,Access>::allocator_type> :
 #else
   :
 #endif
@@ -391,9 +391,9 @@ template < class Lambda, typename >
 constexpr dr_vector<T,Alloc,L,Access>::dr_vector( extents_type s, Lambda&& lambda )
   noexcept( noexcept( dr_vector<T,Alloc,L,Access>::base_type(s,lambda) ) )
 #ifdef LINALG_ENABLE_CONCEPTS
-  requires is_default_constructible_v<typename dr_vector<T,Alloc,L,Access>::allocator_type> &&
-           requires { { declval<Lambda&&>()( declval<typename dr_vector<T,Alloc,L,Access>::index_type>() ) }
-                      -> convertible_to<typename dr_vector<T,Alloc,L,Access>::element_type>; } :
+  requires ::std::is_default_constructible_v<typename dr_vector<T,Alloc,L,Access>::allocator_type> &&
+           requires { { ::std::declval<Lambda&&>()( ::std::declval<typename dr_vector<T,Alloc,L,Access>::index_type>() ) }
+                      -> ::std::convertible_to<typename dr_vector<T,Alloc,L,Access>::element_type>; } :
 #else
   :
 #endif
@@ -410,9 +410,9 @@ template < class Lambda, typename >
 constexpr dr_vector<T,Alloc,L,Access>::dr_vector( extents_type s, extents_type cap, Lambda&& lambda )
   noexcept( noexcept( dr_vector<T,Alloc,L,Access>::base_type(s,cap,lambda) ) )
 #ifdef LINALG_ENABLE_CONCEPTS
-  requires is_default_constructible_v<typename dr_vector<T,Alloc,L,Access>::allocator_type> &&
-           requires { { declval<Lambda&&>()( declval<typename dr_vector<T,Alloc,L,Access>::index_type>() ) }
-                      -> convertible_to<typename dr_vector<T,Alloc,L,Access>::element_type>; } :
+  requires ::std::is_default_constructible_v<typename dr_vector<T,Alloc,L,Access>::allocator_type> &&
+           requires { { ::std::declval<Lambda&&>()( ::std::declval<typename dr_vector<T,Alloc,L,Access>::index_type>() ) }
+                      -> ::std::convertible_to<typename dr_vector<T,Alloc,L,Access>::element_type>; } :
 #else
   :
 #endif
@@ -462,8 +462,8 @@ template < class Lambda, typename >
 constexpr dr_vector<T,Alloc,L,Access>::dr_vector( extents_type s, Lambda&& lambda, const allocator_type& alloc )
   noexcept( noexcept( dr_vector<T,Alloc,L,Access>::base_type(s,lambda,alloc) ) )
 #ifdef LINALG_ENABLE_CONCEPTS
-  requires requires { { declval<Lambda&&>()( declval<typename dr_vector<T,Alloc,L,Access>::index_type>() ) }
-                    -> convertible_to<typename dr_vector<T,Alloc,L,Access>::element_type>; } :
+  requires requires { { ::std::declval<Lambda&&>()( ::std::declval<typename dr_vector<T,Alloc,L,Access>::index_type>() ) }
+                    -> ::std::convertible_to<typename dr_vector<T,Alloc,L,Access>::element_type>; } :
 #else
   :
 #endif
@@ -480,8 +480,8 @@ template < class Lambda, typename >
 constexpr dr_vector<T,Alloc,L,Access>::dr_vector( extents_type s, extents_type cap, Lambda&& lambda, const allocator_type& alloc )
   noexcept( noexcept( dr_vector<T,Alloc,L,Access>::base_type(s,cap,lambda,alloc) ) )
 #ifdef LINALG_ENABLE_CONCEPTS
-  requires requires { { declval<Lambda&&>()( declval<typename dr_vector<T,Alloc,L,Access>::index_type>() ) }
-                      -> convertible_to<typename dr_vector<T,Alloc,L,Access>::element_type>; } :
+  requires requires { { ::std::declval<Lambda&&>()( ::std::declval<typename dr_vector<T,Alloc,L,Access>::index_type>() ) }
+                      -> ::std::convertible_to<typename dr_vector<T,Alloc,L,Access>::element_type>; } :
 #else
   :
 #endif
@@ -496,7 +496,7 @@ template < concepts::tensor_may_be_constructible< dr_vector<T,Alloc,L,Access> > 
 template < class V2, typename >
 #endif
 constexpr dr_vector<T,Alloc,L,Access>& dr_vector<T,Alloc,L,Access>::operator = ( const V2& rhs )
-  noexcept( noexcept( declval<typename dr_vector<T,Alloc,L,Access>::base_type>() = rhs ) )
+  noexcept( noexcept( ::std::declval<typename dr_vector<T,Alloc,L,Access>::base_type>() = rhs ) )
 {
   static_cast<void>( this->base_type::operator=(rhs) );
   return *this;
@@ -509,7 +509,7 @@ template < concepts::view_may_be_constructible_to_tensor< dr_vector<T,Alloc,L,Ac
 template < class MDS, typename, typename >
 #endif
 constexpr dr_vector<T,Alloc,L,Access>& dr_vector<T,Alloc,L,Access>::operator = ( const MDS& view )
-  noexcept( noexcept( declval<typename dr_vector<T,Alloc,L,Access>::base_type>() = view ) )
+  noexcept( noexcept( ::std::declval<typename dr_vector<T,Alloc,L,Access>::base_type>() = view ) )
 {
   static_cast<void>( this->base_type::operator=(view) );
   return *this;
@@ -522,7 +522,7 @@ template < class T, class Alloc, class L, class Access >
 dr_vector<T,Alloc,L,Access>::subvector( index_type start,
                                         index_type end ) const
 {
-  return const_subvector_type { experimental::submdspan( this->underlying_span(), tuple( start, end ) ) };
+  return const_subvector_type { ::std::experimental::submdspan( this->underlying_span(), ::std::tuple( start, end ) ) };
 }
 
 //- Mutable views
@@ -532,7 +532,7 @@ template < class T, class Alloc, class L, class Access >
 dr_vector<T,Alloc,L,Access>::subvector( index_type start,
                                         index_type end )
 {
-  return subvector_type { experimental::submdspan( this->underlying_span(), tuple( start, end ) ) };
+  return subvector_type { ::std::experimental::submdspan( this->underlying_span(), ::std::tuple( start, end ) ) };
 }
 
 }       //- math namespace

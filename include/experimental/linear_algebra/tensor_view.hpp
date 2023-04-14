@@ -52,7 +52,7 @@ template < class MDS
   > requires ( detail::is_mdspan_v<MDS> &&
              MDS::is_always_unique() ) // Each element in the mdspan must have a unique mapping. (i.e. span_type and const_underlying_span_type should be the same.)
 #else
-  , typename = enable_if_t< ( detail::is_mdspan_v<MDS> && MDS::is_always_unique() ) > >
+  , typename = ::std::enable_if_t< ( detail::is_mdspan_v<MDS> && MDS::is_always_unique() ) > >
 #endif
 class tensor_view
 {
@@ -72,21 +72,17 @@ class tensor_view
     /// @brief Type used for indexing
     using index_type                 = typename extents_type::size_type;
     /// @brief Type used for size along any dimension
-    using size_type                  = size_t;
+    using size_type                  = ::std::size_t;
     /// @brief Type used to represent a node in the tensor
     using tuple_type                 = typename detail::template extents_helper<size_type,extents_type::rank()>::tuple_type;
     /// @brief Type used to const view memory
-    using const_underlying_span_type = experimental::mdspan<const remove_const_t<element_type>,extents_type,layout_type,accessor_type>;
+    using const_underlying_span_type = ::std::experimental::mdspan<const ::std::remove_const_t<element_type>,extents_type,layout_type,accessor_type>;
     /// @brief Type used to view memory
-    using underlying_span_type       = experimental::mdspan<element_type,extents_type,layout_type,accessor_type>;
+    using underlying_span_type       = ::std::experimental::mdspan<element_type,extents_type,layout_type,accessor_type>;
     /// @brief Type used to portray tensor as an N dimensional view
     using span_type                  = const_underlying_span_type;
     /// @brief Type returned by mutable index access
-    using reference_type             = typename MDS::reference;
-    /// @brief mutable view of a subtensor
-    using subtensor_type             = tensor_view<decltype( detail::submdspan( declval<underlying_span_type>(), declval<tuple_type>(), declval<tuple_type>() ) ) >;
-    /// @brief const view of a subtensor
-    using const_subtensor_type       = tensor_view<decltype( detail::submdspan( declval<const_underlying_span_type>(), declval<tuple_type>(), declval<tuple_type>() ) ) >;
+    using reference                  = typename MDS::reference;
     
     //- Destructor / Constructors / Assignments
 
@@ -133,7 +129,7 @@ class tensor_view
     /// @brief the view
     /// @returns returns the view
     #ifndef LINALG_ENABLE_CONCEPTS
-    template < typename Elem = element_type, typename = enable_if_t< !is_const_v<Elem> > >
+    template < typename Elem = element_type, typename = ::std::enable_if_t< !::std::is_const_v<Elem> > >
     #endif
     [[nodiscard]] constexpr underlying_span_type       underlying_span() noexcept
     #ifdef LINALG_ENABLE_CONCEPTS
@@ -154,7 +150,7 @@ class tensor_view
     template < class ... IndexType >
     [[nodiscard]] constexpr value_type operator[]( IndexType ... indices ) const noexcept
     #ifdef LINALG_ENABLE_CONCEPTS
-      requires ( sizeof...(IndexType) == extents_type::rank() ) && ( is_convertible_v<IndexType,index_type> && ... );
+      requires ( sizeof...(IndexType) == extents_type::rank() ) && ( ::std::is_convertible_v<IndexType,index_type> && ... );
     #else
       ;
     #endif
@@ -163,7 +159,7 @@ class tensor_view
     template < class ... IndexType >
     [[nodiscard]] constexpr value_type operator()( IndexType ... indices ) const noexcept
     #ifdef LINALG_ENABLE_CONCEPTS
-      requires ( sizeof...(IndexType) == extents_type::rank() ) && ( is_convertible_v<IndexType,index_type> && ... );
+      requires ( sizeof...(IndexType) == extents_type::rank() ) && ( ::std::is_convertible_v<IndexType,index_type> && ... );
     #else
       ;
     #endif
@@ -174,7 +170,7 @@ class tensor_view
     template < class ... IndexType >
     [[nodiscard]] constexpr value_type at( IndexType ... indices ) const
     #ifdef LINALG_ENABLE_CONCEPTS
-      requires ( sizeof...(IndexType) == extents_type::rank() ) && ( is_convertible_v<IndexType,index_type> && ... );
+      requires ( sizeof...(IndexType) == extents_type::rank() ) && ( ::std::is_convertible_v<IndexType,index_type> && ... );
     #else
       ;
     #endif
@@ -185,7 +181,7 @@ class tensor_view
     template < class ... SliceArgs >
     [[nodiscard]] constexpr auto subvector( SliceArgs ... args ) const
     #ifdef LINALG_ENABLE_CONCEPTS
-      requires ( decltype( experimental::submdspan( this->underlying_span(), args ... ) )::rank() == 1 );
+      requires ( decltype( ::std::experimental::submdspan( this->underlying_span(), args ... ) )::rank() == 1 );
     #else
       ;
     #endif
@@ -196,7 +192,7 @@ class tensor_view
     template < class ... SliceArgs >
     [[nodiscard]] constexpr auto submatrix( SliceArgs ... args ) const
     #ifdef LINALG_ENABLE_CONCEPTS
-      requires ( decltype( experimental::submdspan( this->underlying_span(), args ... ) )::rank() == 2 );
+      requires ( decltype( ::std::experimental::submdspan( this->underlying_span(), args ... ) )::rank() == 2 );
     #else
       ;
     #endif
@@ -214,20 +210,20 @@ class tensor_view
     /// @returns mutable value at row i, column j, depth k, etc.
     #if LINALG_USE_BRACKET_OPERATOR
     template < class ... IndexType >
-    [[nodiscard]] constexpr reference_type operator[]( IndexType ... indices ) noexcept
+    [[nodiscard]] constexpr reference operator[]( IndexType ... indices ) noexcept
     #ifdef LINALG_ENABLE_CONCEPTS
-      requires ( sizeof...(IndexType) == extents_type::rank() ) && ( is_convertible_v<IndexType,index_type> && ... ) &&
-               ( !is_const_v<element_type> );
+      requires ( sizeof...(IndexType) == extents_type::rank() ) && ( ::std::is_convertible_v<IndexType,index_type> && ... ) &&
+               ( !::std::is_const_v<element_type> );
     #else
       ;
     #endif
     #endif
     #if LINALG_USE_PAREN_OPERATOR
     template < class ... IndexType >
-    [[nodiscard]] constexpr reference_type operator()( IndexType ... indices ) noexcept
+    [[nodiscard]] constexpr reference operator()( IndexType ... indices ) noexcept
     #ifdef LINALG_ENABLE_CONCEPTS
-      requires ( sizeof...(IndexType) == extents_type::rank() ) && ( is_convertible_v<IndexType,index_type> && ... ) &&
-               ( !is_const_v<element_type> );
+      requires ( sizeof...(IndexType) == extents_type::rank() ) && ( ::std::is_convertible_v<IndexType,index_type> && ... ) &&
+               ( !::std::is_const_v<element_type> );
     #else
       ;
     #endif
@@ -236,10 +232,10 @@ class tensor_view
     /// @param indices set indices representing a node in the tensor
     /// @returns mutable value at row i, column j, depth k, etc.
     template < class ... IndexType >
-    [[nodiscard]] constexpr reference_type at( IndexType ... indices )
+    [[nodiscard]] constexpr reference at( IndexType ... indices )
     #ifdef LINALG_ENABLE_CONCEPTS
-      requires ( sizeof...(IndexType) == extents_type::rank() ) && ( is_convertible_v<IndexType,index_type> && ... ) &&
-               ( !is_const_v<element_type> );
+      requires ( sizeof...(IndexType) == extents_type::rank() ) && ( ::std::is_convertible_v<IndexType,index_type> && ... ) &&
+               ( !::std::is_const_v<element_type> );
     #else
       ;
     #endif
@@ -250,7 +246,7 @@ class tensor_view
     template < class ... SliceArgs >
     [[nodiscard]] constexpr auto subvector( SliceArgs ... args )
     #ifdef LINALG_ENABLE_CONCEPTS
-      requires ( decltype( experimental::submdspan( this->underlying_span(), args ... ) )::rank() == 1 );
+      requires ( decltype( ::std::experimental::submdspan( this->underlying_span(), args ... ) )::rank() == 1 );
     #else
       ;
     #endif
@@ -261,7 +257,7 @@ class tensor_view
     template < class ... SliceArgs >
     [[nodiscard]] constexpr auto submatrix( SliceArgs ... args )
     #ifdef LINALG_ENABLE_CONCEPTS
-      requires ( decltype( experimental::submdspan( this->underlying_span(), args ... ) )::rank() == 2 );
+      requires ( decltype( ::std::experimental::submdspan( this->underlying_span(), args ... ) )::rank() == 2 );
     #else
       ;
     #endif

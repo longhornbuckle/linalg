@@ -28,9 +28,9 @@ namespace math
 /// @tparam Access accessor policy defines how elements are accessed
 template < class  T,
            size_t R,
-           class  Alloc  = allocator<T>,
-           class  L      = experimental::layout_right,
-           class  Access = experimental::default_accessor<T> >
+           class  Alloc  = ::std::allocator<T>,
+           class  L      = ::std::experimental::layout_right,
+           class  Access = ::std::experimental::default_accessor<T> >
 class dr_tensor
 {
   public:
@@ -43,7 +43,7 @@ class dr_tensor
     /// @brief Type contained by the tensor
     using element_type               = typename accessor_type::element_type;
     /// @brief Type used for size along any dimension
-    using size_type                  = size_t;
+    using size_type                  = ::std::size_t;
     /// @brief Type used to express size of tensor
     using extents_type               = typename detail::template extents_helper<size_type,R>::extents_type;
 
@@ -51,32 +51,32 @@ class dr_tensor
     //- Types
 
     /// @brief Type used to view the const memory within capacity
-    using const_capacity_span_type   = experimental::mdspan< const element_type,
-                                                             extents_type,
-                                                             layout_type,
-                                                             typename detail::rebind_accessor_t< accessor_type,const element_type > >;
+    using const_capacity_span_type   = ::std::experimental::mdspan< const element_type,
+                                                                    extents_type,
+                                                                    layout_type,
+                                                                    typename detail::rebind_accessor_t< accessor_type,const element_type > >;
     /// @brief Type used to view the memory within capacity
-    using capacity_span_type         = experimental::mdspan< element_type, extents_type, layout_type, accessor_type >;
+    using capacity_span_type         = ::std::experimental::mdspan< element_type, extents_type, layout_type, accessor_type >;
 
   public:
     //- Types
 
     /// @brief Type returned by const index access
-    using value_type                 = remove_cv_t<element_type>;
+    using value_type                 = ::std::remove_cv_t<element_type>;
     /// @brief Type of allocator used to get memory
-    using allocator_type             = typename allocator_traits<Alloc>::template rebind_alloc<element_type>;
+    using allocator_type             = typename ::std::allocator_traits<Alloc>::template rebind_alloc<element_type>;
     /// @brief Type used for indexing
-    using index_type                 = ptrdiff_t;
+    using index_type                 = ::std::ptrdiff_t;
     /// @brief Type used to represent a node in the tensor
     using tuple_type                 = typename detail::template extents_helper<size_type,R>::tuple_type;
     /// @brief Type used to view memory within size
-    using underlying_span_type       = decltype( detail::submdspan( declval<capacity_span_type>(), declval<tuple_type>(), declval<tuple_type>() ) );
+    using underlying_span_type       = decltype( detail::submdspan( ::std::declval<capacity_span_type>(), ::std::declval<tuple_type>(), ::std::declval<tuple_type>() ) );
     /// @brief Type used to const view memory within size
-    using const_underlying_span_type = decltype( detail::submdspan( declval<const_capacity_span_type>(), declval<tuple_type>(), declval<tuple_type>() ) );
+    using const_underlying_span_type = decltype( detail::submdspan( ::std::declval<const_capacity_span_type>(), ::std::declval<tuple_type>(), ::std::declval<tuple_type>() ) );
     /// @brief Type used to portray tensor as an N dimensional view
     using span_type                  = const_underlying_span_type;
     /// @brief Type returned by mutable index access
-    using reference_type             = typename accessor_type::reference;
+    using reference                  = typename accessor_type::reference;
 
   private:
     //- Implementation details
@@ -85,12 +85,12 @@ class dr_tensor
     template < class U, class propogate_on_copy_true >
     struct Alloc_copy_helper { [[nodiscard]] static inline constexpr auto propogate( const U& u ) noexcept { return u.get_allocator(); } };
     template < class U >
-    struct Alloc_copy_helper< U, false_type > { [[nodiscard]] static inline constexpr auto propogate( [[maybe_unused]] const U& u ) noexcept { return move( allocator_type() ); } };
+    struct Alloc_copy_helper< U, false_type > { [[nodiscard]] static inline constexpr auto propogate( [[maybe_unused]] const U& u ) noexcept { return ::std::move( allocator_type() ); } };
     // Helper class for defining allocator behavior
     template < class U, class propogate_on_move_true >
-    struct Alloc_move_helper { [[nodiscard]] static inline constexpr auto propogate( U&& u ) noexcept { return move( u.get_allocator() ); } };
+    struct Alloc_move_helper { [[nodiscard]] static inline constexpr auto propogate( U&& u ) noexcept { return ::std::move( u.get_allocator() ); } };
     template < class U >
-    struct Alloc_move_helper< U, false_type > { [[nodiscard]] static inline constexpr auto propogate( [[maybe_unused]] U&& u ) noexcept { return move( allocator_type() ); } };
+    struct Alloc_move_helper< U, false_type > { [[nodiscard]] static inline constexpr auto propogate( [[maybe_unused]] U&& u ) noexcept { return ::std::move( allocator_type() ); } };
     // Verifies lambda expression takes a set of indices and produces an output convertible to element type
     template < class Lambda, class Seq, bool > struct convertible_lambda_expression_impl : public false_type { };
     template < class Lambda,
@@ -98,7 +98,7 @@ class dr_tensor
                class IndexType,
                IndexType ... Indices >
     struct convertible_lambda_expression_impl< Lambda, Seq<IndexType,Indices...>, true >  : public
-      conditional_t< is_convertible_v< decltype( declval<Lambda&&>()( Indices ... ) ), element_type >, true_type, false_type > { };
+      conditional_t< ::std::is_convertible_v< decltype( ::std::declval<Lambda&&>()( Indices ... ) ), element_type >, ::std::true_type, ::std::false_type > { };
     template < class Lambda, class Seq > struct convertible_lambda_expression : public false_type { };
     template < class Lambda,
                template < class, auto ... > class Seq,
@@ -128,7 +128,7 @@ class dr_tensor
     public:
       using type = dr_tensor< ValueType,
                               R,
-                              typename allocator_traits<allocator_type>::template rebind_alloc<rebind_element_type>,
+                              typename ::std::allocator_traits<allocator_type>::template rebind_alloc<rebind_element_type>,
                               LayoutType,
                               rebind_accessor_type >;
     };
@@ -144,14 +144,14 @@ class dr_tensor
     //- Destructor / Constructors / Assignments
 
     /// @brief Destructor
-    LINALG_CONSTEXPR_DESTRUCTOR ~dr_tensor() noexcept( is_nothrow_destructible_v<element_type> );
+    LINALG_CONSTEXPR_DESTRUCTOR ~dr_tensor() noexcept( ::std::is_nothrow_destructible_v<element_type> );
     /// @brief Default constructor
     constexpr dr_tensor() noexcept;
     /// @brief Move constructor
     /// @param dr_tensor to be moved
     constexpr dr_tensor( dr_tensor&& rhs )
-      noexcept( typename allocator_traits<allocator_type>::propagate_on_container_move_assignment{} ||
-                typename allocator_traits<allocator_type>::is_always_equal{} );
+      noexcept( typename ::std::allocator_traits<allocator_type>::propagate_on_container_move_assignment{} ||
+                typename ::std::allocator_traits<allocator_type>::is_always_equal{} );
     /// @brief Copy constructor
     /// @param dr_tensor to be copied
     constexpr dr_tensor( const dr_tensor& rhs );
@@ -161,7 +161,7 @@ class dr_tensor
     #ifdef LINALG_ENABLE_CONCEPTS
     template < concepts::tensor_may_be_constructible< dr_tensor > T2 >
     #else
-    template < class T2, typename = enable_if_t< concepts::tensor_may_be_constructible< T2, dr_tensor > > >
+    template < class T2, typename = ::std::enable_if_t< concepts::tensor_may_be_constructible< T2, dr_tensor > > >
     #endif
     explicit constexpr dr_tensor( const T2& rhs );
     /// @brief Construct from a view
@@ -170,22 +170,22 @@ class dr_tensor
     #ifdef LINALG_ENABLE_CONCEPTS
     template < concepts::view_may_be_constructible_to_tensor< dr_tensor > MDS >
     #else
-    template < class MDS, typename = enable_if_t< concepts::view_may_be_constructible_to_tensor<MDS,dr_tensor> && is_default_constructible_v<allocator_type> >, typename = enable_if_t<true> >
+    template < class MDS, typename = ::std::enable_if_t< concepts::view_may_be_constructible_to_tensor<MDS,dr_tensor> && ::std::is_default_constructible_v<allocator_type> >, typename = ::std::enable_if_t<true> >
     #endif
     explicit constexpr dr_tensor( const MDS& view )
     #ifdef LINALG_ENABLE_CONCEPTS
-      requires is_default_constructible_v<allocator_type>;
+      requires ::std::is_default_constructible_v<allocator_type>;
     #else
       ;
     #endif
     /// @brief Attempt to allocate sufficient resources for a size tensor and construct
     /// @param s defines the length of each dimension of the tensor
     #ifndef LINALG_ENABLE_CONCEPTS
-    template < typename = enable_if_t< is_default_constructible_v<allocator_type> > >
+    template < typename = enable_if_t< ::std::is_default_constructible_v<allocator_type> > >
     #endif
     explicit constexpr dr_tensor( extents_type s )
     #ifdef LINALG_ENABLE_CONCEPTS
-      requires is_default_constructible_v<allocator_type>;
+      requires ::std::is_default_constructible_v<allocator_type>;
     #else
       ;
     #endif
@@ -193,11 +193,11 @@ class dr_tensor
     /// @param s defines the length of each dimension of the tensor
     /// @param cap defines the capacity along each of the dimensions of the tensor
     #ifndef LINALG_ENABLE_CONCEPTS
-    template < typename = enable_if_t< is_default_constructible_v<allocator_type> > >
+    template < typename = ::std::enable_if_t< is_default_constructible_v<allocator_type> > >
     #endif
     constexpr dr_tensor( extents_type s, extents_type cap )
     #ifdef LINALG_ENABLE_CONCEPTS
-      requires is_default_constructible_v<allocator_type>;
+      requires ::std::is_default_constructible_v<allocator_type>;
     #else
       ;
     #endif
@@ -209,12 +209,12 @@ class dr_tensor
     template < class Lambda >
     #else
     template < class Lambda,
-               typename = enable_if_t< is_default_constructible_v<allocator_type> &&
-                                       convertible_lambda_expression_v< Lambda, make_integer_sequence<index_type,R> > > >
+               typename = ::std::enable_if_t< ::std::is_default_constructible_v<allocator_type> &&
+                                              convertible_lambda_expression_v< Lambda, make_integer_sequence<index_type,R> > > >
     #endif
     constexpr dr_tensor( extents_type s, Lambda&& lambda )
     #ifdef LINALG_ENABLE_CONCEPTS
-      requires is_default_constructible_v<allocator_type> && convertible_lambda_expression_v< Lambda, make_integer_sequence<index_type,R> >;
+      requires ::std::is_default_constructible_v<allocator_type> && convertible_lambda_expression_v< Lambda, ::std::make_integer_sequence<index_type,R> >;
     #else
       ;
     #endif
@@ -227,12 +227,12 @@ class dr_tensor
     template < class Lambda >
     #else
     template < class Lambda,
-               typename = enable_if_t< is_default_constructible_v<allocator_type> &&
-                                       convertible_lambda_expression_v< Lambda, make_integer_sequence<index_type,R> > > >
+               typename = enable_if_t< ::std::is_default_constructible_v<allocator_type> &&
+                                       convertible_lambda_expression_v< Lambda, ::std::make_integer_sequence<index_type,R> > > >
     #endif
     constexpr dr_tensor( extents_type s, extents_type cap, Lambda&& lambda )
     #ifdef LINALG_ENABLE_CONCEPTS
-      requires is_default_constructible_v<allocator_type> && convertible_lambda_expression_v< Lambda, make_integer_sequence<index_type,R> >;
+      requires ::std::is_default_constructible_v<allocator_type> && convertible_lambda_expression_v< Lambda, ::std::make_integer_sequence<index_type,R> >;
     #else
       ;
     #endif
@@ -246,7 +246,7 @@ class dr_tensor
     #ifdef LINALG_ENABLE_CONCEPTS
     template < concepts::view_may_be_constructible_to_tensor< dr_tensor > MDS >
     #else
-    template < class MDS, typename = enable_if_t< concepts::view_may_be_constructible_to_tensor<MDS,dr_tensor> > >
+    template < class MDS, typename = ::std::enable_if_t< concepts::view_may_be_constructible_to_tensor<MDS,dr_tensor> > >
     #endif
     constexpr dr_tensor( const MDS& view, const allocator_type& alloc );
     /// @brief Attempt to allocate sufficient resources for a size tensor and construct
@@ -267,11 +267,11 @@ class dr_tensor
     template < class Lambda >
     #else
     template < class Lambda,
-               typename = enable_if_t< convertible_lambda_expression_v< Lambda, make_integer_sequence<index_type,R> > > >
+               typename = ::std::enable_if_t< convertible_lambda_expression_v< Lambda, ::std::make_integer_sequence<index_type,R> > > >
     #endif
     constexpr dr_tensor( extents_type s, Lambda&& lambda, const allocator_type& alloc )
     #ifdef LINALG_ENABLE_CONCEPTS
-      requires convertible_lambda_expression_v< Lambda, make_integer_sequence<index_type,R> >;
+      requires convertible_lambda_expression_v< Lambda, ::std::make_integer_sequence<index_type,R> >;
     #else
       ;
     #endif
@@ -285,11 +285,11 @@ class dr_tensor
     template < class Lambda >
     #else
     template < class Lambda,
-               typename = enable_if_t< convertible_lambda_expression_v< Lambda, make_integer_sequence<index_type,R> > > >
+               typename = ::std::enable_if_t< convertible_lambda_expression_v< Lambda, ::std::make_integer_sequence<index_type,R> > > >
     #endif
     constexpr dr_tensor( extents_type s, extents_type cap, Lambda&& lambda, const allocator_type& alloc )
     #ifdef LINALG_ENABLE_CONCEPTS
-      requires convertible_lambda_expression_v< Lambda, make_integer_sequence<index_type,R> >;
+      requires convertible_lambda_expression_v< Lambda, ::std::make_integer_sequence<index_type,R> >;
     #else
       ;
     #endif
@@ -297,8 +297,8 @@ class dr_tensor
     /// @param  dr_tensor to be moved
     /// @return self
     constexpr dr_tensor& operator = ( dr_tensor&& rhs )
-      noexcept( typename allocator_traits<allocator_type>::propagate_on_container_move_assignment() ||
-                typename allocator_traits<allocator_type>::is_always_equal() );
+      noexcept( typename ::std::allocator_traits<allocator_type>::propagate_on_container_move_assignment() ||
+                typename ::std::allocator_traits<allocator_type>::is_always_equal() );
     /// @brief Copy assignment
     /// @param  fs_tensor to be copied
     /// @return self
@@ -311,7 +311,7 @@ class dr_tensor
     #ifdef LINALG_ENABLE_CONCEPTS
     template < concepts::tensor_may_be_constructible< dr_tensor > T2 >
     #else
-    template < class T2, typename = enable_if_t< concepts::tensor_may_be_constructible< T2, dr_tensor > > >
+    template < class T2, typename = ::std::enable_if_t< concepts::tensor_may_be_constructible< T2, dr_tensor > > >
     #endif
     constexpr dr_tensor& operator = ( const T2& rhs );
     // TODO: Define noexcept specification.
@@ -322,7 +322,7 @@ class dr_tensor
     #ifdef LINALG_ENABLE_CONCEPTS
     template < concepts::view_may_be_constructible_to_tensor< dr_tensor > MDS >
     #else
-    template < class MDS, typename = enable_if_t< concepts::view_may_be_constructible_to_tensor<MDS,dr_tensor> && is_default_constructible_v<allocator_type> >, typename = enable_if_t<true> >
+    template < class MDS, typename = ::std::enable_if_t< concepts::view_may_be_constructible_to_tensor<MDS,dr_tensor> && ::std::is_default_constructible_v<allocator_type> >, typename = ::std::enable_if_t<true> >
     #endif
     constexpr dr_tensor& operator = ( const MDS& view );
 
@@ -375,7 +375,7 @@ class dr_tensor
     template < class ... IndexType >
     [[nodiscard]] constexpr value_type operator[]( IndexType ... indices ) const noexcept
     #ifdef LINALG_ENABLE_CONCEPTS
-      requires ( sizeof...(IndexType) == R ) && ( is_convertible_v<IndexType,index_type> && ... );
+      requires ( sizeof...(IndexType) == R ) && ( ::std::is_convertible_v<IndexType,index_type> && ... );
     #else
       ;
     #endif
@@ -384,7 +384,7 @@ class dr_tensor
     template < class ... IndexType >
     [[nodiscard]] constexpr value_type operator()( IndexType ... indices ) const noexcept
     #ifdef LINALG_ENABLE_CONCEPTS
-      requires ( sizeof...(IndexType) == R ) && ( is_convertible_v<IndexType,index_type> && ... );
+      requires ( sizeof...(IndexType) == R ) && ( ::std::is_convertible_v<IndexType,index_type> && ... );
     #else
       ;
     #endif
@@ -395,7 +395,7 @@ class dr_tensor
     template < class ... IndexType >
     [[nodiscard]] constexpr value_type at( IndexType ... indices ) const
     #ifdef LINALG_ENABLE_CONCEPTS
-      requires ( sizeof...(IndexType) == R ) && ( is_convertible_v<IndexType,index_type> && ... );
+      requires ( sizeof...(IndexType) == R ) && ( ::std::is_convertible_v<IndexType,index_type> && ... );
     #else
       ;
     #endif
@@ -406,7 +406,7 @@ class dr_tensor
     template < class ... SliceArgs >
     [[nodiscard]] constexpr auto subvector( SliceArgs ... args ) const
     #ifdef LINALG_ENABLE_CONCEPTS
-      requires ( decltype( experimental::submdspan( this->underlying_span(), args ... ) )::rank() == 1 );
+      requires ( decltype( ::std::experimental::submdspan( this->underlying_span(), args ... ) )::rank() == 1 );
     #else
       ;
     #endif
@@ -417,7 +417,7 @@ class dr_tensor
     template < class ... SliceArgs >
     [[nodiscard]] constexpr auto submatrix( SliceArgs ... args ) const
     #ifdef LINALG_ENABLE_CONCEPTS
-      requires ( decltype( experimental::submdspan( this->underlying_span(), args ... ) )::rank() == 2 );
+      requires ( decltype( ::std::experimental::submdspan( this->underlying_span(), args ... ) )::rank() == 2 );
     #else
       ;
     #endif
@@ -435,18 +435,18 @@ class dr_tensor
     /// @returns mutable value at row i, column j, depth k, etc.
     #if LINALG_USE_BRACKET_OPERATOR
     template < class ... IndexType >
-    [[nodiscard]] constexpr reference_type operator[]( IndexType ... indices ) noexcept
+    [[nodiscard]] constexpr reference operator[]( IndexType ... indices ) noexcept
     #ifdef LINALG_ENABLE_CONCEPTS
-      requires ( sizeof...(IndexType) == R ) && ( is_convertible_v<IndexType,index_type> && ... );
+      requires ( sizeof...(IndexType) == R ) && ( ::std::is_convertible_v<IndexType,index_type> && ... );
     #else
       ;
     #endif
     #endif
     #if LINALG_USE_PAREN_OPERATOR
     template < class ... IndexType >
-    [[nodiscard]] constexpr reference_type operator()( IndexType ... indices ) noexcept
+    [[nodiscard]] constexpr reference operator()( IndexType ... indices ) noexcept
     #ifdef LINALG_ENABLE_CONCEPTS
-      requires ( sizeof...(IndexType) == R ) && ( is_convertible_v<IndexType,index_type> && ... );
+      requires ( sizeof...(IndexType) == R ) && ( ::std::is_convertible_v<IndexType,index_type> && ... );
     #else
       ;
     #endif
@@ -455,9 +455,9 @@ class dr_tensor
     /// @param indices set indices representing a node in the tensor
     /// @returns mutable value at row i, column j, depth k, etc.
     template < class ... IndexType >
-    [[nodiscard]] constexpr reference_type at( IndexType ... indices )
+    [[nodiscard]] constexpr reference at( IndexType ... indices )
     #ifdef LINALG_ENABLE_CONCEPTS
-      requires ( sizeof...(IndexType) == R ) && ( is_convertible_v<IndexType,index_type> && ... );
+      requires ( sizeof...(IndexType) == R ) && ( ::std::is_convertible_v<IndexType,index_type> && ... );
     #else
       ;
     #endif
@@ -468,7 +468,7 @@ class dr_tensor
     template < class ... SliceArgs >
     [[nodiscard]] constexpr auto subvector( SliceArgs ... args )
     #ifdef LINALG_ENABLE_CONCEPTS
-      requires ( decltype( experimental::submdspan( this->underlying_span(), args ... ) )::rank() == 1 );
+      requires ( decltype( ::std::experimental::submdspan( this->underlying_span(), args ... ) )::rank() == 1 );
     #else
       ;
     #endif
@@ -479,7 +479,7 @@ class dr_tensor
     template < class ... SliceArgs >
     [[nodiscard]] constexpr auto submatrix( SliceArgs ... args )
     #ifdef LINALG_ENABLE_CONCEPTS
-      requires ( decltype( experimental::submdspan( this->underlying_span(), args ... ) )::rank() == 2 );
+      requires ( decltype( ::std::experimental::submdspan( this->underlying_span(), args ... ) )::rank() == 2 );
     #else
       ;
     #endif
@@ -507,25 +507,25 @@ class dr_tensor
     // Create a new view given the current capacity and a new size
     [[nodiscard]] constexpr underlying_span_type create_view( const extents_type s ) noexcept;
     template < size_t ... Indices >
-    [[nodiscard]] constexpr underlying_span_type create_view_impl( const extents_type s, [[maybe_unused]] index_sequence<Indices...> ) noexcept;
+    [[nodiscard]] constexpr underlying_span_type create_view_impl( const extents_type s, [[maybe_unused]] ::std::index_sequence<Indices...> ) noexcept;
     // Attempts to copy view. If an exception is thrown, deallocates and rethrows
     template < class MDS >
     inline void copy_view_except( MDS&& span );
     // Calls destructor on all elements and deallocates the allocator
     // If an exception is thrown, the last exception to be thrown will be re-thrown.
-    constexpr void destroy_all() noexcept( is_nothrow_destructible_v<element_type> );
+    constexpr void destroy_all() noexcept( ::std::is_nothrow_destructible_v<element_type> );
     // Calls destructor on all elements and deallocates the allocator
     // If an exception is thrown, the last exception to be thrown will be re-thrown.
     inline void destroy_all_except();
     // Default constructs all elements
     // If an exception is to be thrown, will first destruct elements which have been constructed and deallocate
-    constexpr void construct_all() noexcept( is_nothrow_constructible_v<element_type> );
+    constexpr void construct_all() noexcept( ::std::is_nothrow_constructible_v<element_type> );
     // Default constructs all elements
     // If an exception is to be thrown, will first destruct elements which have been constructed and deallocate
     inline void construct_all_except();
     // Implementation of resize. (Needed a parameter pack of indices for implementation.)
     template < class SizeType, SizeType ... Indices >
-    constexpr void resize_impl( extents_type new_size, [[maybe_unused]] integer_sequence<SizeType,Indices...> );
+    constexpr void resize_impl( extents_type new_size, [[maybe_unused]] ::std::integer_sequence<SizeType,Indices...> );
     // Returns an extents which is the maximum of the two inputs
     static constexpr extents_type max_extents( extents_type extents_a, extents_type extents_b ) noexcept;
     // Returns the total number of elements allocated
@@ -541,7 +541,7 @@ class dr_tensor
 
 template < class T, size_t R, class Alloc, class L , class Access >
 LINALG_CONSTEXPR_DESTRUCTOR dr_tensor<T,R,Alloc,L,Access>::~dr_tensor()
-  noexcept( is_nothrow_destructible_v<typename dr_tensor<T,R,Alloc,L,Access>::element_type> )
+  noexcept( ::std::is_nothrow_destructible_v<typename dr_tensor<T,R,Alloc,L,Access>::element_type> )
 {
   // If the elements pointer has been set, then destroy and deallocate
   if ( this->elems_ )
@@ -558,30 +558,30 @@ constexpr dr_tensor<T,R,Alloc,L,Access>::dr_tensor() noexcept :
 
 template < class T, size_t R, class Alloc, class L , class Access >
 constexpr dr_tensor<T,R,Alloc,L,Access>::dr_tensor( dr_tensor&& rhs )
-  noexcept( typename allocator_traits<typename dr_tensor<T,R,Alloc,L,Access>::allocator_type>::propagate_on_container_move_assignment{}||
-            typename allocator_traits<typename dr_tensor<T,R,Alloc,L,Access>::allocator_type>::is_always_equal{} ) :
+  noexcept( typename ::std::allocator_traits<typename dr_tensor<T,R,Alloc,L,Access>::allocator_type>::propagate_on_container_move_assignment{}||
+            typename ::std::allocator_traits<typename dr_tensor<T,R,Alloc,L,Access>::allocator_type>::is_always_equal{} ) :
   // Default construct or move construct allocator depending on allocator_type::propagate_on_container_move_assignment
   alloc_( dr_tensor<T,R,Alloc,L,Access>::
     template Alloc_move_helper< dr_tensor<T,R,Alloc,L,Access>,
-                                typename allocator_traits<typename dr_tensor<T,R,Alloc,L,Access>::allocator_type>::propagate_on_container_move_assignment >::
-      propogate( move( rhs ) ) ),
+                                typename ::std::allocator_traits<typename dr_tensor<T,R,Alloc,L,Access>::allocator_type>::propagate_on_container_move_assignment >::
+      propogate( ::std::move( rhs ) ) ),
   // Move capacity extents
-  cap_( move( rhs.capacity() ) ),
+  cap_( ::std::move( rhs.capacity() ) ),
   // If the allocator has moved or if all allocator types are equal, then just set element pointer; otherwise, allocate new pointer
-  elems_( [&] () constexpr { if constexpr ( typename allocator_traits<allocator_type>::propagate_on_container_move_assignment{} ||
-                                            typename allocator_traits<allocator_type>::is_always_equal{} )
-                             { return move( rhs.elems_ ); } else
-                             { return allocator_traits<allocator_type>::allocate( this->alloc_, this->linear_capacity() ); } }() ),
+  elems_( [&] () constexpr { if constexpr ( typename ::std::allocator_traits<allocator_type>::propagate_on_container_move_assignment{} ||
+                                            typename ::std::allocator_traits<allocator_type>::is_always_equal{} )
+                             { return ::std::move( rhs.elems_ ); } else
+                             { return ::std::allocator_traits<allocator_type>::allocate( this->alloc_, this->linear_capacity() ); } }() ),
   // If the allocator has moved or if all allocator types are equal, then move view; otherwise, construct new view on new elements
-  view_( [&] () constexpr { if constexpr ( typename allocator_traits<allocator_type>::propagate_on_container_move_assignment() ||
-                                           typename allocator_traits<allocator_type>::is_always_equal() )
-                            { return move( rhs.underlying_span() ); } else
-                            { return move( this->create_view( rhs.underlying_span().extents() ) ); } }() )
+  view_( [&] () constexpr { if constexpr ( typename ::std::allocator_traits<allocator_type>::propagate_on_container_move_assignment() ||
+                                           typename ::std::allocator_traits<allocator_type>::is_always_equal() )
+                            { return ::std::move( rhs.underlying_span() ); } else
+                            { return ::std::move( this->create_view( rhs.underlying_span().extents() ) ); } }() )
 {
   // If the allocator was not moved, then elements have to be copied.
-  if constexpr ( !allocator_traits<allocator_type>::propagate_on_container_move_assignment::value )
+  if constexpr ( !::std::allocator_traits<allocator_type>::propagate_on_container_move_assignment::value )
   {
-    if constexpr ( is_nothrow_copy_constructible_v<element_type> )
+    if constexpr ( ::std::is_nothrow_copy_constructible_v<element_type> )
     {
       // Copy construct all elements
       detail::copy_view( this->view_, rhs.span() );
@@ -604,16 +604,16 @@ constexpr dr_tensor<T,R,Alloc,L,Access>::dr_tensor( const dr_tensor& rhs ) :
   // Default construct or copy construct allocator depending on allocator_type::propagate_on_container_copy_assignment
   alloc_( dr_tensor<T,R,Alloc,L,Access>::
     template Alloc_copy_helper< dr_tensor<T,R,Alloc,L,Access>,
-                                typename allocator_traits<typename dr_tensor<T,R,Alloc,L,Access>::allocator_type>::propagate_on_container_copy_assignment >::
+                                typename ::std::allocator_traits<typename dr_tensor<T,R,Alloc,L,Access>::allocator_type>::propagate_on_container_copy_assignment >::
       propogate( rhs ) ),
   // Copy capacity extents
   cap_( rhs.capacity() ),
   // Allocate elements
-  elems_( allocator_traits<typename dr_tensor<T,R,Alloc,L,Access>::allocator_type>::allocate( this->alloc_, this->linear_capacity() ) ),
+  elems_( ::std::allocator_traits<typename dr_tensor<T,R,Alloc,L,Access>::allocator_type>::allocate( this->alloc_, this->linear_capacity() ) ),
   // Create new view over elements
   view_( this->create_view( rhs.span().extents() ) )
 {
-  if constexpr ( is_nothrow_copy_constructible_v<element_type> )
+  if constexpr ( ::std::is_nothrow_copy_constructible_v<element_type> )
   {
     // Copy construct all elements
     detail::copy_view( this->view_, rhs.span() );
@@ -635,7 +635,7 @@ constexpr dr_tensor<T,R,Alloc,L,Access>::dr_tensor( const T2& rhs ) :
   // Default construct or copy construct allocator depending on allocator_type::propagate_on_container_copy_assignment
   alloc_( dr_tensor<T,R,Alloc,L,Access>::
     template Alloc_copy_helper< T2,
-                                integral_constant<bool,allocator_traits<typename dr_tensor<T,R,Alloc,L,Access>::allocator_type>::propagate_on_container_copy_assignment::value &&
+                                ::std::integral_constant<bool,::std::allocator_traits<typename dr_tensor<T,R,Alloc,L,Access>::allocator_type>::propagate_on_container_copy_assignment::value &&
   #ifdef LINALG_ENABLE_CONCEPTS
                                                        concepts::dynamic_tensor<T2> > >::
   #else
@@ -645,7 +645,7 @@ constexpr dr_tensor<T,R,Alloc,L,Access>::dr_tensor( const T2& rhs ) :
   // Copy capacity extents
   cap_( rhs.capacity() ),
   // Allocate elements
-  elems_( allocator_traits<typename dr_tensor<T,R,Alloc,L,Access>::allocator_type>::allocate( this->alloc_, this->linear_capacity() ) ),
+  elems_( ::std::allocator_traits<typename dr_tensor<T,R,Alloc,L,Access>::allocator_type>::allocate( this->alloc_, this->linear_capacity() ) ),
   // Create new view over elements
   view_( this->create_view( rhs.span().extents() ) )
 {
@@ -661,7 +661,7 @@ template < class MDS, typename, typename >
 #endif
 constexpr dr_tensor<T,R,Alloc,L,Access>::dr_tensor( const MDS& view )
 #ifdef LINALG_ENABLE_CONCEPTS
-  requires is_default_constructible_v<typename dr_tensor<T,R,Alloc,L,Access>::allocator_type> :
+  requires ::std::is_default_constructible_v<typename dr_tensor<T,R,Alloc,L,Access>::allocator_type> :
 #else
   :
 #endif
@@ -675,7 +675,7 @@ template < typename >
 #endif
 constexpr dr_tensor<T,R,Alloc,L,Access>::dr_tensor( extents_type s )
 #ifdef LINALG_ENABLE_CONCEPTS
-  requires is_default_constructible_v<typename dr_tensor<T,R,Alloc,L,Access>::allocator_type> :
+  requires ::std::is_default_constructible_v<typename dr_tensor<T,R,Alloc,L,Access>::allocator_type> :
 #else
   :
 #endif
@@ -689,7 +689,7 @@ template < typename >
 #endif
 constexpr dr_tensor<T,R,Alloc,L,Access>::dr_tensor( extents_type s, extents_type cap )
 #ifdef LINALG_ENABLE_CONCEPTS
-  requires is_default_constructible_v<typename dr_tensor<T,R,Alloc,L,Access>::allocator_type> :
+  requires ::std::is_default_constructible_v<typename dr_tensor<T,R,Alloc,L,Access>::allocator_type> :
 #else
   :
 #endif
@@ -705,8 +705,8 @@ template < class Lambda, typename >
 #endif
 constexpr dr_tensor<T,R,Alloc,L,Access>::dr_tensor( extents_type s, Lambda&& lambda )
 #ifdef LINALG_ENABLE_CONCEPTS
-  requires is_default_constructible_v<typename dr_tensor<T,R,Alloc,L,Access>::allocator_type> &&
-           convertible_lambda_expression_v< Lambda, make_integer_sequence<typename dr_tensor<T,R,Alloc,L,Access>::index_type,R> > :
+  requires ::std::is_default_constructible_v<typename dr_tensor<T,R,Alloc,L,Access>::allocator_type> &&
+           convertible_lambda_expression_v< Lambda, ::std::make_integer_sequence<typename dr_tensor<T,R,Alloc,L,Access>::index_type,R> > :
 #else
   :
 #endif
@@ -722,8 +722,8 @@ template < class Lambda, typename >
 #endif
 constexpr dr_tensor<T,R,Alloc,L,Access>::dr_tensor( extents_type s, extents_type cap, Lambda&& lambda )
 #ifdef LINALG_ENABLE_CONCEPTS
-  requires is_default_constructible_v<typename dr_tensor<T,R,Alloc,L,Access>::allocator_type> &&
-           convertible_lambda_expression_v< Lambda, make_integer_sequence<typename dr_tensor<T,R,Alloc,L,Access>::index_type,R> > :
+  requires ::std::is_default_constructible_v<typename dr_tensor<T,R,Alloc,L,Access>::allocator_type> &&
+           convertible_lambda_expression_v< Lambda, ::std::make_integer_sequence<typename dr_tensor<T,R,Alloc,L,Access>::index_type,R> > :
 #else
   :
 #endif
@@ -749,7 +749,7 @@ template < class MDS, typename >
 constexpr dr_tensor<T,R,Alloc,L,Access>::dr_tensor( const MDS& view, const allocator_type& alloc ) :
   alloc_( alloc ),
   cap_( view.extents() ),
-  elems_( allocator_traits<typename dr_tensor<T,R,Alloc,L,Access>::allocator_type>::allocate( this->alloc_, this->linear_capacity() ) ),
+  elems_( ::std::allocator_traits<typename dr_tensor<T,R,Alloc,L,Access>::allocator_type>::allocate( this->alloc_, this->linear_capacity() ) ),
   view_( this->create_view( this->cap_ ) )
 {
   detail::copy_view( this->view_, view );
@@ -759,13 +759,13 @@ template < class T, size_t R, class Alloc, class L , class Access >
 constexpr dr_tensor<T,R,Alloc,L,Access>::dr_tensor( extents_type s, const allocator_type& alloc ) :
   alloc_( alloc ),
   cap_( s ),
-  elems_( allocator_traits<typename dr_tensor<T,R,Alloc,L,Access>::allocator_type>::allocate( this->alloc_, this->linear_capacity() ) ),
+  elems_( ::std::allocator_traits<typename dr_tensor<T,R,Alloc,L,Access>::allocator_type>::allocate( this->alloc_, this->linear_capacity() ) ),
   view_( this->create_view( this->cap_ ) )
 {
   // If construct, assign, and destruct are not trivial, then initialize data
-  if constexpr ( !( is_trivially_default_constructible_v<element_type> &&
-                    is_trivially_copy_assignable_v<element_type> &&
-                    is_trivially_destructible_v<element_type> ) )
+  if constexpr ( !( ::std::is_trivially_default_constructible_v<element_type> &&
+                    ::std::is_trivially_copy_assignable_v<element_type> &&
+                    ::std::is_trivially_destructible_v<element_type> ) )
   {
     this->construct_all();
   }
@@ -775,15 +775,15 @@ template < class  T, size_t R, class Alloc, class L , class Access >
 constexpr dr_tensor<T,R,Alloc,L,Access>::dr_tensor( extents_type s, extents_type cap, const allocator_type& alloc ) :
   alloc_( alloc ),
   cap_( cap ),
-  elems_( allocator_traits<typename dr_tensor<T,R,Alloc,L,Access>::allocator_type>::allocate( this->alloc_, this->linear_capacity() ) ),
+  elems_( ::std::allocator_traits<typename dr_tensor<T,R,Alloc,L,Access>::allocator_type>::allocate( this->alloc_, this->linear_capacity() ) ),
   view_( this->create_view( s ) )
 {
   // TODO: Assume each dimension of s is less than cap or check through an assert or exception?
 
   // If construct, assign, and destruct are not trivial, then initialize data
-  if constexpr ( !( is_trivially_default_constructible_v<element_type> &&
-                    is_trivially_copy_assignable_v<element_type> &&
-                    is_trivially_destructible_v<element_type> ) )
+  if constexpr ( !( ::std::is_trivially_default_constructible_v<element_type> &&
+                    ::std::is_trivially_copy_assignable_v<element_type> &&
+                    ::std::is_trivially_destructible_v<element_type> ) )
   {
     this->construct_all();
   }
@@ -797,20 +797,20 @@ template < class Lambda, typename >
 #endif
 constexpr dr_tensor<T,R,Alloc,L,Access>::dr_tensor( extents_type s, Lambda&& lambda, const allocator_type& alloc )
 #ifdef LINALG_ENABLE_CONCEPTS
-  requires convertible_lambda_expression_v< Lambda, make_integer_sequence<index_type,R> > :
+  requires convertible_lambda_expression_v< Lambda, ::std::make_integer_sequence<index_type,R> > :
 #else
   :
 #endif
   alloc_( alloc ),
   cap_( s ),
-  elems_( allocator_traits<typename dr_tensor<T,R,Alloc,L,Access>::allocator_type>::allocate( this->alloc_, this->linear_capacity() ) ),
+  elems_( ::std::allocator_traits<typename dr_tensor<T,R,Alloc,L,Access>::allocator_type>::allocate( this->alloc_, this->linear_capacity() ) ),
   view_( this->create_view( this->cap_ ) )
 {
   // Construct all elements from lambda expression
-  auto lambda_ctor = [this,&lambda]( auto ... indices ) constexpr noexcept( is_nothrow_copy_constructible_v<element_type> )
+  auto lambda_ctor = [this,&lambda]( auto ... indices ) constexpr noexcept( ::std::is_nothrow_copy_constructible_v<element_type> )
   {
     // TODO: This requires reference returned from mdspan to be the address of the element
-    ::new ( addressof( detail::access( this->view_, indices ... ) ) ) element_type( lambda( indices ... ) );
+    ::new ( ::std::addressof( detail::access( this->view_, indices ... ) ) ) element_type( lambda( indices ... ) );
   };
   detail::apply_all( this->view_, lambda_ctor, LINALG_EXECUTION_UNSEQ );
 }
@@ -823,52 +823,52 @@ template < class Lambda, typename >
 #endif
 constexpr dr_tensor<T,R,Alloc,L,Access>::dr_tensor( extents_type s, extents_type cap, Lambda&& lambda, const allocator_type& alloc )
 #ifdef LINALG_ENABLE_CONCEPTS
-  requires convertible_lambda_expression_v< Lambda, make_integer_sequence<index_type,R> > :
+  requires convertible_lambda_expression_v< Lambda, ::std::make_integer_sequence<index_type,R> > :
 #else
   :
 #endif
   alloc_( alloc ),
   cap_( cap ),
-  elems_( allocator_traits<typename dr_tensor<T,R,Alloc,L,Access>::allocator_type>::allocate( this->alloc_, this->linear_capacity() ) ),
+  elems_( ::std::allocator_traits<typename dr_tensor<T,R,Alloc,L,Access>::allocator_type>::allocate( this->alloc_, this->linear_capacity() ) ),
   view_( this->create_view( s ) )
 {
   // Construct all elements from lambda expression
-  auto lambda_ctor = [this,&lambda]( auto ... indices ) constexpr noexcept( is_nothrow_copy_constructible_v<element_type> )
+  auto lambda_ctor = [this,&lambda]( auto ... indices ) constexpr noexcept( ::std::is_nothrow_copy_constructible_v<element_type> )
   {
     // TODO: This requires reference returned from mdspan to be the address of the element
-    ::new ( addressof( detail::access( this->view_, indices ... ) ) ) element_type( lambda( indices ... ) );
+    ::new ( ::std::addressof( detail::access( this->view_, indices ... ) ) ) element_type( lambda( indices ... ) );
   };
   detail::apply_all( this->view_, lambda_ctor, LINALG_EXECUTION_UNSEQ );
 }
 
 template < class T, size_t R, class Alloc, class L , class Access >
 constexpr dr_tensor<T,R,Alloc,L,Access>& dr_tensor<T,R,Alloc,L,Access>::operator = ( dr_tensor&& rhs )
-  noexcept( typename allocator_traits<typename dr_tensor<T,R,Alloc,L,Access>::allocator_type>::propagate_on_container_move_assignment() ||
-            typename allocator_traits<typename dr_tensor<T,R,Alloc,L,Access>::allocator_type>::is_always_equal() )
+  noexcept( typename ::std::allocator_traits<typename dr_tensor<T,R,Alloc,L,Access>::allocator_type>::propagate_on_container_move_assignment() ||
+            typename ::std::allocator_traits<typename dr_tensor<T,R,Alloc,L,Access>::allocator_type>::is_always_equal() )
 {
   // If the allocator is moved, then move everything
-  if constexpr ( typename allocator_traits<allocator_type>::propagate_on_container_move_assignment() ||
-                 typename allocator_traits<allocator_type>::is_always_equal() )
+  if constexpr ( typename ::std::allocator_traits<allocator_type>::propagate_on_container_move_assignment() ||
+                 typename ::std::allocator_traits<allocator_type>::is_always_equal() )
   {
-    this->alloc_ = move( rhs.get_allocator() );
+    this->alloc_ = ::std::move( rhs.get_allocator() );
     this->elems_ = rhs.elems_;
-    this->cap_   = move( rhs.cap_ );
+    this->cap_   = ::std::move( rhs.cap_ );
     this->view_  = this->create_view( rhs.size() );
     // Set moved tensor element pointer to null so its destruction doesn't deallocate
     rhs.elems_   = nullptr;
   }
   else
   {
-    if constexpr ( is_trivially_destructible_v<element_type> )
+    if constexpr ( ::std::is_trivially_destructible_v<element_type> )
     {
       if ( this->capacity() != rhs.capacity() )
       {
         // Deallocate
-        allocator_traits<allocator_type>::deallocate( this->alloc_, this->elems_, this->linear_capacity() );
+        ::std::allocator_traits<allocator_type>::deallocate( this->alloc_, this->elems_, this->linear_capacity() );
         // Set new capacity
         this->cap_   = rhs.capacity();
         // Allocate to new capacity
-        this->elems_ = allocator_traits<allocator_type>::allocate( this->alloc_, this->linear_capacity() );
+        this->elems_ = ::std::allocator_traits<allocator_type>::allocate( this->alloc_, this->linear_capacity() );
         // Define new view
         this->view_  = this->create_view( rhs.size() );
         // Copy construct all elements
@@ -889,7 +889,7 @@ constexpr dr_tensor<T,R,Alloc,L,Access>& dr_tensor<T,R,Alloc,L,Access>::operator
       // Set new capacity
       this->cap_   = rhs.capacity();
       // Allocate to new capacity
-      this->elems_ = allocator_traits<allocator_type>::allocate( this->alloc_, this->linear_capacity() );
+      this->elems_ = ::std::allocator_traits<allocator_type>::allocate( this->alloc_, this->linear_capacity() );
       // Define new view
       this->view_  = this->create_view( rhs.size() );
       // Copy construct all elements
@@ -902,21 +902,21 @@ constexpr dr_tensor<T,R,Alloc,L,Access>& dr_tensor<T,R,Alloc,L,Access>::operator
 template < class T, size_t R, class Alloc, class L , class Access >
 constexpr dr_tensor<T,R,Alloc,L,Access>& dr_tensor<T,R,Alloc,L,Access>::operator = ( const dr_tensor& rhs )
 {
-  if constexpr ( is_trivially_destructible_v<element_type> )
+  if constexpr ( ::std::is_trivially_destructible_v<element_type> )
   {
     if ( this->capacity() != rhs.capacity() )
     {
       // Deallocate
-      allocator_traits<allocator_type>::deallocate( this->alloc_, this->elems_, this->linear_capacity() );
+      ::std::allocator_traits<allocator_type>::deallocate( this->alloc_, this->elems_, this->linear_capacity() );
       // Propogate allocator
-      if constexpr ( typename allocator_traits<allocator_type>::propagate_on_container_copy_assignment() )
+      if constexpr ( typename ::std::allocator_traits<allocator_type>::propagate_on_container_copy_assignment() )
       {
         this->alloc_ = rhs.get_allocator();
       }
       // Set new capacity
       this->cap_   = rhs.capacity();
       // Allocate to new capacity
-      this->elems_ = allocator_traits<allocator_type>::allocate( this->alloc_, this->linear_capacity() );
+      this->elems_ = ::std::allocator_traits<allocator_type>::allocate( this->alloc_, this->linear_capacity() );
       // Define new view
       this->view_  = this->create_view( rhs.size() );
       // Copy construct all elements
@@ -924,14 +924,14 @@ constexpr dr_tensor<T,R,Alloc,L,Access>& dr_tensor<T,R,Alloc,L,Access>::operator
     }
     else
     {
-      if constexpr ( typename allocator_traits<allocator_type>::propagate_on_container_copy_assignment() )
+      if constexpr ( typename ::std::allocator_traits<allocator_type>::propagate_on_container_copy_assignment() )
       {
         // Deallocate
-        allocator_traits<allocator_type>::deallocate( this->alloc_, this->elems_, this->linear_capacity() );
+        ::std::allocator_traits<allocator_type>::deallocate( this->alloc_, this->elems_, this->linear_capacity() );
         // Propogate allocator
         this->alloc_ = rhs.get_allocator();
         // Allocate
-        this->elems_ = allocator_traits<allocator_type>::allocate( this->alloc_, this->linear_capacity() );
+        this->elems_ = ::std::allocator_traits<allocator_type>::allocate( this->alloc_, this->linear_capacity() );
       }
       // Define new view
       this->view_ = this->create_view( rhs.size() );
@@ -944,14 +944,14 @@ constexpr dr_tensor<T,R,Alloc,L,Access>& dr_tensor<T,R,Alloc,L,Access>::operator
     // Destroy all
     this->destroy_all();
     // Propogate allocator
-    if constexpr ( typename allocator_traits<allocator_type>::propagate_on_container_copy_assignment() )
+    if constexpr ( typename ::std::allocator_traits<allocator_type>::propagate_on_container_copy_assignment() )
     {
       this->alloc_ = rhs.get_allocator();
     }
     // Set new capacity
     this->cap_   = rhs.capacity();
     // Allocate to new capacity
-    this->elems_ = allocator_traits<allocator_type>::allocate( this->alloc_, this->linear_capacity() );
+    this->elems_ = ::std::allocator_traits<allocator_type>::allocate( this->alloc_, this->linear_capacity() );
     // Define new view
     this->view_  = this->create_view( rhs.size() );
     // Copy construct all elements
@@ -968,14 +968,14 @@ template < class T2, typename >
 #endif
 constexpr dr_tensor<T,R,Alloc,L,Access>& dr_tensor<T,R,Alloc,L,Access>::operator = ( const T2& rhs )
 {
-  if constexpr ( is_trivially_destructible_v<element_type> )
+  if constexpr ( ::std::is_trivially_destructible_v<element_type> )
   {
     if ( this->capacity() != rhs.capacity() )
     {
       // Deallocate
-      allocator_traits<allocator_type>::deallocate( this->alloc_, this->elems_, this->linear_capacity() );
+      ::std::allocator_traits<allocator_type>::deallocate( this->alloc_, this->elems_, this->linear_capacity() );
       // Propogate allocator
-      if constexpr ( typename allocator_traits<allocator_type>::propagate_on_container_copy_assignment() &&
+      if constexpr ( typename ::std::allocator_traits<allocator_type>::propagate_on_container_copy_assignment() &&
       #ifdef LINALG_ENABLE_CONCEPTS
                      concepts::dynamic_tensor<T2> )
       #else
@@ -987,7 +987,7 @@ constexpr dr_tensor<T,R,Alloc,L,Access>& dr_tensor<T,R,Alloc,L,Access>::operator
       // Set new capacity
       this->cap_   = rhs.capacity();
       // Allocate to new capacity
-      this->elems_ = allocator_traits<allocator_type>::allocate( this->alloc_, this->linear_capacity() );
+      this->elems_ = ::std::allocator_traits<allocator_type>::allocate( this->alloc_, this->linear_capacity() );
       // Define new view
       this->view_  = this->create_view( rhs.size() );
       // Copy construct all elements
@@ -995,7 +995,7 @@ constexpr dr_tensor<T,R,Alloc,L,Access>& dr_tensor<T,R,Alloc,L,Access>::operator
     }
     else
     {
-      if constexpr ( typename allocator_traits<allocator_type>::propagate_on_container_copy_assignment() &&
+      if constexpr ( typename ::std::allocator_traits<allocator_type>::propagate_on_container_copy_assignment() &&
       #ifdef LINALG_ENABLE_CONCEPTS
                      concepts::dynamic_tensor<T2> )
       #else
@@ -1003,11 +1003,11 @@ constexpr dr_tensor<T,R,Alloc,L,Access>& dr_tensor<T,R,Alloc,L,Access>::operator
       #endif
       {
         // Deallocate
-        allocator_traits<allocator_type>::deallocate( this->alloc_, this->elems_, this->linear_capacity() );
+        ::std::allocator_traits<allocator_type>::deallocate( this->alloc_, this->elems_, this->linear_capacity() );
         // Propogate allocator
         this->alloc_ = rhs.get_allocator();
         // Allocate
-        this->elems_ = allocator_traits<allocator_type>::allocate( this->alloc_, this->linear_capacity() );
+        this->elems_ = ::std::allocator_traits<allocator_type>::allocate( this->alloc_, this->linear_capacity() );
       }
       // Define new view
       this->view_ = this->create_view( rhs.size() );
@@ -1020,7 +1020,7 @@ constexpr dr_tensor<T,R,Alloc,L,Access>& dr_tensor<T,R,Alloc,L,Access>::operator
     // Destroy all
     this->destroy_all();
     // Propogate allocator
-    if constexpr ( typename allocator_traits<allocator_type>::propagate_on_container_copy_assignment() &&
+    if constexpr ( typename ::std::allocator_traits<allocator_type>::propagate_on_container_copy_assignment() &&
     #ifdef LINALG_ENABLE_CONCEPTS
                    concepts::dynamic_tensor<T2> )
     #else
@@ -1032,7 +1032,7 @@ constexpr dr_tensor<T,R,Alloc,L,Access>& dr_tensor<T,R,Alloc,L,Access>::operator
     // Set new capacity
     this->cap_   = rhs.capacity();
     // Allocate to new capacity
-    this->elems_ = allocator_traits<allocator_type>::allocate( this->alloc_, this->linear_capacity() );
+    this->elems_ = ::std::allocator_traits<allocator_type>::allocate( this->alloc_, this->linear_capacity() );
     // Define new view
     this->view_  = this->create_view( rhs.size() );
     // Copy construct all elements
@@ -1060,7 +1060,7 @@ constexpr dr_tensor<T,R,Alloc,L,Access>& dr_tensor<T,R,Alloc,L,Access>::operator
     if ( detail::sufficient_extents( this->cap_, view.extents() ) )
     {
       // If elements are trivially constructible and assignable, then just resize view and assign
-      if constexpr ( is_trivially_constructible_v<element_type> && is_trivially_assignable_v<element_type,typename MDS::reference> )
+      if constexpr ( ::std::is_trivially_constructible_v<element_type> && ::std::is_trivially_assignable_v<element_type,typename MDS::reference> )
       {
         this->view_ = this->create_view( view.extents() );
         static_cast<void>( detail::assign_view( this->view_, view ) );
@@ -1068,7 +1068,7 @@ constexpr dr_tensor<T,R,Alloc,L,Access>& dr_tensor<T,R,Alloc,L,Access>::operator
       else
       {
         // Otherwise, destruct, build new view, and construct
-        if constexpr ( is_trivially_destructible_v<element_type> )
+        if constexpr ( ::std::is_trivially_destructible_v<element_type> )
         {
           this->destroy_all();
         }
@@ -1079,16 +1079,16 @@ constexpr dr_tensor<T,R,Alloc,L,Access>& dr_tensor<T,R,Alloc,L,Access>::operator
     else
     {
       // Destroy if needed
-      if constexpr ( is_trivially_destructible_v<element_type> )
+      if constexpr ( ::std::is_trivially_destructible_v<element_type> )
       {
         this->destroy_all();
       }
       // Deallocate
-      allocator_traits<allocator_type>::deallocate( this->alloc_, this->elems_, this->linear_capacity() );
+      ::std::allocator_traits<allocator_type>::deallocate( this->alloc_, this->elems_, this->linear_capacity() );
       // Set new capacity
       this->cap_   = view.extents();
       // Allocate
-      this->elems_ = allocator_traits<allocator_type>::allocate( this->alloc_, this->linear_capacity() );
+      this->elems_ = ::std::allocator_traits<allocator_type>::allocate( this->alloc_, this->linear_capacity() );
       // Construct new view
       this->view_  = this->create_view( view.extents() );
       // Construct
@@ -1120,12 +1120,12 @@ constexpr void dr_tensor<T,R,Alloc,L,Access>::resize( extents_type new_size )
   // Check if the memory layout must change
   if ( detail::sufficient_extents( this->cap_, new_size ) )
   {
-    this->resize_impl( new_size, make_integer_sequence<index_type,extents_type::rank()>() );
+    this->resize_impl( new_size, ::std::make_integer_sequence<index_type,extents_type::rank()>() );
   }
   else
   {
     // Copy current state
-    dr_tensor clone = move( *this );
+    dr_tensor clone = ::std::move( *this );
     // Set to new size
     *this = dr_tensor( new_size, max_extents( new_size, this->capacity() ), this->get_allocator() );
     // Copy view
@@ -1140,7 +1140,7 @@ constexpr void dr_tensor<T,R,Alloc,L,Access>::reserve( extents_type new_cap )
   if ( detail::sufficient_extents( this->cap_, new_cap ) )
   {
     // Copy current state
-    dr_tensor clone = move( *this );
+    dr_tensor clone = ::std::move( *this );
     // Set to new size
     *this = dr_tensor( this->size(), max_extents( new_cap, this->capacity() ), this->get_allocator() );
     // Copy view
@@ -1156,14 +1156,14 @@ constexpr void dr_tensor<T,R,Alloc,L,Access>::set_allocator( const allocator_typ
   // Assign current elements into new tensor
   new_tensor = this->view();
   // Move new tensor into this tensor
-  *this = move( new_tensor );
+  *this = ::std::move( new_tensor );
 }
 
 template < class T, size_t R, class Alloc, class L , class Access >
 [[nodiscard]] constexpr const typename dr_tensor<T,R,Alloc,L,Access>::allocator_type&&
 dr_tensor<T,R,Alloc,L,Access>::get_allocator() && noexcept
 {
-  return move( this->alloc_ );
+  return ::std::move( this->alloc_ );
 }
 
 template < class T, size_t R, class Alloc, class L , class Access >
@@ -1181,7 +1181,7 @@ template < class ... IndexType >
 [[nodiscard]] constexpr dr_tensor<T,R,Alloc,L,Access>::value_type
 dr_tensor<T,R,Alloc,L,Access>::operator[]( IndexType ... indices ) const noexcept
 #ifdef LINALG_ENABLE_CONCEPTS
-  requires ( sizeof...(IndexType) == R ) && ( is_convertible_v<IndexType,typename dr_tensor<T,R,Alloc,L,Access>::index_type> && ... )
+  requires ( sizeof...(IndexType) == R ) && ( ::std::is_convertible_v<IndexType,typename dr_tensor<T,R,Alloc,L,Access>::index_type> && ... )
 #endif
 {
   return this->underlying_span()[ indices ... ];
@@ -1194,7 +1194,7 @@ template < class ... IndexType >
 [[nodiscard]] constexpr typename dr_tensor<T,R,Alloc,L,Access>::value_type
 dr_tensor<T,R,Alloc,L,Access>::operator()( IndexType ... indices ) const noexcept
 #ifdef LINALG_ENABLE_CONCEPTS
-  requires ( sizeof...(IndexType) == R ) && ( is_convertible_v<IndexType,typename dr_tensor<T,R,Alloc,L,Access>::index_type> && ... )
+  requires ( sizeof...(IndexType) == R ) && ( ::std::is_convertible_v<IndexType,typename dr_tensor<T,R,Alloc,L,Access>::index_type> && ... )
 #endif
 {
   return this->underlying_span()( indices ... );
@@ -1205,30 +1205,30 @@ template < class T, size_t R, class Alloc, class L , class Access >
 template < class ... SliceArgs >
 [[nodiscard]] constexpr auto dr_tensor<T,R,Alloc,L,Access>::subvector( SliceArgs ... args ) const
 #ifdef LINALG_ENABLE_CONCEPTS
-  requires ( decltype( experimental::submdspan( this->underlying_span(), args ... ) )::rank() == 1 )
+  requires ( decltype( ::std::experimental::submdspan( this->underlying_span(), args ... ) )::rank() == 1 )
 #endif
 {
-  using subspan_type = decltype( experimental::submdspan( this->underlying_span(), args ... ) );
-  return vector_view<subspan_type>( experimental::submdspan( this->underlying_span(), args ... ) );
+  using subspan_type = decltype( ::std::experimental::submdspan( this->underlying_span(), args ... ) );
+  return vector_view<subspan_type>( ::std::experimental::submdspan( this->underlying_span(), args ... ) );
 }
 
 template < class T, size_t R, class Alloc, class L , class Access >
 template < class ... SliceArgs >
 [[nodiscard]] constexpr auto dr_tensor<T,R,Alloc,L,Access>::submatrix( SliceArgs ... args ) const
 #ifdef LINALG_ENABLE_CONCEPTS
-  requires ( decltype( experimental::submdspan( this->underlying_span(), args ... ) )::rank() == 2 )
+  requires ( decltype( ::std::experimental::submdspan( this->underlying_span(), args ... ) )::rank() == 2 )
 #endif
 {
-  using subspan_type = decltype( experimental::submdspan( this->underlying_span(), args ... ) );
-  return matrix_view<subspan_type>( experimental::submdspan( this->underlying_span(), args ... ) );
+  using subspan_type = decltype( ::std::experimental::submdspan( this->underlying_span(), args ... ) );
+  return matrix_view<subspan_type>( ::std::experimental::submdspan( this->underlying_span(), args ... ) );
 }
 
 template < class T, size_t R, class Alloc, class L , class Access >
 template < class ... SliceArgs >
 [[nodiscard]] constexpr auto dr_tensor<T,R,Alloc,L,Access>::subtensor( SliceArgs ... args ) const
 {
-  using subspan_type = decltype( experimental::submdspan( this->underlying_span(), args ... ) );
-  return tensor_view<subspan_type>( experimental::submdspan( this->underlying_span(), args ... ) );
+  using subspan_type = decltype( ::std::experimental::submdspan( this->underlying_span(), args ... ) );
+  return tensor_view<subspan_type>( ::std::experimental::submdspan( this->underlying_span(), args ... ) );
 }
 
 //- Mutable views
@@ -1236,10 +1236,10 @@ template < class ... SliceArgs >
 #if LINALG_USE_BRACKET_OPERATOR
 template < class T, size_t R, class Alloc, class L , class Access >
 template < class ... IndexType >
-[[nodiscard]] constexpr typename dr_tensor<T,R,Alloc,L,Access>::reference_type
+[[nodiscard]] constexpr typename dr_tensor<T,R,Alloc,L,Access>::reference
 dr_tensor<T,R,Alloc,L,Access>::operator[]( IndexType ... indices ) noexcept
 #ifdef LINALG_ENABLE_CONCEPTS
-  requires ( sizeof...(IndexType) == R ) && ( is_convertible_v<IndexType,typename dr_tensor<T,R,Alloc,L,Access>::index_type> && ... )
+  requires ( sizeof...(IndexType) == R ) && ( ::std::is_convertible_v<IndexType,typename dr_tensor<T,R,Alloc,L,Access>::index_type> && ... )
 #endif
 {
   return detail::access( this->underlying_span(), indices ... );
@@ -1249,10 +1249,10 @@ dr_tensor<T,R,Alloc,L,Access>::operator[]( IndexType ... indices ) noexcept
 #if LINALG_USE_PAREN_OPERATOR
 template < class T, size_t R, class Alloc, class L , class Access >
 template < class ... IndexType >
-[[nodiscard]] constexpr typename dr_tensor<T,R,Alloc,L,Access>::reference_type
+[[nodiscard]] constexpr typename dr_tensor<T,R,Alloc,L,Access>::reference
 dr_tensor<T,R,Alloc,L,Access>::operator()( IndexType ... indices ) noexcept
 #ifdef LINALG_ENABLE_CONCEPTS
-  requires ( sizeof...(IndexType) == R ) && ( is_convertible_v<IndexType,typename dr_tensor<T,R,Alloc,L,Access>::index_type> && ... )
+  requires ( sizeof...(IndexType) == R ) && ( ::std::is_convertible_v<IndexType,typename dr_tensor<T,R,Alloc,L,Access>::index_type> && ... )
 #endif
 {
   return detail::access( this->underlying_span(), indices ... );
@@ -1263,30 +1263,30 @@ template < class T, size_t R, class Alloc, class L , class Access >
 template < class ... SliceArgs >
 [[nodiscard]] constexpr auto dr_tensor<T,R,Alloc,L,Access>::subvector( SliceArgs ... args )
 #ifdef LINALG_ENABLE_CONCEPTS
-  requires ( decltype( experimental::submdspan( this->underlying_span(), args ... ) )::rank() == 1 )
+  requires ( decltype( ::std::experimental::submdspan( this->underlying_span(), args ... ) )::rank() == 1 )
 #endif
 {
-  using subspan_type = decltype( experimental::submdspan( this->underlying_span(), args ... ) );
-  return vector_view<subspan_type>( experimental::submdspan( this->underlying_span(), args ... ) );
+  using subspan_type = decltype( ::std::experimental::submdspan( this->underlying_span(), args ... ) );
+  return vector_view<subspan_type>( ::std::experimental::submdspan( this->underlying_span(), args ... ) );
 }
 
 template < class T, size_t R, class Alloc, class L , class Access >
 template < class ... SliceArgs >
 [[nodiscard]] constexpr auto dr_tensor<T,R,Alloc,L,Access>::submatrix( SliceArgs ... args )
 #ifdef LINALG_ENABLE_CONCEPTS
-  requires ( decltype( experimental::submdspan( this->underlying_span(), args ... ) )::rank() == 2 )
+  requires ( decltype( ::std::experimental::submdspan( this->underlying_span(), args ... ) )::rank() == 2 )
 #endif
 {
-  using subspan_type = decltype( experimental::submdspan( this->underlying_span(), args ... ) );
-  return matrix_view<subspan_type>( experimental::submdspan( this->underlying_span(), args ... ) );
+  using subspan_type = decltype( ::std::experimental::submdspan( this->underlying_span(), args ... ) );
+  return matrix_view<subspan_type>( ::std::experimental::submdspan( this->underlying_span(), args ... ) );
 }
 
 template < class T, size_t R, class Alloc, class L , class Access >
 template < class ... SliceArgs >
 [[nodiscard]] constexpr auto dr_tensor<T,R,Alloc,L,Access>::subtensor( SliceArgs ... args )
 {
-  using subspan_type = decltype( experimental::submdspan( this->underlying_span(), args ... ) );
-  return tensor_view<subspan_type>( experimental::submdspan( this->underlying_span(), args ... ) );
+  using subspan_type = decltype( ::std::experimental::submdspan( this->underlying_span(), args ... ) );
+  return tensor_view<subspan_type>( ::std::experimental::submdspan( this->underlying_span(), args ... ) );
 }
 
 //- Data access
@@ -1316,7 +1316,7 @@ template < class T, size_t R, class Alloc, class L , class Access >
 [[nodiscard]] constexpr typename dr_tensor<T,R,Alloc,L,Access>::underlying_span_type dr_tensor<T,R,Alloc,L,Access>::
 create_view( const extents_type s ) noexcept
 {
-  return this->create_view_impl( s, make_index_sequence<extents_type::rank()>() );
+  return this->create_view_impl( s, ::std::make_index_sequence<extents_type::rank()>() );
 }
 
 template < class T, size_t R, class Alloc, class L , class Access >
@@ -1324,7 +1324,7 @@ template < size_t ... Indices >
 [[nodiscard]] constexpr typename dr_tensor<T,R,Alloc,L,Access>::underlying_span_type dr_tensor<T,R,Alloc,L,Access>::
 create_view_impl( const extents_type s, [[maybe_unused]] index_sequence<Indices...> ) noexcept
 {
-  return experimental::submdspan( capacity_span_type( this->elems_, this->cap_ ), tuple( 0, s.extent(Indices) ) ... );
+  return ::std::experimental::submdspan( capacity_span_type( this->elems_, this->cap_ ), tuple( 0, s.extent(Indices) ) ... );
 }
 
 template < class T, size_t R, class Alloc, class L , class Access >
@@ -1339,7 +1339,7 @@ inline void dr_tensor<T,R,Alloc,L,Access>::copy_view_except( MDS&& span )
   catch ( ... )
   {
     // Deallocate
-    allocator_traits<allocator_type>::deallocate( this->alloc_, this->elems_, this->linear_capacity() );
+    ::std::allocator_traits<allocator_type>::deallocate( this->alloc_, this->elems_, this->linear_capacity() );
     // Rethrow
     rethrow_exception( current_exception() );
   }
@@ -1347,26 +1347,26 @@ inline void dr_tensor<T,R,Alloc,L,Access>::copy_view_except( MDS&& span )
 
 template < class T, size_t R, class Alloc, class L , class Access >
 constexpr void dr_tensor<T,R,Alloc,L,Access>::destroy_all()
-  noexcept( is_nothrow_destructible_v<typename dr_tensor<T,R,Alloc,L,Access>::element_type> )
+  noexcept( ::std::is_nothrow_destructible_v<typename dr_tensor<T,R,Alloc,L,Access>::element_type> )
 {
   // Is the destructor non-trivial?
-  if constexpr ( is_trivially_destructible_v<element_type> )
+  if constexpr ( ::std::is_trivially_destructible_v<element_type> )
   {
     // Deallocate
-    allocator_traits<allocator_type>::deallocate( this->alloc_,
-                                                  this->elems_,
-                                                  this->linear_capacity() );
+    ::std::allocator_traits<allocator_type>::deallocate( this->alloc_,
+                                                         this->elems_,
+                                                         this->linear_capacity() );
   }
   else
   {
-    if constexpr ( is_nothrow_destructible_v<element_type> )
+    if constexpr ( ::std::is_nothrow_destructible_v<element_type> )
     {
       detail::for_each( LINALG_EXECUTION_UNSEQ,
                         this->elems_,
                         this->elems_ + this->view_.size(),
                         []( const element_type& elem ) constexpr noexcept { elem.~element_type(); } );
       // Deallocate
-      allocator_traits<allocator_type>::deallocate( this->alloc_, this->elems_, this->linear_capacity() );
+      ::std::allocator_traits<allocator_type>::deallocate( this->alloc_, this->elems_, this->linear_capacity() );
     }
     else
     {
@@ -1379,26 +1379,26 @@ template < class T, size_t R, class Alloc, class L , class Access >
 inline void dr_tensor<T,R,Alloc,L,Access>::destroy_all_except()
 {
   // Cache the last exception to be thrown
-  exception_ptr eptr;
+  ::std::exception_ptr eptr;
   // Attempt to destruct
   detail::for_each( LINALG_EXECUTION_UNSEQ,
                     this->elems_,
                     this->elems_ + this->view_.size(),
-                    [this,&eptr]( const element_type& elem ) { try { this->elem_.~element_type(); } catch ( ... ) { eptr = current_exception(); } } );
+                    [this,&eptr]( const element_type& elem ) { try { this->elem_.~element_type(); } catch ( ... ) { eptr = ::std::current_exception(); } } );
   // Deallocate
-  allocator_traits<allocator_type>::deallocate( this->alloc_, this->elems_, this->linear_capacity() );
+  ::std::allocator_traits<allocator_type>::deallocate( this->alloc_, this->elems_, this->linear_capacity() );
   // If exceptions were thrown, rethrow the last
   if ( eptr ) LINALG_UNLIKELY
   {
-    rethrow_exception( eptr );
+    ::std::rethrow_exception( eptr );
   }
 }
 
 template < class T, size_t R, class Alloc, class L , class Access >
 constexpr void dr_tensor<T,R,Alloc,L,Access>::construct_all()
-  noexcept( is_nothrow_constructible_v<typename dr_tensor<T,R,Alloc,L,Access>::element_type> )
+  noexcept( ::std::is_nothrow_constructible_v<typename dr_tensor<T,R,Alloc,L,Access>::element_type> )
 {
-  if constexpr ( is_nothrow_constructible_v<element_type> )
+  if constexpr ( ::std::is_nothrow_constructible_v<element_type> )
   {
     detail::for_each( LINALG_EXECUTION_UNSEQ,
                       this->elems_,
@@ -1415,22 +1415,22 @@ template < class T, size_t R, class Alloc, class L , class Access >
 inline void dr_tensor<T,R,Alloc,L,Access>::construct_all_except()
 {
   // Cache the last exception to be thrown
-  exception_ptr eptr;
+  ::std::exception_ptr eptr;
   // If the elements are trivially destructible, then construction can still be unsequential
-  if constexpr ( is_trivially_destructible_v<element_type> )
+  if constexpr ( ::std::is_trivially_destructible_v<element_type> )
   {
     // Attempt to construct
     detail::for_each( LINALG_EXECUTION_UNSEQ,
                       this->elems_,
                       this->elems_ + this->view_.size(),
-                      [&eptr]( auto elem ) { try { ::new (&elem) element_type; } catch ( ... ) { eptr = current_exception(); } } );
+                      [&eptr]( auto elem ) { try { ::new (&elem) element_type; } catch ( ... ) { eptr = ::std::current_exception(); } } );
     // If exceptions were thrown, rethrow the last
     if ( eptr )
     {
       // Deallocate
-      allocator_traits<allocator_type>::deallocate( this->alloc_, this->elems_, this->linear_capacity() );
+      ::std::allocator_traits<allocator_type>::deallocate( this->alloc_, this->elems_, this->linear_capacity() );
       // Rethrow
-      rethrow_exception( eptr );
+      ::std::rethrow_exception( eptr );
     }
   }
   else
@@ -1441,7 +1441,7 @@ inline void dr_tensor<T,R,Alloc,L,Access>::construct_all_except()
     detail::for_each( LINALG_EXECUTION_SEQ,
                       this->elems_,
                       this->elems_ + this->view_.size(),
-                      [&eptr,&elem_except_ptr]( auto elem ) { try { ::new (&elem) element_type(); } catch ( ... ) { elem_except_ptr = &elem; eptr = current_exception(); } } );
+                      [&eptr,&elem_except_ptr]( auto elem ) { try { ::new (&elem) element_type(); } catch ( ... ) { elem_except_ptr = &elem; eptr = ::std::current_exception(); } } );
     // If exceptions were thrown, destroy all which have already been constructed, then rethrow the last
     if ( eptr ) LINALG_UNLIKELY
     {
@@ -1452,8 +1452,8 @@ inline void dr_tensor<T,R,Alloc,L,Access>::construct_all_except()
                         elem_except_ptr,
                         []( auto elem ) constexpr noexcept( is_nothrow_destructible_v<element_type> ){ elem.~element_type(); } );
       // Deallocate
-      allocator_traits<allocator_type>::deallocate( this->alloc_, this->elems_, this->linear_capacity() );
-      rethrow_exception( eptr );
+      ::std::allocator_traits<allocator_type>::deallocate( this->alloc_, this->elems_, this->linear_capacity() );
+      ::std::rethrow_exception( eptr );
     }
   }
 }
@@ -1462,11 +1462,11 @@ template < class T, size_t R, class Alloc, class L , class Access >
 template < class SizeType, SizeType ... Indices >
 constexpr void
 dr_tensor<T,R,Alloc,L,Access>::resize_impl( extents_type new_size,
-                                            [[maybe_unused]] integer_sequence<SizeType,Indices...> )
+                                            [[maybe_unused]] ::std::integer_sequence<SizeType,Indices...> )
 {
   // If not trivially destructible, then elements descoped from resize must be deleted
   // and elements added to scope must be default constructed
-  if constexpr ( !is_trivially_destructible_v<element_type> )
+  if constexpr ( !::std::is_trivially_destructible_v<element_type> )
   {
     // Create subview of elements to be destroyed
     auto destroy_extent = [this,new_size]( SizeType index ) constexpr noexcept
@@ -1475,10 +1475,10 @@ dr_tensor<T,R,Alloc,L,Access>::resize_impl( extents_type new_size,
                tuple( new_size.extent(index), this->size().extent(index) ) :
                tuple( this->size().extent(index), this->size().extent(index) );
     };
-    auto destroy_subview = experimental::submdspan( this->underlying_span(),
-                                                    destroy_extent(Indices) ...  );
+    auto destroy_subview = ::std::experimental::submdspan( this->underlying_span(),
+                                                           destroy_extent(Indices) ...  );
     // Define destructor lambda
-    auto destructor = [this]( auto ... indices ) constexpr noexcept( is_nothrow_destructible_v<element_type> )
+    auto destructor = [this]( auto ... indices ) constexpr noexcept( ::std::is_nothrow_destructible_v<element_type> )
       { detail::access( this->view_, indices ... ).~element_type(); };
     // Destroy
     detail::apply_all( destroy_subview, destructor, LINALG_EXECUTION_UNSEQ );
@@ -1489,11 +1489,11 @@ dr_tensor<T,R,Alloc,L,Access>::resize_impl( extents_type new_size,
                tuple( this->size().extent(index), new_size.extent(index) ) :
                tuple( this->size().extent(index), this->size().extent(index) );
     };
-    auto construct_subview = experimental::submdspan( this->underlying_span(),
-                                                      construct_extent(Indices) ...  );
+    auto construct_subview = ::std::experimental::submdspan( this->underlying_span(),
+                                                             construct_extent(Indices) ...  );
     // Define constructor lambda
-    auto constructor = [this]( auto ... indices ) constexpr noexcept( is_nothrow_default_constructible_v<element_type> )
-      { ::new ( addressof( detail::access( this->view_, indices ... ) ) ) element_type(); };
+    auto constructor = [this]( auto ... indices ) constexpr noexcept( ::std::is_nothrow_default_constructible_v<element_type> )
+      { ::new ( ::std::addressof( detail::access( this->view_, indices ... ) ) ) element_type(); };
     // Construct
     detail::apply_all( construct_subview, constructor, LINALG_EXECUTION_UNSEQ );
   }
@@ -1506,7 +1506,7 @@ constexpr typename dr_tensor<T,R,Alloc,L,Access>::extents_type
 dr_tensor<T,R,Alloc,L,Access>::max_extents( extents_type extents_a, extents_type extents_b ) noexcept
 {
   // Construct array to contain max
-  array<index_type,extents_type::rank()> max_extents;
+  ::std::array<index_type,extents_type::rank()> max_extents;
   // Iterate over each dimension and set max
   detail::for_each( LINALG_EXECUTION_UNSEQ,
                     detail::faux_index_iterator<index_type>( 0 ),

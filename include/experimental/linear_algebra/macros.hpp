@@ -20,7 +20,7 @@
 // Define execution::seq if available.
 #ifndef LINALG_EXECUTION_SEQ
 #  if LINALG_EXECTUION_POLICY
-#    define LINALG_EXECUTION_SEQ execution::seq
+#    define LINALG_EXECUTION_SEQ ::std::execution::seq
 #  else
 #    define LINALG_EXECUTION_SEQ 0
 #  endif
@@ -30,7 +30,7 @@
 // If not, then just use execution::seq instead.
 #ifndef LINALG_EXECUTION_UNSEQ
 #  if ( __cpp_lib_execution >= 201902L ) && ( ( LINALG_COMPILER_GNU >= 9 ) || ( LINALG_COMPILER_MSVC >= 1928 ) )
-#    define LINALG_EXECUTION_UNSEQ execution::unseq
+#    define LINALG_EXECUTION_UNSEQ ::std::execution::unseq
 #  else
 #    define LINALG_EXECUTION_UNSEQ LINALG_EXECUTION_SEQ
 #  endif

@@ -85,7 +85,7 @@ template < class ... IndexType >
 #endif
 operator[]( IndexType ... indices ) const noexcept
 #ifdef LINALG_ENABLE_CONCEPTS
-  requires ( sizeof...(IndexType) == tensor_view<MDS>::extents_type::rank() ) && ( is_convertible_v<IndexType,typename tensor_view<MDS>::index_type> && ... )
+  requires ( sizeof...(IndexType) == tensor_view<MDS>::extents_type::rank() ) && ( ::std::is_convertible_v<IndexType,typename tensor_view<MDS>::index_type> && ... )
 #endif
 {
   return this->underlying_span()[ indices ... ];
@@ -104,7 +104,7 @@ template < class ... IndexType >
 #endif
 operator()( IndexType ... indices ) const noexcept
 #ifdef LINALG_ENABLE_CONCEPTS
-  requires ( sizeof...(IndexType) == tensor_view<MDS>::extents_type::rank() ) && ( is_convertible_v<IndexType,typename tensor_view<MDS>::index_type> && ... )
+  requires ( sizeof...(IndexType) == tensor_view<MDS>::extents_type::rank() ) && ( ::std::is_convertible_v<IndexType,typename tensor_view<MDS>::index_type> && ... )
 #endif
 {
   return this->underlying_span()( indices ... );
@@ -122,7 +122,7 @@ template < class ... IndexType >
 #endif
 at( IndexType ... indices ) const
 #ifdef LINALG_ENABLE_CONCEPTS
-  requires ( sizeof...(IndexType) == tensor_view<MDS>::extents_type::rank() ) && ( is_convertible_v<IndexType,typename tensor_view<MDS>::index_type> && ... )
+  requires ( sizeof...(IndexType) == tensor_view<MDS>::extents_type::rank() ) && ( ::std::is_convertible_v<IndexType,typename tensor_view<MDS>::index_type> && ... )
 #endif
 {
   return detail::access( this->underlying_span(), indices ... );
@@ -139,11 +139,11 @@ template < class ... SliceArgs >
 #endif
 subvector( SliceArgs ... args ) const
 #ifdef LINALG_ENABLE_CONCEPTS
-  requires ( decltype( experimental::submdspan( this->underlying_span(), args ... ) )::rank() == 1 )
+  requires ( decltype( ::std::experimental::submdspan( this->underlying_span(), args ... ) )::rank() == 1 )
 #endif
 {
-  using subspan_type = decltype( experimental::submdspan( this->underlying_span(), args ... ) );
-  return vector_view<subspan_type>( experimental::submdspan( this->underlying_span(), args ... ) );
+  using subspan_type = decltype( ::std::experimental::submdspan( this->underlying_span(), args ... ) );
+  return vector_view<subspan_type>( ::std::experimental::submdspan( this->underlying_span(), args ... ) );
 }
 
 #ifdef LINALG_ENABLE_CONCEPTS
@@ -157,11 +157,11 @@ template < class ... SliceArgs >
 #endif
 submatrix( SliceArgs ... args ) const
 #ifdef LINALG_ENABLE_CONCEPTS
-  requires ( decltype( experimental::submdspan( this->underlying_span(), args ... ) )::rank() == 2 )
+  requires ( decltype( ::std::experimental::submdspan( this->underlying_span(), args ... ) )::rank() == 2 )
 #endif
 {
-  using subspan_type = decltype( experimental::submdspan( this->underlying_span(), args ... ) );
-  return matrix_view<subspan_type>( experimental::submdspan( this->underlying_span(), args ... ) );
+  using subspan_type = decltype( ::std::experimental::submdspan( this->underlying_span(), args ... ) );
+  return matrix_view<subspan_type>( ::std::experimental::submdspan( this->underlying_span(), args ... ) );
 }
 
 #ifdef LINALG_ENABLE_CONCEPTS
@@ -175,8 +175,8 @@ template < class ... SliceArgs >
 #endif
 subtensor( SliceArgs ... args ) const
 {
-  using subspan_type = decltype( experimental::submdspan( this->underlying_span(), args ... ) );
-  return tensor_view<subspan_type>( experimental::submdspan( this->underlying_span(), args ... ) );
+  using subspan_type = decltype( ::std::experimental::submdspan( this->underlying_span(), args ... ) );
+  return tensor_view<subspan_type>( ::std::experimental::submdspan( this->underlying_span(), args ... ) );
 }
 
 //- Mutable views
@@ -185,19 +185,19 @@ subtensor( SliceArgs ... args ) const
 #ifdef LINALG_ENABLE_CONCEPTS
 template < class MDS > requires ( detail::is_mdspan_v<MDS> && MDS::is_always_unique() )
 template < class ... IndexType >
-[[nodiscard]] constexpr typename tensor_view<MDS>::reference_type tensor_view<MDS>::
+[[nodiscard]] constexpr typename tensor_view<MDS>::reference tensor_view<MDS>::
 #else
 template < class MDS, typename Dummy >
 template < class ... IndexType >
-[[nodiscard]] constexpr typename tensor_view<MDS,Dummy>::reference_type tensor_view<MDS,Dummy>::
+[[nodiscard]] constexpr typename tensor_view<MDS,Dummy>::reference tensor_view<MDS,Dummy>::
 #endif
 operator[]( IndexType ... indices ) noexcept
 #ifdef LINALG_ENABLE_CONCEPTS
-  requires ( sizeof...(IndexType) == tensor_view<MDS>::extents_type::rank() ) && ( is_convertible_v<IndexType,typename tensor_view<MDS>::index_type> && ... ) &&
-           ( !is_const_v<typename tensor_view<MDS>::element_type> )
+  requires ( sizeof...(IndexType) == tensor_view<MDS>::extents_type::rank() ) && ( ::std::is_convertible_v<IndexType,typename tensor_view<MDS>::index_type> && ... ) &&
+           ( !::std::is_const_v<typename tensor_view<MDS>::element_type> )
 #endif
 {
-  return forward<reference_type>( this->underlying_span()[ indices ... ] );
+  return ::std::forward<reference>( this->underlying_span()[ indices ... ] );
 }
 #endif
 
@@ -205,38 +205,38 @@ operator[]( IndexType ... indices ) noexcept
 #ifdef LINALG_ENABLE_CONCEPTS
 template < class MDS > requires ( detail::is_mdspan_v<MDS> && MDS::is_always_unique() )
 template < class ... IndexType >
-[[nodiscard]] constexpr typename tensor_view<MDS>::reference_type tensor_view<MDS>::
+[[nodiscard]] constexpr typename tensor_view<MDS>::reference tensor_view<MDS>::
 #else
 template < class MDS, typename Dummy >
 template < class ... IndexType >
-[[nodiscard]] constexpr typename tensor_view<MDS,Dummy>::reference_type tensor_view<MDS,Dummy>::
+[[nodiscard]] constexpr typename tensor_view<MDS,Dummy>::reference tensor_view<MDS,Dummy>::
 #endif
 operator()( IndexType ... indices ) noexcept
 #ifdef LINALG_ENABLE_CONCEPTS
-  requires ( sizeof...(IndexType) == tensor_view<MDS>::extents_type::rank() ) && ( is_convertible_v<IndexType,typename tensor_view<MDS>::index_type> && ... ) &&
-           ( !is_const_v<typename tensor_view<MDS>::element_type> )
+  requires ( sizeof...(IndexType) == tensor_view<MDS>::extents_type::rank() ) && ( ::std::is_convertible_v<IndexType,typename tensor_view<MDS>::index_type> && ... ) &&
+           ( !::std::is_const_v<typename tensor_view<MDS>::element_type> )
 #endif
 {
-  return forward<reference_type>( this->underlying_span()( indices ... ) );
+  return ::std::forward<reference>( this->underlying_span()( indices ... ) );
 }
 #endif
 
 #ifdef LINALG_ENABLE_CONCEPTS
 template < class MDS > requires ( detail::is_mdspan_v<MDS> && MDS::is_always_unique() )
 template < class ... IndexType >
-[[nodiscard]] constexpr typename tensor_view<MDS>::reference_type tensor_view<MDS>::
+[[nodiscard]] constexpr typename tensor_view<MDS>::reference tensor_view<MDS>::
 #else
 template < class MDS, typename Dummy >
 template < class ... IndexType >
-[[nodiscard]] constexpr typename tensor_view<MDS,Dummy>::reference_type tensor_view<MDS,Dummy>::
+[[nodiscard]] constexpr typename tensor_view<MDS,Dummy>::reference tensor_view<MDS,Dummy>::
 #endif
 at( IndexType ... indices )
 #ifdef LINALG_ENABLE_CONCEPTS
-  requires ( sizeof...(IndexType) == tensor_view<MDS>::extents_type::rank() ) && ( is_convertible_v<IndexType,typename tensor_view<MDS>::index_type> && ... ) &&
-           ( !is_const_v<typename tensor_view<MDS>::element_type> )
+  requires ( sizeof...(IndexType) == tensor_view<MDS>::extents_type::rank() ) && ( ::std::is_convertible_v<IndexType,typename tensor_view<MDS>::index_type> && ... ) &&
+           ( !::std::is_const_v<typename tensor_view<MDS>::element_type> )
 #endif
 {
-  return forward<reference_type>( detail::access( this->underlying_span(), indices ... ) );
+  return ::std::forward<reference>( detail::access( this->underlying_span(), indices ... ) );
 }
 
 #ifdef LINALG_ENABLE_CONCEPTS
@@ -250,7 +250,7 @@ template < class ... SliceArgs >
 #endif
 subvector( SliceArgs ... args )
 #ifdef LINALG_ENABLE_CONCEPTS
-  requires ( decltype( experimental::submdspan( this->underlying_span(), args ... ) )::rank() == 1 )
+  requires ( decltype( ::std::experimental::submdspan( this->underlying_span(), args ... ) )::rank() == 1 )
 #endif
 {
   using subspan_type = decltype( experimental::submdspan( this->underlying_span(), args ... ) );
@@ -268,11 +268,11 @@ template < class ... SliceArgs >
 #endif
 submatrix( SliceArgs ... args )
 #ifdef LINALG_ENABLE_CONCEPTS
-  requires ( decltype( experimental::submdspan( this->underlying_span(), args ... ) )::rank() == 2 )
+  requires ( decltype( ::std::experimental::submdspan( this->underlying_span(), args ... ) )::rank() == 2 )
 #endif
 {
-  using subspan_type = decltype( experimental::submdspan( this->underlying_span(), args ... ) );
-  return matrix_view<subspan_type>( experimental::submdspan( this->underlying_span(), args ... ) );
+  using subspan_type = decltype( ::std::experimental::submdspan( this->underlying_span(), args ... ) );
+  return matrix_view<subspan_type>( ::std::experimental::submdspan( this->underlying_span(), args ... ) );
 }
 
 #ifdef LINALG_ENABLE_CONCEPTS
@@ -286,8 +286,8 @@ template < class ... SliceArgs >
 #endif
 subtensor( SliceArgs ... args )
 {
-  using subspan_type = decltype( experimental::submdspan( this->underlying_span(), args ... ) );
-  return tensor_view<subspan_type>( experimental::submdspan( this->underlying_span(), args ... ) );
+  using subspan_type = decltype( ::std::experimental::submdspan( this->underlying_span(), args ... ) );
+  return tensor_view<subspan_type>( ::std::experimental::submdspan( this->underlying_span(), args ... ) );
 }
 
 //- Data access
@@ -314,7 +314,7 @@ template < typename Elem, typename >
 #endif
 underlying_span() noexcept
 #ifdef LINALG_ENABLE_CONCEPTS
-  requires ( !is_const_v<typename tensor_view<MDS>::element_type> )
+  requires ( !::std::is_const_v<typename tensor_view<MDS>::element_type> )
 #endif
 {
   return this->view_;

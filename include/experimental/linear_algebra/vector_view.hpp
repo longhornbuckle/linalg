@@ -48,7 +48,7 @@ class vector_view : public tensor_view<MDS>
     /// @brief Type used for indexing
     using index_type                 = typename base_type::index_type;
     /// @brief Type used for size along any dimension
-    using size_type                  = size_t;
+    using size_type                  = ::std::size_t;
     /// @brief Type used to express size of tensor
     using extents_type               = typename base_type::extents_type;
     /// @brief Type used to represent a node in the tensor
@@ -60,15 +60,11 @@ class vector_view : public tensor_view<MDS>
     /// @brief Type used to portray tensor as an N dimensional view
     using span_type                  = typename base_type::span_type;
     /// @brief Type returned by mutable index access
-    using reference_type             = typename base_type::reference_type;
-    /// @brief mutable view of a subtensor
-    using subtensor_type             = typename base_type::subtensor_type;
-    /// @brief const view of a subtensor
-    using const_subtensor_type       = typename base_type::const_subtensor_type;
+    using reference                  = typename base_type::reference;
     /// @brief mutable view of a subvector
-    using subvector_type             = vector_view<decltype( experimental::submdspan( declval<underlying_span_type>(), declval< tuple<index_type,index_type> >() ) ) >;
+    using subvector_type             = vector_view<decltype( ::std::experimental::submdspan( ::std::declval<underlying_span_type>(), ::std::declval< ::std::tuple<index_type,index_type> >() ) ) >;
     /// @brief const view of a subvector
-    using const_subvector_type       = vector_view<decltype( experimental::submdspan( declval<const_underlying_span_type>(), declval< tuple<index_type,index_type> >() ) ) >;
+    using const_subvector_type       = vector_view<decltype( ::std::experimental::submdspan( ::std::declval<const_underlying_span_type>(), ::std::declval< ::std::tuple<index_type,index_type> >() ) ) >;
     
     //- Destructor / Constructors / Assignments
 
@@ -136,12 +132,12 @@ class vector_view : public tensor_view<MDS>
     /// @param end (row,column) end of subvector
     /// @returns mutable view of the specified subvector
     #ifndef LINALG_ENABLE_CONCEPTS
-    template < typename Elem = element_type, typename = enable_if_t< !is_const_v<Elem> > >
+    template < typename Elem = element_type, typename = ::std::enable_if_t< !::std::is_const_v<Elem> > >
     #endif
     [[nodiscard]] constexpr subvector_type subvector( tuple_type start,
                                                       tuple_type end )
     #ifdef LINALG_ENABLE_CONCEPTS
-      requires ( !is_const_v<element_type> );
+      requires ( !::std::is_const_v<element_type> );
     #else
       ;
     #endif
@@ -225,7 +221,7 @@ template < class MDS, typename Dummy >
 subvector( tuple_type start,
            tuple_type end ) const
 {
-  return const_subtensor_type { experimental::submdspan( this->underlying_span(), tuple( start, end ) ) };
+  return const_subvector_type { ::std::experimental::submdspan( this->underlying_span(), ::std::tuple( start, end ) ) };
 }
 
 //- Mutable views
@@ -241,10 +237,10 @@ template < typename Elem, typename >
 subvector( tuple_type start,
            tuple_type end )
 #ifdef LINALG_ENABLE_CONCEPTS
-  requires ( !is_const_v<typename vector_view<MDS>::element_type> )
+  requires ( !::std::is_const_v<typename vector_view<MDS>::element_type> )
 #endif
 {
-  return subtensor_type { experimental::submdspan( this->underlying_span(), tuple( start, end ) ) };
+  return subvector_type { ::std::experimental::submdspan( this->underlying_span(), ::std::tuple( start, end ) ) };
 }
 
 }       //- math namespace

@@ -23,14 +23,14 @@ namespace math
 /// @tparam N number of elements
 /// @tparam L layout defines the ordering of elements in memory
 /// @tparam A accessor policy defines how elements are accessed
-template < class  T,
-           size_t N,
-           class  L = experimental::layout_right,
-           class  A = experimental::default_accessor<T>
+template < class         T,
+           ::std::size_t N,
+           class         L = ::std::experimental::layout_right,
+           class         A = ::std::experimental::default_accessor<T>
 #ifdef LINALG_ENABLE_CONCEPTS
            > requires ( N >= 0 ) // Number of elements must be >= 0
 #else
-           , typename = enable_if_t< ( N >= 0 ) > >
+           , typename = ::std::enable_if_t< ( N >= 0 ) > >
 #endif
 class fs_vector : public fs_tensor<T,L,A,N>
 {
@@ -63,11 +63,11 @@ class fs_vector : public fs_tensor<T,L,A,N>
     /// @brief Type used to portray tensor as an N dimensional view
     using span_type                  = typename base_type::span_type;
     /// @brief Type returned by mutable index access
-    using reference_type             = typename base_type::reference_type;
+    using reference                  = typename base_type::reference;
     /// @brief mutable view of a subtensor
-    using subvector_type             = vector_view<decltype( experimental::submdspan( declval<underlying_span_type>(), declval< tuple<index_type,index_type> >() ) ) >;
+    using subvector_type             = vector_view<decltype( ::std::experimental::submdspan( ::std::declval<underlying_span_type>(), ::std::declval< ::std::tuple<index_type,index_type> >() ) ) >;
     /// @brief const view of a subtensor
-    using const_subvector_type       = vector_view<decltype( experimental::submdspan( declval<const_underlying_span_type>(), declval< tuple<index_type,index_type> >() ) ) >;
+    using const_subvector_type       = vector_view<decltype( ::std::experimental::submdspan( ::std::declval<const_underlying_span_type>(), ::std::declval< ::std::tuple<index_type,index_type> >() ) ) >;
 
     //- Rebind
 
@@ -115,7 +115,7 @@ class fs_vector : public fs_tensor<T,L,A,N>
     #ifdef LINALG_ENABLE_CONCEPTS
     template < concepts::tensor_may_be_constructible< fs_vector > V2 >
     #else
-    template < class V2, typename = enable_if_t< concepts::tensor_may_be_constructible< V2, fs_vector > > >
+    template < class V2, typename = ::std::enable_if_t< concepts::tensor_may_be_constructible< V2, fs_vector > > >
     #endif
     explicit constexpr fs_vector( const V2& rhs ) noexcept( noexcept( base_type(rhs) ) );
     /// @brief Construct from a view
@@ -123,7 +123,7 @@ class fs_vector : public fs_tensor<T,L,A,N>
     #ifdef LINALG_ENABLE_CONCEPTS
     template < concepts::view_may_be_constructible_to_tensor< fs_vector > MDS >
     #else
-    template < class MDS, typename = enable_if_t< concepts::view_may_be_constructible_to_tensor<MDS,fs_vector> >, typename = enable_if_t<true> >
+    template < class MDS, typename = ::std::enable_if_t< concepts::view_may_be_constructible_to_tensor<MDS,fs_vector> >, typename = ::std::enable_if_t<true> >
     #endif
     explicit constexpr fs_vector( const MDS& view ) noexcept( noexcept( base_type(view) ) );
     /// @brief Construct by applying lambda to every element in the vector
@@ -132,11 +132,11 @@ class fs_vector : public fs_tensor<T,L,A,N>
     template < class Lambda >
     #else
     template < class Lambda,
-               typename = enable_if_t< is_convertible_v< decltype( declval<Lambda&&>()( declval<index_type>() ) ), element_type > > >
+               typename = ::std::enable_if_t< is_convertible_v< decltype( ::std::declval<Lambda&&>()( ::std::declval<index_type>() ) ), element_type > > >
     #endif
-    explicit constexpr fs_vector( Lambda&& lambda ) noexcept( noexcept( declval<Lambda&&>()( declval<index_type>() ) ) )
+    explicit constexpr fs_vector( Lambda&& lambda ) noexcept( noexcept( ::std::declval<Lambda&&>()( ::std::declval<index_type>() ) ) )
     #ifdef LINALG_ENABLE_CONCEPTS
-      requires requires { { declval<Lambda&&>()( declval<index_type>() ) } -> convertible_to<element_type>; };
+      requires requires { { ::std::declval<Lambda&&>()( ::std::declval<index_type>() ) } -> ::std::convertible_to<element_type>; };
     #else
       ;
     #endif
@@ -155,9 +155,9 @@ class fs_vector : public fs_tensor<T,L,A,N>
     #ifdef LINALG_ENABLE_CONCEPTS
     template < concepts::tensor_may_be_constructible< fs_vector > V2 >
     #else
-    template < class V2, typename = enable_if_t< concepts::tensor_may_be_constructible< V2, fs_vector > > >
+    template < class V2, typename = ::std::enable_if_t< concepts::tensor_may_be_constructible< V2, fs_vector > > >
     #endif
-    constexpr fs_vector& operator = ( const V2& rhs ) noexcept( noexcept( declval<base_type>() = rhs ) );
+    constexpr fs_vector& operator = ( const V2& rhs ) noexcept( noexcept( ::std::declval<base_type>() = rhs ) );
     /// @brief Construct from a one dimensional view
     /// @tparam type of view to be copied
     /// @param  view to be copied
@@ -165,9 +165,9 @@ class fs_vector : public fs_tensor<T,L,A,N>
     #ifdef LINALG_ENABLE_CONCEPTS
     template < concepts::view_may_be_constructible_to_tensor< fs_vector > MDS >
     #else
-    template < class MDS, typename = enable_if_t< concepts::view_may_be_constructible_to_tensor<MDS,fs_vector> >, typename = enable_if_t<true> >
+    template < class MDS, typename = ::std::enable_if_t< concepts::view_may_be_constructible_to_tensor<MDS,fs_vector> >, typename = ::std::enable_if_t<true> >
     #endif
-    constexpr fs_vector& operator = ( const MDS& view ) noexcept( noexcept( declval<base_type>() = view ) );
+    constexpr fs_vector& operator = ( const MDS& view ) noexcept( noexcept( ::std::declval<base_type>() = view ) );
 
     //- Size / Capacity
 
@@ -214,11 +214,11 @@ class fs_vector : public fs_tensor<T,L,A,N>
 //- Destructor / Constructors / Assignments
 
 #ifdef LINALG_ENABLE_CONCEPTS
-template < class T, size_t N, class L, class A > requires ( N >= 0 )
+template < class T, ::std::size_t N, class L, class A > requires ( N >= 0 )
 template < concepts::tensor_may_be_constructible< fs_vector<T,N,L,A> > V2 >
 constexpr fs_vector<T,N,L,A>::
 #else
-template < class T, size_t N, class L, class A, typename Dummy >
+template < class T, ::std::size_t N, class L, class A, typename Dummy >
 template < class V2, typename >
 constexpr fs_vector<T,N,L,A,Dummy>::
 #endif
@@ -234,11 +234,11 @@ fs_vector( const V2& rhs )
 }
 
 #ifdef LINALG_ENABLE_CONCEPTS
-template < class T, size_t N, class L, class A > requires ( N >= 0 )
+template < class T, ::std::size_t N, class L, class A > requires ( N >= 0 )
 template < concepts::view_may_be_constructible_to_tensor< fs_vector<T,N,L,A> > MDS >
 constexpr fs_vector<T,N,L,A>::
 #else
-template < class T, size_t N, class L, class A, typename Dummy >
+template < class T, ::std::size_t N, class L, class A, typename Dummy >
 template < class MDS, typename, typename >
 constexpr fs_vector<T,N,L,A,Dummy>::
 #endif
@@ -257,40 +257,40 @@ fs_vector( const MDS& view )
 }
 
 #ifdef LINALG_ENABLE_CONCEPTS
-template < class T, size_t N, class L, class A > requires ( N >= 0 )
+template < class T, ::std::size_t N, class L, class A > requires ( N >= 0 )
 template < class Lambda >
 constexpr fs_vector<T,N,L,A>::
 #else
-template < class T, size_t N, class L, class A, typename Dummy >
+template < class T, ::std::size_t N, class L, class A, typename Dummy >
 template < class Lambda, typename >
 constexpr fs_vector<T,N,L,A,Dummy>::
 #endif
 fs_vector( Lambda&& lambda )
 #ifdef LINALG_ENABLE_CONCEPTS
-  noexcept( noexcept( declval<Lambda&&>()( declval<typename fs_vector<T,N,L,A>::index_type>() ) ) )
-  requires requires { { declval<Lambda&&>()( declval<typename fs_vector<T,N,L,A>::index_type>() ) } -> convertible_to<typename fs_vector<T,N,L,A>::element_type>; } :
+  noexcept( noexcept( ::std::declval<Lambda&&>()( ::std::declval<typename fs_vector<T,N,L,A>::index_type>() ) ) )
+  requires requires { { ::std::declval<Lambda&&>()( ::std::declval<typename fs_vector<T,N,L,A>::index_type>() ) } -> ::std::convertible_to<typename fs_vector<T,N,L,A>::element_type>; } :
   fs_vector<T,N,L,A>::base_type( lambda )
 #else
-  noexcept( noexcept( declval<Lambda&&>()( declval<typename fs_vector<T,N,L,A,Dummy>::index_type>() ) ) ) :
+  noexcept( noexcept( ::std::declval<Lambda&&>()( ::std::declval<typename fs_vector<T,N,L,A,Dummy>::index_type>() ) ) ) :
   fs_vector<T,N,L,A,Dummy>::base_type( lambda )
 #endif
 {
 }
 
 #ifdef LINALG_ENABLE_CONCEPTS
-template < class T, size_t N, class L, class A > requires ( N >= 0 )
+template < class T, ::std::size_t N, class L, class A > requires ( N >= 0 )
 template < concepts::tensor_may_be_constructible< fs_vector<T,N,L,A> > V2 >
 constexpr fs_vector<T,N,L,A>& fs_vector<T,N,L,A>::
 #else
-template < class T, size_t N, class L, class A, typename Dummy >
+template < class T, ::std::size_t N, class L, class A, typename Dummy >
 template < class V2, typename >
 constexpr fs_vector<T,N,L,A,Dummy>& fs_vector<T,N,L,A,Dummy>::
 #endif
 operator = ( const V2& rhs )
 #ifdef LINALG_ENABLE_CONCEPTS
-  noexcept( noexcept( declval<typename fs_vector<T,N,L,A>::base_type>() = rhs ) )
+  noexcept( noexcept( ::std::declval<typename fs_vector<T,N,L,A>::base_type>() = rhs ) )
 #else
-  noexcept( noexcept( declval<typename fs_vector<T,N,L,A,Dummy>::base_type>() = rhs ) )
+  noexcept( noexcept( ::std::declval<typename fs_vector<T,N,L,A,Dummy>::base_type>() = rhs ) )
 #endif
 {
   static_cast<void>( this->base_type::operator=(rhs) );
@@ -298,19 +298,19 @@ operator = ( const V2& rhs )
 }
 
 #ifdef LINALG_ENABLE_CONCEPTS
-template < class T, size_t N, class L, class A > requires ( N >= 0 )
+template < class T, ::std::size_t N, class L, class A > requires ( N >= 0 )
 template < concepts::view_may_be_constructible_to_tensor< fs_vector<T,N,L,A> > MDS >
 constexpr fs_vector<T,N,L,A>& fs_vector<T,N,L,A>::
 #else
-template < class T, size_t N, class L, class A, typename Dummy >
+template < class T, ::std::size_t N, class L, class A, typename Dummy >
 template < class MDS, typename, typename >
 constexpr fs_vector<T,N,L,A,Dummy>& fs_vector<T,N,L,A,Dummy>::
 #endif
 operator = ( const MDS& view )
 #ifdef LINALG_ENABLE_CONCEPTS
-  noexcept( noexcept( declval<typename fs_vector<T,N,L,A>::base_type>() = view ) )
+  noexcept( noexcept( ::std::declval<typename fs_vector<T,N,L,A>::base_type>() = view ) )
 #else
-  noexcept( noexcept( declval<typename fs_vector<T,N,L,A,Dummy>::base_type>() = view ) )
+  noexcept( noexcept( ::std::declval<typename fs_vector<T,N,L,A,Dummy>::base_type>() = view ) )
 #endif
 {
   static_cast<void>( this->base_type::operator=(view) );
@@ -320,31 +320,31 @@ operator = ( const MDS& view )
 //- Const views
 
 #ifdef LINALG_ENABLE_CONCEPTS
-template < class T, size_t N, class L, class A > requires ( N >= 0 )
+template < class T, ::std::size_t N, class L, class A > requires ( N >= 0 )
 [[nodiscard]] constexpr typename fs_vector<T,N,L,A>::const_subvector_type fs_vector<T,N,L,A>::
 #else
-template < class T, size_t N, class L, class A, typename Dummy >
+template < class T, ::std::size_t N, class L, class A, typename Dummy >
 [[nodiscard]] constexpr typename fs_vector<T,N,L,A,Dummy>::const_subvector_type fs_vector<T,N,L,A,Dummy>::
 #endif
 subvector( index_type start,
            index_type end ) const
 {
-  return const_subvector_type { experimental::submdspan( this->underlying_span(), tuple( start, end ) ) };
+  return const_subvector_type { ::std::experimental::submdspan( this->underlying_span(), ::std::tuple( start, end ) ) };
 }
 
 //- Mutable views
 
 #ifdef LINALG_ENABLE_CONCEPTS
-template < class T, size_t N, class L, class A > requires ( N >= 0 )
+template < class T, ::std::size_t N, class L, class A > requires ( N >= 0 )
 [[nodiscard]] constexpr typename fs_vector<T,N,L,A>::subvector_type fs_vector<T,N,L,A>::
 #else
-template < class T, size_t N, class L, class A, typename Dummy >
+template < class T, ::std::size_t N, class L, class A, typename Dummy >
 [[nodiscard]] constexpr typename fs_vector<T,N,L,A,Dummy>::subvector_type fs_vector<T,N,L,A,Dummy>::
 #endif
 subvector( index_type start,
            index_type end )
 {
-  return subvector_type { experimental::submdspan( this->underlying_span(), tuple( start, end ) ) };
+  return subvector_type { ::std::experimental::submdspan( this->underlying_span(), ::std::tuple( start, end ) ) };
 }
 
 }       //- math namespace

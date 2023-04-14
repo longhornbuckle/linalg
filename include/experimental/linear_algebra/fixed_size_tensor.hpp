@@ -30,10 +30,10 @@ namespace math
 /// @tparam L layout defines the ordering of elements in memory
 /// @tparam A accessor policy defines how elements are accessed
 /// @tparam Ds... length of each dimension of the tensor
-template < class      T,
-           class      L,
-           class      A,
-           size_t ... Ds >
+template < class             T,
+           class             L,
+           class             A,
+           ::std::size_t ... Ds >
 #ifdef LINALG_ENABLE_CONCEPTS
   requires ( ( Ds >= 0 ) && ... ) // Each dimension must be >= 0
 #endif
@@ -49,23 +49,23 @@ class fs_tensor
     /// @brief Type contained by the tensor
     using element_type               = typename accessor_type::element_type;
     /// @brief Type returned by const index access
-    using value_type                 = remove_cv_t<element_type>;
+    using value_type                 = ::std::remove_cv_t<element_type>;
     /// @brief Type used for indexing
-    using index_type                 = ptrdiff_t;
+    using index_type                 = ::std::ptrdiff_t;
     /// @brief Type used for size along any dimension
-    using size_type                  = size_t;
+    using size_type                  = ::std::size_t;
     /// @brief Type used to express size of tensor
-    using extents_type               = experimental::extents<size_type,Ds...>;
+    using extents_type               = ::std::experimental::extents<size_type,Ds...>;
     /// @brief Type used to represent a node in the tensor
     using tuple_type                 = tuple<decltype(Ds) ...>;
     /// @brief Type used to const view memory
-    using const_underlying_span_type = experimental::mdspan<const element_type,extents_type,layout_type,detail::rebind_accessor_t<accessor_type,const element_type> >;
+    using const_underlying_span_type = ::std::experimental::mdspan<const element_type,extents_type,layout_type,detail::rebind_accessor_t<accessor_type,const element_type> >;
     /// @brief Type used to view memory
-    using underlying_span_type       = experimental::mdspan<element_type,extents_type,layout_type,accessor_type>;
+    using underlying_span_type       = ::std::experimental::mdspan<element_type,extents_type,layout_type,accessor_type>;
     /// @brief Type used to portray tensor as an N dimensional view
     using span_type                  = const_underlying_span_type;
     /// @brief Type returned by mutable index access
-    using reference_type             = typename accessor_type::reference;
+    using reference                  = typename accessor_type::reference;
 
     //- Rebind
 
@@ -99,20 +99,20 @@ class fs_tensor
     //- Destructor / Constructors / Assignments
 
     /// @brief Default constructor
-    constexpr fs_tensor()                   noexcept( is_nothrow_default_constructible_v<element_type> );
+    constexpr fs_tensor()                   noexcept( ::std::is_nothrow_default_constructible_v<element_type> );
     /// @brief Default move constructor
     /// @param fs_tensor to be moved
-    constexpr fs_tensor( fs_tensor&& )      noexcept( is_nothrow_move_constructible_v<element_type> );
+    constexpr fs_tensor( fs_tensor&& )      noexcept( ::std::is_nothrow_move_constructible_v<element_type> );
     /// @brief Default copy constructor
     /// @param fs_tensor to be copied
-    constexpr fs_tensor( const fs_tensor& ) noexcept( is_nothrow_copy_constructible_v<element_type> );
+    constexpr fs_tensor( const fs_tensor& ) noexcept( ::std::is_nothrow_copy_constructible_v<element_type> );
     // TODO: Define noexcept specification
     /// @brief Template copy constructor
     /// @tparam tensor to be copied
     #ifdef LINALG_ENABLE_CONCEPTS
     template < concepts::tensor_may_be_constructible< fs_tensor > T2 >
     #else
-    template < class T2, typename = enable_if_t< concepts::tensor_may_be_constructible< T2, fs_tensor > > >
+    template < class T2, typename = ::std::enable_if_t< concepts::tensor_may_be_constructible< T2, fs_tensor > > >
     #endif
     explicit constexpr fs_tensor( const T2& rhs );
     /// @brief Construct from a view
@@ -120,7 +120,7 @@ class fs_tensor
     #ifdef LINALG_ENABLE_CONCEPTS
     template < concepts::view_may_be_constructible_to_tensor< fs_tensor > MDS >
     #else
-    template < class MDS, typename = enable_if_t< concepts::view_may_be_constructible_to_tensor<MDS,fs_tensor> >, typename = enable_if_t<true> >
+    template < class MDS, typename = ::std::enable_if_t< concepts::view_may_be_constructible_to_tensor<MDS,fs_tensor> >, typename = ::std::enable_if_t<true> >
     #endif
     explicit constexpr fs_tensor( const MDS& view ) noexcept( concepts::view_is_nothrow_constructible_to_tensor<MDS,fs_tensor> );
     /// @brief Construct by applying lambda to every element in the tensor
@@ -129,11 +129,11 @@ class fs_tensor
     template < class Lambda >
     #else
     template < class Lambda,
-               typename = enable_if_t< is_convertible_v< decltype( declval<Lambda&&>().operator()( Ds ... ) ), element_type > > >
+               typename = ::std::enable_if_t< ::std::is_convertible_v< decltype( declval<Lambda&&>().operator()( Ds ... ) ), element_type > > >
     #endif
-    explicit constexpr fs_tensor( Lambda&& lambda ) noexcept( noexcept( declval<Lambda&&>()( Ds ... ) ) )
+    explicit constexpr fs_tensor( Lambda&& lambda ) noexcept( noexcept( ::std::declval<Lambda&&>()( Ds ... ) ) )
     #ifdef LINALG_ENABLE_CONCEPTS
-      requires requires { { declval<Lambda&&>().operator()( Ds ... ) } -> convertible_to<element_type>; };
+      requires requires { { ::std::declval<Lambda&&>().operator()( Ds ... ) } -> ::std::convertible_to<element_type>; };
     #else
       ;
     #endif
@@ -153,7 +153,7 @@ class fs_tensor
     #ifdef LINALG_ENABLE_CONCEPTS
     template < concepts::tensor_may_be_constructible< fs_tensor > T2 >
     #else
-    template < class T2, typename = enable_if_t< concepts::tensor_may_be_constructible< T2, fs_tensor > > >
+    template < class T2, typename = ::std::enable_if_t< concepts::tensor_may_be_constructible< T2, fs_tensor > > >
     #endif
     constexpr fs_tensor& operator = ( const T2& rhs );
     // TODO: Define noexcept specification.
@@ -164,7 +164,7 @@ class fs_tensor
     #ifdef LINALG_ENABLE_CONCEPTS
     template < concepts::view_may_be_constructible_to_tensor< fs_tensor > MDS >
     #else
-    template < class MDS, typename = enable_if_t< concepts::view_may_be_constructible_to_tensor<MDS,fs_tensor> >, typename = enable_if_t<true> >
+    template < class MDS, typename = ::std::enable_if_t< concepts::view_may_be_constructible_to_tensor<MDS,fs_tensor> >, typename = ::std::enable_if_t<true> >
     #endif
     constexpr fs_tensor& operator = ( const MDS& view );
 
@@ -211,7 +211,7 @@ class fs_tensor
     template < class ... SliceArgs >
     [[nodiscard]] constexpr auto subvector( SliceArgs ... args ) const
     #ifdef LINALG_ENABLE_CONCEPTS
-      requires ( decltype( experimental::submdspan( this->underlying_span(), args ... ) )::rank() == 1 );
+      requires ( decltype( ::std::experimental::submdspan( this->underlying_span(), args ... ) )::rank() == 1 );
     #else
       ;
     #endif
@@ -222,7 +222,7 @@ class fs_tensor
     template < class ... SliceArgs >
     [[nodiscard]] constexpr auto submatrix( SliceArgs ... args ) const
     #ifdef LINALG_ENABLE_CONCEPTS
-      requires ( decltype( experimental::submdspan( this->underlying_span(), args ... ) )::rank() == 2 );
+      requires ( decltype( ::std::experimental::submdspan( this->underlying_span(), args ... ) )::rank() == 2 );
     #else
       ;
     #endif
@@ -239,15 +239,15 @@ class fs_tensor
     /// @param indices set indices representing a node in the tensor
     /// @returns mutable value at row i, column j, depth k, etc.
     #if LINALG_USE_BRACKET_OPERATOR
-    [[nodiscard]] constexpr reference_type operator[]( decltype(Ds) ... indices ) noexcept;
+    [[nodiscard]] constexpr reference operator[]( decltype(Ds) ... indices ) noexcept;
     #endif
     #if LINALG_USE_PAREN_OPERATOR
-    [[nodiscard]] constexpr reference_type operator()( decltype(Ds) ... indices ) noexcept;
+    [[nodiscard]] constexpr reference operator()( decltype(Ds) ... indices ) noexcept;
     #endif
     /// @brief Returns a mutable value at (indices...) with index bounds checking
     /// @param indices set indices representing a node in the tensor
     /// @returns mutable value at row i, column j, depth k, etc.
-    [[nodiscard]] constexpr reference_type at( decltype(Ds) ... indices );
+    [[nodiscard]] constexpr reference at( decltype(Ds) ... indices );
     /// @brief Returns a vector view
     /// @tparam ...SliceArgs argument types used to get a vector view
     /// @param ...args aguments to get a vector view
@@ -255,7 +255,7 @@ class fs_tensor
     template < class ... SliceArgs >
     [[nodiscard]] constexpr auto subvector( SliceArgs ... args )
     #ifdef LINALG_ENABLE_CONCEPTS
-      requires ( decltype( experimental::submdspan( this->underlying_span(), args ... ) )::rank() == 1 );
+      requires ( decltype( ::std::experimental::submdspan( this->underlying_span(), args ... ) )::rank() == 1 );
     #else
       ;
     #endif
@@ -266,7 +266,7 @@ class fs_tensor
     template < class ... SliceArgs >
     [[nodiscard]] constexpr auto submatrix( SliceArgs ... args )
     #ifdef LINALG_ENABLE_CONCEPTS
-      requires ( decltype( experimental::submdspan( this->underlying_span(), args ... ) )::rank() == 2 );
+      requires ( decltype( ::std::experimental::submdspan( this->underlying_span(), args ... ) )::rank() == 2 );
     #else
       ;
     #endif
@@ -292,36 +292,36 @@ class fs_tensor
 
 //- Destructor / Constructors / Assignments
 
-template < class T, class L, class A, size_t ... Ds >
+template < class T, class L, class A, ::std::size_t ... Ds >
 #ifdef LINALG_ENABLE_CONCEPTS
   requires ( ( Ds >= 0 ) && ... )
 #endif
 constexpr fs_tensor<T,L,A,Ds...>::fs_tensor()
-  noexcept( is_nothrow_default_constructible_v<typename fs_tensor<T,L,A,Ds...>::element_type> )
+  noexcept( ::std::is_nothrow_default_constructible_v<typename fs_tensor<T,L,A,Ds...>::element_type> )
 {
 }
 
-template < class T, class L, class A, size_t ... Ds >
+template < class T, class L, class A, ::std::size_t ... Ds >
 #ifdef LINALG_ENABLE_CONCEPTS
   requires ( ( Ds >= 0 ) && ... )
 #endif
 constexpr fs_tensor<T,L,A,Ds...>::fs_tensor( fs_tensor&& rhs )
-  noexcept( is_nothrow_move_constructible_v<element_type> ) :
-  elems_( move( rhs.elems_ ) )
+  noexcept( ::std::is_nothrow_move_constructible_v<element_type> ) :
+  elems_( ::std::move( rhs.elems_ ) )
 {
 }
 
-template < class T, class L, class A, size_t ... Ds >
+template < class T, class L, class A, ::std::size_t ... Ds >
 #ifdef LINALG_ENABLE_CONCEPTS
   requires ( ( Ds >= 0 ) && ... )
 #endif
 constexpr fs_tensor<T,L,A,Ds...>::fs_tensor( const fs_tensor& rhs )
-  noexcept( is_nothrow_copy_constructible_v<element_type> ) :
+  noexcept( ::std::is_nothrow_copy_constructible_v<element_type> ) :
   elems_( rhs.elems_ )
 {
 }
 
-template < class T, class L, class A, size_t ... Ds >
+template < class T, class L, class A, ::std::size_t ... Ds >
 #ifdef LINALG_ENABLE_CONCEPTS
   requires ( ( Ds >= 0 ) && ... )
 #endif
@@ -336,7 +336,7 @@ constexpr fs_tensor<T,L,A,Ds...>::fs_tensor( const T2& rhs )
   static_cast<void>( detail::assign_view( this_view, rhs.span() ) );
 }
 
-template < class T, class L, class A, size_t ... Ds >
+template < class T, class L, class A, ::std::size_t ... Ds >
 #ifdef LINALG_ENABLE_CONCEPTS
   requires ( ( Ds >= 0 ) && ... )
 #endif
@@ -352,7 +352,7 @@ constexpr fs_tensor<T,L,A,Ds...>::fs_tensor( const MDS& view )
   static_cast<void>( detail::assign_view( this_view, view ) );
 }
 
-template < class T, class L, class A, size_t ... Ds >
+template < class T, class L, class A, ::std::size_t ... Ds >
 #ifdef LINALG_ENABLE_CONCEPTS
   requires ( ( Ds >= 0 ) && ... )
 #endif
@@ -361,13 +361,13 @@ template < class Lambda >
 #else
 template < class Lambda, typename >
 #endif
-constexpr fs_tensor<T,L,A,Ds...>::fs_tensor( Lambda&& lambda ) noexcept( noexcept( declval<Lambda&&>()( Ds ... ) ) )
+constexpr fs_tensor<T,L,A,Ds...>::fs_tensor( Lambda&& lambda ) noexcept( noexcept( ::std::declval<Lambda&&>()( Ds ... ) ) )
 #ifdef LINALG_ENABLE_CONCEPTS
-  requires requires { { declval<Lambda&&>().operator()( Ds ... ) } -> convertible_to<typename fs_tensor<T,L,A,Ds...>::element_type>; }
+  requires requires { { ::std::declval<Lambda&&>().operator()( Ds ... ) } -> ::std::convertible_to<typename fs_tensor<T,L,A,Ds...>::element_type>; }
 #endif
 {
   // If expression is no except, then no need to capture last exception
-  constexpr bool lambda_is_noexcept = detail::is_nothrow_convertible_v< decltype( declval<Lambda&&>()( Ds ... ) ), element_type >;
+  constexpr bool lambda_is_noexcept = detail::is_nothrow_convertible_v< decltype( ::std::declval<Lambda&&>()( Ds ... ) ), element_type >;
   // Construct all elements from lambda output
   auto ctor = [this,&lambda]( auto ... indices ) constexpr noexcept( lambda_is_noexcept )
   {
@@ -380,7 +380,7 @@ constexpr fs_tensor<T,L,A,Ds...>::fs_tensor( Lambda&& lambda ) noexcept( noexcep
   detail::apply_all( this->underlying_span(), ctor, LINALG_EXECUTION_UNSEQ );
 }
 
-template < class T, class L, class A, size_t ... Ds >
+template < class T, class L, class A, ::std::size_t ... Ds >
 #ifdef LINALG_ENABLE_CONCEPTS
   requires ( ( Ds >= 0 ) && ... )
 #endif
@@ -396,7 +396,7 @@ constexpr fs_tensor<T,L,A,Ds...>& fs_tensor<T,L,A,Ds...>::operator = ( const T2&
   return *this;
 }
 
-template < class T, class L, class A, size_t ... Ds >
+template < class T, class L, class A, ::std::size_t ... Ds >
 #ifdef LINALG_ENABLE_CONCEPTS
   requires ( ( Ds >= 0 ) && ... )
 #endif
@@ -414,7 +414,7 @@ constexpr fs_tensor<T,L,A,Ds...>& fs_tensor<T,L,A,Ds...>::operator = ( const MDS
 
 //- Size / Capacity
 
-template < class T, class L, class A, size_t ... Ds >
+template < class T, class L, class A, ::std::size_t ... Ds >
 #ifdef LINALG_ENABLE_CONCEPTS
   requires ( ( Ds >= 0 ) && ... )
 #endif
@@ -424,7 +424,7 @@ fs_tensor<T,L,A,Ds...>::size() const noexcept
   return extents_type();
 }
 
-template < class T, class L, class A, size_t ... Ds >
+template < class T, class L, class A, ::std::size_t ... Ds >
 #ifdef LINALG_ENABLE_CONCEPTS
   requires ( ( Ds >= 0 ) && ... )
 #endif
@@ -437,7 +437,7 @@ fs_tensor<T,L,A,Ds...>::capacity() const noexcept
 //- Const views
 
 #if LINALG_USE_BRACKET_OPERATOR
-template < class T, class L, class A, size_t ... Ds >
+template < class T, class L, class A, ::std::size_t ... Ds >
 #ifdef LINALG_ENABLE_CONCEPTS
   requires ( ( Ds >= 0 ) && ... )
 #endif
@@ -449,7 +449,7 @@ fs_tensor<T,L,A,Ds...>::operator[]( decltype(Ds) ... indices ) const noexcept
 #endif
 
 #if LINALG_USE_PAREN_OPERATOR
-template < class T, class L, class A, size_t ... Ds >
+template < class T, class L, class A, ::std::size_t ... Ds >
 #ifdef LINALG_ENABLE_CONCEPTS
   requires ( ( Ds >= 0 ) && ... )
 #endif
@@ -460,7 +460,7 @@ fs_tensor<T,L,A,Ds...>::operator()( decltype(Ds) ... indices ) const noexcept
 }
 #endif
 
-template < class T, class L, class A, size_t ... Ds >
+template < class T, class L, class A, ::std::size_t ... Ds >
 #ifdef LINALG_ENABLE_CONCEPTS
   requires ( ( Ds >= 0 ) && ... )
 #endif
@@ -470,53 +470,53 @@ fs_tensor<T,L,A,Ds...>::at( decltype(Ds) ... indices ) const
   return detail::access( this->underlying_span(), indices ... );
 }
 
-template < class T, class L, class A, size_t ... Ds >
+template < class T, class L, class A, ::std::size_t ... Ds >
 #ifdef LINALG_ENABLE_CONCEPTS
   requires ( ( Ds >= 0 ) && ... )
 #endif
 template < class ... SliceArgs >
 [[nodiscard]] constexpr auto fs_tensor<T,L,A,Ds...>::subvector( SliceArgs ... args ) const
 #ifdef LINALG_ENABLE_CONCEPTS
-  requires ( decltype( experimental::submdspan( this->underlying_span(), args ... ) )::rank() == 1 )
+  requires ( decltype( ::std::experimental::submdspan( this->underlying_span(), args ... ) )::rank() == 1 )
 #endif
 {
-  using subspan_type = decltype( experimental::submdspan( this->underlying_span(), args ... ) );
-  return vector_view<subspan_type>( experimental::submdspan( this->underlying_span(), args ... ) );
+  using subspan_type = decltype( ::std::experimental::submdspan( this->underlying_span(), args ... ) );
+  return vector_view<subspan_type>( ::std::experimental::submdspan( this->underlying_span(), args ... ) );
 }
 
-template < class T, class L, class A, size_t ... Ds >
+template < class T, class L, class A, ::std::size_t ... Ds >
 #ifdef LINALG_ENABLE_CONCEPTS
   requires ( ( Ds >= 0 ) && ... )
 #endif
 template < class ... SliceArgs >
 [[nodiscard]] constexpr auto fs_tensor<T,L,A,Ds...>::submatrix( SliceArgs ... args ) const
 #ifdef LINALG_ENABLE_CONCEPTS
-  requires ( decltype( experimental::submdspan( this->underlying_span(), args ... ) )::rank() == 2 )
+  requires ( decltype( ::std::experimental::submdspan( this->underlying_span(), args ... ) )::rank() == 2 )
 #endif
 {
-  using subspan_type = decltype( experimental::submdspan( this->underlying_span(), args ... ) );
-  return matrix_view<subspan_type>( experimental::submdspan( this->underlying_span(), args ... ) );
+  using subspan_type = decltype( ::std::experimental::submdspan( this->underlying_span(), args ... ) );
+  return matrix_view<subspan_type>( ::std::experimental::submdspan( this->underlying_span(), args ... ) );
 }
 
-template < class T, class L, class A, size_t ... Ds >
+template < class T, class L, class A, ::std::size_t ... Ds >
 #ifdef LINALG_ENABLE_CONCEPTS
   requires ( ( Ds >= 0 ) && ... )
 #endif
 template < class ... SliceArgs >
 [[nodiscard]] constexpr auto fs_tensor<T,L,A,Ds...>::subtensor( SliceArgs ... args ) const
 {
-  using subspan_type = decltype( experimental::submdspan( this->underlying_span(), args ... ) );
-  return tensor_view<subspan_type>( experimental::submdspan( this->underlying_span(), args ... ) );
+  using subspan_type = decltype( ::std::experimental::submdspan( this->underlying_span(), args ... ) );
+  return tensor_view<subspan_type>( ::std::experimental::submdspan( this->underlying_span(), args ... ) );
 }
 
 //- Mutable views
 
 #if LINALG_USE_BRACKET_OPERATOR
-template < class T, class L, class A, size_t ... Ds >
+template < class T, class L, class A, ::std::size_t ... Ds >
 #ifdef LINALG_ENABLE_CONCEPTS
   requires ( ( Ds >= 0 ) && ... )
 #endif
-[[nodiscard]] constexpr typename fs_tensor<T,L,A,Ds...>::reference_type
+[[nodiscard]] constexpr typename fs_tensor<T,L,A,Ds...>::reference
 fs_tensor<T,L,A,Ds...>::operator[]( decltype(Ds) ... indices ) noexcept
 {
   return this->underlying_span()[ indices ... ];
@@ -524,69 +524,69 @@ fs_tensor<T,L,A,Ds...>::operator[]( decltype(Ds) ... indices ) noexcept
 #endif
 
 #if LINALG_USE_PAREN_OPERATOR
-template < class T, class L, class A, size_t ... Ds >
+template < class T, class L, class A, ::std::size_t ... Ds >
 #ifdef LINALG_ENABLE_CONCEPTS
   requires ( ( Ds >= 0 ) && ... )
 #endif
-[[nodiscard]] constexpr typename fs_tensor<T,L,A,Ds...>::reference_type
+[[nodiscard]] constexpr typename fs_tensor<T,L,A,Ds...>::reference
 fs_tensor<T,L,A,Ds...>::operator()( decltype(Ds) ... indices ) noexcept
 {
   return this->underlying_span()( indices ... );
 }
 #endif
 
-template < class T, class L, class A, size_t ... Ds >
+template < class T, class L, class A, ::std::size_t ... Ds >
 #ifdef LINALG_ENABLE_CONCEPTS
   requires ( ( Ds >= 0 ) && ... )
 #endif
-[[nodiscard]] constexpr typename fs_tensor<T,L,A,Ds...>::reference_type
+[[nodiscard]] constexpr typename fs_tensor<T,L,A,Ds...>::reference
 fs_tensor<T,L,A,Ds...>::at( decltype(Ds) ... indices )
 {
   return detail::access( this->underlying_span(), indices ... );
 }
 
-template < class T, class L, class A, size_t ... Ds >
+template < class T, class L, class A, ::std::size_t ... Ds >
 #ifdef LINALG_ENABLE_CONCEPTS
   requires ( ( Ds >= 0 ) && ... )
 #endif
 template < class ... SliceArgs >
 [[nodiscard]] constexpr auto fs_tensor<T,L,A,Ds...>::subvector( SliceArgs ... args )
 #ifdef LINALG_ENABLE_CONCEPTS
-  requires ( decltype( experimental::submdspan( this->underlying_span(), args ... ) )::rank() == 1 )
+  requires ( decltype( ::std::experimental::submdspan( this->underlying_span(), args ... ) )::rank() == 1 )
 #endif
 {
-  using subspan_type = decltype( experimental::submdspan( this->underlying_span(), args ... ) );
-  return vector_view<subspan_type>( experimental::submdspan( this->underlying_span(), args ... ) );
+  using subspan_type = decltype( ::std::experimental::submdspan( this->underlying_span(), args ... ) );
+  return vector_view<subspan_type>( ::std::experimental::submdspan( this->underlying_span(), args ... ) );
 }
 
-template < class T, class L, class A, size_t ... Ds >
+template < class T, class L, class A, ::std::size_t ... Ds >
 #ifdef LINALG_ENABLE_CONCEPTS
   requires ( ( Ds >= 0 ) && ... )
 #endif
 template < class ... SliceArgs >
 [[nodiscard]] constexpr auto fs_tensor<T,L,A,Ds...>::submatrix( SliceArgs ... args )
 #ifdef LINALG_ENABLE_CONCEPTS
-  requires ( decltype( experimental::submdspan( this->underlying_span(), args ... ) )::rank() == 2 )
+  requires ( decltype( ::std::experimental::submdspan( this->underlying_span(), args ... ) )::rank() == 2 )
 #endif
 {
-  using subspan_type = decltype( experimental::submdspan( this->underlying_span(), args ... ) );
-  return matrix_view<subspan_type>( experimental::submdspan( this->underlying_span(), args ... ) );
+  using subspan_type = decltype( ::std::experimental::submdspan( this->underlying_span(), args ... ) );
+  return matrix_view<subspan_type>( ::std::experimental::submdspan( this->underlying_span(), args ... ) );
 }
 
-template < class T, class L, class A, size_t ... Ds >
+template < class T, class L, class A, ::std::size_t ... Ds >
 #ifdef LINALG_ENABLE_CONCEPTS
   requires ( ( Ds >= 0 ) && ... )
 #endif
 template < class ... SliceArgs >
 [[nodiscard]] constexpr auto fs_tensor<T,L,A,Ds...>::subtensor( SliceArgs ... args )
 {
-  using subspan_type = decltype( experimental::submdspan( this->underlying_span(), args ... ) );
-  return tensor_view<subspan_type>( experimental::submdspan( this->underlying_span(), args ... ) );
+  using subspan_type = decltype( ::std::experimental::submdspan( this->underlying_span(), args ... ) );
+  return tensor_view<subspan_type>( ::std::experimental::submdspan( this->underlying_span(), args ... ) );
 }
 
 //- Data access
 
-template < class T, class L, class A, size_t ... Ds >
+template < class T, class L, class A, ::std::size_t ... Ds >
 #ifdef LINALG_ENABLE_CONCEPTS
   requires ( ( Ds >= 0 ) && ... )
 #endif
@@ -596,7 +596,7 @@ fs_tensor<T,L,A,Ds...>::span() const noexcept
   return this->underlying_span();
 }
 
-template < class T, class L, class A, size_t ... Ds >
+template < class T, class L, class A, ::std::size_t ... Ds >
 #ifdef LINALG_ENABLE_CONCEPTS
   requires ( ( Ds >= 0 ) && ... )
 #endif
@@ -606,7 +606,7 @@ fs_tensor<T,L,A,Ds...>::underlying_span() noexcept
   return underlying_span_type( &this->elems_[0], extents_type() );
 }
 
-template < class T, class L, class A, size_t ... Ds >
+template < class T, class L, class A, ::std::size_t ... Ds >
 #ifdef LINALG_ENABLE_CONCEPTS
   requires ( ( Ds >= 0 ) && ... )
 #endif

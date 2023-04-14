@@ -27,7 +27,7 @@ template < class MDS
                ( MDS::extents_type::rank()== 2 ) &&
                MDS::is_always_unique() ) // Each element in the mdspan must have a unique mapping. (i.e. span_type and const_underlying_span_type should be the same.)
 #else
-  , typename = enable_if_t< ( detail::is_mdspan_v<MDS> && ( MDS::extents_type::rank()== 2 ) && MDS::is_always_unique() ) > >
+  , typename = ::std::enable_if_t< ( detail::is_mdspan_v<MDS> && ( MDS::extents_type::rank()== 2 ) && MDS::is_always_unique() ) > >
 #endif
 class matrix_view : public tensor_view<MDS>
 {
@@ -60,23 +60,19 @@ class matrix_view : public tensor_view<MDS>
     /// @brief Type used to portray tensor as an N dimensional view
     using span_type                  = typename base_type::span_type;
     /// @brief Type returned by mutable index access
-    using reference_type             = typename base_type::reference_type;
-    /// @brief mutable view of a subtensor
-    using subtensor_type             = typename base_type::subtensor_type;
-    /// @brief const view of a subtensor
-    using const_subtensor_type       = typename base_type::const_subtensor_type;
+    using reference                  = typename base_type::reference;
     /// @brief mutable view of a submatrix
-    using submatrix_type             = matrix_view<decltype( detail::submdspan( declval<underlying_span_type>(), declval<tuple_type>(), declval<tuple_type>() ) ) >;
+    using submatrix_type             = matrix_view<decltype( detail::submdspan( ::std::declval<underlying_span_type>(), ::std::declval<tuple_type>(), ::std::declval<tuple_type>() ) ) >;
     /// @brief const view of a submatrix
-    using const_submatrix_type       = matrix_view<decltype( detail::submdspan( declval<const_underlying_span_type>(), declval<tuple_type>(), declval<tuple_type>() ) ) >;
+    using const_submatrix_type       = matrix_view<decltype( detail::submdspan( ::std::declval<const_underlying_span_type>(), ::std::declval<tuple_type>(), ::std::declval<tuple_type>() ) ) >;
     /// @brief mutable view of a column vector
-    using column_type                = vector_view<decltype( experimental::submdspan( declval<underlying_span_type>(), declval<experimental::full_extent_t>(), declval<index_type>() ) )>;
+    using column_type                = vector_view<decltype( ::std::experimental::submdspan( ::std::declval<underlying_span_type>(), ::std::declval<::std::experimental::full_extent_t>(), ::std::declval<index_type>() ) )>;
     /// @brief const view of a column vector
-    using const_column_type          = vector_view<decltype( experimental::submdspan( declval<const_underlying_span_type>(), declval<experimental::full_extent_t>(), declval<index_type>() ) )>;
+    using const_column_type          = vector_view<decltype( ::std::experimental::submdspan( ::std::declval<const_underlying_span_type>(), ::std::declval<::std::experimental::full_extent_t>(), ::std::declval<index_type>() ) )>;
     /// @brief mutable view of a row vector
-    using row_type                   = vector_view<decltype( experimental::submdspan( declval<underlying_span_type>(), declval<index_type>(), declval<experimental::full_extent_t>() ) )>;
+    using row_type                   = vector_view<decltype( ::std::experimental::submdspan( ::std::declval<underlying_span_type>(), ::std::declval<index_type>(), ::std::declval<::std::experimental::full_extent_t>() ) )>;
     /// @brief const view of a row vector
-    using const_row_type             = vector_view<decltype( experimental::submdspan( declval<const_underlying_span_type>(), declval<index_type>(), declval<experimental::full_extent_t>() ) )>;
+    using const_row_type             = vector_view<decltype( ::std::experimental::submdspan( ::std::declval<const_underlying_span_type>(), ::std::declval<index_type>(), ::std::declval<::std::experimental::full_extent_t>() ) )>;
     
     //- Destructor / Constructors / Assignments
 
@@ -155,11 +151,11 @@ class matrix_view : public tensor_view<MDS>
     /// @param j column
     /// @returns mutable view of column
     #ifndef LINALG_ENABLE_CONCEPTS
-    template < typename Elem = element_type, typename = enable_if_t< !is_const_v<Elem> > >
+    template < typename Elem = element_type, typename = ::std::enable_if_t< !::std::is_const_v<Elem> > >
     #endif
     [[nodiscard]] constexpr column_type column( index_type j )
     #ifdef LINALG_ENABLE_CONCEPTS
-      requires ( !is_const_v<element_type> );
+      requires ( !::std::is_const_v<element_type> );
     #else
       ;
     #endif
@@ -167,11 +163,11 @@ class matrix_view : public tensor_view<MDS>
     /// @param i row
     /// @returns mutable view of row
     #ifndef LINALG_ENABLE_CONCEPTS
-    template < typename Elem = element_type, typename = enable_if_t< !is_const_v<Elem> > >
+    template < typename Elem = element_type, typename = ::std::enable_if_t< !::std::is_const_v<Elem> > >
     #endif
     [[nodiscard]] constexpr row_type row( index_type i )
     #ifdef LINALG_ENABLE_CONCEPTS
-      requires ( !is_const_v<element_type> );
+      requires ( !::std::is_const_v<element_type> );
     #else
       ;
     #endif
@@ -180,12 +176,12 @@ class matrix_view : public tensor_view<MDS>
     /// @param end (row,column) end of submatrix
     /// @returns mutable view of the specified submatrix
     #ifndef LINALG_ENABLE_CONCEPTS
-    template < typename Elem, typename = enable_if_t< !is_const_v<Elem> > >
+    template < typename Elem, typename = ::std::enable_if_t< !::std::is_const_v<Elem> > >
     #endif
     [[nodiscard]] constexpr submatrix_type submatrix( tuple_type start,
                                                       tuple_type end )
     #ifdef LINALG_ENABLE_CONCEPTS
-      requires ( !is_const_v<element_type> );
+      requires ( !::std::is_const_v<element_type> );
     #else
       ;
     #endif
@@ -293,7 +289,7 @@ template < class MDS, typename Dummy >
 #endif
 column( index_type j ) const
 {
-  return const_column_type { experimental::submdspan( this->underlying_span(), experimental::full_extent, j ) };
+  return const_column_type { ::std::experimental::submdspan( this->underlying_span(), ::std::experimental::full_extent, j ) };
 }
 
 #ifdef LINALG_ENABLE_CONCEPTS
@@ -305,7 +301,7 @@ template < class MDS, typename Dummy >
 #endif
 row( index_type i ) const
 {
-  return const_row_type { experimental::submdspan( this->underlying_span(), i, experimental::full_extent ) };
+  return const_row_type { ::std::experimental::submdspan( this->underlying_span(), i, ::std::experimental::full_extent ) };
 }
 
 #ifdef LINALG_ENABLE_CONCEPTS
@@ -333,10 +329,10 @@ template < typename Elem, typename >
 #endif
 column( index_type j )
 #ifdef LINALG_ENABLE_CONCEPTS
-  requires ( !is_const_v<typename matrix_view<MDS>::element_type> )
+  requires ( !::std::is_const_v<typename matrix_view<MDS>::element_type> )
 #endif
 {
-  return column_type { experimental::submdspan( this->underlying_span(), experimental::full_extent, j ) };
+  return column_type { ::std::experimental::submdspan( this->underlying_span(), ::std::experimental::full_extent, j ) };
 }
 
 #ifdef LINALG_ENABLE_CONCEPTS
@@ -349,10 +345,10 @@ template < typename Elem, typename >
 #endif
 row( index_type i )
 #ifdef LINALG_ENABLE_CONCEPTS
-  requires ( !is_const_v<typename matrix_view<MDS>::element_type> )
+  requires ( !::std::is_const_v<typename matrix_view<MDS>::element_type> )
 #endif
 {
-  return row_type { experimental::submdspan( this->underlying_span(), i, experimental::full_extent ) };
+  return row_type { ::std::experimental::submdspan( this->underlying_span(), i, ::std::experimental::full_extent ) };
 }
 
 #ifdef LINALG_ENABLE_CONCEPTS
@@ -366,7 +362,7 @@ template < typename Elem, typename >
 submatrix( tuple_type start,
            tuple_type end )
 #ifdef LINALG_ENABLE_CONCEPTS
-  requires ( !is_const_v<typename matrix_view<MDS>::element_type> )
+  requires ( !::std::is_const_v<typename matrix_view<MDS>::element_type> )
 #endif
 {
   return submatrix_type { detail::submdspan( this->underlying_span(), start, end ) };

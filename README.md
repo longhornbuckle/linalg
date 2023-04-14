@@ -7,7 +7,6 @@ TODO
 - MSVC support
 - Integrate P1673 where appropriate
 - Additional testing - particularly of views.
-- Add set_subtensor / set_submatrix / set_subvector
 
 Requirements
 ------------
@@ -138,6 +137,8 @@ Critical Questions
 - Is at(...) desired? It felt like something I maybe should add for consistency with the way STL containers support index operations; however, mdspan doesn't support it. I could also see C++ taking a different approach to safe memory access that could make the function moot.
 
 - Is there a good motivating use case for which an operation traits approach like what is done in [P1385](https://github.com/BobSteagall/wg21) is strongly desirable?
+
+- Views neither classify as fixed-size or dynamic - they're size is not known at compile time and they have no allocator access. Should operations which return a new matix be allowed (and thus must use std allocator) or not be allowed?
 
 In Regards To Existing Proposals
 --------------------------------
