@@ -1486,12 +1486,12 @@ namespace
     const fs_tensor_type& const_fs_tensor( fs_tensor );
     auto subtensor = const_fs_tensor.subtensor( std::tuple(2,5), std::tuple(2,4), std::tuple(2,3) );
     
-    EXPECT_EQ( ( std::math::detail::access( subtensor, 0, 0, 0 ) ), ( std::math::detail::access( fs_tensor, 2,2, 2 ) ) );
-    EXPECT_EQ( ( std::math::detail::access( subtensor, 1, 0, 0 ) ), ( std::math::detail::access( fs_tensor, 3,2, 2 ) ) );
-    EXPECT_EQ( ( std::math::detail::access( subtensor, 2, 0, 0 ) ), ( std::math::detail::access( fs_tensor, 4,2, 2 ) ) );
-    EXPECT_EQ( ( std::math::detail::access( subtensor, 0, 1, 0 ) ), ( std::math::detail::access( fs_tensor, 2,3, 2 ) ) );
-    EXPECT_EQ( ( std::math::detail::access( subtensor, 1, 1, 0 ) ), ( std::math::detail::access( fs_tensor, 3,3, 2 ) ) );
-    EXPECT_EQ( ( std::math::detail::access( subtensor, 2, 1, 0 ) ), ( std::math::detail::access( fs_tensor, 4,3, 2 ) ) );
+    EXPECT_EQ( ( std::math::detail::access( subtensor, 0, 0, 0 ) ), ( std::math::detail::access( fs_tensor, 2, 2, 2 ) ) );
+    EXPECT_EQ( ( std::math::detail::access( subtensor, 1, 0, 0 ) ), ( std::math::detail::access( fs_tensor, 3, 2, 2 ) ) );
+    EXPECT_EQ( ( std::math::detail::access( subtensor, 2, 0, 0 ) ), ( std::math::detail::access( fs_tensor, 4, 2, 2 ) ) );
+    EXPECT_EQ( ( std::math::detail::access( subtensor, 0, 1, 0 ) ), ( std::math::detail::access( fs_tensor, 2, 3, 2 ) ) );
+    EXPECT_EQ( ( std::math::detail::access( subtensor, 1, 1, 0 ) ), ( std::math::detail::access( fs_tensor, 3, 3, 2 ) ) );
+    EXPECT_EQ( ( std::math::detail::access( subtensor, 2, 1, 0 ) ), ( std::math::detail::access( fs_tensor, 4, 3, 2 ) ) );
   }
 
   TEST( FS_TENSOR, SUBVECTOR )
@@ -1971,6 +1971,372 @@ namespace
     EXPECT_EQ( val6, 3.0 );
     EXPECT_EQ( val7, 3.5 );
     EXPECT_EQ( val8, 4.0 );
+  }
+
+  TEST( TENSOR_VIEW, NEGATION )
+  {
+    // Get a rank3 subtensor
+    using fs_tensor_type = std::math::fs_tensor<double,std::experimental::layout_right,std::experimental::default_accessor<double>,5,5,5>;
+    // Default construct
+    fs_tensor_type fs_tensor;
+    double val = 1;
+    for ( auto i : { 0, 1, 2, 3, 4 } )
+    {
+      for ( auto j : { 0, 1, 2, 3, 4 } )
+      {
+        for ( auto k : { 0, 1, 2, 3, 4 } )
+        {
+          std::math::detail::access( fs_tensor, i, j, k ) = val;
+          val = 2 * val;
+        }
+      }
+    }
+    const fs_tensor_type& const_fs_tensor( fs_tensor );
+    auto subtensor = const_fs_tensor.subtensor( std::tuple(2,5), std::tuple(2,4), std::tuple(2,4) );
+    // Negate subtensor
+    auto negate_subtensor = -subtensor;
+
+    EXPECT_EQ( ( std::math::detail::access( negate_subtensor, 0, 0, 0 ) ), ( -std::math::detail::access( subtensor, 0, 0, 0 ) ) );
+    EXPECT_EQ( ( std::math::detail::access( negate_subtensor, 1, 0, 0 ) ), ( -std::math::detail::access( subtensor, 1, 0, 0 ) ) );
+    EXPECT_EQ( ( std::math::detail::access( negate_subtensor, 2, 0, 0 ) ), ( -std::math::detail::access( subtensor, 2, 0, 0 ) ) );
+    EXPECT_EQ( ( std::math::detail::access( negate_subtensor, 0, 1, 0 ) ), ( -std::math::detail::access( subtensor, 0, 1, 0 ) ) );
+    EXPECT_EQ( ( std::math::detail::access( negate_subtensor, 1, 1, 0 ) ), ( -std::math::detail::access( subtensor, 1, 1, 0 ) ) );
+    EXPECT_EQ( ( std::math::detail::access( negate_subtensor, 2, 1, 0 ) ), ( -std::math::detail::access( subtensor, 2, 1, 0 ) ) );
+    EXPECT_EQ( ( std::math::detail::access( negate_subtensor, 0, 0, 1 ) ), ( -std::math::detail::access( subtensor, 0, 0, 1 ) ) );
+    EXPECT_EQ( ( std::math::detail::access( negate_subtensor, 1, 0, 1 ) ), ( -std::math::detail::access( subtensor, 1, 0, 1 ) ) );
+    EXPECT_EQ( ( std::math::detail::access( negate_subtensor, 2, 0, 1 ) ), ( -std::math::detail::access( subtensor, 2, 0, 1 ) ) );
+    EXPECT_EQ( ( std::math::detail::access( negate_subtensor, 0, 1, 1 ) ), ( -std::math::detail::access( subtensor, 0, 1, 1 ) ) );
+    EXPECT_EQ( ( std::math::detail::access( negate_subtensor, 1, 1, 1 ) ), ( -std::math::detail::access( subtensor, 1, 1, 1 ) ) );
+    EXPECT_EQ( ( std::math::detail::access( negate_subtensor, 2, 1, 1 ) ), ( -std::math::detail::access( subtensor, 2, 1, 1 ) ) );
+  }
+
+  TEST( TENSOR_VIEW, ADD )
+  {
+    // Get a rank3 subtensor
+    using fs_tensor_type = std::math::fs_tensor<double,std::experimental::layout_right,std::experimental::default_accessor<double>,5,5,5>;
+    // Default construct
+    fs_tensor_type fs_tensor;
+    double val = 1;
+    for ( auto i : { 0, 1, 2, 3, 4 } )
+    {
+      for ( auto j : { 0, 1, 2, 3, 4 } )
+      {
+        for ( auto k : { 0, 1, 2, 3, 4 } )
+        {
+          std::math::detail::access( fs_tensor, i, j, k ) = val;
+          val = 2 * val;
+        }
+      }
+    }
+    const fs_tensor_type& const_fs_tensor( fs_tensor );
+    auto subtensor = const_fs_tensor.subtensor( std::tuple(2,5), std::tuple(2,4), std::tuple(2,4) );
+    // Add the subtensor with itself
+    auto subtensor_sum = subtensor + subtensor;
+
+    EXPECT_EQ( ( std::math::detail::access( subtensor_sum, 0, 0, 0 ) ), ( 2.0 * std::math::detail::access( const_fs_tensor, 2, 2, 2 ) ) );
+    EXPECT_EQ( ( std::math::detail::access( subtensor_sum, 1, 0, 0 ) ), ( 2.0 * std::math::detail::access( const_fs_tensor, 3, 2, 2 ) ) );
+    EXPECT_EQ( ( std::math::detail::access( subtensor_sum, 2, 0, 0 ) ), ( 2.0 * std::math::detail::access( const_fs_tensor, 4, 2, 2 ) ) );
+    EXPECT_EQ( ( std::math::detail::access( subtensor_sum, 0, 1, 0 ) ), ( 2.0 * std::math::detail::access( const_fs_tensor, 2, 3, 2 ) ) );
+    EXPECT_EQ( ( std::math::detail::access( subtensor_sum, 1, 1, 0 ) ), ( 2.0 * std::math::detail::access( const_fs_tensor, 3, 3, 2 ) ) );
+    EXPECT_EQ( ( std::math::detail::access( subtensor_sum, 2, 1, 0 ) ), ( 2.0 * std::math::detail::access( const_fs_tensor, 4, 3, 2 ) ) );
+    EXPECT_EQ( ( std::math::detail::access( subtensor_sum, 0, 0, 1 ) ), ( 2.0 * std::math::detail::access( const_fs_tensor, 2, 2, 3 ) ) );
+    EXPECT_EQ( ( std::math::detail::access( subtensor_sum, 1, 0, 1 ) ), ( 2.0 * std::math::detail::access( const_fs_tensor, 3, 2, 3 ) ) );
+    EXPECT_EQ( ( std::math::detail::access( subtensor_sum, 2, 0, 1 ) ), ( 2.0 * std::math::detail::access( const_fs_tensor, 4, 2, 3 ) ) );
+    EXPECT_EQ( ( std::math::detail::access( subtensor_sum, 0, 1, 1 ) ), ( 2.0 * std::math::detail::access( const_fs_tensor, 2, 3, 3 ) ) );
+    EXPECT_EQ( ( std::math::detail::access( subtensor_sum, 1, 1, 1 ) ), ( 2.0 * std::math::detail::access( const_fs_tensor, 3, 3, 3 ) ) );
+    EXPECT_EQ( ( std::math::detail::access( subtensor_sum, 2, 1, 1 ) ), ( 2.0 * std::math::detail::access( const_fs_tensor, 4, 3, 3 ) ) );
+  }
+
+  TEST( TENSOR_VIEW, ADD_ASSIGN )
+  {
+    // Get a rank3 subtensor
+    using fs_tensor_type = std::math::fs_tensor<double,std::experimental::layout_right,std::experimental::default_accessor<double>,5,5,5>;
+    // Default construct
+    fs_tensor_type fs_tensor;
+    double val = 1;
+    for ( auto i : { 0, 1, 2, 3, 4 } )
+    {
+      for ( auto j : { 0, 1, 2, 3, 4 } )
+      {
+        for ( auto k : { 0, 1, 2, 3, 4 } )
+        {
+          std::math::detail::access( fs_tensor, i, j, k ) = val;
+          val = 2 * val;
+        }
+      }
+    }
+    auto subtensor = fs_tensor.subtensor( std::tuple(2,5), std::tuple(2,4), std::tuple(2,4) );
+    // Add the subtensor with itself
+    static_cast<void>( subtensor += subtensor );
+
+    EXPECT_EQ( ( std::math::detail::access( subtensor, 0, 0, 0 ) ), ( std::math::detail::access( fs_tensor, 2, 2, 2 ) ) );
+    EXPECT_EQ( ( std::math::detail::access( subtensor, 1, 0, 0 ) ), ( std::math::detail::access( fs_tensor, 3, 2, 2 ) ) );
+    EXPECT_EQ( ( std::math::detail::access( subtensor, 2, 0, 0 ) ), ( std::math::detail::access( fs_tensor, 4, 2, 2 ) ) );
+    EXPECT_EQ( ( std::math::detail::access( subtensor, 0, 1, 0 ) ), ( std::math::detail::access( fs_tensor, 2, 3, 2 ) ) );
+    EXPECT_EQ( ( std::math::detail::access( subtensor, 1, 1, 0 ) ), ( std::math::detail::access( fs_tensor, 3, 3, 2 ) ) );
+    EXPECT_EQ( ( std::math::detail::access( subtensor, 2, 1, 0 ) ), ( std::math::detail::access( fs_tensor, 4, 3, 2 ) ) );
+    EXPECT_EQ( ( std::math::detail::access( subtensor, 0, 0, 1 ) ), ( std::math::detail::access( fs_tensor, 2, 2, 3 ) ) );
+    EXPECT_EQ( ( std::math::detail::access( subtensor, 1, 0, 1 ) ), ( std::math::detail::access( fs_tensor, 3, 2, 3 ) ) );
+    EXPECT_EQ( ( std::math::detail::access( subtensor, 2, 0, 1 ) ), ( std::math::detail::access( fs_tensor, 4, 2, 3 ) ) );
+    EXPECT_EQ( ( std::math::detail::access( subtensor, 0, 1, 1 ) ), ( std::math::detail::access( fs_tensor, 2, 3, 3 ) ) );
+    EXPECT_EQ( ( std::math::detail::access( subtensor, 1, 1, 1 ) ), ( std::math::detail::access( fs_tensor, 3, 3, 3 ) ) );
+    EXPECT_EQ( ( std::math::detail::access( subtensor, 2, 1, 1 ) ), ( std::math::detail::access( fs_tensor, 4, 3, 3 ) ) );
+  }
+
+  TEST( TENSOR_VIEW, SUBTRACT )
+  {
+    // Get a rank3 subtensor
+    using fs_tensor_type = std::math::fs_tensor<double,std::experimental::layout_right,std::experimental::default_accessor<double>,5,5,5>;
+    // Default construct
+    fs_tensor_type fs_tensor;
+    double val = 1;
+    for ( auto i : { 0, 1, 2, 3, 4 } )
+    {
+      for ( auto j : { 0, 1, 2, 3, 4 } )
+      {
+        for ( auto k : { 0, 1, 2, 3, 4 } )
+        {
+          std::math::detail::access( fs_tensor, i, j, k ) = val;
+          val = 2 * val;
+        }
+      }
+    }
+    const fs_tensor_type& const_fs_tensor( fs_tensor );
+    auto subtensor = const_fs_tensor.subtensor( std::tuple(2,5), std::tuple(2,4), std::tuple(2,4) );
+    // Subtract the subtensor with itself
+    auto subtensor_diff = subtensor - subtensor;
+
+    EXPECT_EQ( ( std::math::detail::access( subtensor_diff, 0, 0, 0 ) ), 0 );
+    EXPECT_EQ( ( std::math::detail::access( subtensor_diff, 1, 0, 0 ) ), 0 );
+    EXPECT_EQ( ( std::math::detail::access( subtensor_diff, 2, 0, 0 ) ), 0 );
+    EXPECT_EQ( ( std::math::detail::access( subtensor_diff, 0, 1, 0 ) ), 0 );
+    EXPECT_EQ( ( std::math::detail::access( subtensor_diff, 1, 1, 0 ) ), 0 );
+    EXPECT_EQ( ( std::math::detail::access( subtensor_diff, 2, 1, 0 ) ), 0 );
+    EXPECT_EQ( ( std::math::detail::access( subtensor_diff, 0, 0, 1 ) ), 0 );
+    EXPECT_EQ( ( std::math::detail::access( subtensor_diff, 1, 0, 1 ) ), 0 );
+    EXPECT_EQ( ( std::math::detail::access( subtensor_diff, 2, 0, 1 ) ), 0 );
+    EXPECT_EQ( ( std::math::detail::access( subtensor_diff, 0, 1, 1 ) ), 0 );
+    EXPECT_EQ( ( std::math::detail::access( subtensor_diff, 1, 1, 1 ) ), 0 );
+    EXPECT_EQ( ( std::math::detail::access( subtensor_diff, 2, 1, 1 ) ), 0 );
+  }
+
+  TEST( TENSOR_VIEW, SUBTRACT_ASSIGN )
+  {
+    // Get a rank3 subtensor
+    using fs_tensor_type = std::math::fs_tensor<double,std::experimental::layout_right,std::experimental::default_accessor<double>,5,5,5>;
+    // Default construct
+    fs_tensor_type fs_tensor;
+    double val = 1;
+    for ( auto i : { 0, 1, 2, 3, 4 } )
+    {
+      for ( auto j : { 0, 1, 2, 3, 4 } )
+      {
+        for ( auto k : { 0, 1, 2, 3, 4 } )
+        {
+          std::math::detail::access( fs_tensor, i, j, k ) = val;
+          val = 2 * val;
+        }
+      }
+    }
+    auto subtensor = fs_tensor.subtensor( std::tuple(2,5), std::tuple(2,4), std::tuple(2,4) );
+    // Subtract the subtensor with itself
+    static_cast<void>( subtensor -= fs_tensor.subtensor( std::tuple(2,5), std::tuple(2,4), std::tuple(2,4) ) );
+
+    EXPECT_EQ( ( std::math::detail::access( subtensor, 0, 0, 0 ) ), 0 );
+    EXPECT_EQ( ( std::math::detail::access( subtensor, 1, 0, 0 ) ), 0 );
+    EXPECT_EQ( ( std::math::detail::access( subtensor, 2, 0, 0 ) ), 0 );
+    EXPECT_EQ( ( std::math::detail::access( subtensor, 0, 1, 0 ) ), 0 );
+    EXPECT_EQ( ( std::math::detail::access( subtensor, 1, 1, 0 ) ), 0 );
+    EXPECT_EQ( ( std::math::detail::access( subtensor, 2, 1, 0 ) ), 0 );
+    EXPECT_EQ( ( std::math::detail::access( subtensor, 0, 0, 1 ) ), 0 );
+    EXPECT_EQ( ( std::math::detail::access( subtensor, 1, 0, 1 ) ), 0 );
+    EXPECT_EQ( ( std::math::detail::access( subtensor, 2, 0, 1 ) ), 0 );
+    EXPECT_EQ( ( std::math::detail::access( subtensor, 0, 1, 1 ) ), 0 );
+    EXPECT_EQ( ( std::math::detail::access( subtensor, 1, 1, 1 ) ), 0 );
+    EXPECT_EQ( ( std::math::detail::access( subtensor, 2, 1, 1 ) ), 0 );
+  }
+
+  TEST( TENSOR_VIEW, SCALAR_PREMULTIPLY )
+  {
+    // Get a rank3 subtensor
+    using fs_tensor_type = std::math::fs_tensor<double,std::experimental::layout_right,std::experimental::default_accessor<double>,5,5,5>;
+    // Default construct
+    fs_tensor_type fs_tensor;
+    double val = 1;
+    for ( auto i : { 0, 1, 2, 3, 4 } )
+    {
+      for ( auto j : { 0, 1, 2, 3, 4 } )
+      {
+        for ( auto k : { 0, 1, 2, 3, 4 } )
+        {
+          std::math::detail::access( fs_tensor, i, j, k ) = val;
+          val = 2 * val;
+        }
+      }
+    }
+    const fs_tensor_type& const_fs_tensor( fs_tensor );
+    auto subtensor = const_fs_tensor.subtensor( std::tuple(2,5), std::tuple(2,4), std::tuple(2,4) );
+    // Multiply the subtensor with a constant
+    auto subtensor_prod = 2.0 * subtensor;
+
+    EXPECT_EQ( ( std::math::detail::access( subtensor_prod, 0, 0, 0 ) ), ( 2.0 * std::math::detail::access( subtensor, 0, 0, 0 ) ) );
+    EXPECT_EQ( ( std::math::detail::access( subtensor_prod, 1, 0, 0 ) ), ( 2.0 * std::math::detail::access( subtensor, 1, 0, 0 ) ) );
+    EXPECT_EQ( ( std::math::detail::access( subtensor_prod, 2, 0, 0 ) ), ( 2.0 * std::math::detail::access( subtensor, 2, 0, 0 ) ) );
+    EXPECT_EQ( ( std::math::detail::access( subtensor_prod, 0, 1, 0 ) ), ( 2.0 * std::math::detail::access( subtensor, 0, 1, 0 ) ) );
+    EXPECT_EQ( ( std::math::detail::access( subtensor_prod, 1, 1, 0 ) ), ( 2.0 * std::math::detail::access( subtensor, 1, 1, 0 ) ) );
+    EXPECT_EQ( ( std::math::detail::access( subtensor_prod, 2, 1, 0 ) ), ( 2.0 * std::math::detail::access( subtensor, 2, 1, 0 ) ) );
+    EXPECT_EQ( ( std::math::detail::access( subtensor_prod, 0, 0, 1 ) ), ( 2.0 * std::math::detail::access( subtensor, 0, 0, 1 ) ) );
+    EXPECT_EQ( ( std::math::detail::access( subtensor_prod, 1, 0, 1 ) ), ( 2.0 * std::math::detail::access( subtensor, 1, 0, 1 ) ) );
+    EXPECT_EQ( ( std::math::detail::access( subtensor_prod, 2, 0, 1 ) ), ( 2.0 * std::math::detail::access( subtensor, 2, 0, 1 ) ) );
+    EXPECT_EQ( ( std::math::detail::access( subtensor_prod, 0, 1, 1 ) ), ( 2.0 * std::math::detail::access( subtensor, 0, 1, 1 ) ) );
+    EXPECT_EQ( ( std::math::detail::access( subtensor_prod, 1, 1, 1 ) ), ( 2.0 * std::math::detail::access( subtensor, 1, 1, 1 ) ) );
+    EXPECT_EQ( ( std::math::detail::access( subtensor_prod, 2, 1, 1 ) ), ( 2.0 * std::math::detail::access( subtensor, 2, 1, 1 ) ) );
+  }
+
+  TEST( TENSOR_VIEW, SCALAR_POSTMULTIPLY )
+  {
+    // Get a rank3 subtensor
+    using fs_tensor_type = std::math::fs_tensor<double,std::experimental::layout_right,std::experimental::default_accessor<double>,5,5,5>;
+    // Default construct
+    fs_tensor_type fs_tensor;
+    double val = 1;
+    for ( auto i : { 0, 1, 2, 3, 4 } )
+    {
+      for ( auto j : { 0, 1, 2, 3, 4 } )
+      {
+        for ( auto k : { 0, 1, 2, 3, 4 } )
+        {
+          std::math::detail::access( fs_tensor, i, j, k ) = val;
+          val = 2 * val;
+        }
+      }
+    }
+    const fs_tensor_type& const_fs_tensor( fs_tensor );
+    auto subtensor = const_fs_tensor.subtensor( std::tuple(2,5), std::tuple(2,4), std::tuple(2,4) );
+    // Multiply the subtensor with a constant
+    auto subtensor_prod = subtensor * 2.0;
+
+    EXPECT_EQ( ( std::math::detail::access( subtensor_prod, 0, 0, 0 ) ), ( 2.0 * std::math::detail::access( subtensor, 0, 0, 0 ) ) );
+    EXPECT_EQ( ( std::math::detail::access( subtensor_prod, 1, 0, 0 ) ), ( 2.0 * std::math::detail::access( subtensor, 1, 0, 0 ) ) );
+    EXPECT_EQ( ( std::math::detail::access( subtensor_prod, 2, 0, 0 ) ), ( 2.0 * std::math::detail::access( subtensor, 2, 0, 0 ) ) );
+    EXPECT_EQ( ( std::math::detail::access( subtensor_prod, 0, 1, 0 ) ), ( 2.0 * std::math::detail::access( subtensor, 0, 1, 0 ) ) );
+    EXPECT_EQ( ( std::math::detail::access( subtensor_prod, 1, 1, 0 ) ), ( 2.0 * std::math::detail::access( subtensor, 1, 1, 0 ) ) );
+    EXPECT_EQ( ( std::math::detail::access( subtensor_prod, 2, 1, 0 ) ), ( 2.0 * std::math::detail::access( subtensor, 2, 1, 0 ) ) );
+    EXPECT_EQ( ( std::math::detail::access( subtensor_prod, 0, 0, 1 ) ), ( 2.0 * std::math::detail::access( subtensor, 0, 0, 1 ) ) );
+    EXPECT_EQ( ( std::math::detail::access( subtensor_prod, 1, 0, 1 ) ), ( 2.0 * std::math::detail::access( subtensor, 1, 0, 1 ) ) );
+    EXPECT_EQ( ( std::math::detail::access( subtensor_prod, 2, 0, 1 ) ), ( 2.0 * std::math::detail::access( subtensor, 2, 0, 1 ) ) );
+    EXPECT_EQ( ( std::math::detail::access( subtensor_prod, 0, 1, 1 ) ), ( 2.0 * std::math::detail::access( subtensor, 0, 1, 1 ) ) );
+    EXPECT_EQ( ( std::math::detail::access( subtensor_prod, 1, 1, 1 ) ), ( 2.0 * std::math::detail::access( subtensor, 1, 1, 1 ) ) );
+    EXPECT_EQ( ( std::math::detail::access( subtensor_prod, 2, 1, 1 ) ), ( 2.0 * std::math::detail::access( subtensor, 2, 1, 1 ) ) );
+  }
+
+  TEST( TENSOR_VIEW, SCALAR_MULTIPLY_ASSIGN )
+  {
+    // Get a rank3 subtensor
+    using fs_tensor_type = std::math::fs_tensor<double,std::experimental::layout_right,std::experimental::default_accessor<double>,5,5,5>;
+    // Default construct
+    fs_tensor_type fs_tensor;
+    double val = 1;
+    for ( auto i : { 0, 1, 2, 3, 4 } )
+    {
+      for ( auto j : { 0, 1, 2, 3, 4 } )
+      {
+        for ( auto k : { 0, 1, 2, 3, 4 } )
+        {
+          std::math::detail::access( fs_tensor, i, j, k ) = val;
+          val = 2 * val;
+        }
+      }
+    }
+    auto subtensor = fs_tensor.subtensor( std::tuple(2,5), std::tuple(2,4), std::tuple(2,4) );
+    // Multiply the subtensor with a constant
+    static_cast<void>( subtensor *= 2.0 );
+
+    EXPECT_EQ( ( std::math::detail::access( subtensor, 0, 0, 0 ) ), ( std::math::detail::access( fs_tensor, 2, 2, 2 ) ) );
+    EXPECT_EQ( ( std::math::detail::access( subtensor, 1, 0, 0 ) ), ( std::math::detail::access( fs_tensor, 3, 2, 2 ) ) );
+    EXPECT_EQ( ( std::math::detail::access( subtensor, 2, 0, 0 ) ), ( std::math::detail::access( fs_tensor, 4, 2, 2 ) ) );
+    EXPECT_EQ( ( std::math::detail::access( subtensor, 0, 1, 0 ) ), ( std::math::detail::access( fs_tensor, 2, 3, 2 ) ) );
+    EXPECT_EQ( ( std::math::detail::access( subtensor, 1, 1, 0 ) ), ( std::math::detail::access( fs_tensor, 3, 3, 2 ) ) );
+    EXPECT_EQ( ( std::math::detail::access( subtensor, 2, 1, 0 ) ), ( std::math::detail::access( fs_tensor, 4, 3, 2 ) ) );
+    EXPECT_EQ( ( std::math::detail::access( subtensor, 0, 0, 1 ) ), ( std::math::detail::access( fs_tensor, 2, 2, 3 ) ) );
+    EXPECT_EQ( ( std::math::detail::access( subtensor, 1, 0, 1 ) ), ( std::math::detail::access( fs_tensor, 3, 2, 3 ) ) );
+    EXPECT_EQ( ( std::math::detail::access( subtensor, 2, 0, 1 ) ), ( std::math::detail::access( fs_tensor, 4, 2, 3 ) ) );
+    EXPECT_EQ( ( std::math::detail::access( subtensor, 0, 1, 1 ) ), ( std::math::detail::access( fs_tensor, 2, 3, 3 ) ) );
+    EXPECT_EQ( ( std::math::detail::access( subtensor, 1, 1, 1 ) ), ( std::math::detail::access( fs_tensor, 3, 3, 3 ) ) );
+    EXPECT_EQ( ( std::math::detail::access( subtensor, 2, 1, 1 ) ), ( std::math::detail::access( fs_tensor, 4, 3, 3 ) ) );
+  }
+
+  TEST( TENSOR_VIEW, SCALAR_DIVIDE )
+  {
+    // Get a rank3 subtensor
+    using fs_tensor_type = std::math::fs_tensor<double,std::experimental::layout_right,std::experimental::default_accessor<double>,5,5,5>;
+    // Default construct
+    fs_tensor_type fs_tensor;
+    double val = 1;
+    for ( auto i : { 0, 1, 2, 3, 4 } )
+    {
+      for ( auto j : { 0, 1, 2, 3, 4 } )
+      {
+        for ( auto k : { 0, 1, 2, 3, 4 } )
+        {
+          std::math::detail::access( fs_tensor, i, j, k ) = val;
+          val = 2 * val;
+        }
+      }
+    }
+    const fs_tensor_type& const_fs_tensor( fs_tensor );
+    auto subtensor = const_fs_tensor.subtensor( std::tuple(2,5), std::tuple(2,4), std::tuple(2,4) );
+    // Divide the subtensor with a constant
+    auto subtensor_divide = subtensor / 2.0;
+
+    EXPECT_EQ( ( std::math::detail::access( subtensor_divide, 0, 0, 0 ) ), ( std::math::detail::access( subtensor, 0, 0, 0 ) / 2.0 ) );
+    EXPECT_EQ( ( std::math::detail::access( subtensor_divide, 1, 0, 0 ) ), ( std::math::detail::access( subtensor, 1, 0, 0 ) / 2.0 ) );
+    EXPECT_EQ( ( std::math::detail::access( subtensor_divide, 2, 0, 0 ) ), ( std::math::detail::access( subtensor, 2, 0, 0 ) / 2.0 ) );
+    EXPECT_EQ( ( std::math::detail::access( subtensor_divide, 0, 1, 0 ) ), ( std::math::detail::access( subtensor, 0, 1, 0 ) / 2.0 ) );
+    EXPECT_EQ( ( std::math::detail::access( subtensor_divide, 1, 1, 0 ) ), ( std::math::detail::access( subtensor, 1, 1, 0 ) / 2.0 ) );
+    EXPECT_EQ( ( std::math::detail::access( subtensor_divide, 2, 1, 0 ) ), ( std::math::detail::access( subtensor, 2, 1, 0 ) / 2.0 ) );
+    EXPECT_EQ( ( std::math::detail::access( subtensor_divide, 0, 0, 1 ) ), ( std::math::detail::access( subtensor, 0, 0, 1 ) / 2.0 ) );
+    EXPECT_EQ( ( std::math::detail::access( subtensor_divide, 1, 0, 1 ) ), ( std::math::detail::access( subtensor, 1, 0, 1 ) / 2.0 ) );
+    EXPECT_EQ( ( std::math::detail::access( subtensor_divide, 2, 0, 1 ) ), ( std::math::detail::access( subtensor, 2, 0, 1 ) / 2.0 ) );
+    EXPECT_EQ( ( std::math::detail::access( subtensor_divide, 0, 1, 1 ) ), ( std::math::detail::access( subtensor, 0, 1, 1 ) / 2.0 ) );
+    EXPECT_EQ( ( std::math::detail::access( subtensor_divide, 1, 1, 1 ) ), ( std::math::detail::access( subtensor, 1, 1, 1 ) / 2.0 ) );
+    EXPECT_EQ( ( std::math::detail::access( subtensor_divide, 2, 1, 1 ) ), ( std::math::detail::access( subtensor, 2, 1, 1 ) / 2.0 ) );
+  }
+
+  TEST( TENSOR_VIEW, SCALAR_DIVIDE_ASSIGN )
+  {
+    // Get a rank3 subtensor
+    using fs_tensor_type = std::math::fs_tensor<double,std::experimental::layout_right,std::experimental::default_accessor<double>,5,5,5>;
+    // Default construct
+    fs_tensor_type fs_tensor;
+    double val = 1;
+    for ( auto i : { 0, 1, 2, 3, 4 } )
+    {
+      for ( auto j : { 0, 1, 2, 3, 4 } )
+      {
+        for ( auto k : { 0, 1, 2, 3, 4 } )
+        {
+          std::math::detail::access( fs_tensor, i, j, k ) = val;
+          val = 2 * val;
+        }
+      }
+    }
+    auto subtensor = fs_tensor.subtensor( std::tuple(2,5), std::tuple(2,4), std::tuple(2,4) );
+    // Divide the subtensor with a constant
+    static_cast<void>( subtensor /= 2.0 );
+
+    EXPECT_EQ( ( std::math::detail::access( subtensor, 0, 0, 0 ) ), ( std::math::detail::access( fs_tensor, 2, 2, 2 ) ) );
+    EXPECT_EQ( ( std::math::detail::access( subtensor, 1, 0, 0 ) ), ( std::math::detail::access( fs_tensor, 3, 2, 2 ) ) );
+    EXPECT_EQ( ( std::math::detail::access( subtensor, 2, 0, 0 ) ), ( std::math::detail::access( fs_tensor, 4, 2, 2 ) ) );
+    EXPECT_EQ( ( std::math::detail::access( subtensor, 0, 1, 0 ) ), ( std::math::detail::access( fs_tensor, 2, 3, 2 ) ) );
+    EXPECT_EQ( ( std::math::detail::access( subtensor, 1, 1, 0 ) ), ( std::math::detail::access( fs_tensor, 3, 3, 2 ) ) );
+    EXPECT_EQ( ( std::math::detail::access( subtensor, 2, 1, 0 ) ), ( std::math::detail::access( fs_tensor, 4, 3, 2 ) ) );
+    EXPECT_EQ( ( std::math::detail::access( subtensor, 0, 0, 1 ) ), ( std::math::detail::access( fs_tensor, 2, 2, 3 ) ) );
+    EXPECT_EQ( ( std::math::detail::access( subtensor, 1, 0, 1 ) ), ( std::math::detail::access( fs_tensor, 3, 2, 3 ) ) );
+    EXPECT_EQ( ( std::math::detail::access( subtensor, 2, 0, 1 ) ), ( std::math::detail::access( fs_tensor, 4, 2, 3 ) ) );
+    EXPECT_EQ( ( std::math::detail::access( subtensor, 0, 1, 1 ) ), ( std::math::detail::access( fs_tensor, 2, 3, 3 ) ) );
+    EXPECT_EQ( ( std::math::detail::access( subtensor, 1, 1, 1 ) ), ( std::math::detail::access( fs_tensor, 3, 3, 3 ) ) );
+    EXPECT_EQ( ( std::math::detail::access( subtensor, 2, 1, 1 ) ), ( std::math::detail::access( fs_tensor, 4, 3, 3 ) ) );
   }
 
 }

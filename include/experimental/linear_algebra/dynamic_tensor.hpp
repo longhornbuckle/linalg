@@ -28,9 +28,9 @@ namespace math
 /// @tparam Access accessor policy defines how elements are accessed
 template < class  T,
            size_t R,
-           class  Alloc  = ::std::allocator<T>,
-           class  L      = ::std::experimental::layout_right,
-           class  Access = ::std::experimental::default_accessor<T> >
+           class  Alloc,
+           class  L,
+           class  Access >
 class dr_tensor
 {
   public:

@@ -24,9 +24,9 @@ namespace math
 /// @tparam L      layout defines the ordering of elements in memory
 /// @tparam Access accessor policy defines how elements are accessed
 template < class T,
-           class Alloc  = ::std::allocator<T>,
-           class L      = ::std::experimental::layout_right,
-           class Access = ::std::experimental::default_accessor<T> >
+           class Alloc,
+           class L,
+           class Access >
 class dr_vector : public dr_tensor<T,1,Alloc,L,Access>
 {
   private:

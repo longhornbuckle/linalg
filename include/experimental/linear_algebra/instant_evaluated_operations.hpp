@@ -33,7 +33,33 @@ class negation
   private:
     // Aliases
     using result_value_type  = ::std::decay_t< decltype( - ::std::declval<typename tensor_type::value_type>() ) >;
-    using result_tensor_type = typename tensor_type::template rebind_t<result_value_type>;
+    #ifdef LINALG_ENABLE_CONCEPTS
+    template < class U > requires ( !( concepts::fixed_size_tensor_data<U> || concepts::dynamic_tensor_data<U> ) )
+    #else
+    template < class U, typename = void >
+    #endif
+    struct Result_tensor { using type = dr_tensor< result_value_type,
+                                                   U::extents_type::rank(),
+                                                   ::std::allocator< result_value_type >,
+                                                   ::std::experimental::layout_right,
+                                                   typename detail::rebind_accessor_t<typename U::accessor_type,result_value_type> >; };
+    #ifdef LINALG_ENABLE_CONCEPTS
+    template < concepts::fixed_size_tensor_data U >
+    struct Result_tensor
+    #else
+    template < class U  >
+    struct Result_tensor< U, ::std::enable_if_t< concepts::fixed_size_tensor_data_v<U> > >
+    #endif
+    { using type = typename U::template rebind_t<result_value_type>; };
+    #ifdef LINALG_ENABLE_CONCEPTS
+    template < concepts::dynamic_tensor_data U1, class U2 > requires ( !( concepts::fixed_size_tensor<U1> || concepts::fixed_size_tensor<U2> ) )
+    struct Result_tensor
+    #else
+    template < class U >
+    struct Result_tensor< U, ::std::enable_if_t< concepts::dynamic_tensor_data_v<U> > >
+    #endif
+    { using type = typename U::template rebind_t<result_value_type>; };
+    using result_tensor_type = typename Result_tensor< tensor_type >::type;
     // Gets necessary arguments for constrution
     // If engine type is fixed size, then the lambda expression is the only argument needed
     #ifdef LINALG_ENABLE_CONCEPTS
@@ -118,16 +144,49 @@ class addition
   private:
     // Aliases
     using result_value_type  = ::std::decay_t< decltype( ::std::declval<typename first_tensor_type::value_type>() + ::std::declval<typename second_tensor_type::value_type>() ) >;
-    using result_tensor_type = ::std::conditional_t< 
-                                                     #ifdef LINALG_ENABLE_CONCEPTS
-                                                     concepts::dynamic_tensor_data<first_tensor_type> &&
-                                                       concepts::fixed_size_tensor_data<second_tensor_type>,
-                                                     #else
-                                                     concepts::dynamic_tensor_data_v<first_tensor_type> &&
-                                                       concepts::fixed_size_tensor_data_v<second_tensor_type>,
-                                                     #endif
-                                                     typename second_tensor_type::template rebind_t<result_value_type>,
-                                                     typename first_tensor_type::template rebind_t<result_value_type> >;
+    #ifdef LINALG_ENABLE_CONCEPTS
+    template < class U1, class U2 > requires ( !( concepts::fixed_size_tensor_data<U1> || concepts::fixed_size_tensor_data<U2> || concepts::dynamic_tensor_data<U1> || concepts::dynamic_tensor_data<U2> ) )
+    #else
+    template < class U1, class U2, typename = void >
+    #endif
+    struct Result_tensor { using type = dr_tensor< result_value_type,
+                                                   U1::extents_type::rank(),
+                                                   ::std::allocator< result_value_type >,
+                                                   ::std::experimental::layout_right,
+                                                   typename detail::rebind_accessor_t<typename U1::accessor_type,result_value_type> >; };
+    #ifdef LINALG_ENABLE_CONCEPTS
+    template < concepts::fixed_size_tensor_data U1, class U2 >
+    struct Result_tensor
+    #else
+    template < class U1, class U2  >
+    struct Result_tensor< U1, U2, ::std::enable_if_t< concepts::fixed_size_tensor_data_v<U1> > >
+    #endif
+    { using type = typename U1::template rebind_t<result_value_type>; };
+    #ifdef LINALG_ENABLE_CONCEPTS
+    template < class U1, concepts::fixed_size_tensor_data U2 > requires ( !concepts::fixed_size_tensor<U2> )
+    struct Result_tensor
+    #else
+    template < class U1, class U2 >
+    struct Result_tensor< U1, U2, ::std::enable_if_t< concepts::fixed_size_tensor_data_v<U2> && !concepts::fixed_size_tensor_data_v<U1> > >
+    #endif
+    { using type = typename U2::template rebind_t<result_value_type>; };
+    #ifdef LINALG_ENABLE_CONCEPTS
+    template < concepts::dynamic_tensor_data U1, class U2 > requires ( !( concepts::fixed_size_tensor<U1> || concepts::fixed_size_tensor<U2> ) )
+    struct Result_tensor
+    #else
+    template < class U1, class U2 >
+    struct Result_tensor< U1, U2, ::std::enable_if_t< concepts::dynamic_tensor_data_v<U1> && !( concepts::fixed_size_tensor_data_v<U1> || concepts::fixed_size_tensor_data_v<U2> ) > >
+    #endif
+    { using type = typename U1::template rebind_t<result_value_type>; };
+    #ifdef LINALG_ENABLE_CONCEPTS
+    template < class U1, concepts::dynamic_tensor_data U2 > requires ( !( concepts::fixed_size_tensor<U1> || concepts::fixed_size_tensor<U2> || concepts::dynamic_tensor_data<U1> ) )
+    struct Result_tensor
+    #else
+    template < class U1, class U2  >
+    struct Result_tensor< U1, U2, ::std::enable_if_t< concepts::dynamic_tensor_data_v<U2> && !( concepts::fixed_size_tensor_data_v<U1> || concepts::fixed_size_tensor_data_v<U2> || concepts::dynamic_tensor_data_v<U1> ) > >
+    #endif
+    { using type = typename U2::template rebind_t<result_value_type>; };
+    using result_tensor_type = typename Result_tensor< first_tensor_type, second_tensor_type >::type;
     // Gets necessary arguments for constrution
     // If engine type is fixed size, then the lambda expression is the only argument needed
     #ifdef LINALG_ENABLE_CONCEPTS
@@ -254,16 +313,49 @@ class subtraction
   private:
     // Aliases
     using result_value_type  = ::std::decay_t< decltype( ::std::declval<typename first_tensor_type::value_type>() + ::std::declval<typename second_tensor_type::value_type>() ) >;
-    using result_tensor_type = ::std::conditional_t< 
-                                                     #ifdef LINALG_ENABLE_CONCEPTS
-                                                     concepts::dynamic_tensor_data<first_tensor_type> &&
-                                                       concepts::fixed_size_tensor_data<second_tensor_type>,
-                                                     #else
-                                                     concepts::dynamic_tensor_data_v<first_tensor_type> &&
-                                                       concepts::fixed_size_tensor_data_v<second_tensor_type>,
-                                                     #endif
-                                                     typename second_tensor_type::template rebind_t<result_value_type>,
-                                                     typename first_tensor_type::template rebind_t<result_value_type> >;
+    #ifdef LINALG_ENABLE_CONCEPTS
+    template < class U1, class U2 > requires ( !( concepts::fixed_size_tensor_data<U1> || concepts::fixed_size_tensor_data<U2> || concepts::dynamic_tensor_data<U1> || concepts::dynamic_tensor_data<U2> ) )
+    #else
+    template < class U1, class U2, typename = void >
+    #endif
+    struct Result_tensor { using type = dr_tensor< result_value_type,
+                                                   U1::extents_type::rank(),
+                                                   ::std::allocator< result_value_type >,
+                                                   ::std::experimental::layout_right,
+                                                   typename detail::rebind_accessor_t<typename U1::accessor_type,result_value_type> >; };
+    #ifdef LINALG_ENABLE_CONCEPTS
+    template < concepts::fixed_size_tensor_data U1, class U2 >
+    struct Result_tensor
+    #else
+    template < class U1, class U2  >
+    struct Result_tensor< U1, U2, ::std::enable_if_t< concepts::fixed_size_tensor_data_v<U1> > >
+    #endif
+    { using type = typename U1::template rebind_t<result_value_type>; };
+    #ifdef LINALG_ENABLE_CONCEPTS
+    template < class U1, concepts::fixed_size_tensor_data U2 > requires ( !concepts::fixed_size_tensor<U2> )
+    struct Result_tensor
+    #else
+    template < class U1, class U2 >
+    struct Result_tensor< U1, U2, ::std::enable_if_t< concepts::fixed_size_tensor_data_v<U2> && !concepts::fixed_size_tensor_data_v<U1> > >
+    #endif
+    { using type = typename U2::template rebind_t<result_value_type>; };
+    #ifdef LINALG_ENABLE_CONCEPTS
+    template < concepts::dynamic_tensor_data U1, class U2 > requires ( !( concepts::fixed_size_tensor<U1> || concepts::fixed_size_tensor<U2> ) )
+    struct Result_tensor
+    #else
+    template < class U1, class U2 >
+    struct Result_tensor< U1, U2, ::std::enable_if_t< concepts::dynamic_tensor_data_v<U1> && !( concepts::fixed_size_tensor_data_v<U1> || concepts::fixed_size_tensor_data_v<U2> ) > >
+    #endif
+    { using type = typename U1::template rebind_t<result_value_type>; };
+    #ifdef LINALG_ENABLE_CONCEPTS
+    template < class U1, concepts::dynamic_tensor_data U2 > requires ( !( concepts::fixed_size_tensor<U1> || concepts::fixed_size_tensor<U2> || concepts::dynamic_tensor_data<U1> ) )
+    struct Result_tensor
+    #else
+    template < class U1, class U2  >
+    struct Result_tensor< U1, U2, ::std::enable_if_t< concepts::dynamic_tensor_data_v<U2> && !( concepts::fixed_size_tensor_data_v<U1> || concepts::fixed_size_tensor_data_v<U2> || concepts::dynamic_tensor_data_v<U1> ) > >
+    #endif
+    { using type = typename U2::template rebind_t<result_value_type>; };
+    using result_tensor_type = typename Result_tensor< first_tensor_type, second_tensor_type >::type;
     // Gets necessary arguments for constrution
     // If engine type is fixed size, then the lambda expression is the only argument needed
     #ifdef LINALG_ENABLE_CONCEPTS
@@ -388,7 +480,33 @@ class scalar_product
   private:
     // Aliases
     using result_value_type  = decay_t< decltype( ::std::declval<typename tensor_type::value_type>() * ::std::declval<S>() ) >;
-    using result_tensor_type = typename tensor_type::template rebind_t<result_value_type>;
+    #ifdef LINALG_ENABLE_CONCEPTS
+    template < class U > requires ( !( concepts::fixed_size_tensor_data<U> || concepts::dynamic_tensor_data<U> ) )
+    #else
+    template < class U, typename = void >
+    #endif
+    struct Result_tensor { using type = dr_tensor< result_value_type,
+                                                   U::extents_type::rank(),
+                                                   ::std::allocator< result_value_type >,
+                                                   ::std::experimental::layout_right,
+                                                   typename detail::rebind_accessor_t<typename U::accessor_type,result_value_type> >; };
+    #ifdef LINALG_ENABLE_CONCEPTS
+    template < concepts::fixed_size_tensor_data U >
+    struct Result_tensor
+    #else
+    template < class U  >
+    struct Result_tensor< U, ::std::enable_if_t< concepts::fixed_size_tensor_data_v<U> > >
+    #endif
+    { using type = typename U::template rebind_t<result_value_type>; };
+    #ifdef LINALG_ENABLE_CONCEPTS
+    template < concepts::dynamic_tensor_data U1, class U2 > requires ( !( concepts::fixed_size_tensor<U1> || concepts::fixed_size_tensor<U2> ) )
+    struct Result_tensor
+    #else
+    template < class U >
+    struct Result_tensor< U, ::std::enable_if_t< concepts::dynamic_tensor_data_v<U> > >
+    #endif
+    { using type = typename U::template rebind_t<result_value_type>; };
+    using result_tensor_type = typename Result_tensor< tensor_type >::type;
     // Gets necessary arguments for constrution
     // If tensor type is fixed size, then the lambda expression is the only argument needed
     #ifdef LINALG_ENABLE_CONCEPTS
@@ -521,7 +639,33 @@ struct scalar_division
   private:
     // Aliases
     using result_value_type  = ::std::decay_t< decltype( ::std::declval<typename tensor_type::value_type>() / ::std::declval<S>() ) >;
-    using result_tensor_type = typename tensor_type::template rebind_t<result_value_type>;
+    #ifdef LINALG_ENABLE_CONCEPTS
+    template < class U > requires ( !( concepts::fixed_size_tensor_data<U> || concepts::dynamic_tensor_data<U> ) )
+    #else
+    template < class U, typename = void >
+    #endif
+    struct Result_tensor { using type = dr_tensor< result_value_type,
+                                                   U::extents_type::rank(),
+                                                   ::std::allocator< result_value_type >,
+                                                   ::std::experimental::layout_right,
+                                                   typename detail::rebind_accessor_t<typename U::accessor_type,result_value_type> >; };
+    #ifdef LINALG_ENABLE_CONCEPTS
+    template < concepts::fixed_size_tensor_data U >
+    struct Result_tensor
+    #else
+    template < class U  >
+    struct Result_tensor< U, ::std::enable_if_t< concepts::fixed_size_tensor_data_v<U> > >
+    #endif
+    { using type = typename U::template rebind_t<result_value_type>; };
+    #ifdef LINALG_ENABLE_CONCEPTS
+    template < concepts::dynamic_tensor_data U1, class U2 > requires ( !( concepts::fixed_size_tensor<U1> || concepts::fixed_size_tensor<U2> ) )
+    struct Result_tensor
+    #else
+    template < class U >
+    struct Result_tensor< U, ::std::enable_if_t< concepts::dynamic_tensor_data_v<U> > >
+    #endif
+    { using type = typename U::template rebind_t<result_value_type>; };
+    using result_tensor_type = typename Result_tensor< tensor_type >::type;
     // Gets necessary arguments for constrution
     // If tensor type is fixed size, then the lambda expression is the only argument needed
     #ifdef LINALG_ENABLE_CONCEPTS

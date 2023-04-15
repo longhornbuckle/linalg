@@ -10,38 +10,12 @@
 
 #include <experimental/linear_algebra.hpp>
 
-// Forward declarations
-namespace std
-{
-namespace math
-{
-  template < class MDS
-  #ifdef LINALG_ENABLE_CONCEPTS
-    > requires ( detail::is_mdspan_v<MDS> &&
-               ( MDS::extents_type::rank()== 1 ) &&
-               MDS::is_always_unique() )
-  #else
-    , typename >
-  #endif
-  class vector_view;
-  template < class MDS
-  #ifdef LINALG_ENABLE_CONCEPTS
-    > requires ( detail::is_mdspan_v<MDS> &&
-               ( MDS::extents_type::rank()== 2 ) &&
-                MDS::is_always_unique() )
-  #else
-    , typename >
-  #endif
-  class matrix_view;
-}
-}
-
 namespace std
 {
 namespace math
 {
 
-/// @brief Tensor view.
+/// @brief Non-owning ensor view.
 //         Implementation satisfies the following concepts:
 //         concepts::tensor
 //         concepts::writable_tensor if MDS::element_type is non-const
@@ -52,7 +26,7 @@ template < class MDS
   > requires ( detail::is_mdspan_v<MDS> &&
              MDS::is_always_unique() ) // Each element in the mdspan must have a unique mapping. (i.e. span_type and const_underlying_span_type should be the same.)
 #else
-  , typename = ::std::enable_if_t< ( detail::is_mdspan_v<MDS> && MDS::is_always_unique() ) > >
+  , typename >
 #endif
 class tensor_view
 {

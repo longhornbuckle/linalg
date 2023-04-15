@@ -25,12 +25,12 @@ namespace math
 /// @tparam A accessor policy defines how elements are accessed
 template < class         T,
            ::std::size_t N,
-           class         L = ::std::experimental::layout_right,
-           class         A = ::std::experimental::default_accessor<T>
+           class         L,
+           class         A
 #ifdef LINALG_ENABLE_CONCEPTS
            > requires ( N >= 0 ) // Number of elements must be >= 0
 #else
-           , typename = ::std::enable_if_t< ( N >= 0 ) > >
+           , typename >
 #endif
 class fs_vector : public fs_tensor<T,L,A,N>
 {

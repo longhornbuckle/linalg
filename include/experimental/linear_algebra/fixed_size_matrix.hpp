@@ -27,12 +27,12 @@ namespace math
 template < class         T,
            ::std::size_t R,
            ::std::size_t C,
-           class         L = ::std::experimental::layout_right,
-           class         A = ::std::experimental::default_accessor<T>
+           class         L,
+           class         A
 #ifdef LINALG_ENABLE_CONCEPTS
            > requires ( ( R >= 0 ) && ( C >= 0 ) ) // Row and column must be >= 0
 #else
-           , typename = ::std::enable_if_t< ( ( R >= 0 ) && ( C >= 0 ) ) > >
+           , typename >
 #endif
 class fs_matrix : public fs_tensor<T,L,A,R,C>
 {

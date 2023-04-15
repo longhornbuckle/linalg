@@ -54,6 +54,7 @@ using ::std::experimental::dynamic_extent;
 #include "linear_algebra/config.hpp"
 #include "linear_algebra/macros.hpp"
 #include "linear_algebra/private_support.hpp"
+#include "linear_algebra/forward_declarations.hpp"
 #include "linear_algebra/tensor_concepts.hpp"
 #include "linear_algebra/vector_concepts.hpp"
 #include "linear_algebra/matrix_concepts.hpp"
