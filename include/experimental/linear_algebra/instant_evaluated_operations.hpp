@@ -28,7 +28,7 @@ struct default_dynamic< tensor_view< MDS >, ValueType >
                           typename detail::rebind_accessor_t<typename MDS::accessor_type,ValueType> >;
 };
 template < class MDS, class ValueType >
-struct default_dynamic< tensor_view< MDS >, ValueType >
+struct default_dynamic< matrix_view< MDS >, ValueType >
 {
   using type = dr_matrix< ValueType,
                           ::std::allocator< ValueType >,
@@ -36,7 +36,7 @@ struct default_dynamic< tensor_view< MDS >, ValueType >
                           typename detail::rebind_accessor_t<typename MDS::accessor_type,ValueType> >;
 };
 template < class MDS, class ValueType >
-struct default_dynamic< tensor_view< MDS >, ValueType >
+struct default_dynamic< vector_view< MDS >, ValueType >
 {
   using type = dr_vector< ValueType,
                           ::std::allocator< ValueType >,
