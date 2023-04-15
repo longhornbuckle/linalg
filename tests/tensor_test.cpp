@@ -2057,7 +2057,8 @@ namespace
   }
 
   TEST( TENSOR_VIEW, CONST_SUBTENSOR )
-  {3 subtensor
+  {
+    // Get a rank 3 subtensor
     using fs_tensor_type = std::math::fs_tensor<double,std::experimental::layout_right,std::experimental::default_accessor<double>,5,5,5>;
     // Default construct
     fs_tensor_type fs_tensor;
