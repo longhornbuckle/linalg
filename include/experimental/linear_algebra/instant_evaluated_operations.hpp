@@ -41,7 +41,7 @@ class negation
     struct Result_tensor { using type = dr_tensor< result_value_type,
                                                    U::extents_type::rank(),
                                                    ::std::allocator< result_value_type >,
-                                                   ::std::experimental::layout_right,
+                                                   default_layout,
                                                    typename detail::rebind_accessor_t<typename U::accessor_type,result_value_type> >; };
     #ifdef LINALG_ENABLE_CONCEPTS
     template < concepts::fixed_size_tensor_data U >
@@ -152,7 +152,7 @@ class addition
     struct Result_tensor { using type = dr_tensor< result_value_type,
                                                    U1::extents_type::rank(),
                                                    ::std::allocator< result_value_type >,
-                                                   ::std::experimental::layout_right,
+                                                   default_layout,
                                                    typename detail::rebind_accessor_t<typename U1::accessor_type,result_value_type> >; };
     #ifdef LINALG_ENABLE_CONCEPTS
     template < concepts::fixed_size_tensor_data U1, class U2 >
@@ -321,7 +321,7 @@ class subtraction
     struct Result_tensor { using type = dr_tensor< result_value_type,
                                                    U1::extents_type::rank(),
                                                    ::std::allocator< result_value_type >,
-                                                   ::std::experimental::layout_right,
+                                                   default_layout,
                                                    typename detail::rebind_accessor_t<typename U1::accessor_type,result_value_type> >; };
     #ifdef LINALG_ENABLE_CONCEPTS
     template < concepts::fixed_size_tensor_data U1, class U2 >
@@ -488,7 +488,7 @@ class scalar_product
     struct Result_tensor { using type = dr_tensor< result_value_type,
                                                    U::extents_type::rank(),
                                                    ::std::allocator< result_value_type >,
-                                                   ::std::experimental::layout_right,
+                                                   default_layout,
                                                    typename detail::rebind_accessor_t<typename U::accessor_type,result_value_type> >; };
     #ifdef LINALG_ENABLE_CONCEPTS
     template < concepts::fixed_size_tensor_data U >
@@ -647,7 +647,7 @@ struct scalar_division
     struct Result_tensor { using type = dr_tensor< result_value_type,
                                                    U::extents_type::rank(),
                                                    ::std::allocator< result_value_type >,
-                                                   ::std::experimental::layout_right,
+                                                   default_layout,
                                                    typename detail::rebind_accessor_t<typename U::accessor_type,result_value_type> >; };
     #ifdef LINALG_ENABLE_CONCEPTS
     template < concepts::fixed_size_tensor_data U >
