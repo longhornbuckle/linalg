@@ -4,8 +4,6 @@ This repository is intended to explore a possible implementation of a math vecto
 
 TODO
 ----
-- MSVC support
-- Integrate P1673 where appropriate
 - Additional testing - particularly of views.
 
 Requirements

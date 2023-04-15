@@ -1973,9 +1973,236 @@ namespace
     EXPECT_EQ( val8, 4.0 );
   }
 
+  TEST( TENSOR_VIEW, SIZE_AND_CAPACITY )
+  {
+    // Get a rank 3 subtensor
+    using fs_tensor_type = std::math::fs_tensor<double,std::experimental::layout_right,std::experimental::default_accessor<double>,5,5,5>;
+    // Default construct
+    fs_tensor_type fs_tensor;
+    double val = 1;
+    for ( auto i : { 0, 1, 2, 3, 4 } )
+    {
+      for ( auto j : { 0, 1, 2, 3, 4 } )
+      {
+        for ( auto k : { 0, 1, 2, 3, 4 } )
+        {
+          std::math::detail::access( fs_tensor, i, j, k ) = val;
+          val = 2 * val;
+        }
+      }
+    }
+    const fs_tensor_type& const_fs_tensor( fs_tensor );
+    auto subtensor = const_fs_tensor.subtensor( std::tuple(2,5), std::tuple(2,4), std::tuple(2,4) );
+    // Verify proper size and capacity
+    EXPECT_TRUE( ( subtensor.size().extent(0) == 3 ) );
+    EXPECT_TRUE( ( subtensor.size().extent(1) == 2 ) );
+    EXPECT_TRUE( ( subtensor.size().extent(2) == 2 ) );
+    EXPECT_TRUE( ( subtensor.capacity().extent(0) == 3 ) );
+    EXPECT_TRUE( ( subtensor.capacity().extent(1) == 2 ) );
+    EXPECT_TRUE( ( subtensor.capacity().extent(2) == 2 ) );
+  }
+
+  TEST( TENSOR_VIEW, CONST_SUBVECTOR )
+  {
+    // Get a rank 3 subtensor
+    using fs_tensor_type = std::math::fs_tensor<double,std::experimental::layout_right,std::experimental::default_accessor<double>,5,5,5>;
+    // Default construct
+    fs_tensor_type fs_tensor;
+    double val = 1;
+    for ( auto i : { 0, 1, 2, 3, 4 } )
+    {
+      for ( auto j : { 0, 1, 2, 3, 4 } )
+      {
+        for ( auto k : { 0, 1, 2, 3, 4 } )
+        {
+          std::math::detail::access( fs_tensor, i, j, k ) = val;
+          val = 2 * val;
+        }
+      }
+    }
+    const fs_tensor_type& const_fs_tensor( fs_tensor );
+    auto subtensor = const_fs_tensor.subtensor( std::tuple(2,5), std::tuple(2,4), std::tuple(2,4) );
+    auto subvector = subtensor.subvector( 0, std::experimental::full_extent, 1 );
+    
+    EXPECT_EQ( ( std::math::detail::access( subvector, 0 ) ), ( std::math::detail::access( fs_tensor, 2, 2, 3 ) ) );
+    EXPECT_EQ( ( std::math::detail::access( subvector, 1 ) ), ( std::math::detail::access( fs_tensor, 2, 3, 3 ) ) );
+  }
+
+  TEST( TENSOR_VIEW, CONST_SUBMATRIX )
+  {
+    // Get a rank 3 subtensor
+    using fs_tensor_type = std::math::fs_tensor<double,std::experimental::layout_right,std::experimental::default_accessor<double>,5,5,5>;
+    // Default construct
+    fs_tensor_type fs_tensor;
+    double val = 1;
+    for ( auto i : { 0, 1, 2, 3, 4 } )
+    {
+      for ( auto j : { 0, 1, 2, 3, 4 } )
+      {
+        for ( auto k : { 0, 1, 2, 3, 4 } )
+        {
+          std::math::detail::access( fs_tensor, i, j, k ) = val;
+          val = 2 * val;
+        }
+      }
+    }
+    const fs_tensor_type& const_fs_tensor( fs_tensor );
+    auto subtensor = const_fs_tensor.subtensor( std::tuple(2,5), std::tuple(2,4), std::tuple(2,4) );
+    auto submatrix = subtensor.submatrix( 0, std::experimental::full_extent, std::experimental::full_extent );
+    
+    EXPECT_EQ( ( std::math::detail::access( submatrix, 0, 0 ) ), ( std::math::detail::access( fs_tensor, 2, 2, 2 ) ) );
+    EXPECT_EQ( ( std::math::detail::access( submatrix, 0, 1 ) ), ( std::math::detail::access( fs_tensor, 2, 2, 3 ) ) );
+    EXPECT_EQ( ( std::math::detail::access( submatrix, 1, 0 ) ), ( std::math::detail::access( fs_tensor, 2, 3, 2 ) ) );
+    EXPECT_EQ( ( std::math::detail::access( submatrix, 1, 1 ) ), ( std::math::detail::access( fs_tensor, 2, 3, 3 ) ) );
+  }
+
+  TEST( TENSOR_VIEW, CONST_SUBTENSOR )
+  {3 subtensor
+    using fs_tensor_type = std::math::fs_tensor<double,std::experimental::layout_right,std::experimental::default_accessor<double>,5,5,5>;
+    // Default construct
+    fs_tensor_type fs_tensor;
+    double val = 1;
+    for ( auto i : { 0, 1, 2, 3, 4 } )
+    {
+      for ( auto j : { 0, 1, 2, 3, 4 } )
+      {
+        for ( auto k : { 0, 1, 2, 3, 4 } )
+        {
+          std::math::detail::access( fs_tensor, i, j, k ) = val;
+          val = 2 * val;
+        }
+      }
+    }
+    const fs_tensor_type& const_fs_tensor( fs_tensor );
+    auto subtensor  = const_fs_tensor.subtensor( std::tuple(2,5), std::tuple(2,4), std::tuple(2,4) );
+    auto subtensor2 = subtensor.subtensor( std::tuple(0,2), std::experimental::full_extent, std::experimental::full_extent );
+    
+    EXPECT_EQ( ( std::math::detail::access( subtensor2, 0, 0, 0 ) ), ( std::math::detail::access( fs_tensor, 2, 2, 2 ) ) );
+    EXPECT_EQ( ( std::math::detail::access( subtensor2, 0, 0, 1 ) ), ( std::math::detail::access( fs_tensor, 2, 2, 3 ) ) );
+    EXPECT_EQ( ( std::math::detail::access( subtensor2, 0, 1, 0 ) ), ( std::math::detail::access( fs_tensor, 2, 3, 2 ) ) );
+    EXPECT_EQ( ( std::math::detail::access( subtensor2, 0, 1, 1 ) ), ( std::math::detail::access( fs_tensor, 2, 3, 3 ) ) );
+    EXPECT_EQ( ( std::math::detail::access( subtensor2, 1, 0, 0 ) ), ( std::math::detail::access( fs_tensor, 3, 2, 2 ) ) );
+    EXPECT_EQ( ( std::math::detail::access( subtensor2, 1, 0, 1 ) ), ( std::math::detail::access( fs_tensor, 3, 2, 3 ) ) );
+    EXPECT_EQ( ( std::math::detail::access( subtensor2, 1, 1, 0 ) ), ( std::math::detail::access( fs_tensor, 3, 3, 2 ) ) );
+    EXPECT_EQ( ( std::math::detail::access( subtensor2, 1, 1, 1 ) ), ( std::math::detail::access( fs_tensor, 3, 3, 3 ) ) );
+  }
+
+  TEST( TENSOR_VIEW, SUBVECTOR )
+  {
+    // Get a rank 3 subtensor
+    using fs_tensor_type = std::math::fs_tensor<double,std::experimental::layout_right,std::experimental::default_accessor<double>,5,5,5>;
+    // Default construct
+    fs_tensor_type fs_tensor;
+    double val = 1;
+    for ( auto i : { 0, 1, 2, 3, 4 } )
+    {
+      for ( auto j : { 0, 1, 2, 3, 4 } )
+      {
+        for ( auto k : { 0, 1, 2, 3, 4 } )
+        {
+          std::math::detail::access( fs_tensor, i, j, k ) = val;
+          val = 2 * val;
+        }
+      }
+    }
+    auto subtensor = fs_tensor.subtensor( std::tuple(2,5), std::tuple(2,4), std::tuple(2,4) );
+    auto subvector = subtensor.subvector( 0, std::experimental::full_extent, 1 );
+    
+    // Modify view
+    for ( auto i : { 0, 1 } )
+    {
+      std::math::detail::access( subvector, i ) = val;
+      val = 2 * val;
+    }
+    // Assert original tensor has been modified as well
+    EXPECT_EQ( ( std::math::detail::access( subvector, 0 ) ), ( std::math::detail::access( fs_tensor, 2, 2, 3 ) ) );
+    EXPECT_EQ( ( std::math::detail::access( subvector, 1 ) ), ( std::math::detail::access( fs_tensor, 2, 3, 3 ) ) );
+  }
+
+  TEST( TENSOR_VIEW, SUBMATRIX )
+  {
+    // Get a rank 3 subtensor
+    using fs_tensor_type = std::math::fs_tensor<double,std::experimental::layout_right,std::experimental::default_accessor<double>,5,5,5>;
+    // Default construct
+    fs_tensor_type fs_tensor;
+    double val = 1;
+    for ( auto i : { 0, 1, 2, 3, 4 } )
+    {
+      for ( auto j : { 0, 1, 2, 3, 4 } )
+      {
+        for ( auto k : { 0, 1, 2, 3, 4 } )
+        {
+          std::math::detail::access( fs_tensor, i, j, k ) = val;
+          val = 2 * val;
+        }
+      }
+    }
+    auto subtensor = fs_tensor.subtensor( std::tuple(2,5), std::tuple(2,4), std::tuple(2,4) );
+    auto submatrix = subtensor.submatrix( 0, std::experimental::full_extent, std::experimental::full_extent );
+    
+    // Modify view
+    for ( auto i : { 0, 1 } )
+    {
+      for ( auto j : { 0, 1 } )
+      {
+        std::math::detail::access( submatrix, i, j ) = val;
+        val = 2 * val;
+      }
+    }
+    // Assert original tensor has been modified as well
+    EXPECT_EQ( ( std::math::detail::access( submatrix, 0, 0 ) ), ( std::math::detail::access( fs_tensor, 2, 2, 2 ) ) );
+    EXPECT_EQ( ( std::math::detail::access( submatrix, 0, 1 ) ), ( std::math::detail::access( fs_tensor, 2, 2, 3 ) ) );
+    EXPECT_EQ( ( std::math::detail::access( submatrix, 1, 0 ) ), ( std::math::detail::access( fs_tensor, 2, 3, 2 ) ) );
+    EXPECT_EQ( ( std::math::detail::access( submatrix, 1, 1 ) ), ( std::math::detail::access( fs_tensor, 2, 3, 3 ) ) );
+  }
+
+  TEST( TENSOR_VIEW, SUBTENSOR )
+  {
+    // Get a rank 3 subtensor
+    using fs_tensor_type = std::math::fs_tensor<double,std::experimental::layout_right,std::experimental::default_accessor<double>,5,5,5>;
+    // Default construct
+    fs_tensor_type fs_tensor;
+    double val = 1;
+    for ( auto i : { 0, 1, 2, 3, 4 } )
+    {
+      for ( auto j : { 0, 1, 2, 3, 4 } )
+      {
+        for ( auto k : { 0, 1, 2, 3, 4 } )
+        {
+          std::math::detail::access( fs_tensor, i, j, k ) = val;
+          val = 2 * val;
+        }
+      }
+    }
+    auto subtensor = fs_tensor.subtensor( std::tuple(2,5), std::tuple(2,4), std::tuple(2,4) );
+    auto subtensor2 = subtensor.subtensor( std::tuple(0,2), std::experimental::full_extent, std::experimental::full_extent );
+    
+    // Modify view
+    for ( auto i : { 0, 1 } )
+    {
+      for ( auto j : { 0, 1 } )
+      {
+        for ( auto k : { 0, 1 } )
+        {
+          std::math::detail::access( subtensor2, i, j, k ) = val;
+          val = 2 * val;
+        }
+      }
+    }
+    // Assert original tensor has been modified as well
+    EXPECT_EQ( ( std::math::detail::access( subtensor2, 0, 0, 0 ) ), ( std::math::detail::access( fs_tensor, 2, 2, 2 ) ) );
+    EXPECT_EQ( ( std::math::detail::access( subtensor2, 0, 0, 1 ) ), ( std::math::detail::access( fs_tensor, 2, 2, 3 ) ) );
+    EXPECT_EQ( ( std::math::detail::access( subtensor2, 0, 1, 0 ) ), ( std::math::detail::access( fs_tensor, 2, 3, 2 ) ) );
+    EXPECT_EQ( ( std::math::detail::access( subtensor2, 0, 1, 1 ) ), ( std::math::detail::access( fs_tensor, 2, 3, 3 ) ) );
+    EXPECT_EQ( ( std::math::detail::access( subtensor2, 1, 0, 0 ) ), ( std::math::detail::access( fs_tensor, 3, 2, 2 ) ) );
+    EXPECT_EQ( ( std::math::detail::access( subtensor2, 1, 0, 1 ) ), ( std::math::detail::access( fs_tensor, 3, 2, 3 ) ) );
+    EXPECT_EQ( ( std::math::detail::access( subtensor2, 1, 1, 0 ) ), ( std::math::detail::access( fs_tensor, 3, 3, 2 ) ) );
+    EXPECT_EQ( ( std::math::detail::access( subtensor2, 1, 1, 1 ) ), ( std::math::detail::access( fs_tensor, 3, 3, 3 ) ) );
+  }
+
   TEST( TENSOR_VIEW, NEGATION )
   {
-    // Get a rank3 subtensor
+    // Get a rank 3 subtensor
     using fs_tensor_type = std::math::fs_tensor<double,std::experimental::layout_right,std::experimental::default_accessor<double>,5,5,5>;
     // Default construct
     fs_tensor_type fs_tensor;
@@ -2012,7 +2239,7 @@ namespace
 
   TEST( TENSOR_VIEW, ADD )
   {
-    // Get a rank3 subtensor
+    // Get a rank 3 subtensor
     using fs_tensor_type = std::math::fs_tensor<double,std::experimental::layout_right,std::experimental::default_accessor<double>,5,5,5>;
     // Default construct
     fs_tensor_type fs_tensor;
@@ -2049,7 +2276,7 @@ namespace
 
   TEST( TENSOR_VIEW, ADD_ASSIGN )
   {
-    // Get a rank3 subtensor
+    // Get a rank 3 subtensor
     using fs_tensor_type = std::math::fs_tensor<double,std::experimental::layout_right,std::experimental::default_accessor<double>,5,5,5>;
     // Default construct
     fs_tensor_type fs_tensor;
@@ -2085,7 +2312,7 @@ namespace
 
   TEST( TENSOR_VIEW, SUBTRACT )
   {
-    // Get a rank3 subtensor
+    // Get a rank 3 subtensor
     using fs_tensor_type = std::math::fs_tensor<double,std::experimental::layout_right,std::experimental::default_accessor<double>,5,5,5>;
     // Default construct
     fs_tensor_type fs_tensor;
@@ -2122,7 +2349,7 @@ namespace
 
   TEST( TENSOR_VIEW, SUBTRACT_ASSIGN )
   {
-    // Get a rank3 subtensor
+    // Get a rank 3 subtensor
     using fs_tensor_type = std::math::fs_tensor<double,std::experimental::layout_right,std::experimental::default_accessor<double>,5,5,5>;
     // Default construct
     fs_tensor_type fs_tensor;
@@ -2158,7 +2385,7 @@ namespace
 
   TEST( TENSOR_VIEW, SCALAR_PREMULTIPLY )
   {
-    // Get a rank3 subtensor
+    // Get a rank 3 subtensor
     using fs_tensor_type = std::math::fs_tensor<double,std::experimental::layout_right,std::experimental::default_accessor<double>,5,5,5>;
     // Default construct
     fs_tensor_type fs_tensor;
@@ -2195,7 +2422,7 @@ namespace
 
   TEST( TENSOR_VIEW, SCALAR_POSTMULTIPLY )
   {
-    // Get a rank3 subtensor
+    // Get a rank 3 subtensor
     using fs_tensor_type = std::math::fs_tensor<double,std::experimental::layout_right,std::experimental::default_accessor<double>,5,5,5>;
     // Default construct
     fs_tensor_type fs_tensor;
@@ -2232,7 +2459,7 @@ namespace
 
   TEST( TENSOR_VIEW, SCALAR_MULTIPLY_ASSIGN )
   {
-    // Get a rank3 subtensor
+    // Get a rank 3 subtensor
     using fs_tensor_type = std::math::fs_tensor<double,std::experimental::layout_right,std::experimental::default_accessor<double>,5,5,5>;
     // Default construct
     fs_tensor_type fs_tensor;
@@ -2268,7 +2495,7 @@ namespace
 
   TEST( TENSOR_VIEW, SCALAR_DIVIDE )
   {
-    // Get a rank3 subtensor
+    // Get a rank 3 subtensor
     using fs_tensor_type = std::math::fs_tensor<double,std::experimental::layout_right,std::experimental::default_accessor<double>,5,5,5>;
     // Default construct
     fs_tensor_type fs_tensor;
@@ -2305,7 +2532,7 @@ namespace
 
   TEST( TENSOR_VIEW, SCALAR_DIVIDE_ASSIGN )
   {
-    // Get a rank3 subtensor
+    // Get a rank 3 subtensor
     using fs_tensor_type = std::math::fs_tensor<double,std::experimental::layout_right,std::experimental::default_accessor<double>,5,5,5>;
     // Default construct
     fs_tensor_type fs_tensor;

@@ -17,6 +17,36 @@ namespace math
 namespace instant_evaluated_operations
 {
 
+template < class T, class ValueType > class default_dynamic;
+template < class MDS, class ValueType >
+struct default_dynamic< tensor_view< MDS > >
+{
+  using type = dr_tensor< ValueType,
+                          MDS::extents_type::rank(),
+                          ::std::allocator< ValueType >,
+                          default_layout,
+                          typename detail::rebind_accessor_t<typename MDS::accessor_type,ValueType> >;
+};
+template < class MDS, class ValueType >
+struct default_dynamic< tensor_view< MDS > >
+{
+  using type = dr_matrix< ValueType,
+                          ::std::allocator< ValueType >,
+                          default_layout,
+                          typename detail::rebind_accessor_t<typename MDS::accessor_type,ValueType> >;
+};
+template < class MDS, class ValueType >
+struct default_dynamic< tensor_view< MDS > >
+{
+  using type = dr_vector< ValueType,
+                          ::std::allocator< ValueType >,
+                          default_layout,
+                          typename detail::rebind_accessor_t<typename MDS::accessor_type,ValueType> >;
+};
+template < class T >
+using default_dynamic_t = typename default_dynamic<T>::type;
+
+
 /// @brief Defines negation operation on a tensor
 #ifdef LINALG_ENABLE_CONCEPTS
 template < concepts::tensor_data T >
@@ -38,11 +68,7 @@ class negation
     #else
     template < class U, typename = void >
     #endif
-    struct Result_tensor { using type = dr_tensor< result_value_type,
-                                                   U::extents_type::rank(),
-                                                   ::std::allocator< result_value_type >,
-                                                   default_layout,
-                                                   typename detail::rebind_accessor_t<typename U::accessor_type,result_value_type> >; };
+    struct Result_tensor { using type = default_dynamic_t<U,result_value_type>; };
     #ifdef LINALG_ENABLE_CONCEPTS
     template < concepts::fixed_size_tensor_data U >
     struct Result_tensor
@@ -149,11 +175,7 @@ class addition
     #else
     template < class U1, class U2, typename = void >
     #endif
-    struct Result_tensor { using type = dr_tensor< result_value_type,
-                                                   U1::extents_type::rank(),
-                                                   ::std::allocator< result_value_type >,
-                                                   default_layout,
-                                                   typename detail::rebind_accessor_t<typename U1::accessor_type,result_value_type> >; };
+    struct Result_tensor { using type = default_dynamic_t<U1,result_value_type>; };
     #ifdef LINALG_ENABLE_CONCEPTS
     template < concepts::fixed_size_tensor_data U1, class U2 >
     struct Result_tensor
@@ -318,11 +340,7 @@ class subtraction
     #else
     template < class U1, class U2, typename = void >
     #endif
-    struct Result_tensor { using type = dr_tensor< result_value_type,
-                                                   U1::extents_type::rank(),
-                                                   ::std::allocator< result_value_type >,
-                                                   default_layout,
-                                                   typename detail::rebind_accessor_t<typename U1::accessor_type,result_value_type> >; };
+    struct Result_tensor { using type = default_dynamic_t<U1,result_value_type>; };
     #ifdef LINALG_ENABLE_CONCEPTS
     template < concepts::fixed_size_tensor_data U1, class U2 >
     struct Result_tensor
@@ -485,11 +503,7 @@ class scalar_product
     #else
     template < class U, typename = void >
     #endif
-    struct Result_tensor { using type = dr_tensor< result_value_type,
-                                                   U::extents_type::rank(),
-                                                   ::std::allocator< result_value_type >,
-                                                   default_layout,
-                                                   typename detail::rebind_accessor_t<typename U::accessor_type,result_value_type> >; };
+    struct Result_tensor { using type = default_dynamic_t<U,result_value_type>; };
     #ifdef LINALG_ENABLE_CONCEPTS
     template < concepts::fixed_size_tensor_data U >
     struct Result_tensor
@@ -644,11 +658,7 @@ struct scalar_division
     #else
     template < class U, typename = void >
     #endif
-    struct Result_tensor { using type = dr_tensor< result_value_type,
-                                                   U::extents_type::rank(),
-                                                   ::std::allocator< result_value_type >,
-                                                   default_layout,
-                                                   typename detail::rebind_accessor_t<typename U::accessor_type,result_value_type> >; };
+    struct Result_tensor { using type = default_dynamic_t<U,result_value_type>; };
     #ifdef LINALG_ENABLE_CONCEPTS
     template < concepts::fixed_size_tensor_data U >
     struct Result_tensor
