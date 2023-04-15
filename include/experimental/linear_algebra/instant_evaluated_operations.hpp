@@ -19,7 +19,7 @@ namespace instant_evaluated_operations
 
 template < class T, class ValueType > class default_dynamic;
 template < class MDS, class ValueType >
-struct default_dynamic< tensor_view< MDS > >
+struct default_dynamic< tensor_view< MDS >, ValueType >
 {
   using type = dr_tensor< ValueType,
                           MDS::extents_type::rank(),
@@ -28,7 +28,7 @@ struct default_dynamic< tensor_view< MDS > >
                           typename detail::rebind_accessor_t<typename MDS::accessor_type,ValueType> >;
 };
 template < class MDS, class ValueType >
-struct default_dynamic< tensor_view< MDS > >
+struct default_dynamic< tensor_view< MDS >, ValueType >
 {
   using type = dr_matrix< ValueType,
                           ::std::allocator< ValueType >,
@@ -36,15 +36,15 @@ struct default_dynamic< tensor_view< MDS > >
                           typename detail::rebind_accessor_t<typename MDS::accessor_type,ValueType> >;
 };
 template < class MDS, class ValueType >
-struct default_dynamic< tensor_view< MDS > >
+struct default_dynamic< tensor_view< MDS >, ValueType >
 {
   using type = dr_vector< ValueType,
                           ::std::allocator< ValueType >,
                           default_layout,
                           typename detail::rebind_accessor_t<typename MDS::accessor_type,ValueType> >;
 };
-template < class T >
-using default_dynamic_t = typename default_dynamic<T>::type;
+template < class T, class V >
+using default_dynamic_t = typename default_dynamic<T,V>::type;
 
 
 /// @brief Defines negation operation on a tensor
