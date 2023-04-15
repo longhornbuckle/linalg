@@ -104,7 +104,7 @@ template < class T1, class T2,
                                    concepts::tensor_data_v<T2> &&
                                    ::std::is_convertible_v< decltype( declval<typename T1::value_type>() + declval<typename T2::value_type>() ), typename T1::element_type > > >
 #endif
-[[nodiscard]] inline constexpr T1&
+inline constexpr T1&
 operator += ( T1& t1, const T2& t2 ) noexcept( noexcept( operations::template addition<T1,T2>::add( t1, t2 ) ) )
 #ifdef LINALG_ENABLE_CONCEPTS
   requires ::std::is_convertible_v< decltype( declval<typename T1::value_type>() + declval<typename T2::value_type>() ), typename T1::element_type >
@@ -138,7 +138,7 @@ template < class T1, class T2,
                                    concepts::tensor_data_v<T2> &&
                                    ::std::is_convertible_v< decltype( declval<typename T1::value_type>() - declval<typename T2::value_type>() ), typename T1::element_type > > >
 #endif
-[[nodiscard]] inline constexpr T1&
+inline constexpr T1&
 operator -= ( T1& t1, const T2& t2 ) noexcept( noexcept( operations::template subtraction<T1,T2>::subtract( t1, t2 ) ) )
 #ifdef LINALG_ENABLE_CONCEPTS
   requires ::std::is_convertible_v< decltype( declval<typename T1::value_type>() - declval<typename T2::value_type>() ), typename T1::element_type >
@@ -204,7 +204,7 @@ template < class T, class S,
                                           concepts::product_exists_v< typename T::value_type, S > &&
                                           ::std::is_convertible_v< decltype( declval<typename T::value_type>() * declval<S>() ), typename T::element_type > > >
 #endif
-[[nodiscard]] inline constexpr T&
+inline constexpr T&
 operator *= ( T& t, const S& s )
   noexcept( noexcept( operations::template scalar_product<S,T>::prod(t,s) ) )
 #ifdef LINALG_ENABLE_CONCEPTS
@@ -247,7 +247,7 @@ template < class T, class S,
                                           concepts::division_exists_v< typename T::value_type, S > &&
                                           ::std::is_convertible_v< decltype( declval<typename T::value_type>() * declval<S>() ), typename T::element_type > > >
 #endif
-[[nodiscard]] inline constexpr T&
+inline constexpr T&
 operator /= ( T& t, const S& s )
   noexcept( noexcept( operations::template scalar_division<T,S>::divide(t,s) ) )
 #ifdef LINALG_ENABLE_CONCEPTS
@@ -319,7 +319,7 @@ template < class V, class M,
                                           detail::extents_may_be_equal_v< typename V::extents_type, typename decltype( declval<V>() * declval<M>() )::extents_type > >,
            typename = ::std::enable_if_t<true> >
 #endif
-[[nodiscard]] inline constexpr V&
+inline constexpr V&
 operator *= ( V& v, const M& m )
   noexcept( noexcept( operations::template vector_matrix_product<V,M>::prod(v,m) ) )
 #ifdef LINALG_ENABLE_CONCEPTS
@@ -380,7 +380,7 @@ template < class M1, class M2,
            typename = ::std::enable_if_t<true>,
            typename = ::std::enable_if_t<true> >
 #endif
-[[nodiscard]] inline constexpr M1&
+inline constexpr M1&
 operator *= ( M1& m1, const M2& m2 )
   noexcept( noexcept( operations::template matrix_matrix_product<M1,M2>::prod(m1,m2) ) )
 #ifdef LINALG_ENABLE_CONCEPTS

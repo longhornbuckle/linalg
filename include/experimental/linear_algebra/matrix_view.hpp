@@ -15,7 +15,7 @@ namespace std
 namespace math
 {
 
-/// @brief Matrix view.
+/// @brief Non-owning matrix view.
 //         Implementation satisfies the following concepts:
 //         concepts::matrix
 //         concepts::writable_matrix if MDS::element_type is non-const
@@ -27,7 +27,7 @@ template < class MDS
                ( MDS::extents_type::rank()== 2 ) &&
                MDS::is_always_unique() ) // Each element in the mdspan must have a unique mapping. (i.e. span_type and const_underlying_span_type should be the same.)
 #else
-  , typename = ::std::enable_if_t< ( detail::is_mdspan_v<MDS> && ( MDS::extents_type::rank()== 2 ) && MDS::is_always_unique() ) > >
+  , typename >
 #endif
 class matrix_view : public tensor_view<MDS>
 {

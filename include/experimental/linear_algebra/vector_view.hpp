@@ -27,7 +27,7 @@ template < class MDS
                ( MDS::extents_type::rank()== 1 ) &&
                MDS::is_always_unique() ) // Each element in the mdspan must have a unique mapping. (i.e. span_type and const_underlying_span_type should be the same.)
 #else
-  , typename = enable_if_t< ( detail::is_mdspan_v<MDS> && ( MDS::extents_type::rank()== 1 ) && MDS::is_always_unique() ) > >
+  , typename >
 #endif
 class vector_view : public tensor_view<MDS>
 {

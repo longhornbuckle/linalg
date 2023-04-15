@@ -5,8 +5,8 @@
 //              templates, and functions that support the rest of this implementation.
 //==================================================================================================
 //
-#ifndef LINEAR_ALGEBRA_IMPL_SUPPORT_HPP
-#define LINEAR_ALGEBRA_IMPL_SUPPORT_HPP
+#ifndef LINEAR_ALGEBRA_PRIVATE_SUPPORT_HPP
+#define LINEAR_ALGEBRA_PRIVATE_SUPPORT_HPP
 
 #include <experimental/linear_algebra.hpp>
 
