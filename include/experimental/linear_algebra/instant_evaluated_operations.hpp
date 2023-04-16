@@ -805,7 +805,7 @@ class transpose_matrix
                               U().columns(),
                               U().rows(),
                               typename U::layout_type,
-                              typename U::accessor_type >; };
+                              typename detail::rebind_accessor_t<typename U::accessor_type,typename U::value_type> >; };
     #ifdef LINALG_ENABLE_CONCEPTS
     template < concepts::dynamic_matrix_data U >
     struct Result_matrix
@@ -978,9 +978,9 @@ class conjugate_matrix
     struct Result_matrix< U, ::std::enable_if_t< concepts::fixed_size_matrix_data_v<U> > >
     #endif
     { using type = fs_matrix< result_element_type,
-                              U().rows(),
                               U().columns(),
-                              default_layout,
+                              U().rows(),
+                              typename U::layout_type,
                               typename detail::rebind_accessor_t<typename U::accessor_type,result_element_type> >; };
     #ifdef LINALG_ENABLE_CONCEPTS
     template < concepts::dynamic_matrix_data U >
