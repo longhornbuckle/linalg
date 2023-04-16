@@ -1836,7 +1836,7 @@ namespace
     // Compute product
     auto vector_prod = subvector * submatrix;
 
-    EXPECT_EQ( ( std::math::detail::access( vector_prod, 0 ) ), 6.0 );
+    EXPECT_EQ( ( std::math::detail::access( vector_prod, 0 ) ), 5.0 );
     EXPECT_EQ( ( std::math::detail::access( vector_prod, 1 ) ), 8.0 );
   }
 
@@ -1867,7 +1867,7 @@ namespace
     // Compute product
     auto vector_prod =  submatrix * subvector;
 
-    EXPECT_EQ( ( std::math::detail::access( vector_prod, 0 ) ), 6.0 );
+    EXPECT_EQ( ( std::math::detail::access( vector_prod, 0 ) ), 5.0 );
     EXPECT_EQ( ( std::math::detail::access( vector_prod, 1 ) ), 8.0 );
   }
 

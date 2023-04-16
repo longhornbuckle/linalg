@@ -1649,6 +1649,39 @@ class matrix_matrix_product
     {
       return ::std::allocator<result_value_type>();
     }
+    // Defines the result layout type
+    #ifdef LINALG_ENABLE_CONCEPTS
+    template < class Mat1, class Mat2, auto Ext1, auto Ext2 >
+     requires ( !( concepts::fixed_size_matrix_data<Mat1> || concepts::fixed_size_matrix_data<Mat2> || concepts::dynamic_matrix_data<Mat1> || concepts::dynamic_matrix_data<Mat2> ) )
+    #else
+    template < class Mat1, class Mat2, auto Ext1, auto Ext2, typename = void >
+    #endif
+    struct Result_layout
+    {
+      using type = default_layout;
+    };
+    #ifdef LINALG_ENABLE_CONCEPTS
+    template < class Mat1, class Mat2, auto Ext1, autp Ext2 > requires ( concepts::fixed_size_matrix_data<Mat1> || concepts::dynamic_matrix_data<Mat1> )
+    struct Result_layout
+    #else
+    template < class Mat1, class Mat2, auto Ext1, auto Ext2 >
+    struct Result_layout< Mat1, Mat2, Ext1, Ext2, ::std::enable_if_t< concepts::fixed_size_matrix_data_v<Mat1> || concepts::dynamic_matrix_data_v<Mat1> > >
+    #endif
+    { using type = detail::rebind_layout_t< typename first_matrix_type::layout_type,
+                                            ::std::experimental::extents< typename first_matrix_type::size_type,
+                                                                          Ext1,
+                                                                          Ext2 > >; };
+    #ifdef LINALG_ENABLE_CONCEPTS
+    template < class Mat1, class Mat2, auto Ext1, auto Ext2 > requires ( ( concepts::fixed_size_matrix_data<Mat2> || concepts::dynamic_matrix_data<Mat2> ) && !( concepts::fixed_size_matrix_data<Mat1> || concepts::dynamic_matrix_data<Mat1> ) )
+    struct Result_layout
+    #else
+    template < class Mat1, class Mat2, auto Ext1, auto Ext2 >
+    struct Result_layout< Mat1, Mat2, Ext1, Ext2, ::std::enable_if_t< ( concepts::fixed_size_matrix_data_v<Mat2> || concepts::dynamic_matrix_data_v<Mat2> ) && !( concepts::fixed_size_matrix_data_v<Mat1> || concepts::dynamic_matrix_data_v<Mat1> ) > >
+    #endif
+    { using type = detail::rebind_layout_t< typename second_matrix_type::layout_type,
+                                            ::std::experimental::extents< typename second_matrix_type::size_type,
+                                                                          Ext1,
+                                                                          Ext2 > >; };
     // Aliases
     using result_value_type  = ::std::decay_t< decltype( ::std::declval<typename first_matrix_type::value_type>() * ::std::declval<typename second_matrix_type::value_type>() ) >;
     using result_matrix_type = ::std::conditional_t< 
@@ -1660,17 +1693,11 @@ class matrix_matrix_product
                                                      fs_matrix< result_value_type,
                                                                 first_matrix_type::extents_type::static_extent(0),
                                                                 second_matrix_type::extents_type::static_extent(1),
-                                                                detail::rebind_layout_t< typename first_matrix_type::layout_type,
-                                                                                         ::std::experimental::extents< typename first_matrix_type::size_type,
-                                                                                                                       first_matrix_type::extents_type::static_extent(0),
-                                                                                                                       second_matrix_type::extents_type::static_extent(1) > >,
+                                                                typename Result_layout< first_matrix_type, second_matrix_type, first_matrix_type::extents_type::static_extent(0), second_matrix_type::extents_type::static_extent(1) >::type,
                                                                detail::rebind_accessor_t< typename first_matrix_type::accessor_type,result_value_type > >,
                                                      dr_matrix< result_value_type,
-                                                                typename allocator_traits< ::std::decay_t< decltype( get_allocator( ::std::declval<first_matrix_type>(), ::std::declval<second_matrix_type>() ) ) > >::template rebind_alloc<result_value_type>,
-                                                                detail::rebind_layout_t< typename first_matrix_type::layout_type,
-                                                                                         ::std::experimental::extents< typename first_matrix_type::index_type,
-                                                                                                                       ::std::experimental::dynamic_extent,
-                                                                                                                       ::std::experimental::dynamic_extent> >,
+                                                                typename ::std::allocator_traits< ::std::decay_t< decltype( get_allocator( ::std::declval<first_matrix_type>(), ::std::declval<second_matrix_type>() ) ) > >::template rebind_alloc<result_value_type>,
+                                                                typename Result_layout< first_matrix_type, second_matrix_type, ::std::experimental::dynamic_extent, ::std::experimental::dynamic_extent >::type,
                                                                 detail::rebind_accessor_t< typename first_matrix_type::accessor_type,result_value_type > > >;
     // Gets necessary arguments for constrution
     // If matrix type is fixed size, then the lambda expression is the only argument needed
