@@ -239,7 +239,7 @@ template < class MDS, typename Dummy >
 #endif
 columns() const noexcept
 {
-  return this->size().extent(2);
+  return this->size().extent(1);
 }
 
 #ifdef LINALG_ENABLE_CONCEPTS
@@ -251,7 +251,7 @@ template < class MDS, typename Dummy >
 #endif
 rows() const noexcept
 {
-  return this->size().extent(1);
+  return this->size().extent(0);
 }
 
 #ifdef LINALG_ENABLE_CONCEPTS
@@ -263,7 +263,7 @@ template < class MDS, typename Dummy >
 #endif
 column_capacity() const noexcept
 {
-  return this->capacity().extent(2);
+  return this->capacity().extent(1);
 }
 
 #ifdef LINALG_ENABLE_CONCEPTS
@@ -275,7 +275,7 @@ template < class MDS, typename Dummy >
 #endif
 row_capacity() const noexcept
 {
-  return this->capacity().extent(1);
+  return this->capacity().extent(0);
 }
 
 //- Const views

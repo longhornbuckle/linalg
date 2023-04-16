@@ -1957,7 +1957,7 @@ namespace
       }
     }
     const std::math::fs_matrix<double,5,5>& const_fs_matrix( fs_matrix );
-    auto submatrix = const_fs_matrix.submatrix( std::tuple(2,2), std::tuple(5,4) );
+    auto submatrix = const_fs_matrix.submatrix( std::tuple(2,2), std::tuple(5,5) );
     // Add the submatrix with itself
     auto submatrix_sum = submatrix + submatrix;
 
@@ -1985,7 +1985,7 @@ namespace
         val = 2 * val;
       }
     }
-    auto submatrix = fs_matrix.submatrix( std::tuple(2,2), std::tuple(5,4) );
+    auto submatrix = fs_matrix.submatrix( std::tuple(2,2), std::tuple(5,5) );
     // Add the submatrix with itself
     static_cast<void>( submatrix += submatrix );
 
@@ -2014,7 +2014,7 @@ namespace
       }
     }
     const std::math::fs_matrix<double,5,5>& const_fs_matrix( fs_matrix );
-    auto submatrix = const_fs_matrix.submatrix( std::tuple(2,2), std::tuple(5,4) );
+    auto submatrix = const_fs_matrix.submatrix( std::tuple(2,2), std::tuple(5,5) );
     // Subtract the submatrix with itself
     auto submatrix_diff = submatrix - submatrix;
 
@@ -2042,9 +2042,9 @@ namespace
         val = 2 * val;
       }
     }
-    auto submatrix = fs_matrix.submatrix( std::tuple(2,2), std::tuple(5,4) );
+    auto submatrix = fs_matrix.submatrix( std::tuple(2,2), std::tuple(5,5) );
     // Subtract the submatrix with itself
-    static_cast<void>( submatrix -= fs_matrix.submatrix( std::tuple(2,2), std::tuple(5,4) ) );
+    static_cast<void>( submatrix -= fs_matrix.submatrix( std::tuple(2,2), std::tuple(5,5) ) );
 
     EXPECT_EQ( ( std::math::detail::access( submatrix, 0, 0 ) ), 0 );
     EXPECT_EQ( ( std::math::detail::access( submatrix, 0, 1 ) ), 0 );
@@ -2071,7 +2071,7 @@ namespace
       }
     }
     const std::math::fs_matrix<double,5,5>& const_fs_matrix( fs_matrix );
-    auto submatrix = const_fs_matrix.submatrix( std::tuple(2,2), std::tuple(5,4) );
+    auto submatrix = const_fs_matrix.submatrix( std::tuple(2,2), std::tuple(5,5) );
     // Multiply the submatrix with a constant
     auto submatrix_prod = 2.0 * submatrix;
 
@@ -2100,7 +2100,7 @@ namespace
       }
     }
     const std::math::fs_matrix<double,5,5>& const_fs_matrix( fs_matrix );
-    auto submatrix = const_fs_matrix.submatrix( std::tuple(2,2), std::tuple(5,4) );
+    auto submatrix = const_fs_matrix.submatrix( std::tuple(2,2), std::tuple(5,5) );
     // Multiply the submatrix with a constant
     auto submatrix_prod = submatrix * 2.0;
 
@@ -2128,7 +2128,7 @@ namespace
         val = 2 * val;
       }
     }
-    auto submatrix = fs_matrix.submatrix( std::tuple(2,2), std::tuple(5,4) );
+    auto submatrix = fs_matrix.submatrix( std::tuple(2,2), std::tuple(5,5) );
     // Multiply the submatrix with a constant
     submatrix *= 2.0;
 
@@ -2157,7 +2157,7 @@ namespace
       }
     }
     const std::math::fs_matrix<double,5,5>& const_fs_matrix( fs_matrix );
-    auto submatrix = const_fs_matrix.submatrix( std::tuple(2,2), std::tuple(5,4) );
+    auto submatrix = const_fs_matrix.submatrix( std::tuple(2,2), std::tuple(5,5) );
     // DIvide the submatrix with a constant
     auto submatrix_divide = submatrix / 2.0;
 
@@ -2185,7 +2185,7 @@ namespace
         val = 2 * val;
       }
     }
-    auto submatrix = fs_matrix.submatrix( std::tuple(2,2), std::tuple(5,4) );
+    auto submatrix = fs_matrix.submatrix( std::tuple(2,2), std::tuple(5,5) );
     // Divide the submatrix with a constant
     static_cast<void>( submatrix /= 2.0 );
 
