@@ -1809,6 +1809,41 @@ namespace
     EXPECT_EQ( ( std::math::detail::access( subvector, 3 ) ), ( std::math::detail::access( fs_vector, 4 ) ) );
   }
 
+  TEST( VECTOR_VIEW, INNER_PROD )
+  {
+    using fs_vector_type = std::math::fs_vector<double,5>;
+    // Default construct
+    fs_vector_type fs_vector;
+    for ( auto i : { 0, 1, 2, 3, 4 } )
+    {
+      std::math::detail::access( fs_vector, i ) = i;
+    }
+    auto subvector = fs_vector.subvector( 1, 5 );
+    // Compute inner product of the subvector with itself
+    auto subvector_prod = inner_prod( subvector, subvector );
+
+    EXPECT_EQ( ( subvector_prod ), 30.0 );
+  }
+
+  TEST( VECTOR_VIEW, OUTER_PROD )
+  {
+    using fs_vector_type = std::math::fs_vector<double,5>;
+    // Default construct
+    fs_vector_type fs_vector;
+    for ( auto i : { 0, 1, 2, 3, 4 } )
+    {
+      std::math::detail::access( fs_vector, i ) = i;
+    }
+    auto subvector = fs_vector.subvector( 1, 3 );
+    // Compute inner product of the subvector with itself
+    auto subvector_prod = outer_prod( subvector, subvector );
+
+    EXPECT_EQ( ( std::math::detail::access( subvector_prod, 0, 0 ) ), 1.0 );
+    EXPECT_EQ( ( std::math::detail::access( subvector_prod, 0, 1 ) ), 2.0 );
+    EXPECT_EQ( ( std::math::detail::access( subvector_prod, 1, 0 ) ), 2.0 );
+    EXPECT_EQ( ( std::math::detail::access( subvector_prod, 1, 1 ) ), 4.0 );
+  }
+
   TEST( VECTOR_VIEW, MATRIX_POSTMULTIPLY )
   {
     using fs_vector_type = std::math::fs_vector<double,5>;
