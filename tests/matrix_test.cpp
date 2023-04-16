@@ -1982,7 +1982,7 @@ namespace
         val = 2 * val;
       }
     }
-    const std::math::fs_matrix<double,5,5>& const_fs_matrix( fs_matrix );
+    const std::math::fs_matrix< std::complex<double>,5 , 5 >& const_fs_matrix( fs_matrix );
     auto submatrix = const_fs_matrix.submatrix( std::tuple(2,2), std::tuple(5,4) );
     // Conjugate submatrix
     auto conjugate = conj( submatrix );

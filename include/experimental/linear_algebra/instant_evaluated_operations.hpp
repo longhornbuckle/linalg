@@ -17,7 +17,7 @@ namespace math
 namespace instant_evaluated_operations
 {
 
-template < class T, class ValueType > class default_dynamic;
+template < class T, class ValueType > struct default_dynamic;
 template < class MDS, class ValueType >
 struct default_dynamic< tensor_view< MDS >, ValueType >
 {
@@ -795,11 +795,11 @@ class transpose_matrix
                               default_layout,
                               typename detail::rebind_accessor_t<typename U::accessor_type,typename U::value_type> >; };
     #ifdef LINALG_ENABLE_CONCEPTS
-    template < concepts::fixed_size_tensor_data U >
+    template < concepts::fixed_size_matrix_data U >
     struct Result_matrix
     #else
     template < class U  >
-    struct Result_matrix< U, ::std::enable_if_t< concepts::fixed_size_tensor_data_v<U> > >
+    struct Result_matrix< U, ::std::enable_if_t< concepts::fixed_size_matrix_data_v<U> > >
     #endif
     { using type = fs_matrix< typename U::value_type,
                               U().rows(),
@@ -807,11 +807,11 @@ class transpose_matrix
                               default_layout,
                               typename detail::rebind_accessor_t<typename U::accessor_type,typename U::value_type> >; };
     #ifdef LINALG_ENABLE_CONCEPTS
-    template < concepts::dynamic_tensor_data U >
+    template < concepts::dynamic_matrix_data U >
     struct Result_matrix
     #else
     template < class U >
-    struct Result_matrix< U, ::std::enable_if_t< concepts::dynamic_tensor_data_v<U> > >
+    struct Result_matrix< U, ::std::enable_if_t< concepts::dynamic_matrix_data_v<U> > >
     #endif
     { using type = U; };
     using result_matrix_type = typename Result_matrix< matrix_type >::type;
@@ -946,11 +946,11 @@ class conjugate_matrix
                               default_layout,
                               typename detail::rebind_accessor_t<typename U::accessor_type,result_element_type> >; };
     #ifdef LINALG_ENABLE_CONCEPTS
-    template < concepts::fixed_size_tensor_data U >
+    template < concepts::fixed_size_matrix_data U >
     struct Result_matrix
     #else
     template < class U  >
-    struct Result_matrix< U, ::std::enable_if_t< concepts::fixed_size_tensor_data_v<U> > >
+    struct Result_matrix< U, ::std::enable_if_t< concepts::fixed_size_matrix_data_v<U> > >
     #endif
     { using type = fs_matrix< result_element_type,
                               U().rows(),
@@ -958,11 +958,11 @@ class conjugate_matrix
                               default_layout,
                               typename detail::rebind_accessor_t<typename U::accessor_type,result_element_type> >; };
     #ifdef LINALG_ENABLE_CONCEPTS
-    template < concepts::dynamic_tensor_data U >
+    template < concepts::dynamic_matrix_data U >
     struct Result_matrix
     #else
     template < class U >
-    struct Result_matrix< U, ::std::enable_if_t< concepts::dynamic_tensor_data_v<U> > >
+    struct Result_matrix< U, ::std::enable_if_t< concepts::dynamic_matrix_data_v<U> > >
     #endif
     { using type = dr_matrix< result_element_type,
                               ::std::allocator< result_element_type >,
