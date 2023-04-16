@@ -804,7 +804,7 @@ class transpose_matrix
     { using type = fs_matrix< typename U::value_type,
                               U().columns(),
                               U().rows(),
-                              detail::rebind_layout_t< U::layout_type, ::std::experimental::extents< typename U::index_type, U().columns(), U().rows() > >,
+                              detail::rebind_layout_t< typename U::layout_type, ::std::experimental::extents< typename U::index_type, U().columns(), U().rows() > >,
                               typename detail::rebind_accessor_t<typename U::accessor_type,typename U::value_type> >; };
     #ifdef LINALG_ENABLE_CONCEPTS
     template < concepts::dynamic_matrix_data U >
@@ -980,7 +980,7 @@ class conjugate_matrix
     { using type = fs_matrix< result_element_type,
                               U().columns(),
                               U().rows(),
-                              detail::rebind_layout_t< U::layout_type, ::std::experimental::extents< typename U::index_type, U().columns(), U().rows() > >,
+                              detail::rebind_layout_t< typename U::layout_type, ::std::experimental::extents< typename U::index_type, U().columns(), U().rows() > >,
                               typename detail::rebind_accessor_t<typename U::accessor_type,result_element_type> >; };
     #ifdef LINALG_ENABLE_CONCEPTS
     template < concepts::dynamic_matrix_data U >
@@ -1282,31 +1282,31 @@ class vector_matrix_product
     }
     // Defines the result layout type
     #ifdef LINALG_ENABLE_CONCEPTS
-    template < class Vec, class Mat >
+    template < class Vec, class Mat, size_t Dim >
      requires ( !( concepts::fixed_size_matrix_data<Mat> || concepts::fixed_size_vector_data<Vec> || concepts::dynamic_matrix_data<Mat> || concepts::dynamic_vector_data<Vec> ) )
     #else
-    template < class Vec, class Mat, size_t Dim typename = void >
+    template < class Vec, class Mat, size_t Dim, typename = void >
     #endif
     struct Result_layout
     {
       using type = default_layout;
     };
     #ifdef LINALG_ENABLE_CONCEPTS
-    template < class Vec, class Mat > requires ( concepts::fixed_size_vector_data<Vec> || concepts::dynamic_vector_data<Vec> )
+    template < class Vec, class Mat, size_t Dim > requires ( concepts::fixed_size_vector_data<Vec> || concepts::dynamic_vector_data<Vec> )
     struct Result_layout
     #else
     template < class Vec, class Mat, size_t Dim >
-    struct Result_layout< Vec, Mat, ::std::enable_if_t< concepts::fixed_size_vector_data_v<Vec> || concepts::dynamic_vector_data_v<Vec> > >
+    struct Result_layout< Vec, Mat, Dim, ::std::enable_if_t< concepts::fixed_size_vector_data_v<Vec> || concepts::dynamic_vector_data_v<Vec> > >
     #endif
     { using type = detail::rebind_layout_t<typename vector_type::layout_type,
                                            ::std::experimental::extents<typename matrix_type::size_type,
                                                                         matrix_type::extents_type::static_extent(Dim)> >; };
     #ifdef LINALG_ENABLE_CONCEPTS
-    template < class Vec, class Mat > requires ( ( concepts::fixed_size_matrix_data<Mat> || concepts::dynamic_matrix_data<Mat> ) && !( concepts::fixed_size_vector_data<Vec> || concepts::dynamic_vector_data<Vec> ) )
+    template < class Vec, class Mat, size_t Dim > requires ( ( concepts::fixed_size_matrix_data<Mat> || concepts::dynamic_matrix_data<Mat> ) && !( concepts::fixed_size_vector_data<Vec> || concepts::dynamic_vector_data<Vec> ) )
     struct Result_layout
     #else
     template < class Vec, class Mat, size_t Dim >
-    struct Result_layout< Vec, Mat, ::std::enable_if_t< ( concepts::fixed_size_matrix_data_v<Mat> || concepts::dynamic_matrix_data_v<Mat> ) && !( concepts::fixed_size_vector_data_v<Vec> || concepts::dynamic_vector_data_v<Vec> ) > >
+    struct Result_layout< Vec, Mat, Dim, ::std::enable_if_t< ( concepts::fixed_size_matrix_data_v<Mat> || concepts::dynamic_matrix_data_v<Mat> ) && !( concepts::fixed_size_vector_data_v<Vec> || concepts::dynamic_vector_data_v<Vec> ) > >
     #endif
     { using type = detail::rebind_layout_t<typename matrix_type::layout_type,
                                            ::std::experimental::extents<typename matrix_type::size_type,
