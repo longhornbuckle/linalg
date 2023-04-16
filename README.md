@@ -2,9 +2,7 @@ Linear Algebra implementation
 ==========================================
 This repository is intended to explore a possible implementation of a math vector, matrix, and tensor using [P0009](https://github.com/kokkos/mdspan)'s reference implementation for C++23 mdspan and incorporating C++20 concepts. Hopefully, this motivates further discussion and collaboration on the right direction to go.
 
-TODO
-----
-- Additional testing - particularly of views.
+This repository contains implementations compatabile with C++23, C++20, and C++17. Some of the deviations required to support the older C++ versions are listed in the testing section.
 
 Requirements
 ------------
@@ -21,7 +19,7 @@ This implementation is headers only.
 
 Testing
 -------
-Running provided tests requires CMake.
+Running provided tests requires CMake and GoogleTest.
 - gcc-12 / C++23 / cmake 3.22.2
   - Warning free with `-Wall -pedantic -Wextra  -Wno-unused-function -Wno-unused-variable -Wno-unused-but-set-variable -Wno-unused-local-typedefs`
 
