@@ -1824,7 +1824,7 @@ namespace
     }
     const fs_matrix_type& const_fs_matrix( fs_matrix );
     auto submatrix  = const_fs_matrix.submatrix( std::tuple(2,0), std::tuple(5,3) );
-    auto submatrix2 = ( (const decltype(submatrix)&)( submatrix ) ).submatrix( std::tuple(0,1), std::tuple(0,1) );
+    auto submatrix2 = ( (const decltype(submatrix)&)( submatrix ) ).submatrix( std::tuple(0,0), std::tuple(1,1) );
     
     EXPECT_EQ( ( std::math::detail::access( submatrix2, 0, 0 ) ), ( std::math::detail::access( fs_matrix, 2, 0 ) ) );
     EXPECT_EQ( ( std::math::detail::access( submatrix2, 0, 1 ) ), ( std::math::detail::access( fs_matrix, 2, 1 ) ) );
@@ -1874,7 +1874,7 @@ namespace
       }
     }
     auto submatrix = fs_matrix.submatrix( std::tuple(2,0), std::tuple(5,3) );
-    auto row = submatrix.column( 0 );
+    auto row = submatrix.row( 0 );
     for ( auto i : { 0, 1, 2 } )
     {
       std::math::detail::access( row, i ) = val;
