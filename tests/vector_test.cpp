@@ -1509,7 +1509,7 @@ namespace
   {
     using fs_vector_type = std::math::fs_vector<double,5>;
     // Default construct
-    fs_vector_type fs_vector { []( auto ) { return 0.0; }() };
+    fs_vector_type fs_vector { []( auto ) { return 0.0; } };
     auto subvector = fs_vector.subvector( 0, 2 );
     EXPECT_TRUE( ( subvector.size().extent(0) == 2 ) );
     EXPECT_TRUE( ( subvector.capacity().extent(0) == 2 ) );

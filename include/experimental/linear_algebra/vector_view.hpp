@@ -117,8 +117,8 @@ class vector_view : public tensor_view<MDS>
     /// @param start (row,column) start of subvector
     /// @param end (row,column) end of subvector
     /// @returns const view of the specified subvector
-    [[nodiscard]] constexpr const_subvector_type subvector( tuple_type start,
-                                                            tuple_type end ) const;
+    [[nodiscard]] constexpr const_subvector_type subvector( index_type start,
+                                                            index_type end ) const;
 
     //- Mutable views
 
@@ -129,8 +129,8 @@ class vector_view : public tensor_view<MDS>
     #ifndef LINALG_ENABLE_CONCEPTS
     template < typename Elem = element_type, typename = ::std::enable_if_t< !::std::is_const_v<Elem> > >
     #endif
-    [[nodiscard]] constexpr subvector_type subvector( tuple_type start,
-                                                      tuple_type end )
+    [[nodiscard]] constexpr subvector_type subvector( index_type start,
+                                                      index_type end )
     #ifdef LINALG_ENABLE_CONCEPTS
       requires ( !::std::is_const_v<element_type> );
     #else
@@ -187,8 +187,8 @@ template < class MDS > requires ( detail::is_mdspan_v<MDS> && ( MDS::extents_typ
 template < class MDS, typename Dummy >
 [[nodiscard]] constexpr typename vector_view<MDS,Dummy>::const_subvector_type vector_view<MDS,Dummy>::
 #endif
-subvector( tuple_type start,
-           tuple_type end ) const
+subvector( index_type start,
+           index_type end ) const
 {
   return const_subvector_type { ::std::experimental::submdspan( this->underlying_span(), ::std::tuple( start, end ) ) };
 }
@@ -203,8 +203,8 @@ template < class MDS, typename Dummy >
 template < typename Elem, typename >
 [[nodiscard]] constexpr typename vector_view<MDS,Dummy>::subvector_type vector_view<MDS,Dummy>::
 #endif
-subvector( tuple_type start,
-           tuple_type end )
+subvector( index_type start,
+           index_type end )
 #ifdef LINALG_ENABLE_CONCEPTS
   requires ( !::std::is_const_v<typename vector_view<MDS>::element_type> )
 #endif
