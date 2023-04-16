@@ -283,7 +283,7 @@ class fs_tensor
     /// @brief Number of elements in array
     static const size_type nelems_ = detail::product( Ds ... );
     /// @brief Array of elements
-    array<element_type,nelems_> elems_;
+    ::std::array<element_type,nelems_> elems_;
 };
 
 //----------------------------------------------
@@ -297,7 +297,8 @@ template < class T, class L, class A, ::std::size_t ... Ds >
   requires ( ( Ds >= 0 ) && ... )
 #endif
 constexpr fs_tensor<T,L,A,Ds...>::fs_tensor()
-  noexcept( ::std::is_nothrow_default_constructible_v<typename fs_tensor<T,L,A,Ds...>::element_type> )
+  noexcept( ::std::is_nothrow_default_constructible_v<typename fs_tensor<T,L,A,Ds...>::element_type> ) :
+  elems_()
 {
 }
 
