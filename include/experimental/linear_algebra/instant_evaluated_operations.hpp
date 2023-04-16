@@ -87,7 +87,7 @@ class negation
     { using type = typename U::template rebind_t<result_value_type>; };
     using result_tensor_type = typename Result_tensor< tensor_type >::type;
     // Gets necessary arguments for constrution
-    // If engine type is fixed size, then the lambda expression is the only argument needed
+    // If tensor type is fixed size, then the lambda expression is the only argument needed
     #ifdef LINALG_ENABLE_CONCEPTS
     template < class Lambda >
     #else
@@ -100,7 +100,7 @@ class negation
       requires concepts::fixed_size_tensor_data<result_tensor_type>
     #endif
     { return tuple( forward<Lambda>( lambda ) ); }
-    // If the engine type is dynamic, then size and capacity must be provided along with the lambda expression.
+    // If the tensor type is dynamic, then size and capacity must be provided along with the lambda expression.
     // Additionally, if all allocators of the desired type are not the same or cannot be default constructed, then it must be
     // passed along as well.
     #ifdef LINALG_ENABLE_CONCEPTS
@@ -210,7 +210,7 @@ class addition
     { using type = typename U2::template rebind_t<result_value_type>; };
     using result_tensor_type = typename Result_tensor< first_tensor_type, second_tensor_type >::type;
     // Gets necessary arguments for constrution
-    // If engine type is fixed size, then the lambda expression is the only argument needed
+    // If tensor type is fixed size, then the lambda expression is the only argument needed
     #ifdef LINALG_ENABLE_CONCEPTS
     template < class Lambda >
     #else
@@ -223,7 +223,7 @@ class addition
       requires concepts::fixed_size_tensor_data<result_tensor_type>
     #endif
     { return ::std::tuple( ::std::forward<Lambda>( lambda ) ); }
-    // If the engine type is dynamic, then size and capacity must be provided along with the lambda expression.
+    // If the tensor type is dynamic, then size and capacity must be provided along with the lambda expression.
     // Additionally, if all allocators of the desired type are not the same or cannot be default cosntructed, then it must be
     // passed along as well.
     #ifdef LINALG_ENABLE_CONCEPTS
@@ -375,7 +375,7 @@ class subtraction
     { using type = typename U2::template rebind_t<result_value_type>; };
     using result_tensor_type = typename Result_tensor< first_tensor_type, second_tensor_type >::type;
     // Gets necessary arguments for constrution
-    // If engine type is fixed size, then the lambda expression is the only argument needed
+    // If tensor type is fixed size, then the lambda expression is the only argument needed
     #ifdef LINALG_ENABLE_CONCEPTS
     template < class Lambda >
     #else
@@ -388,7 +388,7 @@ class subtraction
       requires concepts::fixed_size_tensor_data<result_tensor_type>
     #endif
     { return tuple( forward<Lambda>( lambda ) ); }
-    // If the engine type is dynamic, then size and capacity must be provided along with the lambda expression.
+    // If the tensor type is dynamic, then size and capacity must be provided along with the lambda expression.
     // Additionally, if all allocators of the desired type are not the same or cannot be default cosntructed, then it must be
     // passed along as well.
     #ifdef LINALG_ENABLE_CONCEPTS
@@ -802,10 +802,10 @@ class transpose_matrix
     struct Result_matrix< U, ::std::enable_if_t< concepts::fixed_size_matrix_data_v<U> > >
     #endif
     { using type = fs_matrix< typename U::value_type,
-                              U().rows(),
                               U().columns(),
-                              default_layout,
-                              typename detail::rebind_accessor_t<typename U::accessor_type,typename U::value_type> >; };
+                              U().rows(),
+                              typename U::layout_type,
+                              typename U::accessor_type >; };
     #ifdef LINALG_ENABLE_CONCEPTS
     template < concepts::dynamic_matrix_data U >
     struct Result_matrix
@@ -815,6 +815,31 @@ class transpose_matrix
     #endif
     { using type = U; };
     using result_matrix_type = typename Result_matrix< matrix_type >::type;
+    // Returns the allocator of matrix_type
+    #ifndef LINALG_ENABLE_CONCEPTS
+    template < typename Mat = matrix_type,
+               typename = ::std::enable_if_t< concepts::dynamic_matrix_data_v< Mat > > >
+    #endif
+    [[nodiscard]] static inline constexpr decltype(auto) get_allocator( const matrix_type& m ) noexcept
+    #ifdef LINALG_ENABLE_CONCEPTS
+      requires ( concepts::dynamic_matrix_data< matrix_type > )
+    #endif
+    {
+      return m.get_allocator();
+    }
+    // Returns the std allocator
+    #ifndef LINALG_ENABLE_CONCEPTS
+    template < typename Mat = matrix_type,
+               typename = ::std::enable_if_t< concepts::dynamic_matrix_data_v< Mat > >,
+               typename = ::std::enable_if_t<true> >
+    #endif
+    [[nodiscard]] static inline constexpr decltype(auto) get_allocator( [[maybe_unused]] const matrix_type& m ) noexcept
+    #ifdef LINALG_ENABLE_CONCEPTS
+      requires ( !concepts::dynamic_matrix_data< matrix_type > )
+    #endif
+    {
+      return ::std::allocator<result_element_type>();
+    }
     // Gets necessary arguments for constrution
     // If matrix type is fixed size, then the lambda expression is the only argument needed
     #ifdef LINALG_ENABLE_CONCEPTS
@@ -859,7 +884,7 @@ class transpose_matrix
         return ::std::tuple( result_extents_type( m.size().extent(1), m.size().extent(0) ),
                              result_extents_type( m.capacity().extent(1), m.capacity().extent(0) ),
                              ::std::forward<Lambda>( lambda ),
-                             result_alloc_type( m.get_allocator() ) );
+                             result_alloc_type( get_allocator( m ) ) );
       }
     }
   public:
@@ -969,6 +994,31 @@ class conjugate_matrix
                               typename U::layout_type,
                               typename detail::rebind_accessor_t<typename U::accessor_type,result_element_type> >; };
     using result_matrix_type = typename Result_matrix< matrix_type >::type;
+    // Returns the allocator of matrix_type
+    #ifndef LINALG_ENABLE_CONCEPTS
+    template < typename Mat = matrix_type,
+               typename = ::std::enable_if_t< concepts::dynamic_matrix_data_v< Mat > > >
+    #endif
+    [[nodiscard]] static inline constexpr decltype(auto) get_allocator( const matrix_type& m ) noexcept
+    #ifdef LINALG_ENABLE_CONCEPTS
+      requires ( concepts::dynamic_matrix_data< matrix_type > )
+    #endif
+    {
+      return m.get_allocator();
+    }
+    // Returns the std allocator
+    #ifndef LINALG_ENABLE_CONCEPTS
+    template < typename Mat = matrix_type,
+               typename = ::std::enable_if_t< concepts::dynamic_matrix_data_v< Mat > >,
+               typename = ::std::enable_if_t<true> >
+    #endif
+    [[nodiscard]] static inline constexpr decltype(auto) get_allocator( [[maybe_unused]] const matrix_type& m ) noexcept
+    #ifdef LINALG_ENABLE_CONCEPTS
+      requires ( !concepts::dynamic_matrix_data< matrix_type > )
+    #endif
+    {
+      return ::std::allocator<result_element_type>();
+    }
     // Gets necessary arguments for construction
     // If matrix type is fixed size, then the lambda expression is the only argument needed
     #ifdef LINALG_ENABLE_CONCEPTS
@@ -1013,7 +1063,7 @@ class conjugate_matrix
         return ::std::tuple( result_extents_type( m.size().extent(1), m.size().extent(0) ),
                              result_extents_type( m.capacity().extent(1), m.capacity().extent(0) ),
                              ::std::forward<Lambda>( lambda ),
-                             result_alloc_type( m.get_allocator() ) );
+                             result_alloc_type( get_allocator( m ) ) );
       }
     }
   public:
@@ -1089,6 +1139,31 @@ class conjugate_vector
     #endif
     { using type = typename U::template rebind_t<result_element_type>; };
     using result_vector_type = typename Result_vector< vector_type >::type;
+    // Returns the allocator of vector_type
+    #ifndef LINALG_ENABLE_CONCEPTS
+    template < typename Vec = vector_type,
+               typename = ::std::enable_if_t< concepts::dynamic_vector_data_v< Vec > > >
+    #endif
+    [[nodiscard]] static inline constexpr decltype(auto) get_allocator( const vector_type& m ) noexcept
+    #ifdef LINALG_ENABLE_CONCEPTS
+      requires ( concepts::dynamic_vector_data< vector_type > )
+    #endif
+    {
+      return m.get_allocator();
+    }
+    // Returns the std allocator
+    #ifndef LINALG_ENABLE_CONCEPTS
+    template < typename Vec = vector_type,
+               typename = ::std::enable_if_t< concepts::dynamic_vector_data_v< Vec > >,
+               typename = ::std::enable_if_t<true> >
+    #endif
+    [[nodiscard]] static inline constexpr decltype(auto) get_allocator( [[maybe_unused]] const vector_type& m ) noexcept
+    #ifdef LINALG_ENABLE_CONCEPTS
+      requires ( !concepts::dynamic_vector_data< vector_type > )
+    #endif
+    {
+      return ::std::allocator<result_element_type>();
+    }
     // Gets necessary arguments for constrution
     // If vector type is fixed size, then the lambda expression is the only argument needed
     #ifdef LINALG_ENABLE_CONCEPTS
@@ -1127,7 +1202,7 @@ class conjugate_vector
       else
       {
         using result_alloc_type = typename ::std::allocator_traits<typename vector_type::allocator_type>::template rebind_alloc<result_element_type>;
-        return ::std::tuple( v.size(), v.capacity(), ::std::forward<Lambda>( lambda ), result_alloc_type( v.get_allocator() ) );
+        return ::std::tuple( v.size(), v.capacity(), ::std::forward<Lambda>( lambda ), result_alloc_type( get_allocator( v ) ) );
       }
     }
   public:
