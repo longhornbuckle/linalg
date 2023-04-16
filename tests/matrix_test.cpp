@@ -1943,6 +1943,58 @@ namespace
     EXPECT_EQ( ( std::math::detail::access( negate_submatrix, 2, 1 ) ), ( -std::math::detail::access( submatrix, 2, 1 ) ) );
   }
 
+  TEST( MATRIX_VIEW, TRANSPOSE )
+  {
+    // Construct
+    std::math::fs_matrix<double,5,5> fs_matrix;
+    double val = 1;
+    for ( auto i : { 0, 1, 2, 3, 4 } )
+    {
+      for ( auto j : { 0, 1, 2, 3, 4 } )
+      {
+        std::math::detail::access( fs_matrix, i, j ) = val;
+        val = 2 * val;
+      }
+    }
+    const std::math::fs_matrix<double,5,5>& const_fs_matrix( fs_matrix );
+    auto submatrix = const_fs_matrix.submatrix( std::tuple(2,2), std::tuple(5,4) );
+    // Transpose submatrix
+    auto transpose = trans( submatrix );
+
+    EXPECT_EQ( ( std::math::detail::access( transpose, 0, 0 ) ), ( std::math::detail::access( submatrix, 0, 0 ) ) );
+    EXPECT_EQ( ( std::math::detail::access( transpose, 0, 1 ) ), ( std::math::detail::access( submatrix, 1, 0 ) ) );
+    EXPECT_EQ( ( std::math::detail::access( transpose, 0, 2 ) ), ( std::math::detail::access( submatrix, 2, 0 ) ) );
+    EXPECT_EQ( ( std::math::detail::access( transpose, 1, 0 ) ), ( std::math::detail::access( submatrix, 0, 1 ) ) );
+    EXPECT_EQ( ( std::math::detail::access( transpose, 1, 1 ) ), ( std::math::detail::access( submatrix, 1, 1 ) ) );
+    EXPECT_EQ( ( std::math::detail::access( transpose, 1, 2 ) ), ( std::math::detail::access( submatrix, 2, 1 ) ) );
+  }
+
+  TEST( MATRIX_VIEW, CONJUGATE )
+  {
+    // Construct
+    std::math::fs_matrix< std::complex<double>,5 , 5 > fs_matrix;
+    double val = 1;
+    for ( auto i : { 0, 1, 2, 3, 4 } )
+    {
+      for ( auto j : { 0, 1, 2, 3, 4 } )
+      {
+        std::math::detail::access( fs_matrix, i, j ) = std::complex<double>( val, val );
+        val = 2 * val;
+      }
+    }
+    const std::math::fs_matrix<double,5,5>& const_fs_matrix( fs_matrix );
+    auto submatrix = const_fs_matrix.submatrix( std::tuple(2,2), std::tuple(5,4) );
+    // Conjugate submatrix
+    auto conjugate = conj( submatrix );
+
+    EXPECT_EQ( ( std::math::detail::access( conjugate, 0, 0 ) ), ( std::conj( std::math::detail::access( submatrix, 0, 0 ) ) ) );
+    EXPECT_EQ( ( std::math::detail::access( conjugate, 0, 1 ) ), ( std::conj( std::math::detail::access( submatrix, 1, 0 ) ) ) );
+    EXPECT_EQ( ( std::math::detail::access( conjugate, 0, 2 ) ), ( std::conj( std::math::detail::access( submatrix, 2, 0 ) ) ) );
+    EXPECT_EQ( ( std::math::detail::access( conjugate, 1, 0 ) ), ( std::conj( std::math::detail::access( submatrix, 0, 1 ) ) ) );
+    EXPECT_EQ( ( std::math::detail::access( conjugate, 1, 1 ) ), ( std::conj( std::math::detail::access( submatrix, 1, 1 ) ) ) );
+    EXPECT_EQ( ( std::math::detail::access( conjugate, 1, 2 ) ), ( std::conj( std::math::detail::access( submatrix, 2, 1 ) ) ) );
+  }
+
   TEST( MATRIX_VIEW, ADD )
   {
     // Construct

@@ -73,8 +73,6 @@ class dr_matrix : public dr_tensor<T,2,Alloc,L,Access>
     using submatrix_type             = matrix_view<decltype( detail::submdspan( ::std::declval<underlying_span_type>(), ::std::declval<tuple_type>(), ::std::declval<tuple_type>() ) )>;
     /// @brief const view of a submatrix
     using const_submatrix_type       = matrix_view<decltype( detail::submdspan( ::std::declval<const_underlying_span_type>(), ::std::declval<tuple_type>(), ::std::declval<tuple_type>() ) )>;
-    /// @brief matrix tanspose
-    using transpose_type             = dr_matrix;
     
     //- Rebind
 

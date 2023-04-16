@@ -78,9 +78,7 @@ class fs_matrix : public fs_tensor<T,L,A,R,C>
     using submatrix_type             = matrix_view<decltype( detail::submdspan( ::std::declval<underlying_span_type>(), ::std::declval<tuple_type>(), ::std::declval<tuple_type>() ) )>;
     /// @brief const view of a submatrix
     using const_submatrix_type       = matrix_view<decltype( detail::submdspan( ::std::declval<const_underlying_span_type>(), ::std::declval<tuple_type>(), ::std::declval<tuple_type>() ) )>;
-    /// @brief matrix tanspose
-    using transpose_type             = fs_matrix<T,C,R,L,A>;
-
+    
     //- Rebind
 
     /// @brief Rebind defines a type for a rebinding a fixed size matrix to the new type parameters

@@ -78,7 +78,7 @@ class negation
     #endif
     { using type = typename U::template rebind_t<result_value_type>; };
     #ifdef LINALG_ENABLE_CONCEPTS
-    template < concepts::dynamic_tensor_data U1, class U2 > requires ( !( concepts::fixed_size_tensor<U1> || concepts::fixed_size_tensor<U2> ) )
+    template < concepts::dynamic_tensor_data U >
     struct Result_tensor
     #else
     template < class U >
@@ -784,7 +784,37 @@ class transpose_matrix
     using matrix_type        = M;
   private:
     // Aliases
-    using result_matrix_type = typename matrix_type::transpose_type;
+    #ifdef LINALG_ENABLE_CONCEPTS
+    template < class U > requires ( !( concepts::fixed_size_matrix_data<U> || concepts::dynamic_matrix_data<U> ) )
+    #else
+    template < class U, typename = void >
+    #endif
+    struct Result_matrix
+    { using type = dr_matrix< typename U::value_type,
+                              ::std::allocator< typename U::value_type >,
+                              default_layout,
+                              typename detail::rebind_accessor_t<typename MDS::accessor_type,typename U::value_type> >; };
+    #ifdef LINALG_ENABLE_CONCEPTS
+    template < concepts::fixed_size_tensor_data U >
+    struct Result_matrix
+    #else
+    template < class U  >
+    struct Result_matrix< U, ::std::enable_if_t< concepts::fixed_size_tensor_data_v<U> > >
+    #endif
+    { using type = fs_matrix< typename U::value_type,
+                              U().rows(),
+                              U().columns(),
+                              default_layout,
+                              typename detail::rebind_accessor_t<typename MDS::accessor_type,typename U::value_type> >; };
+    #ifdef LINALG_ENABLE_CONCEPTS
+    template < concepts::dynamic_tensor_data U >
+    struct Result_matrix
+    #else
+    template < class U >
+    struct Result_matrix< U, ::std::enable_if_t< concepts::dynamic_tensor_data_v<U> > >
+    #endif
+    { using type = U; };
+    using result_matrix_type = typename Result_matrix< matrix_type >::type;
     // Gets necessary arguments for constrution
     // If matrix type is fixed size, then the lambda expression is the only argument needed
     #ifdef LINALG_ENABLE_CONCEPTS
@@ -905,7 +935,40 @@ class conjugate_matrix
     using result_element_type = ::std::conditional_t< detail::is_complex_v<typename matrix_type::element_type>,
                                                       decltype( ::std::conj( ::std::declval<typename matrix_type::element_type>() ) ),
                                                       typename matrix_type::element_type >;
-    using result_matrix_type  = typename matrix_type::transpose_type::template rebind_t<result_element_type>;
+    #ifdef LINALG_ENABLE_CONCEPTS
+    template < class U > requires ( !( concepts::fixed_size_matrix_data<U> || concepts::dynamic_matrix_data<U> ) )
+    #else
+    template < class U, typename = void >
+    #endif
+    struct Result_matrix
+    { using type = dr_matrix< result_element_type,
+                              ::std::allocator< result_element_type >,
+                              default_layout,
+                              typename detail::rebind_accessor_t<typename MDS::accessor_type,result_element_type> >; };
+    #ifdef LINALG_ENABLE_CONCEPTS
+    template < concepts::fixed_size_tensor_data U >
+    struct Result_matrix
+    #else
+    template < class U  >
+    struct Result_matrix< U, ::std::enable_if_t< concepts::fixed_size_tensor_data_v<U> > >
+    #endif
+    { using type = fs_matrix< result_element_type,
+                              U().rows(),
+                              U().columns(),
+                              default_layout,
+                              typename detail::rebind_accessor_t<typename MDS::accessor_type,result_element_type> >; };
+    #ifdef LINALG_ENABLE_CONCEPTS
+    template < concepts::dynamic_tensor_data U >
+    struct Result_matrix
+    #else
+    template < class U >
+    struct Result_matrix< U, ::std::enable_if_t< concepts::dynamic_tensor_data_v<U> > >
+    #endif
+    { using type = dr_matrix< result_element_type,
+                              ::std::allocator< result_element_type >,
+                              typename U::layout_type,
+                              typename detail::rebind_accessor_t<typename MDS::accessor_type,result_element_type> >; };
+    using result_matrix_type = typename Result_matrix< matrix_type >::type;
     // Gets necessary arguments for construction
     // If matrix type is fixed size, then the lambda expression is the only argument needed
     #ifdef LINALG_ENABLE_CONCEPTS
@@ -999,7 +1062,33 @@ class conjugate_vector
     using result_element_type = ::std::conditional_t< detail::is_complex_v<typename vector_type::element_type>,
                                                       decltype( ::std::conj( ::std::declval<typename vector_type::element_type>() ) ),
                                                       typename vector_type::element_type >;
-    using result_vector_type  = typename vector_type::template rebind_t<result_element_type>;
+    #ifdef LINALG_ENABLE_CONCEPTS
+    template < class U > requires ( !( concepts::fixed_size_vector_data<U> || concepts::dynamic_vector_data<U> ) )
+    #else
+    template < class U, typename = void >
+    #endif
+    struct Result_vector
+    { using type = dr_vector< result_element_type,
+                              ::std::allocator< result_element_type >,
+                              default_layout,
+                              typename detail::rebind_accessor_t<typename MDS::accessor_type,result_element_type> >; };
+    #ifdef LINALG_ENABLE_CONCEPTS
+    template < concepts::fixed_size_tensor_data U >
+    struct Result_vector
+    #else
+    template < class U  >
+    struct Result_vector< U, ::std::enable_if_t< concepts::fixed_size_tensor_data_v<U> > >
+    #endif
+    { using type = typename U::template rebind_t<result_element_type>; };
+    #ifdef LINALG_ENABLE_CONCEPTS
+    template < concepts::dynamic_tensor_data U >
+    struct Result_vector
+    #else
+    template < class U >
+    struct Result_vector< U, ::std::enable_if_t< concepts::dynamic_tensor_data_v<U> > >
+    #endif
+    { using type = typename U::template rebind_t<result_element_type>; };
+    using result_vector_type = typename Result_vector< vector_type >::type;
     // Gets necessary arguments for constrution
     // If vector type is fixed size, then the lambda expression is the only argument needed
     #ifdef LINALG_ENABLE_CONCEPTS

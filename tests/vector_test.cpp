@@ -1578,6 +1578,48 @@ namespace
     EXPECT_EQ( ( std::math::detail::access( negate_subvector, 3 ) ), ( -std::math::detail::access( fs_vector, 4 ) ) );
   }
 
+  TEST( VECTOR_VIEW, TRANSPOSE )
+  {
+    using fs_vector_type = std::math::fs_vector<double,5>;
+    // Default construct
+    fs_vector_type fs_vector;
+    double val = 1;
+    for ( auto i : { 0, 1, 2, 3, 4 } )
+    {
+      std::math::detail::access( fs_vector, i ) = val;
+      val = 2 * val;
+    }
+    auto subvector = fs_vector.subvector( 1, 5 );
+    // Transpose subvector
+    auto transpose = trans( subvector );
+
+    EXPECT_EQ( ( std::math::detail::access( transpose, 0 ) ), ( std::math::detail::access( fs_vector, 1 ) ) );
+    EXPECT_EQ( ( std::math::detail::access( transpose, 1 ) ), ( std::math::detail::access( fs_vector, 2 ) ) );
+    EXPECT_EQ( ( std::math::detail::access( transpose, 2 ) ), ( std::math::detail::access( fs_vector, 3 ) ) );
+    EXPECT_EQ( ( std::math::detail::access( transpose, 3 ) ), ( std::math::detail::access( fs_vector, 4 ) ) );
+  }
+
+  TEST( VECTOR_VIEW, CONJUGATE )
+  {
+    using fs_vector_type = std::math::fs_vector< std::complex<double>, 5 >;
+    // Default construct
+    fs_vector_type fs_vector;
+    double val = 1;
+    for ( auto i : { 0, 1, 2, 3, 4 } )
+    {
+      std::math::detail::access( fs_vector, i ) = std::complex<double>( val, val );
+      val = 2 * val;
+    }
+    auto subvector = fs_vector.subvector( 1, 5 );
+    // Conjugate subvector
+    auto conjugate = conj( subvector );
+
+    EXPECT_EQ( ( std::math::detail::access( conjugate, 0 ) ), ( std::conj( std::math::detail::access( fs_vector, 1 ) ) ) );
+    EXPECT_EQ( ( std::math::detail::access( conjugate, 1 ) ), ( std::conj( std::math::detail::access( fs_vector, 2 ) ) ) );
+    EXPECT_EQ( ( std::math::detail::access( conjugate, 2 ) ), ( std::conj( std::math::detail::access( fs_vector, 3 ) ) ) );
+    EXPECT_EQ( ( std::math::detail::access( conjugate, 3 ) ), ( std::conj( std::math::detail::access( fs_vector, 4 ) ) ) );
+  }
+
   TEST( VECTOR_VIEW, ADD )
   {
     using fs_vector_type = std::math::fs_vector<double,5>;
