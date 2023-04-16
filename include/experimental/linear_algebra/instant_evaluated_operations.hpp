@@ -185,7 +185,7 @@ class addition
     #endif
     { using type = typename U1::template rebind_t<result_value_type>; };
     #ifdef LINALG_ENABLE_CONCEPTS
-    template < class U1, concepts::fixed_size_tensor_data U2 > requires ( !concepts::fixed_size_tensor<U2> )
+    template < class U1, concepts::fixed_size_tensor_data U2 > requires ( !concepts::fixed_size_tensor_data<U2> )
     struct Result_tensor
     #else
     template < class U1, class U2 >
@@ -193,7 +193,7 @@ class addition
     #endif
     { using type = typename U2::template rebind_t<result_value_type>; };
     #ifdef LINALG_ENABLE_CONCEPTS
-    template < concepts::dynamic_tensor_data U1, class U2 > requires ( !( concepts::fixed_size_tensor<U1> || concepts::fixed_size_tensor<U2> ) )
+    template < concepts::dynamic_tensor_data U1, class U2 > requires ( !( concepts::fixed_size_tensor_data<U1> || concepts::fixed_size_tensor_data<U2> ) )
     struct Result_tensor
     #else
     template < class U1, class U2 >
@@ -201,7 +201,7 @@ class addition
     #endif
     { using type = typename U1::template rebind_t<result_value_type>; };
     #ifdef LINALG_ENABLE_CONCEPTS
-    template < class U1, concepts::dynamic_tensor_data U2 > requires ( !( concepts::fixed_size_tensor<U1> || concepts::fixed_size_tensor<U2> || concepts::dynamic_tensor_data<U1> ) )
+    template < class U1, concepts::dynamic_tensor_data U2 > requires ( !( concepts::fixed_size_tensor_data<U1> || concepts::fixed_size_tensor_data<U2> || concepts::dynamic_tensor_data<U1> ) )
     struct Result_tensor
     #else
     template < class U1, class U2  >
@@ -350,7 +350,7 @@ class subtraction
     #endif
     { using type = typename U1::template rebind_t<result_value_type>; };
     #ifdef LINALG_ENABLE_CONCEPTS
-    template < class U1, concepts::fixed_size_tensor_data U2 > requires ( !concepts::fixed_size_tensor<U2> )
+    template < class U1, concepts::fixed_size_tensor_data U2 > requires ( !concepts::fixed_size_tensor_data<U2> )
     struct Result_tensor
     #else
     template < class U1, class U2 >
@@ -358,7 +358,7 @@ class subtraction
     #endif
     { using type = typename U2::template rebind_t<result_value_type>; };
     #ifdef LINALG_ENABLE_CONCEPTS
-    template < concepts::dynamic_tensor_data U1, class U2 > requires ( !( concepts::fixed_size_tensor<U1> || concepts::fixed_size_tensor<U2> ) )
+    template < concepts::dynamic_tensor_data U1, class U2 > requires ( !( concepts::fixed_size_tensor_data<U1> || concepts::fixed_size_tensor_data<U2> ) )
     struct Result_tensor
     #else
     template < class U1, class U2 >
@@ -366,7 +366,7 @@ class subtraction
     #endif
     { using type = typename U1::template rebind_t<result_value_type>; };
     #ifdef LINALG_ENABLE_CONCEPTS
-    template < class U1, concepts::dynamic_tensor_data U2 > requires ( !( concepts::fixed_size_tensor<U1> || concepts::fixed_size_tensor<U2> || concepts::dynamic_tensor_data<U1> ) )
+    template < class U1, concepts::dynamic_tensor_data U2 > requires ( !( concepts::fixed_size_tensor_data<U1> || concepts::fixed_size_tensor_data<U2> || concepts::dynamic_tensor_data<U1> ) )
     struct Result_tensor
     #else
     template < class U1, class U2  >
