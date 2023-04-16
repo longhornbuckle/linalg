@@ -1505,4 +1505,266 @@ namespace
     EXPECT_EQ( val3, 42.0 );
   }
 
+  TEST( VECTOR_VIEW, SIZE_AND_CAPACITY )
+  {
+    using fs_vector_type = std::math::fs_vector<double,5>;
+    // Default construct
+    fs_vector_type fs_vector = []( auto, auto ) { return 0.0; };
+    auto subvector = fs_vector.subvector( std::tuple(0,2) );
+    EXPECT_TRUE( ( subvector.size().extent(0) == 2 ) );
+    EXPECT_TRUE( ( subvector.capacity().extent(0) == 2 ) );
+  }
+
+  TEST( VECTOR_VIEW, CONST_SUBVECTOR )
+  {
+    using fs_vector_type = std::math::fs_vector<double,5>;
+    // Default construct
+    fs_vector_type fs_vector;
+    double val = 1;
+    for ( auto i : { 0, 1, 2, 3, 4 } )
+    {
+      std::math::detail::access( fs_vector, i ) = val;
+      val = 2 * val;
+    }
+    const fs_vector_type& const_fs_vector( fs_vector );
+    auto subvector = const_fs_vector.subvector( std::tuple(1,5) );
+    auto subvector2 = ( (const decltype(subvector)&)( subvector ) ).subvector( std::tuple(1,3), 0 );
+    
+    EXPECT_EQ( ( std::math::detail::access( subvector2, 0 ) ), ( std::math::detail::access( fs_vector, 2 ) ) );
+    EXPECT_EQ( ( std::math::detail::access( subvector2, 1 ) ), ( std::math::detail::access( fs_vector, 3 ) ) );
+  }
+
+  TEST( VECTOR_VIEW, SUBVECTOR )
+  {
+    using fs_vector_type = std::math::fs_vector<double,5>;
+    // Default construct
+    fs_vector_type fs_vector;
+    double val = 1;
+    for ( auto i : { 0, 1, 2, 3, 4 } )
+    {
+      std::math::detail::access( fs_vector, i ) = val;
+      val = 2 * val;
+    }
+    auto subvector = fs_vector.subvector( std::tuple(1,5) );
+    auto subvector2 = subvector.subvector( std::tuple(1,3) );
+    for ( auto i : { 0, 1 } )
+    {
+      std::math::detail::access( subvector2, i ) = val;
+      val = 2 * val;
+    }
+    
+    EXPECT_EQ( ( std::math::detail::access( subvector2, 0 ) ), ( std::math::detail::access( fs_vector, 2 ) ) );
+    EXPECT_EQ( ( std::math::detail::access( subvector2, 1 ) ), ( std::math::detail::access( fs_vector, 3 ) ) );
+  }
+
+  TEST( VECTOR_VIEW, NEGATION )
+  {
+    using fs_vector_type = std::math::fs_vector<double,5>;
+    // Default construct
+    fs_vector_type fs_vector;
+    double val = 1;
+    for ( auto i : { 0, 1, 2, 3, 4 } )
+    {
+      std::math::detail::access( fs_vector, i ) = val;
+      val = 2 * val;
+    }
+    auto subvector = fs_vector.subvector( std::tuple(1,5) );
+    // Negate subvector
+    auto negate_subvector = -subvector;
+
+    EXPECT_EQ( ( std::math::detail::access( negate_subvector, 0 ) ), ( -std::math::detail::access( fs_vector, 1 ) ) );
+    EXPECT_EQ( ( std::math::detail::access( negate_subvector, 1 ) ), ( -std::math::detail::access( fs_vector, 2 ) ) );
+    EXPECT_EQ( ( std::math::detail::access( negate_subvector, 2 ) ), ( -std::math::detail::access( fs_vector, 3 ) ) );
+    EXPECT_EQ( ( std::math::detail::access( negate_subvector, 3 ) ), ( -std::math::detail::access( fs_vector, 4 ) ) );
+  }
+
+  TEST( VECTOR_VIEW, ADD )
+  {
+    using fs_vector_type = std::math::fs_vector<double,5>;
+    // Default construct
+    fs_vector_type fs_vector;
+    double val = 1;
+    for ( auto i : { 0, 1, 2, 3, 4 } )
+    {
+      std::math::detail::access( fs_vector, i ) = val;
+      val = 2 * val;
+    }
+    auto subvector = fs_vector.subvector( std::tuple(1,5) );
+    // Add the subtensor with itself
+    auto subvector_sum = subvector + subvector;
+
+    EXPECT_EQ( ( std::math::detail::access( subvector_sum, 0 ) ), ( 2.0 * std::math::detail::access( fs_vector, 1 ) ) );
+    EXPECT_EQ( ( std::math::detail::access( subvector_sum, 1 ) ), ( 2.0 * std::math::detail::access( fs_vector, 2 ) ) );
+    EXPECT_EQ( ( std::math::detail::access( subvector_sum, 2 ) ), ( 2.0 * std::math::detail::access( fs_vector, 3 ) ) );
+    EXPECT_EQ( ( std::math::detail::access( subvector_sum, 3 ) ), ( 2.0 * std::math::detail::access( fs_vector, 4 ) ) );
+  }
+
+  TEST( VECTOR_VIEW, ADD_ASSIGN )
+  {
+    using fs_vector_type = std::math::fs_vector<double,5>;
+    // Default construct
+    fs_vector_type fs_vector;
+    double val = 1;
+    for ( auto i : { 0, 1, 2, 3, 4 } )
+    {
+      std::math::detail::access( fs_vector, i ) = val;
+      val = 2 * val;
+    }
+    auto subvector = fs_vector.subvector( std::tuple(1,5) );
+    // Add the subvector with itself
+    static_cast<void>( subvector += subvector );
+
+    EXPECT_EQ( ( std::math::detail::access( subvector, 0 ) ), ( std::math::detail::access( fs_vector, 1 ) ) );
+    EXPECT_EQ( ( std::math::detail::access( subvector, 1 ) ), ( std::math::detail::access( fs_vector, 2 ) ) );
+    EXPECT_EQ( ( std::math::detail::access( subvector, 2 ) ), ( std::math::detail::access( fs_vector, 3 ) ) );
+    EXPECT_EQ( ( std::math::detail::access( subvector, 3 ) ), ( std::math::detail::access( fs_vector, 4 ) ) );
+  }
+
+  TEST( VECTOR_VIEW, SUBTRACT )
+  {
+    using fs_vector_type = std::math::fs_vector<double,5>;
+    // Default construct
+    fs_vector_type fs_vector;
+    double val = 1;
+    for ( auto i : { 0, 1, 2, 3, 4 } )
+    {
+      std::math::detail::access( fs_vector, i ) = val;
+      val = 2 * val;
+    }
+    auto subvector = fs_vector.subvector( std::tuple(1,5) );
+    // Subtract the subvector with itself
+    auto subvector_diff = subvector - subvector;
+
+    EXPECT_EQ( ( std::math::detail::access( subvector_diff, 0 ) ), 0 );
+    EXPECT_EQ( ( std::math::detail::access( subvector_diff, 1 ) ), 0 );
+    EXPECT_EQ( ( std::math::detail::access( subvector_diff, 2 ) ), 0 );
+    EXPECT_EQ( ( std::math::detail::access( subvector_diff, 3 ) ), 0 );
+  }
+
+  TEST( VECTOR_VIEW, SUBTRACT_ASSIGN )
+  {
+    using fs_vector_type = std::math::fs_vector<double,5>;
+    // Default construct
+    fs_vector_type fs_vector;
+    double val = 1;
+    for ( auto i : { 0, 1, 2, 3, 4 } )
+    {
+      std::math::detail::access( fs_vector, i ) = val;
+      val = 2 * val;
+    }
+    auto subvector = fs_vector.subvector( std::tuple(1,5) );
+    // Subtract the subvector with itself
+    static_cast<void>( subvector -= subvector );
+
+    EXPECT_EQ( ( std::math::detail::access( subvector, 0 ) ), 0 );
+    EXPECT_EQ( ( std::math::detail::access( subvector, 1 ) ), 0 );
+    EXPECT_EQ( ( std::math::detail::access( subvector, 2 ) ), 0 );
+    EXPECT_EQ( ( std::math::detail::access( subvector, 3 ) ), 0 );
+  }
+
+  TEST( VECTOR_VIEW, SCALAR_PREMULTIPLY )
+  {
+    using fs_vector_type = std::math::fs_vector<double,5>;
+    // Default construct
+    fs_vector_type fs_vector;
+    double val = 1;
+    for ( auto i : { 0, 1, 2, 3, 4 } )
+    {
+      std::math::detail::access( fs_vector, i ) = val;
+      val = 2 * val;
+    }
+    auto subvector = fs_vector.subvector( std::tuple(1,5) );
+    // Multiply the subvector with a constant
+    auto subvector_prod = 2.0 * subvector;
+
+    EXPECT_EQ( ( std::math::detail::access( subvector_prod, 0 ) ), ( 2.0 * std::math::detail::access( fs_vector, 1 ) ) );
+    EXPECT_EQ( ( std::math::detail::access( subvector_prod, 1 ) ), ( 2.0 * std::math::detail::access( fs_vector, 2 ) ) );
+    EXPECT_EQ( ( std::math::detail::access( subvector_prod, 2 ) ), ( 2.0 * std::math::detail::access( fs_vector, 3 ) ) );
+    EXPECT_EQ( ( std::math::detail::access( subvector_prod, 3 ) ), ( 2.0 * std::math::detail::access( fs_vector, 4 ) ) );
+  }
+
+  TEST( VECTOR_VIEW, SCALAR_POSTMULTIPLY )
+  {
+    using fs_vector_type = std::math::fs_vector<double,5>;
+    // Default construct
+    fs_vector_type fs_vector;
+    double val = 1;
+    for ( auto i : { 0, 1, 2, 3, 4 } )
+    {
+      std::math::detail::access( fs_vector, i ) = val;
+      val = 2 * val;
+    }
+    auto subvector = fs_vector.subvector( std::tuple(1,5) );
+    // Multiply the subvector with a constant
+    auto subvector_prod = subvector * 2.0;
+
+    EXPECT_EQ( ( std::math::detail::access( subvector_prod, 0 ) ), ( 2.0 * std::math::detail::access( fs_vector, 1 ) ) );
+    EXPECT_EQ( ( std::math::detail::access( subvector_prod, 1 ) ), ( 2.0 * std::math::detail::access( fs_vector, 2 ) ) );
+    EXPECT_EQ( ( std::math::detail::access( subvector_prod, 2 ) ), ( 2.0 * std::math::detail::access( fs_vector, 3 ) ) );
+    EXPECT_EQ( ( std::math::detail::access( subvector_prod, 3 ) ), ( 2.0 * std::math::detail::access( fs_vector, 4 ) ) );
+  }
+
+  TEST( VECTOR_VIEW, SCALAR_MULTIPLY_ASSIGN )
+  {
+    using fs_vector_type = std::math::fs_vector<double,5>;
+    // Default construct
+    fs_vector_type fs_vector;
+    double val = 1;
+    for ( auto i : { 0, 1, 2, 3, 4 } )
+    {
+      std::math::detail::access( fs_vector, i ) = val;
+      val = 2 * val;
+    }
+    auto subvector = fs_vector.subvector( std::tuple(1,5) );
+    // MUltipl the subvector with a constant
+    static_cast<void>( subvector *= 2.0 );
+
+    EXPECT_EQ( ( std::math::detail::access( subvector, 0 ) ), ( std::math::detail::access( fs_vector, 1 ) ) );
+    EXPECT_EQ( ( std::math::detail::access( subvector, 1 ) ), ( std::math::detail::access( fs_vector, 2 ) ) );
+    EXPECT_EQ( ( std::math::detail::access( subvector, 2 ) ), ( std::math::detail::access( fs_vector, 3 ) ) );
+    EXPECT_EQ( ( std::math::detail::access( subvector, 3 ) ), ( std::math::detail::access( fs_vector, 4 ) ) );
+  }
+
+  TEST( VECTOR_VIEW, SCALAR_DIVIDE )
+  {
+    using fs_vector_type = std::math::fs_vector<double,5>;
+    // Default construct
+    fs_vector_type fs_vector;
+    double val = 1;
+    for ( auto i : { 0, 1, 2, 3, 4 } )
+    {
+      std::math::detail::access( fs_vector, i ) = val;
+      val = 2 * val;
+    }
+    auto subvector = fs_vector.subvector( std::tuple(1,5) );
+    // Divide the subvector with a constant
+    auto subvector_divide = subvector / 2.0;
+
+    EXPECT_EQ( ( std::math::detail::access( subvector_divide, 0 ) ), ( std::math::detail::access( fs_vector, 1 ) / 2.0 ) );
+    EXPECT_EQ( ( std::math::detail::access( subvector_divide, 1 ) ), ( std::math::detail::access( fs_vector, 2 ) / 2.0 ) );
+    EXPECT_EQ( ( std::math::detail::access( subvector_divide, 2 ) ), ( std::math::detail::access( fs_vector, 3 ) / 2.0 ) );
+    EXPECT_EQ( ( std::math::detail::access( subvector_divide, 3 ) ), ( std::math::detail::access( fs_vector, 4 ) / 2.0 ) );
+  }
+
+  TEST( MATRIX_VIEW, SCALAR_DIVIDE_ASSIGN )
+  {
+    using fs_vector_type = std::math::fs_vector<double,5>;
+    // Default construct
+    fs_vector_type fs_vector;
+    double val = 1;
+    for ( auto i : { 0, 1, 2, 3, 4 } )
+    {
+      std::math::detail::access( fs_vector, i ) = val;
+      val = 2 * val;
+    }
+    auto subvector = fs_vector.subvector( std::tuple(1,5) );
+    // Divide the subvector with a constant
+    static_cast<void>( subvector /= 2.0 );
+
+    EXPECT_EQ( ( std::math::detail::access( subvector, 0 ) ), ( std::math::detail::access( fs_vector, 1 ) ) );
+    EXPECT_EQ( ( std::math::detail::access( subvector, 1 ) ), ( std::math::detail::access( fs_vector, 2 ) ) );
+    EXPECT_EQ( ( std::math::detail::access( subvector, 2 ) ), ( std::math::detail::access( fs_vector, 3 ) ) );
+    EXPECT_EQ( ( std::math::detail::access( subvector, 3 ) ), ( std::math::detail::access( fs_vector, 4 ) ) );
+  }
+
 }

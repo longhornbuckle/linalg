@@ -1224,7 +1224,7 @@ namespace
     using fs_matrix_type = std::math::fs_matrix<double,5,5>;
     // Default construct
     fs_matrix_type fs_matrix;
-    // Set values in matrix engine
+    // Set values in matrix
     double val = 1;
     for ( auto i : { 0, 1, 2, 3, 4 } )
     {
@@ -1258,7 +1258,7 @@ namespace
   {
     // Construct
     std::math::fs_matrix<double,5,5> fs_matrix;
-    // Set values in tensor engine
+    // Set values in matrix
     double val = 1;
     for ( auto i : { 0, 1, 2, 3, 4 } )
     {
@@ -1288,7 +1288,7 @@ namespace
   {
     // Construct
     std::math::fs_matrix<double,5,5> fs_matrix;
-    // Set values in tensor engine
+    // Set values in matrix
     double val = 1;
     for ( auto i : { 0, 1, 2, 3, 4 } )
     {
@@ -1744,6 +1744,408 @@ namespace
     // Check the vector was populated correctly and provided the correct values
     EXPECT_EQ( val1, 14.0 );
     EXPECT_EQ( val2, 32.0 );
+  }
+
+  TEST( MATRIX_VIEW, SIZE_AND_CAPACITY )
+  {
+    using fs_matrix_type = std::math::fs_matrix<double,5,5>;
+    // Default construct
+    fs_matrix_type fs_matrix = []( auto, auto ) { return 0.0; };
+    auto submatrix = fs_matrix.submatrix( std::tuple(0,2), std::tuple(0,3) );
+    EXPECT_TRUE( ( submatrix.size().extent(0) == 2 ) );
+    EXPECT_TRUE( ( submatrix.size().extent(1) == 3 ) );
+    EXPECT_TRUE( ( submatrix.rows() == 2 ) );
+    EXPECT_TRUE( ( submatrix.columns() == 3 ) );
+    EXPECT_TRUE( ( submatrix.capacity().extent(0) == 2 ) );
+    EXPECT_TRUE( ( submatrix.capacity().extent(1) == 3 ) );
+    EXPECT_TRUE( ( submatrix.row_capacity() == 2 ) );
+    EXPECT_TRUE( ( submatrix.column_capacity() == 3 ) );
+  }
+
+  TEST( MATRIX_VIEW, CONST_SUBVECTOR )
+  {
+    using fs_matrix_type = std::math::fs_matrix<double,5,5>;
+    // Default construct
+    fs_matrix_type fs_matrix;
+    double val = 1;
+    for ( auto i : { 0, 1, 2, 3, 4 } )
+    {
+      for ( auto j : { 0, 1, 2, 3, 4 } )
+      {
+        std::math::detail::access( fs_matrix, i, j ) = val;
+        val = 2 * val;
+      }
+    }
+    const fs_matrix_type& const_fs_matrix( fs_matrix );
+    auto submatrix = const_fs_matrix.submatrix( std::tuple(2,5), std::tuple(0,3) );
+    auto subvector = ( (const decltype(submatrix)&)( submatrix ) ).subvector( std::tuple(1,3), 0 );
+    
+    EXPECT_EQ( ( std::math::detail::access( subvector, 0 ) ), ( std::math::detail::access( fs_matrix, 2, 2 ) ) );
+    EXPECT_EQ( ( std::math::detail::access( subvector, 1 ) ), ( std::math::detail::access( fs_matrix, 3, 2 ) ) );
+  }
+
+  TEST( MATRIX_VIEW, CONST_SUBMATRIX )
+  {
+    using fs_matrix_type = std::math::fs_matrix<double,5,5>;
+    // Default construct
+    fs_matrix_type fs_matrix;
+    double val = 1;
+    for ( auto i : { 0, 1, 2, 3, 4 } )
+    {
+      for ( auto j : { 0, 1, 2, 3, 4 } )
+      {
+        std::math::detail::access( fs_matrix, i, j ) = val;
+        val = 2 * val;
+      }
+    }
+    const fs_matrix_type& const_fs_matrix( fs_matrix );
+    auto submatrix  = const_fs_matrix.submatrix( std::tuple(2,5), std::tuple(0,3) );
+    auto submatrix2 = ( (const decltype(submatrix)&)( submatrix ) ).submatrix( std::tuple(0,1), std::tuple(0,1) );
+    
+    EXPECT_EQ( ( std::math::detail::access( submatrix2, 0, 0 ) ), ( std::math::detail::access( fs_matrix, 2, 2 ) ) );
+    EXPECT_EQ( ( std::math::detail::access( submatrix2, 0, 1 ) ), ( std::math::detail::access( fs_matrix, 2, 3 ) ) );
+    EXPECT_EQ( ( std::math::detail::access( submatrix2, 1, 0 ) ), ( std::math::detail::access( fs_matrix, 3, 2 ) ) );
+    EXPECT_EQ( ( std::math::detail::access( submatrix2, 1, 1 ) ), ( std::math::detail::access( fs_matrix, 3, 3 ) ) );
+  }
+
+  TEST( MATRIX_VIEW, SUBVECTOR )
+  {
+    using fs_matrix_type = std::math::fs_matrix<double,5,5>;
+    // Default construct
+    fs_matrix_type fs_matrix;
+    double val = 1;
+    for ( auto i : { 0, 1, 2, 3, 4 } )
+    {
+      for ( auto j : { 0, 1, 2, 3, 4 } )
+      {
+        std::math::detail::access( fs_matrix, i, j ) = val;
+        val = 2 * val;
+      }
+    }
+    auto submatrix = fs_matrix.submatrix( std::tuple(2,5), std::tuple(0,3) );
+    auto subvector = submatrix.subvector( std::tuple(1,3), 0 );
+    for ( auto i : { 0, 1 } )
+    {
+      std::math::detail::access( subvector, i ) = val;
+      val = 2 * val;
+    }
+    
+    EXPECT_EQ( ( std::math::detail::access( subvector, 0 ) ), ( std::math::detail::access( fs_matrix, 2, 2 ) ) );
+    EXPECT_EQ( ( std::math::detail::access( subvector, 1 ) ), ( std::math::detail::access( fs_matrix, 3, 2 ) ) );
+  }
+
+  TEST( MATRIX_VIEW, SUBMATRIX )
+  {
+    using fs_matrix_type = std::math::fs_matrix<double,5,5>;
+    // Default construct
+    fs_matrix_type fs_matrix;
+    double val = 1;
+    for ( auto i : { 0, 1, 2, 3, 4 } )
+    {
+      for ( auto j : { 0, 1, 2, 3, 4 } )
+      {
+        std::math::detail::access( fs_matrix, i, j ) = val;
+        val = 2 * val;
+      }
+    }
+    auto submatrix  = fs_matrix.submatrix( std::tuple(2,5), std::tuple(0,3) );
+    auto submatrix2 = submatrix.subvector( std::tuple(1,3), std::tuple(1,2) );
+    for ( auto i : { 0, 1 } )
+    {
+      for ( auto j : { 0 } )
+      {
+        std::math::detail::access( submatrix2, i, j ) = val;
+        val = 2 * val;
+      }
+    }
+    
+    EXPECT_EQ( ( std::math::detail::access( submatrix2, 0, 0 ) ), ( std::math::detail::access( fs_matrix, 2, 2 ) ) );
+    EXPECT_EQ( ( std::math::detail::access( submatrix2, 0, 1 ) ), ( std::math::detail::access( fs_matrix, 2, 3 ) ) );
+    EXPECT_EQ( ( std::math::detail::access( submatrix2, 1, 0 ) ), ( std::math::detail::access( fs_matrix, 3, 2 ) ) );
+    EXPECT_EQ( ( std::math::detail::access( submatrix2, 1, 1 ) ), ( std::math::detail::access( fs_matrix, 3, 3 ) ) );
+  }
+
+  TEST( MATRIX_VIEW, NEGATION )
+  {
+    // Construct
+    std::math::fs_matrix<double,5,5> fs_matrix;
+    double val = 1;
+    for ( auto i : { 0, 1, 2, 3, 4 } )
+    {
+      for ( auto j : { 0, 1, 2, 3, 4 } )
+      {
+        std::math::detail::access( fs_matrix, i, j ) = val;
+        val = 2 * val;
+      }
+    }
+    const std::math::fs_matrix<double,5,5>& const_fs_matrix( fs_matrix );
+    auto submatrix = const_fs_matrix.submatrix( std::tuple(2,5), std::tuple(2,4) );
+    // Negate submatrix
+    auto negate_submatrix = -submatrix;
+
+    EXPECT_EQ( ( std::math::detail::access( negate_submatrix, 0, 0 ) ), ( -std::math::detail::access( submatrix, 0, 0 ) ) );
+    EXPECT_EQ( ( std::math::detail::access( negate_submatrix, 1, 0 ) ), ( -std::math::detail::access( submatrix, 1, 0 ) ) );
+    EXPECT_EQ( ( std::math::detail::access( negate_submatrix, 2, 0 ) ), ( -std::math::detail::access( submatrix, 2, 0 ) ) );
+    EXPECT_EQ( ( std::math::detail::access( negate_submatrix, 0, 1 ) ), ( -std::math::detail::access( submatrix, 0, 1 ) ) );
+    EXPECT_EQ( ( std::math::detail::access( negate_submatrix, 1, 1 ) ), ( -std::math::detail::access( submatrix, 1, 1 ) ) );
+    EXPECT_EQ( ( std::math::detail::access( negate_submatrix, 2, 1 ) ), ( -std::math::detail::access( submatrix, 2, 1 ) ) );
+  }
+
+  TEST( MATRIX_VIEW, ADD )
+  {
+    // Construct
+    std::math::fs_matrix<double,5,5> fs_matrix;
+    double val = 1;
+    for ( auto i : { 0, 1, 2, 3, 4 } )
+    {
+      for ( auto j : { 0, 1, 2, 3, 4 } )
+      {
+        std::math::detail::access( fs_matrix, i, j ) = val;
+        val = 2 * val;
+      }
+    }
+    const std::math::fs_matrix<double,5,5>& const_fs_matrix( fs_matrix );
+    auto submatrix = const_fs_matrix.submatrix( std::tuple(2,5), std::tuple(2,4) );
+    // Add the submatrix with itself
+    auto submatrix_sum = submatrix + submatrix;
+
+    EXPECT_EQ( ( std::math::detail::access( submatrix_sum, 0, 0 ) ), ( 2.0 * std::math::detail::access( fs_matrix, 2, 2 ) ) );
+    EXPECT_EQ( ( std::math::detail::access( submatrix_sum, 0, 1 ) ), ( 2.0 * std::math::detail::access( fs_matrix, 2, 3 ) ) );
+    EXPECT_EQ( ( std::math::detail::access( submatrix_sum, 0, 2 ) ), ( 2.0 * std::math::detail::access( fs_matrix, 2, 4 ) ) );
+    EXPECT_EQ( ( std::math::detail::access( submatrix_sum, 1, 0 ) ), ( 2.0 * std::math::detail::access( fs_matrix, 3, 2 ) ) );
+    EXPECT_EQ( ( std::math::detail::access( submatrix_sum, 1, 1 ) ), ( 2.0 * std::math::detail::access( fs_matrix, 3, 3 ) ) );
+    EXPECT_EQ( ( std::math::detail::access( submatrix_sum, 1, 2 ) ), ( 2.0 * std::math::detail::access( fs_matrix, 3, 4 ) ) );
+    EXPECT_EQ( ( std::math::detail::access( submatrix_sum, 2, 0 ) ), ( 2.0 * std::math::detail::access( fs_matrix, 4, 2 ) ) );
+    EXPECT_EQ( ( std::math::detail::access( submatrix_sum, 2, 1 ) ), ( 2.0 * std::math::detail::access( fs_matrix, 4, 3 ) ) );
+    EXPECT_EQ( ( std::math::detail::access( submatrix_sum, 2, 2 ) ), ( 2.0 * std::math::detail::access( fs_matrix, 4, 4 ) ) );
+  }
+
+  TEST( MATRIX_VIEW, ADD_ASSIGN )
+  {
+    // Construct
+    std::math::fs_matrix<double,5,5> fs_matrix;
+    double val = 1;
+    for ( auto i : { 0, 1, 2, 3, 4 } )
+    {
+      for ( auto j : { 0, 1, 2, 3, 4 } )
+      {
+        std::math::detail::access( fs_matrix, i, j ) = val;
+        val = 2 * val;
+      }
+    }
+    auto submatrix = fs_matrix.submatrix( std::tuple(2,5), std::tuple(2,4) );
+    // Add the submatrix with itself
+    static_cast<void>( submatrix += submatrix );
+
+    EXPECT_EQ( ( std::math::detail::access( submatrix, 0, 0 ) ), ( std::math::detail::access( fs_matrix, 2, 2 ) ) );
+    EXPECT_EQ( ( std::math::detail::access( submatrix, 0, 1 ) ), ( std::math::detail::access( fs_matrix, 2, 3 ) ) );
+    EXPECT_EQ( ( std::math::detail::access( submatrix, 0, 2 ) ), ( std::math::detail::access( fs_matrix, 2, 4 ) ) );
+    EXPECT_EQ( ( std::math::detail::access( submatrix, 1, 0 ) ), ( std::math::detail::access( fs_matrix, 3, 2 ) ) );
+    EXPECT_EQ( ( std::math::detail::access( submatrix, 1, 1 ) ), ( std::math::detail::access( fs_matrix, 3, 3 ) ) );
+    EXPECT_EQ( ( std::math::detail::access( submatrix, 1, 2 ) ), ( std::math::detail::access( fs_matrix, 3, 4 ) ) );
+    EXPECT_EQ( ( std::math::detail::access( submatrix, 2, 0 ) ), ( std::math::detail::access( fs_matrix, 4, 2 ) ) );
+    EXPECT_EQ( ( std::math::detail::access( submatrix, 2, 1 ) ), ( std::math::detail::access( fs_matrix, 4, 3 ) ) );
+    EXPECT_EQ( ( std::math::detail::access( submatrix, 2, 2 ) ), ( std::math::detail::access( fs_matrix, 4, 4 ) ) );
+  }
+
+  TEST( MATRIX_VIEW, SUBTRACT )
+  {
+    // Construct
+    std::math::fs_matrix<double,5,5> fs_matrix;
+    double val = 1;
+    for ( auto i : { 0, 1, 2, 3, 4 } )
+    {
+      for ( auto j : { 0, 1, 2, 3, 4 } )
+      {
+        std::math::detail::access( fs_matrix, i, j ) = val;
+        val = 2 * val;
+      }
+    }
+    const std::math::fs_matrix<double,5,5>& const_fs_matrix( fs_matrix );
+    auto submatrix = const_fs_matrix.submatrix( std::tuple(2,5), std::tuple(2,4) );
+    // Subtract the submatrix with itself
+    auto submatrix_diff = submatrix - submatrix;
+
+    EXPECT_EQ( ( std::math::detail::access( submatrix_diff, 0, 0 ) ), 0 );
+    EXPECT_EQ( ( std::math::detail::access( submatrix_diff, 0, 1 ) ), 0 );
+    EXPECT_EQ( ( std::math::detail::access( submatrix_diff, 0, 2 ) ), 0 );
+    EXPECT_EQ( ( std::math::detail::access( submatrix_diff, 1, 0 ) ), 0 );
+    EXPECT_EQ( ( std::math::detail::access( submatrix_diff, 1, 1 ) ), 0 );
+    EXPECT_EQ( ( std::math::detail::access( submatrix_diff, 1, 2 ) ), 0 );
+    EXPECT_EQ( ( std::math::detail::access( submatrix_diff, 2, 0 ) ), 0 );
+    EXPECT_EQ( ( std::math::detail::access( submatrix_diff, 2, 1 ) ), 0 );
+    EXPECT_EQ( ( std::math::detail::access( submatrix_diff, 2, 2 ) ), 0 );
+  }
+
+  TEST( MATRIX_VIEW, SUBTRACT_ASSIGN )
+  {
+    // Construct
+    std::math::fs_matrix<double,5,5> fs_matrix;
+    double val = 1;
+    for ( auto i : { 0, 1, 2, 3, 4 } )
+    {
+      for ( auto j : { 0, 1, 2, 3, 4 } )
+      {
+        std::math::detail::access( fs_matrix, i, j ) = val;
+        val = 2 * val;
+      }
+    }
+    auto submatrix = fs_matrix.submatrix( std::tuple(2,5), std::tuple(2,4) );
+    // Subtract the submatrix with itself
+    static_cast<void>( submatrix -= fs_matrix.submatrix( std::tuple(2,5), std::tuple(2,4) ) );
+
+    EXPECT_EQ( ( std::math::detail::access( submatrix, 0, 0 ) ), 0 );
+    EXPECT_EQ( ( std::math::detail::access( submatrix, 0, 1 ) ), 0 );
+    EXPECT_EQ( ( std::math::detail::access( submatrix, 0, 2 ) ), 0 );
+    EXPECT_EQ( ( std::math::detail::access( submatrix, 1, 0 ) ), 0 );
+    EXPECT_EQ( ( std::math::detail::access( submatrix, 1, 1 ) ), 0 );
+    EXPECT_EQ( ( std::math::detail::access( submatrix, 1, 2 ) ), 0 );
+    EXPECT_EQ( ( std::math::detail::access( submatrix, 2, 0 ) ), 0 );
+    EXPECT_EQ( ( std::math::detail::access( submatrix, 2, 1 ) ), 0 );
+    EXPECT_EQ( ( std::math::detail::access( submatrix, 2, 2 ) ), 0 );
+  }
+
+  TEST( MATRIX_VIEW, SCALAR_PREMULTIPLY )
+  {
+    // Construct
+    std::math::fs_matrix<double,5,5> fs_matrix;
+    double val = 1;
+    for ( auto i : { 0, 1, 2, 3, 4 } )
+    {
+      for ( auto j : { 0, 1, 2, 3, 4 } )
+      {
+        std::math::detail::access( fs_matrix, i, j ) = val;
+        val = 2 * val;
+      }
+    }
+    const std::math::fs_matrix<double,5,5>& const_fs_matrix( fs_matrix );
+    auto submatrix = const_fs_matrix.submatrix( std::tuple(2,5), std::tuple(2,4) );
+    // Multiply the submatrix with a constant
+    auto submatrix_prod = 2.0 * submatrix;
+
+    EXPECT_EQ( ( std::math::detail::access( submatrix_prod, 0, 0 ) ), ( 2.0 * std::math::detail::access( fs_matrix, 2, 2 ) ) );
+    EXPECT_EQ( ( std::math::detail::access( submatrix_prod, 0, 1 ) ), ( 2.0 * std::math::detail::access( fs_matrix, 2, 3 ) ) );
+    EXPECT_EQ( ( std::math::detail::access( submatrix_prod, 0, 2 ) ), ( 2.0 * std::math::detail::access( fs_matrix, 2, 4 ) ) );
+    EXPECT_EQ( ( std::math::detail::access( submatrix_prod, 1, 0 ) ), ( 2.0 * std::math::detail::access( fs_matrix, 3, 2 ) ) );
+    EXPECT_EQ( ( std::math::detail::access( submatrix_prod, 1, 1 ) ), ( 2.0 * std::math::detail::access( fs_matrix, 3, 3 ) ) );
+    EXPECT_EQ( ( std::math::detail::access( submatrix_prod, 1, 2 ) ), ( 2.0 * std::math::detail::access( fs_matrix, 3, 4 ) ) );
+    EXPECT_EQ( ( std::math::detail::access( submatrix_prod, 2, 0 ) ), ( 2.0 * std::math::detail::access( fs_matrix, 4, 2 ) ) );
+    EXPECT_EQ( ( std::math::detail::access( submatrix_prod, 2, 1 ) ), ( 2.0 * std::math::detail::access( fs_matrix, 4, 3 ) ) );
+    EXPECT_EQ( ( std::math::detail::access( submatrix_prod, 2, 2 ) ), ( 2.0 * std::math::detail::access( fs_matrix, 4, 4 ) ) );
+  }
+
+  TEST( MATRIX_VIEW, SCALAR_POSTMULTIPLY )
+  {
+    // Construct
+    std::math::fs_matrix<double,5,5> fs_matrix;
+    double val = 1;
+    for ( auto i : { 0, 1, 2, 3, 4 } )
+    {
+      for ( auto j : { 0, 1, 2, 3, 4 } )
+      {
+        std::math::detail::access( fs_matrix, i, j ) = val;
+        val = 2 * val;
+      }
+    }
+    const std::math::fs_matrix<double,5,5>& const_fs_matrix( fs_matrix );
+    auto submatrix = const_fs_matrix.submatrix( std::tuple(2,5), std::tuple(2,4) );
+    // Multiply the submatrix with a constant
+    auto submatrix_prod = submatrix * 2.0;
+
+    EXPECT_EQ( ( std::math::detail::access( submatrix_prod, 0, 0 ) ), ( 2.0 * std::math::detail::access( fs_matrix, 2, 2 ) ) );
+    EXPECT_EQ( ( std::math::detail::access( submatrix_prod, 0, 1 ) ), ( 2.0 * std::math::detail::access( fs_matrix, 2, 3 ) ) );
+    EXPECT_EQ( ( std::math::detail::access( submatrix_prod, 0, 2 ) ), ( 2.0 * std::math::detail::access( fs_matrix, 2, 4 ) ) );
+    EXPECT_EQ( ( std::math::detail::access( submatrix_prod, 1, 0 ) ), ( 2.0 * std::math::detail::access( fs_matrix, 3, 2 ) ) );
+    EXPECT_EQ( ( std::math::detail::access( submatrix_prod, 1, 1 ) ), ( 2.0 * std::math::detail::access( fs_matrix, 3, 3 ) ) );
+    EXPECT_EQ( ( std::math::detail::access( submatrix_prod, 1, 2 ) ), ( 2.0 * std::math::detail::access( fs_matrix, 3, 4 ) ) );
+    EXPECT_EQ( ( std::math::detail::access( submatrix_prod, 2, 0 ) ), ( 2.0 * std::math::detail::access( fs_matrix, 4, 2 ) ) );
+    EXPECT_EQ( ( std::math::detail::access( submatrix_prod, 2, 1 ) ), ( 2.0 * std::math::detail::access( fs_matrix, 4, 3 ) ) );
+    EXPECT_EQ( ( std::math::detail::access( submatrix_prod, 2, 2 ) ), ( 2.0 * std::math::detail::access( fs_matrix, 4, 4 ) ) );
+  }
+
+  TEST( MATRIX_VIEW, SCALAR_MULTIPLY_ASSIGN )
+  {
+    // Construct
+    std::math::fs_matrix<double,5,5> fs_matrix;
+    double val = 1;
+    for ( auto i : { 0, 1, 2, 3, 4 } )
+    {
+      for ( auto j : { 0, 1, 2, 3, 4 } )
+      {
+        std::math::detail::access( fs_matrix, i, j ) = val;
+        val = 2 * val;
+      }
+    }
+    auto submatrix = fs_matrix.submatrix( std::tuple(2,5), std::tuple(2,4) );
+    // Multiply the submatrix with a constant
+    submatrix *= 2.0;
+
+    EXPECT_EQ( ( std::math::detail::access( submatrix, 0, 0 ) ), ( std::math::detail::access( fs_matrix, 2, 2 ) ) );
+    EXPECT_EQ( ( std::math::detail::access( submatrix, 0, 1 ) ), ( std::math::detail::access( fs_matrix, 2, 3 ) ) );
+    EXPECT_EQ( ( std::math::detail::access( submatrix, 0, 2 ) ), ( std::math::detail::access( fs_matrix, 2, 4 ) ) );
+    EXPECT_EQ( ( std::math::detail::access( submatrix, 1, 0 ) ), ( std::math::detail::access( fs_matrix, 3, 2 ) ) );
+    EXPECT_EQ( ( std::math::detail::access( submatrix, 1, 1 ) ), ( std::math::detail::access( fs_matrix, 3, 3 ) ) );
+    EXPECT_EQ( ( std::math::detail::access( submatrix, 1, 2 ) ), ( std::math::detail::access( fs_matrix, 3, 4 ) ) );
+    EXPECT_EQ( ( std::math::detail::access( submatrix, 2, 0 ) ), ( std::math::detail::access( fs_matrix, 4, 2 ) ) );
+    EXPECT_EQ( ( std::math::detail::access( submatrix, 2, 1 ) ), ( std::math::detail::access( fs_matrix, 4, 3 ) ) );
+    EXPECT_EQ( ( std::math::detail::access( submatrix, 2, 2 ) ), ( std::math::detail::access( fs_matrix, 4, 4 ) ) );
+  }
+
+  TEST( MATRIX_VIEW, SCALAR_DIVIDE )
+  {
+    // Construct
+    std::math::fs_matrix<double,5,5> fs_matrix;
+    double val = 1;
+    for ( auto i : { 0, 1, 2, 3, 4 } )
+    {
+      for ( auto j : { 0, 1, 2, 3, 4 } )
+      {
+        std::math::detail::access( fs_matrix, i, j ) = val;
+        val = 2 * val;
+      }
+    }
+    const std::math::fs_matrix<double,5,5>& const_fs_matrix( fs_matrix );
+    auto submatrix = const_fs_matrix.submatrix( std::tuple(2,5), std::tuple(2,4) );
+    // DIvide the submatrix with a constant
+    auto submatrix_divide = submatrix / 2.0;
+
+    EXPECT_EQ( ( std::math::detail::access( submatrix_divide, 0, 0 ) ), ( std::math::detail::access( fs_matrix, 2, 2 ) / 2.0 ) );
+    EXPECT_EQ( ( std::math::detail::access( submatrix_divide, 0, 1 ) ), ( std::math::detail::access( fs_matrix, 2, 3 ) / 2.0 ) );
+    EXPECT_EQ( ( std::math::detail::access( submatrix_divide, 0, 2 ) ), ( std::math::detail::access( fs_matrix, 2, 4 ) / 2.0 ) );
+    EXPECT_EQ( ( std::math::detail::access( submatrix_divide, 1, 0 ) ), ( std::math::detail::access( fs_matrix, 3, 2 ) / 2.0 ) );
+    EXPECT_EQ( ( std::math::detail::access( submatrix_divide, 1, 1 ) ), ( std::math::detail::access( fs_matrix, 3, 3 ) / 2.0 ) );
+    EXPECT_EQ( ( std::math::detail::access( submatrix_divide, 1, 2 ) ), ( std::math::detail::access( fs_matrix, 3, 4 ) / 2.0 ) );
+    EXPECT_EQ( ( std::math::detail::access( submatrix_divide, 2, 0 ) ), ( std::math::detail::access( fs_matrix, 4, 2 ) / 2.0 ) );
+    EXPECT_EQ( ( std::math::detail::access( submatrix_divide, 2, 1 ) ), ( std::math::detail::access( fs_matrix, 4, 3 ) / 2.0 ) );
+    EXPECT_EQ( ( std::math::detail::access( submatrix_divide, 2, 2 ) ), ( std::math::detail::access( fs_matrix, 4, 4 ) / 2.0 ) );
+  }
+
+  TEST( MATRIX_VIEW, SCALAR_DIVIDE_ASSIGN )
+  {
+    // Construct
+    std::math::fs_matrix<double,5,5> fs_matrix;
+    double val = 1;
+    for ( auto i : { 0, 1, 2, 3, 4 } )
+    {
+      for ( auto j : { 0, 1, 2, 3, 4 } )
+      {
+        std::math::detail::access( fs_matrix, i, j ) = val;
+        val = 2 * val;
+      }
+    }
+    auto submatrix = fs_matrix.submatrix( std::tuple(2,5), std::tuple(2,4) );
+    // Divide the submatrix with a constant
+    static_cast<void>( submatrix /= 2.0 );
+
+    EXPECT_EQ( ( std::math::detail::access( submatrix, 0, 0 ) ), ( std::math::detail::access( fs_matrix, 2, 2 ) ) );
+    EXPECT_EQ( ( std::math::detail::access( submatrix, 0, 1 ) ), ( std::math::detail::access( fs_matrix, 2, 3 ) ) );
+    EXPECT_EQ( ( std::math::detail::access( submatrix, 0, 2 ) ), ( std::math::detail::access( fs_matrix, 2, 4 ) ) );
+    EXPECT_EQ( ( std::math::detail::access( submatrix, 1, 0 ) ), ( std::math::detail::access( fs_matrix, 3, 2 ) ) );
+    EXPECT_EQ( ( std::math::detail::access( submatrix, 1, 1 ) ), ( std::math::detail::access( fs_matrix, 3, 3 ) ) );
+    EXPECT_EQ( ( std::math::detail::access( submatrix, 1, 2 ) ), ( std::math::detail::access( fs_matrix, 3, 4 ) ) );
+    EXPECT_EQ( ( std::math::detail::access( submatrix, 2, 0 ) ), ( std::math::detail::access( fs_matrix, 4, 2 ) ) );
+    EXPECT_EQ( ( std::math::detail::access( submatrix, 2, 1 ) ), ( std::math::detail::access( fs_matrix, 4, 3 ) ) );
+    EXPECT_EQ( ( std::math::detail::access( submatrix, 2, 2 ) ), ( std::math::detail::access( fs_matrix, 4, 4 ) ) );
   }
 
 }
