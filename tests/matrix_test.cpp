@@ -1750,7 +1750,7 @@ namespace
   {
     using fs_matrix_type = std::math::fs_matrix<double,5,5>;
     // Default construct
-    fs_matrix_type fs_matrix = []( auto, auto ) { return 0.0; };
+    fs_matrix_type fs_matrix { []( auto, auto ) { return 0.0; }() };
     auto submatrix = fs_matrix.submatrix( std::tuple(0,2), std::tuple(0,3) );
     EXPECT_TRUE( ( submatrix.size().extent(0) == 2 ) );
     EXPECT_TRUE( ( submatrix.size().extent(1) == 3 ) );

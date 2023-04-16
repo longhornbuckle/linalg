@@ -96,15 +96,10 @@ class vector_view : public tensor_view<MDS>
 
     //- Size / Capacity
 
-    /// @brief Returns the current number of elements
-    /// @return number of elements
-    [[nodiscard]] constexpr size_type size() const noexcept;
-    /// @brief Returns the current capacity
-    /// @return capacity
-    [[nodiscard]] constexpr size_type capacity() const noexcept;
+    using base_type::size;
+    using base_type::capacity;
 
     //- Const views
-
 
     #if LINALG_USE_BRACKET_OPERATOR
     using base_type::operator[]; // Brings into scope const and mutable
@@ -181,32 +176,6 @@ operator = ( const underlying_span_type& view ) noexcept
 {
   static_cast<void>( this->base_type::operator=( view ) );
   return *this;
-}
-
-//- Size / Capacity
-
-#ifdef LINALG_ENABLE_CONCEPTS
-template < class MDS > requires ( detail::is_mdspan_v<MDS> && ( MDS::extents_type::rank()== 1 ) && MDS::is_always_unique() )
-[[nodiscard]] constexpr typename vector_view<MDS>::size_type vector_view<MDS>::
-#else
-template < class MDS, typename Dummy >
-[[nodiscard]] constexpr typename vector_view<MDS,Dummy>::size_type vector_view<MDS,Dummy>::
-#endif
-size() const noexcept
-{
-  return detail::template extents_helper<size_type,extents_type::rank()>::size( this->base_type::size() );
-}
-
-#ifdef LINALG_ENABLE_CONCEPTS
-template < class MDS > requires ( detail::is_mdspan_v<MDS> && ( MDS::extents_type::rank()== 1 ) && MDS::is_always_unique() )
-[[nodiscard]] constexpr typename vector_view<MDS>::size_type vector_view<MDS>::
-#else
-template < class MDS, typename Dummy >
-[[nodiscard]] constexpr typename vector_view<MDS,Dummy>::size_type vector_view<MDS,Dummy>::
-#endif
-capacity() const noexcept
-{
-  return detail::template extents_helper<size_type,extents_type::rank()>::size( this->base_type::capacity() );
 }
 
 //- Const views
