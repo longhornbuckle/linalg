@@ -138,6 +138,8 @@ Critical Questions
 
 - Views neither classify as fixed-size or dynamic - they're size is not known at compile time and they have no allocator access. Should operations which return a new matix be allowed (and thus must use std allocator) or not be allowed?
 
+- Is there a reason to provide static size functions on fixed size object types (in additiona to constexpr size functions)?
+
 In Regards To Existing Proposals
 --------------------------------
 - **[P2630](https://github.com/kokkos/mdspan)**: submdspan: submdspan is heavily used and this implementation does not work without it.
