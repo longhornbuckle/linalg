@@ -107,8 +107,6 @@ class vector_view : public tensor_view<MDS>
     #if LINALG_USE_PAREN_OPERATOR
     using base_type::operator(); // Brings into scope const and mutable
     #endif
-    using base_type::subvector;  // Brings into scope const and mutable
-    using base_type::submatrix;  // Brings into scope const and mutable
 
     /// @brief Returns the value at index
     /// @param index the location of the desired element

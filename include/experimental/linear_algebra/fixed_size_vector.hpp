@@ -182,8 +182,6 @@ class fs_vector : public fs_tensor<T,L,A,N>
     #if LINALG_USE_PAREN_OPERATOR
     using base_type::operator(); // Brings into scope const and mutable
     #endif
-    using base_type::subvector;  // Brings into scope const and mutable
-    using base_type::submatrix;  // Brings into scope const and mutable
 
     /// @brief Returns a const view of the specified subvector
     /// @param start (row,column) start of subvector

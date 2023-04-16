@@ -140,6 +140,8 @@ Critical Questions
 
 - Is there a reason to provide static size functions on fixed size object types (in additiona to constexpr size functions)?
 
+- Should vector types' subvector function use a different syntax subvector( index_type start, index_type end ) or use the base tensor_types' syntax which would look something like subvector( tuple(start,end) )?
+
 In Regards To Existing Proposals
 --------------------------------
 - **[P2630](https://github.com/kokkos/mdspan)**: submdspan: submdspan is heavily used and this implementation does not work without it.
