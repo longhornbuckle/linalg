@@ -1777,8 +1777,8 @@ namespace
       }
     }
     const fs_matrix_type& const_fs_matrix( fs_matrix );
-    auto submatrix = const_fs_matrix.submatrix( std::tuple(2,0), std::tuple(3,5) );
-    auto column = ( (const decltype(submatrix)&)( submatrix ) ).column( 0 );
+    auto submatrix = const_fs_matrix.submatrix( std::tuple(2,0), std::tuple(5,5) );
+    auto column = ( (const decltype(submatrix)&)( submatrix ) ).column( 2 );
     
     EXPECT_EQ( ( std::math::detail::access( column, 0 ) ), ( std::math::detail::access( fs_matrix, 2, 2 ) ) );
     EXPECT_EQ( ( std::math::detail::access( column, 1 ) ), ( std::math::detail::access( fs_matrix, 3, 2 ) ) );
@@ -1803,9 +1803,9 @@ namespace
     auto submatrix = const_fs_matrix.submatrix( std::tuple(2,0), std::tuple(5,3) );
     auto row = ( (const decltype(submatrix)&)( submatrix ) ).row( 0 );
     
-    EXPECT_EQ( ( std::math::detail::access( row, 0 ) ), ( std::math::detail::access( fs_matrix, 2, 2 ) ) );
-    EXPECT_EQ( ( std::math::detail::access( row, 1 ) ), ( std::math::detail::access( fs_matrix, 2, 3 ) ) );
-    EXPECT_EQ( ( std::math::detail::access( row, 2 ) ), ( std::math::detail::access( fs_matrix, 2, 4 ) ) );
+    EXPECT_EQ( ( std::math::detail::access( row, 0 ) ), ( std::math::detail::access( fs_matrix, 2, 0 ) ) );
+    EXPECT_EQ( ( std::math::detail::access( row, 1 ) ), ( std::math::detail::access( fs_matrix, 2, 1 ) ) );
+    EXPECT_EQ( ( std::math::detail::access( row, 2 ) ), ( std::math::detail::access( fs_matrix, 2, 2 ) ) );
   }
 
   TEST( MATRIX_VIEW, CONST_SUBMATRIX )
@@ -1826,10 +1826,10 @@ namespace
     auto submatrix  = const_fs_matrix.submatrix( std::tuple(2,0), std::tuple(5,3) );
     auto submatrix2 = ( (const decltype(submatrix)&)( submatrix ) ).submatrix( std::tuple(0,1), std::tuple(0,1) );
     
-    EXPECT_EQ( ( std::math::detail::access( submatrix2, 0, 0 ) ), ( std::math::detail::access( fs_matrix, 2, 2 ) ) );
-    EXPECT_EQ( ( std::math::detail::access( submatrix2, 0, 1 ) ), ( std::math::detail::access( fs_matrix, 2, 3 ) ) );
-    EXPECT_EQ( ( std::math::detail::access( submatrix2, 1, 0 ) ), ( std::math::detail::access( fs_matrix, 3, 2 ) ) );
-    EXPECT_EQ( ( std::math::detail::access( submatrix2, 1, 1 ) ), ( std::math::detail::access( fs_matrix, 3, 3 ) ) );
+    EXPECT_EQ( ( std::math::detail::access( submatrix2, 0, 0 ) ), ( std::math::detail::access( fs_matrix, 2, 0 ) ) );
+    EXPECT_EQ( ( std::math::detail::access( submatrix2, 0, 1 ) ), ( std::math::detail::access( fs_matrix, 2, 1 ) ) );
+    EXPECT_EQ( ( std::math::detail::access( submatrix2, 1, 0 ) ), ( std::math::detail::access( fs_matrix, 3, 0 ) ) );
+    EXPECT_EQ( ( std::math::detail::access( submatrix2, 1, 1 ) ), ( std::math::detail::access( fs_matrix, 3, 1 ) ) );
   }
 
   TEST( MATRIX_VIEW, COLUMN_VECTOR )
@@ -1854,9 +1854,9 @@ namespace
       val = 2 * val;
     }
     
-    EXPECT_EQ( ( std::math::detail::access( column, 0 ) ), ( std::math::detail::access( fs_matrix, 2, 2 ) ) );
-    EXPECT_EQ( ( std::math::detail::access( column, 1 ) ), ( std::math::detail::access( fs_matrix, 3, 2 ) ) );
-    EXPECT_EQ( ( std::math::detail::access( column, 2 ) ), ( std::math::detail::access( fs_matrix, 4, 2 ) ) );
+    EXPECT_EQ( ( std::math::detail::access( column, 0 ) ), ( std::math::detail::access( fs_matrix, 2, 0 ) ) );
+    EXPECT_EQ( ( std::math::detail::access( column, 1 ) ), ( std::math::detail::access( fs_matrix, 3, 0 ) ) );
+    EXPECT_EQ( ( std::math::detail::access( column, 2 ) ), ( std::math::detail::access( fs_matrix, 4, 0 ) ) );
   }
 
   TEST( MATRIX_VIEW, ROW_VECTOR )
@@ -1881,9 +1881,9 @@ namespace
       val = 2 * val;
     }
     
-    EXPECT_EQ( ( std::math::detail::access( row, 0 ) ), ( std::math::detail::access( fs_matrix, 2, 2 ) ) );
-    EXPECT_EQ( ( std::math::detail::access( row, 1 ) ), ( std::math::detail::access( fs_matrix, 2, 3 ) ) );
-    EXPECT_EQ( ( std::math::detail::access( row, 2 ) ), ( std::math::detail::access( fs_matrix, 2, 4 ) ) );
+    EXPECT_EQ( ( std::math::detail::access( row, 0 ) ), ( std::math::detail::access( fs_matrix, 2, 0 ) ) );
+    EXPECT_EQ( ( std::math::detail::access( row, 1 ) ), ( std::math::detail::access( fs_matrix, 2, 1 ) ) );
+    EXPECT_EQ( ( std::math::detail::access( row, 2 ) ), ( std::math::detail::access( fs_matrix, 2, 2 ) ) );
   }
 
   TEST( MATRIX_VIEW, SUBMATRIX )
@@ -1901,7 +1901,7 @@ namespace
       }
     }
     auto submatrix  = fs_matrix.submatrix( std::tuple(2,0), std::tuple(5,3) );
-    auto submatrix2 = submatrix.submatrix( std::tuple(1,1), std::tuple(3,2) );
+    auto submatrix2 = submatrix.submatrix( std::tuple(1,1), std::tuple(3,3) );
     for ( auto i : { 0, 1 } )
     {
       for ( auto j : { 0 } )
@@ -1911,10 +1911,10 @@ namespace
       }
     }
     
-    EXPECT_EQ( ( std::math::detail::access( submatrix2, 0, 0 ) ), ( std::math::detail::access( fs_matrix, 2, 2 ) ) );
-    EXPECT_EQ( ( std::math::detail::access( submatrix2, 0, 1 ) ), ( std::math::detail::access( fs_matrix, 2, 3 ) ) );
-    EXPECT_EQ( ( std::math::detail::access( submatrix2, 1, 0 ) ), ( std::math::detail::access( fs_matrix, 3, 2 ) ) );
-    EXPECT_EQ( ( std::math::detail::access( submatrix2, 1, 1 ) ), ( std::math::detail::access( fs_matrix, 3, 3 ) ) );
+    EXPECT_EQ( ( std::math::detail::access( submatrix2, 0, 0 ) ), ( std::math::detail::access( fs_matrix, 3, 1 ) ) );
+    EXPECT_EQ( ( std::math::detail::access( submatrix2, 0, 1 ) ), ( std::math::detail::access( fs_matrix, 3, 2 ) ) );
+    EXPECT_EQ( ( std::math::detail::access( submatrix2, 1, 0 ) ), ( std::math::detail::access( fs_matrix, 4, 1 ) ) );
+    EXPECT_EQ( ( std::math::detail::access( submatrix2, 1, 1 ) ), ( std::math::detail::access( fs_matrix, 4, 2 ) ) );
   }
 
   TEST( MATRIX_VIEW, NEGATION )
