@@ -830,7 +830,7 @@ class transpose_matrix
     // Returns the std allocator
     #ifndef LINALG_ENABLE_CONCEPTS
     template < typename Mat = matrix_type,
-               typename = !::std::enable_if_t< concepts::dynamic_matrix_data_v< Mat > >,
+               typename = ::std::enable_if_t< !concepts::dynamic_matrix_data_v< Mat > >,
                typename = ::std::enable_if_t<true> >
     #endif
     [[nodiscard]] static inline constexpr decltype(auto) get_allocator( [[maybe_unused]] const matrix_type& m ) noexcept
@@ -1009,7 +1009,7 @@ class conjugate_matrix
     // Returns the std allocator
     #ifndef LINALG_ENABLE_CONCEPTS
     template < typename Mat = matrix_type,
-               typename = !::std::enable_if_t< concepts::dynamic_matrix_data_v< Mat > >,
+               typename = ::std::enable_if_t< !concepts::dynamic_matrix_data_v< Mat > >,
                typename = ::std::enable_if_t<true> >
     #endif
     [[nodiscard]] static inline constexpr decltype(auto) get_allocator( [[maybe_unused]] const matrix_type& m ) noexcept
@@ -1154,7 +1154,7 @@ class conjugate_vector
     // Returns the std allocator
     #ifndef LINALG_ENABLE_CONCEPTS
     template < typename Vec = vector_type,
-               typename = !::std::enable_if_t< concepts::dynamic_vector_data_v< Vec > >,
+               typename = ::std::enable_if_t< !concepts::dynamic_vector_data_v< Vec > >,
                typename = ::std::enable_if_t<true> >
     #endif
     [[nodiscard]] static inline constexpr decltype(auto) get_allocator( [[maybe_unused]] const vector_type& m ) noexcept
