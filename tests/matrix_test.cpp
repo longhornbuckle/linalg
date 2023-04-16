@@ -2096,7 +2096,7 @@ namespace
     }
     auto submatrix = fs_matrix.submatrix( std::tuple(2,5), std::tuple(2,5) );
     // Subtract the submatrix with itself
-    static_cast<void>( submatrix -= fs_matrix.submatrix( std::tuple(2,2), std::tuple(5,5) ) );
+    static_cast<void>( submatrix -= fs_matrix.submatrix( std::tuple(2,5), std::tuple(2,5) ) );
 
     EXPECT_EQ( ( std::math::detail::access( submatrix, 0, 0 ) ), 0 );
     EXPECT_EQ( ( std::math::detail::access( submatrix, 0, 1 ) ), 0 );
