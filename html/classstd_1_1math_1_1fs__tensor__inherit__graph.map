@@ -1,7 +1,7 @@
 <map id="std::math::fs_tensor&lt; T, L, A, Ds &gt;" name="std::math::fs_tensor&lt; T, L, A, Ds &gt;">
-<area shape="rect" id="node1" title="Fixed&#45;size, fixed&#45;capacity tensor." alt="" coords="262,5,401,493"/>
-<area shape="rect" id="node2" href="$classstd_1_1math_1_1fs__matrix.html" title="Fixed&#45;size, fixed&#45;capacity matrix." alt="" coords="5,600,145,1117"/>
-<area shape="rect" id="node3" href="$classstd_1_1math_1_1fs__vector.html" title="Fixed&#45;size, fixed&#45;capacity vector." alt="" coords="170,659,309,1059"/>
-<area shape="rect" id="node4" href="$classstd_1_1math_1_1fs__tensor.html" title=" " alt="" coords="333,600,516,1117"/>
-<area shape="rect" id="node5" href="$classstd_1_1math_1_1fs__tensor.html" title=" " alt="" coords="540,600,723,1117"/>
+<area shape="rect" id="node1" title="Fixed&#45;size, fixed&#45;capacity tensor." alt="" coords="117,5,256,420"/>
+<area shape="rect" id="node2" href="$classstd_1_1math_1_1fs__tensor.html" title=" " alt="" coords="37,483,176,897"/>
+<area shape="rect" id="node4" href="$classstd_1_1math_1_1fs__tensor.html" title=" " alt="" coords="219,483,357,897"/>
+<area shape="rect" id="node3" href="$classstd_1_1math_1_1fs__matrix.html" title="Fixed&#45;size, fixed&#45;capacity matrix." alt="" coords="5,947,189,1332"/>
+<area shape="rect" id="node5" href="$classstd_1_1math_1_1fs__vector.html" title="Fixed&#45;size, fixed&#45;capacity vector." alt="" coords="214,991,381,1288"/>
 </map>

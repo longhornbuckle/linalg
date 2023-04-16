@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=11"/>
 <meta name="generator" content="Doxygen 1.9.6"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>Linear Algebra: std::math::fs_matrix&lt; T, R, C, L, A &gt;::rebind&lt; ValueType, LayoutType, AccessorType &gt; Class Template Reference</title>
+<title>Linear Algebra: std::math::fs_matrix&lt; T, R, C, L, A, typename &gt;::rebind&lt; ValueType, LayoutType, AccessorType &gt; Class Template Reference</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -76,7 +76,7 @@ $(function() {
   <div class="summary">
 <a href="#pub-types">Public Types</a> &#124;
 <a href="classstd_1_1math_1_1fs__matrix_1_1rebind-members.html">List of all members</a>  </div>
-  <div class="headertitle"><div class="title">std::math::fs_matrix&lt; T, R, C, L, A &gt;::rebind&lt; ValueType, LayoutType, AccessorType &gt; Class Template Reference</div></div>
+  <div class="headertitle"><div class="title">std::math::fs_matrix&lt; T, R, C, L, A, typename &gt;::rebind&lt; ValueType, LayoutType, AccessorType &gt; Class Template Reference</div></div>
 </div><!--header-->
 <div class="contents">
 
@@ -85,21 +85,21 @@ $(function() {
 
 <p><code>#include &lt;<a class="el" href="fixed__size__matrix_8hpp_source.html">fixed_size_matrix.hpp</a>&gt;</code></p>
 <div class="dynheader">
-Collaboration diagram for std::math::fs_matrix&lt; T, R, C, L, A &gt;::rebind&lt; ValueType, LayoutType, AccessorType &gt;:</div>
+Collaboration diagram for std::math::fs_matrix&lt; T, R, C, L, A, typename &gt;::rebind&lt; ValueType, LayoutType, AccessorType &gt;:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="classstd_1_1math_1_1fs__matrix_1_1rebind__coll__graph.svg" width="184" height="132"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+<div class="center"><iframe scrolling="no" frameborder="0" src="classstd_1_1math_1_1fs__matrix_1_1rebind__coll__graph.svg" width="239" height="132"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
 </div>
 </div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-types" name="pub-types"></a>
 Public Types</h2></td></tr>
-<tr class="memitem:a45069033cdb653c507b13148c3856774"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classstd_1_1math_1_1fs__matrix_1_1rebind.html#a45069033cdb653c507b13148c3856774">type</a> = <a class="el" href="classstd_1_1math_1_1fs__matrix.html">fs_matrix</a>&lt; ValueType, R, C, LayoutType, rebind_accessor_type &gt;</td></tr>
-<tr class="separator:a45069033cdb653c507b13148c3856774"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a89ed55aa4d1c2fc605587a244bc6a5ec"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classstd_1_1math_1_1fs__matrix_1_1rebind.html#a89ed55aa4d1c2fc605587a244bc6a5ec">type</a> = <a class="el" href="classstd_1_1math_1_1fs__matrix.html">fs_matrix</a>&lt; ValueType, R, C, LayoutType, rebind_accessor_type &gt;</td></tr>
+<tr class="separator:a89ed55aa4d1c2fc605587a244bc6a5ec"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock"><div class="compoundTemplParams">template&lt;class T, size_t R, size_t C, class L = experimental::layout_right, class A = experimental::default_accessor&lt;T&gt;&gt;<br />
+<div class="textblock"><div class="compoundTemplParams">template&lt;class T, ::std::size_t R, ::std::size_t C, class L, class A, typename&gt;<br />
 template&lt;class ValueType, class LayoutType = layout_type, class AccessorType = accessor_type&gt;<br />
-class std::math::fs_matrix&lt; T, R, C, L, A &gt;::rebind&lt; ValueType, LayoutType, AccessorType &gt;</div><p>Rebind defines a type for a rebinding a fixed size matrix to the new type parameters. </p>
+class std::math::fs_matrix&lt; T, R, C, L, A, typename &gt;::rebind&lt; ValueType, LayoutType, AccessorType &gt;</div><p>Rebind defines a type for a rebinding a fixed size matrix to the new type parameters. </p>
 <dl class="tparams"><dt>Template Parameters</dt><dd>
   <table class="tparams">
     <tr><td class="paramname">ValueType</td><td>rebound value type </td></tr>
@@ -109,18 +109,18 @@ class std::math::fs_matrix&lt; T, R, C, L, A &gt;::rebind&lt; ValueType, LayoutT
   </dd>
 </dl>
 </div><h2 class="groupheader">Member Typedef Documentation</h2>
-<a id="a45069033cdb653c507b13148c3856774" name="a45069033cdb653c507b13148c3856774"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a45069033cdb653c507b13148c3856774">&#9670;&#160;</a></span>type</h2>
+<a id="a89ed55aa4d1c2fc605587a244bc6a5ec" name="a89ed55aa4d1c2fc605587a244bc6a5ec"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a89ed55aa4d1c2fc605587a244bc6a5ec">&#9670;&#160;</a></span>type</h2>
 
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;class T , size_t R, size_t C, class L  = experimental::layout_right, class A  = experimental::default_accessor&lt;T&gt;&gt; </div>
+template&lt;class T , ::std::size_t R, ::std::size_t C, class L , class A , typename &gt; </div>
 <div class="memtemplate">
 template&lt;class ValueType , class LayoutType  = layout_type, class AccessorType  = accessor_type&gt; </div>
       <table class="memname">
         <tr>
-          <td class="memname">using <a class="el" href="classstd_1_1math_1_1fs__matrix.html">std::math::fs_matrix</a>&lt; T, R, C, L, A &gt;::rebind&lt; ValueType, LayoutType, AccessorType &gt;::type =  <a class="el" href="classstd_1_1math_1_1fs__matrix.html">fs_matrix</a>&lt; ValueType, R, C, LayoutType, rebind_accessor_type &gt;</td>
+          <td class="memname">using <a class="el" href="classstd_1_1math_1_1fs__matrix.html">std::math::fs_matrix</a>&lt; T, R, C, L, A, typename &gt;::rebind&lt; ValueType, LayoutType, AccessorType &gt;::type =  <a class="el" href="classstd_1_1math_1_1fs__matrix.html">fs_matrix</a>&lt; ValueType, R, C, LayoutType, rebind_accessor_type &gt;</td>
         </tr>
       </table>
 </div><div class="memdoc">

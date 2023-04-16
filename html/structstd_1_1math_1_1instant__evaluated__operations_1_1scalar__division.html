@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=11"/>
 <meta name="generator" content="Doxygen 1.9.6"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>Linear Algebra: std::math::instant_evaluated_operations::scalar_division&lt; T, S &gt; Struct Template Reference</title>
+<title>Linear Algebra: std::math::instant_evaluated_operations::scalar_division&lt; T, S, typename &gt; Struct Template Reference</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -74,10 +74,11 @@ $(function() {
 </div><!-- top -->
 <div class="header">
   <div class="summary">
+<a href="#nested-classes">Classes</a> &#124;
 <a href="#pub-types">Public Types</a> &#124;
 <a href="#pub-static-methods">Static Public Member Functions</a> &#124;
 <a href="structstd_1_1math_1_1instant__evaluated__operations_1_1scalar__division-members.html">List of all members</a>  </div>
-  <div class="headertitle"><div class="title">std::math::instant_evaluated_operations::scalar_division&lt; T, S &gt; Struct Template Reference</div></div>
+  <div class="headertitle"><div class="title">std::math::instant_evaluated_operations::scalar_division&lt; T, S, typename &gt; Struct Template Reference</div></div>
 </div><!--header-->
 <div class="contents">
 
@@ -86,30 +87,30 @@ $(function() {
 
 <p><code>#include &lt;<a class="el" href="instant__evaluated__operations_8hpp_source.html">instant_evaluated_operations.hpp</a>&gt;</code></p>
 <div class="dynheader">
-Collaboration diagram for std::math::instant_evaluated_operations::scalar_division&lt; T, S &gt;:</div>
+Collaboration diagram for std::math::instant_evaluated_operations::scalar_division&lt; T, S, typename &gt;:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="structstd_1_1math_1_1instant__evaluated__operations_1_1scalar__division__coll__graph.svg" width="174" height="132"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+<div class="center"><iframe scrolling="no" frameborder="0" src="structstd_1_1math_1_1instant__evaluated__operations_1_1scalar__division__coll__graph.svg" width="163" height="147"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
 </div>
 </div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-types" name="pub-types"></a>
 Public Types</h2></td></tr>
-<tr class="memitem:ac3816fb79769d3f73b801626fab828c8"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structstd_1_1math_1_1instant__evaluated__operations_1_1scalar__division.html#ac3816fb79769d3f73b801626fab828c8">tensor_type</a> = T</td></tr>
-<tr class="memdesc:ac3816fb79769d3f73b801626fab828c8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Input tensor type.  <br /></td></tr>
-<tr class="separator:ac3816fb79769d3f73b801626fab828c8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aeeadb824f5a92d314896ab19e2a02446"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structstd_1_1math_1_1instant__evaluated__operations_1_1scalar__division.html#aeeadb824f5a92d314896ab19e2a02446">tensor_type</a> = T</td></tr>
+<tr class="memdesc:aeeadb824f5a92d314896ab19e2a02446"><td class="mdescLeft">&#160;</td><td class="mdescRight">Input tensor type.  <br /></td></tr>
+<tr class="separator:aeeadb824f5a92d314896ab19e2a02446"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-static-methods" name="pub-static-methods"></a>
 Static Public Member Functions</h2></td></tr>
-<tr class="memitem:a1284b7e889bd171b02bb357147385f9e"><td class="memItemLeft" align="right" valign="top">static constexpr auto&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structstd_1_1math_1_1instant__evaluated__operations_1_1scalar__division.html#a1284b7e889bd171b02bb357147385f9e">divide</a> (const <a class="el" href="structstd_1_1math_1_1instant__evaluated__operations_1_1scalar__division.html#ac3816fb79769d3f73b801626fab828c8">tensor_type</a> &amp;t, const S &amp;s) noexcept(noexcept(<a class="el" href="namespacestd_1_1math_1_1detail.html#ae5eb3cf5ea2a6e93d691bfd9f701768e">detail::make_from_tuple</a>&lt; result_tensor_type &gt;(collect_ctor_args(declval&lt; const <a class="el" href="structstd_1_1math_1_1instant__evaluated__operations_1_1scalar__division.html#ac3816fb79769d3f73b801626fab828c8">tensor_type</a> &amp; &gt;(), [&amp;t,&amp;s]&lt; class ... IndexType &gt;(IndexType ... indices) constexpr noexcept { return t[indices ...]/s;}))))</td></tr>
-<tr class="memdesc:a1284b7e889bd171b02bb357147385f9e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns t / s.  <br /></td></tr>
-<tr class="separator:a1284b7e889bd171b02bb357147385f9e"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ae7de84ddf87a86b08cc26f78d0ab6dd1"><td class="memItemLeft" align="right" valign="top">static constexpr <a class="el" href="structstd_1_1math_1_1instant__evaluated__operations_1_1scalar__division.html#ac3816fb79769d3f73b801626fab828c8">tensor_type</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structstd_1_1math_1_1instant__evaluated__operations_1_1scalar__division.html#ae7de84ddf87a86b08cc26f78d0ab6dd1">divide</a> (<a class="el" href="structstd_1_1math_1_1instant__evaluated__operations_1_1scalar__division.html#ac3816fb79769d3f73b801626fab828c8">tensor_type</a> &amp;t, const S &amp;s) noexcept(noexcept(<a class="el" href="namespacestd_1_1math_1_1detail.html#a0632c805386c46488956a9bdc72c749b">detail::apply_all</a>(t.underlying_span(), [&amp;t,&amp;s]&lt; class ... IndexType &gt;(IndexType ... indices) constexpr noexcept { static_cast&lt; void &gt;(t[indices ...]/=s);}, execution::unseq)))</td></tr>
-<tr class="memdesc:ae7de84ddf87a86b08cc26f78d0ab6dd1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns t /= s.  <br /></td></tr>
-<tr class="separator:ae7de84ddf87a86b08cc26f78d0ab6dd1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af712e5c4bd7d1539e2f66ed76a6fa6c5"><td class="memItemLeft" align="right" valign="top">static constexpr auto&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structstd_1_1math_1_1instant__evaluated__operations_1_1scalar__division.html#af712e5c4bd7d1539e2f66ed76a6fa6c5">divide</a> (const <a class="el" href="structstd_1_1math_1_1instant__evaluated__operations_1_1scalar__division.html#aeeadb824f5a92d314896ab19e2a02446">tensor_type</a> &amp;t, const S &amp;s)</td></tr>
+<tr class="memdesc:af712e5c4bd7d1539e2f66ed76a6fa6c5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns t / s.  <br /></td></tr>
+<tr class="separator:af712e5c4bd7d1539e2f66ed76a6fa6c5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a147c2b9bebdcbc702989c781ddceddbf"><td class="memItemLeft" align="right" valign="top">static constexpr <a class="el" href="structstd_1_1math_1_1instant__evaluated__operations_1_1scalar__division.html#aeeadb824f5a92d314896ab19e2a02446">tensor_type</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structstd_1_1math_1_1instant__evaluated__operations_1_1scalar__division.html#a147c2b9bebdcbc702989c781ddceddbf">divide</a> (<a class="el" href="structstd_1_1math_1_1instant__evaluated__operations_1_1scalar__division.html#aeeadb824f5a92d314896ab19e2a02446">tensor_type</a> &amp;t, const S &amp;s)</td></tr>
+<tr class="memdesc:a147c2b9bebdcbc702989c781ddceddbf"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns t /= s.  <br /></td></tr>
+<tr class="separator:a147c2b9bebdcbc702989c781ddceddbf"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock"><div class="compoundTemplParams">template&lt;concepts::tensor_data T, class S&gt;<br />
-struct std::math::instant_evaluated_operations::scalar_division&lt; T, S &gt;</div><p>Defines scalar division operation on a tensor with a scalar. </p>
+<div class="textblock"><div class="compoundTemplParams">template&lt;class T, class S, typename = ::std::enable_if_t&lt; concepts::tensor_data_v&lt;T&gt; &gt;&gt;<br />
+struct std::math::instant_evaluated_operations::scalar_division&lt; T, S, typename &gt;</div><p>Defines scalar division operation on a tensor with a scalar. </p>
 <dl class="tparams"><dt>Template Parameters</dt><dd>
   <table class="tparams">
     <tr><td class="paramname">S</td><td>scalar </td></tr>
@@ -118,16 +119,16 @@ struct std::math::instant_evaluated_operations::scalar_division&lt; T, S &gt;</d
   </dd>
 </dl>
 </div><h2 class="groupheader">Member Typedef Documentation</h2>
-<a id="ac3816fb79769d3f73b801626fab828c8" name="ac3816fb79769d3f73b801626fab828c8"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ac3816fb79769d3f73b801626fab828c8">&#9670;&#160;</a></span>tensor_type</h2>
+<a id="aeeadb824f5a92d314896ab19e2a02446" name="aeeadb824f5a92d314896ab19e2a02446"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aeeadb824f5a92d314896ab19e2a02446">&#9670;&#160;</a></span>tensor_type</h2>
 
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;concepts::tensor_data T, class S &gt; </div>
+template&lt;class T , class S , typename  = ::std::enable_if_t&lt; concepts::tensor_data_v&lt;T&gt; &gt;&gt; </div>
       <table class="memname">
         <tr>
-          <td class="memname">using <a class="el" href="structstd_1_1math_1_1instant__evaluated__operations_1_1scalar__division.html">std::math::instant_evaluated_operations::scalar_division</a>&lt; T, S &gt;::tensor_type =  T</td>
+          <td class="memname">using <a class="el" href="structstd_1_1math_1_1instant__evaluated__operations_1_1scalar__division.html">std::math::instant_evaluated_operations::scalar_division</a>&lt; T, S, typename &gt;::tensor_type =  T</td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -137,21 +138,21 @@ template&lt;concepts::tensor_data T, class S &gt; </div>
 </div>
 </div>
 <h2 class="groupheader">Member Function Documentation</h2>
-<a id="a1284b7e889bd171b02bb357147385f9e" name="a1284b7e889bd171b02bb357147385f9e"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a1284b7e889bd171b02bb357147385f9e">&#9670;&#160;</a></span>divide() <span class="overload">[1/2]</span></h2>
+<a id="af712e5c4bd7d1539e2f66ed76a6fa6c5" name="af712e5c4bd7d1539e2f66ed76a6fa6c5"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af712e5c4bd7d1539e2f66ed76a6fa6c5">&#9670;&#160;</a></span>divide() <span class="overload">[1/2]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;concepts::tensor_data T, class S &gt; </div>
+template&lt;class T , class S , typename  = ::std::enable_if_t&lt; concepts::tensor_data_v&lt;T&gt; &gt;&gt; </div>
 <table class="mlabels">
   <tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">static constexpr auto <a class="el" href="structstd_1_1math_1_1instant__evaluated__operations_1_1scalar__division.html">std::math::instant_evaluated_operations::scalar_division</a>&lt; T, S &gt;::divide </td>
+          <td class="memname">static constexpr auto <a class="el" href="structstd_1_1math_1_1instant__evaluated__operations_1_1scalar__division.html">std::math::instant_evaluated_operations::scalar_division</a>&lt; T, S, typename &gt;::divide </td>
           <td>(</td>
-          <td class="paramtype">const <a class="el" href="structstd_1_1math_1_1instant__evaluated__operations_1_1scalar__division.html#ac3816fb79769d3f73b801626fab828c8">tensor_type</a> &amp;&#160;</td>
+          <td class="paramtype">const <a class="el" href="structstd_1_1math_1_1instant__evaluated__operations_1_1scalar__division.html#aeeadb824f5a92d314896ab19e2a02446">tensor_type</a> &amp;&#160;</td>
           <td class="paramname"><em>t</em>, </td>
         </tr>
         <tr>
@@ -168,7 +169,7 @@ template&lt;concepts::tensor_data T, class S &gt; </div>
       </table>
   </td>
   <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">static</span><span class="mlabel">constexpr</span><span class="mlabel">noexcept</span></span>  </td>
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">static</span><span class="mlabel">constexpr</span></span>  </td>
   </tr>
 </table>
 </div><div class="memdoc">
@@ -177,21 +178,21 @@ template&lt;concepts::tensor_data T, class S &gt; </div>
 
 </div>
 </div>
-<a id="ae7de84ddf87a86b08cc26f78d0ab6dd1" name="ae7de84ddf87a86b08cc26f78d0ab6dd1"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ae7de84ddf87a86b08cc26f78d0ab6dd1">&#9670;&#160;</a></span>divide() <span class="overload">[2/2]</span></h2>
+<a id="a147c2b9bebdcbc702989c781ddceddbf" name="a147c2b9bebdcbc702989c781ddceddbf"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a147c2b9bebdcbc702989c781ddceddbf">&#9670;&#160;</a></span>divide() <span class="overload">[2/2]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;concepts::tensor_data T, class S &gt; </div>
+template&lt;class T , class S , typename  = ::std::enable_if_t&lt; concepts::tensor_data_v&lt;T&gt; &gt;&gt; </div>
 <table class="mlabels">
   <tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">static constexpr <a class="el" href="structstd_1_1math_1_1instant__evaluated__operations_1_1scalar__division.html#ac3816fb79769d3f73b801626fab828c8">tensor_type</a> &amp; <a class="el" href="structstd_1_1math_1_1instant__evaluated__operations_1_1scalar__division.html">std::math::instant_evaluated_operations::scalar_division</a>&lt; T, S &gt;::divide </td>
+          <td class="memname">static constexpr <a class="el" href="structstd_1_1math_1_1instant__evaluated__operations_1_1scalar__division.html#aeeadb824f5a92d314896ab19e2a02446">tensor_type</a> &amp; <a class="el" href="structstd_1_1math_1_1instant__evaluated__operations_1_1scalar__division.html">std::math::instant_evaluated_operations::scalar_division</a>&lt; T, S, typename &gt;::divide </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="structstd_1_1math_1_1instant__evaluated__operations_1_1scalar__division.html#ac3816fb79769d3f73b801626fab828c8">tensor_type</a> &amp;&#160;</td>
+          <td class="paramtype"><a class="el" href="structstd_1_1math_1_1instant__evaluated__operations_1_1scalar__division.html#aeeadb824f5a92d314896ab19e2a02446">tensor_type</a> &amp;&#160;</td>
           <td class="paramname"><em>t</em>, </td>
         </tr>
         <tr>
@@ -208,7 +209,7 @@ template&lt;concepts::tensor_data T, class S &gt; </div>
       </table>
   </td>
   <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">static</span><span class="mlabel">constexpr</span><span class="mlabel">noexcept</span></span>  </td>
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">static</span><span class="mlabel">constexpr</span></span>  </td>
   </tr>
 </table>
 </div><div class="memdoc">

@@ -116,42 +116,36 @@ Public Types</h2></td></tr>
 <tr class="memitem:a45a1af906818137bb34eb82f01c89275"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classstd_1_1math_1_1dr__tensor.html#a45a1af906818137bb34eb82f01c89275">element_type</a> = typename accessor_type::element_type</td></tr>
 <tr class="memdesc:a45a1af906818137bb34eb82f01c89275"><td class="mdescLeft">&#160;</td><td class="mdescRight">Type contained by the tensor.  <br /></td></tr>
 <tr class="separator:a45a1af906818137bb34eb82f01c89275"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ad92f5299cd5817c7c8d23471d6f76e42"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classstd_1_1math_1_1dr__tensor.html#ad92f5299cd5817c7c8d23471d6f76e42">size_type</a> = size_t</td></tr>
-<tr class="memdesc:ad92f5299cd5817c7c8d23471d6f76e42"><td class="mdescLeft">&#160;</td><td class="mdescRight">Type used for size along any dimension.  <br /></td></tr>
-<tr class="separator:ad92f5299cd5817c7c8d23471d6f76e42"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aab60c7ac7de58b9986fba1a43edf95a3"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classstd_1_1math_1_1dr__tensor.html#aab60c7ac7de58b9986fba1a43edf95a3">extents_type</a> = typename detail::template extents_helper&lt; <a class="el" href="classstd_1_1math_1_1dr__tensor.html#ad92f5299cd5817c7c8d23471d6f76e42">size_type</a>, R &gt;::extents_type</td></tr>
+<tr class="memitem:a4b5c86a1cd6102c755915cfcc13a7136"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classstd_1_1math_1_1dr__tensor.html#a4b5c86a1cd6102c755915cfcc13a7136">size_type</a> = ::std::size_t</td></tr>
+<tr class="memdesc:a4b5c86a1cd6102c755915cfcc13a7136"><td class="mdescLeft">&#160;</td><td class="mdescRight">Type used for size along any dimension.  <br /></td></tr>
+<tr class="separator:a4b5c86a1cd6102c755915cfcc13a7136"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aab60c7ac7de58b9986fba1a43edf95a3"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classstd_1_1math_1_1dr__tensor.html#aab60c7ac7de58b9986fba1a43edf95a3">extents_type</a> = typename detail::template extents_helper&lt; <a class="el" href="classstd_1_1math_1_1dr__tensor.html#a4b5c86a1cd6102c755915cfcc13a7136">size_type</a>, R &gt;::extents_type</td></tr>
 <tr class="memdesc:aab60c7ac7de58b9986fba1a43edf95a3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Type used to express size of tensor.  <br /></td></tr>
 <tr class="separator:aab60c7ac7de58b9986fba1a43edf95a3"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a1a99c1781e9f09ce477dc87f950216e6"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classstd_1_1math_1_1dr__tensor.html#a1a99c1781e9f09ce477dc87f950216e6">value_type</a> = remove_cv_t&lt; <a class="el" href="classstd_1_1math_1_1dr__tensor.html#a45a1af906818137bb34eb82f01c89275">element_type</a> &gt;</td></tr>
-<tr class="memdesc:a1a99c1781e9f09ce477dc87f950216e6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Type returned by const index access.  <br /></td></tr>
-<tr class="separator:a1a99c1781e9f09ce477dc87f950216e6"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a25d140c88f3bf227d4be72c5809ab19a"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classstd_1_1math_1_1dr__tensor.html#a25d140c88f3bf227d4be72c5809ab19a">allocator_type</a> = allocator_traits&lt; Alloc &gt;::template rebind_alloc&lt; <a class="el" href="classstd_1_1math_1_1dr__tensor.html#a45a1af906818137bb34eb82f01c89275">element_type</a> &gt;</td></tr>
-<tr class="memdesc:a25d140c88f3bf227d4be72c5809ab19a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Type of allocator used to get memory.  <br /></td></tr>
-<tr class="separator:a25d140c88f3bf227d4be72c5809ab19a"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a32d51fefc007ba5c0fe1bc333076b8dd"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classstd_1_1math_1_1dr__tensor.html#a32d51fefc007ba5c0fe1bc333076b8dd">index_type</a> = ptrdiff_t</td></tr>
-<tr class="memdesc:a32d51fefc007ba5c0fe1bc333076b8dd"><td class="mdescLeft">&#160;</td><td class="mdescRight">Type used for indexing.  <br /></td></tr>
-<tr class="separator:a32d51fefc007ba5c0fe1bc333076b8dd"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a311855993b4064aba8e19587ed8c8c30"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classstd_1_1math_1_1dr__tensor.html#a311855993b4064aba8e19587ed8c8c30">tuple_type</a> = typename detail::template extents_helper&lt; <a class="el" href="classstd_1_1math_1_1dr__tensor.html#ad92f5299cd5817c7c8d23471d6f76e42">size_type</a>, R &gt;::tuple_type</td></tr>
+<tr class="memitem:a048d31cdd668b9704760e956a5b4c516"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classstd_1_1math_1_1dr__tensor.html#a048d31cdd668b9704760e956a5b4c516">value_type</a> = ::std::remove_cv_t&lt; <a class="el" href="classstd_1_1math_1_1dr__tensor.html#a45a1af906818137bb34eb82f01c89275">element_type</a> &gt;</td></tr>
+<tr class="memdesc:a048d31cdd668b9704760e956a5b4c516"><td class="mdescLeft">&#160;</td><td class="mdescRight">Type returned by const index access.  <br /></td></tr>
+<tr class="separator:a048d31cdd668b9704760e956a5b4c516"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac0bc7afbb2db5dedb1119ded144fed5e"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classstd_1_1math_1_1dr__tensor.html#ac0bc7afbb2db5dedb1119ded144fed5e">allocator_type</a> = typename ::std::allocator_traits&lt; Alloc &gt;::template rebind_alloc&lt; <a class="el" href="classstd_1_1math_1_1dr__tensor.html#a45a1af906818137bb34eb82f01c89275">element_type</a> &gt;</td></tr>
+<tr class="memdesc:ac0bc7afbb2db5dedb1119ded144fed5e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Type of allocator used to get memory.  <br /></td></tr>
+<tr class="separator:ac0bc7afbb2db5dedb1119ded144fed5e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9d4b4878b915f67198024ad75703e3c2"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classstd_1_1math_1_1dr__tensor.html#a9d4b4878b915f67198024ad75703e3c2">index_type</a> = ::std::ptrdiff_t</td></tr>
+<tr class="memdesc:a9d4b4878b915f67198024ad75703e3c2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Type used for indexing.  <br /></td></tr>
+<tr class="separator:a9d4b4878b915f67198024ad75703e3c2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a311855993b4064aba8e19587ed8c8c30"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classstd_1_1math_1_1dr__tensor.html#a311855993b4064aba8e19587ed8c8c30">tuple_type</a> = typename detail::template extents_helper&lt; <a class="el" href="classstd_1_1math_1_1dr__tensor.html#a4b5c86a1cd6102c755915cfcc13a7136">size_type</a>, R &gt;::tuple_type</td></tr>
 <tr class="memdesc:a311855993b4064aba8e19587ed8c8c30"><td class="mdescLeft">&#160;</td><td class="mdescRight">Type used to represent a node in the tensor.  <br /></td></tr>
 <tr class="separator:a311855993b4064aba8e19587ed8c8c30"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a4330bcccce54d66e9f93c7889a3998a2"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classstd_1_1math_1_1dr__tensor.html#a4330bcccce54d66e9f93c7889a3998a2">underlying_span_type</a> = decltype(<a class="el" href="namespacestd_1_1math_1_1detail.html#af274dde876e47ba2ec1b483608c81d69">detail::submdspan</a>(declval&lt; capacity_span_type &gt;(), declval&lt; <a class="el" href="classstd_1_1math_1_1dr__tensor.html#a311855993b4064aba8e19587ed8c8c30">tuple_type</a> &gt;(), declval&lt; <a class="el" href="classstd_1_1math_1_1dr__tensor.html#a311855993b4064aba8e19587ed8c8c30">tuple_type</a> &gt;()))</td></tr>
-<tr class="memdesc:a4330bcccce54d66e9f93c7889a3998a2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Type used to view memory within size.  <br /></td></tr>
-<tr class="separator:a4330bcccce54d66e9f93c7889a3998a2"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ac614c64c2545c31fb294544d95536f23"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classstd_1_1math_1_1dr__tensor.html#ac614c64c2545c31fb294544d95536f23">const_underlying_span_type</a> = decltype(<a class="el" href="namespacestd_1_1math_1_1detail.html#af274dde876e47ba2ec1b483608c81d69">detail::submdspan</a>(declval&lt; const_capacity_span_type &gt;(), declval&lt; <a class="el" href="classstd_1_1math_1_1dr__tensor.html#a311855993b4064aba8e19587ed8c8c30">tuple_type</a> &gt;(), declval&lt; <a class="el" href="classstd_1_1math_1_1dr__tensor.html#a311855993b4064aba8e19587ed8c8c30">tuple_type</a> &gt;()))</td></tr>
-<tr class="memdesc:ac614c64c2545c31fb294544d95536f23"><td class="mdescLeft">&#160;</td><td class="mdescRight">Type used to const view memory within size.  <br /></td></tr>
-<tr class="separator:ac614c64c2545c31fb294544d95536f23"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ac18a7bc8a870b1b695e21b2d58cc4898"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classstd_1_1math_1_1dr__tensor.html#ac18a7bc8a870b1b695e21b2d58cc4898">span_type</a> = <a class="el" href="classstd_1_1math_1_1dr__tensor.html#ac614c64c2545c31fb294544d95536f23">const_underlying_span_type</a></td></tr>
+<tr class="memitem:a6114b7653366d9150c033abc021994c1"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classstd_1_1math_1_1dr__tensor.html#a6114b7653366d9150c033abc021994c1">underlying_span_type</a> = decltype(<a class="el" href="namespacestd_1_1math_1_1detail.html#a6872a0bdcffd2f4bf3be1a1f063cbddc">detail::submdspan</a>(::std::declval&lt; capacity_span_type &gt;(), ::std::declval&lt; <a class="el" href="classstd_1_1math_1_1dr__tensor.html#a311855993b4064aba8e19587ed8c8c30">tuple_type</a> &gt;(), ::std::declval&lt; <a class="el" href="classstd_1_1math_1_1dr__tensor.html#a311855993b4064aba8e19587ed8c8c30">tuple_type</a> &gt;()))</td></tr>
+<tr class="memdesc:a6114b7653366d9150c033abc021994c1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Type used to view memory within size.  <br /></td></tr>
+<tr class="separator:a6114b7653366d9150c033abc021994c1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a704eb064f32d74b9e0475d0597c599a4"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classstd_1_1math_1_1dr__tensor.html#a704eb064f32d74b9e0475d0597c599a4">const_underlying_span_type</a> = decltype(<a class="el" href="namespacestd_1_1math_1_1detail.html#a6872a0bdcffd2f4bf3be1a1f063cbddc">detail::submdspan</a>(::std::declval&lt; const_capacity_span_type &gt;(), ::std::declval&lt; <a class="el" href="classstd_1_1math_1_1dr__tensor.html#a311855993b4064aba8e19587ed8c8c30">tuple_type</a> &gt;(), ::std::declval&lt; <a class="el" href="classstd_1_1math_1_1dr__tensor.html#a311855993b4064aba8e19587ed8c8c30">tuple_type</a> &gt;()))</td></tr>
+<tr class="memdesc:a704eb064f32d74b9e0475d0597c599a4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Type used to const view memory within size.  <br /></td></tr>
+<tr class="separator:a704eb064f32d74b9e0475d0597c599a4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac18a7bc8a870b1b695e21b2d58cc4898"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classstd_1_1math_1_1dr__tensor.html#ac18a7bc8a870b1b695e21b2d58cc4898">span_type</a> = <a class="el" href="classstd_1_1math_1_1dr__tensor.html#a704eb064f32d74b9e0475d0597c599a4">const_underlying_span_type</a></td></tr>
 <tr class="memdesc:ac18a7bc8a870b1b695e21b2d58cc4898"><td class="mdescLeft">&#160;</td><td class="mdescRight">Type used to portray tensor as an N dimensional view.  <br /></td></tr>
 <tr class="separator:ac18a7bc8a870b1b695e21b2d58cc4898"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ab12f3e2dba6862820a8480998e76841d"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classstd_1_1math_1_1dr__tensor.html#ab12f3e2dba6862820a8480998e76841d">reference_type</a> = typename accessor_type::reference</td></tr>
-<tr class="memdesc:ab12f3e2dba6862820a8480998e76841d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Type returned by mutable index access.  <br /></td></tr>
-<tr class="separator:ab12f3e2dba6862820a8480998e76841d"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a220aaa2d4ad4d41d374244948ca68930"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classstd_1_1math_1_1dr__tensor.html#a220aaa2d4ad4d41d374244948ca68930">subtensor_type</a> = <a class="el" href="classstd_1_1math_1_1tensor__view.html">tensor_view</a>&lt; decltype(<a class="el" href="namespacestd_1_1math_1_1detail.html#af274dde876e47ba2ec1b483608c81d69">detail::submdspan</a>(declval&lt; <a class="el" href="classstd_1_1math_1_1dr__tensor.html#a4330bcccce54d66e9f93c7889a3998a2">underlying_span_type</a> &gt;(), declval&lt; <a class="el" href="classstd_1_1math_1_1dr__tensor.html#a311855993b4064aba8e19587ed8c8c30">tuple_type</a> &gt;(), declval&lt; <a class="el" href="classstd_1_1math_1_1dr__tensor.html#a311855993b4064aba8e19587ed8c8c30">tuple_type</a> &gt;())) &gt;</td></tr>
-<tr class="memdesc:a220aaa2d4ad4d41d374244948ca68930"><td class="mdescLeft">&#160;</td><td class="mdescRight">mutable view of a subtensor  <br /></td></tr>
-<tr class="separator:a220aaa2d4ad4d41d374244948ca68930"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a56057e834324d437bf4b1d9b06f8c122"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classstd_1_1math_1_1dr__tensor.html#a56057e834324d437bf4b1d9b06f8c122">const_subtensor_type</a> = <a class="el" href="classstd_1_1math_1_1tensor__view.html">tensor_view</a>&lt; decltype(<a class="el" href="namespacestd_1_1math_1_1detail.html#af274dde876e47ba2ec1b483608c81d69">detail::submdspan</a>(declval&lt; <a class="el" href="classstd_1_1math_1_1dr__tensor.html#ac614c64c2545c31fb294544d95536f23">const_underlying_span_type</a> &gt;(), declval&lt; <a class="el" href="classstd_1_1math_1_1dr__tensor.html#a311855993b4064aba8e19587ed8c8c30">tuple_type</a> &gt;(), declval&lt; <a class="el" href="classstd_1_1math_1_1dr__tensor.html#a311855993b4064aba8e19587ed8c8c30">tuple_type</a> &gt;())) &gt;</td></tr>
-<tr class="memdesc:a56057e834324d437bf4b1d9b06f8c122"><td class="mdescLeft">&#160;</td><td class="mdescRight">const view of a subtensor  <br /></td></tr>
-<tr class="separator:a56057e834324d437bf4b1d9b06f8c122"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af48887d03b8e7970607c199aa8ecc515"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classstd_1_1math_1_1dr__tensor.html#af48887d03b8e7970607c199aa8ecc515">reference</a> = typename accessor_type::reference</td></tr>
+<tr class="memdesc:af48887d03b8e7970607c199aa8ecc515"><td class="mdescLeft">&#160;</td><td class="mdescRight">Type returned by mutable index access.  <br /></td></tr>
+<tr class="separator:af48887d03b8e7970607c199aa8ecc515"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ab6869d29a011a9423543866c215a8dfe"><td class="memTemplParams" colspan="2">template&lt;class ValueType , class LayoutType  = layout_type, class AccessorType  = accessor_type&gt; </td></tr>
 <tr class="memitem:ab6869d29a011a9423543866c215a8dfe"><td class="memTemplItemLeft" align="right" valign="top">using&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="classstd_1_1math_1_1dr__tensor.html#ab6869d29a011a9423543866c215a8dfe">rebind_t</a> = typename <a class="el" href="classstd_1_1math_1_1dr__tensor_1_1rebind.html">rebind</a>&lt; ValueType, LayoutType, AccessorType &gt;::type</td></tr>
 <tr class="memdesc:ab6869d29a011a9423543866c215a8dfe"><td class="mdescLeft">&#160;</td><td class="mdescRight">Helper for defining rebound type.  <br /></td></tr>
@@ -159,80 +153,77 @@ Public Types</h2></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:a446f23f8f2a5d3841ecbf33ea3dfe0f6"><td class="memItemLeft" align="right" valign="top">constexpr&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classstd_1_1math_1_1dr__tensor.html#a446f23f8f2a5d3841ecbf33ea3dfe0f6">~dr_tensor</a> () noexcept(is_nothrow_destructible_v&lt; <a class="el" href="classstd_1_1math_1_1dr__tensor.html#a45a1af906818137bb34eb82f01c89275">element_type</a> &gt;)</td></tr>
-<tr class="memdesc:a446f23f8f2a5d3841ecbf33ea3dfe0f6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Destructor.  <br /></td></tr>
-<tr class="separator:a446f23f8f2a5d3841ecbf33ea3dfe0f6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a13d629f4df361778b4068505e2713afe"><td class="memItemLeft" align="right" valign="top"><a class="el" href="macros_8hpp.html#adbfd2dd4f15e1d2badbacae0ebad337e">LINALG_CONSTEXPR_DESTRUCTOR</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classstd_1_1math_1_1dr__tensor.html#a13d629f4df361778b4068505e2713afe">~dr_tensor</a> () noexcept(::std::is_nothrow_destructible_v&lt; <a class="el" href="classstd_1_1math_1_1dr__tensor.html#a45a1af906818137bb34eb82f01c89275">element_type</a> &gt;)</td></tr>
+<tr class="memdesc:a13d629f4df361778b4068505e2713afe"><td class="mdescLeft">&#160;</td><td class="mdescRight">Destructor.  <br /></td></tr>
+<tr class="separator:a13d629f4df361778b4068505e2713afe"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a4f2a1ac10f3d9b38c5fb786a75b1022c"><td class="memItemLeft" align="right" valign="top">constexpr&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classstd_1_1math_1_1dr__tensor.html#a4f2a1ac10f3d9b38c5fb786a75b1022c">dr_tensor</a> () noexcept</td></tr>
 <tr class="memdesc:a4f2a1ac10f3d9b38c5fb786a75b1022c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Default constructor.  <br /></td></tr>
 <tr class="separator:a4f2a1ac10f3d9b38c5fb786a75b1022c"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ad5f1a221a00f488df01cab73fc902cac"><td class="memItemLeft" align="right" valign="top">constexpr&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classstd_1_1math_1_1dr__tensor.html#ad5f1a221a00f488df01cab73fc902cac">dr_tensor</a> (<a class="el" href="classstd_1_1math_1_1dr__tensor.html">dr_tensor</a> &amp;&amp;rhs) noexcept(typename allocator_traits&lt; <a class="el" href="classstd_1_1math_1_1dr__tensor.html#a25d140c88f3bf227d4be72c5809ab19a">allocator_type</a> &gt;::propagate_on_container_move_assignment{}||typename allocator_traits&lt; <a class="el" href="classstd_1_1math_1_1dr__tensor.html#a25d140c88f3bf227d4be72c5809ab19a">allocator_type</a> &gt;::is_always_equal{})</td></tr>
-<tr class="memdesc:ad5f1a221a00f488df01cab73fc902cac"><td class="mdescLeft">&#160;</td><td class="mdescRight">Move constructor.  <br /></td></tr>
-<tr class="separator:ad5f1a221a00f488df01cab73fc902cac"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad62ef9ebc750486097c03f808b5c691e"><td class="memItemLeft" align="right" valign="top">constexpr&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classstd_1_1math_1_1dr__tensor.html#ad62ef9ebc750486097c03f808b5c691e">dr_tensor</a> (<a class="el" href="classstd_1_1math_1_1dr__tensor.html">dr_tensor</a> &amp;&amp;rhs) noexcept(typename ::std::allocator_traits&lt; <a class="el" href="classstd_1_1math_1_1dr__tensor.html#ac0bc7afbb2db5dedb1119ded144fed5e">allocator_type</a> &gt;::propagate_on_container_move_assignment{}||typename ::std::allocator_traits&lt; <a class="el" href="classstd_1_1math_1_1dr__tensor.html#ac0bc7afbb2db5dedb1119ded144fed5e">allocator_type</a> &gt;::is_always_equal{})</td></tr>
+<tr class="memdesc:ad62ef9ebc750486097c03f808b5c691e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Move constructor.  <br /></td></tr>
+<tr class="separator:ad62ef9ebc750486097c03f808b5c691e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a81295a5a862e36dbd2fd175a2ccccc5c"><td class="memItemLeft" align="right" valign="top">constexpr&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classstd_1_1math_1_1dr__tensor.html#a81295a5a862e36dbd2fd175a2ccccc5c">dr_tensor</a> (const <a class="el" href="classstd_1_1math_1_1dr__tensor.html">dr_tensor</a> &amp;rhs)</td></tr>
 <tr class="memdesc:a81295a5a862e36dbd2fd175a2ccccc5c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Copy constructor.  <br /></td></tr>
 <tr class="separator:a81295a5a862e36dbd2fd175a2ccccc5c"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:abae46576d8782344e9f509c0df8f5586"><td class="memTemplParams" colspan="2">template&lt;concepts::tensor_may_be_constructible&lt; <a class="el" href="classstd_1_1math_1_1dr__tensor.html">dr_tensor</a> &gt; T2&gt; </td></tr>
-<tr class="memitem:abae46576d8782344e9f509c0df8f5586"><td class="memTemplItemLeft" align="right" valign="top">constexpr&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="classstd_1_1math_1_1dr__tensor.html#abae46576d8782344e9f509c0df8f5586">dr_tensor</a> (const T2 &amp;rhs)</td></tr>
-<tr class="memdesc:abae46576d8782344e9f509c0df8f5586"><td class="mdescLeft">&#160;</td><td class="mdescRight">Template copy constructor.  <br /></td></tr>
-<tr class="separator:abae46576d8782344e9f509c0df8f5586"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:afd9a63c0a3e5e8e919ba2f26a2101bd1"><td class="memTemplParams" colspan="2">template&lt;concepts::view_may_be_constructible_to_tensor&lt; <a class="el" href="classstd_1_1math_1_1dr__tensor.html">dr_tensor</a> &gt; MDS&gt; <br />
-requires is_default_constructible_v&lt;<a class="el" href="classstd_1_1math_1_1dr__tensor.html#a25d140c88f3bf227d4be72c5809ab19a">allocator_type</a>&gt;</td></tr>
-<tr class="memitem:afd9a63c0a3e5e8e919ba2f26a2101bd1"><td class="memTemplItemLeft" align="right" valign="top">constexpr&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="classstd_1_1math_1_1dr__tensor.html#afd9a63c0a3e5e8e919ba2f26a2101bd1">dr_tensor</a> (const MDS &amp;view)</td></tr>
-<tr class="memdesc:afd9a63c0a3e5e8e919ba2f26a2101bd1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Construct from a view.  <br /></td></tr>
-<tr class="separator:afd9a63c0a3e5e8e919ba2f26a2101bd1"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:afd0b8630fe1004aac18b1bf3ebf7d1a6"><td class="memItemLeft" align="right" valign="top">constexpr&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classstd_1_1math_1_1dr__tensor.html#afd0b8630fe1004aac18b1bf3ebf7d1a6">dr_tensor</a> (<a class="el" href="classstd_1_1math_1_1dr__tensor.html#aab60c7ac7de58b9986fba1a43edf95a3">extents_type</a> s)</td></tr>
-<tr class="memdesc:afd0b8630fe1004aac18b1bf3ebf7d1a6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Attempt to allocate sufficient resources for a size tensor and construct.  <br /></td></tr>
-<tr class="separator:afd0b8630fe1004aac18b1bf3ebf7d1a6"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a497ca6eb197b25acd3f9f9fbd2c06234"><td class="memItemLeft" align="right" valign="top">constexpr&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classstd_1_1math_1_1dr__tensor.html#a497ca6eb197b25acd3f9f9fbd2c06234">dr_tensor</a> (<a class="el" href="classstd_1_1math_1_1dr__tensor.html#aab60c7ac7de58b9986fba1a43edf95a3">extents_type</a> s, <a class="el" href="classstd_1_1math_1_1dr__tensor.html#aab60c7ac7de58b9986fba1a43edf95a3">extents_type</a> cap)</td></tr>
-<tr class="memdesc:a497ca6eb197b25acd3f9f9fbd2c06234"><td class="mdescLeft">&#160;</td><td class="mdescRight">Attempt to allocate sufficient resources for a size tensor with the input capacity and construct.  <br /></td></tr>
-<tr class="separator:a497ca6eb197b25acd3f9f9fbd2c06234"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:abce259d62ffb79c551b351b0bb6c555a"><td class="memTemplParams" colspan="2">template&lt;class Lambda &gt; <br />
-requires is_default_constructible_v&lt;<a class="el" href="classstd_1_1math_1_1dr__tensor.html#a25d140c88f3bf227d4be72c5809ab19a">allocator_type</a>&gt; &amp;&amp; convertible_lambda_expression_v&lt; Lambda, make_integer_sequence&lt;<a class="el" href="classstd_1_1math_1_1dr__tensor.html#a32d51fefc007ba5c0fe1bc333076b8dd">index_type</a>,R&gt; &gt;</td></tr>
-<tr class="memitem:abce259d62ffb79c551b351b0bb6c555a"><td class="memTemplItemLeft" align="right" valign="top">constexpr&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="classstd_1_1math_1_1dr__tensor.html#abce259d62ffb79c551b351b0bb6c555a">dr_tensor</a> (<a class="el" href="classstd_1_1math_1_1dr__tensor.html#aab60c7ac7de58b9986fba1a43edf95a3">extents_type</a> s, Lambda &amp;&amp;lambda)</td></tr>
-<tr class="memdesc:abce259d62ffb79c551b351b0bb6c555a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Construct by applying lambda to every element in the tensor.  <br /></td></tr>
-<tr class="separator:abce259d62ffb79c551b351b0bb6c555a"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:af66a3eca137770e16699473c62879253"><td class="memTemplParams" colspan="2">template&lt;class Lambda &gt; <br />
-requires is_default_constructible_v&lt;<a class="el" href="classstd_1_1math_1_1dr__tensor.html#a25d140c88f3bf227d4be72c5809ab19a">allocator_type</a>&gt; &amp;&amp; convertible_lambda_expression_v&lt; Lambda, make_integer_sequence&lt;<a class="el" href="classstd_1_1math_1_1dr__tensor.html#a32d51fefc007ba5c0fe1bc333076b8dd">index_type</a>,R&gt; &gt;</td></tr>
-<tr class="memitem:af66a3eca137770e16699473c62879253"><td class="memTemplItemLeft" align="right" valign="top">constexpr&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="classstd_1_1math_1_1dr__tensor.html#af66a3eca137770e16699473c62879253">dr_tensor</a> (<a class="el" href="classstd_1_1math_1_1dr__tensor.html#aab60c7ac7de58b9986fba1a43edf95a3">extents_type</a> s, <a class="el" href="classstd_1_1math_1_1dr__tensor.html#aab60c7ac7de58b9986fba1a43edf95a3">extents_type</a> cap, Lambda &amp;&amp;lambda)</td></tr>
-<tr class="memdesc:af66a3eca137770e16699473c62879253"><td class="mdescLeft">&#160;</td><td class="mdescRight">Construct by applying lambda to every element in the tensor.  <br /></td></tr>
-<tr class="separator:af66a3eca137770e16699473c62879253"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a2ce0b70315e90316d2f01867030b5cbb"><td class="memItemLeft" align="right" valign="top">constexpr&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classstd_1_1math_1_1dr__tensor.html#a2ce0b70315e90316d2f01867030b5cbb">dr_tensor</a> (const <a class="el" href="classstd_1_1math_1_1dr__tensor.html#a25d140c88f3bf227d4be72c5809ab19a">allocator_type</a> &amp;alloc) noexcept</td></tr>
+<tr class="memitem:a0dfb78cc70cdfd8253aab1dbad2a8d09"><td class="memTemplParams" colspan="2">template&lt;class T2 , typename  = ::std::enable_if_t&lt; concepts::tensor_may_be_constructible&lt; T2, dr_tensor &gt; &gt;&gt; </td></tr>
+<tr class="memitem:a0dfb78cc70cdfd8253aab1dbad2a8d09"><td class="memTemplItemLeft" align="right" valign="top">constexpr&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="classstd_1_1math_1_1dr__tensor.html#a0dfb78cc70cdfd8253aab1dbad2a8d09">dr_tensor</a> (const T2 &amp;rhs)</td></tr>
+<tr class="memdesc:a0dfb78cc70cdfd8253aab1dbad2a8d09"><td class="mdescLeft">&#160;</td><td class="mdescRight">Template copy constructor.  <br /></td></tr>
+<tr class="separator:a0dfb78cc70cdfd8253aab1dbad2a8d09"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9cab0694448bda8de3029ec509ea09c7"><td class="memTemplParams" colspan="2">template&lt;class MDS , typename  = ::std::enable_if_t&lt; concepts::view_may_be_constructible_to_tensor&lt;MDS,dr_tensor&gt; &amp;&amp; ::std::is_default_constructible_v&lt;allocator_type&gt; &gt;, typename  = ::std::enable_if_t&lt;true&gt;&gt; </td></tr>
+<tr class="memitem:a9cab0694448bda8de3029ec509ea09c7"><td class="memTemplItemLeft" align="right" valign="top">constexpr&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="classstd_1_1math_1_1dr__tensor.html#a9cab0694448bda8de3029ec509ea09c7">dr_tensor</a> (const MDS &amp;view)</td></tr>
+<tr class="memdesc:a9cab0694448bda8de3029ec509ea09c7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Construct from a view.  <br /></td></tr>
+<tr class="separator:a9cab0694448bda8de3029ec509ea09c7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3d1013df24ac82f90445001aed82b14c"><td class="memTemplParams" colspan="2">template&lt;typename  = enable_if_t&lt; ::std::is_default_constructible_v&lt;allocator_type&gt; &gt;&gt; </td></tr>
+<tr class="memitem:a3d1013df24ac82f90445001aed82b14c"><td class="memTemplItemLeft" align="right" valign="top">constexpr&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="classstd_1_1math_1_1dr__tensor.html#a3d1013df24ac82f90445001aed82b14c">dr_tensor</a> (<a class="el" href="classstd_1_1math_1_1dr__tensor.html#aab60c7ac7de58b9986fba1a43edf95a3">extents_type</a> s)</td></tr>
+<tr class="memdesc:a3d1013df24ac82f90445001aed82b14c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Attempt to allocate sufficient resources for a size tensor and construct.  <br /></td></tr>
+<tr class="separator:a3d1013df24ac82f90445001aed82b14c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1f0d04fd3da87219a72921290f804f34"><td class="memTemplParams" colspan="2">template&lt;typename  = ::std::enable_if_t&lt; is_default_constructible_v&lt;allocator_type&gt; &gt;&gt; </td></tr>
+<tr class="memitem:a1f0d04fd3da87219a72921290f804f34"><td class="memTemplItemLeft" align="right" valign="top">constexpr&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="classstd_1_1math_1_1dr__tensor.html#a1f0d04fd3da87219a72921290f804f34">dr_tensor</a> (<a class="el" href="classstd_1_1math_1_1dr__tensor.html#aab60c7ac7de58b9986fba1a43edf95a3">extents_type</a> s, <a class="el" href="classstd_1_1math_1_1dr__tensor.html#aab60c7ac7de58b9986fba1a43edf95a3">extents_type</a> cap)</td></tr>
+<tr class="memdesc:a1f0d04fd3da87219a72921290f804f34"><td class="mdescLeft">&#160;</td><td class="mdescRight">Attempt to allocate sufficient resources for a size tensor with the input capacity and construct.  <br /></td></tr>
+<tr class="separator:a1f0d04fd3da87219a72921290f804f34"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7cdf9ab361a028cfe1c5429c48270c16"><td class="memTemplParams" colspan="2">template&lt;class Lambda , typename  = ::std::enable_if_t&lt; ::std::is_default_constructible_v&lt;allocator_type&gt; &amp;&amp;                                              convertible_lambda_expression_v&lt; Lambda, make_integer_sequence&lt;index_type,R&gt; &gt; &gt;&gt; </td></tr>
+<tr class="memitem:a7cdf9ab361a028cfe1c5429c48270c16"><td class="memTemplItemLeft" align="right" valign="top">constexpr&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="classstd_1_1math_1_1dr__tensor.html#a7cdf9ab361a028cfe1c5429c48270c16">dr_tensor</a> (<a class="el" href="classstd_1_1math_1_1dr__tensor.html#aab60c7ac7de58b9986fba1a43edf95a3">extents_type</a> s, Lambda &amp;&amp;lambda)</td></tr>
+<tr class="memdesc:a7cdf9ab361a028cfe1c5429c48270c16"><td class="mdescLeft">&#160;</td><td class="mdescRight">Construct by applying lambda to every element in the tensor.  <br /></td></tr>
+<tr class="separator:a7cdf9ab361a028cfe1c5429c48270c16"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac30a80faf7577429e2ad12bc1836ccdd"><td class="memTemplParams" colspan="2">template&lt;class Lambda , typename  = enable_if_t&lt; ::std::is_default_constructible_v&lt;allocator_type&gt; &amp;&amp;                                       convertible_lambda_expression_v&lt; Lambda, ::std::make_integer_sequence&lt;index_type,R&gt; &gt; &gt;&gt; </td></tr>
+<tr class="memitem:ac30a80faf7577429e2ad12bc1836ccdd"><td class="memTemplItemLeft" align="right" valign="top">constexpr&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="classstd_1_1math_1_1dr__tensor.html#ac30a80faf7577429e2ad12bc1836ccdd">dr_tensor</a> (<a class="el" href="classstd_1_1math_1_1dr__tensor.html#aab60c7ac7de58b9986fba1a43edf95a3">extents_type</a> s, <a class="el" href="classstd_1_1math_1_1dr__tensor.html#aab60c7ac7de58b9986fba1a43edf95a3">extents_type</a> cap, Lambda &amp;&amp;lambda)</td></tr>
+<tr class="memdesc:ac30a80faf7577429e2ad12bc1836ccdd"><td class="mdescLeft">&#160;</td><td class="mdescRight">Construct by applying lambda to every element in the tensor.  <br /></td></tr>
+<tr class="separator:ac30a80faf7577429e2ad12bc1836ccdd"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2ce0b70315e90316d2f01867030b5cbb"><td class="memItemLeft" align="right" valign="top">constexpr&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classstd_1_1math_1_1dr__tensor.html#a2ce0b70315e90316d2f01867030b5cbb">dr_tensor</a> (const <a class="el" href="classstd_1_1math_1_1dr__tensor.html#ac0bc7afbb2db5dedb1119ded144fed5e">allocator_type</a> &amp;alloc) noexcept</td></tr>
 <tr class="memdesc:a2ce0b70315e90316d2f01867030b5cbb"><td class="mdescLeft">&#160;</td><td class="mdescRight">Construct empty dimensionless tensor with an allocator.  <br /></td></tr>
 <tr class="separator:a2ce0b70315e90316d2f01867030b5cbb"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a46b9f459af98e1a179784415924f271e"><td class="memTemplParams" colspan="2">template&lt;concepts::view_may_be_constructible_to_tensor&lt; <a class="el" href="classstd_1_1math_1_1dr__tensor.html">dr_tensor</a> &gt; MDS&gt; </td></tr>
-<tr class="memitem:a46b9f459af98e1a179784415924f271e"><td class="memTemplItemLeft" align="right" valign="top">constexpr&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="classstd_1_1math_1_1dr__tensor.html#a46b9f459af98e1a179784415924f271e">dr_tensor</a> (const MDS &amp;view, const <a class="el" href="classstd_1_1math_1_1dr__tensor.html#a25d140c88f3bf227d4be72c5809ab19a">allocator_type</a> &amp;alloc)</td></tr>
-<tr class="memdesc:a46b9f459af98e1a179784415924f271e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Construct from a view.  <br /></td></tr>
-<tr class="separator:a46b9f459af98e1a179784415924f271e"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aad70f44d5a6c7f8cc8dd298a0f9c0867"><td class="memItemLeft" align="right" valign="top">constexpr&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classstd_1_1math_1_1dr__tensor.html#aad70f44d5a6c7f8cc8dd298a0f9c0867">dr_tensor</a> (<a class="el" href="classstd_1_1math_1_1dr__tensor.html#aab60c7ac7de58b9986fba1a43edf95a3">extents_type</a> s, const <a class="el" href="classstd_1_1math_1_1dr__tensor.html#a25d140c88f3bf227d4be72c5809ab19a">allocator_type</a> &amp;alloc)</td></tr>
+<tr class="memitem:af86552985ddb696753ed9cc566627ff5"><td class="memTemplParams" colspan="2">template&lt;class MDS , typename  = ::std::enable_if_t&lt; concepts::view_may_be_constructible_to_tensor&lt;MDS,dr_tensor&gt; &gt;&gt; </td></tr>
+<tr class="memitem:af86552985ddb696753ed9cc566627ff5"><td class="memTemplItemLeft" align="right" valign="top">constexpr&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="classstd_1_1math_1_1dr__tensor.html#af86552985ddb696753ed9cc566627ff5">dr_tensor</a> (const MDS &amp;view, const <a class="el" href="classstd_1_1math_1_1dr__tensor.html#ac0bc7afbb2db5dedb1119ded144fed5e">allocator_type</a> &amp;alloc)</td></tr>
+<tr class="memdesc:af86552985ddb696753ed9cc566627ff5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Construct from a view.  <br /></td></tr>
+<tr class="separator:af86552985ddb696753ed9cc566627ff5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aad70f44d5a6c7f8cc8dd298a0f9c0867"><td class="memItemLeft" align="right" valign="top">constexpr&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classstd_1_1math_1_1dr__tensor.html#aad70f44d5a6c7f8cc8dd298a0f9c0867">dr_tensor</a> (<a class="el" href="classstd_1_1math_1_1dr__tensor.html#aab60c7ac7de58b9986fba1a43edf95a3">extents_type</a> s, const <a class="el" href="classstd_1_1math_1_1dr__tensor.html#ac0bc7afbb2db5dedb1119ded144fed5e">allocator_type</a> &amp;alloc)</td></tr>
 <tr class="memdesc:aad70f44d5a6c7f8cc8dd298a0f9c0867"><td class="mdescLeft">&#160;</td><td class="mdescRight">Attempt to allocate sufficient resources for a size tensor and construct.  <br /></td></tr>
 <tr class="separator:aad70f44d5a6c7f8cc8dd298a0f9c0867"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a049d4465feb58111bc3318da679054f2"><td class="memItemLeft" align="right" valign="top">constexpr&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classstd_1_1math_1_1dr__tensor.html#a049d4465feb58111bc3318da679054f2">dr_tensor</a> (<a class="el" href="classstd_1_1math_1_1dr__tensor.html#aab60c7ac7de58b9986fba1a43edf95a3">extents_type</a> s, <a class="el" href="classstd_1_1math_1_1dr__tensor.html#aab60c7ac7de58b9986fba1a43edf95a3">extents_type</a> cap, const <a class="el" href="classstd_1_1math_1_1dr__tensor.html#a25d140c88f3bf227d4be72c5809ab19a">allocator_type</a> &amp;alloc)</td></tr>
+<tr class="memitem:a049d4465feb58111bc3318da679054f2"><td class="memItemLeft" align="right" valign="top">constexpr&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classstd_1_1math_1_1dr__tensor.html#a049d4465feb58111bc3318da679054f2">dr_tensor</a> (<a class="el" href="classstd_1_1math_1_1dr__tensor.html#aab60c7ac7de58b9986fba1a43edf95a3">extents_type</a> s, <a class="el" href="classstd_1_1math_1_1dr__tensor.html#aab60c7ac7de58b9986fba1a43edf95a3">extents_type</a> cap, const <a class="el" href="classstd_1_1math_1_1dr__tensor.html#ac0bc7afbb2db5dedb1119ded144fed5e">allocator_type</a> &amp;alloc)</td></tr>
 <tr class="memdesc:a049d4465feb58111bc3318da679054f2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Attempt to allocate sufficient resources for a size tensor with the input capacity and construct.  <br /></td></tr>
 <tr class="separator:a049d4465feb58111bc3318da679054f2"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a8e73fd59288af4dcb214b7611ee8b9ca"><td class="memTemplParams" colspan="2">template&lt;class Lambda &gt; <br />
-requires convertible_lambda_expression_v&lt; Lambda, make_integer_sequence&lt;<a class="el" href="classstd_1_1math_1_1dr__tensor.html#a32d51fefc007ba5c0fe1bc333076b8dd">index_type</a>,R&gt; &gt;</td></tr>
-<tr class="memitem:a8e73fd59288af4dcb214b7611ee8b9ca"><td class="memTemplItemLeft" align="right" valign="top">constexpr&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="classstd_1_1math_1_1dr__tensor.html#a8e73fd59288af4dcb214b7611ee8b9ca">dr_tensor</a> (<a class="el" href="classstd_1_1math_1_1dr__tensor.html#aab60c7ac7de58b9986fba1a43edf95a3">extents_type</a> s, Lambda &amp;&amp;lambda, const <a class="el" href="classstd_1_1math_1_1dr__tensor.html#a25d140c88f3bf227d4be72c5809ab19a">allocator_type</a> &amp;alloc)</td></tr>
-<tr class="memdesc:a8e73fd59288af4dcb214b7611ee8b9ca"><td class="mdescLeft">&#160;</td><td class="mdescRight">Construct by applying lambda to every element in the tensor.  <br /></td></tr>
-<tr class="separator:a8e73fd59288af4dcb214b7611ee8b9ca"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ad0bea18424e3b78f1a7b6f8398574a0a"><td class="memTemplParams" colspan="2">template&lt;class Lambda &gt; <br />
-requires convertible_lambda_expression_v&lt; Lambda, make_integer_sequence&lt;<a class="el" href="classstd_1_1math_1_1dr__tensor.html#a32d51fefc007ba5c0fe1bc333076b8dd">index_type</a>,R&gt; &gt;</td></tr>
-<tr class="memitem:ad0bea18424e3b78f1a7b6f8398574a0a"><td class="memTemplItemLeft" align="right" valign="top">constexpr&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="classstd_1_1math_1_1dr__tensor.html#ad0bea18424e3b78f1a7b6f8398574a0a">dr_tensor</a> (<a class="el" href="classstd_1_1math_1_1dr__tensor.html#aab60c7ac7de58b9986fba1a43edf95a3">extents_type</a> s, <a class="el" href="classstd_1_1math_1_1dr__tensor.html#aab60c7ac7de58b9986fba1a43edf95a3">extents_type</a> cap, Lambda &amp;&amp;lambda, const <a class="el" href="classstd_1_1math_1_1dr__tensor.html#a25d140c88f3bf227d4be72c5809ab19a">allocator_type</a> &amp;alloc)</td></tr>
-<tr class="memdesc:ad0bea18424e3b78f1a7b6f8398574a0a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Construct by applying lambda to every element in the tensor.  <br /></td></tr>
-<tr class="separator:ad0bea18424e3b78f1a7b6f8398574a0a"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a1abf6880d1ed2c8b30aafe846c2f9180"><td class="memItemLeft" align="right" valign="top">constexpr <a class="el" href="classstd_1_1math_1_1dr__tensor.html">dr_tensor</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classstd_1_1math_1_1dr__tensor.html#a1abf6880d1ed2c8b30aafe846c2f9180">operator=</a> (<a class="el" href="classstd_1_1math_1_1dr__tensor.html">dr_tensor</a> &amp;&amp;rhs) noexcept(typename allocator_traits&lt; <a class="el" href="classstd_1_1math_1_1dr__tensor.html#a25d140c88f3bf227d4be72c5809ab19a">allocator_type</a> &gt;::propagate_on_container_move_assignment()||typename allocator_traits&lt; <a class="el" href="classstd_1_1math_1_1dr__tensor.html#a25d140c88f3bf227d4be72c5809ab19a">allocator_type</a> &gt;::is_always_equal())</td></tr>
-<tr class="memdesc:a1abf6880d1ed2c8b30aafe846c2f9180"><td class="mdescLeft">&#160;</td><td class="mdescRight">Move assignment.  <br /></td></tr>
-<tr class="separator:a1abf6880d1ed2c8b30aafe846c2f9180"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa093745d67d4785007675f5f5a06a3dd"><td class="memTemplParams" colspan="2">template&lt;class Lambda , typename  = ::std::enable_if_t&lt; convertible_lambda_expression_v&lt; Lambda, ::std::make_integer_sequence&lt;index_type,R&gt; &gt; &gt;&gt; </td></tr>
+<tr class="memitem:aa093745d67d4785007675f5f5a06a3dd"><td class="memTemplItemLeft" align="right" valign="top">constexpr&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="classstd_1_1math_1_1dr__tensor.html#aa093745d67d4785007675f5f5a06a3dd">dr_tensor</a> (<a class="el" href="classstd_1_1math_1_1dr__tensor.html#aab60c7ac7de58b9986fba1a43edf95a3">extents_type</a> s, Lambda &amp;&amp;lambda, const <a class="el" href="classstd_1_1math_1_1dr__tensor.html#ac0bc7afbb2db5dedb1119ded144fed5e">allocator_type</a> &amp;alloc)</td></tr>
+<tr class="memdesc:aa093745d67d4785007675f5f5a06a3dd"><td class="mdescLeft">&#160;</td><td class="mdescRight">Construct by applying lambda to every element in the tensor.  <br /></td></tr>
+<tr class="separator:aa093745d67d4785007675f5f5a06a3dd"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4f482d4bb2ddaeeb0f5a5399899752a4"><td class="memTemplParams" colspan="2">template&lt;class Lambda , typename  = ::std::enable_if_t&lt; convertible_lambda_expression_v&lt; Lambda, ::std::make_integer_sequence&lt;index_type,R&gt; &gt; &gt;&gt; </td></tr>
+<tr class="memitem:a4f482d4bb2ddaeeb0f5a5399899752a4"><td class="memTemplItemLeft" align="right" valign="top">constexpr&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="classstd_1_1math_1_1dr__tensor.html#a4f482d4bb2ddaeeb0f5a5399899752a4">dr_tensor</a> (<a class="el" href="classstd_1_1math_1_1dr__tensor.html#aab60c7ac7de58b9986fba1a43edf95a3">extents_type</a> s, <a class="el" href="classstd_1_1math_1_1dr__tensor.html#aab60c7ac7de58b9986fba1a43edf95a3">extents_type</a> cap, Lambda &amp;&amp;lambda, const <a class="el" href="classstd_1_1math_1_1dr__tensor.html#ac0bc7afbb2db5dedb1119ded144fed5e">allocator_type</a> &amp;alloc)</td></tr>
+<tr class="memdesc:a4f482d4bb2ddaeeb0f5a5399899752a4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Construct by applying lambda to every element in the tensor.  <br /></td></tr>
+<tr class="separator:a4f482d4bb2ddaeeb0f5a5399899752a4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a335e4d85416dd8510250de67bfde1274"><td class="memItemLeft" align="right" valign="top">constexpr <a class="el" href="classstd_1_1math_1_1dr__tensor.html">dr_tensor</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classstd_1_1math_1_1dr__tensor.html#a335e4d85416dd8510250de67bfde1274">operator=</a> (<a class="el" href="classstd_1_1math_1_1dr__tensor.html">dr_tensor</a> &amp;&amp;rhs) noexcept(typename ::std::allocator_traits&lt; <a class="el" href="classstd_1_1math_1_1dr__tensor.html#ac0bc7afbb2db5dedb1119ded144fed5e">allocator_type</a> &gt;::propagate_on_container_move_assignment()||typename ::std::allocator_traits&lt; <a class="el" href="classstd_1_1math_1_1dr__tensor.html#ac0bc7afbb2db5dedb1119ded144fed5e">allocator_type</a> &gt;::is_always_equal())</td></tr>
+<tr class="memdesc:a335e4d85416dd8510250de67bfde1274"><td class="mdescLeft">&#160;</td><td class="mdescRight">Move assignment.  <br /></td></tr>
+<tr class="separator:a335e4d85416dd8510250de67bfde1274"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a2067141536976c2c5d2ae56cb88c54ec"><td class="memItemLeft" align="right" valign="top">constexpr <a class="el" href="classstd_1_1math_1_1dr__tensor.html">dr_tensor</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classstd_1_1math_1_1dr__tensor.html#a2067141536976c2c5d2ae56cb88c54ec">operator=</a> (const <a class="el" href="classstd_1_1math_1_1dr__tensor.html">dr_tensor</a> &amp;rhs)</td></tr>
 <tr class="memdesc:a2067141536976c2c5d2ae56cb88c54ec"><td class="mdescLeft">&#160;</td><td class="mdescRight">Copy assignment.  <br /></td></tr>
 <tr class="separator:a2067141536976c2c5d2ae56cb88c54ec"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a682ed28323074d803c3f87f0d4ae99d7"><td class="memTemplParams" colspan="2">template&lt;concepts::tensor_may_be_constructible&lt; <a class="el" href="classstd_1_1math_1_1dr__tensor.html">dr_tensor</a> &gt; T2&gt; </td></tr>
-<tr class="memitem:a682ed28323074d803c3f87f0d4ae99d7"><td class="memTemplItemLeft" align="right" valign="top">constexpr <a class="el" href="classstd_1_1math_1_1dr__tensor.html">dr_tensor</a> &amp;&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="classstd_1_1math_1_1dr__tensor.html#a682ed28323074d803c3f87f0d4ae99d7">operator=</a> (const T2 &amp;rhs)</td></tr>
-<tr class="memdesc:a682ed28323074d803c3f87f0d4ae99d7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Template copy assignment.  <br /></td></tr>
-<tr class="separator:a682ed28323074d803c3f87f0d4ae99d7"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ae2f019cfe69aa3d3c6f25911474db236"><td class="memTemplParams" colspan="2">template&lt;concepts::view_may_be_constructible_to_tensor&lt; <a class="el" href="classstd_1_1math_1_1dr__tensor.html">dr_tensor</a> &gt; MDS&gt; </td></tr>
-<tr class="memitem:ae2f019cfe69aa3d3c6f25911474db236"><td class="memTemplItemLeft" align="right" valign="top">constexpr <a class="el" href="classstd_1_1math_1_1dr__tensor.html">dr_tensor</a> &amp;&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="classstd_1_1math_1_1dr__tensor.html#ae2f019cfe69aa3d3c6f25911474db236">operator=</a> (const MDS &amp;view)</td></tr>
-<tr class="memdesc:ae2f019cfe69aa3d3c6f25911474db236"><td class="mdescLeft">&#160;</td><td class="mdescRight">Construct from an N dimensional view.  <br /></td></tr>
-<tr class="separator:ae2f019cfe69aa3d3c6f25911474db236"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac37eb70df48fc31574567599e837cc15"><td class="memTemplParams" colspan="2">template&lt;class T2 , typename  = ::std::enable_if_t&lt; concepts::tensor_may_be_constructible&lt; T2, dr_tensor &gt; &gt;&gt; </td></tr>
+<tr class="memitem:ac37eb70df48fc31574567599e837cc15"><td class="memTemplItemLeft" align="right" valign="top">constexpr <a class="el" href="classstd_1_1math_1_1dr__tensor.html">dr_tensor</a> &amp;&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="classstd_1_1math_1_1dr__tensor.html#ac37eb70df48fc31574567599e837cc15">operator=</a> (const T2 &amp;rhs)</td></tr>
+<tr class="memdesc:ac37eb70df48fc31574567599e837cc15"><td class="mdescLeft">&#160;</td><td class="mdescRight">Template copy assignment.  <br /></td></tr>
+<tr class="separator:ac37eb70df48fc31574567599e837cc15"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad9a24c5d0493235d29da7f5835d98703"><td class="memTemplParams" colspan="2">template&lt;class MDS , typename  = ::std::enable_if_t&lt; concepts::view_may_be_constructible_to_tensor&lt;MDS,dr_tensor&gt; &amp;&amp; ::std::is_default_constructible_v&lt;allocator_type&gt; &gt;, typename  = ::std::enable_if_t&lt;true&gt;&gt; </td></tr>
+<tr class="memitem:ad9a24c5d0493235d29da7f5835d98703"><td class="memTemplItemLeft" align="right" valign="top">constexpr <a class="el" href="classstd_1_1math_1_1dr__tensor.html">dr_tensor</a> &amp;&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="classstd_1_1math_1_1dr__tensor.html#ad9a24c5d0493235d29da7f5835d98703">operator=</a> (const MDS &amp;view)</td></tr>
+<tr class="memdesc:ad9a24c5d0493235d29da7f5835d98703"><td class="mdescLeft">&#160;</td><td class="mdescRight">Construct from an N dimensional view.  <br /></td></tr>
+<tr class="separator:ad9a24c5d0493235d29da7f5835d98703"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a275d3bd7235f3837cb98ba1c8a867396"><td class="memItemLeft" align="right" valign="top">constexpr <a class="el" href="classstd_1_1math_1_1dr__tensor.html#aab60c7ac7de58b9986fba1a43edf95a3">extents_type</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classstd_1_1math_1_1dr__tensor.html#a275d3bd7235f3837cb98ba1c8a867396">size</a> () const noexcept</td></tr>
 <tr class="memdesc:a275d3bd7235f3837cb98ba1c8a867396"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the current number of (rows,columns,depth,etc.)  <br /></td></tr>
 <tr class="separator:a275d3bd7235f3837cb98ba1c8a867396"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -245,79 +236,60 @@ requires convertible_lambda_expression_v&lt; Lambda, make_integer_sequence&lt;<a
 <tr class="memitem:a32196d11a470b955b93b065a31a09e2f"><td class="memItemLeft" align="right" valign="top">constexpr void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classstd_1_1math_1_1dr__tensor.html#a32196d11a470b955b93b065a31a09e2f">reserve</a> (<a class="el" href="classstd_1_1math_1_1dr__tensor.html#aab60c7ac7de58b9986fba1a43edf95a3">extents_type</a> new_cap)</td></tr>
 <tr class="memdesc:a32196d11a470b955b93b065a31a09e2f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Attempts to reserve the capacity of the tensor to the input extents.  <br /></td></tr>
 <tr class="separator:a32196d11a470b955b93b065a31a09e2f"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a01da7670cc51bd510d91ce9f98601f11"><td class="memItemLeft" align="right" valign="top">constexpr void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classstd_1_1math_1_1dr__tensor.html#a01da7670cc51bd510d91ce9f98601f11">set_allocator</a> (const <a class="el" href="classstd_1_1math_1_1dr__tensor.html#a25d140c88f3bf227d4be72c5809ab19a">allocator_type</a> &amp;alloc)</td></tr>
+<tr class="memitem:a01da7670cc51bd510d91ce9f98601f11"><td class="memItemLeft" align="right" valign="top">constexpr void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classstd_1_1math_1_1dr__tensor.html#a01da7670cc51bd510d91ce9f98601f11">set_allocator</a> (const <a class="el" href="classstd_1_1math_1_1dr__tensor.html#ac0bc7afbb2db5dedb1119ded144fed5e">allocator_type</a> &amp;alloc)</td></tr>
 <tr class="memdesc:a01da7670cc51bd510d91ce9f98601f11"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets a new allocator. Attempts to copy existing state into new memory managed by the new allocator.  <br /></td></tr>
 <tr class="separator:a01da7670cc51bd510d91ce9f98601f11"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:acb0a77f5c11f2a6a032209b5e54ca7c7"><td class="memItemLeft" align="right" valign="top">constexpr const <a class="el" href="classstd_1_1math_1_1dr__tensor.html#a25d140c88f3bf227d4be72c5809ab19a">allocator_type</a> &amp;&amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classstd_1_1math_1_1dr__tensor.html#acb0a77f5c11f2a6a032209b5e54ca7c7">get_allocator</a> () &amp;&amp;noexcept</td></tr>
+<tr class="memitem:acb0a77f5c11f2a6a032209b5e54ca7c7"><td class="memItemLeft" align="right" valign="top">constexpr const <a class="el" href="classstd_1_1math_1_1dr__tensor.html#ac0bc7afbb2db5dedb1119ded144fed5e">allocator_type</a> &amp;&amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classstd_1_1math_1_1dr__tensor.html#acb0a77f5c11f2a6a032209b5e54ca7c7">get_allocator</a> () &amp;&amp;noexcept</td></tr>
 <tr class="memdesc:acb0a77f5c11f2a6a032209b5e54ca7c7"><td class="mdescLeft">&#160;</td><td class="mdescRight">returns the rvalue allocator being used  <br /></td></tr>
 <tr class="separator:acb0a77f5c11f2a6a032209b5e54ca7c7"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a1496ab6d3ba42abe6ff67f750de78d17"><td class="memItemLeft" align="right" valign="top">constexpr const <a class="el" href="classstd_1_1math_1_1dr__tensor.html#a25d140c88f3bf227d4be72c5809ab19a">allocator_type</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classstd_1_1math_1_1dr__tensor.html#a1496ab6d3ba42abe6ff67f750de78d17">get_allocator</a> () const &amp;noexcept</td></tr>
+<tr class="memitem:a1496ab6d3ba42abe6ff67f750de78d17"><td class="memItemLeft" align="right" valign="top">constexpr const <a class="el" href="classstd_1_1math_1_1dr__tensor.html#ac0bc7afbb2db5dedb1119ded144fed5e">allocator_type</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classstd_1_1math_1_1dr__tensor.html#a1496ab6d3ba42abe6ff67f750de78d17">get_allocator</a> () const &amp;noexcept</td></tr>
 <tr class="memdesc:a1496ab6d3ba42abe6ff67f750de78d17"><td class="mdescLeft">&#160;</td><td class="mdescRight">returns the allocator being used  <br /></td></tr>
 <tr class="separator:a1496ab6d3ba42abe6ff67f750de78d17"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a81dac913f117d1276b494f62a758df89"><td class="memItemLeft" align="right" valign="top">constexpr <a class="el" href="classstd_1_1math_1_1dr__tensor.html#ac18a7bc8a870b1b695e21b2d58cc4898">span_type</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classstd_1_1math_1_1dr__tensor.html#a81dac913f117d1276b494f62a758df89">span</a> () const noexcept</td></tr>
 <tr class="memdesc:a81dac913f117d1276b494f62a758df89"><td class="mdescLeft">&#160;</td><td class="mdescRight">returns a const N dimensional span of extents(Ds...)  <br /></td></tr>
 <tr class="separator:a81dac913f117d1276b494f62a758df89"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:acc1bccfd0955c035f0369425f9c64bfc"><td class="memItemLeft" align="right" valign="top">constexpr <a class="el" href="classstd_1_1math_1_1dr__tensor.html#a4330bcccce54d66e9f93c7889a3998a2">underlying_span_type</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classstd_1_1math_1_1dr__tensor.html#acc1bccfd0955c035f0369425f9c64bfc">underlying_span</a> () noexcept</td></tr>
+<tr class="memitem:acc1bccfd0955c035f0369425f9c64bfc"><td class="memItemLeft" align="right" valign="top">constexpr <a class="el" href="classstd_1_1math_1_1dr__tensor.html#a6114b7653366d9150c033abc021994c1">underlying_span_type</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classstd_1_1math_1_1dr__tensor.html#acc1bccfd0955c035f0369425f9c64bfc">underlying_span</a> () noexcept</td></tr>
 <tr class="memdesc:acc1bccfd0955c035f0369425f9c64bfc"><td class="mdescLeft">&#160;</td><td class="mdescRight">returns a mutable N dimensional span of extents(Ds...)  <br /></td></tr>
 <tr class="separator:acc1bccfd0955c035f0369425f9c64bfc"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a46b1bddfe1c841797b45b6b5a5e1cb1d"><td class="memItemLeft" align="right" valign="top">constexpr <a class="el" href="classstd_1_1math_1_1dr__tensor.html#ac614c64c2545c31fb294544d95536f23">const_underlying_span_type</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classstd_1_1math_1_1dr__tensor.html#a46b1bddfe1c841797b45b6b5a5e1cb1d">underlying_span</a> () const noexcept</td></tr>
+<tr class="memitem:a46b1bddfe1c841797b45b6b5a5e1cb1d"><td class="memItemLeft" align="right" valign="top">constexpr <a class="el" href="classstd_1_1math_1_1dr__tensor.html#a704eb064f32d74b9e0475d0597c599a4">const_underlying_span_type</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classstd_1_1math_1_1dr__tensor.html#a46b1bddfe1c841797b45b6b5a5e1cb1d">underlying_span</a> () const noexcept</td></tr>
 <tr class="memdesc:a46b1bddfe1c841797b45b6b5a5e1cb1d"><td class="mdescLeft">&#160;</td><td class="mdescRight">returns a const N dimensional span of extents(Ds...)  <br /></td></tr>
 <tr class="separator:a46b1bddfe1c841797b45b6b5a5e1cb1d"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:adde946ea3d9bf10f5db8cf820fbc502e"><td class="memTemplParams" colspan="2">template&lt;class ... IndexType&gt; <br />
-requires ( sizeof...(IndexType) == R ) &amp;&amp; ( is_convertible_v&lt;IndexType,<a class="el" href="classstd_1_1math_1_1dr__tensor.html#a32d51fefc007ba5c0fe1bc333076b8dd">index_type</a>&gt; &amp;&amp; ... )</td></tr>
-<tr class="memitem:adde946ea3d9bf10f5db8cf820fbc502e"><td class="memTemplItemLeft" align="right" valign="top">constexpr <a class="el" href="classstd_1_1math_1_1dr__tensor.html#a1a99c1781e9f09ce477dc87f950216e6">value_type</a>&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="classstd_1_1math_1_1dr__tensor.html#adde946ea3d9bf10f5db8cf820fbc502e">operator[]</a> (IndexType ... indices) const noexcept</td></tr>
-<tr class="memdesc:adde946ea3d9bf10f5db8cf820fbc502e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the value at (indices...) without index bounds checking.  <br /></td></tr>
-<tr class="separator:adde946ea3d9bf10f5db8cf820fbc502e"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a607ecc31a33866abcda5e0a8f49c83ba"><td class="memTemplParams" colspan="2">template&lt;class ... IndexType&gt; <br />
-requires ( sizeof...(IndexType) == R ) &amp;&amp; ( is_convertible_v&lt;IndexType,<a class="el" href="classstd_1_1math_1_1dr__tensor.html#a32d51fefc007ba5c0fe1bc333076b8dd">index_type</a>&gt; &amp;&amp; ... )</td></tr>
-<tr class="memitem:a607ecc31a33866abcda5e0a8f49c83ba"><td class="memTemplItemLeft" align="right" valign="top">constexpr <a class="el" href="classstd_1_1math_1_1dr__tensor.html#a1a99c1781e9f09ce477dc87f950216e6">value_type</a>&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="classstd_1_1math_1_1dr__tensor.html#a607ecc31a33866abcda5e0a8f49c83ba">at</a> (IndexType ... indices) const</td></tr>
-<tr class="memdesc:a607ecc31a33866abcda5e0a8f49c83ba"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the value at (indices...) with index bounds checking.  <br /></td></tr>
-<tr class="separator:a607ecc31a33866abcda5e0a8f49c83ba"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a9bcfe1a957703d115319a91bd436de1f"><td class="memTemplParams" colspan="2">template&lt;class ... SliceArgs&gt; <br />
-requires ( decltype( experimental::submdspan( this-&gt;<a class="el" href="classstd_1_1math_1_1dr__tensor.html#acc1bccfd0955c035f0369425f9c64bfc">underlying_span</a>(), args ... ) )::rank() == 1 )</td></tr>
-<tr class="memitem:a9bcfe1a957703d115319a91bd436de1f"><td class="memTemplItemLeft" align="right" valign="top">constexpr auto&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="classstd_1_1math_1_1dr__tensor.html#a9bcfe1a957703d115319a91bd436de1f">subvector</a> (SliceArgs ... args) const</td></tr>
-<tr class="memdesc:a9bcfe1a957703d115319a91bd436de1f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns a const vector view.  <br /></td></tr>
-<tr class="separator:a9bcfe1a957703d115319a91bd436de1f"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aaeaa904d3a8e46c1f882249cc13761e5"><td class="memTemplParams" colspan="2">template&lt;class ... SliceArgs&gt; <br />
-requires ( decltype( experimental::submdspan( this-&gt;<a class="el" href="classstd_1_1math_1_1dr__tensor.html#acc1bccfd0955c035f0369425f9c64bfc">underlying_span</a>(), args ... ) )::rank() == 2 )</td></tr>
-<tr class="memitem:aaeaa904d3a8e46c1f882249cc13761e5"><td class="memTemplItemLeft" align="right" valign="top">constexpr auto&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="classstd_1_1math_1_1dr__tensor.html#aaeaa904d3a8e46c1f882249cc13761e5">submatrix</a> (SliceArgs ... args) const</td></tr>
-<tr class="memdesc:aaeaa904d3a8e46c1f882249cc13761e5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns a const matrix view.  <br /></td></tr>
-<tr class="separator:aaeaa904d3a8e46c1f882249cc13761e5"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aee40e78c9bf6b3e7bd3060a528dfe94b"><td class="memItemLeft" align="right" valign="top">constexpr <a class="el" href="classstd_1_1math_1_1dr__tensor.html#a56057e834324d437bf4b1d9b06f8c122">const_subtensor_type</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classstd_1_1math_1_1dr__tensor.html#aee40e78c9bf6b3e7bd3060a528dfe94b">subtensor</a> (<a class="el" href="classstd_1_1math_1_1dr__tensor.html#a311855993b4064aba8e19587ed8c8c30">tuple_type</a> start, <a class="el" href="classstd_1_1math_1_1dr__tensor.html#a311855993b4064aba8e19587ed8c8c30">tuple_type</a> end) const</td></tr>
-<tr class="memdesc:aee40e78c9bf6b3e7bd3060a528dfe94b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns a const view of the specified subtensor.  <br /></td></tr>
-<tr class="separator:aee40e78c9bf6b3e7bd3060a528dfe94b"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a9d0d8b648db3764fbba98209cf236ac8"><td class="memTemplParams" colspan="2">template&lt;class ... IndexType&gt; <br />
-requires ( sizeof...(IndexType) == R ) &amp;&amp; ( is_convertible_v&lt;IndexType,<a class="el" href="classstd_1_1math_1_1dr__tensor.html#a32d51fefc007ba5c0fe1bc333076b8dd">index_type</a>&gt; &amp;&amp; ... )</td></tr>
-<tr class="memitem:a9d0d8b648db3764fbba98209cf236ac8"><td class="memTemplItemLeft" align="right" valign="top">constexpr <a class="el" href="classstd_1_1math_1_1dr__tensor.html#ab12f3e2dba6862820a8480998e76841d">reference_type</a>&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="classstd_1_1math_1_1dr__tensor.html#a9d0d8b648db3764fbba98209cf236ac8">operator[]</a> (IndexType ... indices) noexcept</td></tr>
-<tr class="memdesc:a9d0d8b648db3764fbba98209cf236ac8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns a mutable value at (indices...) without index bounds checking.  <br /></td></tr>
-<tr class="separator:a9d0d8b648db3764fbba98209cf236ac8"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a7f52b94ae13750bd11efae7bffb777be"><td class="memTemplParams" colspan="2">template&lt;class ... IndexType&gt; <br />
-requires ( sizeof...(IndexType) == R ) &amp;&amp; ( is_convertible_v&lt;IndexType,<a class="el" href="classstd_1_1math_1_1dr__tensor.html#a32d51fefc007ba5c0fe1bc333076b8dd">index_type</a>&gt; &amp;&amp; ... )</td></tr>
-<tr class="memitem:a7f52b94ae13750bd11efae7bffb777be"><td class="memTemplItemLeft" align="right" valign="top">constexpr <a class="el" href="classstd_1_1math_1_1dr__tensor.html#ab12f3e2dba6862820a8480998e76841d">reference_type</a>&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="classstd_1_1math_1_1dr__tensor.html#a7f52b94ae13750bd11efae7bffb777be">at</a> (IndexType ... indices)</td></tr>
-<tr class="memdesc:a7f52b94ae13750bd11efae7bffb777be"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns a mutable value at (indices...) with index bounds checking.  <br /></td></tr>
-<tr class="separator:a7f52b94ae13750bd11efae7bffb777be"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a28402b65876d5c59ec7862b94c2163da"><td class="memTemplParams" colspan="2">template&lt;class ... SliceArgs&gt; <br />
-requires ( decltype( experimental::submdspan( this-&gt;<a class="el" href="classstd_1_1math_1_1dr__tensor.html#acc1bccfd0955c035f0369425f9c64bfc">underlying_span</a>(), args ... ) )::rank() == 1 )</td></tr>
-<tr class="memitem:a28402b65876d5c59ec7862b94c2163da"><td class="memTemplItemLeft" align="right" valign="top">constexpr auto&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="classstd_1_1math_1_1dr__tensor.html#a28402b65876d5c59ec7862b94c2163da">subvector</a> (SliceArgs ... args)</td></tr>
-<tr class="memdesc:a28402b65876d5c59ec7862b94c2163da"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns a vector view.  <br /></td></tr>
-<tr class="separator:a28402b65876d5c59ec7862b94c2163da"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aa6cf2c2bfd068bec868eb976f3657083"><td class="memTemplParams" colspan="2">template&lt;class ... SliceArgs&gt; <br />
-requires ( decltype( experimental::submdspan( this-&gt;<a class="el" href="classstd_1_1math_1_1dr__tensor.html#acc1bccfd0955c035f0369425f9c64bfc">underlying_span</a>(), args ... ) )::rank() == 2 )</td></tr>
-<tr class="memitem:aa6cf2c2bfd068bec868eb976f3657083"><td class="memTemplItemLeft" align="right" valign="top">constexpr auto&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="classstd_1_1math_1_1dr__tensor.html#aa6cf2c2bfd068bec868eb976f3657083">submatrix</a> (SliceArgs ... args)</td></tr>
-<tr class="memdesc:aa6cf2c2bfd068bec868eb976f3657083"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns a matrix view.  <br /></td></tr>
-<tr class="separator:aa6cf2c2bfd068bec868eb976f3657083"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a8a61dfd622cecc6c78caa283cb4eb6d3"><td class="memItemLeft" align="right" valign="top">constexpr <a class="el" href="classstd_1_1math_1_1dr__tensor.html#a220aaa2d4ad4d41d374244948ca68930">subtensor_type</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classstd_1_1math_1_1dr__tensor.html#a8a61dfd622cecc6c78caa283cb4eb6d3">subtensor</a> (<a class="el" href="classstd_1_1math_1_1dr__tensor.html#a311855993b4064aba8e19587ed8c8c30">tuple_type</a> start, <a class="el" href="classstd_1_1math_1_1dr__tensor.html#a311855993b4064aba8e19587ed8c8c30">tuple_type</a> end)</td></tr>
-<tr class="memdesc:a8a61dfd622cecc6c78caa283cb4eb6d3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns a mutable view of the specified subtensor.  <br /></td></tr>
-<tr class="separator:a8a61dfd622cecc6c78caa283cb4eb6d3"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a975804f112c6ef3b7cc44359e5f2acd6"><td class="memTemplParams" colspan="2">template&lt;concepts::tensor_may_be_constructible&lt; <a class="el" href="classstd_1_1math_1_1dr__tensor.html">dr_tensor</a>&lt; T, R, Alloc, L, Access &gt; &gt; T2&gt; </td></tr>
-<tr class="memitem:a975804f112c6ef3b7cc44359e5f2acd6"><td class="memTemplItemLeft" align="right" valign="top">constexpr <a class="el" href="classstd_1_1math_1_1dr__tensor.html">dr_tensor</a>&lt; T, R, Alloc, L, Access &gt; &amp;&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="classstd_1_1math_1_1dr__tensor.html#a975804f112c6ef3b7cc44359e5f2acd6">operator=</a> (const T2 &amp;rhs)</td></tr>
-<tr class="separator:a975804f112c6ef3b7cc44359e5f2acd6"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a3c8f1807059a2a88933131d4c4d08fd8"><td class="memTemplParams" colspan="2">template&lt;concepts::view_may_be_constructible_to_tensor&lt; <a class="el" href="classstd_1_1math_1_1dr__tensor.html">dr_tensor</a>&lt; T, R, Alloc, L, Access &gt; &gt; MDS&gt; </td></tr>
-<tr class="memitem:a3c8f1807059a2a88933131d4c4d08fd8"><td class="memTemplItemLeft" align="right" valign="top">constexpr <a class="el" href="classstd_1_1math_1_1dr__tensor.html">dr_tensor</a>&lt; T, R, Alloc, L, Access &gt; &amp;&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="classstd_1_1math_1_1dr__tensor.html#a3c8f1807059a2a88933131d4c4d08fd8">operator=</a> (const MDS &amp;view)</td></tr>
-<tr class="separator:a3c8f1807059a2a88933131d4c4d08fd8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6528790d38475ff9f5083e84daf2bc89"><td class="memTemplParams" colspan="2">template&lt;class ... SliceArgs&gt; </td></tr>
+<tr class="memitem:a6528790d38475ff9f5083e84daf2bc89"><td class="memTemplItemLeft" align="right" valign="top">constexpr auto&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="classstd_1_1math_1_1dr__tensor.html#a6528790d38475ff9f5083e84daf2bc89">subvector</a> (SliceArgs ... args) const</td></tr>
+<tr class="memdesc:a6528790d38475ff9f5083e84daf2bc89"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the value at (indices...) without index bounds checking.  <br /></td></tr>
+<tr class="separator:a6528790d38475ff9f5083e84daf2bc89"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af80e6f2f7f4ec2d6154157568498e113"><td class="memTemplParams" colspan="2">template&lt;class ... SliceArgs&gt; </td></tr>
+<tr class="memitem:af80e6f2f7f4ec2d6154157568498e113"><td class="memTemplItemLeft" align="right" valign="top">constexpr auto&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="classstd_1_1math_1_1dr__tensor.html#af80e6f2f7f4ec2d6154157568498e113">submatrix</a> (SliceArgs ... args) const</td></tr>
+<tr class="memdesc:af80e6f2f7f4ec2d6154157568498e113"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns a const matrix view.  <br /></td></tr>
+<tr class="separator:af80e6f2f7f4ec2d6154157568498e113"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aabc005954d13cb372241e28f927d2d1e"><td class="memTemplParams" colspan="2">template&lt;class ... SliceArgs&gt; </td></tr>
+<tr class="memitem:aabc005954d13cb372241e28f927d2d1e"><td class="memTemplItemLeft" align="right" valign="top">constexpr auto&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="classstd_1_1math_1_1dr__tensor.html#aabc005954d13cb372241e28f927d2d1e">subtensor</a> (SliceArgs ... args) const</td></tr>
+<tr class="memdesc:aabc005954d13cb372241e28f927d2d1e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns a const view of the specified subtensor.  <br /></td></tr>
+<tr class="separator:aabc005954d13cb372241e28f927d2d1e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a965e2cf06b31cdebe9581a16e109a43f"><td class="memTemplParams" colspan="2">template&lt;class ... SliceArgs&gt; </td></tr>
+<tr class="memitem:a965e2cf06b31cdebe9581a16e109a43f"><td class="memTemplItemLeft" align="right" valign="top">constexpr auto&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="classstd_1_1math_1_1dr__tensor.html#a965e2cf06b31cdebe9581a16e109a43f">subvector</a> (SliceArgs ... args)</td></tr>
+<tr class="memdesc:a965e2cf06b31cdebe9581a16e109a43f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns a mutable value at (indices...) without index bounds checking.  <br /></td></tr>
+<tr class="separator:a965e2cf06b31cdebe9581a16e109a43f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a35e2b112fa287421a21760bb85d4abe5"><td class="memTemplParams" colspan="2">template&lt;class ... SliceArgs&gt; </td></tr>
+<tr class="memitem:a35e2b112fa287421a21760bb85d4abe5"><td class="memTemplItemLeft" align="right" valign="top">constexpr auto&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="classstd_1_1math_1_1dr__tensor.html#a35e2b112fa287421a21760bb85d4abe5">submatrix</a> (SliceArgs ... args)</td></tr>
+<tr class="memdesc:a35e2b112fa287421a21760bb85d4abe5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns a matrix view.  <br /></td></tr>
+<tr class="separator:a35e2b112fa287421a21760bb85d4abe5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a85a16479e74bfba4d4cda5ee8e0fd79a"><td class="memTemplParams" colspan="2">template&lt;class ... SliceArgs&gt; </td></tr>
+<tr class="memitem:a85a16479e74bfba4d4cda5ee8e0fd79a"><td class="memTemplItemLeft" align="right" valign="top">constexpr auto&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="classstd_1_1math_1_1dr__tensor.html#a85a16479e74bfba4d4cda5ee8e0fd79a">subtensor</a> (SliceArgs ... args)</td></tr>
+<tr class="memdesc:a85a16479e74bfba4d4cda5ee8e0fd79a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns a mutable view of the specified subtensor.  <br /></td></tr>
+<tr class="separator:a85a16479e74bfba4d4cda5ee8e0fd79a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac7d9f91062a67283531a7dcf6c9c9409"><td class="memTemplParams" colspan="2">template&lt;class T2 , typename &gt; </td></tr>
+<tr class="memitem:ac7d9f91062a67283531a7dcf6c9c9409"><td class="memTemplItemLeft" align="right" valign="top">constexpr <a class="el" href="classstd_1_1math_1_1dr__tensor.html">dr_tensor</a>&lt; T, R, Alloc, L, Access &gt; &amp;&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="classstd_1_1math_1_1dr__tensor.html#ac7d9f91062a67283531a7dcf6c9c9409">operator=</a> (const T2 &amp;rhs)</td></tr>
+<tr class="separator:ac7d9f91062a67283531a7dcf6c9c9409"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2af185986f6eb76a984475544e3517b6"><td class="memTemplParams" colspan="2">template&lt;class MDS , typename , typename &gt; </td></tr>
+<tr class="memitem:a2af185986f6eb76a984475544e3517b6"><td class="memTemplItemLeft" align="right" valign="top">constexpr <a class="el" href="classstd_1_1math_1_1dr__tensor.html">dr_tensor</a>&lt; T, R, Alloc, L, Access &gt; &amp;&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="classstd_1_1math_1_1dr__tensor.html#a2af185986f6eb76a984475544e3517b6">operator=</a> (const MDS &amp;view)</td></tr>
+<tr class="separator:a2af185986f6eb76a984475544e3517b6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae0e5f160938af9ea7776d76241cb5150"><td class="memTemplParams" colspan="2">template&lt;size_t ... Indices&gt; </td></tr>
+<tr class="memitem:ae0e5f160938af9ea7776d76241cb5150"><td class="memTemplItemLeft" align="right" valign="top">constexpr <a class="el" href="classstd_1_1math_1_1dr__tensor.html">dr_tensor</a>&lt; T, R, Alloc, L, Access &gt;<a class="el" href="classstd_1_1math_1_1dr__tensor.html#a6114b7653366d9150c033abc021994c1">::underlying_span_type</a>&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="classstd_1_1math_1_1dr__tensor.html#ae0e5f160938af9ea7776d76241cb5150">create_view_impl</a> (const <a class="el" href="classstd_1_1math_1_1dr__tensor.html#aab60c7ac7de58b9986fba1a43edf95a3">extents_type</a> s, index_sequence&lt; Indices... &gt;) noexcept</td></tr>
+<tr class="separator:ae0e5f160938af9ea7776d76241cb5150"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock"><div class="compoundTemplParams">template&lt;class T, size_t R, class Alloc = allocator&lt;T&gt;, class L = experimental::layout_right, class Access = experimental::default_accessor&lt;T&gt;&gt;<br />
+<div class="textblock"><div class="compoundTemplParams">template&lt;class T, size_t R, class Alloc, class L, class Access&gt;<br />
 class std::math::dr_tensor&lt; T, R, Alloc, L, Access &gt;</div><p>Dynamic-size, dynamic-capacity tensor. </p>
 <dl class="tparams"><dt>Template Parameters</dt><dd>
   <table class="tparams">
@@ -336,7 +308,7 @@ class std::math::dr_tensor&lt; T, R, Alloc, L, Access &gt;</div><p>Dynamic-size,
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;class T , size_t R, class Alloc  = allocator&lt;T&gt;, class L  = experimental::layout_right, class Access  = experimental::default_accessor&lt;T&gt;&gt; </div>
+template&lt;class T , size_t R, class Alloc , class L , class Access &gt; </div>
       <table class="memname">
         <tr>
           <td class="memname">using <a class="el" href="classstd_1_1math_1_1dr__tensor.html">std::math::dr_tensor</a>&lt; T, R, Alloc, L, Access &gt;::accessor_type =  Access</td>
@@ -348,16 +320,16 @@ template&lt;class T , size_t R, class Alloc  = allocator&lt;T&gt;, class L  = ex
 
 </div>
 </div>
-<a id="a25d140c88f3bf227d4be72c5809ab19a" name="a25d140c88f3bf227d4be72c5809ab19a"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a25d140c88f3bf227d4be72c5809ab19a">&#9670;&#160;</a></span>allocator_type</h2>
+<a id="ac0bc7afbb2db5dedb1119ded144fed5e" name="ac0bc7afbb2db5dedb1119ded144fed5e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac0bc7afbb2db5dedb1119ded144fed5e">&#9670;&#160;</a></span>allocator_type</h2>
 
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;class T , size_t R, class Alloc  = allocator&lt;T&gt;, class L  = experimental::layout_right, class Access  = experimental::default_accessor&lt;T&gt;&gt; </div>
+template&lt;class T , size_t R, class Alloc , class L , class Access &gt; </div>
       <table class="memname">
         <tr>
-          <td class="memname">using <a class="el" href="classstd_1_1math_1_1dr__tensor.html">std::math::dr_tensor</a>&lt; T, R, Alloc, L, Access &gt;::allocator_type =  allocator_traits&lt;Alloc&gt;::template rebind_alloc&lt;<a class="el" href="classstd_1_1math_1_1dr__tensor.html#a45a1af906818137bb34eb82f01c89275">element_type</a>&gt;</td>
+          <td class="memname">using <a class="el" href="classstd_1_1math_1_1dr__tensor.html">std::math::dr_tensor</a>&lt; T, R, Alloc, L, Access &gt;::allocator_type =  typename ::std::allocator_traits&lt;Alloc&gt;::template rebind_alloc&lt;<a class="el" href="classstd_1_1math_1_1dr__tensor.html#a45a1af906818137bb34eb82f01c89275">element_type</a>&gt;</td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -366,34 +338,16 @@ template&lt;class T , size_t R, class Alloc  = allocator&lt;T&gt;, class L  = ex
 
 </div>
 </div>
-<a id="a56057e834324d437bf4b1d9b06f8c122" name="a56057e834324d437bf4b1d9b06f8c122"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a56057e834324d437bf4b1d9b06f8c122">&#9670;&#160;</a></span>const_subtensor_type</h2>
+<a id="a704eb064f32d74b9e0475d0597c599a4" name="a704eb064f32d74b9e0475d0597c599a4"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a704eb064f32d74b9e0475d0597c599a4">&#9670;&#160;</a></span>const_underlying_span_type</h2>
 
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;class T , size_t R, class Alloc  = allocator&lt;T&gt;, class L  = experimental::layout_right, class Access  = experimental::default_accessor&lt;T&gt;&gt; </div>
+template&lt;class T , size_t R, class Alloc , class L , class Access &gt; </div>
       <table class="memname">
         <tr>
-          <td class="memname">using <a class="el" href="classstd_1_1math_1_1dr__tensor.html">std::math::dr_tensor</a>&lt; T, R, Alloc, L, Access &gt;::const_subtensor_type =  <a class="el" href="classstd_1_1math_1_1tensor__view.html">tensor_view</a>&lt; decltype( <a class="el" href="namespacestd_1_1math_1_1detail.html#af274dde876e47ba2ec1b483608c81d69">detail::submdspan</a>( declval&lt;<a class="el" href="classstd_1_1math_1_1dr__tensor.html#ac614c64c2545c31fb294544d95536f23">const_underlying_span_type</a>&gt;(), declval&lt;<a class="el" href="classstd_1_1math_1_1dr__tensor.html#a311855993b4064aba8e19587ed8c8c30">tuple_type</a>&gt;(), declval&lt;<a class="el" href="classstd_1_1math_1_1dr__tensor.html#a311855993b4064aba8e19587ed8c8c30">tuple_type</a>&gt;() ) ) &gt;</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>const view of a subtensor </p>
-
-</div>
-</div>
-<a id="ac614c64c2545c31fb294544d95536f23" name="ac614c64c2545c31fb294544d95536f23"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ac614c64c2545c31fb294544d95536f23">&#9670;&#160;</a></span>const_underlying_span_type</h2>
-
-<div class="memitem">
-<div class="memproto">
-<div class="memtemplate">
-template&lt;class T , size_t R, class Alloc  = allocator&lt;T&gt;, class L  = experimental::layout_right, class Access  = experimental::default_accessor&lt;T&gt;&gt; </div>
-      <table class="memname">
-        <tr>
-          <td class="memname">using <a class="el" href="classstd_1_1math_1_1dr__tensor.html">std::math::dr_tensor</a>&lt; T, R, Alloc, L, Access &gt;::const_underlying_span_type =  decltype( <a class="el" href="namespacestd_1_1math_1_1detail.html#af274dde876e47ba2ec1b483608c81d69">detail::submdspan</a>( declval&lt;const_capacity_span_type&gt;(), declval&lt;<a class="el" href="classstd_1_1math_1_1dr__tensor.html#a311855993b4064aba8e19587ed8c8c30">tuple_type</a>&gt;(), declval&lt;<a class="el" href="classstd_1_1math_1_1dr__tensor.html#a311855993b4064aba8e19587ed8c8c30">tuple_type</a>&gt;() ) )</td>
+          <td class="memname">using <a class="el" href="classstd_1_1math_1_1dr__tensor.html">std::math::dr_tensor</a>&lt; T, R, Alloc, L, Access &gt;::const_underlying_span_type =  decltype( <a class="el" href="namespacestd_1_1math_1_1detail.html#a6872a0bdcffd2f4bf3be1a1f063cbddc">detail::submdspan</a>( ::std::declval&lt;const_capacity_span_type&gt;(), ::std::declval&lt;<a class="el" href="classstd_1_1math_1_1dr__tensor.html#a311855993b4064aba8e19587ed8c8c30">tuple_type</a>&gt;(), ::std::declval&lt;<a class="el" href="classstd_1_1math_1_1dr__tensor.html#a311855993b4064aba8e19587ed8c8c30">tuple_type</a>&gt;() ) )</td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -408,7 +362,7 @@ template&lt;class T , size_t R, class Alloc  = allocator&lt;T&gt;, class L  = ex
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;class T , size_t R, class Alloc  = allocator&lt;T&gt;, class L  = experimental::layout_right, class Access  = experimental::default_accessor&lt;T&gt;&gt; </div>
+template&lt;class T , size_t R, class Alloc , class L , class Access &gt; </div>
       <table class="memname">
         <tr>
           <td class="memname">using <a class="el" href="classstd_1_1math_1_1dr__tensor.html">std::math::dr_tensor</a>&lt; T, R, Alloc, L, Access &gt;::element_type =  typename accessor_type::element_type</td>
@@ -426,10 +380,10 @@ template&lt;class T , size_t R, class Alloc  = allocator&lt;T&gt;, class L  = ex
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;class T , size_t R, class Alloc  = allocator&lt;T&gt;, class L  = experimental::layout_right, class Access  = experimental::default_accessor&lt;T&gt;&gt; </div>
+template&lt;class T , size_t R, class Alloc , class L , class Access &gt; </div>
       <table class="memname">
         <tr>
-          <td class="memname">using <a class="el" href="classstd_1_1math_1_1dr__tensor.html">std::math::dr_tensor</a>&lt; T, R, Alloc, L, Access &gt;::extents_type =  typename detail::template extents_helper&lt;<a class="el" href="classstd_1_1math_1_1dr__tensor.html#ad92f5299cd5817c7c8d23471d6f76e42">size_type</a>,R&gt;::extents_type</td>
+          <td class="memname">using <a class="el" href="classstd_1_1math_1_1dr__tensor.html">std::math::dr_tensor</a>&lt; T, R, Alloc, L, Access &gt;::extents_type =  typename detail::template extents_helper&lt;<a class="el" href="classstd_1_1math_1_1dr__tensor.html#a4b5c86a1cd6102c755915cfcc13a7136">size_type</a>,R&gt;::extents_type</td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -438,16 +392,16 @@ template&lt;class T , size_t R, class Alloc  = allocator&lt;T&gt;, class L  = ex
 
 </div>
 </div>
-<a id="a32d51fefc007ba5c0fe1bc333076b8dd" name="a32d51fefc007ba5c0fe1bc333076b8dd"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a32d51fefc007ba5c0fe1bc333076b8dd">&#9670;&#160;</a></span>index_type</h2>
+<a id="a9d4b4878b915f67198024ad75703e3c2" name="a9d4b4878b915f67198024ad75703e3c2"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9d4b4878b915f67198024ad75703e3c2">&#9670;&#160;</a></span>index_type</h2>
 
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;class T , size_t R, class Alloc  = allocator&lt;T&gt;, class L  = experimental::layout_right, class Access  = experimental::default_accessor&lt;T&gt;&gt; </div>
+template&lt;class T , size_t R, class Alloc , class L , class Access &gt; </div>
       <table class="memname">
         <tr>
-          <td class="memname">using <a class="el" href="classstd_1_1math_1_1dr__tensor.html">std::math::dr_tensor</a>&lt; T, R, Alloc, L, Access &gt;::index_type =  ptrdiff_t</td>
+          <td class="memname">using <a class="el" href="classstd_1_1math_1_1dr__tensor.html">std::math::dr_tensor</a>&lt; T, R, Alloc, L, Access &gt;::index_type =  ::std::ptrdiff_t</td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -462,7 +416,7 @@ template&lt;class T , size_t R, class Alloc  = allocator&lt;T&gt;, class L  = ex
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;class T , size_t R, class Alloc  = allocator&lt;T&gt;, class L  = experimental::layout_right, class Access  = experimental::default_accessor&lt;T&gt;&gt; </div>
+template&lt;class T , size_t R, class Alloc , class L , class Access &gt; </div>
       <table class="memname">
         <tr>
           <td class="memname">using <a class="el" href="classstd_1_1math_1_1dr__tensor.html">std::math::dr_tensor</a>&lt; T, R, Alloc, L, Access &gt;::layout_type =  L</td>
@@ -480,7 +434,7 @@ template&lt;class T , size_t R, class Alloc  = allocator&lt;T&gt;, class L  = ex
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;class T , size_t R, class Alloc  = allocator&lt;T&gt;, class L  = experimental::layout_right, class Access  = experimental::default_accessor&lt;T&gt;&gt; </div>
+template&lt;class T , size_t R, class Alloc , class L , class Access &gt; </div>
 <div class="memtemplate">
 template&lt;class ValueType , class LayoutType  = layout_type, class AccessorType  = accessor_type&gt; </div>
       <table class="memname">
@@ -502,16 +456,16 @@ template&lt;class ValueType , class LayoutType  = layout_type, class AccessorTyp
 
 </div>
 </div>
-<a id="ab12f3e2dba6862820a8480998e76841d" name="ab12f3e2dba6862820a8480998e76841d"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ab12f3e2dba6862820a8480998e76841d">&#9670;&#160;</a></span>reference_type</h2>
+<a id="af48887d03b8e7970607c199aa8ecc515" name="af48887d03b8e7970607c199aa8ecc515"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af48887d03b8e7970607c199aa8ecc515">&#9670;&#160;</a></span>reference</h2>
 
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;class T , size_t R, class Alloc  = allocator&lt;T&gt;, class L  = experimental::layout_right, class Access  = experimental::default_accessor&lt;T&gt;&gt; </div>
+template&lt;class T , size_t R, class Alloc , class L , class Access &gt; </div>
       <table class="memname">
         <tr>
-          <td class="memname">using <a class="el" href="classstd_1_1math_1_1dr__tensor.html">std::math::dr_tensor</a>&lt; T, R, Alloc, L, Access &gt;::reference_type =  typename accessor_type::reference</td>
+          <td class="memname">using <a class="el" href="classstd_1_1math_1_1dr__tensor.html">std::math::dr_tensor</a>&lt; T, R, Alloc, L, Access &gt;::reference =  typename accessor_type::reference</td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -520,16 +474,16 @@ template&lt;class T , size_t R, class Alloc  = allocator&lt;T&gt;, class L  = ex
 
 </div>
 </div>
-<a id="ad92f5299cd5817c7c8d23471d6f76e42" name="ad92f5299cd5817c7c8d23471d6f76e42"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ad92f5299cd5817c7c8d23471d6f76e42">&#9670;&#160;</a></span>size_type</h2>
+<a id="a4b5c86a1cd6102c755915cfcc13a7136" name="a4b5c86a1cd6102c755915cfcc13a7136"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4b5c86a1cd6102c755915cfcc13a7136">&#9670;&#160;</a></span>size_type</h2>
 
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;class T , size_t R, class Alloc  = allocator&lt;T&gt;, class L  = experimental::layout_right, class Access  = experimental::default_accessor&lt;T&gt;&gt; </div>
+template&lt;class T , size_t R, class Alloc , class L , class Access &gt; </div>
       <table class="memname">
         <tr>
-          <td class="memname">using <a class="el" href="classstd_1_1math_1_1dr__tensor.html">std::math::dr_tensor</a>&lt; T, R, Alloc, L, Access &gt;::size_type =  size_t</td>
+          <td class="memname">using <a class="el" href="classstd_1_1math_1_1dr__tensor.html">std::math::dr_tensor</a>&lt; T, R, Alloc, L, Access &gt;::size_type =  ::std::size_t</td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -544,33 +498,15 @@ template&lt;class T , size_t R, class Alloc  = allocator&lt;T&gt;, class L  = ex
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;class T , size_t R, class Alloc  = allocator&lt;T&gt;, class L  = experimental::layout_right, class Access  = experimental::default_accessor&lt;T&gt;&gt; </div>
+template&lt;class T , size_t R, class Alloc , class L , class Access &gt; </div>
       <table class="memname">
         <tr>
-          <td class="memname">using <a class="el" href="classstd_1_1math_1_1dr__tensor.html">std::math::dr_tensor</a>&lt; T, R, Alloc, L, Access &gt;::span_type =  <a class="el" href="classstd_1_1math_1_1dr__tensor.html#ac614c64c2545c31fb294544d95536f23">const_underlying_span_type</a></td>
+          <td class="memname">using <a class="el" href="classstd_1_1math_1_1dr__tensor.html">std::math::dr_tensor</a>&lt; T, R, Alloc, L, Access &gt;::span_type =  <a class="el" href="classstd_1_1math_1_1dr__tensor.html#a704eb064f32d74b9e0475d0597c599a4">const_underlying_span_type</a></td>
         </tr>
       </table>
 </div><div class="memdoc">
 
 <p>Type used to portray tensor as an N dimensional view. </p>
-
-</div>
-</div>
-<a id="a220aaa2d4ad4d41d374244948ca68930" name="a220aaa2d4ad4d41d374244948ca68930"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a220aaa2d4ad4d41d374244948ca68930">&#9670;&#160;</a></span>subtensor_type</h2>
-
-<div class="memitem">
-<div class="memproto">
-<div class="memtemplate">
-template&lt;class T , size_t R, class Alloc  = allocator&lt;T&gt;, class L  = experimental::layout_right, class Access  = experimental::default_accessor&lt;T&gt;&gt; </div>
-      <table class="memname">
-        <tr>
-          <td class="memname">using <a class="el" href="classstd_1_1math_1_1dr__tensor.html">std::math::dr_tensor</a>&lt; T, R, Alloc, L, Access &gt;::subtensor_type =  <a class="el" href="classstd_1_1math_1_1tensor__view.html">tensor_view</a>&lt; decltype( <a class="el" href="namespacestd_1_1math_1_1detail.html#af274dde876e47ba2ec1b483608c81d69">detail::submdspan</a>( declval&lt;<a class="el" href="classstd_1_1math_1_1dr__tensor.html#a4330bcccce54d66e9f93c7889a3998a2">underlying_span_type</a>&gt;(), declval&lt;<a class="el" href="classstd_1_1math_1_1dr__tensor.html#a311855993b4064aba8e19587ed8c8c30">tuple_type</a>&gt;(), declval&lt;<a class="el" href="classstd_1_1math_1_1dr__tensor.html#a311855993b4064aba8e19587ed8c8c30">tuple_type</a>&gt;() ) ) &gt;</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>mutable view of a subtensor </p>
 
 </div>
 </div>
@@ -580,10 +516,10 @@ template&lt;class T , size_t R, class Alloc  = allocator&lt;T&gt;, class L  = ex
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;class T , size_t R, class Alloc  = allocator&lt;T&gt;, class L  = experimental::layout_right, class Access  = experimental::default_accessor&lt;T&gt;&gt; </div>
+template&lt;class T , size_t R, class Alloc , class L , class Access &gt; </div>
       <table class="memname">
         <tr>
-          <td class="memname">using <a class="el" href="classstd_1_1math_1_1dr__tensor.html">std::math::dr_tensor</a>&lt; T, R, Alloc, L, Access &gt;::tuple_type =  typename detail::template extents_helper&lt;<a class="el" href="classstd_1_1math_1_1dr__tensor.html#ad92f5299cd5817c7c8d23471d6f76e42">size_type</a>,R&gt;::tuple_type</td>
+          <td class="memname">using <a class="el" href="classstd_1_1math_1_1dr__tensor.html">std::math::dr_tensor</a>&lt; T, R, Alloc, L, Access &gt;::tuple_type =  typename detail::template extents_helper&lt;<a class="el" href="classstd_1_1math_1_1dr__tensor.html#a4b5c86a1cd6102c755915cfcc13a7136">size_type</a>,R&gt;::tuple_type</td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -592,16 +528,16 @@ template&lt;class T , size_t R, class Alloc  = allocator&lt;T&gt;, class L  = ex
 
 </div>
 </div>
-<a id="a4330bcccce54d66e9f93c7889a3998a2" name="a4330bcccce54d66e9f93c7889a3998a2"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a4330bcccce54d66e9f93c7889a3998a2">&#9670;&#160;</a></span>underlying_span_type</h2>
+<a id="a6114b7653366d9150c033abc021994c1" name="a6114b7653366d9150c033abc021994c1"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6114b7653366d9150c033abc021994c1">&#9670;&#160;</a></span>underlying_span_type</h2>
 
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;class T , size_t R, class Alloc  = allocator&lt;T&gt;, class L  = experimental::layout_right, class Access  = experimental::default_accessor&lt;T&gt;&gt; </div>
+template&lt;class T , size_t R, class Alloc , class L , class Access &gt; </div>
       <table class="memname">
         <tr>
-          <td class="memname">using <a class="el" href="classstd_1_1math_1_1dr__tensor.html">std::math::dr_tensor</a>&lt; T, R, Alloc, L, Access &gt;::underlying_span_type =  decltype( <a class="el" href="namespacestd_1_1math_1_1detail.html#af274dde876e47ba2ec1b483608c81d69">detail::submdspan</a>( declval&lt;capacity_span_type&gt;(), declval&lt;<a class="el" href="classstd_1_1math_1_1dr__tensor.html#a311855993b4064aba8e19587ed8c8c30">tuple_type</a>&gt;(), declval&lt;<a class="el" href="classstd_1_1math_1_1dr__tensor.html#a311855993b4064aba8e19587ed8c8c30">tuple_type</a>&gt;() ) )</td>
+          <td class="memname">using <a class="el" href="classstd_1_1math_1_1dr__tensor.html">std::math::dr_tensor</a>&lt; T, R, Alloc, L, Access &gt;::underlying_span_type =  decltype( <a class="el" href="namespacestd_1_1math_1_1detail.html#a6872a0bdcffd2f4bf3be1a1f063cbddc">detail::submdspan</a>( ::std::declval&lt;capacity_span_type&gt;(), ::std::declval&lt;<a class="el" href="classstd_1_1math_1_1dr__tensor.html#a311855993b4064aba8e19587ed8c8c30">tuple_type</a>&gt;(), ::std::declval&lt;<a class="el" href="classstd_1_1math_1_1dr__tensor.html#a311855993b4064aba8e19587ed8c8c30">tuple_type</a>&gt;() ) )</td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -610,16 +546,16 @@ template&lt;class T , size_t R, class Alloc  = allocator&lt;T&gt;, class L  = ex
 
 </div>
 </div>
-<a id="a1a99c1781e9f09ce477dc87f950216e6" name="a1a99c1781e9f09ce477dc87f950216e6"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a1a99c1781e9f09ce477dc87f950216e6">&#9670;&#160;</a></span>value_type</h2>
+<a id="a048d31cdd668b9704760e956a5b4c516" name="a048d31cdd668b9704760e956a5b4c516"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a048d31cdd668b9704760e956a5b4c516">&#9670;&#160;</a></span>value_type</h2>
 
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;class T , size_t R, class Alloc  = allocator&lt;T&gt;, class L  = experimental::layout_right, class Access  = experimental::default_accessor&lt;T&gt;&gt; </div>
+template&lt;class T , size_t R, class Alloc , class L , class Access &gt; </div>
       <table class="memname">
         <tr>
-          <td class="memname">using <a class="el" href="classstd_1_1math_1_1dr__tensor.html">std::math::dr_tensor</a>&lt; T, R, Alloc, L, Access &gt;::value_type =  remove_cv_t&lt;<a class="el" href="classstd_1_1math_1_1dr__tensor.html#a45a1af906818137bb34eb82f01c89275">element_type</a>&gt;</td>
+          <td class="memname">using <a class="el" href="classstd_1_1math_1_1dr__tensor.html">std::math::dr_tensor</a>&lt; T, R, Alloc, L, Access &gt;::value_type =  ::std::remove_cv_t&lt;<a class="el" href="classstd_1_1math_1_1dr__tensor.html#a45a1af906818137bb34eb82f01c89275">element_type</a>&gt;</td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -629,8 +565,8 @@ template&lt;class T , size_t R, class Alloc  = allocator&lt;T&gt;, class L  = ex
 </div>
 </div>
 <h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
-<a id="a446f23f8f2a5d3841ecbf33ea3dfe0f6" name="a446f23f8f2a5d3841ecbf33ea3dfe0f6"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a446f23f8f2a5d3841ecbf33ea3dfe0f6">&#9670;&#160;</a></span>~dr_tensor()</h2>
+<a id="a13d629f4df361778b4068505e2713afe" name="a13d629f4df361778b4068505e2713afe"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a13d629f4df361778b4068505e2713afe">&#9670;&#160;</a></span>~dr_tensor()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -641,12 +577,12 @@ template&lt;class T , size_t R, class Alloc , class L , class Access &gt; </div>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">constexpr <a class="el" href="classstd_1_1math_1_1dr__tensor.html">std::math::dr_tensor</a>&lt; T, R, Alloc, L, Access &gt;::~<a class="el" href="classstd_1_1math_1_1dr__tensor.html">dr_tensor</a></td>
+          <td class="memname"><a class="el" href="macros_8hpp.html#adbfd2dd4f15e1d2badbacae0ebad337e">LINALG_CONSTEXPR_DESTRUCTOR</a> <a class="el" href="classstd_1_1math_1_1dr__tensor.html">std::math::dr_tensor</a>&lt; T, R, Alloc, L, Access &gt;::~<a class="el" href="classstd_1_1math_1_1dr__tensor.html">dr_tensor</a></td>
         </tr>
       </table>
   </td>
   <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">constexpr</span><span class="mlabel">noexcept</span></span>  </td>
+<span class="mlabels"><span class="mlabel">noexcept</span></span>  </td>
   </tr>
 </table>
 </div><div class="memdoc">
@@ -681,8 +617,8 @@ template&lt;class T , size_t R, class Alloc , class L , class Access &gt; </div>
 
 </div>
 </div>
-<a id="ad5f1a221a00f488df01cab73fc902cac" name="ad5f1a221a00f488df01cab73fc902cac"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ad5f1a221a00f488df01cab73fc902cac">&#9670;&#160;</a></span>dr_tensor() <span class="overload">[2/15]</span></h2>
+<a id="ad62ef9ebc750486097c03f808b5c691e" name="ad62ef9ebc750486097c03f808b5c691e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad62ef9ebc750486097c03f808b5c691e">&#9670;&#160;</a></span>dr_tensor() <span class="overload">[2/15]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -753,15 +689,15 @@ template&lt;class T , size_t R, class Alloc , class L , class Access &gt; </div>
 
 </div>
 </div>
-<a id="abae46576d8782344e9f509c0df8f5586" name="abae46576d8782344e9f509c0df8f5586"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#abae46576d8782344e9f509c0df8f5586">&#9670;&#160;</a></span>dr_tensor() <span class="overload">[4/15]</span></h2>
+<a id="a0dfb78cc70cdfd8253aab1dbad2a8d09" name="a0dfb78cc70cdfd8253aab1dbad2a8d09"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0dfb78cc70cdfd8253aab1dbad2a8d09">&#9670;&#160;</a></span>dr_tensor() <span class="overload">[4/15]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
 template&lt;class T , size_t R, class Alloc , class L , class Access &gt; </div>
 <div class="memtemplate">
-template&lt;concepts::tensor_may_be_constructible&lt; <a class="el" href="classstd_1_1math_1_1dr__tensor.html">dr_tensor</a>&lt; T, R, Alloc, L, Access &gt; &gt; T2&gt; </div>
+template&lt;class T2 , typename &gt; </div>
 <table class="mlabels">
   <tr>
   <td class="mlabels-left">
@@ -791,17 +727,15 @@ template&lt;concepts::tensor_may_be_constructible&lt; <a class="el" href="classs
 
 </div>
 </div>
-<a id="afd9a63c0a3e5e8e919ba2f26a2101bd1" name="afd9a63c0a3e5e8e919ba2f26a2101bd1"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#afd9a63c0a3e5e8e919ba2f26a2101bd1">&#9670;&#160;</a></span>dr_tensor() <span class="overload">[5/15]</span></h2>
+<a id="a9cab0694448bda8de3029ec509ea09c7" name="a9cab0694448bda8de3029ec509ea09c7"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9cab0694448bda8de3029ec509ea09c7">&#9670;&#160;</a></span>dr_tensor() <span class="overload">[5/15]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;class T , size_t R, class Alloc , class L , class Access &gt; <br />
-requires is_default_constructible_v&lt;<a class="el" href="classstd_1_1math_1_1dr__tensor.html#a25d140c88f3bf227d4be72c5809ab19a">allocator_type</a>&gt;</div>
+template&lt;class T , size_t R, class Alloc , class L , class Access &gt; </div>
 <div class="memtemplate">
-template&lt;concepts::view_may_be_constructible_to_tensor&lt; <a class="el" href="classstd_1_1math_1_1dr__tensor.html">dr_tensor</a>&lt; T, R, Alloc, L, Access &gt; &gt; MDS&gt; <br />
-requires is_default_constructible_v&lt;<a class="el" href="classstd_1_1math_1_1dr__tensor.html#a25d140c88f3bf227d4be72c5809ab19a">allocator_type</a>&gt;</div>
+template&lt;class MDS , typename , typename &gt; </div>
 <table class="mlabels">
   <tr>
   <td class="mlabels-left">
@@ -837,14 +771,15 @@ requires is_default_constructible_v&lt;<a class="el" href="classstd_1_1math_1_1d
 
 </div>
 </div>
-<a id="afd0b8630fe1004aac18b1bf3ebf7d1a6" name="afd0b8630fe1004aac18b1bf3ebf7d1a6"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#afd0b8630fe1004aac18b1bf3ebf7d1a6">&#9670;&#160;</a></span>dr_tensor() <span class="overload">[6/15]</span></h2>
+<a id="a3d1013df24ac82f90445001aed82b14c" name="a3d1013df24ac82f90445001aed82b14c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3d1013df24ac82f90445001aed82b14c">&#9670;&#160;</a></span>dr_tensor() <span class="overload">[6/15]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;class T , size_t R, class Alloc , class L , class Access &gt; <br />
-requires is_default_constructible_v&lt;<a class="el" href="classstd_1_1math_1_1dr__tensor.html#a25d140c88f3bf227d4be72c5809ab19a">allocator_type</a>&gt;</div>
+template&lt;class T , size_t R, class Alloc , class L , class Access &gt; </div>
+<div class="memtemplate">
+template&lt;typename &gt; </div>
 <table class="mlabels">
   <tr>
   <td class="mlabels-left">
@@ -874,14 +809,15 @@ requires is_default_constructible_v&lt;<a class="el" href="classstd_1_1math_1_1d
 
 </div>
 </div>
-<a id="a497ca6eb197b25acd3f9f9fbd2c06234" name="a497ca6eb197b25acd3f9f9fbd2c06234"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a497ca6eb197b25acd3f9f9fbd2c06234">&#9670;&#160;</a></span>dr_tensor() <span class="overload">[7/15]</span></h2>
+<a id="a1f0d04fd3da87219a72921290f804f34" name="a1f0d04fd3da87219a72921290f804f34"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1f0d04fd3da87219a72921290f804f34">&#9670;&#160;</a></span>dr_tensor() <span class="overload">[7/15]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;class T , size_t R, class Alloc , class L , class Access &gt; <br />
-requires is_default_constructible_v&lt;<a class="el" href="classstd_1_1math_1_1dr__tensor.html#a25d140c88f3bf227d4be72c5809ab19a">allocator_type</a>&gt;</div>
+template&lt;class T , size_t R, class Alloc , class L , class Access &gt; </div>
+<div class="memtemplate">
+template&lt;typename &gt; </div>
 <table class="mlabels">
   <tr>
   <td class="mlabels-left">
@@ -922,17 +858,15 @@ requires is_default_constructible_v&lt;<a class="el" href="classstd_1_1math_1_1d
 
 </div>
 </div>
-<a id="abce259d62ffb79c551b351b0bb6c555a" name="abce259d62ffb79c551b351b0bb6c555a"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#abce259d62ffb79c551b351b0bb6c555a">&#9670;&#160;</a></span>dr_tensor() <span class="overload">[8/15]</span></h2>
+<a id="a7cdf9ab361a028cfe1c5429c48270c16" name="a7cdf9ab361a028cfe1c5429c48270c16"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7cdf9ab361a028cfe1c5429c48270c16">&#9670;&#160;</a></span>dr_tensor() <span class="overload">[8/15]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;class T , size_t R, class Alloc , class L , class Access &gt; <br />
-requires is_default_constructible_v&lt;<a class="el" href="classstd_1_1math_1_1dr__tensor.html#a25d140c88f3bf227d4be72c5809ab19a">allocator_type</a>&gt; &amp;&amp; convertible_lambda_expression_v&lt; Lambda, make_integer_sequence&lt;<a class="el" href="classstd_1_1math_1_1dr__tensor.html#a32d51fefc007ba5c0fe1bc333076b8dd">index_type</a>,R&gt; &gt;</div>
+template&lt;class T , size_t R, class Alloc , class L , class Access &gt; </div>
 <div class="memtemplate">
-template&lt;class Lambda &gt; <br />
-requires is_default_constructible_v&lt;<a class="el" href="classstd_1_1math_1_1dr__tensor.html#a25d140c88f3bf227d4be72c5809ab19a">allocator_type</a>&gt; &amp;&amp; convertible_lambda_expression_v&lt; Lambda, make_integer_sequence&lt;<a class="el" href="classstd_1_1math_1_1dr__tensor.html#a32d51fefc007ba5c0fe1bc333076b8dd">index_type</a>,R&gt; &gt;</div>
+template&lt;class Lambda , typename &gt; </div>
 <table class="mlabels">
   <tr>
   <td class="mlabels-left">
@@ -979,17 +913,15 @@ requires is_default_constructible_v&lt;<a class="el" href="classstd_1_1math_1_1d
 
 </div>
 </div>
-<a id="af66a3eca137770e16699473c62879253" name="af66a3eca137770e16699473c62879253"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#af66a3eca137770e16699473c62879253">&#9670;&#160;</a></span>dr_tensor() <span class="overload">[9/15]</span></h2>
+<a id="ac30a80faf7577429e2ad12bc1836ccdd" name="ac30a80faf7577429e2ad12bc1836ccdd"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac30a80faf7577429e2ad12bc1836ccdd">&#9670;&#160;</a></span>dr_tensor() <span class="overload">[9/15]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;class T , size_t R, class Alloc , class L , class Access &gt; <br />
-requires is_default_constructible_v&lt;<a class="el" href="classstd_1_1math_1_1dr__tensor.html#a25d140c88f3bf227d4be72c5809ab19a">allocator_type</a>&gt; &amp;&amp; convertible_lambda_expression_v&lt; Lambda, make_integer_sequence&lt;<a class="el" href="classstd_1_1math_1_1dr__tensor.html#a32d51fefc007ba5c0fe1bc333076b8dd">index_type</a>,R&gt; &gt;</div>
+template&lt;class T , size_t R, class Alloc , class L , class Access &gt; </div>
 <div class="memtemplate">
-template&lt;class Lambda &gt; <br />
-requires is_default_constructible_v&lt;<a class="el" href="classstd_1_1math_1_1dr__tensor.html#a25d140c88f3bf227d4be72c5809ab19a">allocator_type</a>&gt; &amp;&amp; convertible_lambda_expression_v&lt; Lambda, make_integer_sequence&lt;<a class="el" href="classstd_1_1math_1_1dr__tensor.html#a32d51fefc007ba5c0fe1bc333076b8dd">index_type</a>,R&gt; &gt;</div>
+template&lt;class Lambda , typename &gt; </div>
 <table class="mlabels">
   <tr>
   <td class="mlabels-left">
@@ -1057,7 +989,7 @@ template&lt;class T , size_t R, class Alloc , class L , class Access &gt; </div>
         <tr>
           <td class="memname">constexpr <a class="el" href="classstd_1_1math_1_1dr__tensor.html">std::math::dr_tensor</a>&lt; T, R, Alloc, L, Access &gt;::dr_tensor </td>
           <td>(</td>
-          <td class="paramtype">const <a class="el" href="classstd_1_1math_1_1dr__tensor.html#a25d140c88f3bf227d4be72c5809ab19a">allocator_type</a> &amp;&#160;</td>
+          <td class="paramtype">const <a class="el" href="classstd_1_1math_1_1dr__tensor.html#ac0bc7afbb2db5dedb1119ded144fed5e">allocator_type</a> &amp;&#160;</td>
           <td class="paramname"><em>alloc</em></td><td>)</td>
           <td></td>
         </tr>
@@ -1079,15 +1011,15 @@ template&lt;class T , size_t R, class Alloc , class L , class Access &gt; </div>
 
 </div>
 </div>
-<a id="a46b9f459af98e1a179784415924f271e" name="a46b9f459af98e1a179784415924f271e"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a46b9f459af98e1a179784415924f271e">&#9670;&#160;</a></span>dr_tensor() <span class="overload">[11/15]</span></h2>
+<a id="af86552985ddb696753ed9cc566627ff5" name="af86552985ddb696753ed9cc566627ff5"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af86552985ddb696753ed9cc566627ff5">&#9670;&#160;</a></span>dr_tensor() <span class="overload">[11/15]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
 template&lt;class T , size_t R, class Alloc , class L , class Access &gt; </div>
 <div class="memtemplate">
-template&lt;concepts::view_may_be_constructible_to_tensor&lt; <a class="el" href="classstd_1_1math_1_1dr__tensor.html">dr_tensor</a>&lt; T, R, Alloc, L, Access &gt; &gt; MDS&gt; </div>
+template&lt;class MDS , typename &gt; </div>
 <table class="mlabels">
   <tr>
   <td class="mlabels-left">
@@ -1101,7 +1033,7 @@ template&lt;concepts::view_may_be_constructible_to_tensor&lt; <a class="el" href
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">const <a class="el" href="classstd_1_1math_1_1dr__tensor.html#a25d140c88f3bf227d4be72c5809ab19a">allocator_type</a> &amp;&#160;</td>
+          <td class="paramtype">const <a class="el" href="classstd_1_1math_1_1dr__tensor.html#ac0bc7afbb2db5dedb1119ded144fed5e">allocator_type</a> &amp;&#160;</td>
           <td class="paramname"><em>alloc</em>&#160;</td>
         </tr>
         <tr>
@@ -1154,7 +1086,7 @@ template&lt;class T , size_t R, class Alloc , class L , class Access &gt; </div>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">const <a class="el" href="classstd_1_1math_1_1dr__tensor.html#a25d140c88f3bf227d4be72c5809ab19a">allocator_type</a> &amp;&#160;</td>
+          <td class="paramtype">const <a class="el" href="classstd_1_1math_1_1dr__tensor.html#ac0bc7afbb2db5dedb1119ded144fed5e">allocator_type</a> &amp;&#160;</td>
           <td class="paramname"><em>alloc</em>&#160;</td>
         </tr>
         <tr>
@@ -1207,7 +1139,7 @@ template&lt;class T , size_t R, class Alloc , class L , class Access &gt; </div>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">const <a class="el" href="classstd_1_1math_1_1dr__tensor.html#a25d140c88f3bf227d4be72c5809ab19a">allocator_type</a> &amp;&#160;</td>
+          <td class="paramtype">const <a class="el" href="classstd_1_1math_1_1dr__tensor.html#ac0bc7afbb2db5dedb1119ded144fed5e">allocator_type</a> &amp;&#160;</td>
           <td class="paramname"><em>alloc</em>&#160;</td>
         </tr>
         <tr>
@@ -1235,17 +1167,15 @@ template&lt;class T , size_t R, class Alloc , class L , class Access &gt; </div>
 
 </div>
 </div>
-<a id="a8e73fd59288af4dcb214b7611ee8b9ca" name="a8e73fd59288af4dcb214b7611ee8b9ca"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a8e73fd59288af4dcb214b7611ee8b9ca">&#9670;&#160;</a></span>dr_tensor() <span class="overload">[14/15]</span></h2>
+<a id="aa093745d67d4785007675f5f5a06a3dd" name="aa093745d67d4785007675f5f5a06a3dd"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa093745d67d4785007675f5f5a06a3dd">&#9670;&#160;</a></span>dr_tensor() <span class="overload">[14/15]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;class T , size_t R, class Alloc , class L , class Access &gt; <br />
-requires convertible_lambda_expression_v&lt; Lambda, make_integer_sequence&lt;<a class="el" href="classstd_1_1math_1_1dr__tensor.html#a32d51fefc007ba5c0fe1bc333076b8dd">index_type</a>,R&gt; &gt;</div>
+template&lt;class T , size_t R, class Alloc , class L , class Access &gt; </div>
 <div class="memtemplate">
-template&lt;class Lambda &gt; <br />
-requires convertible_lambda_expression_v&lt; Lambda, make_integer_sequence&lt;<a class="el" href="classstd_1_1math_1_1dr__tensor.html#a32d51fefc007ba5c0fe1bc333076b8dd">index_type</a>,R&gt; &gt;</div>
+template&lt;class Lambda , typename &gt; </div>
 <table class="mlabels">
   <tr>
   <td class="mlabels-left">
@@ -1265,7 +1195,7 @@ requires convertible_lambda_expression_v&lt; Lambda, make_integer_sequence&lt;<a
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">const <a class="el" href="classstd_1_1math_1_1dr__tensor.html#a25d140c88f3bf227d4be72c5809ab19a">allocator_type</a> &amp;&#160;</td>
+          <td class="paramtype">const <a class="el" href="classstd_1_1math_1_1dr__tensor.html#ac0bc7afbb2db5dedb1119ded144fed5e">allocator_type</a> &amp;&#160;</td>
           <td class="paramname"><em>alloc</em>&#160;</td>
         </tr>
         <tr>
@@ -1299,17 +1229,15 @@ requires convertible_lambda_expression_v&lt; Lambda, make_integer_sequence&lt;<a
 
 </div>
 </div>
-<a id="ad0bea18424e3b78f1a7b6f8398574a0a" name="ad0bea18424e3b78f1a7b6f8398574a0a"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ad0bea18424e3b78f1a7b6f8398574a0a">&#9670;&#160;</a></span>dr_tensor() <span class="overload">[15/15]</span></h2>
+<a id="a4f482d4bb2ddaeeb0f5a5399899752a4" name="a4f482d4bb2ddaeeb0f5a5399899752a4"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4f482d4bb2ddaeeb0f5a5399899752a4">&#9670;&#160;</a></span>dr_tensor() <span class="overload">[15/15]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;class T , size_t R, class Alloc , class L , class Access &gt; <br />
-requires convertible_lambda_expression_v&lt; Lambda, make_integer_sequence&lt;<a class="el" href="classstd_1_1math_1_1dr__tensor.html#a32d51fefc007ba5c0fe1bc333076b8dd">index_type</a>,R&gt; &gt;</div>
+template&lt;class T , size_t R, class Alloc , class L , class Access &gt; </div>
 <div class="memtemplate">
-template&lt;class Lambda &gt; <br />
-requires convertible_lambda_expression_v&lt; Lambda, make_integer_sequence&lt;<a class="el" href="classstd_1_1math_1_1dr__tensor.html#a32d51fefc007ba5c0fe1bc333076b8dd">index_type</a>,R&gt; &gt;</div>
+template&lt;class Lambda , typename &gt; </div>
 <table class="mlabels">
   <tr>
   <td class="mlabels-left">
@@ -1335,7 +1263,7 @@ requires convertible_lambda_expression_v&lt; Lambda, make_integer_sequence&lt;<a
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">const <a class="el" href="classstd_1_1math_1_1dr__tensor.html#a25d140c88f3bf227d4be72c5809ab19a">allocator_type</a> &amp;&#160;</td>
+          <td class="paramtype">const <a class="el" href="classstd_1_1math_1_1dr__tensor.html#ac0bc7afbb2db5dedb1119ded144fed5e">allocator_type</a> &amp;&#160;</td>
           <td class="paramname"><em>alloc</em>&#160;</td>
         </tr>
         <tr>
@@ -1371,88 +1299,6 @@ requires convertible_lambda_expression_v&lt; Lambda, make_integer_sequence&lt;<a
 </div>
 </div>
 <h2 class="groupheader">Member Function Documentation</h2>
-<a id="a7f52b94ae13750bd11efae7bffb777be" name="a7f52b94ae13750bd11efae7bffb777be"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a7f52b94ae13750bd11efae7bffb777be">&#9670;&#160;</a></span>at() <span class="overload">[1/2]</span></h2>
-
-<div class="memitem">
-<div class="memproto">
-<div class="memtemplate">
-template&lt;class T , size_t R, class Alloc , class L , class Access &gt; <br />
-requires ( sizeof...(IndexType) == R ) &amp;&amp; ( is_convertible_v&lt;IndexType,<a class="el" href="classstd_1_1math_1_1dr__tensor.html#a32d51fefc007ba5c0fe1bc333076b8dd">index_type</a>&gt; &amp;&amp; ... )</div>
-<div class="memtemplate">
-template&lt;class ... IndexType&gt; <br />
-requires ( sizeof...(IndexType) == R ) &amp;&amp; ( is_convertible_v&lt;IndexType,<a class="el" href="classstd_1_1math_1_1dr__tensor.html#a32d51fefc007ba5c0fe1bc333076b8dd">index_type</a>&gt; &amp;&amp; ... )</div>
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">constexpr <a class="el" href="classstd_1_1math_1_1dr__tensor.html">dr_tensor</a>&lt; T, R, Alloc, L, Access &gt;<a class="el" href="classstd_1_1math_1_1dr__tensor.html#ab12f3e2dba6862820a8480998e76841d">::reference_type</a> <a class="el" href="classstd_1_1math_1_1dr__tensor.html">std::math::dr_tensor</a>&lt; T, R, Alloc, L, Access &gt;::at </td>
-          <td>(</td>
-          <td class="paramtype">IndexType ...&#160;</td>
-          <td class="paramname"><em>indices</em></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">constexpr</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p>Returns a mutable value at (indices...) with index bounds checking. </p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">indices</td><td>set indices representing a node in the tensor </td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="section return"><dt>Returns</dt><dd>mutable value at row i, column j, depth k, etc. </dd></dl>
-
-</div>
-</div>
-<a id="a607ecc31a33866abcda5e0a8f49c83ba" name="a607ecc31a33866abcda5e0a8f49c83ba"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a607ecc31a33866abcda5e0a8f49c83ba">&#9670;&#160;</a></span>at() <span class="overload">[2/2]</span></h2>
-
-<div class="memitem">
-<div class="memproto">
-<div class="memtemplate">
-template&lt;class T , size_t R, class Alloc , class L , class Access &gt; <br />
-requires ( sizeof...(IndexType) == R ) &amp;&amp; ( is_convertible_v&lt;IndexType,<a class="el" href="classstd_1_1math_1_1dr__tensor.html#a32d51fefc007ba5c0fe1bc333076b8dd">index_type</a>&gt; &amp;&amp; ... )</div>
-<div class="memtemplate">
-template&lt;class ... IndexType&gt; <br />
-requires ( sizeof...(IndexType) == R ) &amp;&amp; ( is_convertible_v&lt;IndexType,<a class="el" href="classstd_1_1math_1_1dr__tensor.html#a32d51fefc007ba5c0fe1bc333076b8dd">index_type</a>&gt; &amp;&amp; ... )</div>
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">constexpr <a class="el" href="classstd_1_1math_1_1dr__tensor.html">dr_tensor</a>&lt; T, R, Alloc, L, Access &gt;<a class="el" href="classstd_1_1math_1_1dr__tensor.html#a1a99c1781e9f09ce477dc87f950216e6">::value_type</a> <a class="el" href="classstd_1_1math_1_1dr__tensor.html">std::math::dr_tensor</a>&lt; T, R, Alloc, L, Access &gt;::at </td>
-          <td>(</td>
-          <td class="paramtype">IndexType ...&#160;</td>
-          <td class="paramname"><em>indices</em></td><td>)</td>
-          <td> const</td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">constexpr</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p>Returns the value at (indices...) with index bounds checking. </p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">indices</td><td>set indices representing a node in the tensor </td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="section return"><dt>Returns</dt><dd>value at row i, column j, depth k, etc. </dd></dl>
-
-</div>
-</div>
 <a id="ac1960576abca63d8a73842a1279313f0" name="ac1960576abca63d8a73842a1279313f0"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#ac1960576abca63d8a73842a1279313f0">&#9670;&#160;</a></span>capacity()</h2>
 
@@ -1480,19 +1326,59 @@ template&lt;class T , size_t R, class Alloc , class L , class Access &gt; </div>
 
 </div>
 </div>
+<a id="ae0e5f160938af9ea7776d76241cb5150" name="ae0e5f160938af9ea7776d76241cb5150"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae0e5f160938af9ea7776d76241cb5150">&#9670;&#160;</a></span>create_view_impl()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;class T , size_t R, class Alloc , class L , class Access &gt; </div>
+<div class="memtemplate">
+template&lt;size_t ... Indices&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">constexpr <a class="el" href="classstd_1_1math_1_1dr__tensor.html">dr_tensor</a>&lt; T, R, Alloc, L, Access &gt;<a class="el" href="classstd_1_1math_1_1dr__tensor.html#a6114b7653366d9150c033abc021994c1">::underlying_span_type</a> <a class="el" href="classstd_1_1math_1_1dr__tensor.html">std::math::dr_tensor</a>&lt; T, R, Alloc, L, Access &gt;::create_view_impl </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="classstd_1_1math_1_1dr__tensor.html#aab60c7ac7de58b9986fba1a43edf95a3">extents_type</a>&#160;</td>
+          <td class="paramname"><em>s</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">index_sequence&lt; Indices... &gt;&#160;</td>
+          <td class="paramname">&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">constexpr</span><span class="mlabel">noexcept</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
 <a id="acb0a77f5c11f2a6a032209b5e54ca7c7" name="acb0a77f5c11f2a6a032209b5e54ca7c7"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#acb0a77f5c11f2a6a032209b5e54ca7c7">&#9670;&#160;</a></span>get_allocator() <span class="overload">[1/2]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;class T , size_t R, class Alloc  = allocator&lt;T&gt;, class L  = experimental::layout_right, class Access  = experimental::default_accessor&lt;T&gt;&gt; </div>
+template&lt;class T , size_t R, class Alloc , class L , class Access &gt; </div>
 <table class="mlabels">
   <tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">constexpr const <a class="el" href="classstd_1_1math_1_1dr__tensor.html">dr_tensor</a>&lt; T, R, Alloc, L, Access &gt;<a class="el" href="classstd_1_1math_1_1dr__tensor.html#a25d140c88f3bf227d4be72c5809ab19a">::allocator_type</a> &amp;&amp; <a class="el" href="classstd_1_1math_1_1dr__tensor.html">std::math::dr_tensor</a>&lt; T, R, Alloc, L, Access &gt;::get_allocator </td>
+          <td class="memname">constexpr const <a class="el" href="classstd_1_1math_1_1dr__tensor.html">dr_tensor</a>&lt; T, R, Alloc, L, Access &gt;<a class="el" href="classstd_1_1math_1_1dr__tensor.html#ac0bc7afbb2db5dedb1119ded144fed5e">::allocator_type</a> &amp;&amp; <a class="el" href="classstd_1_1math_1_1dr__tensor.html">std::math::dr_tensor</a>&lt; T, R, Alloc, L, Access &gt;::get_allocator </td>
           <td>(</td>
           <td class="paramname"></td><td>)</td>
           <td> &amp;&amp;</td>
@@ -1516,13 +1402,13 @@ template&lt;class T , size_t R, class Alloc  = allocator&lt;T&gt;, class L  = ex
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;class T , size_t R, class Alloc  = allocator&lt;T&gt;, class L  = experimental::layout_right, class Access  = experimental::default_accessor&lt;T&gt;&gt; </div>
+template&lt;class T , size_t R, class Alloc , class L , class Access &gt; </div>
 <table class="mlabels">
   <tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">constexpr const <a class="el" href="classstd_1_1math_1_1dr__tensor.html">dr_tensor</a>&lt; T, R, Alloc, L, Access &gt;<a class="el" href="classstd_1_1math_1_1dr__tensor.html#a25d140c88f3bf227d4be72c5809ab19a">::allocator_type</a> &amp; <a class="el" href="classstd_1_1math_1_1dr__tensor.html">std::math::dr_tensor</a>&lt; T, R, Alloc, L, Access &gt;::get_allocator </td>
+          <td class="memname">constexpr const <a class="el" href="classstd_1_1math_1_1dr__tensor.html">dr_tensor</a>&lt; T, R, Alloc, L, Access &gt;<a class="el" href="classstd_1_1math_1_1dr__tensor.html#ac0bc7afbb2db5dedb1119ded144fed5e">::allocator_type</a> &amp; <a class="el" href="classstd_1_1math_1_1dr__tensor.html">std::math::dr_tensor</a>&lt; T, R, Alloc, L, Access &gt;::get_allocator </td>
           <td>(</td>
           <td class="paramname"></td><td>)</td>
           <td> const &amp;</td>
@@ -1577,15 +1463,15 @@ template&lt;class T , size_t R, class Alloc , class L , class Access &gt; </div>
 
 </div>
 </div>
-<a id="ae2f019cfe69aa3d3c6f25911474db236" name="ae2f019cfe69aa3d3c6f25911474db236"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ae2f019cfe69aa3d3c6f25911474db236">&#9670;&#160;</a></span>operator=() <span class="overload">[2/6]</span></h2>
+<a id="ad9a24c5d0493235d29da7f5835d98703" name="ad9a24c5d0493235d29da7f5835d98703"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad9a24c5d0493235d29da7f5835d98703">&#9670;&#160;</a></span>operator=() <span class="overload">[2/6]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;class T , size_t R, class Alloc  = allocator&lt;T&gt;, class L  = experimental::layout_right, class Access  = experimental::default_accessor&lt;T&gt;&gt; </div>
+template&lt;class T , size_t R, class Alloc , class L , class Access &gt; </div>
 <div class="memtemplate">
-template&lt;concepts::view_may_be_constructible_to_tensor&lt; <a class="el" href="classstd_1_1math_1_1dr__tensor.html">dr_tensor</a> &gt; MDS&gt; </div>
+template&lt;class MDS , typename  = ::std::enable_if_t&lt; concepts::view_may_be_constructible_to_tensor&lt;MDS,dr_tensor&gt; &amp;&amp; ::std::is_default_constructible_v&lt;allocator_type&gt; &gt;, typename  = ::std::enable_if_t&lt;true&gt;&gt; </div>
 <table class="mlabels">
   <tr>
   <td class="mlabels-left">
@@ -1622,15 +1508,15 @@ template&lt;concepts::view_may_be_constructible_to_tensor&lt; <a class="el" href
 
 </div>
 </div>
-<a id="a3c8f1807059a2a88933131d4c4d08fd8" name="a3c8f1807059a2a88933131d4c4d08fd8"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a3c8f1807059a2a88933131d4c4d08fd8">&#9670;&#160;</a></span>operator=() <span class="overload">[3/6]</span></h2>
+<a id="a2af185986f6eb76a984475544e3517b6" name="a2af185986f6eb76a984475544e3517b6"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2af185986f6eb76a984475544e3517b6">&#9670;&#160;</a></span>operator=() <span class="overload">[3/6]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;class T , size_t R, class Alloc  = allocator&lt;T&gt;, class L  = experimental::layout_right, class Access  = experimental::default_accessor&lt;T&gt;&gt; </div>
+template&lt;class T , size_t R, class Alloc , class L , class Access &gt; </div>
 <div class="memtemplate">
-template&lt;concepts::view_may_be_constructible_to_tensor&lt; <a class="el" href="classstd_1_1math_1_1dr__tensor.html">dr_tensor</a>&lt; T, R, Alloc, L, Access &gt; &gt; MDS&gt; </div>
+template&lt;class MDS , typename , typename &gt; </div>
 <table class="mlabels">
   <tr>
   <td class="mlabels-left">
@@ -1652,15 +1538,15 @@ template&lt;concepts::view_may_be_constructible_to_tensor&lt; <a class="el" href
 
 </div>
 </div>
-<a id="a682ed28323074d803c3f87f0d4ae99d7" name="a682ed28323074d803c3f87f0d4ae99d7"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a682ed28323074d803c3f87f0d4ae99d7">&#9670;&#160;</a></span>operator=() <span class="overload">[4/6]</span></h2>
+<a id="ac37eb70df48fc31574567599e837cc15" name="ac37eb70df48fc31574567599e837cc15"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac37eb70df48fc31574567599e837cc15">&#9670;&#160;</a></span>operator=() <span class="overload">[4/6]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;class T , size_t R, class Alloc  = allocator&lt;T&gt;, class L  = experimental::layout_right, class Access  = experimental::default_accessor&lt;T&gt;&gt; </div>
+template&lt;class T , size_t R, class Alloc , class L , class Access &gt; </div>
 <div class="memtemplate">
-template&lt;concepts::tensor_may_be_constructible&lt; <a class="el" href="classstd_1_1math_1_1dr__tensor.html">dr_tensor</a> &gt; T2&gt; </div>
+template&lt;class T2 , typename  = ::std::enable_if_t&lt; concepts::tensor_may_be_constructible&lt; T2, dr_tensor &gt; &gt;&gt; </div>
 <table class="mlabels">
   <tr>
   <td class="mlabels-left">
@@ -1697,15 +1583,15 @@ template&lt;concepts::tensor_may_be_constructible&lt; <a class="el" href="classs
 
 </div>
 </div>
-<a id="a975804f112c6ef3b7cc44359e5f2acd6" name="a975804f112c6ef3b7cc44359e5f2acd6"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a975804f112c6ef3b7cc44359e5f2acd6">&#9670;&#160;</a></span>operator=() <span class="overload">[5/6]</span></h2>
+<a id="ac7d9f91062a67283531a7dcf6c9c9409" name="ac7d9f91062a67283531a7dcf6c9c9409"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac7d9f91062a67283531a7dcf6c9c9409">&#9670;&#160;</a></span>operator=() <span class="overload">[5/6]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;class T , size_t R, class Alloc  = allocator&lt;T&gt;, class L  = experimental::layout_right, class Access  = experimental::default_accessor&lt;T&gt;&gt; </div>
+template&lt;class T , size_t R, class Alloc , class L , class Access &gt; </div>
 <div class="memtemplate">
-template&lt;concepts::tensor_may_be_constructible&lt; <a class="el" href="classstd_1_1math_1_1dr__tensor.html">dr_tensor</a>&lt; T, R, Alloc, L, Access &gt; &gt; T2&gt; </div>
+template&lt;class T2 , typename &gt; </div>
 <table class="mlabels">
   <tr>
   <td class="mlabels-left">
@@ -1727,8 +1613,8 @@ template&lt;concepts::tensor_may_be_constructible&lt; <a class="el" href="classs
 
 </div>
 </div>
-<a id="a1abf6880d1ed2c8b30aafe846c2f9180" name="a1abf6880d1ed2c8b30aafe846c2f9180"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a1abf6880d1ed2c8b30aafe846c2f9180">&#9670;&#160;</a></span>operator=() <span class="overload">[6/6]</span></h2>
+<a id="a335e4d85416dd8510250de67bfde1274" name="a335e4d85416dd8510250de67bfde1274"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a335e4d85416dd8510250de67bfde1274">&#9670;&#160;</a></span>operator=() <span class="overload">[6/6]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -1761,88 +1647,6 @@ template&lt;class T , size_t R, class Alloc , class L , class Access &gt; </div>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>self </dd></dl>
-
-</div>
-</div>
-<a id="adde946ea3d9bf10f5db8cf820fbc502e" name="adde946ea3d9bf10f5db8cf820fbc502e"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#adde946ea3d9bf10f5db8cf820fbc502e">&#9670;&#160;</a></span>operator[]() <span class="overload">[1/2]</span></h2>
-
-<div class="memitem">
-<div class="memproto">
-<div class="memtemplate">
-template&lt;class T , size_t R, class Alloc , class L , class Access &gt; <br />
-requires ( sizeof...(IndexType) == R ) &amp;&amp; ( is_convertible_v&lt;IndexType,<a class="el" href="classstd_1_1math_1_1dr__tensor.html#a32d51fefc007ba5c0fe1bc333076b8dd">index_type</a>&gt; &amp;&amp; ... )</div>
-<div class="memtemplate">
-template&lt;class ... IndexType&gt; <br />
-requires ( sizeof...(IndexType) == R ) &amp;&amp; ( is_convertible_v&lt;IndexType,<a class="el" href="classstd_1_1math_1_1dr__tensor.html#a32d51fefc007ba5c0fe1bc333076b8dd">index_type</a>&gt; &amp;&amp; ... )</div>
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">constexpr <a class="el" href="classstd_1_1math_1_1dr__tensor.html">dr_tensor</a>&lt; T, R, Alloc, L, Access &gt;<a class="el" href="classstd_1_1math_1_1dr__tensor.html#a1a99c1781e9f09ce477dc87f950216e6">::value_type</a> <a class="el" href="classstd_1_1math_1_1dr__tensor.html">std::math::dr_tensor</a>&lt; T, R, Alloc, L, Access &gt;::operator[] </td>
-          <td>(</td>
-          <td class="paramtype">IndexType ...&#160;</td>
-          <td class="paramname"><em>indices</em></td><td>)</td>
-          <td> const</td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">constexpr</span><span class="mlabel">noexcept</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p>Returns the value at (indices...) without index bounds checking. </p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">indices</td><td>set indices representing a node in the tensor </td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="section return"><dt>Returns</dt><dd>value at row i, column j, depth k, etc. </dd></dl>
-
-</div>
-</div>
-<a id="a9d0d8b648db3764fbba98209cf236ac8" name="a9d0d8b648db3764fbba98209cf236ac8"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a9d0d8b648db3764fbba98209cf236ac8">&#9670;&#160;</a></span>operator[]() <span class="overload">[2/2]</span></h2>
-
-<div class="memitem">
-<div class="memproto">
-<div class="memtemplate">
-template&lt;class T , size_t R, class Alloc , class L , class Access &gt; <br />
-requires ( sizeof...(IndexType) == R ) &amp;&amp; ( is_convertible_v&lt;IndexType,<a class="el" href="classstd_1_1math_1_1dr__tensor.html#a32d51fefc007ba5c0fe1bc333076b8dd">index_type</a>&gt; &amp;&amp; ... )</div>
-<div class="memtemplate">
-template&lt;class ... IndexType&gt; <br />
-requires ( sizeof...(IndexType) == R ) &amp;&amp; ( is_convertible_v&lt;IndexType,<a class="el" href="classstd_1_1math_1_1dr__tensor.html#a32d51fefc007ba5c0fe1bc333076b8dd">index_type</a>&gt; &amp;&amp; ... )</div>
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">constexpr <a class="el" href="classstd_1_1math_1_1dr__tensor.html">dr_tensor</a>&lt; T, R, Alloc, L, Access &gt;<a class="el" href="classstd_1_1math_1_1dr__tensor.html#ab12f3e2dba6862820a8480998e76841d">::reference_type</a> <a class="el" href="classstd_1_1math_1_1dr__tensor.html">std::math::dr_tensor</a>&lt; T, R, Alloc, L, Access &gt;::operator[] </td>
-          <td>(</td>
-          <td class="paramtype">IndexType ...&#160;</td>
-          <td class="paramname"><em>indices</em></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">constexpr</span><span class="mlabel">noexcept</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p>Returns a mutable value at (indices...) without index bounds checking. </p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">indices</td><td>set indices representing a node in the tensor </td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="section return"><dt>Returns</dt><dd>mutable value at row i, column j, depth k, etc. </dd></dl>
 
 </div>
 </div>
@@ -1932,7 +1736,7 @@ template&lt;class T , size_t R, class Alloc , class L , class Access &gt; </div>
         <tr>
           <td class="memname">constexpr void <a class="el" href="classstd_1_1math_1_1dr__tensor.html">std::math::dr_tensor</a>&lt; T, R, Alloc, L, Access &gt;::set_allocator </td>
           <td>(</td>
-          <td class="paramtype">const <a class="el" href="classstd_1_1math_1_1dr__tensor.html#a25d140c88f3bf227d4be72c5809ab19a">allocator_type</a> &amp;&#160;</td>
+          <td class="paramtype">const <a class="el" href="classstd_1_1math_1_1dr__tensor.html#ac0bc7afbb2db5dedb1119ded144fed5e">allocator_type</a> &amp;&#160;</td>
           <td class="paramname"><em>alloc</em></td><td>)</td>
           <td></td>
         </tr>
@@ -2009,17 +1813,15 @@ template&lt;class T , size_t R, class Alloc , class L , class Access &gt; </div>
 
 </div>
 </div>
-<a id="aa6cf2c2bfd068bec868eb976f3657083" name="aa6cf2c2bfd068bec868eb976f3657083"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aa6cf2c2bfd068bec868eb976f3657083">&#9670;&#160;</a></span>submatrix() <span class="overload">[1/2]</span></h2>
+<a id="a35e2b112fa287421a21760bb85d4abe5" name="a35e2b112fa287421a21760bb85d4abe5"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a35e2b112fa287421a21760bb85d4abe5">&#9670;&#160;</a></span>submatrix() <span class="overload">[1/2]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;class T , size_t R, class Alloc , class L , class Access &gt; <br />
-requires ( decltype( experimental::submdspan( this-&gt;<a class="el" href="classstd_1_1math_1_1dr__tensor.html#acc1bccfd0955c035f0369425f9c64bfc">underlying_span</a>(), args ... ) )::rank() == 2 )</div>
+template&lt;class T , size_t R, class Alloc , class L , class Access &gt; </div>
 <div class="memtemplate">
-template&lt;class ... SliceArgs&gt; <br />
-requires ( decltype( experimental::submdspan( this-&gt;<a class="el" href="classstd_1_1math_1_1dr__tensor.html#acc1bccfd0955c035f0369425f9c64bfc">underlying_span</a>(), args ... ) )::rank() == 2 )</div>
+template&lt;class ... SliceArgs&gt; </div>
 <table class="mlabels">
   <tr>
   <td class="mlabels-left">
@@ -2052,21 +1854,19 @@ requires ( decltype( experimental::submdspan( this-&gt;<a class="el" href="class
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>matrix view </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>mutable matrix view </dd></dl>
 
 </div>
 </div>
-<a id="aaeaa904d3a8e46c1f882249cc13761e5" name="aaeaa904d3a8e46c1f882249cc13761e5"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aaeaa904d3a8e46c1f882249cc13761e5">&#9670;&#160;</a></span>submatrix() <span class="overload">[2/2]</span></h2>
+<a id="af80e6f2f7f4ec2d6154157568498e113" name="af80e6f2f7f4ec2d6154157568498e113"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af80e6f2f7f4ec2d6154157568498e113">&#9670;&#160;</a></span>submatrix() <span class="overload">[2/2]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;class T , size_t R, class Alloc , class L , class Access &gt; <br />
-requires ( decltype( experimental::submdspan( this-&gt;<a class="el" href="classstd_1_1math_1_1dr__tensor.html#acc1bccfd0955c035f0369425f9c64bfc">underlying_span</a>(), args ... ) )::rank() == 2 )</div>
+template&lt;class T , size_t R, class Alloc , class L , class Access &gt; </div>
 <div class="memtemplate">
-template&lt;class ... SliceArgs&gt; <br />
-requires ( decltype( experimental::submdspan( this-&gt;<a class="el" href="classstd_1_1math_1_1dr__tensor.html#acc1bccfd0955c035f0369425f9c64bfc">underlying_span</a>(), args ... ) )::rank() == 2 )</div>
+template&lt;class ... SliceArgs&gt; </div>
 <table class="mlabels">
   <tr>
   <td class="mlabels-left">
@@ -2103,33 +1903,25 @@ requires ( decltype( experimental::submdspan( this-&gt;<a class="el" href="class
 
 </div>
 </div>
-<a id="a8a61dfd622cecc6c78caa283cb4eb6d3" name="a8a61dfd622cecc6c78caa283cb4eb6d3"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a8a61dfd622cecc6c78caa283cb4eb6d3">&#9670;&#160;</a></span>subtensor() <span class="overload">[1/2]</span></h2>
+<a id="a85a16479e74bfba4d4cda5ee8e0fd79a" name="a85a16479e74bfba4d4cda5ee8e0fd79a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a85a16479e74bfba4d4cda5ee8e0fd79a">&#9670;&#160;</a></span>subtensor() <span class="overload">[1/2]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
 template&lt;class T , size_t R, class Alloc , class L , class Access &gt; </div>
+<div class="memtemplate">
+template&lt;class ... SliceArgs&gt; </div>
 <table class="mlabels">
   <tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">constexpr <a class="el" href="classstd_1_1math_1_1dr__tensor.html">dr_tensor</a>&lt; T, R, Alloc, L, Access &gt;<a class="el" href="classstd_1_1math_1_1dr__tensor.html#a220aaa2d4ad4d41d374244948ca68930">::subtensor_type</a> <a class="el" href="classstd_1_1math_1_1dr__tensor.html">std::math::dr_tensor</a>&lt; T, R, Alloc, L, Access &gt;::subtensor </td>
+          <td class="memname">constexpr auto <a class="el" href="classstd_1_1math_1_1dr__tensor.html">std::math::dr_tensor</a>&lt; T, R, Alloc, L, Access &gt;::subtensor </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="classstd_1_1math_1_1dr__tensor.html#a311855993b4064aba8e19587ed8c8c30">tuple_type</a>&#160;</td>
-          <td class="paramname"><em>start</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
+          <td class="paramtype">SliceArgs ...&#160;</td>
+          <td class="paramname"><em>args</em></td><td>)</td>
           <td></td>
-          <td class="paramtype"><a class="el" href="classstd_1_1math_1_1dr__tensor.html#a311855993b4064aba8e19587ed8c8c30">tuple_type</a>&#160;</td>
-          <td class="paramname"><em>end</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
         </tr>
       </table>
   </td>
@@ -2140,44 +1932,41 @@ template&lt;class T , size_t R, class Alloc , class L , class Access &gt; </div>
 </div><div class="memdoc">
 
 <p>Returns a mutable view of the specified subtensor. </p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">start</td><td>tuple start of subtensor </td></tr>
-    <tr><td class="paramname">end</td><td>tuple end of subtensor </td></tr>
+<dl class="tparams"><dt>Template Parameters</dt><dd>
+  <table class="tparams">
+    <tr><td class="paramname">...SliceArgs</td><td>argument types used to get a tensor view </td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>mutable view of the specified subtensor </dd></dl>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">...args</td><td>aguments to get a tensor view </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>mutable tensor view </dd></dl>
 
 </div>
 </div>
-<a id="aee40e78c9bf6b3e7bd3060a528dfe94b" name="aee40e78c9bf6b3e7bd3060a528dfe94b"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aee40e78c9bf6b3e7bd3060a528dfe94b">&#9670;&#160;</a></span>subtensor() <span class="overload">[2/2]</span></h2>
+<a id="aabc005954d13cb372241e28f927d2d1e" name="aabc005954d13cb372241e28f927d2d1e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aabc005954d13cb372241e28f927d2d1e">&#9670;&#160;</a></span>subtensor() <span class="overload">[2/2]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
 template&lt;class T , size_t R, class Alloc , class L , class Access &gt; </div>
+<div class="memtemplate">
+template&lt;class ... SliceArgs&gt; </div>
 <table class="mlabels">
   <tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">constexpr <a class="el" href="classstd_1_1math_1_1dr__tensor.html">dr_tensor</a>&lt; T, R, Alloc, L, Access &gt;<a class="el" href="classstd_1_1math_1_1dr__tensor.html#a56057e834324d437bf4b1d9b06f8c122">::const_subtensor_type</a> <a class="el" href="classstd_1_1math_1_1dr__tensor.html">std::math::dr_tensor</a>&lt; T, R, Alloc, L, Access &gt;::subtensor </td>
+          <td class="memname">constexpr auto <a class="el" href="classstd_1_1math_1_1dr__tensor.html">std::math::dr_tensor</a>&lt; T, R, Alloc, L, Access &gt;::subtensor </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="classstd_1_1math_1_1dr__tensor.html#a311855993b4064aba8e19587ed8c8c30">tuple_type</a>&#160;</td>
-          <td class="paramname"><em>start</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype"><a class="el" href="classstd_1_1math_1_1dr__tensor.html#a311855993b4064aba8e19587ed8c8c30">tuple_type</a>&#160;</td>
-          <td class="paramname"><em>end</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td> const</td>
+          <td class="paramtype">SliceArgs ...&#160;</td>
+          <td class="paramname"><em>args</em></td><td>)</td>
+          <td> const</td>
         </tr>
       </table>
   </td>
@@ -2188,28 +1977,31 @@ template&lt;class T , size_t R, class Alloc , class L , class Access &gt; </div>
 </div><div class="memdoc">
 
 <p>Returns a const view of the specified subtensor. </p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">start</td><td>tuple start of subtensor </td></tr>
-    <tr><td class="paramname">end</td><td>tuple end of subtensor </td></tr>
+<dl class="tparams"><dt>Template Parameters</dt><dd>
+  <table class="tparams">
+    <tr><td class="paramname">...SliceArgs</td><td>argument types used to get a tensor view </td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>const view of the specified subtensor </dd></dl>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">...args</td><td>aguments to get a tensor view </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>const tensor view </dd></dl>
 
 </div>
 </div>
-<a id="a28402b65876d5c59ec7862b94c2163da" name="a28402b65876d5c59ec7862b94c2163da"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a28402b65876d5c59ec7862b94c2163da">&#9670;&#160;</a></span>subvector() <span class="overload">[1/2]</span></h2>
+<a id="a965e2cf06b31cdebe9581a16e109a43f" name="a965e2cf06b31cdebe9581a16e109a43f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a965e2cf06b31cdebe9581a16e109a43f">&#9670;&#160;</a></span>subvector() <span class="overload">[1/2]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;class T , size_t R, class Alloc , class L , class Access &gt; <br />
-requires ( decltype( experimental::submdspan( this-&gt;<a class="el" href="classstd_1_1math_1_1dr__tensor.html#acc1bccfd0955c035f0369425f9c64bfc">underlying_span</a>(), args ... ) )::rank() == 1 )</div>
+template&lt;class T , size_t R, class Alloc , class L , class Access &gt; </div>
 <div class="memtemplate">
-template&lt;class ... SliceArgs&gt; <br />
-requires ( decltype( experimental::submdspan( this-&gt;<a class="el" href="classstd_1_1math_1_1dr__tensor.html#acc1bccfd0955c035f0369425f9c64bfc">underlying_span</a>(), args ... ) )::rank() == 1 )</div>
+template&lt;class ... SliceArgs&gt; </div>
 <table class="mlabels">
   <tr>
   <td class="mlabels-left">
@@ -2229,8 +2021,15 @@ requires ( decltype( experimental::submdspan( this-&gt;<a class="el" href="class
 </table>
 </div><div class="memdoc">
 
-<p>Returns a vector view. </p>
-<dl class="tparams"><dt>Template Parameters</dt><dd>
+<p>Returns a mutable value at (indices...) without index bounds checking. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">indices</td><td>set indices representing a node in the tensor </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>mutable value at row i, column j, depth k, etc.</dd></dl>
+<p>Returns a vector view </p><dl class="tparams"><dt>Template Parameters</dt><dd>
   <table class="tparams">
     <tr><td class="paramname">...SliceArgs</td><td>argument types used to get a vector view </td></tr>
   </table>
@@ -2242,21 +2041,19 @@ requires ( decltype( experimental::submdspan( this-&gt;<a class="el" href="class
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>vector view </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>mutable vector view </dd></dl>
 
 </div>
 </div>
-<a id="a9bcfe1a957703d115319a91bd436de1f" name="a9bcfe1a957703d115319a91bd436de1f"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a9bcfe1a957703d115319a91bd436de1f">&#9670;&#160;</a></span>subvector() <span class="overload">[2/2]</span></h2>
+<a id="a6528790d38475ff9f5083e84daf2bc89" name="a6528790d38475ff9f5083e84daf2bc89"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6528790d38475ff9f5083e84daf2bc89">&#9670;&#160;</a></span>subvector() <span class="overload">[2/2]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;class T , size_t R, class Alloc , class L , class Access &gt; <br />
-requires ( decltype( experimental::submdspan( this-&gt;<a class="el" href="classstd_1_1math_1_1dr__tensor.html#acc1bccfd0955c035f0369425f9c64bfc">underlying_span</a>(), args ... ) )::rank() == 1 )</div>
+template&lt;class T , size_t R, class Alloc , class L , class Access &gt; </div>
 <div class="memtemplate">
-template&lt;class ... SliceArgs&gt; <br />
-requires ( decltype( experimental::submdspan( this-&gt;<a class="el" href="classstd_1_1math_1_1dr__tensor.html#acc1bccfd0955c035f0369425f9c64bfc">underlying_span</a>(), args ... ) )::rank() == 1 )</div>
+template&lt;class ... SliceArgs&gt; </div>
 <table class="mlabels">
   <tr>
   <td class="mlabels-left">
@@ -2276,8 +2073,15 @@ requires ( decltype( experimental::submdspan( this-&gt;<a class="el" href="class
 </table>
 </div><div class="memdoc">
 
-<p>Returns a const vector view. </p>
-<dl class="tparams"><dt>Template Parameters</dt><dd>
+<p>Returns the value at (indices...) without index bounds checking. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">indices</td><td>set indices representing a node in the tensor </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>value at row i, column j, depth k, etc.</dd></dl>
+<p>Returns a const vector view </p><dl class="tparams"><dt>Template Parameters</dt><dd>
   <table class="tparams">
     <tr><td class="paramname">...SliceArgs</td><td>argument types used to get a const vector view </td></tr>
   </table>
@@ -2305,7 +2109,7 @@ template&lt;class T , size_t R, class Alloc , class L , class Access &gt; </div>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">constexpr <a class="el" href="classstd_1_1math_1_1dr__tensor.html">dr_tensor</a>&lt; T, R, Alloc, L, Access &gt;<a class="el" href="classstd_1_1math_1_1dr__tensor.html#ac614c64c2545c31fb294544d95536f23">::const_underlying_span_type</a> <a class="el" href="classstd_1_1math_1_1dr__tensor.html">std::math::dr_tensor</a>&lt; T, R, Alloc, L, Access &gt;::underlying_span</td>
+          <td class="memname">constexpr <a class="el" href="classstd_1_1math_1_1dr__tensor.html">dr_tensor</a>&lt; T, R, Alloc, L, Access &gt;<a class="el" href="classstd_1_1math_1_1dr__tensor.html#a704eb064f32d74b9e0475d0597c599a4">::const_underlying_span_type</a> <a class="el" href="classstd_1_1math_1_1dr__tensor.html">std::math::dr_tensor</a>&lt; T, R, Alloc, L, Access &gt;::underlying_span</td>
         </tr>
       </table>
   </td>
@@ -2333,7 +2137,7 @@ template&lt;class T , size_t R, class Alloc , class L , class Access &gt; </div>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">constexpr <a class="el" href="classstd_1_1math_1_1dr__tensor.html">dr_tensor</a>&lt; T, R, Alloc, L, Access &gt;<a class="el" href="classstd_1_1math_1_1dr__tensor.html#a4330bcccce54d66e9f93c7889a3998a2">::underlying_span_type</a> <a class="el" href="classstd_1_1math_1_1dr__tensor.html">std::math::dr_tensor</a>&lt; T, R, Alloc, L, Access &gt;::underlying_span</td>
+          <td class="memname">constexpr <a class="el" href="classstd_1_1math_1_1dr__tensor.html">dr_tensor</a>&lt; T, R, Alloc, L, Access &gt;<a class="el" href="classstd_1_1math_1_1dr__tensor.html#a6114b7653366d9150c033abc021994c1">::underlying_span_type</a> <a class="el" href="classstd_1_1math_1_1dr__tensor.html">std::math::dr_tensor</a>&lt; T, R, Alloc, L, Access &gt;::underlying_span</td>
         </tr>
       </table>
   </td>

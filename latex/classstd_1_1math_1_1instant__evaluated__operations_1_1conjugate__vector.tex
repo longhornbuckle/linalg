@@ -1,5 +1,5 @@
-\hypertarget{classstd_1_1math_1_1instant__evaluated__operations_1_1conjugate__vector}{}\doxysection{std\+::math\+::instant\+\_\+evaluated\+\_\+operations\+::conjugate\+\_\+vector\texorpdfstring{$<$}{<} V \texorpdfstring{$>$}{>} Class Template Reference}
-\label{classstd_1_1math_1_1instant__evaluated__operations_1_1conjugate__vector}\index{std::math::instant\_evaluated\_operations::conjugate\_vector$<$ V $>$@{std::math::instant\_evaluated\_operations::conjugate\_vector$<$ V $>$}}
+\hypertarget{classstd_1_1math_1_1instant__evaluated__operations_1_1conjugate__vector}{}\doxysection{std\+::math\+::instant\+\_\+evaluated\+\_\+operations\+::conjugate\+\_\+vector\texorpdfstring{$<$}{<} V, typename \texorpdfstring{$>$}{>} Class Template Reference}
+\label{classstd_1_1math_1_1instant__evaluated__operations_1_1conjugate__vector}\index{std::math::instant\_evaluated\_operations::conjugate\_vector$<$ V, typename $>$@{std::math::instant\_evaluated\_operations::conjugate\_vector$<$ V, typename $>$}}
 
 
 Defines conjugate transpose operation on a vector.  
@@ -11,29 +11,29 @@ Defines conjugate transpose operation on a vector.
 
 
 
-Collaboration diagram for std\+::math\+::instant\+\_\+evaluated\+\_\+operations\+::conjugate\+\_\+vector\texorpdfstring{$<$}{<} V \texorpdfstring{$>$}{>}\+:
+Collaboration diagram for std\+::math\+::instant\+\_\+evaluated\+\_\+operations\+::conjugate\+\_\+vector\texorpdfstring{$<$}{<} V, typename \texorpdfstring{$>$}{>}\+:
 \nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
-\includegraphics[width=202pt]{classstd_1_1math_1_1instant__evaluated__operations_1_1conjugate__vector__coll__graph}
+\includegraphics[width=194pt]{classstd_1_1math_1_1instant__evaluated__operations_1_1conjugate__vector__coll__graph}
 \end{center}
 \end{figure}
 \doxysubsection*{Public Types}
 \begin{DoxyCompactItemize}
 \item 
-using \mbox{\hyperlink{classstd_1_1math_1_1instant__evaluated__operations_1_1conjugate__vector_a9436e655bf079a00df4ae28345c6b584}{vector\+\_\+type}} = V
+using \mbox{\hyperlink{classstd_1_1math_1_1instant__evaluated__operations_1_1conjugate__vector_a41c4a48c2486e8b72c4f52dd5abcc8a7}{vector\+\_\+type}} = V
 \begin{DoxyCompactList}\small\item\em Input vector type. \end{DoxyCompactList}\end{DoxyCompactItemize}
 \doxysubsection*{Static Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-static constexpr auto \mbox{\hyperlink{classstd_1_1math_1_1instant__evaluated__operations_1_1conjugate__vector_a74270e1144589a8dcba71f99deaa27ad}{conjugate}} (const \mbox{\hyperlink{classstd_1_1math_1_1instant__evaluated__operations_1_1conjugate__vector_a9436e655bf079a00df4ae28345c6b584}{vector\+\_\+type}} \&v) noexcept(!\mbox{\hyperlink{namespacestd_1_1math_1_1detail_a115b5c10e02845b57930bcc7a9f8ac2d}{detail\+::is\+\_\+complex\+\_\+v}}$<$ typename vector\+\_\+type\+::value\+\_\+type $>$$\vert$$\vert$noexcept(\mbox{\hyperlink{namespacestd_1_1math_1_1detail_ae5eb3cf5ea2a6e93d691bfd9f701768e}{detail\+::make\+\_\+from\+\_\+tuple}}$<$ result\+\_\+vector\+\_\+type $>$(collect\+\_\+ctor\+\_\+args(v, \mbox{[}\&v\mbox{]}$<$ class ... Index\+Type $>$(Index\+Type ... indices) constexpr noexcept \{ return \+::std\+::conj(v\mbox{[}indices ...\mbox{]});\}))))
+static constexpr auto \mbox{\hyperlink{classstd_1_1math_1_1instant__evaluated__operations_1_1conjugate__vector_a6799f26e0f454d84f2c61abcc8ae1cfe}{conjugate}} (const \mbox{\hyperlink{classstd_1_1math_1_1instant__evaluated__operations_1_1conjugate__vector_a41c4a48c2486e8b72c4f52dd5abcc8a7}{vector\+\_\+type}} \&v)
 \begin{DoxyCompactList}\small\item\em Returns conjugate( vector ) \end{DoxyCompactList}\end{DoxyCompactItemize}
 
 
 \doxysubsection{Detailed Description}
-\subsubsection*{template$<$concepts\+::vector\+\_\+data V$>$\newline
-class std\+::math\+::instant\+\_\+evaluated\+\_\+operations\+::conjugate\+\_\+vector$<$ V $>$}
+\subsubsection*{template$<$class V, typename = \+::std\+::enable\+\_\+if\+\_\+t$<$ concepts\+::vector\+\_\+data\+\_\+v$<$\+V$>$ $>$$>$\newline
+class std\+::math\+::instant\+\_\+evaluated\+\_\+operations\+::conjugate\+\_\+vector$<$ V, typename $>$}
 Defines conjugate transpose operation on a vector. 
 
 
@@ -44,12 +44,12 @@ Defines conjugate transpose operation on a vector.
 
 
 \doxysubsection{Member Typedef Documentation}
-\mbox{\Hypertarget{classstd_1_1math_1_1instant__evaluated__operations_1_1conjugate__vector_a9436e655bf079a00df4ae28345c6b584}\label{classstd_1_1math_1_1instant__evaluated__operations_1_1conjugate__vector_a9436e655bf079a00df4ae28345c6b584}} 
-\index{std::math::instant\_evaluated\_operations::conjugate\_vector$<$ V $>$@{std::math::instant\_evaluated\_operations::conjugate\_vector$<$ V $>$}!vector\_type@{vector\_type}}
-\index{vector\_type@{vector\_type}!std::math::instant\_evaluated\_operations::conjugate\_vector$<$ V $>$@{std::math::instant\_evaluated\_operations::conjugate\_vector$<$ V $>$}}
+\mbox{\Hypertarget{classstd_1_1math_1_1instant__evaluated__operations_1_1conjugate__vector_a41c4a48c2486e8b72c4f52dd5abcc8a7}\label{classstd_1_1math_1_1instant__evaluated__operations_1_1conjugate__vector_a41c4a48c2486e8b72c4f52dd5abcc8a7}} 
+\index{std::math::instant\_evaluated\_operations::conjugate\_vector$<$ V, typename $>$@{std::math::instant\_evaluated\_operations::conjugate\_vector$<$ V, typename $>$}!vector\_type@{vector\_type}}
+\index{vector\_type@{vector\_type}!std::math::instant\_evaluated\_operations::conjugate\_vector$<$ V, typename $>$@{std::math::instant\_evaluated\_operations::conjugate\_vector$<$ V, typename $>$}}
 \doxysubsubsection{\texorpdfstring{vector\_type}{vector\_type}}
-{\footnotesize\ttfamily template$<$concepts\+::vector\+\_\+data V$>$ \\
-using \mbox{\hyperlink{classstd_1_1math_1_1instant__evaluated__operations_1_1conjugate__vector}{std\+::math\+::instant\+\_\+evaluated\+\_\+operations\+::conjugate\+\_\+vector}}$<$ V $>$\+::vector\+\_\+type =  V}
+{\footnotesize\ttfamily template$<$class V , typename  = \+::std\+::enable\+\_\+if\+\_\+t$<$ concepts\+::vector\+\_\+data\+\_\+v$<$\+V$>$ $>$$>$ \\
+using \mbox{\hyperlink{classstd_1_1math_1_1instant__evaluated__operations_1_1conjugate__vector}{std\+::math\+::instant\+\_\+evaluated\+\_\+operations\+::conjugate\+\_\+vector}}$<$ V, typename $>$\+::vector\+\_\+type =  V}
 
 
 
@@ -58,12 +58,12 @@ Input vector type.
 
 
 \doxysubsection{Member Function Documentation}
-\mbox{\Hypertarget{classstd_1_1math_1_1instant__evaluated__operations_1_1conjugate__vector_a74270e1144589a8dcba71f99deaa27ad}\label{classstd_1_1math_1_1instant__evaluated__operations_1_1conjugate__vector_a74270e1144589a8dcba71f99deaa27ad}} 
-\index{std::math::instant\_evaluated\_operations::conjugate\_vector$<$ V $>$@{std::math::instant\_evaluated\_operations::conjugate\_vector$<$ V $>$}!conjugate@{conjugate}}
-\index{conjugate@{conjugate}!std::math::instant\_evaluated\_operations::conjugate\_vector$<$ V $>$@{std::math::instant\_evaluated\_operations::conjugate\_vector$<$ V $>$}}
+\mbox{\Hypertarget{classstd_1_1math_1_1instant__evaluated__operations_1_1conjugate__vector_a6799f26e0f454d84f2c61abcc8ae1cfe}\label{classstd_1_1math_1_1instant__evaluated__operations_1_1conjugate__vector_a6799f26e0f454d84f2c61abcc8ae1cfe}} 
+\index{std::math::instant\_evaluated\_operations::conjugate\_vector$<$ V, typename $>$@{std::math::instant\_evaluated\_operations::conjugate\_vector$<$ V, typename $>$}!conjugate@{conjugate}}
+\index{conjugate@{conjugate}!std::math::instant\_evaluated\_operations::conjugate\_vector$<$ V, typename $>$@{std::math::instant\_evaluated\_operations::conjugate\_vector$<$ V, typename $>$}}
 \doxysubsubsection{\texorpdfstring{conjugate()}{conjugate()}}
-{\footnotesize\ttfamily template$<$concepts\+::vector\+\_\+data V$>$ \\
-static constexpr auto \mbox{\hyperlink{classstd_1_1math_1_1instant__evaluated__operations_1_1conjugate__vector}{std\+::math\+::instant\+\_\+evaluated\+\_\+operations\+::conjugate\+\_\+vector}}$<$ V $>$\+::conjugate (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classstd_1_1math_1_1instant__evaluated__operations_1_1conjugate__vector_a9436e655bf079a00df4ae28345c6b584}{vector\+\_\+type}} \&}]{v }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}, {\ttfamily [constexpr]}, {\ttfamily [noexcept]}}
+{\footnotesize\ttfamily template$<$class V , typename  = \+::std\+::enable\+\_\+if\+\_\+t$<$ concepts\+::vector\+\_\+data\+\_\+v$<$\+V$>$ $>$$>$ \\
+static constexpr auto \mbox{\hyperlink{classstd_1_1math_1_1instant__evaluated__operations_1_1conjugate__vector}{std\+::math\+::instant\+\_\+evaluated\+\_\+operations\+::conjugate\+\_\+vector}}$<$ V, typename $>$\+::conjugate (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classstd_1_1math_1_1instant__evaluated__operations_1_1conjugate__vector_a41c4a48c2486e8b72c4f52dd5abcc8a7}{vector\+\_\+type}} \&}]{v }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}, {\ttfamily [constexpr]}}
 
 
 

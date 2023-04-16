@@ -1,9 +1,19 @@
 var searchData=
 [
-  ['negate_0',['negate',['../classstd_1_1math_1_1instant__evaluated__operations_1_1negation.html#a871eebfdb4d82ac0b7f963870b0438bc',1,'std::math::instant_evaluated_operations::negation']]],
-  ['negation_1',['negation',['../classstd_1_1math_1_1instant__evaluated__operations_1_1negation.html',1,'std::math::instant_evaluated_operations']]],
-  ['noexcept_2',['noexcept',['../classstd_1_1experimental_1_1extents_3_01_index_type_00_01_extent_01_4.html#aa25f63ffee8a343c9847c1e3a1b92b07',1,'std::experimental::extents&lt; IndexType, Extent &gt;']]],
-  ['nondynamic_5frank_3',['nondynamic_rank',['../structstd_1_1math_1_1detail_1_1nondynamic__rank.html',1,'std::math::detail']]],
-  ['nondynamic_5frank_3c_20e_3c_20t_2c_20extents_2e_2e_2e_20_3e_20_3e_4',['nondynamic_rank&lt; E&lt; T, Extents... &gt; &gt;',['../structstd_1_1math_1_1detail_1_1nondynamic__rank_3_01_e_3_01_t_00_01_extents_8_8_8_01_4_01_4.html',1,'std::math::detail']]],
-  ['nondynamic_5frank_5fv_5',['nondynamic_rank_v',['../namespacestd_1_1math_1_1detail.html#a7907df104e44be4aa56f3a9d17b5b301',1,'std::math::detail']]]
+  ['layout_5ftype_0',['layout_type',['../classstd_1_1math_1_1dr__matrix.html#ad1bc4f3adc19e8c20028fb2dffadffee',1,'std::math::dr_matrix::layout_type()'],['../classstd_1_1math_1_1dr__tensor.html#a7e1674ecc1d57ad775b9b5ba05f9374d',1,'std::math::dr_tensor::layout_type()'],['../classstd_1_1math_1_1dr__vector.html#aa0431c284a67005d5b6cccab9c5db413',1,'std::math::dr_vector::layout_type()'],['../classstd_1_1math_1_1fs__matrix.html#aad427be021fe94896d6b6bf133d32c00',1,'std::math::fs_matrix::layout_type()'],['../classstd_1_1math_1_1fs__tensor.html#aa0d6ef16218fd8c5edc33065308b1913',1,'std::math::fs_tensor::layout_type()'],['../classstd_1_1math_1_1fs__vector.html#afa2d600449d5872677e4812f1d451eea',1,'std::math::fs_vector::layout_type()'],['../classstd_1_1math_1_1matrix__view.html#aa8000fbfb8ed519c2b135cbd5816f2f1',1,'std::math::matrix_view::layout_type()'],['../classstd_1_1math_1_1tensor__view.html#a76de59ce9f1bee282afe48a31e789cbf',1,'std::math::tensor_view::layout_type()'],['../classstd_1_1math_1_1vector__view.html#af7e8b74e3444dff0706b49bedca5bd41',1,'std::math::vector_view::layout_type()']]],
+  ['linalg_5fconstexpr_5fdestructor_1',['LINALG_CONSTEXPR_DESTRUCTOR',['../macros_8hpp.html#adbfd2dd4f15e1d2badbacae0ebad337e',1,'macros.hpp']]],
+  ['linalg_5fcplusplus_2',['LINALG_CPLUSPLUS',['../config_8hpp.html#a1d3b61b7e90820017ca68530c85341ac',1,'config.hpp']]],
+  ['linalg_5fcxx_5fstd_5f17_3',['LINALG_CXX_STD_17',['../config_8hpp.html#a131af2a747931f8c8f6b5cda204bf609',1,'config.hpp']]],
+  ['linalg_5fcxx_5fstd_5f20_4',['LINALG_CXX_STD_20',['../config_8hpp.html#a21d810d463c726d5f072fa63d58f1140',1,'config.hpp']]],
+  ['linalg_5fexecution_5fpolicy_5',['LINALG_EXECUTION_POLICY',['../macros_8hpp.html#a93c05c845f6550edfd2dddf1333bb6ae',1,'macros.hpp']]],
+  ['linalg_5fexecution_5fseq_6',['LINALG_EXECUTION_SEQ',['../macros_8hpp.html#ad0c3c47431a345fa8a27a8bdeac325fa',1,'macros.hpp']]],
+  ['linalg_5fexecution_5funseq_7',['LINALG_EXECUTION_UNSEQ',['../macros_8hpp.html#aa1537f18dfb799b73c3e0b3314b9a421',1,'macros.hpp']]],
+  ['linalg_5fforce_5finline_5ffunction_8',['LINALG_FORCE_INLINE_FUNCTION',['../macros_8hpp.html#a2f0868ccdc827c5b349c9a40657732e7',1,'macros.hpp']]],
+  ['linalg_5fhas_5fcxx_5f17_9',['LINALG_HAS_CXX_17',['../config_8hpp.html#ac2aec15842874f3e18f335e9fd8e8433',1,'config.hpp']]],
+  ['linalg_5fhas_5fcxx_5f20_10',['LINALG_HAS_CXX_20',['../config_8hpp.html#a756fb8b0862bf0592fcc3115c0f6450f',1,'config.hpp']]],
+  ['linalg_5flikely_11',['LINALG_LIKELY',['../macros_8hpp.html#a3a9f4e2fcafe3d32f37e0855433a5479',1,'macros.hpp']]],
+  ['linalg_5funlikely_12',['LINALG_UNLIKELY',['../macros_8hpp.html#a9a4c3c0ffe6b0bd4e7694cc806303553',1,'macros.hpp']]],
+  ['linalg_5fuse_5fbracket_5foperator_13',['LINALG_USE_BRACKET_OPERATOR',['../config_8hpp.html#add71fd274d20fe70294431a5aced718e',1,'config.hpp']]],
+  ['linalg_5fuse_5fparen_5foperator_14',['LINALG_USE_PAREN_OPERATOR',['../config_8hpp.html#a909a5f82dfeb035d5a9bfbd69b8ad8f1',1,'config.hpp']]],
+  ['linear_5falgebra_2ehpp_15',['linear_algebra.hpp',['../linear__algebra_8hpp.html',1,'']]]
 ];

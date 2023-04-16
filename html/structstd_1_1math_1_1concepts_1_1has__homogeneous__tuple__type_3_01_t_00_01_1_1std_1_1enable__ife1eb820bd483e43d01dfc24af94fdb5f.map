@@ -1,0 +1,4 @@
+<map id="std::math::concepts::has_homogeneous_tuple_type&lt; T, ::std::enable_if_t&lt; detail::is_homogeneous_tuple_v&lt; typename T::tuple_type &gt; &gt; &gt;" name="std::math::concepts::has_homogeneous_tuple_type&lt; T, ::std::enable_if_t&lt; detail::is_homogeneous_tuple_v&lt; typename T::tuple_type &gt; &gt; &gt;">
+<area shape="rect" id="node1" title=" " alt="" coords="5,131,201,281"/>
+<area shape="rect" id="node2" title=" " alt="" coords="52,5,155,83"/>
+</map>

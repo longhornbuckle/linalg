@@ -1,0 +1,4 @@
+<map id="std::math::concepts::has_inner_prod_func&lt; T, ::std::enable_if_t&lt; ::std::is_same_v&lt; decltype(inner_prod(::std::declval&lt; T &gt;(), ::std::declval&lt; T &gt;())), decltype(inner_prod(::std::declval&lt; T &gt;(), ::std::declval&lt; T &gt;())) &gt; &gt; &gt;" name="std::math::concepts::has_inner_prod_func&lt; T, ::std::enable_if_t&lt; ::std::is_same_v&lt; decltype(inner_prod(::std::declval&lt; T &gt;(), ::std::declval&lt; T &gt;())), decltype(inner_prod(::std::declval&lt; T &gt;(), ::std::declval&lt; T &gt;())) &gt; &gt; &gt;">
+<area shape="rect" id="node1" title=" " alt="" coords="5,131,208,325"/>
+<area shape="rect" id="node2" title=" " alt="" coords="55,5,158,83"/>
+</map>

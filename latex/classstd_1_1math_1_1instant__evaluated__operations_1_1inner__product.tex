@@ -1,5 +1,5 @@
-\hypertarget{classstd_1_1math_1_1instant__evaluated__operations_1_1inner__product}{}\doxysection{std\+::math\+::instant\+\_\+evaluated\+\_\+operations\+::inner\+\_\+product\texorpdfstring{$<$}{<} V1, V2 \texorpdfstring{$>$}{>} Class Template Reference}
-\label{classstd_1_1math_1_1instant__evaluated__operations_1_1inner__product}\index{std::math::instant\_evaluated\_operations::inner\_product$<$ V1, V2 $>$@{std::math::instant\_evaluated\_operations::inner\_product$<$ V1, V2 $>$}}
+\hypertarget{classstd_1_1math_1_1instant__evaluated__operations_1_1inner__product}{}\doxysection{std\+::math\+::instant\+\_\+evaluated\+\_\+operations\+::inner\+\_\+product\texorpdfstring{$<$}{<} V1, V2, typename \texorpdfstring{$>$}{>} Class Template Reference}
+\label{classstd_1_1math_1_1instant__evaluated__operations_1_1inner__product}\index{std::math::instant\_evaluated\_operations::inner\_product$<$ V1, V2, typename $>$@{std::math::instant\_evaluated\_operations::inner\_product$<$ V1, V2, typename $>$}}
 
 
 Defines inner product operation on a pair of vectors.  
@@ -11,31 +11,31 @@ Defines inner product operation on a pair of vectors.
 
 
 
-Collaboration diagram for std\+::math\+::instant\+\_\+evaluated\+\_\+operations\+::inner\+\_\+product\texorpdfstring{$<$}{<} V1, V2 \texorpdfstring{$>$}{>}\+:
+Collaboration diagram for std\+::math\+::instant\+\_\+evaluated\+\_\+operations\+::inner\+\_\+product\texorpdfstring{$<$}{<} V1, V2, typename \texorpdfstring{$>$}{>}\+:
 \nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
-\includegraphics[width=209pt]{classstd_1_1math_1_1instant__evaluated__operations_1_1inner__product__coll__graph}
+\includegraphics[width=203pt]{classstd_1_1math_1_1instant__evaluated__operations_1_1inner__product__coll__graph}
 \end{center}
 \end{figure}
 \doxysubsection*{Public Types}
 \begin{DoxyCompactItemize}
 \item 
-using \mbox{\hyperlink{classstd_1_1math_1_1instant__evaluated__operations_1_1inner__product_a2ae0cf91b5c06228f61ed09ab9dc4984}{first\+\_\+vector\+\_\+type}} = V1
+using \mbox{\hyperlink{classstd_1_1math_1_1instant__evaluated__operations_1_1inner__product_a3ea3859361f42d7ed743d0c0afee6ad3}{first\+\_\+vector\+\_\+type}} = V1
 \begin{DoxyCompactList}\small\item\em First input vector type. \end{DoxyCompactList}\item 
-using \mbox{\hyperlink{classstd_1_1math_1_1instant__evaluated__operations_1_1inner__product_a55620c38fbfbd49cc2ab43bc69374ac6}{second\+\_\+vector\+\_\+type}} = V2
+using \mbox{\hyperlink{classstd_1_1math_1_1instant__evaluated__operations_1_1inner__product_abd83bd83aa9e887585e9e6789f37e3c9}{second\+\_\+vector\+\_\+type}} = V2
 \begin{DoxyCompactList}\small\item\em Second input vector type. \end{DoxyCompactList}\end{DoxyCompactItemize}
 \doxysubsection*{Static Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-static constexpr auto \mbox{\hyperlink{classstd_1_1math_1_1instant__evaluated__operations_1_1inner__product_ae4376cfa1ec9a2e60a96620bce5ff82a}{prod}} (const \mbox{\hyperlink{classstd_1_1math_1_1instant__evaluated__operations_1_1inner__product_a2ae0cf91b5c06228f61ed09ab9dc4984}{first\+\_\+vector\+\_\+type}} \&v1, const \mbox{\hyperlink{classstd_1_1math_1_1instant__evaluated__operations_1_1inner__product_a55620c38fbfbd49cc2ab43bc69374ac6}{second\+\_\+vector\+\_\+type}} \&v2) noexcept(\mbox{\hyperlink{namespacestd_1_1math_1_1detail_a70873b8867e1f782f3d0b26951b4d715}{detail\+::extents\+\_\+is\+\_\+equal\+\_\+v}}$<$ typename first\+\_\+vector\+\_\+type\+::extents\+\_\+type, typename second\+\_\+vector\+\_\+type\+::extents\+\_\+type $>$)
+{\footnotesize template$<$typename First\+\_\+extents  = typename first\+\_\+vector\+\_\+type\+::extents\+\_\+type, typename Second\+\_\+extents  = typename second\+\_\+vector\+\_\+type\+::extents\+\_\+type, typename  = \+::std\+::enable\+\_\+if\+\_\+t$<$ detail\+::extents\+\_\+may\+\_\+be\+\_\+equal\+\_\+v$<$\+First\+\_\+extents,\+Second\+\_\+extents$>$ $>$$>$ }\\static constexpr auto \mbox{\hyperlink{classstd_1_1math_1_1instant__evaluated__operations_1_1inner__product_afb3f8d4b4b41ba77d2e8bde4f45d1a66}{prod}} (const \mbox{\hyperlink{classstd_1_1math_1_1instant__evaluated__operations_1_1inner__product_a3ea3859361f42d7ed743d0c0afee6ad3}{first\+\_\+vector\+\_\+type}} \&v1, const \mbox{\hyperlink{classstd_1_1math_1_1instant__evaluated__operations_1_1inner__product_abd83bd83aa9e887585e9e6789f37e3c9}{second\+\_\+vector\+\_\+type}} \&v2) noexcept(\mbox{\hyperlink{namespacestd_1_1math_1_1detail_a95c3b74364766a62f8e1be6a0401d411}{detail\+::extents\+\_\+are\+\_\+equal\+\_\+v}}$<$ typename first\+\_\+vector\+\_\+type\+::extents\+\_\+type, typename second\+\_\+vector\+\_\+type\+::extents\+\_\+type $>$)
 \begin{DoxyCompactList}\small\item\em computes the inner product of v1 and v2 \end{DoxyCompactList}\end{DoxyCompactItemize}
 
 
 \doxysubsection{Detailed Description}
-\subsubsection*{template$<$concepts\+::vector\+\_\+data V1, concepts\+::vector\+\_\+data V2$>$\newline
-class std\+::math\+::instant\+\_\+evaluated\+\_\+operations\+::inner\+\_\+product$<$ V1, V2 $>$}
+\subsubsection*{template$<$class V1, class V2, typename = \+::std\+::enable\+\_\+if\+\_\+t$<$ concepts\+::vector\+\_\+data\+\_\+v$<$ V2 $>$ $>$$>$\newline
+class std\+::math\+::instant\+\_\+evaluated\+\_\+operations\+::inner\+\_\+product$<$ V1, V2, typename $>$}
 Defines inner product operation on a pair of vectors. 
 
 
@@ -48,23 +48,23 @@ Defines inner product operation on a pair of vectors.
 
 
 \doxysubsection{Member Typedef Documentation}
-\mbox{\Hypertarget{classstd_1_1math_1_1instant__evaluated__operations_1_1inner__product_a2ae0cf91b5c06228f61ed09ab9dc4984}\label{classstd_1_1math_1_1instant__evaluated__operations_1_1inner__product_a2ae0cf91b5c06228f61ed09ab9dc4984}} 
-\index{std::math::instant\_evaluated\_operations::inner\_product$<$ V1, V2 $>$@{std::math::instant\_evaluated\_operations::inner\_product$<$ V1, V2 $>$}!first\_vector\_type@{first\_vector\_type}}
-\index{first\_vector\_type@{first\_vector\_type}!std::math::instant\_evaluated\_operations::inner\_product$<$ V1, V2 $>$@{std::math::instant\_evaluated\_operations::inner\_product$<$ V1, V2 $>$}}
+\mbox{\Hypertarget{classstd_1_1math_1_1instant__evaluated__operations_1_1inner__product_a3ea3859361f42d7ed743d0c0afee6ad3}\label{classstd_1_1math_1_1instant__evaluated__operations_1_1inner__product_a3ea3859361f42d7ed743d0c0afee6ad3}} 
+\index{std::math::instant\_evaluated\_operations::inner\_product$<$ V1, V2, typename $>$@{std::math::instant\_evaluated\_operations::inner\_product$<$ V1, V2, typename $>$}!first\_vector\_type@{first\_vector\_type}}
+\index{first\_vector\_type@{first\_vector\_type}!std::math::instant\_evaluated\_operations::inner\_product$<$ V1, V2, typename $>$@{std::math::instant\_evaluated\_operations::inner\_product$<$ V1, V2, typename $>$}}
 \doxysubsubsection{\texorpdfstring{first\_vector\_type}{first\_vector\_type}}
-{\footnotesize\ttfamily template$<$concepts\+::vector\+\_\+data V1, concepts\+::vector\+\_\+data V2$>$ \\
-using \mbox{\hyperlink{classstd_1_1math_1_1instant__evaluated__operations_1_1inner__product}{std\+::math\+::instant\+\_\+evaluated\+\_\+operations\+::inner\+\_\+product}}$<$ V1, V2 $>$\+::first\+\_\+vector\+\_\+type =  V1}
+{\footnotesize\ttfamily template$<$class V1 , class V2 , typename  = \+::std\+::enable\+\_\+if\+\_\+t$<$ concepts\+::vector\+\_\+data\+\_\+v$<$ V2 $>$ $>$$>$ \\
+using \mbox{\hyperlink{classstd_1_1math_1_1instant__evaluated__operations_1_1inner__product}{std\+::math\+::instant\+\_\+evaluated\+\_\+operations\+::inner\+\_\+product}}$<$ V1, V2, typename $>$\+::first\+\_\+vector\+\_\+type =  V1}
 
 
 
 First input vector type. 
 
-\mbox{\Hypertarget{classstd_1_1math_1_1instant__evaluated__operations_1_1inner__product_a55620c38fbfbd49cc2ab43bc69374ac6}\label{classstd_1_1math_1_1instant__evaluated__operations_1_1inner__product_a55620c38fbfbd49cc2ab43bc69374ac6}} 
-\index{std::math::instant\_evaluated\_operations::inner\_product$<$ V1, V2 $>$@{std::math::instant\_evaluated\_operations::inner\_product$<$ V1, V2 $>$}!second\_vector\_type@{second\_vector\_type}}
-\index{second\_vector\_type@{second\_vector\_type}!std::math::instant\_evaluated\_operations::inner\_product$<$ V1, V2 $>$@{std::math::instant\_evaluated\_operations::inner\_product$<$ V1, V2 $>$}}
+\mbox{\Hypertarget{classstd_1_1math_1_1instant__evaluated__operations_1_1inner__product_abd83bd83aa9e887585e9e6789f37e3c9}\label{classstd_1_1math_1_1instant__evaluated__operations_1_1inner__product_abd83bd83aa9e887585e9e6789f37e3c9}} 
+\index{std::math::instant\_evaluated\_operations::inner\_product$<$ V1, V2, typename $>$@{std::math::instant\_evaluated\_operations::inner\_product$<$ V1, V2, typename $>$}!second\_vector\_type@{second\_vector\_type}}
+\index{second\_vector\_type@{second\_vector\_type}!std::math::instant\_evaluated\_operations::inner\_product$<$ V1, V2, typename $>$@{std::math::instant\_evaluated\_operations::inner\_product$<$ V1, V2, typename $>$}}
 \doxysubsubsection{\texorpdfstring{second\_vector\_type}{second\_vector\_type}}
-{\footnotesize\ttfamily template$<$concepts\+::vector\+\_\+data V1, concepts\+::vector\+\_\+data V2$>$ \\
-using \mbox{\hyperlink{classstd_1_1math_1_1instant__evaluated__operations_1_1inner__product}{std\+::math\+::instant\+\_\+evaluated\+\_\+operations\+::inner\+\_\+product}}$<$ V1, V2 $>$\+::second\+\_\+vector\+\_\+type =  V2}
+{\footnotesize\ttfamily template$<$class V1 , class V2 , typename  = \+::std\+::enable\+\_\+if\+\_\+t$<$ concepts\+::vector\+\_\+data\+\_\+v$<$ V2 $>$ $>$$>$ \\
+using \mbox{\hyperlink{classstd_1_1math_1_1instant__evaluated__operations_1_1inner__product}{std\+::math\+::instant\+\_\+evaluated\+\_\+operations\+::inner\+\_\+product}}$<$ V1, V2, typename $>$\+::second\+\_\+vector\+\_\+type =  V2}
 
 
 
@@ -73,12 +73,13 @@ Second input vector type.
 
 
 \doxysubsection{Member Function Documentation}
-\mbox{\Hypertarget{classstd_1_1math_1_1instant__evaluated__operations_1_1inner__product_ae4376cfa1ec9a2e60a96620bce5ff82a}\label{classstd_1_1math_1_1instant__evaluated__operations_1_1inner__product_ae4376cfa1ec9a2e60a96620bce5ff82a}} 
-\index{std::math::instant\_evaluated\_operations::inner\_product$<$ V1, V2 $>$@{std::math::instant\_evaluated\_operations::inner\_product$<$ V1, V2 $>$}!prod@{prod}}
-\index{prod@{prod}!std::math::instant\_evaluated\_operations::inner\_product$<$ V1, V2 $>$@{std::math::instant\_evaluated\_operations::inner\_product$<$ V1, V2 $>$}}
+\mbox{\Hypertarget{classstd_1_1math_1_1instant__evaluated__operations_1_1inner__product_afb3f8d4b4b41ba77d2e8bde4f45d1a66}\label{classstd_1_1math_1_1instant__evaluated__operations_1_1inner__product_afb3f8d4b4b41ba77d2e8bde4f45d1a66}} 
+\index{std::math::instant\_evaluated\_operations::inner\_product$<$ V1, V2, typename $>$@{std::math::instant\_evaluated\_operations::inner\_product$<$ V1, V2, typename $>$}!prod@{prod}}
+\index{prod@{prod}!std::math::instant\_evaluated\_operations::inner\_product$<$ V1, V2, typename $>$@{std::math::instant\_evaluated\_operations::inner\_product$<$ V1, V2, typename $>$}}
 \doxysubsubsection{\texorpdfstring{prod()}{prod()}}
-{\footnotesize\ttfamily template$<$concepts\+::vector\+\_\+data V1, concepts\+::vector\+\_\+data V2$>$ \\
-static constexpr auto \mbox{\hyperlink{classstd_1_1math_1_1instant__evaluated__operations_1_1inner__product}{std\+::math\+::instant\+\_\+evaluated\+\_\+operations\+::inner\+\_\+product}}$<$ V1, V2 $>$\+::prod (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classstd_1_1math_1_1instant__evaluated__operations_1_1inner__product_a2ae0cf91b5c06228f61ed09ab9dc4984}{first\+\_\+vector\+\_\+type}} \&}]{v1,  }\item[{const \mbox{\hyperlink{classstd_1_1math_1_1instant__evaluated__operations_1_1inner__product_a55620c38fbfbd49cc2ab43bc69374ac6}{second\+\_\+vector\+\_\+type}} \&}]{v2 }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}, {\ttfamily [constexpr]}, {\ttfamily [noexcept]}}
+{\footnotesize\ttfamily template$<$class V1 , class V2 , typename  = \+::std\+::enable\+\_\+if\+\_\+t$<$ concepts\+::vector\+\_\+data\+\_\+v$<$ V2 $>$ $>$$>$ \\
+template$<$typename First\+\_\+extents  = typename first\+\_\+vector\+\_\+type\+::extents\+\_\+type, typename Second\+\_\+extents  = typename second\+\_\+vector\+\_\+type\+::extents\+\_\+type, typename  = \+::std\+::enable\+\_\+if\+\_\+t$<$ detail\+::extents\+\_\+may\+\_\+be\+\_\+equal\+\_\+v$<$\+First\+\_\+extents,\+Second\+\_\+extents$>$ $>$$>$ \\
+static constexpr auto \mbox{\hyperlink{classstd_1_1math_1_1instant__evaluated__operations_1_1inner__product}{std\+::math\+::instant\+\_\+evaluated\+\_\+operations\+::inner\+\_\+product}}$<$ V1, V2, typename $>$\+::prod (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classstd_1_1math_1_1instant__evaluated__operations_1_1inner__product_a3ea3859361f42d7ed743d0c0afee6ad3}{first\+\_\+vector\+\_\+type}} \&}]{v1,  }\item[{const \mbox{\hyperlink{classstd_1_1math_1_1instant__evaluated__operations_1_1inner__product_abd83bd83aa9e887585e9e6789f37e3c9}{second\+\_\+vector\+\_\+type}} \&}]{v2 }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}, {\ttfamily [constexpr]}, {\ttfamily [noexcept]}}
 
 
 

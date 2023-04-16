@@ -1,0 +1,308 @@
+\hypertarget{tensor__view__impl_8hpp_source}{}\doxysection{tensor\+\_\+view\+\_\+impl.\+hpp}
+\label{tensor__view__impl_8hpp_source}\index{include/experimental/linear\_algebra/tensor\_view\_impl.hpp@{include/experimental/linear\_algebra/tensor\_view\_impl.hpp}}
+\mbox{\hyperlink{tensor__view__impl_8hpp}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{comment}{//==================================================================================================}}
+\DoxyCodeLine{00002\ \textcolor{comment}{//\ \ File:\ \ \ \ \ \ \ tensor\_view.hpp}}
+\DoxyCodeLine{00003\ \textcolor{comment}{//}}
+\DoxyCodeLine{00004\ \textcolor{comment}{//\ \ Summary:\ \ \ \ This\ header\ defines\ the\ tensor\ view\ implementation}}
+\DoxyCodeLine{00005\ \textcolor{comment}{//==================================================================================================}}
+\DoxyCodeLine{00006\ \textcolor{comment}{//}}
+\DoxyCodeLine{00007\ \textcolor{preprocessor}{\#ifndef\ LINEAR\_ALGEBRA\_TENSOR\_VIEW\_IMPL\_HPP}}
+\DoxyCodeLine{00008\ \textcolor{preprocessor}{\#define\ LINEAR\_ALGEBRA\_TENSOR\_VIEW\_IMPL\_HPP}}
+\DoxyCodeLine{00009\ }
+\DoxyCodeLine{00010\ \textcolor{preprocessor}{\#include\ <\mbox{\hyperlink{linear__algebra_8hpp}{experimental/linear\_algebra.hpp}}>}}
+\DoxyCodeLine{00011\ }
+\DoxyCodeLine{00012\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespacestd}{std}}}
+\DoxyCodeLine{00013\ \{}
+\DoxyCodeLine{00014\ \textcolor{keyword}{namespace\ }math}
+\DoxyCodeLine{00015\ \{}
+\DoxyCodeLine{00016\ }
+\DoxyCodeLine{00017\ \textcolor{comment}{//-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{00018\ \textcolor{comment}{//\ Implementation\ of\ tensor\_view<MDS>}}
+\DoxyCodeLine{00019\ \textcolor{comment}{//-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{00020\ }
+\DoxyCodeLine{00021\ \textcolor{comment}{//-\/\ Destructor\ /\ Constructors\ /\ Assignments}}
+\DoxyCodeLine{00022\ }
+\DoxyCodeLine{00023\ \textcolor{preprocessor}{\#ifdef\ LINALG\_ENABLE\_CONCEPTS}}
+\DoxyCodeLine{00024\ \textcolor{keyword}{template}\ <\ \textcolor{keyword}{class}\ MDS\ >\ \textcolor{keyword}{requires}\ (\ detail::is\_mdspan\_v<MDS>\ \&\&\ MDS::is\_always\_unique()\ )}
+\DoxyCodeLine{00025\ \textcolor{keyword}{constexpr}\ tensor\_view<MDS>::}
+\DoxyCodeLine{00026\ \#\textcolor{keywordflow}{else}}
+\DoxyCodeLine{00027\ template\ <\ class\ MDS,\ typename\ Dummy\ >}
+\DoxyCodeLine{00028\ \textcolor{keyword}{constexpr}\ \mbox{\hyperlink{classstd_1_1math_1_1tensor__view}{tensor\_view<MDS,Dummy>}}::}
+\DoxyCodeLine{00029\ \#endif}
+\DoxyCodeLine{00030\ \mbox{\hyperlink{classstd_1_1math_1_1tensor__view}{tensor\_view}}(\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classstd_1_1math_1_1tensor__view_afecf1fbbc0be2747b0ff68a5fd76300f}{underlying\_span\_type}}\&\ view\ )\ noexcept\ :}
+\DoxyCodeLine{00031\ \ \ view\_(view)}
+\DoxyCodeLine{00032\ \{}
+\DoxyCodeLine{00033\ \}}
+\DoxyCodeLine{00034\ }
+\DoxyCodeLine{00035\ \textcolor{preprocessor}{\#ifdef\ LINALG\_ENABLE\_CONCEPTS}}
+\DoxyCodeLine{00036\ \textcolor{keyword}{template}\ <\ \textcolor{keyword}{class}\ MDS\ >\ \textcolor{keyword}{requires}\ (\ detail::is\_mdspan\_v<MDS>\ \&\&\ MDS::is\_always\_unique()\ )}
+\DoxyCodeLine{00037\ \textcolor{keyword}{constexpr}\ \mbox{\hyperlink{classstd_1_1math_1_1tensor__view}{tensor\_view<MDS>}}\&\ \mbox{\hyperlink{classstd_1_1math_1_1tensor__view}{tensor\_view<MDS>}}::}
+\DoxyCodeLine{00038\ \#\textcolor{keywordflow}{else}}
+\DoxyCodeLine{00039\ template\ <\ class\ MDS,\ typename\ Dummy\ >}
+\DoxyCodeLine{00040\ \textcolor{keyword}{constexpr}\ \mbox{\hyperlink{classstd_1_1math_1_1tensor__view}{tensor\_view<MDS,Dummy>}}\&\ \mbox{\hyperlink{classstd_1_1math_1_1tensor__view}{tensor\_view<MDS,Dummy>}}::}
+\DoxyCodeLine{00041\ \#endif}
+\DoxyCodeLine{00042\ \textcolor{keyword}{operator}\ =\ (\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classstd_1_1math_1_1tensor__view_afecf1fbbc0be2747b0ff68a5fd76300f}{underlying\_span\_type}}\&\ rhs\ )\ \textcolor{keyword}{noexcept}}
+\DoxyCodeLine{00043\ \{}
+\DoxyCodeLine{00044\ \ \ \textcolor{keyword}{static\_cast<}\textcolor{keywordtype}{void}\textcolor{keyword}{>}(\ this-\/>view\_\ =\ rhs\ );}
+\DoxyCodeLine{00045\ \ \ \textcolor{keywordflow}{return}\ *\textcolor{keyword}{this};}
+\DoxyCodeLine{00046\ \}}
+\DoxyCodeLine{00047\ }
+\DoxyCodeLine{00048\ \textcolor{comment}{//-\/\ Size\ /\ Capacity}}
+\DoxyCodeLine{00049\ }
+\DoxyCodeLine{00050\ \textcolor{preprocessor}{\#ifdef\ LINALG\_ENABLE\_CONCEPTS}}
+\DoxyCodeLine{00051\ \textcolor{keyword}{template}\ <\ \textcolor{keyword}{class}\ MDS\ >\ \textcolor{keyword}{requires}\ (\ detail::is\_mdspan\_v<MDS>\ \&\&\ MDS::is\_always\_unique()\ )}
+\DoxyCodeLine{00052\ [[nodiscard]]\ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{typename}\ \mbox{\hyperlink{classstd_1_1math_1_1tensor__view_ac42982a3f00ae1f4005330da6c2f314e}{tensor\_view<MDS>::extents\_type}}\ \mbox{\hyperlink{classstd_1_1math_1_1tensor__view}{tensor\_view<MDS>}}::}
+\DoxyCodeLine{00053\ \#\textcolor{keywordflow}{else}}
+\DoxyCodeLine{00054\ template\ <\ class\ MDS,\ typename\ Dummy\ >}
+\DoxyCodeLine{00055\ [[nodiscard]]\ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{typename}\ \mbox{\hyperlink{classstd_1_1math_1_1tensor__view_ac42982a3f00ae1f4005330da6c2f314e}{tensor\_view<MDS,Dummy>::extents\_type}}\ \mbox{\hyperlink{classstd_1_1math_1_1tensor__view}{tensor\_view<MDS,Dummy>}}::}
+\DoxyCodeLine{00056\ \#endif}
+\DoxyCodeLine{00057\ size()\ \textcolor{keyword}{const}\ \textcolor{keyword}{noexcept}}
+\DoxyCodeLine{00058\ \{}
+\DoxyCodeLine{00059\ \ \ \textcolor{keywordflow}{return}\ this-\/>view\_.extents();}
+\DoxyCodeLine{00060\ \}}
+\DoxyCodeLine{00061\ }
+\DoxyCodeLine{00062\ \textcolor{preprocessor}{\#ifdef\ LINALG\_ENABLE\_CONCEPTS}}
+\DoxyCodeLine{00063\ \textcolor{keyword}{template}\ <\ \textcolor{keyword}{class}\ MDS\ >\ \textcolor{keyword}{requires}\ (\ detail::is\_mdspan\_v<MDS>\ \&\&\ MDS::is\_always\_unique()\ )}
+\DoxyCodeLine{00064\ [[nodiscard]]\ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{typename}\ \mbox{\hyperlink{classstd_1_1math_1_1tensor__view_ac42982a3f00ae1f4005330da6c2f314e}{tensor\_view<MDS>::extents\_type}}\ \mbox{\hyperlink{classstd_1_1math_1_1tensor__view}{tensor\_view<MDS>}}::}
+\DoxyCodeLine{00065\ \#\textcolor{keywordflow}{else}}
+\DoxyCodeLine{00066\ template\ <\ class\ MDS,\ typename\ Dummy\ >}
+\DoxyCodeLine{00067\ [[nodiscard]]\ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{typename}\ \mbox{\hyperlink{classstd_1_1math_1_1tensor__view_ac42982a3f00ae1f4005330da6c2f314e}{tensor\_view<MDS,Dummy>::extents\_type}}\ \mbox{\hyperlink{classstd_1_1math_1_1tensor__view}{tensor\_view<MDS,Dummy>}}::}
+\DoxyCodeLine{00068\ \#endif}
+\DoxyCodeLine{00069\ capacity()\ \textcolor{keyword}{const}\ \textcolor{keyword}{noexcept}}
+\DoxyCodeLine{00070\ \{}
+\DoxyCodeLine{00071\ \ \ \textcolor{keywordflow}{return}\ this-\/>view\_.extents();}
+\DoxyCodeLine{00072\ \}}
+\DoxyCodeLine{00073\ }
+\DoxyCodeLine{00074\ \textcolor{comment}{//-\/\ Const\ views}}
+\DoxyCodeLine{00075\ }
+\DoxyCodeLine{00076\ \textcolor{preprocessor}{\#if\ LINALG\_USE\_BRACKET\_OPERATOR}}
+\DoxyCodeLine{00077\ \textcolor{preprocessor}{\#ifdef\ LINALG\_ENABLE\_CONCEPTS}}
+\DoxyCodeLine{00078\ \textcolor{keyword}{template}\ <\ \textcolor{keyword}{class}\ MDS\ >\ \textcolor{keyword}{requires}\ (\ detail::is\_mdspan\_v<MDS>\ \&\&\ MDS::is\_always\_unique()\ )}
+\DoxyCodeLine{00079\ template\ <\ class\ ...\ IndexType\ >}
+\DoxyCodeLine{00080\ [[nodiscard]]\ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{typename}\ \mbox{\hyperlink{classstd_1_1math_1_1tensor__view_ab1d10e1729b95ed8a4f9bb25cfe530b2}{tensor\_view<MDS>::value\_type}}\ \mbox{\hyperlink{classstd_1_1math_1_1tensor__view}{tensor\_view<MDS>}}::}
+\DoxyCodeLine{00081\ \#\textcolor{keywordflow}{else}}
+\DoxyCodeLine{00082\ template\ <\ class\ MDS,\ typename\ Dummy\ >}
+\DoxyCodeLine{00083\ template\ <\ class\ ...\ IndexType\ >}
+\DoxyCodeLine{00084\ [[nodiscard]]\ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{typename}\ \mbox{\hyperlink{classstd_1_1math_1_1tensor__view_ab1d10e1729b95ed8a4f9bb25cfe530b2}{tensor\_view<MDS,Dummy>::value\_type}}\ \mbox{\hyperlink{classstd_1_1math_1_1tensor__view}{tensor\_view<MDS,Dummy>}}::}
+\DoxyCodeLine{00085\ \#endif}
+\DoxyCodeLine{00086\ \textcolor{keyword}{operator}[](\ IndexType\ ...\ indices\ )\ \textcolor{keyword}{const}\ \textcolor{keyword}{noexcept}}
+\DoxyCodeLine{00087\ \textcolor{preprocessor}{\#ifdef\ LINALG\_ENABLE\_CONCEPTS}}
+\DoxyCodeLine{00088\ \ \ \textcolor{keyword}{requires}\ (\ \textcolor{keyword}{sizeof}...(IndexType)\ ==\ \mbox{\hyperlink{classstd_1_1math_1_1tensor__view}{tensor\_view<MDS>::extents\_type::rank}}()\ )\ \&\&\ (\ ::std::is\_convertible\_v<IndexType,\textcolor{keyword}{typename}\ \mbox{\hyperlink{classstd_1_1math_1_1tensor__view_a409f7f1f17ce49b7014dd19b76df9e6f}{tensor\_view<MDS>::index\_type}}>\ \&\&\ ...\ )}
+\DoxyCodeLine{00089\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00090\ \{}
+\DoxyCodeLine{00091\ \ \ \textcolor{keywordflow}{return}\ this-\/>underlying\_span()[\ indices\ ...\ ];}
+\DoxyCodeLine{00092\ \}}
+\DoxyCodeLine{00093\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00094\ }
+\DoxyCodeLine{00095\ \textcolor{preprocessor}{\#if\ LINALG\_USE\_PAREN\_OPERATOR}}
+\DoxyCodeLine{00096\ \textcolor{preprocessor}{\#ifdef\ LINALG\_ENABLE\_CONCEPTS}}
+\DoxyCodeLine{00097\ \textcolor{keyword}{template}\ <\ \textcolor{keyword}{class}\ MDS\ >\ \textcolor{keyword}{requires}\ (\ detail::is\_mdspan\_v<MDS>\ \&\&\ MDS::is\_always\_unique()\ )}
+\DoxyCodeLine{00098\ template\ <\ class\ ...\ IndexType\ >}
+\DoxyCodeLine{00099\ [[nodiscard]]\ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{typename}\ \mbox{\hyperlink{classstd_1_1math_1_1tensor__view_ab1d10e1729b95ed8a4f9bb25cfe530b2}{tensor\_view<MDS>::value\_type}}\ \mbox{\hyperlink{classstd_1_1math_1_1tensor__view}{tensor\_view<MDS>}}::}
+\DoxyCodeLine{00100\ \#\textcolor{keywordflow}{else}}
+\DoxyCodeLine{00101\ template\ <\ class\ MDS,\ typename\ Dummy\ >}
+\DoxyCodeLine{00102\ template\ <\ class\ ...\ IndexType\ >}
+\DoxyCodeLine{00103\ [[nodiscard]]\ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{typename}\ \mbox{\hyperlink{classstd_1_1math_1_1tensor__view_ab1d10e1729b95ed8a4f9bb25cfe530b2}{tensor\_view<MDS,Dummy>::value\_type}}\ \mbox{\hyperlink{classstd_1_1math_1_1tensor__view}{tensor\_view<MDS,Dummy>}}::}
+\DoxyCodeLine{00104\ \#endif}
+\DoxyCodeLine{00105\ \textcolor{keyword}{operator}()(\ IndexType\ ...\ indices\ )\ \textcolor{keyword}{const}\ \textcolor{keyword}{noexcept}}
+\DoxyCodeLine{00106\ \#ifdef\ LINALG\_ENABLE\_CONCEPTS}
+\DoxyCodeLine{00107\ \ \ \textcolor{keyword}{requires}\ (\ \textcolor{keyword}{sizeof}...(IndexType)\ ==\ \mbox{\hyperlink{classstd_1_1math_1_1tensor__view}{tensor\_view<MDS>::extents\_type::rank}}()\ )\ \&\&\ (\ ::std::is\_convertible\_v<IndexType,\textcolor{keyword}{typename}\ \mbox{\hyperlink{classstd_1_1math_1_1tensor__view_a409f7f1f17ce49b7014dd19b76df9e6f}{tensor\_view<MDS>::index\_type}}>\ \&\&\ ...\ )}
+\DoxyCodeLine{00108\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00109\ \{}
+\DoxyCodeLine{00110\ \ \ \textcolor{keywordflow}{return}\ this-\/>underlying\_span()(\ indices\ ...\ );}
+\DoxyCodeLine{00111\ \}}
+\DoxyCodeLine{00112\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00113\ }
+\DoxyCodeLine{00114\ \textcolor{preprocessor}{\#ifdef\ LINALG\_ENABLE\_CONCEPTS}}
+\DoxyCodeLine{00115\ \textcolor{keyword}{template}\ <\ \textcolor{keyword}{class}\ MDS\ >\ \textcolor{keyword}{requires}\ (\ detail::is\_mdspan\_v<MDS>\ \&\&\ MDS::is\_always\_unique()\ )}
+\DoxyCodeLine{00116\ template\ <\ class\ ...\ SliceArgs\ >}
+\DoxyCodeLine{00117\ [[nodiscard]]\ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{auto}\ \mbox{\hyperlink{classstd_1_1math_1_1tensor__view}{tensor\_view<MDS>}}::}
+\DoxyCodeLine{00118\ \#\textcolor{keywordflow}{else}}
+\DoxyCodeLine{00119\ template\ <\ class\ MDS,\ typename\ Dummy\ >}
+\DoxyCodeLine{00120\ template\ <\ class\ ...\ SliceArgs\ >}
+\DoxyCodeLine{00121\ [[nodiscard]]\ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{auto}\ \mbox{\hyperlink{classstd_1_1math_1_1tensor__view}{tensor\_view<MDS,Dummy>}}::}
+\DoxyCodeLine{00122\ \#endif}
+\DoxyCodeLine{00123\ subvector(\ SliceArgs\ ...\ args\ )\ \textcolor{keyword}{const}}
+\DoxyCodeLine{00124\ \textcolor{preprocessor}{\#ifdef\ LINALG\_ENABLE\_CONCEPTS}}
+\DoxyCodeLine{00125\ \ \ \textcolor{keyword}{requires}\ (\ \textcolor{keyword}{decltype}(\ ::std::experimental::submdspan(\ this-\/>underlying\_span(),\ args\ ...\ )\ )::rank()\ ==\ 1\ )}
+\DoxyCodeLine{00126\ \#endif}
+\DoxyCodeLine{00127\ \{}
+\DoxyCodeLine{00128\ \ \ \textcolor{keyword}{using\ }subspan\_type\ =\ \textcolor{keyword}{decltype}(\ ::std::experimental::submdspan(\ this-\/>underlying\_span(),\ args\ ...\ )\ );}
+\DoxyCodeLine{00129\ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{classstd_1_1math_1_1vector__view}{vector\_view<subspan\_type>}}(\ ::std::experimental::submdspan(\ this-\/>underlying\_span(),\ args\ ...\ )\ );}
+\DoxyCodeLine{00130\ \}}
+\DoxyCodeLine{00131\ }
+\DoxyCodeLine{00132\ \textcolor{preprocessor}{\#ifdef\ LINALG\_ENABLE\_CONCEPTS}}
+\DoxyCodeLine{00133\ \textcolor{keyword}{template}\ <\ \textcolor{keyword}{class}\ MDS\ >\ \textcolor{keyword}{requires}\ (\ detail::is\_mdspan\_v<MDS>\ \&\&\ MDS::is\_always\_unique()\ )}
+\DoxyCodeLine{00134\ template\ <\ class\ ...\ SliceArgs\ >}
+\DoxyCodeLine{00135\ [[nodiscard]]\ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{auto}\ \mbox{\hyperlink{classstd_1_1math_1_1tensor__view}{tensor\_view<MDS>}}::}
+\DoxyCodeLine{00136\ \#\textcolor{keywordflow}{else}}
+\DoxyCodeLine{00137\ template\ <\ class\ MDS,\ typename\ Dummy\ >}
+\DoxyCodeLine{00138\ template\ <\ class\ ...\ SliceArgs\ >}
+\DoxyCodeLine{00139\ [[nodiscard]]\ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{auto}\ \mbox{\hyperlink{classstd_1_1math_1_1tensor__view}{tensor\_view<MDS,Dummy>}}::}
+\DoxyCodeLine{00140\ \#endif}
+\DoxyCodeLine{00141\ submatrix(\ SliceArgs\ ...\ args\ )\ \textcolor{keyword}{const}}
+\DoxyCodeLine{00142\ \textcolor{preprocessor}{\#ifdef\ LINALG\_ENABLE\_CONCEPTS}}
+\DoxyCodeLine{00143\ \ \ \textcolor{keyword}{requires}\ (\ \textcolor{keyword}{decltype}(\ ::std::experimental::submdspan(\ this-\/>underlying\_span(),\ args\ ...\ )\ )::rank()\ ==\ 2\ )}
+\DoxyCodeLine{00144\ \#endif}
+\DoxyCodeLine{00145\ \{}
+\DoxyCodeLine{00146\ \ \ \textcolor{keyword}{using\ }subspan\_type\ =\ \textcolor{keyword}{decltype}(\ ::std::experimental::submdspan(\ this-\/>underlying\_span(),\ args\ ...\ )\ );}
+\DoxyCodeLine{00147\ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{classstd_1_1math_1_1matrix__view}{matrix\_view<subspan\_type>}}(\ ::std::experimental::submdspan(\ this-\/>underlying\_span(),\ args\ ...\ )\ );}
+\DoxyCodeLine{00148\ \}}
+\DoxyCodeLine{00149\ }
+\DoxyCodeLine{00150\ \textcolor{preprocessor}{\#ifdef\ LINALG\_ENABLE\_CONCEPTS}}
+\DoxyCodeLine{00151\ \textcolor{keyword}{template}\ <\ \textcolor{keyword}{class}\ MDS\ >\ \textcolor{keyword}{requires}\ (\ detail::is\_mdspan\_v<MDS>\ \&\&\ MDS::is\_always\_unique()\ )}
+\DoxyCodeLine{00152\ template\ <\ class\ ...\ SliceArgs\ >}
+\DoxyCodeLine{00153\ [[nodiscard]]\ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{auto}\ \mbox{\hyperlink{classstd_1_1math_1_1tensor__view}{tensor\_view<MDS>}}::}
+\DoxyCodeLine{00154\ \#\textcolor{keywordflow}{else}}
+\DoxyCodeLine{00155\ template\ <\ class\ MDS,\ typename\ Dummy\ >}
+\DoxyCodeLine{00156\ template\ <\ class\ ...\ SliceArgs\ >}
+\DoxyCodeLine{00157\ [[nodiscard]]\ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{auto}\ \mbox{\hyperlink{classstd_1_1math_1_1tensor__view}{tensor\_view<MDS,Dummy>}}::}
+\DoxyCodeLine{00158\ \#endif}
+\DoxyCodeLine{00159\ subtensor(\ SliceArgs\ ...\ args\ )\ \textcolor{keyword}{const}}
+\DoxyCodeLine{00160\ \{}
+\DoxyCodeLine{00161\ \ \ \textcolor{keyword}{using\ }subspan\_type\ =\ \textcolor{keyword}{decltype}(\ ::std::experimental::submdspan(\ this-\/>underlying\_span(),\ args\ ...\ )\ );}
+\DoxyCodeLine{00162\ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{classstd_1_1math_1_1tensor__view}{tensor\_view<subspan\_type>}}(\ ::std::experimental::submdspan(\ this-\/>underlying\_span(),\ args\ ...\ )\ );}
+\DoxyCodeLine{00163\ \}}
+\DoxyCodeLine{00164\ }
+\DoxyCodeLine{00165\ \textcolor{comment}{//-\/\ Mutable\ views}}
+\DoxyCodeLine{00166\ }
+\DoxyCodeLine{00167\ \textcolor{preprocessor}{\#if\ LINALG\_USE\_BRACKET\_OPERATOR}}
+\DoxyCodeLine{00168\ \textcolor{preprocessor}{\#ifdef\ LINALG\_ENABLE\_CONCEPTS}}
+\DoxyCodeLine{00169\ \textcolor{keyword}{template}\ <\ \textcolor{keyword}{class}\ MDS\ >\ \textcolor{keyword}{requires}\ (\ detail::is\_mdspan\_v<MDS>\ \&\&\ MDS::is\_always\_unique()\ )}
+\DoxyCodeLine{00170\ template\ <\ class\ ...\ IndexType\ >}
+\DoxyCodeLine{00171\ [[nodiscard]]\ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{typename}\ \mbox{\hyperlink{classstd_1_1math_1_1tensor__view_a2cfcb1c6b56a39f30a3100abcbb543b5}{tensor\_view<MDS>::reference}}\ \mbox{\hyperlink{classstd_1_1math_1_1tensor__view}{tensor\_view<MDS>}}::}
+\DoxyCodeLine{00172\ \#\textcolor{keywordflow}{else}}
+\DoxyCodeLine{00173\ template\ <\ class\ MDS,\ typename\ Dummy\ >}
+\DoxyCodeLine{00174\ template\ <\ class\ ...\ IndexType\ >}
+\DoxyCodeLine{00175\ [[nodiscard]]\ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{typename}\ \mbox{\hyperlink{classstd_1_1math_1_1tensor__view_a2cfcb1c6b56a39f30a3100abcbb543b5}{tensor\_view<MDS,Dummy>::reference}}\ \mbox{\hyperlink{classstd_1_1math_1_1tensor__view}{tensor\_view<MDS,Dummy>}}::}
+\DoxyCodeLine{00176\ \#endif}
+\DoxyCodeLine{00177\ \textcolor{keyword}{operator}[](\ IndexType\ ...\ indices\ )\ \textcolor{keyword}{noexcept}}
+\DoxyCodeLine{00178\ \textcolor{preprocessor}{\#ifdef\ LINALG\_ENABLE\_CONCEPTS}}
+\DoxyCodeLine{00179\ \ \ \textcolor{keyword}{requires}\ (\ \textcolor{keyword}{sizeof}...(IndexType)\ ==\ \mbox{\hyperlink{classstd_1_1math_1_1tensor__view}{tensor\_view<MDS>::extents\_type::rank}}()\ )\ \&\&\ (\ ::std::is\_convertible\_v<IndexType,\textcolor{keyword}{typename}\ \mbox{\hyperlink{classstd_1_1math_1_1tensor__view_a409f7f1f17ce49b7014dd19b76df9e6f}{tensor\_view<MDS>::index\_type}}>\ \&\&\ ...\ )\ \&\&}
+\DoxyCodeLine{00180\ \ \ \ \ \ \ \ \ \ \ \ (\ !::std::is\_const\_v<typename\ tensor\_view<MDS>::element\_type>\ )}
+\DoxyCodeLine{00181\ \#endif}
+\DoxyCodeLine{00182\ \{}
+\DoxyCodeLine{00183\ \ \ return\ ::std::forward<reference>(\ this-\/>underlying\_span()[\ indices\ ...\ ]\ );}
+\DoxyCodeLine{00184\ \}}
+\DoxyCodeLine{00185\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00186\ }
+\DoxyCodeLine{00187\ \textcolor{preprocessor}{\#if\ LINALG\_USE\_PAREN\_OPERATOR}}
+\DoxyCodeLine{00188\ \textcolor{preprocessor}{\#ifdef\ LINALG\_ENABLE\_CONCEPTS}}
+\DoxyCodeLine{00189\ \textcolor{keyword}{template}\ <\ \textcolor{keyword}{class}\ MDS\ >\ \textcolor{keyword}{requires}\ (\ detail::is\_mdspan\_v<MDS>\ \&\&\ MDS::is\_always\_unique()\ )}
+\DoxyCodeLine{00190\ template\ <\ class\ ...\ IndexType\ >}
+\DoxyCodeLine{00191\ [[nodiscard]]\ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{typename}\ \mbox{\hyperlink{classstd_1_1math_1_1tensor__view_a2cfcb1c6b56a39f30a3100abcbb543b5}{tensor\_view<MDS>::reference}}\ \mbox{\hyperlink{classstd_1_1math_1_1tensor__view}{tensor\_view<MDS>}}::}
+\DoxyCodeLine{00192\ \#\textcolor{keywordflow}{else}}
+\DoxyCodeLine{00193\ template\ <\ class\ MDS,\ typename\ Dummy\ >}
+\DoxyCodeLine{00194\ template\ <\ class\ ...\ IndexType\ >}
+\DoxyCodeLine{00195\ [[nodiscard]]\ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{typename}\ \mbox{\hyperlink{classstd_1_1math_1_1tensor__view_a2cfcb1c6b56a39f30a3100abcbb543b5}{tensor\_view<MDS,Dummy>::reference}}\ \mbox{\hyperlink{classstd_1_1math_1_1tensor__view}{tensor\_view<MDS,Dummy>}}::}
+\DoxyCodeLine{00196\ \#endif}
+\DoxyCodeLine{00197\ \textcolor{keyword}{operator}()(\ IndexType\ ...\ indices\ )\ \textcolor{keyword}{noexcept}}
+\DoxyCodeLine{00198\ \#ifdef\ LINALG\_ENABLE\_CONCEPTS}
+\DoxyCodeLine{00199\ \ \ \textcolor{keyword}{requires}\ (\ \textcolor{keyword}{sizeof}...(IndexType)\ ==\ \mbox{\hyperlink{classstd_1_1math_1_1tensor__view}{tensor\_view<MDS>::extents\_type::rank}}()\ )\ \&\&\ (\ ::std::is\_convertible\_v<IndexType,\textcolor{keyword}{typename}\ \mbox{\hyperlink{classstd_1_1math_1_1tensor__view_a409f7f1f17ce49b7014dd19b76df9e6f}{tensor\_view<MDS>::index\_type}}>\ \&\&\ ...\ )\ \&\&}
+\DoxyCodeLine{00200\ \ \ \ \ \ \ \ \ \ \ \ (\ !::std::is\_const\_v<typename\ tensor\_view<MDS>::element\_type>\ )}
+\DoxyCodeLine{00201\ \#endif}
+\DoxyCodeLine{00202\ \{}
+\DoxyCodeLine{00203\ \ \ return\ ::std::forward<reference>(\ this-\/>underlying\_span()(\ indices\ ...\ )\ );}
+\DoxyCodeLine{00204\ \}}
+\DoxyCodeLine{00205\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00206\ }
+\DoxyCodeLine{00207\ \textcolor{preprocessor}{\#ifdef\ LINALG\_ENABLE\_CONCEPTS}}
+\DoxyCodeLine{00208\ \textcolor{keyword}{template}\ <\ \textcolor{keyword}{class}\ MDS\ >\ \textcolor{keyword}{requires}\ (\ detail::is\_mdspan\_v<MDS>\ \&\&\ MDS::is\_always\_unique()\ )}
+\DoxyCodeLine{00209\ template\ <\ class\ ...\ SliceArgs\ >}
+\DoxyCodeLine{00210\ [[nodiscard]]\ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{auto}\ \mbox{\hyperlink{classstd_1_1math_1_1tensor__view}{tensor\_view<MDS>}}::}
+\DoxyCodeLine{00211\ \#\textcolor{keywordflow}{else}}
+\DoxyCodeLine{00212\ template\ <\ class\ MDS,\ typename\ Dummy\ >}
+\DoxyCodeLine{00213\ template\ <\ class\ ...\ SliceArgs\ >}
+\DoxyCodeLine{00214\ [[nodiscard]]\ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{auto}\ \mbox{\hyperlink{classstd_1_1math_1_1tensor__view}{tensor\_view<MDS,Dummy>}}::}
+\DoxyCodeLine{00215\ \#endif}
+\DoxyCodeLine{00216\ subvector(\ SliceArgs\ ...\ args\ )}
+\DoxyCodeLine{00217\ \textcolor{preprocessor}{\#ifdef\ LINALG\_ENABLE\_CONCEPTS}}
+\DoxyCodeLine{00218\ \ \ \textcolor{keyword}{requires}\ (\ \textcolor{keyword}{decltype}(\ ::std::experimental::submdspan(\ this-\/>underlying\_span(),\ args\ ...\ )\ )::rank()\ ==\ 1\ )}
+\DoxyCodeLine{00219\ \#endif}
+\DoxyCodeLine{00220\ \{}
+\DoxyCodeLine{00221\ \ \ \textcolor{keyword}{using\ }subspan\_type\ =\ \textcolor{keyword}{decltype}(\ ::std::experimental::submdspan(\ this-\/>underlying\_span(),\ args\ ...\ )\ );}
+\DoxyCodeLine{00222\ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{classstd_1_1math_1_1vector__view}{vector\_view<subspan\_type>}}(\ ::std::experimental::submdspan(\ this-\/>underlying\_span(),\ args\ ...\ )\ );}
+\DoxyCodeLine{00223\ \}}
+\DoxyCodeLine{00224\ }
+\DoxyCodeLine{00225\ \textcolor{preprocessor}{\#ifdef\ LINALG\_ENABLE\_CONCEPTS}}
+\DoxyCodeLine{00226\ \textcolor{keyword}{template}\ <\ \textcolor{keyword}{class}\ MDS\ >\ \textcolor{keyword}{requires}\ (\ detail::is\_mdspan\_v<MDS>\ \&\&\ MDS::is\_always\_unique()\ )}
+\DoxyCodeLine{00227\ template\ <\ class\ ...\ SliceArgs\ >}
+\DoxyCodeLine{00228\ [[nodiscard]]\ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{auto}\ \mbox{\hyperlink{classstd_1_1math_1_1tensor__view}{tensor\_view<MDS>}}::}
+\DoxyCodeLine{00229\ \#\textcolor{keywordflow}{else}}
+\DoxyCodeLine{00230\ template\ <\ class\ MDS,\ typename\ Dummy\ >}
+\DoxyCodeLine{00231\ template\ <\ class\ ...\ SliceArgs\ >}
+\DoxyCodeLine{00232\ [[nodiscard]]\ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{auto}\ \mbox{\hyperlink{classstd_1_1math_1_1tensor__view}{tensor\_view<MDS,Dummy>}}::}
+\DoxyCodeLine{00233\ \#endif}
+\DoxyCodeLine{00234\ submatrix(\ SliceArgs\ ...\ args\ )}
+\DoxyCodeLine{00235\ \textcolor{preprocessor}{\#ifdef\ LINALG\_ENABLE\_CONCEPTS}}
+\DoxyCodeLine{00236\ \ \ \textcolor{keyword}{requires}\ (\ \textcolor{keyword}{decltype}(\ ::std::experimental::submdspan(\ this-\/>underlying\_span(),\ args\ ...\ )\ )::rank()\ ==\ 2\ )}
+\DoxyCodeLine{00237\ \#endif}
+\DoxyCodeLine{00238\ \{}
+\DoxyCodeLine{00239\ \ \ \textcolor{keyword}{using\ }subspan\_type\ =\ \textcolor{keyword}{decltype}(\ ::std::experimental::submdspan(\ this-\/>underlying\_span(),\ args\ ...\ )\ );}
+\DoxyCodeLine{00240\ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{classstd_1_1math_1_1matrix__view}{matrix\_view<subspan\_type>}}(\ ::std::experimental::submdspan(\ this-\/>underlying\_span(),\ args\ ...\ )\ );}
+\DoxyCodeLine{00241\ \}}
+\DoxyCodeLine{00242\ }
+\DoxyCodeLine{00243\ \textcolor{preprocessor}{\#ifdef\ LINALG\_ENABLE\_CONCEPTS}}
+\DoxyCodeLine{00244\ \textcolor{keyword}{template}\ <\ \textcolor{keyword}{class}\ MDS\ >\ \textcolor{keyword}{requires}\ (\ detail::is\_mdspan\_v<MDS>\ \&\&\ MDS::is\_always\_unique()\ )}
+\DoxyCodeLine{00245\ template\ <\ class\ ...\ SliceArgs\ >}
+\DoxyCodeLine{00246\ [[nodiscard]]\ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{auto}\ \mbox{\hyperlink{classstd_1_1math_1_1tensor__view}{tensor\_view<MDS>}}::}
+\DoxyCodeLine{00247\ \#\textcolor{keywordflow}{else}}
+\DoxyCodeLine{00248\ template\ <\ class\ MDS,\ typename\ Dummy\ >}
+\DoxyCodeLine{00249\ template\ <\ class\ ...\ SliceArgs\ >}
+\DoxyCodeLine{00250\ [[nodiscard]]\ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{auto}\ \mbox{\hyperlink{classstd_1_1math_1_1tensor__view}{tensor\_view<MDS,Dummy>}}::}
+\DoxyCodeLine{00251\ \#endif}
+\DoxyCodeLine{00252\ subtensor(\ SliceArgs\ ...\ args\ )}
+\DoxyCodeLine{00253\ \{}
+\DoxyCodeLine{00254\ \ \ \textcolor{keyword}{using\ }subspan\_type\ =\ \textcolor{keyword}{decltype}(\ ::std::experimental::submdspan(\ this-\/>underlying\_span(),\ args\ ...\ )\ );}
+\DoxyCodeLine{00255\ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{classstd_1_1math_1_1tensor__view}{tensor\_view<subspan\_type>}}(\ ::std::experimental::submdspan(\ this-\/>underlying\_span(),\ args\ ...\ )\ );}
+\DoxyCodeLine{00256\ \}}
+\DoxyCodeLine{00257\ }
+\DoxyCodeLine{00258\ \textcolor{comment}{//-\/\ Data\ access}}
+\DoxyCodeLine{00259\ }
+\DoxyCodeLine{00260\ \textcolor{preprocessor}{\#ifdef\ LINALG\_ENABLE\_CONCEPTS}}
+\DoxyCodeLine{00261\ \textcolor{keyword}{template}\ <\ \textcolor{keyword}{class}\ MDS\ >\ \textcolor{keyword}{requires}\ (\ detail::is\_mdspan\_v<MDS>\ \&\&\ MDS::is\_always\_unique()\ )}
+\DoxyCodeLine{00262\ [[nodiscard]]\ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{typename}\ \mbox{\hyperlink{classstd_1_1math_1_1tensor__view_adb5f1285a46bcd8b985613179bd84831}{tensor\_view<MDS>::span\_type}}\ \mbox{\hyperlink{classstd_1_1math_1_1tensor__view}{tensor\_view<MDS>}}::}
+\DoxyCodeLine{00263\ \#\textcolor{keywordflow}{else}}
+\DoxyCodeLine{00264\ template\ <\ class\ MDS,\ typename\ Dummy\ >}
+\DoxyCodeLine{00265\ [[nodiscard]]\ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{typename}\ \mbox{\hyperlink{classstd_1_1math_1_1tensor__view_adb5f1285a46bcd8b985613179bd84831}{tensor\_view<MDS,Dummy>::span\_type}}\ \mbox{\hyperlink{classstd_1_1math_1_1tensor__view}{tensor\_view<MDS,Dummy>}}::}
+\DoxyCodeLine{00266\ \#endif}
+\DoxyCodeLine{00267\ span()\ \textcolor{keyword}{const}\ \textcolor{keyword}{noexcept}}
+\DoxyCodeLine{00268\ \{}
+\DoxyCodeLine{00269\ \ \ \textcolor{keywordflow}{return}\ this-\/>underlying\_span();}
+\DoxyCodeLine{00270\ \}}
+\DoxyCodeLine{00271\ }
+\DoxyCodeLine{00272\ \textcolor{preprocessor}{\#ifdef\ LINALG\_ENABLE\_CONCEPTS}}
+\DoxyCodeLine{00273\ \textcolor{keyword}{template}\ <\ \textcolor{keyword}{class}\ MDS\ >\ \textcolor{keyword}{requires}\ (\ detail::is\_mdspan\_v<MDS>\ \&\&\ MDS::is\_always\_unique()\ )}
+\DoxyCodeLine{00274\ [[nodiscard]]\ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{typename}\ \mbox{\hyperlink{classstd_1_1math_1_1tensor__view_afecf1fbbc0be2747b0ff68a5fd76300f}{tensor\_view<MDS>::underlying\_span\_type}}\ \mbox{\hyperlink{classstd_1_1math_1_1tensor__view}{tensor\_view<MDS>}}::}
+\DoxyCodeLine{00275\ \#\textcolor{keywordflow}{else}}
+\DoxyCodeLine{00276\ template\ <\ class\ MDS,\ typename\ Dummy\ >}
+\DoxyCodeLine{00277\ template\ <\ typename\ Elem,\ typename\ >}
+\DoxyCodeLine{00278\ [[nodiscard]]\ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{typename}\ \mbox{\hyperlink{classstd_1_1math_1_1tensor__view_afecf1fbbc0be2747b0ff68a5fd76300f}{tensor\_view<MDS,Dummy>::underlying\_span\_type}}\ \mbox{\hyperlink{classstd_1_1math_1_1tensor__view}{tensor\_view<MDS,Dummy>}}::}
+\DoxyCodeLine{00279\ \#endif}
+\DoxyCodeLine{00280\ underlying\_span()\ \textcolor{keyword}{noexcept}}
+\DoxyCodeLine{00281\ \textcolor{preprocessor}{\#ifdef\ LINALG\_ENABLE\_CONCEPTS}}
+\DoxyCodeLine{00282\ \ \ \textcolor{keyword}{requires}\ (\ !::std::is\_const\_v<typename\ tensor\_view<MDS>::element\_type>\ )}
+\DoxyCodeLine{00283\ \#endif}
+\DoxyCodeLine{00284\ \{}
+\DoxyCodeLine{00285\ \ \ \textcolor{keywordflow}{return}\ this-\/>view\_;}
+\DoxyCodeLine{00286\ \}}
+\DoxyCodeLine{00287\ }
+\DoxyCodeLine{00288\ \textcolor{preprocessor}{\#ifdef\ LINALG\_ENABLE\_CONCEPTS}}
+\DoxyCodeLine{00289\ \textcolor{keyword}{template}\ <\ \textcolor{keyword}{class}\ MDS\ >\ \textcolor{keyword}{requires}\ (\ detail::is\_mdspan\_v<MDS>\ \&\&\ MDS::is\_always\_unique()\ )}
+\DoxyCodeLine{00290\ [[nodiscard]]\ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{typename}\ \mbox{\hyperlink{classstd_1_1math_1_1tensor__view_aa6124a11fc8f4fec4d3160bbc1747c45}{tensor\_view<MDS>::const\_underlying\_span\_type}}\ \mbox{\hyperlink{classstd_1_1math_1_1tensor__view}{tensor\_view<MDS>}}::}
+\DoxyCodeLine{00291\ \#\textcolor{keywordflow}{else}}
+\DoxyCodeLine{00292\ template\ <\ class\ MDS,\ typename\ Dummy\ >}
+\DoxyCodeLine{00293\ [[nodiscard]]\ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{typename}\ \mbox{\hyperlink{classstd_1_1math_1_1tensor__view_aa6124a11fc8f4fec4d3160bbc1747c45}{tensor\_view<MDS,Dummy>::const\_underlying\_span\_type}}\ \mbox{\hyperlink{classstd_1_1math_1_1tensor__view}{tensor\_view<MDS,Dummy>}}::}
+\DoxyCodeLine{00294\ \#endif}
+\DoxyCodeLine{00295\ underlying\_span()\ \textcolor{keyword}{const}\ \textcolor{keyword}{noexcept}}
+\DoxyCodeLine{00296\ \{}
+\DoxyCodeLine{00297\ \ \ \textcolor{keywordflow}{return}\ this-\/>view\_;}
+\DoxyCodeLine{00298\ \}}
+\DoxyCodeLine{00299\ }
+\DoxyCodeLine{00300\ \}\ \ \ \ \ \ \ \textcolor{comment}{//-\/\ math\ namespace}}
+\DoxyCodeLine{00301\ \}\ \ \ \ \ \ \ \textcolor{comment}{//-\/\ std\ namespace}}
+\DoxyCodeLine{00302\ \textcolor{preprocessor}{\#endif\ \ }\textcolor{comment}{//-\/\ LINEAR\_ALGEBRA\_FIXED\_SIZE\_MATRIX\_ENGINE\_HPP}}
+
+\end{DoxyCode}

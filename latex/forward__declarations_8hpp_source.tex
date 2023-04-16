@@ -1,0 +1,117 @@
+\hypertarget{forward__declarations_8hpp_source}{}\doxysection{forward\+\_\+declarations.\+hpp}
+\label{forward__declarations_8hpp_source}\index{include/experimental/linear\_algebra/forward\_declarations.hpp@{include/experimental/linear\_algebra/forward\_declarations.hpp}}
+\mbox{\hyperlink{forward__declarations_8hpp}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{comment}{//==================================================================================================}}
+\DoxyCodeLine{00002\ \textcolor{comment}{//\ \ File:\ \ \ \ \ \ \ forward\_declarations.hpp}}
+\DoxyCodeLine{00003\ \textcolor{comment}{//}}
+\DoxyCodeLine{00004\ \textcolor{comment}{//\ \ Summary:\ \ \ \ This\ header\ forward\ declares\ the\ primary\ linear\ algebra\ classes.}}
+\DoxyCodeLine{00005\ \textcolor{comment}{//==================================================================================================}}
+\DoxyCodeLine{00006\ \textcolor{comment}{//}}
+\DoxyCodeLine{00007\ \textcolor{preprocessor}{\#ifndef\ LINEAR\_ALGEBRA\_FORWARD\_DECLARATIONS\_HPP}}
+\DoxyCodeLine{00008\ \textcolor{preprocessor}{\#define\ LINEAR\_ALGEBRA\_FORWARD\_DECLARATIONS\_HPP}}
+\DoxyCodeLine{00009\ }
+\DoxyCodeLine{00010\ \textcolor{preprocessor}{\#include\ <\mbox{\hyperlink{linear__algebra_8hpp}{experimental/linear\_algebra.hpp}}>}}
+\DoxyCodeLine{00011\ }
+\DoxyCodeLine{00012\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespacestd}{std}}}
+\DoxyCodeLine{00013\ \{}
+\DoxyCodeLine{00014\ \textcolor{keyword}{namespace\ }math}
+\DoxyCodeLine{00015\ \{}
+\DoxyCodeLine{00016\ }
+\DoxyCodeLine{00017\ \textcolor{comment}{//\ Default\ layout}}
+\DoxyCodeLine{00018\ \textcolor{keyword}{using\ }\mbox{\hyperlink{namespacestd_1_1math_ac2cd009d5ab8b17ef398accc0714a2c6}{default\_layout}}\ =\ ::std::experimental::layout\_right;}
+\DoxyCodeLine{00019\ }
+\DoxyCodeLine{00020\ \textcolor{comment}{//\ Dynamic-\/size,\ dynamic-\/capacity\ tensor}}
+\DoxyCodeLine{00021\ \textcolor{keyword}{template}\ <\ \textcolor{keyword}{class\ \ }T,}
+\DoxyCodeLine{00022\ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{size\_t}\ R,}
+\DoxyCodeLine{00023\ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{class\ \ }Alloc\ \ =\ ::std::allocator<T>,}
+\DoxyCodeLine{00024\ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{class\ \ }L\ \ \ \ \ \ =\ \mbox{\hyperlink{namespacestd_1_1math_ac2cd009d5ab8b17ef398accc0714a2c6}{default\_layout}},}
+\DoxyCodeLine{00025\ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{class\ \ }Access\ =\ ::std::experimental::default\_accessor<T>\ >}
+\DoxyCodeLine{00026\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classstd_1_1math_1_1dr__tensor}{dr\_tensor}};}
+\DoxyCodeLine{00027\ }
+\DoxyCodeLine{00028\ \textcolor{comment}{//\ Dynamic-\/size,\ dynamic-\/capacity\ matrix}}
+\DoxyCodeLine{00029\ \textcolor{keyword}{template}\ <\ \textcolor{keyword}{class\ }T,}
+\DoxyCodeLine{00030\ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{class\ }Alloc\ \ =\ ::std::allocator<T>,}
+\DoxyCodeLine{00031\ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{class\ }L\ \ \ \ \ \ =\ \mbox{\hyperlink{namespacestd_1_1math_ac2cd009d5ab8b17ef398accc0714a2c6}{default\_layout}},}
+\DoxyCodeLine{00032\ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{class\ }Access\ =\ ::std::experimental::default\_accessor<T>\ >}
+\DoxyCodeLine{00033\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classstd_1_1math_1_1dr__matrix}{dr\_matrix}};}
+\DoxyCodeLine{00034\ }
+\DoxyCodeLine{00035\ \textcolor{comment}{//\ Dynamic-\/size,\ dynamic-\/capacity\ vector}}
+\DoxyCodeLine{00036\ \textcolor{keyword}{template}\ <\ \textcolor{keyword}{class\ }T,}
+\DoxyCodeLine{00037\ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{class\ }Alloc\ \ =\ ::std::allocator<T>,}
+\DoxyCodeLine{00038\ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{class\ }L\ \ \ \ \ \ =\ \mbox{\hyperlink{namespacestd_1_1math_ac2cd009d5ab8b17ef398accc0714a2c6}{default\_layout}},}
+\DoxyCodeLine{00039\ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{class\ }Access\ =\ ::std::experimental::default\_accessor<T>\ >}
+\DoxyCodeLine{00040\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classstd_1_1math_1_1dr__vector}{dr\_vector}};}
+\DoxyCodeLine{00041\ }
+\DoxyCodeLine{00042\ \textcolor{comment}{//\ Fixed-\/size,\ fixed-\/capacity\ tensor}}
+\DoxyCodeLine{00043\ \textcolor{keyword}{template}\ <\ \textcolor{keyword}{class\ \ \ \ \ \ \ \ \ \ \ \ \ }T,}
+\DoxyCodeLine{00044\ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{class\ \ \ \ \ \ \ \ \ \ \ \ \ }L,}
+\DoxyCodeLine{00045\ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{class\ \ \ \ \ \ \ \ \ \ \ \ \ }A,}
+\DoxyCodeLine{00046\ \ \ \ \ \ \ \ \ \ \ \ ::std::size\_t\ ...\ Ds\ >}
+\DoxyCodeLine{00047\ \textcolor{preprocessor}{\#ifdef\ LINALG\_ENABLE\_CONCEPTS}}
+\DoxyCodeLine{00048\ \ \ \textcolor{keyword}{requires}\ (\ (\ Ds\ >=\ 0\ )\ \&\&\ ...\ )\ \textcolor{comment}{//\ Each\ dimension\ must\ be\ >=\ 0}}
+\DoxyCodeLine{00049\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00050\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classstd_1_1math_1_1fs__tensor}{fs\_tensor}};}
+\DoxyCodeLine{00051\ }
+\DoxyCodeLine{00052\ \textcolor{comment}{//\ Fixed-\/size,\ fixed-\/capacity\ matrix}}
+\DoxyCodeLine{00053\ \textcolor{keyword}{template}\ <\ \textcolor{keyword}{class\ \ \ \ \ \ \ \ \ }T,}
+\DoxyCodeLine{00054\ \ \ \ \ \ \ \ \ \ \ \ ::std::size\_t\ R,}
+\DoxyCodeLine{00055\ \ \ \ \ \ \ \ \ \ \ \ ::std::size\_t\ C,}
+\DoxyCodeLine{00056\ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{class\ \ \ \ \ \ \ \ \ }L\ =\ \mbox{\hyperlink{namespacestd_1_1math_ac2cd009d5ab8b17ef398accc0714a2c6}{default\_layout}},}
+\DoxyCodeLine{00057\ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{class\ \ \ \ \ \ \ \ \ }A\ =\ ::std::experimental::default\_accessor<T>}
+\DoxyCodeLine{00058\ \textcolor{preprocessor}{\#ifdef\ LINALG\_ENABLE\_CONCEPTS}}
+\DoxyCodeLine{00059\ \ \ \ \ \ \ \ \ \ \ \ >\ \textcolor{keyword}{requires}\ (\ (\ R\ >=\ 0\ )\ \&\&\ (\ C\ >=\ 0\ )\ )\ \textcolor{comment}{//\ Row\ and\ column\ must\ be\ >=\ 0}}
+\DoxyCodeLine{00060\ \#\textcolor{keywordflow}{else}}
+\DoxyCodeLine{00061\ \ \ \ \ \ \ \ \ \ \ \ ,\ \textcolor{keyword}{typename}\ =\ ::std::enable\_if\_t<\ (\ (\ R\ >=\ 0\ )\ \&\&\ (\ C\ >=\ 0\ )\ )\ >\ >}
+\DoxyCodeLine{00062\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00063\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classstd_1_1math_1_1fs__matrix}{fs\_matrix}};}
+\DoxyCodeLine{00064\ }
+\DoxyCodeLine{00065\ \textcolor{comment}{//\ Fixed-\/size,\ fixed-\/capacity\ vector}}
+\DoxyCodeLine{00066\ \textcolor{keyword}{template}\ <\ \textcolor{keyword}{class\ \ \ \ \ \ \ \ \ }T,}
+\DoxyCodeLine{00067\ \ \ \ \ \ \ \ \ \ \ \ ::std::size\_t\ N,}
+\DoxyCodeLine{00068\ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{class\ \ \ \ \ \ \ \ \ }L\ =\ \mbox{\hyperlink{namespacestd_1_1math_ac2cd009d5ab8b17ef398accc0714a2c6}{default\_layout}},}
+\DoxyCodeLine{00069\ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{class\ \ \ \ \ \ \ \ \ }A\ =\ ::std::experimental::default\_accessor<T>}
+\DoxyCodeLine{00070\ \textcolor{preprocessor}{\#ifdef\ LINALG\_ENABLE\_CONCEPTS}}
+\DoxyCodeLine{00071\ \ \ \ \ \ \ \ \ \ \ \ >\ \textcolor{keyword}{requires}\ (\ N\ >=\ 0\ )\ \textcolor{comment}{//\ Number\ of\ elements\ must\ be\ >=\ 0}}
+\DoxyCodeLine{00072\ \#\textcolor{keywordflow}{else}}
+\DoxyCodeLine{00073\ \ \ \ \ \ \ \ \ \ \ \ ,\ \textcolor{keyword}{typename}\ =\ ::std::enable\_if\_t<\ (\ N\ >=\ 0\ )\ >\ >}
+\DoxyCodeLine{00074\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00075\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classstd_1_1math_1_1fs__vector}{fs\_vector}};}
+\DoxyCodeLine{00076\ }
+\DoxyCodeLine{00077\ \textcolor{comment}{//\ Non-\/owning\ tensor\ view}}
+\DoxyCodeLine{00078\ \textcolor{keyword}{template}\ <\ \textcolor{keyword}{class\ }MDS}
+\DoxyCodeLine{00079\ \textcolor{preprocessor}{\#ifdef\ LINALG\_ENABLE\_CONCEPTS}}
+\DoxyCodeLine{00080\ \ \ >\ \textcolor{keyword}{requires}\ (\ detail::is\_mdspan\_v<MDS>\ \&\&}
+\DoxyCodeLine{00081\ \ \ \ \ \ \ \ \ \ \ \ \ \ MDS::is\_always\_unique()\ )\ \textcolor{comment}{//\ Each\ element\ in\ the\ mdspan\ must\ have\ a\ unique\ mapping.\ (i.e.\ span\_type\ and\ const\_underlying\_span\_type\ should\ be\ the\ same.)}}
+\DoxyCodeLine{00082\ \#\textcolor{keywordflow}{else}}
+\DoxyCodeLine{00083\ \ \ ,\ \textcolor{keyword}{typename}\ =\ ::std::enable\_if\_t<\ (\ detail::is\_mdspan\_v<MDS>\ \&\&\ MDS::is\_always\_unique()\ )\ >\ >}
+\DoxyCodeLine{00084\ \#endif}
+\DoxyCodeLine{00085\ \textcolor{keyword}{class}\ \mbox{\hyperlink{classstd_1_1math_1_1tensor__view}{tensor\_view}};}
+\DoxyCodeLine{00086\ }
+\DoxyCodeLine{00087\ \textcolor{comment}{//\ Non-\/owning\ matrix\ view}}
+\DoxyCodeLine{00088\ \textcolor{keyword}{template}\ <\ \textcolor{keyword}{class\ }MDS}
+\DoxyCodeLine{00089\ \textcolor{preprocessor}{\#ifdef\ LINALG\_ENABLE\_CONCEPTS}}
+\DoxyCodeLine{00090\ \ \ >\ \textcolor{keyword}{requires}\ (\ detail::is\_mdspan\_v<MDS>\ \&\&}
+\DoxyCodeLine{00091\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (\ MDS::extents\_type::rank()==\ 2\ )\ \&\&}
+\DoxyCodeLine{00092\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ MDS::is\_always\_unique()\ )\ \textcolor{comment}{//\ Each\ element\ in\ the\ mdspan\ must\ have\ a\ unique\ mapping.\ (i.e.\ span\_type\ and\ const\_underlying\_span\_type\ should\ be\ the\ same.)}}
+\DoxyCodeLine{00093\ \#\textcolor{keywordflow}{else}}
+\DoxyCodeLine{00094\ \ \ ,\ \textcolor{keyword}{typename}\ =\ ::std::enable\_if\_t<\ (\ detail::is\_mdspan\_v<MDS>\ \&\&\ (\ MDS::extents\_type::rank()==\ 2\ )\ \&\&\ MDS::is\_always\_unique()\ )\ >\ >}
+\DoxyCodeLine{00095\ \#endif}
+\DoxyCodeLine{00096\ \textcolor{keyword}{class}\ \mbox{\hyperlink{classstd_1_1math_1_1matrix__view}{matrix\_view}};}
+\DoxyCodeLine{00097\ }
+\DoxyCodeLine{00098\ \textcolor{comment}{//\ Non-\/owning\ vector\ view}}
+\DoxyCodeLine{00099\ \textcolor{keyword}{template}\ <\ \textcolor{keyword}{class\ }MDS}
+\DoxyCodeLine{00100\ \textcolor{preprocessor}{\#ifdef\ LINALG\_ENABLE\_CONCEPTS}}
+\DoxyCodeLine{00101\ \ \ >\ \textcolor{keyword}{requires}\ (\ detail::is\_mdspan\_v<MDS>\ \&\&}
+\DoxyCodeLine{00102\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (\ MDS::extents\_type::rank()==\ 1\ )\ \&\&}
+\DoxyCodeLine{00103\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ MDS::is\_always\_unique()\ )\ \textcolor{comment}{//\ Each\ element\ in\ the\ mdspan\ must\ have\ a\ unique\ mapping.\ (i.e.\ span\_type\ and\ const\_underlying\_span\_type\ should\ be\ the\ same.)}}
+\DoxyCodeLine{00104\ \#\textcolor{keywordflow}{else}}
+\DoxyCodeLine{00105\ \ \ ,\ \textcolor{keyword}{typename}\ =\ enable\_if\_t<\ (\ detail::is\_mdspan\_v<MDS>\ \&\&\ (\ MDS::extents\_type::rank()==\ 1\ )\ \&\&\ MDS::is\_always\_unique()\ )\ >\ >}
+\DoxyCodeLine{00106\ \#endif}
+\DoxyCodeLine{00107\ \textcolor{keyword}{class}\ \mbox{\hyperlink{classstd_1_1math_1_1vector__view}{vector\_view}};}
+\DoxyCodeLine{00108\ }
+\DoxyCodeLine{00109\ \}\ \ \ \ \ \ \ \textcolor{comment}{//-\/\ math\ namespace}}
+\DoxyCodeLine{00110\ \}\ \ \ \ \ \ \ \textcolor{comment}{//-\/\ std\ namespace}}
+\DoxyCodeLine{00111\ \textcolor{preprocessor}{\#endif\ \ }\textcolor{comment}{//-\/\ LINEAR\_ALGEBRA\_FORWARD\_DECLARATIONS\_HPP}}
+
+\end{DoxyCode}

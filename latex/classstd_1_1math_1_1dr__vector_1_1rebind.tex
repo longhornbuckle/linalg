@@ -22,12 +22,12 @@ Collaboration diagram for std\+::math\+::dr\+\_\+vector\texorpdfstring{$<$}{<} T
 \doxysubsection*{Public Types}
 \begin{DoxyCompactItemize}
 \item 
-using \mbox{\hyperlink{classstd_1_1math_1_1dr__vector_1_1rebind_a568df6adccdb311c0dfa8bd0cf26d5fb}{type}} = \mbox{\hyperlink{classstd_1_1math_1_1dr__vector}{dr\+\_\+vector}}$<$ Value\+Type, typename allocator\+\_\+traits$<$ \mbox{\hyperlink{classstd_1_1math_1_1dr__vector_ad2cdf42f011bb07297e47f4c7cb67f3b}{allocator\+\_\+type}} $>$\+::template rebind\+\_\+alloc$<$ rebind\+\_\+element\+\_\+type $>$, Layout\+Type, rebind\+\_\+accessor\+\_\+type $>$
+using \mbox{\hyperlink{classstd_1_1math_1_1dr__vector_1_1rebind_a5ecf7fd9dcf3c81993e131eee63ff635}{type}} = \mbox{\hyperlink{classstd_1_1math_1_1dr__vector}{dr\+\_\+vector}}$<$ Value\+Type, typename \+::std\+::allocator\+\_\+traits$<$ \mbox{\hyperlink{classstd_1_1math_1_1dr__vector_ad2cdf42f011bb07297e47f4c7cb67f3b}{allocator\+\_\+type}} $>$\+::template rebind\+\_\+alloc$<$ rebind\+\_\+element\+\_\+type $>$, Layout\+Type, rebind\+\_\+accessor\+\_\+type $>$
 \end{DoxyCompactItemize}
 
 
 \doxysubsection{Detailed Description}
-\subsubsection*{template$<$class T, class Alloc = allocator$<$\+T$>$, class L = experimental\+::layout\+\_\+right, class Access = experimental\+::default\+\_\+accessor$<$\+T$>$$>$\newline
+\subsubsection*{template$<$class T, class Alloc, class L, class Access$>$\newline
 template$<$class Value\+Type, class Layout\+Type = layout\+\_\+type, class Accessor\+Type = accessor\+\_\+type$>$\newline
 class std\+::math\+::dr\+\_\+vector$<$ T, Alloc, L, Access $>$\+::rebind$<$ Value\+Type, Layout\+Type, Accessor\+Type $>$}
 Rebind defines a type for a rebinding a dynamic vector to the new type parameters. 
@@ -44,13 +44,13 @@ Rebind defines a type for a rebinding a dynamic vector to the new type parameter
 
 
 \doxysubsection{Member Typedef Documentation}
-\mbox{\Hypertarget{classstd_1_1math_1_1dr__vector_1_1rebind_a568df6adccdb311c0dfa8bd0cf26d5fb}\label{classstd_1_1math_1_1dr__vector_1_1rebind_a568df6adccdb311c0dfa8bd0cf26d5fb}} 
+\mbox{\Hypertarget{classstd_1_1math_1_1dr__vector_1_1rebind_a5ecf7fd9dcf3c81993e131eee63ff635}\label{classstd_1_1math_1_1dr__vector_1_1rebind_a5ecf7fd9dcf3c81993e131eee63ff635}} 
 \index{std::math::dr\_vector$<$ T, Alloc, L, Access $>$::rebind$<$ ValueType, LayoutType, AccessorType $>$@{std::math::dr\_vector$<$ T, Alloc, L, Access $>$::rebind$<$ ValueType, LayoutType, AccessorType $>$}!type@{type}}
 \index{type@{type}!std::math::dr\_vector$<$ T, Alloc, L, Access $>$::rebind$<$ ValueType, LayoutType, AccessorType $>$@{std::math::dr\_vector$<$ T, Alloc, L, Access $>$::rebind$<$ ValueType, LayoutType, AccessorType $>$}}
 \doxysubsubsection{\texorpdfstring{type}{type}}
-{\footnotesize\ttfamily template$<$class T , class Alloc  = allocator$<$\+T$>$, class L  = experimental\+::layout\+\_\+right, class Access  = experimental\+::default\+\_\+accessor$<$\+T$>$$>$ \\
+{\footnotesize\ttfamily template$<$class T , class Alloc , class L , class Access $>$ \\
 template$<$class Value\+Type , class Layout\+Type  = layout\+\_\+type, class Accessor\+Type  = accessor\+\_\+type$>$ \\
-using \mbox{\hyperlink{classstd_1_1math_1_1dr__vector}{std\+::math\+::dr\+\_\+vector}}$<$ T, Alloc, L, Access $>$\+::rebind$<$ Value\+Type, Layout\+Type, Accessor\+Type $>$\+::type =  \mbox{\hyperlink{classstd_1_1math_1_1dr__vector}{dr\+\_\+vector}}$<$ Value\+Type, typename allocator\+\_\+traits$<$\mbox{\hyperlink{classstd_1_1math_1_1dr__vector_ad2cdf42f011bb07297e47f4c7cb67f3b}{allocator\+\_\+type}}$>$\+::template rebind\+\_\+alloc$<$rebind\+\_\+element\+\_\+type$>$, Layout\+Type, rebind\+\_\+accessor\+\_\+type $>$}
+using \mbox{\hyperlink{classstd_1_1math_1_1dr__vector}{std\+::math\+::dr\+\_\+vector}}$<$ T, Alloc, L, Access $>$\+::rebind$<$ Value\+Type, Layout\+Type, Accessor\+Type $>$\+::type =  \mbox{\hyperlink{classstd_1_1math_1_1dr__vector}{dr\+\_\+vector}}$<$ Value\+Type, typename \+::std\+::allocator\+\_\+traits$<$\mbox{\hyperlink{classstd_1_1math_1_1dr__vector_ad2cdf42f011bb07297e47f4c7cb67f3b}{allocator\+\_\+type}}$>$\+::template rebind\+\_\+alloc$<$rebind\+\_\+element\+\_\+type$>$, Layout\+Type, rebind\+\_\+accessor\+\_\+type $>$}
 
 
 

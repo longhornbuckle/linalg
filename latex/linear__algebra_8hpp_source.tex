@@ -41,7 +41,7 @@
 \DoxyCodeLine{00037\ }
 \DoxyCodeLine{00038\ \textcolor{preprocessor}{\#include\ <experimental/mdspan>}}
 \DoxyCodeLine{00039\ \textcolor{preprocessor}{\#include\ <\mbox{\hyperlink{mdspan__improvements_8hpp}{experimental/mdspan\_improvements.hpp}}>}}
-\DoxyCodeLine{00040\ \textcolor{keyword}{using\ }std::experimental::dynamic\_extent;}
+\DoxyCodeLine{00040\ using\ ::std::experimental::dynamic\_extent;}
 \DoxyCodeLine{00041\ }
 \DoxyCodeLine{00042\ \textcolor{comment}{//-\/\ Restore\ the\ compiler's\ diagnostic\ state.}}
 \DoxyCodeLine{00043\ \textcolor{comment}{//}}
@@ -55,23 +55,27 @@
 \DoxyCodeLine{00051\ }
 \DoxyCodeLine{00052\ \textcolor{comment}{//-\/\ Implementation\ headers.}}
 \DoxyCodeLine{00053\ \textcolor{comment}{//}}
-\DoxyCodeLine{00054\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{private__support_8hpp}{linear\_algebra/private\_support.hpp}}"{}}}
-\DoxyCodeLine{00055\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{tensor__concepts_8hpp}{linear\_algebra/tensor\_concepts.hpp}}"{}}}
-\DoxyCodeLine{00056\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{vector__concepts_8hpp}{linear\_algebra/vector\_concepts.hpp}}"{}}}
-\DoxyCodeLine{00057\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{matrix__concepts_8hpp}{linear\_algebra/matrix\_concepts.hpp}}"{}}}
-\DoxyCodeLine{00058\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{tensor__view_8hpp}{linear\_algebra/tensor\_view.hpp}}"{}}}
-\DoxyCodeLine{00059\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{vector__view_8hpp}{linear\_algebra/vector\_view.hpp}}"{}}}
-\DoxyCodeLine{00060\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{matrix__view_8hpp}{linear\_algebra/matrix\_view.hpp}}"{}}}
-\DoxyCodeLine{00061\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{fixed__size__tensor_8hpp}{linear\_algebra/fixed\_size\_tensor.hpp}}"{}}}
-\DoxyCodeLine{00062\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{dynamic__tensor_8hpp}{linear\_algebra/dynamic\_tensor.hpp}}"{}}}
-\DoxyCodeLine{00063\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{fixed__size__matrix_8hpp}{linear\_algebra/fixed\_size\_matrix.hpp}}"{}}}
-\DoxyCodeLine{00064\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{dynamic__matrix_8hpp}{linear\_algebra/dynamic\_matrix.hpp}}"{}}}
-\DoxyCodeLine{00065\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{fixed__size__vector_8hpp}{linear\_algebra/fixed\_size\_vector.hpp}}"{}}}
-\DoxyCodeLine{00066\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{dynamic__vector_8hpp}{linear\_algebra/dynamic\_vector.hpp}}"{}}}
-\DoxyCodeLine{00067\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{instant__evaluated__operations_8hpp}{linear\_algebra/instant\_evaluated\_operations.hpp}}"{}}}
-\DoxyCodeLine{00068\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespacestd_1_1math_1_1operations}{std::math::operations}}\ \{\ \textcolor{keyword}{using\ namespace\ }\mbox{\hyperlink{namespacestd_1_1math_1_1instant__evaluated__operations}{std::math::instant\_evaluated\_operations}};\ \}}
-\DoxyCodeLine{00069\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{arithmetic__operators_8hpp}{linear\_algebra/arithmetic\_operators.hpp}}"{}}}
-\DoxyCodeLine{00070\ }
-\DoxyCodeLine{00071\ \textcolor{preprocessor}{\#endif\ \ }\textcolor{comment}{//-\/\ LINEAR\_ALGEBRA\_HPP}}
+\DoxyCodeLine{00054\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{config_8hpp}{linear\_algebra/config.hpp}}"{}}}
+\DoxyCodeLine{00055\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{macros_8hpp}{linear\_algebra/macros.hpp}}"{}}}
+\DoxyCodeLine{00056\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{private__support_8hpp}{linear\_algebra/private\_support.hpp}}"{}}}
+\DoxyCodeLine{00057\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{forward__declarations_8hpp}{linear\_algebra/forward\_declarations.hpp}}"{}}}
+\DoxyCodeLine{00058\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{tensor__concepts_8hpp}{linear\_algebra/tensor\_concepts.hpp}}"{}}}
+\DoxyCodeLine{00059\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{vector__concepts_8hpp}{linear\_algebra/vector\_concepts.hpp}}"{}}}
+\DoxyCodeLine{00060\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{matrix__concepts_8hpp}{linear\_algebra/matrix\_concepts.hpp}}"{}}}
+\DoxyCodeLine{00061\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{tensor__view_8hpp}{linear\_algebra/tensor\_view.hpp}}"{}}}
+\DoxyCodeLine{00062\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{vector__view_8hpp}{linear\_algebra/vector\_view.hpp}}"{}}}
+\DoxyCodeLine{00063\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{matrix__view_8hpp}{linear\_algebra/matrix\_view.hpp}}"{}}}
+\DoxyCodeLine{00064\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{tensor__view__impl_8hpp}{linear\_algebra/tensor\_view\_impl.hpp}}"{}}}
+\DoxyCodeLine{00065\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{fixed__size__tensor_8hpp}{linear\_algebra/fixed\_size\_tensor.hpp}}"{}}}
+\DoxyCodeLine{00066\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{dynamic__tensor_8hpp}{linear\_algebra/dynamic\_tensor.hpp}}"{}}}
+\DoxyCodeLine{00067\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{fixed__size__matrix_8hpp}{linear\_algebra/fixed\_size\_matrix.hpp}}"{}}}
+\DoxyCodeLine{00068\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{dynamic__matrix_8hpp}{linear\_algebra/dynamic\_matrix.hpp}}"{}}}
+\DoxyCodeLine{00069\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{fixed__size__vector_8hpp}{linear\_algebra/fixed\_size\_vector.hpp}}"{}}}
+\DoxyCodeLine{00070\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{dynamic__vector_8hpp}{linear\_algebra/dynamic\_vector.hpp}}"{}}}
+\DoxyCodeLine{00071\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{instant__evaluated__operations_8hpp}{linear\_algebra/instant\_evaluated\_operations.hpp}}"{}}}
+\DoxyCodeLine{00072\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespacestd_1_1math_1_1operations}{std::math::operations}}\ \{\ \textcolor{keyword}{using\ namespace\ }\mbox{\hyperlink{namespacestd_1_1math_1_1instant__evaluated__operations}{std::math::instant\_evaluated\_operations}};\ \}}
+\DoxyCodeLine{00073\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{arithmetic__operators_8hpp}{linear\_algebra/arithmetic\_operators.hpp}}"{}}}
+\DoxyCodeLine{00074\ }
+\DoxyCodeLine{00075\ \textcolor{preprocessor}{\#endif\ \ }\textcolor{comment}{//-\/\ LINEAR\_ALGEBRA\_HPP}}
 
 \end{DoxyCode}

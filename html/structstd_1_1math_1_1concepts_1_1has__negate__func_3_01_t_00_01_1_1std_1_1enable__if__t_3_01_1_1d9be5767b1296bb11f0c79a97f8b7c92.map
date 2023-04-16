@@ -1,0 +1,4 @@
+<map id="std::math::concepts::has_negate_func&lt; T, ::std::enable_if_t&lt; ::std::is_same_v&lt; decltype(&#45;declval&lt; const T &gt;()), decltype(&#45;declval&lt; const T &gt;()) &gt; &gt; &gt;" name="std::math::concepts::has_negate_func&lt; T, ::std::enable_if_t&lt; ::std::is_same_v&lt; decltype(&#45;declval&lt; const T &gt;()), decltype(&#45;declval&lt; const T &gt;()) &gt; &gt; &gt;">
+<area shape="rect" id="node1" title=" " alt="" coords="5,131,213,281"/>
+<area shape="rect" id="node2" title=" " alt="" coords="58,5,161,83"/>
+</map>

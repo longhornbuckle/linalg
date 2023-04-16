@@ -1,4 +1,5 @@
-<map id="std::math::matrix_view&lt; MDS &gt;" name="std::math::matrix_view&lt; MDS &gt;">
-<area shape="rect" id="node1" title="Matrix view." alt="" coords="5,409,160,853"/>
-<area shape="rect" id="node2" href="$classstd_1_1math_1_1tensor__view.html" title="Tensor view." alt="" coords="5,5,160,361"/>
+<map id="std::math::matrix_view&lt; MDS, typename &gt;" name="std::math::matrix_view&lt; MDS, typename &gt;">
+<area shape="rect" id="node1" title="Non&#45;owning matrix view." alt="" coords="5,829,160,1141"/>
+<area shape="rect" id="node2" href="$classstd_1_1math_1_1tensor__view.html" title=" " alt="" coords="5,424,160,780"/>
+<area shape="rect" id="node3" href="$classstd_1_1math_1_1tensor__view.html" title="Non&#45;owning ensor view." alt="" coords="5,5,160,361"/>
 </map>

@@ -1,0 +1,101 @@
+\hypertarget{config_8hpp_source}{}\doxysection{config.\+hpp}
+\label{config_8hpp_source}\index{include/experimental/linear\_algebra/config.hpp@{include/experimental/linear\_algebra/config.hpp}}
+\mbox{\hyperlink{config_8hpp}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{comment}{//==================================================================================================}}
+\DoxyCodeLine{00002\ \textcolor{comment}{//\ \ File:\ \ \ \ \ \ \ config.hpp}}
+\DoxyCodeLine{00003\ \textcolor{comment}{//}}
+\DoxyCodeLine{00004\ \textcolor{comment}{//\ \ Summary:\ \ \ \ This\ header\ defines\ macros\ for\ determining\ various\ feature\ support\ of\ the\ build}}
+\DoxyCodeLine{00005\ \textcolor{comment}{//\ \ \ \ \ \ \ \ \ \ \ \ \ \ system.}}
+\DoxyCodeLine{00006\ \textcolor{comment}{//==================================================================================================}}
+\DoxyCodeLine{00007\ \textcolor{comment}{//}}
+\DoxyCodeLine{00008\ \textcolor{preprocessor}{\#ifndef\ LINEAR\_ALGEBRA\_CONFIG\_HPP}}
+\DoxyCodeLine{00009\ \textcolor{preprocessor}{\#define\ LINEAR\_ALGEBRA\_CONFIG\_HPP}}
+\DoxyCodeLine{00010\ }
+\DoxyCodeLine{00011\ \textcolor{comment}{//\ Macro\ for\ determining\ if\ header\ may\ be\ included}}
+\DoxyCodeLine{00012\ \textcolor{comment}{//\ If\ not\ already\ supported,\ just\ set\ to\ false}}
+\DoxyCodeLine{00013\ \textcolor{preprocessor}{\#ifndef\ \_\_has\_include}}
+\DoxyCodeLine{00014\ \textcolor{preprocessor}{\#\ \ define\ \_\_has\_include(\ x\ )\ 0}}
+\DoxyCodeLine{00015\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00016\ }
+\DoxyCodeLine{00017\ \textcolor{comment}{//\ Get\ c++\ version\ information}}
+\DoxyCodeLine{00018\ \textcolor{preprocessor}{\#if\ \_\_has\_include(\ <version>\ )}}
+\DoxyCodeLine{00019\ \textcolor{preprocessor}{\#\ \ include\ <version>}}
+\DoxyCodeLine{00020\ \textcolor{preprocessor}{\#else}}
+\DoxyCodeLine{00021\ \textcolor{preprocessor}{\#\ \ include\ <type\_traits>}}
+\DoxyCodeLine{00022\ \textcolor{preprocessor}{\#\ \ include\ <utility>}}
+\DoxyCodeLine{00023\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00024\ }
+\DoxyCodeLine{00025\ \textcolor{comment}{//\ Use\ of\ \_\_cplusplus\ is\ less\ reliable\ with\ MSVC\ is\ less\ reliable\ so\ use\ separate\ macro}}
+\DoxyCodeLine{00026\ \textcolor{preprocessor}{\#ifdef\ \_MSVC\_LANG}}
+\DoxyCodeLine{00027\ \textcolor{preprocessor}{\#\ \ define\ LINALG\_CPLUSPLUS\ \_MSVC\_LANG}}
+\DoxyCodeLine{00028\ \textcolor{preprocessor}{\#else}}
+\DoxyCodeLine{00029\ \textcolor{preprocessor}{\#\ \ define\ LINALG\_CPLUSPLUS\ \_\_cplusplus}}
+\DoxyCodeLine{00030\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00031\ }
+\DoxyCodeLine{00032\ \textcolor{comment}{//\ Check\ C++\ version}}
+\DoxyCodeLine{00033\ \textcolor{comment}{//\ Note:\ no\ standardized\ version\ number\ for\ C++23\ yet.}}
+\DoxyCodeLine{00034\ \textcolor{comment}{//\ Use\ of\ C++23\ features\ will\ have\ to\ be\ individually\ tested\ for}}
+\DoxyCodeLine{00035\ \textcolor{preprocessor}{\#define\ LINALG\_CXX\_STD\_17\ 201703L}}
+\DoxyCodeLine{00036\ \textcolor{preprocessor}{\#define\ LINALG\_CXX\_STD\_20\ 202002L}}
+\DoxyCodeLine{00037\ }
+\DoxyCodeLine{00038\ \textcolor{preprocessor}{\#define\ LINALG\_HAS\_CXX\_17\ (\ LINALG\_CPLUSPLUS\ >=\ LINALG\_CXX\_STD\_17\ )}}
+\DoxyCodeLine{00039\ \textcolor{preprocessor}{\#define\ LINALG\_HAS\_CXX\_20\ (\ LINALG\_CPLUSPLUS\ >=\ LINALG\_CXX\_STD\_20\ )}}
+\DoxyCodeLine{00040\ }
+\DoxyCodeLine{00041\ \textcolor{comment}{//\ Define\ if\ clang\ compiler\ is\ being\ used}}
+\DoxyCodeLine{00042\ \textcolor{preprocessor}{\#ifndef\ LINALG\_COMPILER\_CLANG}}
+\DoxyCodeLine{00043\ \textcolor{preprocessor}{\#\ \ if\ defined(\ \_\_clang\_\_\ )}}
+\DoxyCodeLine{00044\ \textcolor{preprocessor}{\#\ \ \ \ define\ LINALG\_COMPILER\_CLANG\ \_\_clang\_major\_\_}}
+\DoxyCodeLine{00045\ \textcolor{preprocessor}{\#\ \ endif}}
+\DoxyCodeLine{00046\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00047\ }
+\DoxyCodeLine{00048\ \textcolor{comment}{//\ Define\ if\ gnu\ compiler\ is\ being\ used}}
+\DoxyCodeLine{00049\ \textcolor{preprocessor}{\#if\ !defined(\ LINALG\_COMPILER\_GNU\ )\ \&\&\ !defined(\ LINALG\_COMPILER\_CLANG\ )}}
+\DoxyCodeLine{00050\ \textcolor{preprocessor}{\#\ \ if\ defined(\ \_\_GNUC\_\_\ )}}
+\DoxyCodeLine{00051\ \textcolor{preprocessor}{\#\ \ \ \ define\ LINALG\_COMPILER\_GNU\ \_\_GNUC\_\_}}
+\DoxyCodeLine{00052\ \textcolor{preprocessor}{\#\ \ endif}}
+\DoxyCodeLine{00053\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00054\ }
+\DoxyCodeLine{00055\ \textcolor{comment}{//\ Define\ if\ Intel\ compiler\ is\ being\ used}}
+\DoxyCodeLine{00056\ \textcolor{preprocessor}{\#ifndef\ LINALG\_COMPILER\_INTEL}}
+\DoxyCodeLine{00057\ \textcolor{preprocessor}{\#\ \ if\ defined(\ \_\_INTEL\_COMPILER\ )}}
+\DoxyCodeLine{00058\ \textcolor{preprocessor}{\#\ \ \ \ define\ LINALG\_COMPILER\_INTEL\ \_\_INTEL\_COMPILER}}
+\DoxyCodeLine{00059\ \textcolor{preprocessor}{\#\ \ endif}}
+\DoxyCodeLine{00060\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00061\ }
+\DoxyCodeLine{00062\ \textcolor{comment}{//\ Define\ if\ Microsoft\ Visual\ Studio\ compiler\ is\ being\ used}}
+\DoxyCodeLine{00063\ \textcolor{preprocessor}{\#if\ !defined(\ LINALG\_COMPILER\_MSVC\ )\ \&\&\ !defined(\ LINALG\_COMPILER\_INTEL\ )\ \&\&\ !defined(\ LINALG\_COMPILER\_CLANG\ )}}
+\DoxyCodeLine{00064\ \textcolor{preprocessor}{\#\ \ if\ defined(\ \_MSC\_VER\ )}}
+\DoxyCodeLine{00065\ \textcolor{preprocessor}{\#\ \ \ \ define\ \_MDSPAN\_COMPILER\_MSVC\ \_MSC\_VER}}
+\DoxyCodeLine{00066\ \textcolor{preprocessor}{\#\ \ endif}}
+\DoxyCodeLine{00067\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00068\ }
+\DoxyCodeLine{00069\ \textcolor{comment}{//\ Macro\ for\ determining\ if\ particular\ attributes\ are\ supported.}}
+\DoxyCodeLine{00070\ \textcolor{comment}{//\ If\ not\ already\ supported,\ just\ set\ to\ false}}
+\DoxyCodeLine{00071\ \textcolor{preprocessor}{\#ifndef\ \_\_has\_cpp\_attribute}}
+\DoxyCodeLine{00072\ \textcolor{preprocessor}{\#\ \ define\ \_\_has\_cpp\_attribute(x)\ 0}}
+\DoxyCodeLine{00073\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00074\ }
+\DoxyCodeLine{00075\ \textcolor{comment}{//\ Determine\ if\ operator[](...)\ is\ allowable}}
+\DoxyCodeLine{00076\ \textcolor{preprocessor}{\#ifndef\ LINALG\_USE\_BRACKET\_OPERATOR}}
+\DoxyCodeLine{00077\ \textcolor{preprocessor}{\#\ \ if\ defined(\ \_\_cpp\_multidimensional\_subscript\ )\ \&\&\ \(\backslash\)}}
+\DoxyCodeLine{00078\ \textcolor{preprocessor}{\ \ \ \ \ \ (\ (\ defined(\ LINALG\_COMPILER\_GNU\ )\ \&\&\ (\ LINALG\_COMPILER\_GNU\ >=\ 12\ )\ )\ ||\ \(\backslash\)}}
+\DoxyCodeLine{00079\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ (\ defined(\ LINALG\_COMPILER\_CLANG\ )\ \&\&\ (\ LINALG\_COMPILER\_CLANG\ >=\ 15\ )\ )\ )}}
+\DoxyCodeLine{00080\ \textcolor{preprocessor}{\#\ \ \ \ define\ LINALG\_USE\_BRACKET\_OPERATOR\ 1}}
+\DoxyCodeLine{00081\ \textcolor{preprocessor}{\#\ \ else}}
+\DoxyCodeLine{00082\ \textcolor{preprocessor}{\#\ \ \ \ define\ LINALG\_USE\_BRACKET\_OPERATOR\ 0}}
+\DoxyCodeLine{00083\ \textcolor{preprocessor}{\#\ \ endif}}
+\DoxyCodeLine{00084\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00085\ }
+\DoxyCodeLine{00086\ \textcolor{comment}{//\ If\ operator[](...)\ is\ not\ allowable,\ then\ use\ operator()(...)}}
+\DoxyCodeLine{00087\ \textcolor{preprocessor}{\#ifndef\ LINALG\_USE\_PAREN\_OPERATOR}}
+\DoxyCodeLine{00088\ \textcolor{preprocessor}{\#\ \ if\ !LINALG\_USE\_BRACKET\_OPERATOR}}
+\DoxyCodeLine{00089\ \textcolor{preprocessor}{\#\ \ \ \ define\ LINALG\_USE\_PAREN\_OPERATOR\ 1}}
+\DoxyCodeLine{00090\ \textcolor{preprocessor}{\#\ \ else}}
+\DoxyCodeLine{00091\ \textcolor{preprocessor}{\#\ \ \ \ define\ LINALG\_USE\_PAREN\_OPERATOR\ 0}}
+\DoxyCodeLine{00092\ \textcolor{preprocessor}{\#\ \ endif}}
+\DoxyCodeLine{00093\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00094\ }
+\DoxyCodeLine{00095\ \textcolor{preprocessor}{\#endif\ \ }\textcolor{comment}{//-\/\ LINEAR\_ALGEBRA\_CONFIG\_HPP}}
+
+\end{DoxyCode}

@@ -1,0 +1,4 @@
+<map id="std::math::concepts::has_extents_type&lt; T, ::std::enable_if_t&lt; ::std::is_same_v&lt; typename T::extents_type, typename T::extents_type &gt; &amp;&amp;detail::is_extents_v&lt; typename T::extents_type &gt; &gt; &gt;" name="std::math::concepts::has_extents_type&lt; T, ::std::enable_if_t&lt; ::std::is_same_v&lt; typename T::extents_type, typename T::extents_type &gt; &amp;&amp;detail::is_extents_v&lt; typename T::extents_type &gt; &gt; &gt;">
+<area shape="rect" id="node1" title=" " alt="" coords="5,131,225,311"/>
+<area shape="rect" id="node2" title=" " alt="" coords="64,5,167,83"/>
+</map>

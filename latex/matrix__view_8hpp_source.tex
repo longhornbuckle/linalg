@@ -23,182 +23,249 @@
 \DoxyCodeLine{00020\ \textcolor{comment}{//\ \ \ \ \ \ \ \ \ concepts::matrix}}
 \DoxyCodeLine{00021\ \textcolor{comment}{//\ \ \ \ \ \ \ \ \ concepts::writable\_matrix\ if\ MDS::element\_type\ is\ non-\/const}}
 \DoxyCodeLine{00022\ \textcolor{comment}{//\ \ \ \ \ \ \ \ \ concepts::readable\_matrix\ if\ MDS::element\_type\ is\ const}}
-\DoxyCodeLine{00024\ \textcolor{comment}{}\textcolor{keyword}{template}\ <\ \textcolor{keyword}{class}\ MDS\ >\ \textcolor{keyword}{requires}\ (\ detail::is\_mdspan\_v<MDS>\ \&\&}
-\DoxyCodeLine{00025\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (\ MDS::extents\_type::rank()==\ 2\ )\ \&\&}
-\DoxyCodeLine{00026\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ MDS::is\_always\_unique()\ )\ \textcolor{comment}{//\ Each\ element\ in\ the\ mdspan\ must\ have\ a\ unique\ mapping.\ (i.e.\ span\_type\ and\ const\_underlying\_span\_type\ should\ be\ the\ same.)}}
-\DoxyCodeLine{00027\ \textcolor{keyword}{class}\ \mbox{\hyperlink{classstd_1_1math_1_1matrix__view}{matrix\_view}}\ :\ \textcolor{keyword}{public}\ \mbox{\hyperlink{classstd_1_1math_1_1tensor__view}{tensor\_view<MDS>}}}
-\DoxyCodeLine{00028\ \{}
-\DoxyCodeLine{00029\ \ \ \textcolor{keyword}{private}:}
-\DoxyCodeLine{00030\ \ \ \ \ \textcolor{comment}{//\ Base\ tensor\ type}}
-\DoxyCodeLine{00031\ \ \ \ \ \textcolor{keyword}{using\ }\mbox{\hyperlink{classstd_1_1math_1_1tensor__view}{base\_type}}\ =\ \mbox{\hyperlink{classstd_1_1math_1_1tensor__view}{tensor\_view<MDS>}};}
-\DoxyCodeLine{00032\ \ \ \textcolor{keyword}{public}:}
-\DoxyCodeLine{00033\ \ \ \ \ \textcolor{comment}{//-\/\ Types}}
-\DoxyCodeLine{00034\ }
-\DoxyCodeLine{00036\ \ \ \ \ \textcolor{keyword}{using\ }\mbox{\hyperlink{classstd_1_1math_1_1matrix__view_a2d2ca621cd2592144408ff01dba9f949}{layout\_type}}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ =\ \textcolor{keyword}{typename}\ \mbox{\hyperlink{classstd_1_1math_1_1tensor__view_a1241b3121ae9f312314d4aacafbec0ba}{base\_type::layout\_type}};}
-\DoxyCodeLine{00038\ \ \ \ \ \textcolor{keyword}{using\ }\mbox{\hyperlink{classstd_1_1math_1_1matrix__view_aa86b435bb5fdefcf58509fec794595ed}{accessor\_type}}\ \ \ \ \ \ \ \ \ \ \ \ \ \ =\ \textcolor{keyword}{typename}\ \mbox{\hyperlink{classstd_1_1math_1_1tensor__view_a52baaaebd4f1750dded79907c87318b6}{base\_type::accessor\_type}};}
-\DoxyCodeLine{00040\ \ \ \ \ \textcolor{keyword}{using\ }\mbox{\hyperlink{classstd_1_1math_1_1matrix__view_a0873ce244ca355cf3e9fa32830fef538}{element\_type}}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ =\ \textcolor{keyword}{typename}\ \mbox{\hyperlink{classstd_1_1math_1_1tensor__view_ad777c52999a7797caf138b67dd82c82e}{base\_type::element\_type}};}
-\DoxyCodeLine{00042\ \ \ \ \ \textcolor{keyword}{using\ }\mbox{\hyperlink{classstd_1_1math_1_1matrix__view_a9aa5ca7ddfa2601485229fc161ac5005}{value\_type}}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ =\ \textcolor{keyword}{typename}\ \mbox{\hyperlink{classstd_1_1math_1_1tensor__view_a4fac84eaca56034bb9eee7c7b4e52fe0}{base\_type::value\_type}};}
-\DoxyCodeLine{00044\ \ \ \ \ \textcolor{keyword}{using\ }\mbox{\hyperlink{classstd_1_1math_1_1matrix__view_af13e22ab3477238f46a325a3ee975b17}{index\_type}}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ =\ \textcolor{keyword}{typename}\ \mbox{\hyperlink{classstd_1_1math_1_1tensor__view_a346d960a2145e82eef9b93253133a174}{base\_type::index\_type}};}
-\DoxyCodeLine{00046\ \ \ \ \ \textcolor{keyword}{using\ }\mbox{\hyperlink{classstd_1_1math_1_1matrix__view_abfb685c47048660cab53adf69e9d859d}{size\_type}}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ =\ \textcolor{keyword}{typename}\ \mbox{\hyperlink{classstd_1_1math_1_1tensor__view_acab396dafde34881361ad1a566f138c2}{base\_type::size\_type}};}
-\DoxyCodeLine{00048\ \ \ \ \ \textcolor{keyword}{using\ }\mbox{\hyperlink{classstd_1_1math_1_1matrix__view_a952236a0a976014e1ec15de1162587c3}{extents\_type}}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ =\ \textcolor{keyword}{typename}\ \mbox{\hyperlink{classstd_1_1math_1_1tensor__view_a78e92554d810040124579a6a0dc7a340}{base\_type::extents\_type}};}
-\DoxyCodeLine{00050\ \ \ \ \ \textcolor{keyword}{using\ }\mbox{\hyperlink{classstd_1_1math_1_1matrix__view_a84b17fca1eca916f2535d59c9b94d1de}{tuple\_type}}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ =\ \textcolor{keyword}{typename}\ \mbox{\hyperlink{classstd_1_1math_1_1tensor__view_ae25efa38cae99f7f9381b667e0182711}{base\_type::tuple\_type}};}
-\DoxyCodeLine{00052\ \ \ \ \ \textcolor{keyword}{using\ }\mbox{\hyperlink{classstd_1_1math_1_1matrix__view_a100da9d3084ed4a88c79a4f60b6fac2c}{const\_underlying\_span\_type}}\ =\ \textcolor{keyword}{typename}\ \mbox{\hyperlink{classstd_1_1math_1_1tensor__view_a148aafc2a4764d3359a54241d0fce306}{base\_type::const\_underlying\_span\_type}};}
-\DoxyCodeLine{00054\ \ \ \ \ \textcolor{keyword}{using\ }\mbox{\hyperlink{classstd_1_1math_1_1matrix__view_ae7c837d0c82266e54b4088d2bc7a1f89}{underlying\_span\_type}}\ \ \ \ \ \ \ =\ \textcolor{keyword}{typename}\ \mbox{\hyperlink{classstd_1_1math_1_1tensor__view_a2eccea75926b2c3b1a28187d1b7c32df}{base\_type::underlying\_span\_type}};}
-\DoxyCodeLine{00056\ \ \ \ \ \textcolor{keyword}{using\ }\mbox{\hyperlink{classstd_1_1math_1_1matrix__view_a933d44ad38fda2c086293aa66634c878}{span\_type}}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ =\ \textcolor{keyword}{typename}\ \mbox{\hyperlink{classstd_1_1math_1_1tensor__view_af5b0eef80d71ab263aade2e8d8deb6af}{base\_type::span\_type}};}
-\DoxyCodeLine{00058\ \ \ \ \ \textcolor{keyword}{using\ }\mbox{\hyperlink{classstd_1_1math_1_1matrix__view_a034fef9b9480791ea012d9f1c04ef6f6}{reference\_type}}\ \ \ \ \ \ \ \ \ \ \ \ \ =\ \textcolor{keyword}{typename}\ \mbox{\hyperlink{classstd_1_1math_1_1tensor__view_a6b37439df19fb9e7974b2163a5cbca25}{base\_type::reference\_type}};}
-\DoxyCodeLine{00060\ \ \ \ \ \textcolor{keyword}{using\ }\mbox{\hyperlink{classstd_1_1math_1_1matrix__view_adaeadd58c3e794418d6e2527a0bb795f}{subtensor\_type}}\ \ \ \ \ \ \ \ \ \ \ \ \ =\ \textcolor{keyword}{typename}\ \mbox{\hyperlink{classstd_1_1math_1_1tensor__view}{base\_type::subtensor\_type}};}
-\DoxyCodeLine{00062\ \ \ \ \ \textcolor{keyword}{using\ }\mbox{\hyperlink{classstd_1_1math_1_1matrix__view_a43c96e150d4598b6073ad84b0926bddd}{const\_subtensor\_type}}\ \ \ \ \ \ \ =\ \textcolor{keyword}{typename}\ \mbox{\hyperlink{classstd_1_1math_1_1tensor__view}{base\_type::const\_subtensor\_type}};}
-\DoxyCodeLine{00064\ \ \ \ \ \textcolor{keyword}{using\ }\mbox{\hyperlink{classstd_1_1math_1_1matrix__view}{submatrix\_type}}\ \ \ \ \ \ \ \ \ \ \ \ \ =\ \mbox{\hyperlink{classstd_1_1math_1_1matrix__view}{matrix\_view<decltype(\ detail::submdspan(\ declval<underlying\_span\_type>}}(),\ declval<tuple\_type>(),\ declval<tuple\_type>()\ )\ )\ >;}
-\DoxyCodeLine{00066\ \ \ \ \ \textcolor{keyword}{using\ }\mbox{\hyperlink{classstd_1_1math_1_1matrix__view}{const\_submatrix\_type}}\ \ \ \ \ \ \ =\ \mbox{\hyperlink{classstd_1_1math_1_1matrix__view}{matrix\_view<decltype(\ detail::submdspan(\ declval<const\_underlying\_span\_type>}}(),\ declval<tuple\_type>(),\ declval<tuple\_type>()\ )\ )\ >;}
-\DoxyCodeLine{00068\ \ \ \ \ \textcolor{keyword}{using\ }\mbox{\hyperlink{classstd_1_1math_1_1vector__view}{column\_type}}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ =\ \mbox{\hyperlink{classstd_1_1math_1_1vector__view}{vector\_view<decltype(\ experimental::submdspan(\ declval<underlying\_span\_type>}}(),\ declval<experimental::full\_extent\_t>(),\ declval<index\_type>()\ )\ )>;}
-\DoxyCodeLine{00070\ \ \ \ \ \textcolor{keyword}{using\ }\mbox{\hyperlink{classstd_1_1math_1_1vector__view}{const\_column\_type}}\ \ \ \ \ \ \ \ \ \ =\ \mbox{\hyperlink{classstd_1_1math_1_1vector__view}{vector\_view<decltype(\ experimental::submdspan(\ declval<const\_underlying\_span\_type>}}(),\ declval<experimental::full\_extent\_t>(),\ declval<index\_type>()\ )\ )>;}
-\DoxyCodeLine{00072\ \ \ \ \ \textcolor{keyword}{using\ }\mbox{\hyperlink{classstd_1_1math_1_1vector__view}{row\_type}}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ =\ \mbox{\hyperlink{classstd_1_1math_1_1vector__view}{vector\_view<decltype(\ experimental::submdspan(\ declval<underlying\_span\_type>}}(),\ declval<index\_type>(),\ declval<experimental::full\_extent\_t>()\ )\ )>;}
-\DoxyCodeLine{00074\ \ \ \ \ \textcolor{keyword}{using\ }\mbox{\hyperlink{classstd_1_1math_1_1vector__view}{const\_row\_type}}\ \ \ \ \ \ \ \ \ \ \ \ \ =\ \mbox{\hyperlink{classstd_1_1math_1_1vector__view}{vector\_view<decltype(\ experimental::submdspan(\ declval<const\_underlying\_span\_type>}}(),\ declval<index\_type>(),\ declval<experimental::full\_extent\_t>()\ )\ )>;}
-\DoxyCodeLine{00075\ \ \ \ \ }
-\DoxyCodeLine{00076\ \ \ \ \ \textcolor{comment}{//-\/\ Destructor\ /\ Constructors\ /\ Assignments}}
-\DoxyCodeLine{00077\ }
-\DoxyCodeLine{00079\ \ \ \ \ \mbox{\hyperlink{classstd_1_1math_1_1matrix__view_a6915292a866a9d6c5ed6785ffb2ecb36}{\string~matrix\_view}}()\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ =\ \textcolor{keywordflow}{default};}
-\DoxyCodeLine{00081\ \ \ \ \ \mbox{\hyperlink{classstd_1_1math_1_1matrix__view_a150dfbd0a7719e27a52f0aca3a434ae2}{matrix\_view}}()\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ =\ \textcolor{keywordflow}{default};}
-\DoxyCodeLine{00084\ \ \ \ \ \mbox{\hyperlink{classstd_1_1math_1_1matrix__view_ac96250b199bb64304e8929db21d68afe}{matrix\_view}}(\ \mbox{\hyperlink{classstd_1_1math_1_1matrix__view}{matrix\_view}}\&\&\ rhs\ )\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ =\ \textcolor{keywordflow}{default};}
-\DoxyCodeLine{00087\ \ \ \ \ \mbox{\hyperlink{classstd_1_1math_1_1matrix__view_a3ccb591e3b368deb4fd3a46ebd15c0e0}{matrix\_view}}(\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classstd_1_1math_1_1matrix__view}{matrix\_view}}\&\ rhs\ )\ \ \ \ \ \ \ \ \ \ \ \ \ \ =\ \textcolor{keywordflow}{default};}
-\DoxyCodeLine{00090\ \ \ \ \ \textcolor{keyword}{explicit}\ \textcolor{keyword}{constexpr}\ \mbox{\hyperlink{classstd_1_1math_1_1matrix__view}{matrix\_view}}(\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classstd_1_1math_1_1matrix__view_ae7c837d0c82266e54b4088d2bc7a1f89}{underlying\_span\_type}}\&\ view\ )\ \textcolor{keyword}{noexcept};}
-\DoxyCodeLine{00094\ \ \ \ \ \mbox{\hyperlink{classstd_1_1math_1_1matrix__view}{matrix\_view}}\&\ operator\ =\ (\ \mbox{\hyperlink{classstd_1_1math_1_1matrix__view}{matrix\_view}}\&\&\ rhs\ )\ \ \ \ \ \ =\ \textcolor{keywordflow}{default};}
-\DoxyCodeLine{00098\ \ \ \ \ \mbox{\hyperlink{classstd_1_1math_1_1matrix__view}{matrix\_view}}\&\ operator\ =\ (\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classstd_1_1math_1_1matrix__view}{matrix\_view}}\&\ rhs\ )\ =\ \textcolor{keywordflow}{default};}
-\DoxyCodeLine{00102\ \ \ \ \ \textcolor{keyword}{constexpr}\ \mbox{\hyperlink{classstd_1_1math_1_1matrix__view}{matrix\_view}}\&\ operator\ =\ (\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classstd_1_1math_1_1matrix__view_ae7c837d0c82266e54b4088d2bc7a1f89}{underlying\_span\_type}}\&\ view\ )\ \textcolor{keyword}{noexcept};}
-\DoxyCodeLine{00103\ }
-\DoxyCodeLine{00104\ \ \ \ \ \textcolor{comment}{//-\/\ Size\ /\ Capacity}}
+\DoxyCodeLine{00024\ \textcolor{comment}{}\textcolor{keyword}{template}\ <\ \textcolor{keyword}{class\ }MDS}
+\DoxyCodeLine{00025\ \textcolor{preprocessor}{\#ifdef\ LINALG\_ENABLE\_CONCEPTS}}
+\DoxyCodeLine{00026\ \ \ >\ \textcolor{keyword}{requires}\ (\ detail::is\_mdspan\_v<MDS>\ \&\&}
+\DoxyCodeLine{00027\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (\ MDS::extents\_type::rank()==\ 2\ )\ \&\&}
+\DoxyCodeLine{00028\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ MDS::is\_always\_unique()\ )\ \textcolor{comment}{//\ Each\ element\ in\ the\ mdspan\ must\ have\ a\ unique\ mapping.\ (i.e.\ span\_type\ and\ const\_underlying\_span\_type\ should\ be\ the\ same.)}}
+\DoxyCodeLine{00029\ \#\textcolor{keywordflow}{else}}
+\DoxyCodeLine{00030\ \ \ ,\ \textcolor{keyword}{typename}\ >}
+\DoxyCodeLine{00031\ \#endif}
+\DoxyCodeLine{00032\ \textcolor{keyword}{class}\ \mbox{\hyperlink{classstd_1_1math_1_1matrix__view}{matrix\_view}}\ :\ \textcolor{keyword}{public}\ \mbox{\hyperlink{classstd_1_1math_1_1tensor__view}{tensor\_view<MDS>}}}
+\DoxyCodeLine{00033\ \{}
+\DoxyCodeLine{00034\ \ \ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00035\ \ \ \ \ \textcolor{comment}{//\ Base\ tensor\ type}}
+\DoxyCodeLine{00036\ \ \ \ \ \textcolor{keyword}{using\ }\mbox{\hyperlink{classstd_1_1math_1_1tensor__view}{base\_type}}\ =\ \mbox{\hyperlink{classstd_1_1math_1_1tensor__view}{tensor\_view<MDS>}};}
+\DoxyCodeLine{00037\ \ \ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00038\ \ \ \ \ \textcolor{comment}{//-\/\ Types}}
+\DoxyCodeLine{00039\ }
+\DoxyCodeLine{00041\ \ \ \ \ \textcolor{keyword}{using\ }\mbox{\hyperlink{classstd_1_1math_1_1matrix__view_aa8000fbfb8ed519c2b135cbd5816f2f1}{layout\_type}}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ =\ \textcolor{keyword}{typename}\ \mbox{\hyperlink{classstd_1_1math_1_1tensor__view_a76de59ce9f1bee282afe48a31e789cbf}{base\_type::layout\_type}};}
+\DoxyCodeLine{00043\ \ \ \ \ \textcolor{keyword}{using\ }\mbox{\hyperlink{classstd_1_1math_1_1matrix__view_a2028e02e7fec6045aa72b48dfee1fdf4}{accessor\_type}}\ \ \ \ \ \ \ \ \ \ \ \ \ \ =\ \textcolor{keyword}{typename}\ \mbox{\hyperlink{classstd_1_1math_1_1tensor__view_a476757625af9aa26cd9f864d0487da10}{base\_type::accessor\_type}};}
+\DoxyCodeLine{00045\ \ \ \ \ \textcolor{keyword}{using\ }\mbox{\hyperlink{classstd_1_1math_1_1matrix__view_a9dbd63be13c4c44809163ceef82c5466}{element\_type}}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ =\ \textcolor{keyword}{typename}\ \mbox{\hyperlink{classstd_1_1math_1_1tensor__view_a05072a97556588ee800a15933d3bb12e}{base\_type::element\_type}};}
+\DoxyCodeLine{00047\ \ \ \ \ \textcolor{keyword}{using\ }\mbox{\hyperlink{classstd_1_1math_1_1matrix__view_aa32ec9b420c9ec4597b0a75c1c76327f}{value\_type}}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ =\ \textcolor{keyword}{typename}\ \mbox{\hyperlink{classstd_1_1math_1_1tensor__view_ab1d10e1729b95ed8a4f9bb25cfe530b2}{base\_type::value\_type}};}
+\DoxyCodeLine{00049\ \ \ \ \ \textcolor{keyword}{using\ }\mbox{\hyperlink{classstd_1_1math_1_1matrix__view_a68f025202d34b558d6032b148ae20d9a}{index\_type}}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ =\ \textcolor{keyword}{typename}\ base\_type::index\_type;}
+\DoxyCodeLine{00051\ \ \ \ \ \textcolor{keyword}{using\ }\mbox{\hyperlink{classstd_1_1math_1_1matrix__view_a31b106920ff8fead4f179c8430f97bcf}{size\_type}}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ =\ \textcolor{keyword}{typename}\ \mbox{\hyperlink{classstd_1_1math_1_1tensor__view_a3af2cb397caf70df58220ee0a2c41e8e}{base\_type::size\_type}};}
+\DoxyCodeLine{00053\ \ \ \ \ \textcolor{keyword}{using\ }\mbox{\hyperlink{classstd_1_1math_1_1matrix__view_a0ab80e3b5bc4a7ff62f703917365dbf0}{extents\_type}}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ =\ \textcolor{keyword}{typename}\ \mbox{\hyperlink{classstd_1_1math_1_1tensor__view_ac42982a3f00ae1f4005330da6c2f314e}{base\_type::extents\_type}};}
+\DoxyCodeLine{00055\ \ \ \ \ \textcolor{keyword}{using\ }\mbox{\hyperlink{classstd_1_1math_1_1matrix__view_a88aed576860588aebf1ec6528ff8d9e3}{tuple\_type}}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ =\ \textcolor{keyword}{typename}\ \mbox{\hyperlink{classstd_1_1math_1_1tensor__view_ad0f8cd66b18abee592f353c9591487b0}{base\_type::tuple\_type}};}
+\DoxyCodeLine{00057\ \ \ \ \ \textcolor{keyword}{using\ }\mbox{\hyperlink{classstd_1_1math_1_1matrix__view_a688edb4497585df0b7b21a292c79405b}{const\_underlying\_span\_type}}\ =\ \textcolor{keyword}{typename}\ \mbox{\hyperlink{classstd_1_1math_1_1tensor__view_aa6124a11fc8f4fec4d3160bbc1747c45}{base\_type::const\_underlying\_span\_type}};}
+\DoxyCodeLine{00059\ \ \ \ \ \textcolor{keyword}{using\ }\mbox{\hyperlink{classstd_1_1math_1_1matrix__view_a2c99022786d809564cb3ebd217125203}{underlying\_span\_type}}\ \ \ \ \ \ \ =\ \textcolor{keyword}{typename}\ base\_type::underlying\_span\_type;}
+\DoxyCodeLine{00061\ \ \ \ \ \textcolor{keyword}{using\ }\mbox{\hyperlink{classstd_1_1math_1_1matrix__view_a40f980bfa27b52ca45d9b7ba472455ac}{span\_type}}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ =\ \textcolor{keyword}{typename}\ \mbox{\hyperlink{classstd_1_1math_1_1tensor__view_adb5f1285a46bcd8b985613179bd84831}{base\_type::span\_type}};}
+\DoxyCodeLine{00063\ \ \ \ \ \textcolor{keyword}{using\ }\mbox{\hyperlink{classstd_1_1math_1_1matrix__view_ae15b0b6badf54a0aac58bab16b40ec17}{reference}}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ =\ \textcolor{keyword}{typename}\ \mbox{\hyperlink{classstd_1_1math_1_1tensor__view_a2cfcb1c6b56a39f30a3100abcbb543b5}{base\_type::reference}};}
+\DoxyCodeLine{00065\ \ \ \ \ \textcolor{keyword}{using\ }\mbox{\hyperlink{classstd_1_1math_1_1vector__view}{column\_type}}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ =\ \mbox{\hyperlink{classstd_1_1math_1_1vector__view}{vector\_view<decltype(\ ::std::experimental::submdspan(\ ::std::declval<underlying\_span\_type>}}(),\ ::std::declval<::std::experimental::full\_extent\_t>(),\ ::std::declval<index\_type>()\ )\ )>;}
+\DoxyCodeLine{00067\ \ \ \ \ \textcolor{keyword}{using\ }\mbox{\hyperlink{classstd_1_1math_1_1vector__view}{const\_column\_type}}\ \ \ \ \ \ \ \ \ \ =\ \mbox{\hyperlink{classstd_1_1math_1_1vector__view}{vector\_view<decltype(\ ::std::experimental::submdspan(\ ::std::declval<const\_underlying\_span\_type>}}(),\ ::std::declval<::std::experimental::full\_extent\_t>(),\ ::std::declval<index\_type>()\ )\ )>;}
+\DoxyCodeLine{00069\ \ \ \ \ \textcolor{keyword}{using\ }\mbox{\hyperlink{classstd_1_1math_1_1vector__view}{row\_type}}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ =\ \mbox{\hyperlink{classstd_1_1math_1_1vector__view}{vector\_view<decltype(\ ::std::experimental::submdspan(\ ::std::declval<underlying\_span\_type>}}(),\ ::std::declval<index\_type>(),\ ::std::declval<::std::experimental::full\_extent\_t>()\ )\ )>;}
+\DoxyCodeLine{00071\ \ \ \ \ \textcolor{keyword}{using\ }\mbox{\hyperlink{classstd_1_1math_1_1vector__view}{const\_row\_type}}\ \ \ \ \ \ \ \ \ \ \ \ \ =\ \mbox{\hyperlink{classstd_1_1math_1_1vector__view}{vector\_view<decltype(\ ::std::experimental::submdspan(\ ::std::declval<const\_underlying\_span\_type>}}(),\ ::std::declval<index\_type>(),\ ::std::declval<::std::experimental::full\_extent\_t>()\ )\ )>;}
+\DoxyCodeLine{00072\ \ \ \ \ }
+\DoxyCodeLine{00073\ \ \ \ \ \textcolor{comment}{//-\/\ Destructor\ /\ Constructors\ /\ Assignments}}
+\DoxyCodeLine{00074\ }
+\DoxyCodeLine{00076\ \ \ \ \ \mbox{\hyperlink{classstd_1_1math_1_1matrix__view_afdf85d405a080965b401f6af1a89565d}{\string~matrix\_view}}()\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ =\ \textcolor{keywordflow}{default};}
+\DoxyCodeLine{00078\ \ \ \ \ \mbox{\hyperlink{classstd_1_1math_1_1matrix__view_aadb0384816161ce08d9e4d68e209c8a3}{matrix\_view}}()\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ =\ \textcolor{keywordflow}{default};}
+\DoxyCodeLine{00081\ \ \ \ \ \mbox{\hyperlink{classstd_1_1math_1_1matrix__view_aaa813f271b530dcd1e7851fc6b8d3220}{matrix\_view}}(\ \mbox{\hyperlink{classstd_1_1math_1_1matrix__view}{matrix\_view}}\&\&\ rhs\ )\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ =\ \textcolor{keywordflow}{default};}
+\DoxyCodeLine{00084\ \ \ \ \ \mbox{\hyperlink{classstd_1_1math_1_1matrix__view_a74d5bae6935d5d8f8d66d9336bc397ae}{matrix\_view}}(\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classstd_1_1math_1_1matrix__view}{matrix\_view}}\&\ rhs\ )\ \ \ \ \ \ \ \ \ \ \ \ \ \ =\ \textcolor{keywordflow}{default};}
+\DoxyCodeLine{00087\ \ \ \ \ \textcolor{keyword}{explicit}\ \textcolor{keyword}{constexpr}\ \mbox{\hyperlink{classstd_1_1math_1_1matrix__view}{matrix\_view}}(\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classstd_1_1math_1_1matrix__view_a2c99022786d809564cb3ebd217125203}{underlying\_span\_type}}\&\ view\ )\ \textcolor{keyword}{noexcept};}
+\DoxyCodeLine{00091\ \ \ \ \ \mbox{\hyperlink{classstd_1_1math_1_1matrix__view}{matrix\_view}}\&\ operator\ =\ (\ \mbox{\hyperlink{classstd_1_1math_1_1matrix__view}{matrix\_view}}\&\&\ rhs\ )\ \ \ \ \ \ =\ \textcolor{keywordflow}{default};}
+\DoxyCodeLine{00095\ \ \ \ \ \mbox{\hyperlink{classstd_1_1math_1_1matrix__view}{matrix\_view}}\&\ operator\ =\ (\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classstd_1_1math_1_1matrix__view}{matrix\_view}}\&\ rhs\ )\ =\ \textcolor{keywordflow}{default};}
+\DoxyCodeLine{00099\ \ \ \ \ \textcolor{keyword}{constexpr}\ \mbox{\hyperlink{classstd_1_1math_1_1matrix__view}{matrix\_view}}\&\ operator\ =\ (\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classstd_1_1math_1_1matrix__view_a2c99022786d809564cb3ebd217125203}{underlying\_span\_type}}\&\ view\ )\ \textcolor{keyword}{noexcept};}
+\DoxyCodeLine{00100\ }
+\DoxyCodeLine{00101\ \ \ \ \ \textcolor{comment}{//-\/\ Size\ /\ Capacity}}
+\DoxyCodeLine{00102\ }
+\DoxyCodeLine{00103\ \ \ \ \ \textcolor{keyword}{using\ }base\_type::size;}
+\DoxyCodeLine{00104\ \ \ \ \ \textcolor{keyword}{using\ }base\_type::capacity;}
 \DoxyCodeLine{00105\ }
-\DoxyCodeLine{00106\ \ \ \ \ \textcolor{keyword}{using\ }base\_type::size;}
-\DoxyCodeLine{00107\ \ \ \ \ \textcolor{keyword}{using\ }base\_type::capacity;}
-\DoxyCodeLine{00108\ }
-\DoxyCodeLine{00111\ \ \ \ \ [[nodiscard]]\ \textcolor{keyword}{constexpr}\ \mbox{\hyperlink{classstd_1_1math_1_1matrix__view_af13e22ab3477238f46a325a3ee975b17}{index\_type}}\ columns()\ const\ noexcept;}
-\DoxyCodeLine{00114\ \ \ \ \ [[nodiscard]]\ constexpr\ \mbox{\hyperlink{classstd_1_1math_1_1matrix__view_af13e22ab3477238f46a325a3ee975b17}{index\_type}}\ rows()\ const\ noexcept;}
-\DoxyCodeLine{00117\ \ \ \ \ [[nodiscard]]\ constexpr\ \mbox{\hyperlink{classstd_1_1math_1_1matrix__view_af13e22ab3477238f46a325a3ee975b17}{index\_type}}\ column\_capacity()\ const\ noexcept;}
-\DoxyCodeLine{00120\ \ \ \ \ [[nodiscard]]\ constexpr\ \mbox{\hyperlink{classstd_1_1math_1_1matrix__view_af13e22ab3477238f46a325a3ee975b17}{index\_type}}\ row\_capacity()\ const\ noexcept;}
-\DoxyCodeLine{00121\ }
-\DoxyCodeLine{00122\ \ \ \ \ \textcolor{comment}{//-\/\ Const\ views}}
-\DoxyCodeLine{00123\ }
-\DoxyCodeLine{00124\ \ \ \ \ using\ \mbox{\hyperlink{classstd_1_1math_1_1tensor__view}{base\_type}}::operator[];\ \textcolor{comment}{//\ Brings\ into\ scope\ const\ and\ mutable}}
-\DoxyCodeLine{00125\ \ \ \ \ using\ \mbox{\hyperlink{classstd_1_1math_1_1tensor__view}{base\_type}}::at;\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Brings\ into\ scope\ const\ and\ mutable}}
-\DoxyCodeLine{00126\ \ \ \ \ }
-\DoxyCodeLine{00130\ \ \ \ \ [[nodiscard]]\ constexpr\ \mbox{\hyperlink{classstd_1_1math_1_1vector__view}{const\_column\_type}}\ column(\ \mbox{\hyperlink{classstd_1_1math_1_1matrix__view_af13e22ab3477238f46a325a3ee975b17}{index\_type}}\ j\ )\ const;}
-\DoxyCodeLine{00134\ \ \ \ \ [[nodiscard]]\ constexpr\ \mbox{\hyperlink{classstd_1_1math_1_1vector__view}{const\_row\_type}}\ row(\ \mbox{\hyperlink{classstd_1_1math_1_1matrix__view_af13e22ab3477238f46a325a3ee975b17}{index\_type}}\ i\ )\ const;}
-\DoxyCodeLine{00139\ \ \ \ \ [[nodiscard]]\ constexpr\ \mbox{\hyperlink{classstd_1_1math_1_1matrix__view}{const\_submatrix\_type}}\ submatrix(\ \mbox{\hyperlink{classstd_1_1math_1_1matrix__view_a84b17fca1eca916f2535d59c9b94d1de}{tuple\_type}}\ start,}
-\DoxyCodeLine{00140\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classstd_1_1math_1_1matrix__view_a84b17fca1eca916f2535d59c9b94d1de}{tuple\_type}}\ end\ )\ const;}
-\DoxyCodeLine{00141\ }
-\DoxyCodeLine{00142\ \ \ \ \ \textcolor{comment}{//-\/\ Mutable\ views}}
-\DoxyCodeLine{00143\ \ \ \ \ }
-\DoxyCodeLine{00147\ \ \ \ \ [[nodiscard]]\ constexpr\ \mbox{\hyperlink{classstd_1_1math_1_1vector__view}{column\_type}}\ column(\ \mbox{\hyperlink{classstd_1_1math_1_1matrix__view_af13e22ab3477238f46a325a3ee975b17}{index\_type}}\ j\ )\ requires\ (\ !is\_const\_v<\mbox{\hyperlink{classstd_1_1math_1_1matrix__view_a0873ce244ca355cf3e9fa32830fef538}{element\_type}}>\ );}
-\DoxyCodeLine{00151\ \ \ \ \ [[nodiscard]]\ constexpr\ \mbox{\hyperlink{classstd_1_1math_1_1vector__view}{row\_type}}\ row(\ \mbox{\hyperlink{classstd_1_1math_1_1matrix__view_af13e22ab3477238f46a325a3ee975b17}{index\_type}}\ i\ )\ requires\ (\ !is\_const\_v<\mbox{\hyperlink{classstd_1_1math_1_1matrix__view_a0873ce244ca355cf3e9fa32830fef538}{element\_type}}>\ );}
-\DoxyCodeLine{00156\ \ \ \ \ [[nodiscard]]\ constexpr\ \mbox{\hyperlink{classstd_1_1math_1_1matrix__view}{submatrix\_type}}\ submatrix(\ \mbox{\hyperlink{classstd_1_1math_1_1matrix__view_a84b17fca1eca916f2535d59c9b94d1de}{tuple\_type}}\ start,}
-\DoxyCodeLine{00157\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classstd_1_1math_1_1matrix__view_a84b17fca1eca916f2535d59c9b94d1de}{tuple\_type}}\ end\ )\ requires\ (\ !is\_const\_v<\mbox{\hyperlink{classstd_1_1math_1_1matrix__view_a0873ce244ca355cf3e9fa32830fef538}{element\_type}}>\ );}
-\DoxyCodeLine{00158\ }
-\DoxyCodeLine{00159\ \ \ \ \ \textcolor{comment}{//-\/\ Data\ access}}
-\DoxyCodeLine{00160\ }
-\DoxyCodeLine{00161\ \ \ \ \ using\ \mbox{\hyperlink{classstd_1_1math_1_1tensor__view}{base\_type}}::span;}
-\DoxyCodeLine{00162\ \ \ \ \ using\ \mbox{\hyperlink{classstd_1_1math_1_1tensor__view}{base\_type}}::underlying\_span;}
-\DoxyCodeLine{00163\ }
-\DoxyCodeLine{00164\ \};}
+\DoxyCodeLine{00108\ \ \ \ \ [[nodiscard]]\ \textcolor{keyword}{constexpr}\ \mbox{\hyperlink{classstd_1_1math_1_1matrix__view_a31b106920ff8fead4f179c8430f97bcf}{size\_type}}\ columns()\ const\ noexcept;}
+\DoxyCodeLine{00111\ \ \ \ \ [[nodiscard]]\ constexpr\ \mbox{\hyperlink{classstd_1_1math_1_1matrix__view_a31b106920ff8fead4f179c8430f97bcf}{size\_type}}\ rows()\ const\ noexcept;}
+\DoxyCodeLine{00114\ \ \ \ \ [[nodiscard]]\ constexpr\ \mbox{\hyperlink{classstd_1_1math_1_1matrix__view_a31b106920ff8fead4f179c8430f97bcf}{size\_type}}\ column\_capacity()\ const\ noexcept;}
+\DoxyCodeLine{00117\ \ \ \ \ [[nodiscard]]\ constexpr\ \mbox{\hyperlink{classstd_1_1math_1_1matrix__view_a31b106920ff8fead4f179c8430f97bcf}{size\_type}}\ row\_capacity()\ const\ noexcept;}
+\DoxyCodeLine{00118\ }
+\DoxyCodeLine{00119\ \ \ \ \ \textcolor{comment}{//-\/\ Const\ views}}
+\DoxyCodeLine{00120\ }
+\DoxyCodeLine{00121\ \ \ \ \ \textcolor{preprocessor}{\#if\ LINALG\_USE\_BRACKET\_OPERATOR}}
+\DoxyCodeLine{00122\ \ \ \ \ \textcolor{keyword}{using\ }base\_type::operator[];\ \textcolor{comment}{//\ Brings\ into\ scope\ const\ and\ mutable}}
+\DoxyCodeLine{00123\ \textcolor{preprocessor}{\ \ \ \ \#endif}}
+\DoxyCodeLine{00124\ \textcolor{preprocessor}{\ \ \ \ \#if\ LINALG\_USE\_PAREN\_OPERATOR}}
+\DoxyCodeLine{00125\ \ \ \ \ \textcolor{keyword}{using\ }base\_type::operator();\ \textcolor{comment}{//\ Brings\ into\ scope\ const\ and\ mutable}}
+\DoxyCodeLine{00126\ \textcolor{preprocessor}{\ \ \ \ \#endif}}
+\DoxyCodeLine{00127\ \ \ \ \ \textcolor{keyword}{using\ }base\_type::subvector;\ \ \textcolor{comment}{//\ Brings\ into\ scope\ const\ and\ mutable}}
+\DoxyCodeLine{00128\ \ \ \ \ \textcolor{keyword}{using\ }base\_type::submatrix;\ \ \textcolor{comment}{//\ Brings\ into\ scope\ const\ and\ mutable}}
+\DoxyCodeLine{00129\ \ \ \ \ }
+\DoxyCodeLine{00133\ \ \ \ \ [[nodiscard]]\ \textcolor{keyword}{constexpr}\ \mbox{\hyperlink{classstd_1_1math_1_1vector__view}{const\_column\_type}}\ column(\ \mbox{\hyperlink{classstd_1_1math_1_1matrix__view_a68f025202d34b558d6032b148ae20d9a}{index\_type}}\ j\ )\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00137\ \ \ \ \ [[nodiscard]]\ \textcolor{keyword}{constexpr}\ \mbox{\hyperlink{classstd_1_1math_1_1vector__view}{const\_row\_type}}\ row(\ \mbox{\hyperlink{classstd_1_1math_1_1matrix__view_a68f025202d34b558d6032b148ae20d9a}{index\_type}}\ i\ )\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00138\ }
+\DoxyCodeLine{00139\ \ \ \ \ \textcolor{comment}{//-\/\ Mutable\ views}}
+\DoxyCodeLine{00140\ \ \ \ \ }
+\DoxyCodeLine{00144\ \textcolor{preprocessor}{\ \ \ \ \#ifndef\ LINALG\_ENABLE\_CONCEPTS}}
+\DoxyCodeLine{00145\ \ \ \ \ \textcolor{keyword}{template}\ <\ \textcolor{keyword}{typename}\ Elem\ =\ element\_type,\ \textcolor{keyword}{typename}\ =\ ::std::enable\_if\_t<\ !::std::is\_const\_v<Elem>\ >\ >}
+\DoxyCodeLine{00146\ \textcolor{preprocessor}{\ \ \ \ \#endif}}
+\DoxyCodeLine{00147\ \ \ \ \ [[nodiscard]]\ \textcolor{keyword}{constexpr}\ \mbox{\hyperlink{classstd_1_1math_1_1vector__view}{column\_type}}\ column(\ \mbox{\hyperlink{classstd_1_1math_1_1matrix__view_a68f025202d34b558d6032b148ae20d9a}{index\_type}}\ j\ )}
+\DoxyCodeLine{00148\ \ \ \ \ \textcolor{preprocessor}{\#ifdef\ LINALG\_ENABLE\_CONCEPTS}}
+\DoxyCodeLine{00149\ \ \ \ \ \ \ \textcolor{keyword}{requires}\ (\ !::std::is\_const\_v<element\_type>\ );}
+\DoxyCodeLine{00150\ \textcolor{preprocessor}{\ \ \ \ \#else}}
+\DoxyCodeLine{00151\ \ \ \ \ \ \ ;}
+\DoxyCodeLine{00152\ \textcolor{preprocessor}{\ \ \ \ \#endif}}
+\DoxyCodeLine{00156\ \textcolor{preprocessor}{\ \ \ \ \#ifndef\ LINALG\_ENABLE\_CONCEPTS}}
+\DoxyCodeLine{00157\ \ \ \ \ \textcolor{keyword}{template}\ <\ \textcolor{keyword}{typename}\ Elem\ =\ element\_type,\ \textcolor{keyword}{typename}\ =\ ::std::enable\_if\_t<\ !::std::is\_const\_v<Elem>\ >\ >}
+\DoxyCodeLine{00158\ \textcolor{preprocessor}{\ \ \ \ \#endif}}
+\DoxyCodeLine{00159\ \ \ \ \ [[nodiscard]]\ \textcolor{keyword}{constexpr}\ \mbox{\hyperlink{classstd_1_1math_1_1vector__view}{row\_type}}\ row(\ \mbox{\hyperlink{classstd_1_1math_1_1matrix__view_a68f025202d34b558d6032b148ae20d9a}{index\_type}}\ i\ )}
+\DoxyCodeLine{00160\ \ \ \ \ \textcolor{preprocessor}{\#ifdef\ LINALG\_ENABLE\_CONCEPTS}}
+\DoxyCodeLine{00161\ \ \ \ \ \ \ \textcolor{keyword}{requires}\ (\ !::std::is\_const\_v<element\_type>\ );}
+\DoxyCodeLine{00162\ \textcolor{preprocessor}{\ \ \ \ \#else}}
+\DoxyCodeLine{00163\ \ \ \ \ \ \ ;}
+\DoxyCodeLine{00164\ \textcolor{preprocessor}{\ \ \ \ \#endif}}
 \DoxyCodeLine{00165\ }
-\DoxyCodeLine{00166\ \textcolor{comment}{//-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
-\DoxyCodeLine{00167\ \textcolor{comment}{//\ Implementation\ of\ matrix\_view<MDS>}}
-\DoxyCodeLine{00168\ \textcolor{comment}{//-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
-\DoxyCodeLine{00169\ }
-\DoxyCodeLine{00170\ \textcolor{comment}{//-\/\ Destructor\ /\ Constructors\ /\ Assignments}}
-\DoxyCodeLine{00171\ }
-\DoxyCodeLine{00172\ template\ <\ class\ MDS\ >\ requires\ (\ detail::is\_mdspan\_v<MDS>\ \&\&\ (\ MDS::\mbox{\hyperlink{classstd_1_1math_1_1matrix__view_a952236a0a976014e1ec15de1162587c3}{extents\_type}}::rank()\ ==\ 2\ )\ \&\&\ MDS::is\_always\_unique()\ )}
-\DoxyCodeLine{00173\ constexpr\ \mbox{\hyperlink{classstd_1_1math_1_1matrix__view}{matrix\_view}}<MDS>::\mbox{\hyperlink{classstd_1_1math_1_1matrix__view}{matrix\_view}}(\ const\ \mbox{\hyperlink{classstd_1_1math_1_1matrix__view_ae7c837d0c82266e54b4088d2bc7a1f89}{underlying\_span\_type}}\&\ view\ )\ noexcept\ :}
-\DoxyCodeLine{00174\ \ \ \mbox{\hyperlink{classstd_1_1math_1_1matrix__view}{matrix\_view}}<MDS>::\mbox{\hyperlink{classstd_1_1math_1_1tensor__view}{base\_type}}(\ view\ )}
-\DoxyCodeLine{00175\ \{}
-\DoxyCodeLine{00176\ \}}
-\DoxyCodeLine{00177\ }
-\DoxyCodeLine{00178\ \textcolor{keyword}{template}\ <\ \textcolor{keyword}{class}\ MDS\ >\ \textcolor{keyword}{requires}\ (\ detail::is\_mdspan\_v<MDS>\ \&\&\ (\ MDS::extents\_type::rank()\ ==\ 2\ )\ \&\&\ MDS::is\_always\_unique()\ )}
-\DoxyCodeLine{00179\ \textcolor{keyword}{constexpr}\ \mbox{\hyperlink{classstd_1_1math_1_1matrix__view}{matrix\_view<MDS>}}\&\ \mbox{\hyperlink{classstd_1_1math_1_1matrix__view}{matrix\_view<MDS>::operator}}\ =\ (\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classstd_1_1math_1_1matrix__view_ae7c837d0c82266e54b4088d2bc7a1f89}{underlying\_span\_type}}\&\ view\ )\ \textcolor{keyword}{noexcept}}
-\DoxyCodeLine{00180\ \{}
-\DoxyCodeLine{00181\ \ \ \textcolor{keyword}{static\_cast<}\textcolor{keywordtype}{void}\textcolor{keyword}{>}(\ this-\/>base\_type::operator=(\ view\ )\ );}
-\DoxyCodeLine{00182\ \ \ \textcolor{keywordflow}{return}\ *\textcolor{keyword}{this};}
-\DoxyCodeLine{00183\ \}}
-\DoxyCodeLine{00184\ }
-\DoxyCodeLine{00185\ \textcolor{comment}{//-\/\ Size\ /\ Capacity}}
-\DoxyCodeLine{00186\ }
-\DoxyCodeLine{00187\ \textcolor{keyword}{template}\ <\ \textcolor{keyword}{class}\ MDS\ >\ \textcolor{keyword}{requires}\ (\ detail::is\_mdspan\_v<MDS>\ \&\&\ (\ MDS::extents\_type::rank()\ ==\ 2\ )\ \&\&\ MDS::is\_always\_unique()\ )}
-\DoxyCodeLine{00188\ [[nodiscard]]\ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{typename}\ \mbox{\hyperlink{classstd_1_1math_1_1matrix__view_af13e22ab3477238f46a325a3ee975b17}{matrix\_view<MDS>::index\_type}}}
-\DoxyCodeLine{00189\ \mbox{\hyperlink{classstd_1_1math_1_1matrix__view}{matrix\_view<MDS>::columns}}()\ \textcolor{keyword}{const}\ \textcolor{keyword}{noexcept}}
-\DoxyCodeLine{00190\ \{}
-\DoxyCodeLine{00191\ \ \ \textcolor{keywordflow}{return}\ this-\/>size().extent(2);}
-\DoxyCodeLine{00192\ \}}
-\DoxyCodeLine{00193\ }
-\DoxyCodeLine{00194\ \textcolor{keyword}{template}\ <\ \textcolor{keyword}{class}\ MDS\ >\ \textcolor{keyword}{requires}\ (\ detail::is\_mdspan\_v<MDS>\ \&\&\ (\ MDS::extents\_type::rank()\ ==\ 2\ )\ \&\&\ MDS::is\_always\_unique()\ )}
-\DoxyCodeLine{00195\ [[nodiscard]]\ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{typename}\ \mbox{\hyperlink{classstd_1_1math_1_1matrix__view_af13e22ab3477238f46a325a3ee975b17}{matrix\_view<MDS>::index\_type}}}
-\DoxyCodeLine{00196\ \mbox{\hyperlink{classstd_1_1math_1_1matrix__view}{matrix\_view<MDS>::rows}}()\ \textcolor{keyword}{const}\ \textcolor{keyword}{noexcept}}
-\DoxyCodeLine{00197\ \{}
-\DoxyCodeLine{00198\ \ \ \textcolor{keywordflow}{return}\ this-\/>size().extent(1);}
-\DoxyCodeLine{00199\ \}}
-\DoxyCodeLine{00200\ }
-\DoxyCodeLine{00201\ \textcolor{keyword}{template}\ <\ \textcolor{keyword}{class}\ MDS\ >\ \textcolor{keyword}{requires}\ (\ detail::is\_mdspan\_v<MDS>\ \&\&\ (\ MDS::extents\_type::rank()\ ==\ 2\ )\ \&\&\ MDS::is\_always\_unique()\ )}
-\DoxyCodeLine{00202\ [[nodiscard]]\ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{typename}\ \mbox{\hyperlink{classstd_1_1math_1_1matrix__view_af13e22ab3477238f46a325a3ee975b17}{matrix\_view<MDS>::index\_type}}}
-\DoxyCodeLine{00203\ \mbox{\hyperlink{classstd_1_1math_1_1matrix__view}{matrix\_view<MDS>::column\_capacity}}()\ \textcolor{keyword}{const}\ \textcolor{keyword}{noexcept}}
-\DoxyCodeLine{00204\ \{}
-\DoxyCodeLine{00205\ \ \ \textcolor{keywordflow}{return}\ this-\/>capacity.extent(2);}
+\DoxyCodeLine{00166\ \ \ \ \ \textcolor{comment}{//-\/\ Data\ access}}
+\DoxyCodeLine{00167\ }
+\DoxyCodeLine{00168\ \ \ \ \ \textcolor{keyword}{using\ }base\_type::span;}
+\DoxyCodeLine{00169\ \ \ \ \ \textcolor{keyword}{using\ }base\_type::underlying\_span;}
+\DoxyCodeLine{00170\ }
+\DoxyCodeLine{00171\ \};}
+\DoxyCodeLine{00172\ }
+\DoxyCodeLine{00173\ \textcolor{comment}{//-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{00174\ \textcolor{comment}{//\ Implementation\ of\ matrix\_view<MDS>}}
+\DoxyCodeLine{00175\ \textcolor{comment}{//-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{00176\ }
+\DoxyCodeLine{00177\ \textcolor{comment}{//-\/\ Destructor\ /\ Constructors\ /\ Assignments}}
+\DoxyCodeLine{00178\ }
+\DoxyCodeLine{00179\ \textcolor{preprocessor}{\#ifdef\ LINALG\_ENABLE\_CONCEPTS}}
+\DoxyCodeLine{00180\ \textcolor{keyword}{template}\ <\ \textcolor{keyword}{class}\ MDS\ >\ \textcolor{keyword}{requires}\ (\ detail::is\_mdspan\_v<MDS>\ \&\&\ (\ MDS::extents\_type::rank()\ ==\ 2\ )\ \&\&\ MDS::is\_always\_unique()\ )}
+\DoxyCodeLine{00181\ \textcolor{keyword}{constexpr}\ \mbox{\hyperlink{classstd_1_1math_1_1matrix__view}{matrix\_view<MDS>}}::}
+\DoxyCodeLine{00182\ \#\textcolor{keywordflow}{else}}
+\DoxyCodeLine{00183\ template\ <\ class\ MDS,\ typename\ Dummy\ >}
+\DoxyCodeLine{00184\ \textcolor{keyword}{constexpr}\ \mbox{\hyperlink{classstd_1_1math_1_1matrix__view}{matrix\_view<MDS,Dummy>}}::}
+\DoxyCodeLine{00185\ \#endif}
+\DoxyCodeLine{00186\ \mbox{\hyperlink{classstd_1_1math_1_1matrix__view}{matrix\_view}}(\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classstd_1_1math_1_1matrix__view_a2c99022786d809564cb3ebd217125203}{underlying\_span\_type}}\&\ view\ )\ noexcept\ :}
+\DoxyCodeLine{00187\ \textcolor{preprocessor}{\#ifdef\ LINALG\_ENABLE\_CONCEPTS}}
+\DoxyCodeLine{00188\ \ \ \mbox{\hyperlink{classstd_1_1math_1_1tensor__view}{matrix\_view<MDS>::base\_type}}(\ view\ )}
+\DoxyCodeLine{00189\ \textcolor{preprocessor}{\#else}}
+\DoxyCodeLine{00190\ \ \ \mbox{\hyperlink{classstd_1_1math_1_1tensor__view}{matrix\_view<MDS,Dummy>::base\_type}}(\ view\ )}
+\DoxyCodeLine{00191\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00192\ \{}
+\DoxyCodeLine{00193\ \}}
+\DoxyCodeLine{00194\ }
+\DoxyCodeLine{00195\ \textcolor{preprocessor}{\#ifdef\ LINALG\_ENABLE\_CONCEPTS}}
+\DoxyCodeLine{00196\ \textcolor{keyword}{template}\ <\ \textcolor{keyword}{class}\ MDS\ >\ \textcolor{keyword}{requires}\ (\ detail::is\_mdspan\_v<MDS>\ \&\&\ (\ MDS::extents\_type::rank()\ ==\ 2\ )\ \&\&\ MDS::is\_always\_unique()\ )}
+\DoxyCodeLine{00197\ \textcolor{keyword}{constexpr}\ \mbox{\hyperlink{classstd_1_1math_1_1matrix__view}{matrix\_view<MDS>}}\&\ \mbox{\hyperlink{classstd_1_1math_1_1matrix__view}{matrix\_view<MDS>}}::}
+\DoxyCodeLine{00198\ \#\textcolor{keywordflow}{else}}
+\DoxyCodeLine{00199\ template\ <\ class\ MDS,\ typename\ Dummy\ >}
+\DoxyCodeLine{00200\ \textcolor{keyword}{constexpr}\ \mbox{\hyperlink{classstd_1_1math_1_1matrix__view}{matrix\_view<MDS,Dummy>}}\&\ \mbox{\hyperlink{classstd_1_1math_1_1matrix__view}{matrix\_view<MDS,Dummy>}}::}
+\DoxyCodeLine{00201\ \#endif}
+\DoxyCodeLine{00202\ \textcolor{keyword}{operator}\ =\ (\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classstd_1_1math_1_1matrix__view_a2c99022786d809564cb3ebd217125203}{underlying\_span\_type}}\&\ view\ )\ \textcolor{keyword}{noexcept}}
+\DoxyCodeLine{00203\ \{}
+\DoxyCodeLine{00204\ \ \ \textcolor{keyword}{static\_cast<}\textcolor{keywordtype}{void}\textcolor{keyword}{>}(\ this-\/>base\_type::operator=(\ view\ )\ );}
+\DoxyCodeLine{00205\ \ \ \textcolor{keywordflow}{return}\ *\textcolor{keyword}{this};}
 \DoxyCodeLine{00206\ \}}
 \DoxyCodeLine{00207\ }
-\DoxyCodeLine{00208\ \textcolor{keyword}{template}\ <\ \textcolor{keyword}{class}\ MDS\ >\ \textcolor{keyword}{requires}\ (\ detail::is\_mdspan\_v<MDS>\ \&\&\ (\ MDS::extents\_type::rank()\ ==\ 2\ )\ \&\&\ MDS::is\_always\_unique()\ )}
-\DoxyCodeLine{00209\ [[nodiscard]]\ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{typename}\ \mbox{\hyperlink{classstd_1_1math_1_1matrix__view_af13e22ab3477238f46a325a3ee975b17}{matrix\_view<MDS>::index\_type}}}
-\DoxyCodeLine{00210\ \mbox{\hyperlink{classstd_1_1math_1_1matrix__view}{matrix\_view<MDS>::row\_capacity}}()\ \textcolor{keyword}{const}\ \textcolor{keyword}{noexcept}}
-\DoxyCodeLine{00211\ \{}
-\DoxyCodeLine{00212\ \ \ \textcolor{keywordflow}{return}\ this-\/>capacity.extent(1);}
-\DoxyCodeLine{00213\ \}}
-\DoxyCodeLine{00214\ }
-\DoxyCodeLine{00215\ \textcolor{comment}{//-\/\ Const\ views}}
-\DoxyCodeLine{00216\ }
-\DoxyCodeLine{00217\ \textcolor{keyword}{template}\ <\ \textcolor{keyword}{class}\ MDS\ >\ \textcolor{keyword}{requires}\ (\ detail::is\_mdspan\_v<MDS>\ \&\&\ (\ MDS::extents\_type::rank()\ ==\ 2\ )\ \&\&\ MDS::is\_always\_unique()\ )}
-\DoxyCodeLine{00218\ [[nodiscard]]\ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{typename}\ \mbox{\hyperlink{classstd_1_1math_1_1vector__view}{matrix\_view<MDS>::const\_column\_type}}}
-\DoxyCodeLine{00219\ \mbox{\hyperlink{classstd_1_1math_1_1matrix__view}{matrix\_view<MDS>::column}}(\ \textcolor{keyword}{typename}\ \mbox{\hyperlink{classstd_1_1math_1_1matrix__view_af13e22ab3477238f46a325a3ee975b17}{matrix\_view<MDS>::index\_type}}\ j\ )\ \textcolor{keyword}{const}}
-\DoxyCodeLine{00220\ \{}
-\DoxyCodeLine{00221\ \ \ \textcolor{keywordflow}{return}\ const\_column\_type\ \{\ experimental::submdspan(\ this-\/>underlying\_span(),\ experimental::full\_extent,\ j\ )\ \};}
-\DoxyCodeLine{00222\ \}}
-\DoxyCodeLine{00223\ }
-\DoxyCodeLine{00224\ \textcolor{keyword}{template}\ <\ \textcolor{keyword}{class}\ MDS\ >\ \textcolor{keyword}{requires}\ (\ detail::is\_mdspan\_v<MDS>\ \&\&\ (\ MDS::extents\_type::rank()\ ==\ 2\ )\ \&\&\ MDS::is\_always\_unique()\ )}
-\DoxyCodeLine{00225\ [[nodiscard]]\ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{typename}\ \mbox{\hyperlink{classstd_1_1math_1_1matrix__view_a6fa803fe591435f26d43100f0f46cde0}{matrix\_view<MDS>::const\_row\_type}}}
-\DoxyCodeLine{00226\ \mbox{\hyperlink{classstd_1_1math_1_1matrix__view_a15eae7e61031e20023daebe3cce371ee}{matrix\_view<MDS>::row}}(\ \textcolor{keyword}{typename}\ \mbox{\hyperlink{classstd_1_1math_1_1matrix__view_af13e22ab3477238f46a325a3ee975b17}{matrix\_view<MDS>::index\_type}}\ i\ )\ \textcolor{keyword}{const}}
-\DoxyCodeLine{00227\ \{}
-\DoxyCodeLine{00228\ \ \ \textcolor{keywordflow}{return}\ const\_row\_type\ \{\ experimental::submdspan(\ this-\/>underlying\_span(),\ i,\ experimental::full\_extent\ )\ \};}
-\DoxyCodeLine{00229\ \}}
-\DoxyCodeLine{00230\ }
-\DoxyCodeLine{00231\ \textcolor{keyword}{template}\ <\ \textcolor{keyword}{class}\ MDS\ >\ \textcolor{keyword}{requires}\ (\ detail::is\_mdspan\_v<MDS>\ \&\&\ (\ MDS::extents\_type::rank()\ ==\ 2\ )\ \&\&\ MDS::is\_always\_unique()\ )}
-\DoxyCodeLine{00232\ [[nodiscard]]\ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{typename}\ \mbox{\hyperlink{classstd_1_1math_1_1matrix__view_a9044b16159891679ed08b158ffcddeec}{matrix\_view<MDS>::const\_submatrix\_type}}}
-\DoxyCodeLine{00233\ \mbox{\hyperlink{classstd_1_1math_1_1matrix__view}{matrix\_view<MDS>::submatrix}}(\ \mbox{\hyperlink{classstd_1_1math_1_1matrix__view_a84b17fca1eca916f2535d59c9b94d1de}{tuple\_type}}\ start,}
-\DoxyCodeLine{00234\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classstd_1_1math_1_1matrix__view_a84b17fca1eca916f2535d59c9b94d1de}{tuple\_type}}\ end\ )\ \textcolor{keyword}{const}}
-\DoxyCodeLine{00235\ \{}
-\DoxyCodeLine{00236\ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{classstd_1_1math_1_1matrix__view}{const\_submatrix\_type}}\ \{\ \mbox{\hyperlink{namespacestd_1_1math_1_1detail_af274dde876e47ba2ec1b483608c81d69}{detail::submdspan}}(\ this-\/>underlying\_span(),\ start,\ end\ )\ \};}
-\DoxyCodeLine{00237\ \}}
-\DoxyCodeLine{00238\ }
-\DoxyCodeLine{00239\ \textcolor{comment}{//-\/\ Mutable\ views}}
-\DoxyCodeLine{00240\ }
-\DoxyCodeLine{00241\ \textcolor{keyword}{template}\ <\ \textcolor{keyword}{class}\ MDS\ >\ \textcolor{keyword}{requires}\ (\ detail::is\_mdspan\_v<MDS>\ \&\&\ (\ MDS::extents\_type::rank()\ ==\ 2\ )\ \&\&\ MDS::is\_always\_unique()\ )}
-\DoxyCodeLine{00242\ [[nodiscard]]\ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{typename}\ \mbox{\hyperlink{classstd_1_1math_1_1vector__view}{matrix\_view<MDS>::column\_type}}}
-\DoxyCodeLine{00243\ \mbox{\hyperlink{classstd_1_1math_1_1matrix__view}{matrix\_view<MDS>::column}}(\ \textcolor{keyword}{typename}\ \mbox{\hyperlink{classstd_1_1math_1_1matrix__view_af13e22ab3477238f46a325a3ee975b17}{matrix\_view<MDS>::index\_type}}\ j\ )\ \textcolor{keyword}{requires}\ (\ !is\_const\_v<typename\ matrix\_view<MDS>::element\_type>\ )}
-\DoxyCodeLine{00244\ \{}
-\DoxyCodeLine{00245\ \ \ \textcolor{keywordflow}{return}\ column\_type\ \{\ experimental::submdspan(\ this-\/>underlying\_span(),\ experimental::full\_extent,\ j\ )\ \};}
-\DoxyCodeLine{00246\ \}}
-\DoxyCodeLine{00247\ }
-\DoxyCodeLine{00248\ \textcolor{keyword}{template}\ <\ \textcolor{keyword}{class}\ MDS\ >\ \textcolor{keyword}{requires}\ (\ detail::is\_mdspan\_v<MDS>\ \&\&\ (\ MDS::extents\_type::rank()\ ==\ 2\ )\ \&\&\ MDS::is\_always\_unique()\ )}
-\DoxyCodeLine{00249\ [[nodiscard]]\ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{typename}\ \mbox{\hyperlink{classstd_1_1math_1_1matrix__view_a60175fa7f9d854e052bca48485ae64c7}{matrix\_view<MDS>::row\_type}}}
-\DoxyCodeLine{00250\ \mbox{\hyperlink{classstd_1_1math_1_1matrix__view_a15eae7e61031e20023daebe3cce371ee}{matrix\_view<MDS>::row}}(\ \textcolor{keyword}{typename}\ \mbox{\hyperlink{classstd_1_1math_1_1matrix__view_af13e22ab3477238f46a325a3ee975b17}{matrix\_view<MDS>::index\_type}}\ i\ )\ \textcolor{keyword}{requires}\ (\ !is\_const\_v<typename\ matrix\_view<MDS>::element\_type>\ )}
-\DoxyCodeLine{00251\ \{}
-\DoxyCodeLine{00252\ \ \ \textcolor{keywordflow}{return}\ row\_type\ \{\ experimental::submdspan(\ this-\/>underlying\_span(),\ i,\ experimental::full\_extent\ )\ \};}
-\DoxyCodeLine{00253\ \}}
-\DoxyCodeLine{00254\ }
-\DoxyCodeLine{00255\ \textcolor{keyword}{template}\ <\ \textcolor{keyword}{class}\ MDS\ >\ \textcolor{keyword}{requires}\ (\ detail::is\_mdspan\_v<MDS>\ \&\&\ (\ MDS::extents\_type::rank()\ ==\ 2\ )\ \&\&\ MDS::is\_always\_unique()\ )}
-\DoxyCodeLine{00256\ [[nodiscard]]\ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{typename}\ \mbox{\hyperlink{classstd_1_1math_1_1matrix__view_a4b7d56847b14b452caec93a9861a75cb}{matrix\_view<MDS>::submatrix\_type}}}
-\DoxyCodeLine{00257\ \mbox{\hyperlink{classstd_1_1math_1_1matrix__view}{matrix\_view<MDS>::submatrix}}(\ \mbox{\hyperlink{classstd_1_1math_1_1matrix__view_a84b17fca1eca916f2535d59c9b94d1de}{tuple\_type}}\ start,}
-\DoxyCodeLine{00258\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classstd_1_1math_1_1matrix__view_a84b17fca1eca916f2535d59c9b94d1de}{tuple\_type}}\ end\ )\ \textcolor{keyword}{requires}\ (\ !is\_const\_v<typename\ matrix\_view<MDS>::element\_type>\ )}
-\DoxyCodeLine{00259\ \{}
-\DoxyCodeLine{00260\ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{classstd_1_1math_1_1matrix__view}{submatrix\_type}}\ \{\ \mbox{\hyperlink{namespacestd_1_1math_1_1detail_af274dde876e47ba2ec1b483608c81d69}{detail::submdspan}}(\ this-\/>underlying\_span(),\ start,\ end\ )\ \};}
-\DoxyCodeLine{00261\ \}}
-\DoxyCodeLine{00262\ }
-\DoxyCodeLine{00263\ \}\ \ \ \ \ \ \ \textcolor{comment}{//-\/\ math\ namespace}}
-\DoxyCodeLine{00264\ \}\ \ \ \ \ \ \ \textcolor{comment}{//-\/\ std\ namespace}}
-\DoxyCodeLine{00265\ \textcolor{preprocessor}{\#endif\ \ }\textcolor{comment}{//-\/\ LINEAR\_ALGEBRA\_FIXED\_SIZE\_MATRIX\_HPP}}
+\DoxyCodeLine{00208\ \textcolor{comment}{//-\/\ Size\ /\ Capacity}}
+\DoxyCodeLine{00209\ }
+\DoxyCodeLine{00210\ \textcolor{preprocessor}{\#ifdef\ LINALG\_ENABLE\_CONCEPTS}}
+\DoxyCodeLine{00211\ \textcolor{keyword}{template}\ <\ \textcolor{keyword}{class}\ MDS\ >\ \textcolor{keyword}{requires}\ (\ detail::is\_mdspan\_v<MDS>\ \&\&\ (\ MDS::extents\_type::rank()\ ==\ 2\ )\ \&\&\ MDS::is\_always\_unique()\ )}
+\DoxyCodeLine{00212\ [[nodiscard]]\ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{typename}\ \mbox{\hyperlink{classstd_1_1math_1_1matrix__view_a31b106920ff8fead4f179c8430f97bcf}{matrix\_view<MDS>::size\_type}}\ \mbox{\hyperlink{classstd_1_1math_1_1matrix__view}{matrix\_view<MDS>}}::}
+\DoxyCodeLine{00213\ \#\textcolor{keywordflow}{else}}
+\DoxyCodeLine{00214\ template\ <\ class\ MDS,\ typename\ Dummy\ >}
+\DoxyCodeLine{00215\ [[nodiscard]]\ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{typename}\ \mbox{\hyperlink{classstd_1_1math_1_1matrix__view_a31b106920ff8fead4f179c8430f97bcf}{matrix\_view<MDS,Dummy>::size\_type}}\ \mbox{\hyperlink{classstd_1_1math_1_1matrix__view}{matrix\_view<MDS,Dummy>}}::}
+\DoxyCodeLine{00216\ \#endif}
+\DoxyCodeLine{00217\ columns()\ \textcolor{keyword}{const}\ \textcolor{keyword}{noexcept}}
+\DoxyCodeLine{00218\ \{}
+\DoxyCodeLine{00219\ \ \ \textcolor{keywordflow}{return}\ this-\/>size().extent(1);}
+\DoxyCodeLine{00220\ \}}
+\DoxyCodeLine{00221\ }
+\DoxyCodeLine{00222\ \textcolor{preprocessor}{\#ifdef\ LINALG\_ENABLE\_CONCEPTS}}
+\DoxyCodeLine{00223\ \textcolor{keyword}{template}\ <\ \textcolor{keyword}{class}\ MDS\ >\ \textcolor{keyword}{requires}\ (\ detail::is\_mdspan\_v<MDS>\ \&\&\ (\ MDS::extents\_type::rank()\ ==\ 2\ )\ \&\&\ MDS::is\_always\_unique()\ )}
+\DoxyCodeLine{00224\ [[nodiscard]]\ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{typename}\ \mbox{\hyperlink{classstd_1_1math_1_1matrix__view_a31b106920ff8fead4f179c8430f97bcf}{matrix\_view<MDS>::size\_type}}\ \mbox{\hyperlink{classstd_1_1math_1_1matrix__view}{matrix\_view<MDS>}}::}
+\DoxyCodeLine{00225\ \#\textcolor{keywordflow}{else}}
+\DoxyCodeLine{00226\ template\ <\ class\ MDS,\ typename\ Dummy\ >}
+\DoxyCodeLine{00227\ [[nodiscard]]\ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{typename}\ \mbox{\hyperlink{classstd_1_1math_1_1matrix__view_a31b106920ff8fead4f179c8430f97bcf}{matrix\_view<MDS,Dummy>::size\_type}}\ \mbox{\hyperlink{classstd_1_1math_1_1matrix__view}{matrix\_view<MDS,Dummy>}}::}
+\DoxyCodeLine{00228\ \#endif}
+\DoxyCodeLine{00229\ rows()\ \textcolor{keyword}{const}\ \textcolor{keyword}{noexcept}}
+\DoxyCodeLine{00230\ \{}
+\DoxyCodeLine{00231\ \ \ \textcolor{keywordflow}{return}\ this-\/>size().extent(0);}
+\DoxyCodeLine{00232\ \}}
+\DoxyCodeLine{00233\ }
+\DoxyCodeLine{00234\ \textcolor{preprocessor}{\#ifdef\ LINALG\_ENABLE\_CONCEPTS}}
+\DoxyCodeLine{00235\ \textcolor{keyword}{template}\ <\ \textcolor{keyword}{class}\ MDS\ >\ \textcolor{keyword}{requires}\ (\ detail::is\_mdspan\_v<MDS>\ \&\&\ (\ MDS::extents\_type::rank()\ ==\ 2\ )\ \&\&\ MDS::is\_always\_unique()\ )}
+\DoxyCodeLine{00236\ [[nodiscard]]\ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{typename}\ \mbox{\hyperlink{classstd_1_1math_1_1matrix__view_a31b106920ff8fead4f179c8430f97bcf}{matrix\_view<MDS>::size\_type}}\ \mbox{\hyperlink{classstd_1_1math_1_1matrix__view}{matrix\_view<MDS>}}::}
+\DoxyCodeLine{00237\ \#\textcolor{keywordflow}{else}}
+\DoxyCodeLine{00238\ template\ <\ class\ MDS,\ typename\ Dummy\ >}
+\DoxyCodeLine{00239\ [[nodiscard]]\ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{typename}\ \mbox{\hyperlink{classstd_1_1math_1_1matrix__view_a31b106920ff8fead4f179c8430f97bcf}{matrix\_view<MDS,Dummy>::size\_type}}\ \mbox{\hyperlink{classstd_1_1math_1_1matrix__view}{matrix\_view<MDS,Dummy>}}::}
+\DoxyCodeLine{00240\ \#endif}
+\DoxyCodeLine{00241\ column\_capacity()\ \textcolor{keyword}{const}\ \textcolor{keyword}{noexcept}}
+\DoxyCodeLine{00242\ \{}
+\DoxyCodeLine{00243\ \ \ \textcolor{keywordflow}{return}\ this-\/>capacity().extent(1);}
+\DoxyCodeLine{00244\ \}}
+\DoxyCodeLine{00245\ }
+\DoxyCodeLine{00246\ \textcolor{preprocessor}{\#ifdef\ LINALG\_ENABLE\_CONCEPTS}}
+\DoxyCodeLine{00247\ \textcolor{keyword}{template}\ <\ \textcolor{keyword}{class}\ MDS\ >\ \textcolor{keyword}{requires}\ (\ detail::is\_mdspan\_v<MDS>\ \&\&\ (\ MDS::extents\_type::rank()\ ==\ 2\ )\ \&\&\ MDS::is\_always\_unique()\ )}
+\DoxyCodeLine{00248\ [[nodiscard]]\ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{typename}\ \mbox{\hyperlink{classstd_1_1math_1_1matrix__view_a31b106920ff8fead4f179c8430f97bcf}{matrix\_view<MDS>::size\_type}}\ \mbox{\hyperlink{classstd_1_1math_1_1matrix__view}{matrix\_view<MDS>}}::}
+\DoxyCodeLine{00249\ \#\textcolor{keywordflow}{else}}
+\DoxyCodeLine{00250\ template\ <\ class\ MDS,\ typename\ Dummy\ >}
+\DoxyCodeLine{00251\ [[nodiscard]]\ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{typename}\ \mbox{\hyperlink{classstd_1_1math_1_1matrix__view_a31b106920ff8fead4f179c8430f97bcf}{matrix\_view<MDS,Dummy>::size\_type}}\ \mbox{\hyperlink{classstd_1_1math_1_1matrix__view}{matrix\_view<MDS,Dummy>}}::}
+\DoxyCodeLine{00252\ \#endif}
+\DoxyCodeLine{00253\ row\_capacity()\ \textcolor{keyword}{const}\ \textcolor{keyword}{noexcept}}
+\DoxyCodeLine{00254\ \{}
+\DoxyCodeLine{00255\ \ \ \textcolor{keywordflow}{return}\ this-\/>capacity().extent(0);}
+\DoxyCodeLine{00256\ \}}
+\DoxyCodeLine{00257\ }
+\DoxyCodeLine{00258\ \textcolor{comment}{//-\/\ Const\ views}}
+\DoxyCodeLine{00259\ }
+\DoxyCodeLine{00260\ \textcolor{preprocessor}{\#ifdef\ LINALG\_ENABLE\_CONCEPTS}}
+\DoxyCodeLine{00261\ \textcolor{keyword}{template}\ <\ \textcolor{keyword}{class}\ MDS\ >\ \textcolor{keyword}{requires}\ (\ detail::is\_mdspan\_v<MDS>\ \&\&\ (\ MDS::extents\_type::rank()\ ==\ 2\ )\ \&\&\ MDS::is\_always\_unique()\ )}
+\DoxyCodeLine{00262\ [[nodiscard]]\ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{typename}\ \mbox{\hyperlink{classstd_1_1math_1_1vector__view}{matrix\_view<MDS>::const\_column\_type}}\ \mbox{\hyperlink{classstd_1_1math_1_1matrix__view}{matrix\_view<MDS>}}::}
+\DoxyCodeLine{00263\ \#\textcolor{keywordflow}{else}}
+\DoxyCodeLine{00264\ template\ <\ class\ MDS,\ typename\ Dummy\ >}
+\DoxyCodeLine{00265\ [[nodiscard]]\ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{typename}\ \mbox{\hyperlink{classstd_1_1math_1_1vector__view}{matrix\_view<MDS,Dummy>::const\_column\_type}}\ \mbox{\hyperlink{classstd_1_1math_1_1matrix__view}{matrix\_view<MDS,Dummy>}}::}
+\DoxyCodeLine{00266\ \#endif}
+\DoxyCodeLine{00267\ column(\ \mbox{\hyperlink{classstd_1_1math_1_1matrix__view_a68f025202d34b558d6032b148ae20d9a}{index\_type}}\ j\ )\ \textcolor{keyword}{const}}
+\DoxyCodeLine{00268\ \{}
+\DoxyCodeLine{00269\ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{classstd_1_1math_1_1vector__view}{const\_column\_type}}\ \{\ ::std::experimental::submdspan(\ this-\/>underlying\_span(),\ ::std::experimental::full\_extent,\ j\ )\ \};}
+\DoxyCodeLine{00270\ \}}
+\DoxyCodeLine{00271\ }
+\DoxyCodeLine{00272\ \textcolor{preprocessor}{\#ifdef\ LINALG\_ENABLE\_CONCEPTS}}
+\DoxyCodeLine{00273\ \textcolor{keyword}{template}\ <\ \textcolor{keyword}{class}\ MDS\ >\ \textcolor{keyword}{requires}\ (\ detail::is\_mdspan\_v<MDS>\ \&\&\ (\ MDS::extents\_type::rank()\ ==\ 2\ )\ \&\&\ MDS::is\_always\_unique()\ )}
+\DoxyCodeLine{00274\ [[nodiscard]]\ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{typename}\ \mbox{\hyperlink{classstd_1_1math_1_1vector__view}{matrix\_view<MDS>::const\_row\_type}}\ \mbox{\hyperlink{classstd_1_1math_1_1matrix__view}{matrix\_view<MDS>}}::}
+\DoxyCodeLine{00275\ \#\textcolor{keywordflow}{else}}
+\DoxyCodeLine{00276\ template\ <\ class\ MDS,\ typename\ Dummy\ >}
+\DoxyCodeLine{00277\ [[nodiscard]]\ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{typename}\ \mbox{\hyperlink{classstd_1_1math_1_1vector__view}{matrix\_view<MDS,Dummy>::const\_row\_type}}\ \mbox{\hyperlink{classstd_1_1math_1_1matrix__view}{matrix\_view<MDS,Dummy>}}::}
+\DoxyCodeLine{00278\ \#endif}
+\DoxyCodeLine{00279\ row(\ \mbox{\hyperlink{classstd_1_1math_1_1matrix__view_a68f025202d34b558d6032b148ae20d9a}{index\_type}}\ i\ )\ \textcolor{keyword}{const}}
+\DoxyCodeLine{00280\ \{}
+\DoxyCodeLine{00281\ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{classstd_1_1math_1_1vector__view}{const\_row\_type}}\ \{\ ::std::experimental::submdspan(\ this-\/>underlying\_span(),\ i,\ ::std::experimental::full\_extent\ )\ \};}
+\DoxyCodeLine{00282\ \}}
+\DoxyCodeLine{00283\ }
+\DoxyCodeLine{00284\ \textcolor{comment}{//-\/\ Mutable\ views}}
+\DoxyCodeLine{00285\ }
+\DoxyCodeLine{00286\ \textcolor{preprocessor}{\#ifdef\ LINALG\_ENABLE\_CONCEPTS}}
+\DoxyCodeLine{00287\ \textcolor{keyword}{template}\ <\ \textcolor{keyword}{class}\ MDS\ >\ \textcolor{keyword}{requires}\ (\ detail::is\_mdspan\_v<MDS>\ \&\&\ (\ MDS::extents\_type::rank()\ ==\ 2\ )\ \&\&\ MDS::is\_always\_unique()\ )}
+\DoxyCodeLine{00288\ [[nodiscard]]\ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{typename}\ \mbox{\hyperlink{classstd_1_1math_1_1vector__view}{matrix\_view<MDS>::column\_type}}\ \mbox{\hyperlink{classstd_1_1math_1_1matrix__view}{matrix\_view<MDS>}}::}
+\DoxyCodeLine{00289\ \#\textcolor{keywordflow}{else}}
+\DoxyCodeLine{00290\ template\ <\ class\ MDS,\ typename\ Dummy\ >}
+\DoxyCodeLine{00291\ template\ <\ typename\ Elem,\ typename\ >}
+\DoxyCodeLine{00292\ [[nodiscard]]\ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{typename}\ \mbox{\hyperlink{classstd_1_1math_1_1vector__view}{matrix\_view<MDS,Dummy>::column\_type}}\ \mbox{\hyperlink{classstd_1_1math_1_1matrix__view}{matrix\_view<MDS,Dummy>}}::}
+\DoxyCodeLine{00293\ \#endif}
+\DoxyCodeLine{00294\ column(\ \mbox{\hyperlink{classstd_1_1math_1_1matrix__view_a68f025202d34b558d6032b148ae20d9a}{index\_type}}\ j\ )}
+\DoxyCodeLine{00295\ \textcolor{preprocessor}{\#ifdef\ LINALG\_ENABLE\_CONCEPTS}}
+\DoxyCodeLine{00296\ \ \ \textcolor{keyword}{requires}\ (\ !::std::is\_const\_v<typename\ matrix\_view<MDS>::element\_type>\ )}
+\DoxyCodeLine{00297\ \#endif}
+\DoxyCodeLine{00298\ \{}
+\DoxyCodeLine{00299\ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{classstd_1_1math_1_1vector__view}{column\_type}}\ \{\ ::std::experimental::submdspan(\ this-\/>underlying\_span(),\ ::std::experimental::full\_extent,\ j\ )\ \};}
+\DoxyCodeLine{00300\ \}}
+\DoxyCodeLine{00301\ }
+\DoxyCodeLine{00302\ \textcolor{preprocessor}{\#ifdef\ LINALG\_ENABLE\_CONCEPTS}}
+\DoxyCodeLine{00303\ \textcolor{keyword}{template}\ <\ \textcolor{keyword}{class}\ MDS\ >\ \textcolor{keyword}{requires}\ (\ detail::is\_mdspan\_v<MDS>\ \&\&\ (\ MDS::extents\_type::rank()\ ==\ 2\ )\ \&\&\ MDS::is\_always\_unique()\ )}
+\DoxyCodeLine{00304\ [[nodiscard]]\ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{typename}\ \mbox{\hyperlink{classstd_1_1math_1_1vector__view}{matrix\_view<MDS>::row\_type}}\ \mbox{\hyperlink{classstd_1_1math_1_1matrix__view}{matrix\_view<MDS>}}::}
+\DoxyCodeLine{00305\ \#\textcolor{keywordflow}{else}}
+\DoxyCodeLine{00306\ template\ <\ class\ MDS,\ typename\ Dummy\ >}
+\DoxyCodeLine{00307\ template\ <\ typename\ Elem,\ typename\ >}
+\DoxyCodeLine{00308\ [[nodiscard]]\ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{typename}\ \mbox{\hyperlink{classstd_1_1math_1_1vector__view}{matrix\_view<MDS,Dummy>::row\_type}}\ \mbox{\hyperlink{classstd_1_1math_1_1matrix__view}{matrix\_view<MDS,Dummy>}}::}
+\DoxyCodeLine{00309\ \#endif}
+\DoxyCodeLine{00310\ row(\ \mbox{\hyperlink{classstd_1_1math_1_1matrix__view_a68f025202d34b558d6032b148ae20d9a}{index\_type}}\ i\ )}
+\DoxyCodeLine{00311\ \textcolor{preprocessor}{\#ifdef\ LINALG\_ENABLE\_CONCEPTS}}
+\DoxyCodeLine{00312\ \ \ \textcolor{keyword}{requires}\ (\ !::std::is\_const\_v<typename\ matrix\_view<MDS>::element\_type>\ )}
+\DoxyCodeLine{00313\ \#endif}
+\DoxyCodeLine{00314\ \{}
+\DoxyCodeLine{00315\ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{classstd_1_1math_1_1vector__view}{row\_type}}\ \{\ ::std::experimental::submdspan(\ this-\/>underlying\_span(),\ i,\ ::std::experimental::full\_extent\ )\ \};}
+\DoxyCodeLine{00316\ \}}
+\DoxyCodeLine{00317\ }
+\DoxyCodeLine{00318\ \}\ \ \ \ \ \ \ \textcolor{comment}{//-\/\ math\ namespace}}
+\DoxyCodeLine{00319\ \}\ \ \ \ \ \ \ \textcolor{comment}{//-\/\ std\ namespace}}
+\DoxyCodeLine{00320\ \textcolor{preprocessor}{\#endif\ \ }\textcolor{comment}{//-\/\ LINEAR\_ALGEBRA\_FIXED\_SIZE\_MATRIX\_HPP}}
 
 \end{DoxyCode}

@@ -1,5 +1,11 @@
 var searchData=
 [
-  ['vector_5fmatrix_5fproduct_0',['vector_matrix_product',['../classstd_1_1math_1_1instant__evaluated__operations_1_1vector__matrix__product.html',1,'std::math::instant_evaluated_operations']]],
-  ['vector_5fview_1',['vector_view',['../classstd_1_1math_1_1vector__view.html',1,'std::math']]]
+  ['scalar_5fdivision_0',['scalar_division',['../structstd_1_1math_1_1instant__evaluated__operations_1_1scalar__division.html',1,'std::math::instant_evaluated_operations']]],
+  ['scalar_5fproduct_1',['scalar_product',['../classstd_1_1math_1_1instant__evaluated__operations_1_1scalar__product.html',1,'std::math::instant_evaluated_operations']]],
+  ['stride_5forder_2',['stride_order',['../structstd_1_1math_1_1detail_1_1stride__order.html',1,'std::math::detail']]],
+  ['stride_5forder_3c_20_3a_3astd_3a_3aexperimental_3a_3amdspan_3c_20elementtype_2c_20extents_2c_20_3a_3astd_3a_3aexperimental_3a_3alayout_5fleft_2c_20accessorpolicy_20_3e_20_3e_3',['stride_order&lt; ::std::experimental::mdspan&lt; ElementType, Extents, ::std::experimental::layout_left, AccessorPolicy &gt; &gt;',['../structstd_1_1math_1_1detail_1_1stride__order_3_01_1_1std_1_1experimental_1_1mdspan_3_01_element_5fb5135b21242cf8d5e6134aa9401bc5.html',1,'std::math::detail']]],
+  ['stride_5forder_3c_20_3a_3astd_3a_3aexperimental_3a_3amdspan_3c_20elementtype_2c_20extents_2c_20_3a_3astd_3a_3aexperimental_3a_3alayout_5fright_2c_20accessorpolicy_20_3e_20_3e_4',['stride_order&lt; ::std::experimental::mdspan&lt; ElementType, Extents, ::std::experimental::layout_right, AccessorPolicy &gt; &gt;',['../structstd_1_1math_1_1detail_1_1stride__order_3_01_1_1std_1_1experimental_1_1mdspan_3_01_element_a85d522aa07087da429571486ddde396.html',1,'std::math::detail']]],
+  ['subtraction_5',['subtraction',['../classstd_1_1math_1_1instant__evaluated__operations_1_1subtraction.html',1,'std::math::instant_evaluated_operations']]],
+  ['subtraction_5fexists_6',['subtraction_exists',['../structstd_1_1math_1_1concepts_1_1subtraction__exists.html',1,'std::math::concepts']]],
+  ['subtraction_5fexists_3c_20t_2c_20u_2c_20_3a_3astd_3a_3aenable_5fif_5ft_3c_20is_5fsame_5fv_3c_20decltype_28_3a_3astd_3a_3adeclval_3c_20t_20_3e_28_29_20_2d_20_3a_3astd_3a_3adeclval_3c_20u_20_3e_28_29_29_2c_20decltype_28_3a_3astd_3a_3adeclval_3c_20t_20_3e_28_29_20_2d_20_3a_3astd_3a_3adeclval_3c_20u_20_3e_28_29_29_20_3e_20_3e_20_3e_7',['subtraction_exists&lt; T, U, ::std::enable_if_t&lt; is_same_v&lt; decltype(::std::declval&lt; T &gt;() - ::std::declval&lt; U &gt;()), decltype(::std::declval&lt; T &gt;() - ::std::declval&lt; U &gt;()) &gt; &gt; &gt;',['../structstd_1_1math_1_1concepts_1_1subtraction__exists_3_01_t_00_01_u_00_01_1_1std_1_1enable__if__da25713ef34a37774bde5fe5c7a6e261.html',1,'std::math::concepts']]]
 ];

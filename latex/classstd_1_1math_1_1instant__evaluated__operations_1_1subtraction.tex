@@ -1,5 +1,5 @@
-\hypertarget{classstd_1_1math_1_1instant__evaluated__operations_1_1subtraction}{}\doxysection{std\+::math\+::instant\+\_\+evaluated\+\_\+operations\+::subtraction\texorpdfstring{$<$}{<} T1, T2 \texorpdfstring{$>$}{>} Class Template Reference}
-\label{classstd_1_1math_1_1instant__evaluated__operations_1_1subtraction}\index{std::math::instant\_evaluated\_operations::subtraction$<$ T1, T2 $>$@{std::math::instant\_evaluated\_operations::subtraction$<$ T1, T2 $>$}}
+\hypertarget{classstd_1_1math_1_1instant__evaluated__operations_1_1subtraction}{}\doxysection{std\+::math\+::instant\+\_\+evaluated\+\_\+operations\+::subtraction\texorpdfstring{$<$}{<} T1, T2, typename \texorpdfstring{$>$}{>} Class Template Reference}
+\label{classstd_1_1math_1_1instant__evaluated__operations_1_1subtraction}\index{std::math::instant\_evaluated\_operations::subtraction$<$ T1, T2, typename $>$@{std::math::instant\_evaluated\_operations::subtraction$<$ T1, T2, typename $>$}}
 
 
 Defines subtraction operation on a pair of tensors.  
@@ -11,33 +11,33 @@ Defines subtraction operation on a pair of tensors.
 
 
 
-Collaboration diagram for std\+::math\+::instant\+\_\+evaluated\+\_\+operations\+::subtraction\texorpdfstring{$<$}{<} T1, T2 \texorpdfstring{$>$}{>}\+:
+Collaboration diagram for std\+::math\+::instant\+\_\+evaluated\+\_\+operations\+::subtraction\texorpdfstring{$<$}{<} T1, T2, typename \texorpdfstring{$>$}{>}\+:
 \nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
-\includegraphics[width=197pt]{classstd_1_1math_1_1instant__evaluated__operations_1_1subtraction__coll__graph}
+\includegraphics[width=194pt]{classstd_1_1math_1_1instant__evaluated__operations_1_1subtraction__coll__graph}
 \end{center}
 \end{figure}
 \doxysubsection*{Public Types}
 \begin{DoxyCompactItemize}
 \item 
-using \mbox{\hyperlink{classstd_1_1math_1_1instant__evaluated__operations_1_1subtraction_a2bf8c92880991863913afbaa20eb9e76}{first\+\_\+tensor\+\_\+type}} = T1
+using \mbox{\hyperlink{classstd_1_1math_1_1instant__evaluated__operations_1_1subtraction_ae633e7ab9590ed5db4f2dd49bad4aa81}{first\+\_\+tensor\+\_\+type}} = T1
 \begin{DoxyCompactList}\small\item\em First input tensor type. \end{DoxyCompactList}\item 
-using \mbox{\hyperlink{classstd_1_1math_1_1instant__evaluated__operations_1_1subtraction_a878beb660a01793647dbb261c0ffce76}{second\+\_\+tensor\+\_\+type}} = T2
+using \mbox{\hyperlink{classstd_1_1math_1_1instant__evaluated__operations_1_1subtraction_a299c4740ec6326bab0646065b8f9668a}{second\+\_\+tensor\+\_\+type}} = T2
 \begin{DoxyCompactList}\small\item\em Second input tensor type. \end{DoxyCompactList}\end{DoxyCompactItemize}
 \doxysubsection*{Static Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-static constexpr auto \mbox{\hyperlink{classstd_1_1math_1_1instant__evaluated__operations_1_1subtraction_ad00acaaa3d5c4bfa5b627c87dd0a2942}{subtract}} (const \mbox{\hyperlink{classstd_1_1math_1_1instant__evaluated__operations_1_1subtraction_a2bf8c92880991863913afbaa20eb9e76}{first\+\_\+tensor\+\_\+type}} \&t1, const \mbox{\hyperlink{classstd_1_1math_1_1instant__evaluated__operations_1_1subtraction_a878beb660a01793647dbb261c0ffce76}{second\+\_\+tensor\+\_\+type}} \&t2) noexcept(noexcept(\mbox{\hyperlink{namespacestd_1_1math_1_1detail_ae5eb3cf5ea2a6e93d691bfd9f701768e}{detail\+::make\+\_\+from\+\_\+tuple}}$<$ result\+\_\+tensor\+\_\+type $>$(collect\+\_\+ctor\+\_\+args(declval$<$ const \mbox{\hyperlink{classstd_1_1math_1_1instant__evaluated__operations_1_1subtraction_a2bf8c92880991863913afbaa20eb9e76}{first\+\_\+tensor\+\_\+type}} \& $>$(), declval$<$ const \mbox{\hyperlink{classstd_1_1math_1_1instant__evaluated__operations_1_1subtraction_a878beb660a01793647dbb261c0ffce76}{second\+\_\+tensor\+\_\+type}} \& $>$(), \mbox{[}\&t1,\&t2\mbox{]}$<$ class ... Index\+Type $>$(Index\+Type ... indices) constexpr noexcept \{ return t1\mbox{[}indices ...\mbox{]} -\/ t2\mbox{[}indices ...\mbox{]};\}))))
+static constexpr auto \mbox{\hyperlink{classstd_1_1math_1_1instant__evaluated__operations_1_1subtraction_abf96cfb6b31fdb3475d25de9bf971071}{subtract}} (const \mbox{\hyperlink{classstd_1_1math_1_1instant__evaluated__operations_1_1subtraction_ae633e7ab9590ed5db4f2dd49bad4aa81}{first\+\_\+tensor\+\_\+type}} \&t1, const \mbox{\hyperlink{classstd_1_1math_1_1instant__evaluated__operations_1_1subtraction_a299c4740ec6326bab0646065b8f9668a}{second\+\_\+tensor\+\_\+type}} \&t2)
 \begin{DoxyCompactList}\small\item\em Returns t1 -\/ t2. \end{DoxyCompactList}\item 
-static constexpr \mbox{\hyperlink{classstd_1_1math_1_1instant__evaluated__operations_1_1subtraction_a2bf8c92880991863913afbaa20eb9e76}{first\+\_\+tensor\+\_\+type}} \& \mbox{\hyperlink{classstd_1_1math_1_1instant__evaluated__operations_1_1subtraction_a9745a6131f0742885f6ba9fafba2c520}{subtract}} (\mbox{\hyperlink{classstd_1_1math_1_1instant__evaluated__operations_1_1subtraction_a2bf8c92880991863913afbaa20eb9e76}{first\+\_\+tensor\+\_\+type}} \&t1, const \mbox{\hyperlink{classstd_1_1math_1_1instant__evaluated__operations_1_1subtraction_a878beb660a01793647dbb261c0ffce76}{second\+\_\+tensor\+\_\+type}} \&t2) noexcept(noexcept(\mbox{\hyperlink{namespacestd_1_1math_1_1detail_a0632c805386c46488956a9bdc72c749b}{detail\+::apply\+\_\+all}}(t1.\+underlying\+\_\+span(), \mbox{[}\&t1,\&t2\mbox{]}$<$ class ... Index\+Type $>$(Index\+Type ... indices) constexpr noexcept \{ static\+\_\+cast$<$ void $>$(t1\mbox{[}indices ...\mbox{]} -\/=t2\mbox{[}indices ...\mbox{]});\}, execution\+::unseq)))
+static constexpr \mbox{\hyperlink{classstd_1_1math_1_1instant__evaluated__operations_1_1subtraction_ae633e7ab9590ed5db4f2dd49bad4aa81}{first\+\_\+tensor\+\_\+type}} \& \mbox{\hyperlink{classstd_1_1math_1_1instant__evaluated__operations_1_1subtraction_a750a28474f05ddb0d005a7e049489f69}{subtract}} (\mbox{\hyperlink{classstd_1_1math_1_1instant__evaluated__operations_1_1subtraction_ae633e7ab9590ed5db4f2dd49bad4aa81}{first\+\_\+tensor\+\_\+type}} \&t1, const \mbox{\hyperlink{classstd_1_1math_1_1instant__evaluated__operations_1_1subtraction_a299c4740ec6326bab0646065b8f9668a}{second\+\_\+tensor\+\_\+type}} \&t2)
 \begin{DoxyCompactList}\small\item\em Returns t1 -\/= t2. \end{DoxyCompactList}\end{DoxyCompactItemize}
 
 
 \doxysubsection{Detailed Description}
-\subsubsection*{template$<$concepts\+::tensor\+\_\+data T1, concepts\+::tensor\+\_\+data T2$>$\newline
-class std\+::math\+::instant\+\_\+evaluated\+\_\+operations\+::subtraction$<$ T1, T2 $>$}
+\subsubsection*{template$<$class T1, class T2, typename = \+::std\+::enable\+\_\+if\+\_\+t$<$ concepts\+::tensor\+\_\+data\+\_\+v$<$\+T1$>$ \&\& concepts\+::tensor\+\_\+data\+\_\+v$<$\+T2$>$ $>$$>$\newline
+class std\+::math\+::instant\+\_\+evaluated\+\_\+operations\+::subtraction$<$ T1, T2, typename $>$}
 Defines subtraction operation on a pair of tensors. 
 
 
@@ -50,23 +50,23 @@ Defines subtraction operation on a pair of tensors.
 
 
 \doxysubsection{Member Typedef Documentation}
-\mbox{\Hypertarget{classstd_1_1math_1_1instant__evaluated__operations_1_1subtraction_a2bf8c92880991863913afbaa20eb9e76}\label{classstd_1_1math_1_1instant__evaluated__operations_1_1subtraction_a2bf8c92880991863913afbaa20eb9e76}} 
-\index{std::math::instant\_evaluated\_operations::subtraction$<$ T1, T2 $>$@{std::math::instant\_evaluated\_operations::subtraction$<$ T1, T2 $>$}!first\_tensor\_type@{first\_tensor\_type}}
-\index{first\_tensor\_type@{first\_tensor\_type}!std::math::instant\_evaluated\_operations::subtraction$<$ T1, T2 $>$@{std::math::instant\_evaluated\_operations::subtraction$<$ T1, T2 $>$}}
+\mbox{\Hypertarget{classstd_1_1math_1_1instant__evaluated__operations_1_1subtraction_ae633e7ab9590ed5db4f2dd49bad4aa81}\label{classstd_1_1math_1_1instant__evaluated__operations_1_1subtraction_ae633e7ab9590ed5db4f2dd49bad4aa81}} 
+\index{std::math::instant\_evaluated\_operations::subtraction$<$ T1, T2, typename $>$@{std::math::instant\_evaluated\_operations::subtraction$<$ T1, T2, typename $>$}!first\_tensor\_type@{first\_tensor\_type}}
+\index{first\_tensor\_type@{first\_tensor\_type}!std::math::instant\_evaluated\_operations::subtraction$<$ T1, T2, typename $>$@{std::math::instant\_evaluated\_operations::subtraction$<$ T1, T2, typename $>$}}
 \doxysubsubsection{\texorpdfstring{first\_tensor\_type}{first\_tensor\_type}}
-{\footnotesize\ttfamily template$<$concepts\+::tensor\+\_\+data T1, concepts\+::tensor\+\_\+data T2$>$ \\
-using \mbox{\hyperlink{classstd_1_1math_1_1instant__evaluated__operations_1_1subtraction}{std\+::math\+::instant\+\_\+evaluated\+\_\+operations\+::subtraction}}$<$ T1, T2 $>$\+::first\+\_\+tensor\+\_\+type =  T1}
+{\footnotesize\ttfamily template$<$class T1 , class T2 , typename  = \+::std\+::enable\+\_\+if\+\_\+t$<$ concepts\+::tensor\+\_\+data\+\_\+v$<$\+T1$>$ \&\& concepts\+::tensor\+\_\+data\+\_\+v$<$\+T2$>$ $>$$>$ \\
+using \mbox{\hyperlink{classstd_1_1math_1_1instant__evaluated__operations_1_1subtraction}{std\+::math\+::instant\+\_\+evaluated\+\_\+operations\+::subtraction}}$<$ T1, T2, typename $>$\+::first\+\_\+tensor\+\_\+type =  T1}
 
 
 
 First input tensor type. 
 
-\mbox{\Hypertarget{classstd_1_1math_1_1instant__evaluated__operations_1_1subtraction_a878beb660a01793647dbb261c0ffce76}\label{classstd_1_1math_1_1instant__evaluated__operations_1_1subtraction_a878beb660a01793647dbb261c0ffce76}} 
-\index{std::math::instant\_evaluated\_operations::subtraction$<$ T1, T2 $>$@{std::math::instant\_evaluated\_operations::subtraction$<$ T1, T2 $>$}!second\_tensor\_type@{second\_tensor\_type}}
-\index{second\_tensor\_type@{second\_tensor\_type}!std::math::instant\_evaluated\_operations::subtraction$<$ T1, T2 $>$@{std::math::instant\_evaluated\_operations::subtraction$<$ T1, T2 $>$}}
+\mbox{\Hypertarget{classstd_1_1math_1_1instant__evaluated__operations_1_1subtraction_a299c4740ec6326bab0646065b8f9668a}\label{classstd_1_1math_1_1instant__evaluated__operations_1_1subtraction_a299c4740ec6326bab0646065b8f9668a}} 
+\index{std::math::instant\_evaluated\_operations::subtraction$<$ T1, T2, typename $>$@{std::math::instant\_evaluated\_operations::subtraction$<$ T1, T2, typename $>$}!second\_tensor\_type@{second\_tensor\_type}}
+\index{second\_tensor\_type@{second\_tensor\_type}!std::math::instant\_evaluated\_operations::subtraction$<$ T1, T2, typename $>$@{std::math::instant\_evaluated\_operations::subtraction$<$ T1, T2, typename $>$}}
 \doxysubsubsection{\texorpdfstring{second\_tensor\_type}{second\_tensor\_type}}
-{\footnotesize\ttfamily template$<$concepts\+::tensor\+\_\+data T1, concepts\+::tensor\+\_\+data T2$>$ \\
-using \mbox{\hyperlink{classstd_1_1math_1_1instant__evaluated__operations_1_1subtraction}{std\+::math\+::instant\+\_\+evaluated\+\_\+operations\+::subtraction}}$<$ T1, T2 $>$\+::second\+\_\+tensor\+\_\+type =  T2}
+{\footnotesize\ttfamily template$<$class T1 , class T2 , typename  = \+::std\+::enable\+\_\+if\+\_\+t$<$ concepts\+::tensor\+\_\+data\+\_\+v$<$\+T1$>$ \&\& concepts\+::tensor\+\_\+data\+\_\+v$<$\+T2$>$ $>$$>$ \\
+using \mbox{\hyperlink{classstd_1_1math_1_1instant__evaluated__operations_1_1subtraction}{std\+::math\+::instant\+\_\+evaluated\+\_\+operations\+::subtraction}}$<$ T1, T2, typename $>$\+::second\+\_\+tensor\+\_\+type =  T2}
 
 
 
@@ -75,23 +75,23 @@ Second input tensor type.
 
 
 \doxysubsection{Member Function Documentation}
-\mbox{\Hypertarget{classstd_1_1math_1_1instant__evaluated__operations_1_1subtraction_ad00acaaa3d5c4bfa5b627c87dd0a2942}\label{classstd_1_1math_1_1instant__evaluated__operations_1_1subtraction_ad00acaaa3d5c4bfa5b627c87dd0a2942}} 
-\index{std::math::instant\_evaluated\_operations::subtraction$<$ T1, T2 $>$@{std::math::instant\_evaluated\_operations::subtraction$<$ T1, T2 $>$}!subtract@{subtract}}
-\index{subtract@{subtract}!std::math::instant\_evaluated\_operations::subtraction$<$ T1, T2 $>$@{std::math::instant\_evaluated\_operations::subtraction$<$ T1, T2 $>$}}
+\mbox{\Hypertarget{classstd_1_1math_1_1instant__evaluated__operations_1_1subtraction_abf96cfb6b31fdb3475d25de9bf971071}\label{classstd_1_1math_1_1instant__evaluated__operations_1_1subtraction_abf96cfb6b31fdb3475d25de9bf971071}} 
+\index{std::math::instant\_evaluated\_operations::subtraction$<$ T1, T2, typename $>$@{std::math::instant\_evaluated\_operations::subtraction$<$ T1, T2, typename $>$}!subtract@{subtract}}
+\index{subtract@{subtract}!std::math::instant\_evaluated\_operations::subtraction$<$ T1, T2, typename $>$@{std::math::instant\_evaluated\_operations::subtraction$<$ T1, T2, typename $>$}}
 \doxysubsubsection{\texorpdfstring{subtract()}{subtract()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
-{\footnotesize\ttfamily template$<$concepts\+::tensor\+\_\+data T1, concepts\+::tensor\+\_\+data T2$>$ \\
-static constexpr auto \mbox{\hyperlink{classstd_1_1math_1_1instant__evaluated__operations_1_1subtraction}{std\+::math\+::instant\+\_\+evaluated\+\_\+operations\+::subtraction}}$<$ T1, T2 $>$\+::subtract (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classstd_1_1math_1_1instant__evaluated__operations_1_1subtraction_a2bf8c92880991863913afbaa20eb9e76}{first\+\_\+tensor\+\_\+type}} \&}]{t1,  }\item[{const \mbox{\hyperlink{classstd_1_1math_1_1instant__evaluated__operations_1_1subtraction_a878beb660a01793647dbb261c0ffce76}{second\+\_\+tensor\+\_\+type}} \&}]{t2 }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}, {\ttfamily [constexpr]}, {\ttfamily [noexcept]}}
+{\footnotesize\ttfamily template$<$class T1 , class T2 , typename  = \+::std\+::enable\+\_\+if\+\_\+t$<$ concepts\+::tensor\+\_\+data\+\_\+v$<$\+T1$>$ \&\& concepts\+::tensor\+\_\+data\+\_\+v$<$\+T2$>$ $>$$>$ \\
+static constexpr auto \mbox{\hyperlink{classstd_1_1math_1_1instant__evaluated__operations_1_1subtraction}{std\+::math\+::instant\+\_\+evaluated\+\_\+operations\+::subtraction}}$<$ T1, T2, typename $>$\+::subtract (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classstd_1_1math_1_1instant__evaluated__operations_1_1subtraction_ae633e7ab9590ed5db4f2dd49bad4aa81}{first\+\_\+tensor\+\_\+type}} \&}]{t1,  }\item[{const \mbox{\hyperlink{classstd_1_1math_1_1instant__evaluated__operations_1_1subtraction_a299c4740ec6326bab0646065b8f9668a}{second\+\_\+tensor\+\_\+type}} \&}]{t2 }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}, {\ttfamily [constexpr]}}
 
 
 
 Returns t1 -\/ t2. 
 
-\mbox{\Hypertarget{classstd_1_1math_1_1instant__evaluated__operations_1_1subtraction_a9745a6131f0742885f6ba9fafba2c520}\label{classstd_1_1math_1_1instant__evaluated__operations_1_1subtraction_a9745a6131f0742885f6ba9fafba2c520}} 
-\index{std::math::instant\_evaluated\_operations::subtraction$<$ T1, T2 $>$@{std::math::instant\_evaluated\_operations::subtraction$<$ T1, T2 $>$}!subtract@{subtract}}
-\index{subtract@{subtract}!std::math::instant\_evaluated\_operations::subtraction$<$ T1, T2 $>$@{std::math::instant\_evaluated\_operations::subtraction$<$ T1, T2 $>$}}
+\mbox{\Hypertarget{classstd_1_1math_1_1instant__evaluated__operations_1_1subtraction_a750a28474f05ddb0d005a7e049489f69}\label{classstd_1_1math_1_1instant__evaluated__operations_1_1subtraction_a750a28474f05ddb0d005a7e049489f69}} 
+\index{std::math::instant\_evaluated\_operations::subtraction$<$ T1, T2, typename $>$@{std::math::instant\_evaluated\_operations::subtraction$<$ T1, T2, typename $>$}!subtract@{subtract}}
+\index{subtract@{subtract}!std::math::instant\_evaluated\_operations::subtraction$<$ T1, T2, typename $>$@{std::math::instant\_evaluated\_operations::subtraction$<$ T1, T2, typename $>$}}
 \doxysubsubsection{\texorpdfstring{subtract()}{subtract()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
-{\footnotesize\ttfamily template$<$concepts\+::tensor\+\_\+data T1, concepts\+::tensor\+\_\+data T2$>$ \\
-static constexpr \mbox{\hyperlink{classstd_1_1math_1_1instant__evaluated__operations_1_1subtraction_a2bf8c92880991863913afbaa20eb9e76}{first\+\_\+tensor\+\_\+type}} \& \mbox{\hyperlink{classstd_1_1math_1_1instant__evaluated__operations_1_1subtraction}{std\+::math\+::instant\+\_\+evaluated\+\_\+operations\+::subtraction}}$<$ T1, T2 $>$\+::subtract (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classstd_1_1math_1_1instant__evaluated__operations_1_1subtraction_a2bf8c92880991863913afbaa20eb9e76}{first\+\_\+tensor\+\_\+type}} \&}]{t1,  }\item[{const \mbox{\hyperlink{classstd_1_1math_1_1instant__evaluated__operations_1_1subtraction_a878beb660a01793647dbb261c0ffce76}{second\+\_\+tensor\+\_\+type}} \&}]{t2 }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}, {\ttfamily [constexpr]}, {\ttfamily [noexcept]}}
+{\footnotesize\ttfamily template$<$class T1 , class T2 , typename  = \+::std\+::enable\+\_\+if\+\_\+t$<$ concepts\+::tensor\+\_\+data\+\_\+v$<$\+T1$>$ \&\& concepts\+::tensor\+\_\+data\+\_\+v$<$\+T2$>$ $>$$>$ \\
+static constexpr \mbox{\hyperlink{classstd_1_1math_1_1instant__evaluated__operations_1_1subtraction_ae633e7ab9590ed5db4f2dd49bad4aa81}{first\+\_\+tensor\+\_\+type}} \& \mbox{\hyperlink{classstd_1_1math_1_1instant__evaluated__operations_1_1subtraction}{std\+::math\+::instant\+\_\+evaluated\+\_\+operations\+::subtraction}}$<$ T1, T2, typename $>$\+::subtract (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classstd_1_1math_1_1instant__evaluated__operations_1_1subtraction_ae633e7ab9590ed5db4f2dd49bad4aa81}{first\+\_\+tensor\+\_\+type}} \&}]{t1,  }\item[{const \mbox{\hyperlink{classstd_1_1math_1_1instant__evaluated__operations_1_1subtraction_a299c4740ec6326bab0646065b8f9668a}{second\+\_\+tensor\+\_\+type}} \&}]{t2 }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}, {\ttfamily [constexpr]}}
 
 
 

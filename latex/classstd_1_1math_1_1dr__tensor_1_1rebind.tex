@@ -22,12 +22,12 @@ Collaboration diagram for std\+::math\+::dr\+\_\+tensor\texorpdfstring{$<$}{<} T
 \doxysubsection*{Public Types}
 \begin{DoxyCompactItemize}
 \item 
-using \mbox{\hyperlink{classstd_1_1math_1_1dr__tensor_1_1rebind_a82446ce4635b7903bd53cf957d668ea0}{type}} = \mbox{\hyperlink{classstd_1_1math_1_1dr__tensor}{dr\+\_\+tensor}}$<$ Value\+Type, R, typename allocator\+\_\+traits$<$ \mbox{\hyperlink{classstd_1_1math_1_1dr__tensor_a25d140c88f3bf227d4be72c5809ab19a}{allocator\+\_\+type}} $>$\+::template rebind\+\_\+alloc$<$ rebind\+\_\+element\+\_\+type $>$, Layout\+Type, rebind\+\_\+accessor\+\_\+type $>$
+using \mbox{\hyperlink{classstd_1_1math_1_1dr__tensor_1_1rebind_ac0cecf8841030c11feed7d6470f00680}{type}} = \mbox{\hyperlink{classstd_1_1math_1_1dr__tensor}{dr\+\_\+tensor}}$<$ Value\+Type, R, typename \+::std\+::allocator\+\_\+traits$<$ \mbox{\hyperlink{classstd_1_1math_1_1dr__tensor_ac0bc7afbb2db5dedb1119ded144fed5e}{allocator\+\_\+type}} $>$\+::template rebind\+\_\+alloc$<$ rebind\+\_\+element\+\_\+type $>$, Layout\+Type, rebind\+\_\+accessor\+\_\+type $>$
 \end{DoxyCompactItemize}
 
 
 \doxysubsection{Detailed Description}
-\subsubsection*{template$<$class T, size\+\_\+t R, class Alloc = allocator$<$\+T$>$, class L = experimental\+::layout\+\_\+right, class Access = experimental\+::default\+\_\+accessor$<$\+T$>$$>$\newline
+\subsubsection*{template$<$class T, size\+\_\+t R, class Alloc, class L, class Access$>$\newline
 template$<$class Value\+Type, class Layout\+Type = layout\+\_\+type, class Accessor\+Type = accessor\+\_\+type$>$\newline
 class std\+::math\+::dr\+\_\+tensor$<$ T, R, Alloc, L, Access $>$\+::rebind$<$ Value\+Type, Layout\+Type, Accessor\+Type $>$}
 Rebind defines a type for a rebinding a dynamic tensor to the new type parameters. 
@@ -44,13 +44,13 @@ Rebind defines a type for a rebinding a dynamic tensor to the new type parameter
 
 
 \doxysubsection{Member Typedef Documentation}
-\mbox{\Hypertarget{classstd_1_1math_1_1dr__tensor_1_1rebind_a82446ce4635b7903bd53cf957d668ea0}\label{classstd_1_1math_1_1dr__tensor_1_1rebind_a82446ce4635b7903bd53cf957d668ea0}} 
+\mbox{\Hypertarget{classstd_1_1math_1_1dr__tensor_1_1rebind_ac0cecf8841030c11feed7d6470f00680}\label{classstd_1_1math_1_1dr__tensor_1_1rebind_ac0cecf8841030c11feed7d6470f00680}} 
 \index{std::math::dr\_tensor$<$ T, R, Alloc, L, Access $>$::rebind$<$ ValueType, LayoutType, AccessorType $>$@{std::math::dr\_tensor$<$ T, R, Alloc, L, Access $>$::rebind$<$ ValueType, LayoutType, AccessorType $>$}!type@{type}}
 \index{type@{type}!std::math::dr\_tensor$<$ T, R, Alloc, L, Access $>$::rebind$<$ ValueType, LayoutType, AccessorType $>$@{std::math::dr\_tensor$<$ T, R, Alloc, L, Access $>$::rebind$<$ ValueType, LayoutType, AccessorType $>$}}
 \doxysubsubsection{\texorpdfstring{type}{type}}
-{\footnotesize\ttfamily template$<$class T , size\+\_\+t R, class Alloc  = allocator$<$\+T$>$, class L  = experimental\+::layout\+\_\+right, class Access  = experimental\+::default\+\_\+accessor$<$\+T$>$$>$ \\
+{\footnotesize\ttfamily template$<$class T , size\+\_\+t R, class Alloc , class L , class Access $>$ \\
 template$<$class Value\+Type , class Layout\+Type  = layout\+\_\+type, class Accessor\+Type  = accessor\+\_\+type$>$ \\
-using \mbox{\hyperlink{classstd_1_1math_1_1dr__tensor}{std\+::math\+::dr\+\_\+tensor}}$<$ T, R, Alloc, L, Access $>$\+::rebind$<$ Value\+Type, Layout\+Type, Accessor\+Type $>$\+::type =  \mbox{\hyperlink{classstd_1_1math_1_1dr__tensor}{dr\+\_\+tensor}}$<$ Value\+Type, R, typename allocator\+\_\+traits$<$\mbox{\hyperlink{classstd_1_1math_1_1dr__tensor_a25d140c88f3bf227d4be72c5809ab19a}{allocator\+\_\+type}}$>$\+::template rebind\+\_\+alloc$<$rebind\+\_\+element\+\_\+type$>$, Layout\+Type, rebind\+\_\+accessor\+\_\+type $>$}
+using \mbox{\hyperlink{classstd_1_1math_1_1dr__tensor}{std\+::math\+::dr\+\_\+tensor}}$<$ T, R, Alloc, L, Access $>$\+::rebind$<$ Value\+Type, Layout\+Type, Accessor\+Type $>$\+::type =  \mbox{\hyperlink{classstd_1_1math_1_1dr__tensor}{dr\+\_\+tensor}}$<$ Value\+Type, R, typename \+::std\+::allocator\+\_\+traits$<$\mbox{\hyperlink{classstd_1_1math_1_1dr__tensor_ac0bc7afbb2db5dedb1119ded144fed5e}{allocator\+\_\+type}}$>$\+::template rebind\+\_\+alloc$<$rebind\+\_\+element\+\_\+type$>$, Layout\+Type, rebind\+\_\+accessor\+\_\+type $>$}
 
 
 

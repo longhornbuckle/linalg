@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=11"/>
 <meta name="generator" content="Doxygen 1.9.6"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>Linear Algebra: std::math::instant_evaluated_operations::negation&lt; T &gt; Class Template Reference</title>
+<title>Linear Algebra: std::math::instant_evaluated_operations::negation&lt; T, typename &gt; Class Template Reference</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -74,10 +74,11 @@ $(function() {
 </div><!-- top -->
 <div class="header">
   <div class="summary">
+<a href="#nested-classes">Classes</a> &#124;
 <a href="#pub-types">Public Types</a> &#124;
 <a href="#pub-static-methods">Static Public Member Functions</a> &#124;
 <a href="classstd_1_1math_1_1instant__evaluated__operations_1_1negation-members.html">List of all members</a>  </div>
-  <div class="headertitle"><div class="title">std::math::instant_evaluated_operations::negation&lt; T &gt; Class Template Reference</div></div>
+  <div class="headertitle"><div class="title">std::math::instant_evaluated_operations::negation&lt; T, typename &gt; Class Template Reference</div></div>
 </div><!--header-->
 <div class="contents">
 
@@ -86,38 +87,38 @@ $(function() {
 
 <p><code>#include &lt;<a class="el" href="instant__evaluated__operations_8hpp_source.html">instant_evaluated_operations.hpp</a>&gt;</code></p>
 <div class="dynheader">
-Collaboration diagram for std::math::instant_evaluated_operations::negation&lt; T &gt;:</div>
+Collaboration diagram for std::math::instant_evaluated_operations::negation&lt; T, typename &gt;:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="classstd_1_1math_1_1instant__evaluated__operations_1_1negation__coll__graph.svg" width="163" height="118"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+<div class="center"><iframe scrolling="no" frameborder="0" src="classstd_1_1math_1_1instant__evaluated__operations_1_1negation__coll__graph.svg" width="186" height="118"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
 </div>
 </div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-types" name="pub-types"></a>
 Public Types</h2></td></tr>
-<tr class="memitem:a0abbbb64f6d7eae2d8516a068fd20259"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classstd_1_1math_1_1instant__evaluated__operations_1_1negation.html#a0abbbb64f6d7eae2d8516a068fd20259">tensor_type</a> = T</td></tr>
-<tr class="memdesc:a0abbbb64f6d7eae2d8516a068fd20259"><td class="mdescLeft">&#160;</td><td class="mdescRight">Input tensor type.  <br /></td></tr>
-<tr class="separator:a0abbbb64f6d7eae2d8516a068fd20259"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:adb0e6fd919a5ee4b889126d35243d2c1"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classstd_1_1math_1_1instant__evaluated__operations_1_1negation.html#adb0e6fd919a5ee4b889126d35243d2c1">tensor_type</a> = T</td></tr>
+<tr class="memdesc:adb0e6fd919a5ee4b889126d35243d2c1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Input tensor type.  <br /></td></tr>
+<tr class="separator:adb0e6fd919a5ee4b889126d35243d2c1"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-static-methods" name="pub-static-methods"></a>
 Static Public Member Functions</h2></td></tr>
-<tr class="memitem:a871eebfdb4d82ac0b7f963870b0438bc"><td class="memItemLeft" align="right" valign="top">static constexpr auto&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classstd_1_1math_1_1instant__evaluated__operations_1_1negation.html#a871eebfdb4d82ac0b7f963870b0438bc">negate</a> (const <a class="el" href="classstd_1_1math_1_1instant__evaluated__operations_1_1negation.html#a0abbbb64f6d7eae2d8516a068fd20259">tensor_type</a> &amp;t) noexcept(noexcept(<a class="el" href="namespacestd_1_1math_1_1detail.html#ae5eb3cf5ea2a6e93d691bfd9f701768e">detail::make_from_tuple</a>&lt; result_tensor_type &gt;(collect_ctor_args(declval&lt; const <a class="el" href="classstd_1_1math_1_1instant__evaluated__operations_1_1negation.html#a0abbbb64f6d7eae2d8516a068fd20259">tensor_type</a> &amp; &gt;(), [&amp;t]&lt; class ... IndexType &gt;(IndexType ... indices) constexpr noexcept { return -(t[indices ...]);}))))</td></tr>
-<tr class="memdesc:a871eebfdb4d82ac0b7f963870b0438bc"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns -1 * tensor.  <br /></td></tr>
-<tr class="separator:a871eebfdb4d82ac0b7f963870b0438bc"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a26752152121adf02bcda422808c54c5b"><td class="memItemLeft" align="right" valign="top">static constexpr auto&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classstd_1_1math_1_1instant__evaluated__operations_1_1negation.html#a26752152121adf02bcda422808c54c5b">negate</a> (const <a class="el" href="classstd_1_1math_1_1instant__evaluated__operations_1_1negation.html#adb0e6fd919a5ee4b889126d35243d2c1">tensor_type</a> &amp;t)</td></tr>
+<tr class="memdesc:a26752152121adf02bcda422808c54c5b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns -1 * tensor.  <br /></td></tr>
+<tr class="separator:a26752152121adf02bcda422808c54c5b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock"><div class="compoundTemplParams">template&lt;concepts::tensor_data T&gt;<br />
-class std::math::instant_evaluated_operations::negation&lt; T &gt;</div><p>Defines negation operation on a tensor. </p>
+<div class="textblock"><div class="compoundTemplParams">template&lt;class T, typename = ::std::enable_if_t&lt; concepts::tensor_data_v&lt;T&gt; &gt;&gt;<br />
+class std::math::instant_evaluated_operations::negation&lt; T, typename &gt;</div><p>Defines negation operation on a tensor. </p>
 </div><h2 class="groupheader">Member Typedef Documentation</h2>
-<a id="a0abbbb64f6d7eae2d8516a068fd20259" name="a0abbbb64f6d7eae2d8516a068fd20259"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a0abbbb64f6d7eae2d8516a068fd20259">&#9670;&#160;</a></span>tensor_type</h2>
+<a id="adb0e6fd919a5ee4b889126d35243d2c1" name="adb0e6fd919a5ee4b889126d35243d2c1"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#adb0e6fd919a5ee4b889126d35243d2c1">&#9670;&#160;</a></span>tensor_type</h2>
 
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;concepts::tensor_data T&gt; </div>
+template&lt;class T , typename  = ::std::enable_if_t&lt; concepts::tensor_data_v&lt;T&gt; &gt;&gt; </div>
       <table class="memname">
         <tr>
-          <td class="memname">using <a class="el" href="classstd_1_1math_1_1instant__evaluated__operations_1_1negation.html">std::math::instant_evaluated_operations::negation</a>&lt; T &gt;::tensor_type =  T</td>
+          <td class="memname">using <a class="el" href="classstd_1_1math_1_1instant__evaluated__operations_1_1negation.html">std::math::instant_evaluated_operations::negation</a>&lt; T, typename &gt;::tensor_type =  T</td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -127,28 +128,28 @@ template&lt;concepts::tensor_data T&gt; </div>
 </div>
 </div>
 <h2 class="groupheader">Member Function Documentation</h2>
-<a id="a871eebfdb4d82ac0b7f963870b0438bc" name="a871eebfdb4d82ac0b7f963870b0438bc"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a871eebfdb4d82ac0b7f963870b0438bc">&#9670;&#160;</a></span>negate()</h2>
+<a id="a26752152121adf02bcda422808c54c5b" name="a26752152121adf02bcda422808c54c5b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a26752152121adf02bcda422808c54c5b">&#9670;&#160;</a></span>negate()</h2>
 
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;concepts::tensor_data T&gt; </div>
+template&lt;class T , typename  = ::std::enable_if_t&lt; concepts::tensor_data_v&lt;T&gt; &gt;&gt; </div>
 <table class="mlabels">
   <tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">static constexpr auto <a class="el" href="classstd_1_1math_1_1instant__evaluated__operations_1_1negation.html">std::math::instant_evaluated_operations::negation</a>&lt; T &gt;::negate </td>
+          <td class="memname">static constexpr auto <a class="el" href="classstd_1_1math_1_1instant__evaluated__operations_1_1negation.html">std::math::instant_evaluated_operations::negation</a>&lt; T, typename &gt;::negate </td>
           <td>(</td>
-          <td class="paramtype">const <a class="el" href="classstd_1_1math_1_1instant__evaluated__operations_1_1negation.html#a0abbbb64f6d7eae2d8516a068fd20259">tensor_type</a> &amp;&#160;</td>
+          <td class="paramtype">const <a class="el" href="classstd_1_1math_1_1instant__evaluated__operations_1_1negation.html#adb0e6fd919a5ee4b889126d35243d2c1">tensor_type</a> &amp;&#160;</td>
           <td class="paramname"><em>t</em></td><td>)</td>
           <td></td>
         </tr>
       </table>
   </td>
   <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">static</span><span class="mlabel">constexpr</span><span class="mlabel">noexcept</span></span>  </td>
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">static</span><span class="mlabel">constexpr</span></span>  </td>
   </tr>
 </table>
 </div><div class="memdoc">

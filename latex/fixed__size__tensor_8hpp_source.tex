@@ -29,354 +29,480 @@
 \DoxyCodeLine{00026\ \textcolor{comment}{}\textcolor{comment}{//\ \ \ \ \ \ \ \ \ Implementation\ satisfies\ the\ following\ concepts:}}
 \DoxyCodeLine{00027\ \textcolor{comment}{//\ \ \ \ \ \ \ \ \ concepts::fixed\_size\_tensor}}
 \DoxyCodeLine{00028\ \textcolor{comment}{//\ \ \ \ \ \ \ \ \ concepts::writable\_tensor}}
-\DoxyCodeLine{00033\ \textcolor{comment}{}\textcolor{keyword}{template}\ <\ \textcolor{keyword}{class\ \ \ \ \ \ }T,}
-\DoxyCodeLine{00034\ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{class\ \ \ \ \ \ }L,}
-\DoxyCodeLine{00035\ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{class\ \ \ \ \ \ }A,}
-\DoxyCodeLine{00036\ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{size\_t}\ ...\ Ds\ >\ \textcolor{keyword}{requires}\ }
-\DoxyCodeLine{00037\ \ \ (\ (\ Ds\ >=\ 0\ )\ \&\&\ ...\ )\ \textcolor{comment}{//\ Each\ dimension\ must\ be\ >=\ 0}}
-\DoxyCodeLine{00038\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classstd_1_1math_1_1fs__tensor}{fs\_tensor}}}
-\DoxyCodeLine{00039\ \{}
-\DoxyCodeLine{00040\ \ \ \textcolor{keyword}{public}:}
-\DoxyCodeLine{00041\ \ \ \ \ \textcolor{comment}{//-\/\ Types}}
-\DoxyCodeLine{00042\ }
-\DoxyCodeLine{00044\ \ \ \ \ \textcolor{keyword}{using\ }\mbox{\hyperlink{classstd_1_1math_1_1fs__tensor_aa0d6ef16218fd8c5edc33065308b1913}{layout\_type}}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ =\ L;}
-\DoxyCodeLine{00046\ \ \ \ \ \textcolor{keyword}{using\ }\mbox{\hyperlink{classstd_1_1math_1_1fs__tensor_aa2dc98e6be4a3eefc84394a144219593}{accessor\_type}}\ \ \ \ \ \ \ \ \ \ \ \ \ \ =\ A;}
-\DoxyCodeLine{00048\ \ \ \ \ \textcolor{keyword}{using\ }\mbox{\hyperlink{classstd_1_1math_1_1fs__tensor_a877b9014a0d86a6945084d5f18b5f065}{element\_type}}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ =\ \textcolor{keyword}{typename}\ accessor\_type::element\_type;}
-\DoxyCodeLine{00050\ \ \ \ \ \textcolor{keyword}{using\ }\mbox{\hyperlink{classstd_1_1math_1_1fs__tensor_a4a98dc2c12f713dae7481d9ffa23ff38}{value\_type}}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ =\ remove\_cv\_t<element\_type>;}
-\DoxyCodeLine{00052\ \ \ \ \ \textcolor{keyword}{using\ }\mbox{\hyperlink{classstd_1_1math_1_1fs__tensor_a2ac859bbdca290af00c7ae6133b7dce0}{index\_type}}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ =\ ptrdiff\_t;}
-\DoxyCodeLine{00054\ \ \ \ \ \textcolor{keyword}{using\ }\mbox{\hyperlink{classstd_1_1math_1_1fs__tensor_a75a492a9a1079e6eeb5a34093b98b390}{size\_type}}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ =\ size\_t;}
-\DoxyCodeLine{00056\ \ \ \ \ \textcolor{keyword}{using\ }\mbox{\hyperlink{classstd_1_1math_1_1fs__tensor_a08e3329f952a65f70b1d7239ea5bb5b1}{extents\_type}}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ =\ experimental::extents<\mbox{\hyperlink{classstd_1_1math_1_1fs__tensor_a75a492a9a1079e6eeb5a34093b98b390}{size\_type}},Ds...>;}
-\DoxyCodeLine{00058\ \ \ \ \ \textcolor{keyword}{using\ }\mbox{\hyperlink{classstd_1_1math_1_1fs__tensor_a85d3152ad0a10147b519921da001e5a1}{tuple\_type}}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ =\ tuple<\textcolor{keyword}{decltype}(Ds)\ ...>;}
-\DoxyCodeLine{00060\ \ \ \ \ \textcolor{keyword}{using\ }\mbox{\hyperlink{classstd_1_1math_1_1fs__tensor_ae13ebf0e9711df67ffb51339358db5c2}{const\_underlying\_span\_type}}\ =\ experimental::mdspan<const\ element\_type,extents\_type,layout\_type,detail::rebind\_accessor\_t<accessor\_type,const\ element\_type>\ >;}
-\DoxyCodeLine{00062\ \ \ \ \ \textcolor{keyword}{using\ }\mbox{\hyperlink{classstd_1_1math_1_1fs__tensor_ac7cd4d69a4e2e73ae70c1b2d9e7b51e2}{underlying\_span\_type}}\ \ \ \ \ \ \ =\ experimental::mdspan<element\_type,extents\_type,layout\_type,accessor\_type>;}
-\DoxyCodeLine{00064\ \ \ \ \ \textcolor{keyword}{using\ }\mbox{\hyperlink{classstd_1_1math_1_1fs__tensor_af59d3880e164152fd061acf97c1ec2cb}{span\_type}}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ =\ \mbox{\hyperlink{classstd_1_1math_1_1fs__tensor_ae13ebf0e9711df67ffb51339358db5c2}{const\_underlying\_span\_type}};}
-\DoxyCodeLine{00066\ \ \ \ \ \textcolor{keyword}{using\ }\mbox{\hyperlink{classstd_1_1math_1_1fs__tensor_a256bd11d1699a9acb0f926725f8fffc6}{reference\_type}}\ \ \ \ \ \ \ \ \ \ \ \ \ =\ \textcolor{keyword}{typename}\ accessor\_type::reference;}
-\DoxyCodeLine{00068\ \ \ \ \ \textcolor{keyword}{using\ }\mbox{\hyperlink{classstd_1_1math_1_1tensor__view}{subtensor\_type}}\ \ \ \ \ \ \ \ \ \ \ \ \ =\ \mbox{\hyperlink{classstd_1_1math_1_1tensor__view}{tensor\_view<decltype(\ detail::submdspan(\ declval<underlying\_span\_type>}}(),\ declval<tuple\_type>(),\ declval<tuple\_type>()\ )\ )\ >;}
-\DoxyCodeLine{00070\ \ \ \ \ \textcolor{keyword}{using\ }\mbox{\hyperlink{classstd_1_1math_1_1tensor__view}{const\_subtensor\_type}}\ \ \ \ \ \ \ =\ \mbox{\hyperlink{classstd_1_1math_1_1tensor__view}{tensor\_view<decltype(\ detail::submdspan(\ declval<const\_underlying\_span\_type>}}(),\ declval<tuple\_type>(),\ declval<tuple\_type>()\ )\ )\ >;}
-\DoxyCodeLine{00071\ \ \ \ \ }
-\DoxyCodeLine{00072\ \ \ \ \ \textcolor{comment}{//-\/\ Rebind}}
-\DoxyCodeLine{00073\ }
-\DoxyCodeLine{00078\ \ \ \ \ \textcolor{keyword}{template}\ <\ \textcolor{keyword}{class\ }ValueType,}
-\DoxyCodeLine{00079\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{class\ }LayoutType\ \ \ =\ \mbox{\hyperlink{classstd_1_1math_1_1fs__tensor_aa0d6ef16218fd8c5edc33065308b1913}{layout\_type}},}
-\DoxyCodeLine{00080\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{class\ }AccessorType\ =\ \mbox{\hyperlink{classstd_1_1math_1_1fs__tensor_aa2dc98e6be4a3eefc84394a144219593}{accessor\_type}}\ >}
-\DoxyCodeLine{00081\ \ \ \ \ \textcolor{keyword}{class\ }\mbox{\hyperlink{classstd_1_1math_1_1fs__tensor_1_1rebind}{rebind}}}
-\DoxyCodeLine{00082\ \ \ \ \ \{}
-\DoxyCodeLine{00083\ \ \ \ \ \textcolor{keyword}{private}:}
-\DoxyCodeLine{00084\ \ \ \ \ \ \ \textcolor{keyword}{using\ }rebind\_accessor\_type\ =\ \mbox{\hyperlink{namespacestd_1_1math_1_1detail_a66ad73a2afe0cb3a49bfaad6497ce6a1}{detail::rebind\_accessor\_t<AccessorType,ValueType>}};}
-\DoxyCodeLine{00085\ \ \ \ \ \ \ \textcolor{keyword}{using\ }rebind\_element\_type\ \ =\ \textcolor{keyword}{typename}\ rebind\_accessor\_type::element\_type;}
-\DoxyCodeLine{00086\ \ \ \ \ \textcolor{keyword}{public}:}
-\DoxyCodeLine{00087\ \ \ \ \ \ \ \textcolor{keyword}{using\ }\mbox{\hyperlink{classstd_1_1math_1_1fs__tensor}{type}}\ =\ \mbox{\hyperlink{classstd_1_1math_1_1fs__tensor}{fs\_tensor}}<\ ValueType,}
-\DoxyCodeLine{00088\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ LayoutType,}
-\DoxyCodeLine{00089\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ rebind\_accessor\_type,}
-\DoxyCodeLine{00090\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Ds\ ...\ >;}
-\DoxyCodeLine{00091\ \ \ \ \ \};}
-\DoxyCodeLine{00096\ \ \ \ \ \textcolor{keyword}{template}\ <\ \textcolor{keyword}{class\ }ValueType,}
-\DoxyCodeLine{00097\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{class\ }LayoutType\ \ \ =\ \mbox{\hyperlink{classstd_1_1math_1_1fs__tensor_aa0d6ef16218fd8c5edc33065308b1913}{layout\_type}},}
-\DoxyCodeLine{00098\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{class\ }AccessorType\ =\ \mbox{\hyperlink{classstd_1_1math_1_1fs__tensor_aa2dc98e6be4a3eefc84394a144219593}{accessor\_type}}\ >}
-\DoxyCodeLine{00099\ \ \ \ \ \textcolor{keyword}{using\ }\mbox{\hyperlink{classstd_1_1math_1_1fs__tensor_a185d9b0604955afcd268118ea0a7ad92}{rebind\_t}}\ =\ \textcolor{keyword}{typename}\ \mbox{\hyperlink{classstd_1_1math_1_1fs__tensor}{rebind<\ ValueType,\ LayoutType,\ AccessorType\ >::type}};}
+\DoxyCodeLine{00033\ \textcolor{comment}{}\textcolor{keyword}{template}\ <\ \textcolor{keyword}{class\ \ \ \ \ \ \ \ \ \ \ \ \ }T,}
+\DoxyCodeLine{00034\ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{class\ \ \ \ \ \ \ \ \ \ \ \ \ }L,}
+\DoxyCodeLine{00035\ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{class\ \ \ \ \ \ \ \ \ \ \ \ \ }A,}
+\DoxyCodeLine{00036\ \ \ \ \ \ \ \ \ \ \ \ ::std::size\_t\ ...\ Ds\ >}
+\DoxyCodeLine{00037\ \textcolor{preprocessor}{\#ifdef\ LINALG\_ENABLE\_CONCEPTS}}
+\DoxyCodeLine{00038\ \ \ \textcolor{keyword}{requires}\ (\ (\ Ds\ >=\ 0\ )\ \&\&\ ...\ )\ \textcolor{comment}{//\ Each\ dimension\ must\ be\ >=\ 0}}
+\DoxyCodeLine{00039\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00040\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classstd_1_1math_1_1fs__tensor}{fs\_tensor}}}
+\DoxyCodeLine{00041\ \{}
+\DoxyCodeLine{00042\ \ \ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00043\ \ \ \ \ \textcolor{comment}{//-\/\ Types}}
+\DoxyCodeLine{00044\ }
+\DoxyCodeLine{00046\ \ \ \ \ \textcolor{keyword}{using\ }\mbox{\hyperlink{classstd_1_1math_1_1fs__tensor_aa0d6ef16218fd8c5edc33065308b1913}{layout\_type}}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ =\ L;}
+\DoxyCodeLine{00048\ \ \ \ \ \textcolor{keyword}{using\ }\mbox{\hyperlink{classstd_1_1math_1_1fs__tensor_aa2dc98e6be4a3eefc84394a144219593}{accessor\_type}}\ \ \ \ \ \ \ \ \ \ \ \ \ \ =\ A;}
+\DoxyCodeLine{00050\ \ \ \ \ \textcolor{keyword}{using\ }\mbox{\hyperlink{classstd_1_1math_1_1fs__tensor_a877b9014a0d86a6945084d5f18b5f065}{element\_type}}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ =\ \textcolor{keyword}{typename}\ accessor\_type::element\_type;}
+\DoxyCodeLine{00052\ \ \ \ \ \textcolor{keyword}{using\ }\mbox{\hyperlink{classstd_1_1math_1_1fs__tensor_ad5e47b3c811336fa55b7f07159d8e2bc}{value\_type}}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ =\ ::std::remove\_cv\_t<element\_type>;}
+\DoxyCodeLine{00054\ \ \ \ \ \textcolor{keyword}{using\ }\mbox{\hyperlink{classstd_1_1math_1_1fs__tensor_ab8644d8fc0a33afec0a0c3f31f9dee37}{index\_type}}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ =\ ::std::ptrdiff\_t;}
+\DoxyCodeLine{00056\ \ \ \ \ \textcolor{keyword}{using\ }\mbox{\hyperlink{classstd_1_1math_1_1fs__tensor_ad694c160eddef094640e5ea7eccf884e}{size\_type}}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ =\ ::std::size\_t;}
+\DoxyCodeLine{00058\ \ \ \ \ \textcolor{keyword}{using\ }\mbox{\hyperlink{classstd_1_1math_1_1fs__tensor_ab7081bbf3090395174207de84318521c}{extents\_type}}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ =\ ::std::experimental::extents<\mbox{\hyperlink{classstd_1_1math_1_1fs__tensor_ad694c160eddef094640e5ea7eccf884e}{size\_type}},Ds...>;}
+\DoxyCodeLine{00060\ \ \ \ \ \textcolor{keyword}{using\ }\mbox{\hyperlink{classstd_1_1math_1_1fs__tensor_a85d3152ad0a10147b519921da001e5a1}{tuple\_type}}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ =\ tuple<\textcolor{keyword}{decltype}(Ds)\ ...>;}
+\DoxyCodeLine{00062\ \ \ \ \ \textcolor{keyword}{using\ }\mbox{\hyperlink{classstd_1_1math_1_1fs__tensor_a66bbf3d9637400bd5a6cdf0a86626364}{const\_underlying\_span\_type}}\ =\ ::std::experimental::mdspan<const\ element\_type,extents\_type,layout\_type,detail::rebind\_accessor\_t<accessor\_type,const\ element\_type>\ >;}
+\DoxyCodeLine{00064\ \ \ \ \ \textcolor{keyword}{using\ }\mbox{\hyperlink{classstd_1_1math_1_1fs__tensor_ad65bcae09b9e0ca7ab11d5f253188fad}{underlying\_span\_type}}\ \ \ \ \ \ \ =\ ::std::experimental::mdspan<element\_type,extents\_type,layout\_type,accessor\_type>;}
+\DoxyCodeLine{00066\ \ \ \ \ \textcolor{keyword}{using\ }\mbox{\hyperlink{classstd_1_1math_1_1fs__tensor_af59d3880e164152fd061acf97c1ec2cb}{span\_type}}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ =\ \mbox{\hyperlink{classstd_1_1math_1_1fs__tensor_a66bbf3d9637400bd5a6cdf0a86626364}{const\_underlying\_span\_type}};}
+\DoxyCodeLine{00068\ \ \ \ \ \textcolor{keyword}{using\ }\mbox{\hyperlink{classstd_1_1math_1_1fs__tensor_a69fb9ddb5f5530bf0dd4d7c262f270d3}{reference}}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ =\ \textcolor{keyword}{typename}\ accessor\_type::reference;}
+\DoxyCodeLine{00069\ }
+\DoxyCodeLine{00070\ \ \ \ \ \textcolor{comment}{//-\/\ Rebind}}
+\DoxyCodeLine{00071\ }
+\DoxyCodeLine{00076\ \ \ \ \ \textcolor{keyword}{template}\ <\ \textcolor{keyword}{class\ }ValueType,}
+\DoxyCodeLine{00077\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{class\ }LayoutType\ \ \ =\ \mbox{\hyperlink{classstd_1_1math_1_1fs__tensor_aa0d6ef16218fd8c5edc33065308b1913}{layout\_type}},}
+\DoxyCodeLine{00078\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{class\ }AccessorType\ =\ \mbox{\hyperlink{classstd_1_1math_1_1fs__tensor_aa2dc98e6be4a3eefc84394a144219593}{accessor\_type}}\ >}
+\DoxyCodeLine{00079\ \ \ \ \ \textcolor{keyword}{class\ }\mbox{\hyperlink{classstd_1_1math_1_1fs__tensor_1_1rebind}{rebind}}}
+\DoxyCodeLine{00080\ \ \ \ \ \{}
+\DoxyCodeLine{00081\ \ \ \ \ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00082\ \ \ \ \ \ \ \textcolor{keyword}{using\ }rebind\_accessor\_type\ =\ \mbox{\hyperlink{namespacestd_1_1math_1_1detail_a66ad73a2afe0cb3a49bfaad6497ce6a1}{detail::rebind\_accessor\_t<AccessorType,ValueType>}};}
+\DoxyCodeLine{00083\ \ \ \ \ \ \ \textcolor{keyword}{using\ }rebind\_element\_type\ \ =\ \textcolor{keyword}{typename}\ rebind\_accessor\_type::element\_type;}
+\DoxyCodeLine{00084\ \ \ \ \ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00085\ \ \ \ \ \ \ \textcolor{keyword}{using\ }\mbox{\hyperlink{classstd_1_1math_1_1fs__tensor}{type}}\ =\ \mbox{\hyperlink{classstd_1_1math_1_1fs__tensor}{fs\_tensor}}<\ ValueType,}
+\DoxyCodeLine{00086\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ LayoutType,}
+\DoxyCodeLine{00087\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ rebind\_accessor\_type,}
+\DoxyCodeLine{00088\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Ds\ ...\ >;}
+\DoxyCodeLine{00089\ \ \ \ \ \};}
+\DoxyCodeLine{00094\ \ \ \ \ \textcolor{keyword}{template}\ <\ \textcolor{keyword}{class\ }ValueType,}
+\DoxyCodeLine{00095\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{class\ }LayoutType\ \ \ =\ \mbox{\hyperlink{classstd_1_1math_1_1fs__tensor_aa0d6ef16218fd8c5edc33065308b1913}{layout\_type}},}
+\DoxyCodeLine{00096\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{class\ }AccessorType\ =\ \mbox{\hyperlink{classstd_1_1math_1_1fs__tensor_aa2dc98e6be4a3eefc84394a144219593}{accessor\_type}}\ >}
+\DoxyCodeLine{00097\ \ \ \ \ \textcolor{keyword}{using\ }\mbox{\hyperlink{classstd_1_1math_1_1fs__tensor_a185d9b0604955afcd268118ea0a7ad92}{rebind\_t}}\ =\ \textcolor{keyword}{typename}\ \mbox{\hyperlink{classstd_1_1math_1_1fs__tensor}{rebind<\ ValueType,\ LayoutType,\ AccessorType\ >::type}};}
+\DoxyCodeLine{00098\ }
+\DoxyCodeLine{00099\ \ \ \ \ \textcolor{comment}{//-\/\ Destructor\ /\ Constructors\ /\ Assignments}}
 \DoxyCodeLine{00100\ }
-\DoxyCodeLine{00101\ \ \ \ \ \textcolor{comment}{//-\/\ Destructor\ /\ Constructors\ /\ Assignments}}
-\DoxyCodeLine{00102\ }
-\DoxyCodeLine{00104\ \ \ \ \ \textcolor{keyword}{constexpr}\ \mbox{\hyperlink{classstd_1_1math_1_1fs__tensor_a544e618cc71ad9d13ee04d5376970305}{\string~fs\_tensor}}()\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ noexcept(\ is\_nothrow\_destructible\_v<\mbox{\hyperlink{classstd_1_1math_1_1fs__tensor_a877b9014a0d86a6945084d5f18b5f065}{element\_type}}>\ );}
-\DoxyCodeLine{00106\ \ \ \ \ constexpr\ \mbox{\hyperlink{classstd_1_1math_1_1fs__tensor}{fs\_tensor}}()\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ noexcept(\ is\_nothrow\_default\_constructible\_v<\mbox{\hyperlink{classstd_1_1math_1_1fs__tensor_a877b9014a0d86a6945084d5f18b5f065}{element\_type}}>\ );}
-\DoxyCodeLine{00109\ \ \ \ \ constexpr\ \mbox{\hyperlink{classstd_1_1math_1_1fs__tensor}{fs\_tensor}}(\ \mbox{\hyperlink{classstd_1_1math_1_1fs__tensor}{fs\_tensor}}\&\&\ )\ \ \ \ \ \ noexcept(\ is\_nothrow\_move\_constructible\_v<\mbox{\hyperlink{classstd_1_1math_1_1fs__tensor_a877b9014a0d86a6945084d5f18b5f065}{element\_type}}>\ );}
-\DoxyCodeLine{00112\ \ \ \ \ constexpr\ \mbox{\hyperlink{classstd_1_1math_1_1fs__tensor}{fs\_tensor}}(\ const\ \mbox{\hyperlink{classstd_1_1math_1_1fs__tensor}{fs\_tensor}}\&\ )\ noexcept(\ is\_nothrow\_copy\_constructible\_v<\mbox{\hyperlink{classstd_1_1math_1_1fs__tensor_a877b9014a0d86a6945084d5f18b5f065}{element\_type}}>\ );}
-\DoxyCodeLine{00113\ \ \ \ \ \textcolor{comment}{//\ TODO:\ Define\ noexcept\ specification}}
-\DoxyCodeLine{00116\ \textcolor{comment}{}\ \ \ \ template\ <\ concepts::tensor\_may\_be\_constructible<\ \mbox{\hyperlink{classstd_1_1math_1_1fs__tensor}{fs\_tensor}}\ >\ T2\ >}
-\DoxyCodeLine{00117\ \ \ \ \ explicit\ constexpr\ \mbox{\hyperlink{classstd_1_1math_1_1fs__tensor}{fs\_tensor}}(\ const\ T2\&\ rhs\ );}
-\DoxyCodeLine{00120\ \ \ \ \ template\ <\ concepts::view\_may\_be\_constructible\_to\_tensor<\ \mbox{\hyperlink{classstd_1_1math_1_1fs__tensor}{fs\_tensor}}\ >\ MDS\ >}
-\DoxyCodeLine{00121\ \ \ \ \ explicit\ constexpr\ \mbox{\hyperlink{classstd_1_1math_1_1fs__tensor}{fs\_tensor}}(\ const\ MDS\&\ view\ )\ noexcept(\ concepts::view\_is\_nothrow\_constructible\_to\_tensor<MDS,\mbox{\hyperlink{classstd_1_1math_1_1fs__tensor}{fs\_tensor}}>\ );}
-\DoxyCodeLine{00124\ \ \ \ \ template\ <\ class\ Lambda\ >}
-\DoxyCodeLine{00125\ \ \ \ \ explicit\ constexpr\ \mbox{\hyperlink{classstd_1_1math_1_1fs__tensor}{fs\_tensor}}(\ Lambda\&\&\ lambda\ )\ noexcept(\ noexcept(\ declval<Lambda\&\&>()(\ Ds\ ...\ )\ )\ )}
-\DoxyCodeLine{00126\ \ \ \ \ \ \ requires\ requires\ \{\ \{\ declval<Lambda\&\&>().operator()(\ Ds\ ...\ )\ \}\ -\/>\ convertible\_to<element\_type>;\ \};}
-\DoxyCodeLine{00130\ \ \ \ \ \textcolor{keyword}{constexpr}\ \mbox{\hyperlink{classstd_1_1math_1_1fs__tensor}{fs\_tensor}}\&\ \mbox{\hyperlink{classstd_1_1math_1_1fs__tensor_aea3334196188553dab5a08935fe401e6}{operator\ =\ }}(\ \mbox{\hyperlink{classstd_1_1math_1_1fs__tensor}{fs\_tensor}}\&\&\ )\ \ \ \ \ \ =\ \textcolor{keywordflow}{default};}
-\DoxyCodeLine{00134\ \ \ \ \ \textcolor{keyword}{constexpr}\ \mbox{\hyperlink{classstd_1_1math_1_1fs__tensor}{fs\_tensor}}\&\ \mbox{\hyperlink{classstd_1_1math_1_1fs__tensor_aea3334196188553dab5a08935fe401e6}{operator\ =\ }}(\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classstd_1_1math_1_1fs__tensor}{fs\_tensor}}\&\ )\ =\ \textcolor{keywordflow}{default};}
-\DoxyCodeLine{00135\ \ \ \ \ \textcolor{comment}{//\ TODO:\ Define\ noexcept\ specification}}
-\DoxyCodeLine{00140\ \textcolor{comment}{}\ \ \ \ \textcolor{keyword}{template}\ <\ concepts::tensor\_may\_be\_constructible<\ fs\_tensor\ >\ T2\ >}
-\DoxyCodeLine{00141\ \ \ \ \ \textcolor{keyword}{constexpr}\ \mbox{\hyperlink{classstd_1_1math_1_1fs__tensor}{fs\_tensor}}\&\ \mbox{\hyperlink{classstd_1_1math_1_1fs__tensor_aea3334196188553dab5a08935fe401e6}{operator\ =\ }}(\ \textcolor{keyword}{const}\ T2\&\ rhs\ );}
-\DoxyCodeLine{00142\ \ \ \ \ \textcolor{comment}{//\ TODO:\ Define\ noexcept\ specification.\ Noexcept\ will\ require\ an\ mdspan\ iterator\ access}}
-\DoxyCodeLine{00143\ \ \ \ \ \textcolor{comment}{//\ \ \ \ \ \ \ as\ index\ operators\ are\ not\ noexcept}}
-\DoxyCodeLine{00148\ \textcolor{comment}{}\ \ \ \ \textcolor{keyword}{template}\ <\ concepts::view\_may\_be\_constructible\_to\_tensor<\ fs\_tensor\ >\ MDS\ >}
-\DoxyCodeLine{00149\ \ \ \ \ \textcolor{keyword}{constexpr}\ \mbox{\hyperlink{classstd_1_1math_1_1fs__tensor}{fs\_tensor}}\&\ \mbox{\hyperlink{classstd_1_1math_1_1fs__tensor_aea3334196188553dab5a08935fe401e6}{operator\ =\ }}(\ \textcolor{keyword}{const}\ MDS\&\ view\ );}
-\DoxyCodeLine{00150\ }
-\DoxyCodeLine{00151\ \ \ \ \ \textcolor{comment}{//-\/\ Size\ /\ Capacity}}
-\DoxyCodeLine{00152\ }
-\DoxyCodeLine{00155\ \ \ \ \ [[nodiscard]]\ \textcolor{keyword}{constexpr}\ \mbox{\hyperlink{classstd_1_1math_1_1fs__matrix_aaa0f12f5b416c613e39ebef6e8973838}{extents\_type}}\ \mbox{\hyperlink{classstd_1_1math_1_1fs__tensor_a497060433432fe92c79c9b7a6698c770}{size}}()\ const\ noexcept;}
-\DoxyCodeLine{00158\ \ \ \ \ [[nodiscard]]\ constexpr\ \mbox{\hyperlink{classstd_1_1math_1_1fs__matrix_aaa0f12f5b416c613e39ebef6e8973838}{extents\_type}}\ \mbox{\hyperlink{classstd_1_1math_1_1fs__tensor_aae53c2a9799db658bd6c5751ea9a4033}{capacity}}()\ const\ noexcept;}
-\DoxyCodeLine{00159\ }
-\DoxyCodeLine{00160\ \ \ \ \ \textcolor{comment}{//-\/\ Data\ access}}
-\DoxyCodeLine{00161\ \ \ \ \ }
-\DoxyCodeLine{00164\ \ \ \ \ [[nodiscard]]\ constexpr\ \mbox{\hyperlink{classstd_1_1math_1_1fs__matrix_a3a9b6bb42755fc083e343e4bd07f271d}{span\_type}}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classstd_1_1math_1_1fs__tensor_a12c92b52a1d1a6695cc3d1ee2e77b2f8}{span}}()\ const\ noexcept;}
-\DoxyCodeLine{00167\ \ \ \ \ [[nodiscard]]\ constexpr\ \mbox{\hyperlink{classstd_1_1math_1_1fs__matrix_a7a9bc7707e74186bd53ba276845c7b88}{underlying\_span\_type}}\ \ \ \ \ \ \ \mbox{\hyperlink{classstd_1_1math_1_1fs__tensor_ab5002b9ec652efd9051fa2c97e46fa01}{underlying\_span}}()\ noexcept;}
-\DoxyCodeLine{00170\ \ \ \ \ [[nodiscard]]\ constexpr\ \mbox{\hyperlink{classstd_1_1math_1_1fs__matrix_a5f883bf5e21fc71eb142ac858f0703e5}{const\_underlying\_span\_type}}\ \mbox{\hyperlink{classstd_1_1math_1_1fs__tensor_ab5002b9ec652efd9051fa2c97e46fa01}{underlying\_span}}()\ const\ noexcept;}
-\DoxyCodeLine{00171\ }
-\DoxyCodeLine{00172\ \ \ \ \ \textcolor{comment}{//-\/\ Const\ views}}
-\DoxyCodeLine{00173\ }
-\DoxyCodeLine{00177\ \ \ \ \ [[nodiscard]]\ constexpr\ \mbox{\hyperlink{classstd_1_1math_1_1fs__tensor_a4a98dc2c12f713dae7481d9ffa23ff38}{value\_type}}\ operator[](\ decltype(Ds)\ ...\ indices\ )\ const\ noexcept;}
-\DoxyCodeLine{00181\ \ \ \ \ [[nodiscard]]\ constexpr\ \mbox{\hyperlink{classstd_1_1math_1_1fs__matrix_af2cb57c1cbe4a3e1061f72f2319f35ea}{value\_type}}\ \mbox{\hyperlink{classstd_1_1math_1_1fs__tensor_ace57dfbb29223a7feed9883d26fb912d}{at}}(\ decltype(Ds)\ ...\ indices\ )\ const;}
-\DoxyCodeLine{00186\ \ \ \ \ template\ <\ class\ ...\ SliceArgs\ >}
-\DoxyCodeLine{00187\ \ \ \ \ [[nodiscard]]\ constexpr\ auto\ \mbox{\hyperlink{classstd_1_1math_1_1fs__tensor_aaf97188df08eac26b6ddfc6274b818f5}{subvector}}(\ SliceArgs\ ...\ args\ )\ const}
-\DoxyCodeLine{00188\ \ \ \ \ \ \ requires\ (\ decltype(\ experimental::submdspan(\ this-\/>\mbox{\hyperlink{classstd_1_1math_1_1fs__tensor_ab5002b9ec652efd9051fa2c97e46fa01}{underlying\_span}}(),\ args\ ...\ )\ )::rank()\ ==\ 1\ );}
-\DoxyCodeLine{00193\ \ \ \ \ template\ <\ class\ ...\ SliceArgs\ >}
-\DoxyCodeLine{00194\ \ \ \ \ [[nodiscard]]\ constexpr\ auto\ \mbox{\hyperlink{classstd_1_1math_1_1fs__tensor_a92ed5bfc38c49b77cf6ddbd8c836c8bf}{submatrix}}(\ SliceArgs\ ...\ args\ )\ const}
-\DoxyCodeLine{00195\ \ \ \ \ \ \ requires\ (\ decltype(\ experimental::submdspan(\ this-\/>\mbox{\hyperlink{classstd_1_1math_1_1fs__tensor_ab5002b9ec652efd9051fa2c97e46fa01}{underlying\_span}}(),\ args\ ...\ )\ )::rank()\ ==\ 2\ );}
-\DoxyCodeLine{00200\ \ \ \ \ [[nodiscard]]\ constexpr\ \mbox{\hyperlink{classstd_1_1math_1_1tensor__view}{const\_subtensor\_type}}\ \mbox{\hyperlink{classstd_1_1math_1_1fs__tensor_aee14335da4e84836b83d31caa9676a37}{subtensor}}(\ \mbox{\hyperlink{classstd_1_1math_1_1fs__tensor_a85d3152ad0a10147b519921da001e5a1}{tuple\_type}}\ start,}
-\DoxyCodeLine{00201\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classstd_1_1math_1_1fs__tensor_a85d3152ad0a10147b519921da001e5a1}{tuple\_type}}\ end\ )\ const;}
-\DoxyCodeLine{00202\ }
-\DoxyCodeLine{00203\ \ \ \ \ \textcolor{comment}{//-\/\ Mutable\ views}}
-\DoxyCodeLine{00204\ }
-\DoxyCodeLine{00208\ \ \ \ \ [[nodiscard]]\ constexpr\ \mbox{\hyperlink{classstd_1_1math_1_1fs__tensor_a256bd11d1699a9acb0f926725f8fffc6}{reference\_type}}\ operator[](\ decltype(Ds)\ ...\ indices\ )\ noexcept;}
-\DoxyCodeLine{00212\ \ \ \ \ [[nodiscard]]\ constexpr\ \mbox{\hyperlink{classstd_1_1math_1_1fs__matrix_a589e62d33721d473e2b2bb3c26487f9c}{reference\_type}}\ \mbox{\hyperlink{classstd_1_1math_1_1fs__tensor_ace57dfbb29223a7feed9883d26fb912d}{at}}(\ decltype(Ds)\ ...\ indices\ );}
-\DoxyCodeLine{00217\ \ \ \ \ template\ <\ class\ ...\ SliceArgs\ >}
-\DoxyCodeLine{00218\ \ \ \ \ [[nodiscard]]\ constexpr\ auto\ \mbox{\hyperlink{classstd_1_1math_1_1fs__tensor_aaf97188df08eac26b6ddfc6274b818f5}{subvector}}(\ SliceArgs\ ...\ args\ )}
-\DoxyCodeLine{00219\ \ \ \ \ \ \ requires\ (\ decltype(\ experimental::submdspan(\ this-\/>\mbox{\hyperlink{classstd_1_1math_1_1fs__tensor_ab5002b9ec652efd9051fa2c97e46fa01}{underlying\_span}}(),\ args\ ...\ )\ )::rank()\ ==\ 1\ );}
-\DoxyCodeLine{00224\ \ \ \ \ template\ <\ class\ ...\ SliceArgs\ >}
-\DoxyCodeLine{00225\ \ \ \ \ [[nodiscard]]\ constexpr\ auto\ \mbox{\hyperlink{classstd_1_1math_1_1fs__tensor_a92ed5bfc38c49b77cf6ddbd8c836c8bf}{submatrix}}(\ SliceArgs\ ...\ args\ )}
-\DoxyCodeLine{00226\ \ \ \ \ \ \ requires\ (\ decltype(\ experimental::submdspan(\ this-\/>\mbox{\hyperlink{classstd_1_1math_1_1fs__tensor_ab5002b9ec652efd9051fa2c97e46fa01}{underlying\_span}}(),\ args\ ...\ )\ )::rank()\ ==\ 2\ );}
-\DoxyCodeLine{00231\ \ \ \ \ [[nodiscard]]\ constexpr\ \mbox{\hyperlink{classstd_1_1math_1_1tensor__view}{subtensor\_type}}\ \mbox{\hyperlink{classstd_1_1math_1_1fs__tensor_aee14335da4e84836b83d31caa9676a37}{subtensor}}(\ \mbox{\hyperlink{classstd_1_1math_1_1fs__tensor_a85d3152ad0a10147b519921da001e5a1}{tuple\_type}}\ start,}
-\DoxyCodeLine{00232\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classstd_1_1math_1_1fs__tensor_a85d3152ad0a10147b519921da001e5a1}{tuple\_type}}\ end\ );}
+\DoxyCodeLine{00102\ \ \ \ \ \textcolor{keyword}{constexpr}\ \mbox{\hyperlink{classstd_1_1math_1_1fs__tensor_acb7fb6bde2108bd49c161b9f6db7929f}{fs\_tensor}}()\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ noexcept(\ ::\mbox{\hyperlink{namespacestd}{std}}::is\_nothrow\_default\_constructible\_v<\mbox{\hyperlink{classstd_1_1math_1_1fs__tensor_a877b9014a0d86a6945084d5f18b5f065}{element\_type}}>\ );}
+\DoxyCodeLine{00105\ \ \ \ \ constexpr\ \mbox{\hyperlink{classstd_1_1math_1_1fs__tensor}{fs\_tensor}}(\ \mbox{\hyperlink{classstd_1_1math_1_1fs__tensor}{fs\_tensor}}\&\&\ )\ \ \ \ \ \ noexcept(\ ::\mbox{\hyperlink{namespacestd}{std}}::is\_nothrow\_move\_constructible\_v<\mbox{\hyperlink{classstd_1_1math_1_1fs__tensor_a877b9014a0d86a6945084d5f18b5f065}{element\_type}}>\ );}
+\DoxyCodeLine{00108\ \ \ \ \ constexpr\ \mbox{\hyperlink{classstd_1_1math_1_1fs__tensor}{fs\_tensor}}(\ const\ \mbox{\hyperlink{classstd_1_1math_1_1fs__tensor}{fs\_tensor}}\&\ )\ noexcept(\ ::\mbox{\hyperlink{namespacestd}{std}}::is\_nothrow\_copy\_constructible\_v<\mbox{\hyperlink{classstd_1_1math_1_1fs__tensor_a877b9014a0d86a6945084d5f18b5f065}{element\_type}}>\ );}
+\DoxyCodeLine{00109\ \ \ \ \ \textcolor{comment}{//\ TODO:\ Define\ noexcept\ specification}}
+\DoxyCodeLine{00112\ \textcolor{comment}{}\ \ \ \ \textcolor{preprocessor}{\#ifdef\ LINALG\_ENABLE\_CONCEPTS}}
+\DoxyCodeLine{00113\ \ \ \ \ \textcolor{keyword}{template}\ <\ concepts::tensor\_may\_be\_constructible<\ fs\_tensor\ >\ T2\ >}
+\DoxyCodeLine{00114\ \textcolor{preprocessor}{\ \ \ \ \#else}}
+\DoxyCodeLine{00115\ \ \ \ \ \textcolor{keyword}{template}\ <\ \textcolor{keyword}{class}\ T2,\ \textcolor{keyword}{typename}\ =\ ::std::enable\_if\_t<\ concepts::tensor\_may\_be\_constructible<\ T2,\ fs\_tensor\ >\ >\ >}
+\DoxyCodeLine{00116\ \textcolor{preprocessor}{\ \ \ \ \#endif}}
+\DoxyCodeLine{00117\ \ \ \ \ \textcolor{keyword}{explicit}\ \textcolor{keyword}{constexpr}\ \mbox{\hyperlink{classstd_1_1math_1_1fs__tensor_aa3ae41d99f2bb0eefb5c377a4015038b}{fs\_tensor}}(\ \textcolor{keyword}{const}\ T2\&\ rhs\ );}
+\DoxyCodeLine{00120\ \textcolor{preprocessor}{\ \ \ \ \#ifdef\ LINALG\_ENABLE\_CONCEPTS}}
+\DoxyCodeLine{00121\ \ \ \ \ \textcolor{keyword}{template}\ <\ concepts::view\_may\_be\_constructible\_to\_tensor<\ fs\_tensor\ >\ MDS\ >}
+\DoxyCodeLine{00122\ \textcolor{preprocessor}{\ \ \ \ \#else}}
+\DoxyCodeLine{00123\ \ \ \ \ \textcolor{keyword}{template}\ <\ \textcolor{keyword}{class}\ MDS,\ \textcolor{keyword}{typename}\ =\ ::std::enable\_if\_t<\ concepts::view\_may\_be\_constructible\_to\_tensor<MDS,fs\_tensor>\ >,\ \textcolor{keyword}{typename}\ =\ ::std::enable\_if\_t<true>\ >}
+\DoxyCodeLine{00124\ \textcolor{preprocessor}{\ \ \ \ \#endif}}
+\DoxyCodeLine{00125\ \ \ \ \ \textcolor{keyword}{explicit}\ \textcolor{keyword}{constexpr}\ \mbox{\hyperlink{classstd_1_1math_1_1fs__tensor_a208e93f262ceb95685ed52f66c7ad8d3}{fs\_tensor}}(\ \textcolor{keyword}{const}\ MDS\&\ view\ )\ \textcolor{keyword}{noexcept}(\ concepts::view\_is\_nothrow\_constructible\_to\_tensor<MDS,fs\_tensor>\ );}
+\DoxyCodeLine{00128\ \textcolor{preprocessor}{\ \ \ \ \#ifdef\ LINALG\_ENABLE\_CONCEPTS}}
+\DoxyCodeLine{00129\ \ \ \ \ \textcolor{keyword}{template}\ <\ \textcolor{keyword}{class}\ Lambda\ >}
+\DoxyCodeLine{00130\ \textcolor{preprocessor}{\ \ \ \ \#else}}
+\DoxyCodeLine{00131\ \ \ \ \ \textcolor{keyword}{template}\ <\ \textcolor{keyword}{class\ }Lambda,}
+\DoxyCodeLine{00132\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{typename}\ =\ ::std::enable\_if\_t<\ ::std::is\_convertible\_v<\ decltype(\ declval<Lambda\&\&>().operator()(\ Ds\ ...\ )\ ),\ \mbox{\hyperlink{classstd_1_1math_1_1fs__tensor_a877b9014a0d86a6945084d5f18b5f065}{element\_type}}\ >\ >\ >}
+\DoxyCodeLine{00133\ \textcolor{preprocessor}{\ \ \ \ \#endif}}
+\DoxyCodeLine{00134\ \ \ \ \ \textcolor{keyword}{explicit}\ \textcolor{keyword}{constexpr}\ \mbox{\hyperlink{classstd_1_1math_1_1fs__tensor_a5802ee2b5311f4502ff13b15a7e2a975}{fs\_tensor}}(\ Lambda\&\&\ lambda\ )\ \textcolor{keyword}{noexcept}(\ \textcolor{keyword}{noexcept}(\ ::std::declval<Lambda\&\&>()(\ Ds\ ...\ )\ )\ )}
+\DoxyCodeLine{00135\ \ \ \ \ \#ifdef\ LINALG\_ENABLE\_CONCEPTS}
+\DoxyCodeLine{00136\ \ \ \ \ \ \ \textcolor{keyword}{requires}\ \textcolor{keyword}{requires}\ \{\ \{\ ::std::declval<Lambda\&\&>().operator()(\ Ds\ ...\ )\ \}\ -\/>\ ::std::convertible\_to<element\_type>;\ \};}
+\DoxyCodeLine{00137\ \textcolor{preprocessor}{\ \ \ \ \#else}}
+\DoxyCodeLine{00138\ \ \ \ \ \ \ ;}
+\DoxyCodeLine{00139\ \textcolor{preprocessor}{\ \ \ \ \#endif}}
+\DoxyCodeLine{00143\ \ \ \ \ \textcolor{keyword}{constexpr}\ \mbox{\hyperlink{classstd_1_1math_1_1fs__tensor}{fs\_tensor}}\&\ \mbox{\hyperlink{classstd_1_1math_1_1fs__tensor_aea3334196188553dab5a08935fe401e6}{operator\ =\ }}(\ \mbox{\hyperlink{classstd_1_1math_1_1fs__tensor}{fs\_tensor}}\&\&\ )\ \ \ \ \ \ =\ \textcolor{keywordflow}{default};}
+\DoxyCodeLine{00147\ \ \ \ \ \textcolor{keyword}{constexpr}\ \mbox{\hyperlink{classstd_1_1math_1_1fs__tensor}{fs\_tensor}}\&\ \mbox{\hyperlink{classstd_1_1math_1_1fs__tensor_aea3334196188553dab5a08935fe401e6}{operator\ =\ }}(\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classstd_1_1math_1_1fs__tensor}{fs\_tensor}}\&\ )\ =\ \textcolor{keywordflow}{default};}
+\DoxyCodeLine{00148\ \ \ \ \ \textcolor{comment}{//\ TODO:\ Define\ noexcept\ specification.}}
+\DoxyCodeLine{00153\ \textcolor{comment}{}\textcolor{preprocessor}{\ \ \ \ \#ifdef\ LINALG\_ENABLE\_CONCEPTS}}
+\DoxyCodeLine{00154\ \ \ \ \ \textcolor{keyword}{template}\ <\ concepts::tensor\_may\_be\_constructible<\ fs\_tensor\ >\ T2\ >}
+\DoxyCodeLine{00155\ \textcolor{preprocessor}{\ \ \ \ \#else}}
+\DoxyCodeLine{00156\ \ \ \ \ \textcolor{keyword}{template}\ <\ \textcolor{keyword}{class}\ T2,\ \textcolor{keyword}{typename}\ =\ ::std::enable\_if\_t<\ concepts::tensor\_may\_be\_constructible<\ T2,\ fs\_tensor\ >\ >\ >}
+\DoxyCodeLine{00157\ \textcolor{preprocessor}{\ \ \ \ \#endif}}
+\DoxyCodeLine{00158\ \ \ \ \ \textcolor{keyword}{constexpr}\ \mbox{\hyperlink{classstd_1_1math_1_1fs__tensor}{fs\_tensor}}\&\ \mbox{\hyperlink{classstd_1_1math_1_1fs__tensor_aea3334196188553dab5a08935fe401e6}{operator\ =\ }}(\ \textcolor{keyword}{const}\ T2\&\ rhs\ );}
+\DoxyCodeLine{00159\ \ \ \ \ \textcolor{comment}{//\ TODO:\ Define\ noexcept\ specification.}}
+\DoxyCodeLine{00164\ \textcolor{comment}{}\textcolor{preprocessor}{\ \ \ \ \#ifdef\ LINALG\_ENABLE\_CONCEPTS}}
+\DoxyCodeLine{00165\ \ \ \ \ \textcolor{keyword}{template}\ <\ concepts::view\_may\_be\_constructible\_to\_tensor<\ fs\_tensor\ >\ MDS\ >}
+\DoxyCodeLine{00166\ \textcolor{preprocessor}{\ \ \ \ \#else}}
+\DoxyCodeLine{00167\ \ \ \ \ \textcolor{keyword}{template}\ <\ \textcolor{keyword}{class}\ MDS,\ \textcolor{keyword}{typename}\ =\ ::std::enable\_if\_t<\ concepts::view\_may\_be\_constructible\_to\_tensor<MDS,fs\_tensor>\ >,\ \textcolor{keyword}{typename}\ =\ ::std::enable\_if\_t<true>\ >}
+\DoxyCodeLine{00168\ \textcolor{preprocessor}{\ \ \ \ \#endif}}
+\DoxyCodeLine{00169\ \ \ \ \ \textcolor{keyword}{constexpr}\ \mbox{\hyperlink{classstd_1_1math_1_1fs__tensor}{fs\_tensor}}\&\ \mbox{\hyperlink{classstd_1_1math_1_1fs__tensor_aea3334196188553dab5a08935fe401e6}{operator\ =\ }}(\ \textcolor{keyword}{const}\ MDS\&\ view\ );}
+\DoxyCodeLine{00170\ }
+\DoxyCodeLine{00171\ \ \ \ \ \textcolor{comment}{//-\/\ Size\ /\ Capacity}}
+\DoxyCodeLine{00172\ }
+\DoxyCodeLine{00175\ \ \ \ \ [[nodiscard]]\ \textcolor{keyword}{constexpr}\ \mbox{\hyperlink{classstd_1_1math_1_1fs__tensor_ab7081bbf3090395174207de84318521c}{extents\_type}}\ \mbox{\hyperlink{classstd_1_1math_1_1fs__tensor_a49e752975d2624f769f94fe0162e5bc1}{size}}()\ const\ noexcept;}
+\DoxyCodeLine{00178\ \ \ \ \ [[nodiscard]]\ constexpr\ \mbox{\hyperlink{classstd_1_1math_1_1fs__tensor_ab7081bbf3090395174207de84318521c}{extents\_type}}\ \mbox{\hyperlink{classstd_1_1math_1_1fs__tensor_a982dd2aa10f2235abbb3722a20322f7a}{capacity}}()\ const\ noexcept;}
+\DoxyCodeLine{00179\ }
+\DoxyCodeLine{00180\ \ \ \ \ \textcolor{comment}{//-\/\ Data\ access}}
+\DoxyCodeLine{00181\ \ \ \ \ }
+\DoxyCodeLine{00184\ \ \ \ \ [[nodiscard]]\ constexpr\ \mbox{\hyperlink{classstd_1_1math_1_1fs__tensor_af59d3880e164152fd061acf97c1ec2cb}{span\_type}}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classstd_1_1math_1_1fs__tensor_a29f27c679df3db9ceb72bee92a652b88}{span}}()\ const\ noexcept;}
+\DoxyCodeLine{00187\ \ \ \ \ [[nodiscard]]\ constexpr\ \mbox{\hyperlink{classstd_1_1math_1_1fs__tensor_ad65bcae09b9e0ca7ab11d5f253188fad}{underlying\_span\_type}}\ \ \ \ \ \ \ \mbox{\hyperlink{classstd_1_1math_1_1fs__tensor_aec0aedbb034ef0d150cdfbac67dc64d3}{underlying\_span}}()\ noexcept;}
+\DoxyCodeLine{00190\ \ \ \ \ [[nodiscard]]\ constexpr\ \mbox{\hyperlink{classstd_1_1math_1_1fs__tensor_a66bbf3d9637400bd5a6cdf0a86626364}{const\_underlying\_span\_type}}\ \mbox{\hyperlink{classstd_1_1math_1_1fs__tensor_aec0aedbb034ef0d150cdfbac67dc64d3}{underlying\_span}}()\ const\ noexcept;}
+\DoxyCodeLine{00191\ }
+\DoxyCodeLine{00192\ \ \ \ \ \textcolor{comment}{//-\/\ Const\ views}}
+\DoxyCodeLine{00193\ }
+\DoxyCodeLine{00197\ \ \ \ \ \textcolor{preprocessor}{\#if\ LINALG\_USE\_BRACKET\_OPERATOR}}
+\DoxyCodeLine{00198\ \ \ \ \ [[nodiscard]]\ \textcolor{keyword}{constexpr}\ \mbox{\hyperlink{classstd_1_1math_1_1fs__tensor_ad5e47b3c811336fa55b7f07159d8e2bc}{value\_type}}\ operator[](\ \textcolor{keyword}{decltype}(Ds)\ ...\ indices\ )\ \textcolor{keyword}{const}\ \textcolor{keyword}{noexcept};}
+\DoxyCodeLine{00199\ \textcolor{preprocessor}{\ \ \ \ \#endif}}
+\DoxyCodeLine{00200\ \textcolor{preprocessor}{\ \ \ \ \#if\ LINALG\_USE\_PAREN\_OPERATOR}}
+\DoxyCodeLine{00201\ \ \ \ \ [[nodiscard]]\ \textcolor{keyword}{constexpr}\ \mbox{\hyperlink{classstd_1_1math_1_1fs__tensor_ad5e47b3c811336fa55b7f07159d8e2bc}{value\_type}}\ operator()(\ \textcolor{keyword}{decltype}(Ds)\ ...\ indices\ )\ \textcolor{keyword}{const}\ \textcolor{keyword}{noexcept};}
+\DoxyCodeLine{00202\ \textcolor{preprocessor}{\ \ \ \ \#endif}}
+\DoxyCodeLine{00207\ \ \ \ \ \textcolor{keyword}{template}\ <\ \textcolor{keyword}{class\ }...\ SliceArgs\ >}
+\DoxyCodeLine{00208\ \ \ \ \ [[nodiscard]]\ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{auto}\ \mbox{\hyperlink{classstd_1_1math_1_1fs__tensor_a5b46194792ecccd2e6ba91c5db65a834}{subvector}}(\ SliceArgs\ ...\ args\ )\ \textcolor{keyword}{const}}
+\DoxyCodeLine{00209\ \textcolor{preprocessor}{\ \ \ \ \#ifdef\ LINALG\_ENABLE\_CONCEPTS}}
+\DoxyCodeLine{00210\ \ \ \ \ \ \ \textcolor{keyword}{requires}\ (\ \textcolor{keyword}{decltype}(\ ::std::experimental::submdspan(\ this-\/>\mbox{\hyperlink{classstd_1_1math_1_1fs__tensor_aec0aedbb034ef0d150cdfbac67dc64d3}{underlying\_span}}(),\ args\ ...\ )\ )::rank()\ ==\ 1\ );}
+\DoxyCodeLine{00211\ \textcolor{preprocessor}{\ \ \ \ \#else}}
+\DoxyCodeLine{00212\ \ \ \ \ \ \ ;}
+\DoxyCodeLine{00213\ \textcolor{preprocessor}{\ \ \ \ \#endif}}
+\DoxyCodeLine{00218\ \ \ \ \ \textcolor{keyword}{template}\ <\ \textcolor{keyword}{class\ }...\ SliceArgs\ >}
+\DoxyCodeLine{00219\ \ \ \ \ [[nodiscard]]\ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{auto}\ \mbox{\hyperlink{classstd_1_1math_1_1fs__tensor_aeb727e37e5321638e49de857f028869a}{submatrix}}(\ SliceArgs\ ...\ args\ )\ \textcolor{keyword}{const}}
+\DoxyCodeLine{00220\ \textcolor{preprocessor}{\ \ \ \ \#ifdef\ LINALG\_ENABLE\_CONCEPTS}}
+\DoxyCodeLine{00221\ \ \ \ \ \ \ \textcolor{keyword}{requires}\ (\ \textcolor{keyword}{decltype}(\ ::std::experimental::submdspan(\ this-\/>\mbox{\hyperlink{classstd_1_1math_1_1fs__tensor_aec0aedbb034ef0d150cdfbac67dc64d3}{underlying\_span}}(),\ args\ ...\ )\ )::rank()\ ==\ 2\ );}
+\DoxyCodeLine{00222\ \textcolor{preprocessor}{\ \ \ \ \#else}}
+\DoxyCodeLine{00223\ \ \ \ \ \ \ ;}
+\DoxyCodeLine{00224\ \textcolor{preprocessor}{\ \ \ \ \#endif}}
+\DoxyCodeLine{00229\ \ \ \ \ \textcolor{keyword}{template}\ <\ \textcolor{keyword}{class\ }...\ SliceArgs\ >}
+\DoxyCodeLine{00230\ \ \ \ \ [[nodiscard]]\ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{auto}\ \mbox{\hyperlink{classstd_1_1math_1_1fs__tensor_a4c1363153f15e3992e331f131a465ef5}{subtensor}}(\ SliceArgs\ ...\ args\ )\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00231\ }
+\DoxyCodeLine{00232\ \ \ \ \ \textcolor{comment}{//-\/\ Mutable\ views}}
 \DoxyCodeLine{00233\ }
-\DoxyCodeLine{00234\ \ \ private:}
-\DoxyCodeLine{00235\ \ \ \ \ \textcolor{comment}{//-\/\ Data}}
-\DoxyCodeLine{00236\ }
-\DoxyCodeLine{00238\ \ \ \ \ static\ const\ \mbox{\hyperlink{classstd_1_1math_1_1fs__tensor_a75a492a9a1079e6eeb5a34093b98b390}{size\_type}}\ nelems\_\ =\ detail::product(\ Ds\ ...\ );}
-\DoxyCodeLine{00240\ \ \ \ \ array<\mbox{\hyperlink{classstd_1_1math_1_1fs__tensor_a877b9014a0d86a6945084d5f18b5f065}{element\_type}},nelems\_>\ elems\_;}
-\DoxyCodeLine{00241\ \};}
-\DoxyCodeLine{00242\ }
-\DoxyCodeLine{00243\ \textcolor{comment}{//-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
-\DoxyCodeLine{00244\ \textcolor{comment}{//\ Implementation\ of\ fs\_tensor<T,R,C,L,A>}}
-\DoxyCodeLine{00245\ \textcolor{comment}{//-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
-\DoxyCodeLine{00246\ }
-\DoxyCodeLine{00247\ \textcolor{comment}{//-\/\ Destructor\ /\ Constructors\ /\ Assignments}}
-\DoxyCodeLine{00248\ }
-\DoxyCodeLine{00249\ template\ <\ class\ T,\ class\ L,\ class\ A,\ \textcolor{keywordtype}{size\_t}\ ...\ Ds\ >\ requires\ (\ (\ Ds\ >=\ 0\ )\ \&\&\ ...\ )}
-\DoxyCodeLine{00250\ constexpr\ \mbox{\hyperlink{classstd_1_1math_1_1fs__tensor}{fs\_tensor}}<T,L,A,Ds...>::\string~\mbox{\hyperlink{classstd_1_1math_1_1fs__tensor}{fs\_tensor}}()}
-\DoxyCodeLine{00251\ \ \ noexcept(\ is\_nothrow\_destructible\_v<\mbox{\hyperlink{classstd_1_1math_1_1fs__tensor_a877b9014a0d86a6945084d5f18b5f065}{element\_type}}>\ )}
-\DoxyCodeLine{00252\ \{}
-\DoxyCodeLine{00253\ \}}
-\DoxyCodeLine{00254\ }
-\DoxyCodeLine{00255\ \textcolor{keyword}{template}\ <\ \textcolor{keyword}{class\ }T,\ \textcolor{keyword}{class\ }L,\ \textcolor{keyword}{class\ }A,\ \textcolor{keywordtype}{size\_t}\ ...\ Ds\ >\ \textcolor{keyword}{requires}\ (\ (\ Ds\ >=\ 0\ )\ \&\&\ ...\ )}
-\DoxyCodeLine{00256\ \textcolor{keyword}{constexpr}\ \mbox{\hyperlink{classstd_1_1math_1_1fs__tensor_af594ddfc17bc3fbc63d30e7097a3b044}{fs\_tensor<T,L,A,Ds...>::fs\_tensor}}()}
-\DoxyCodeLine{00257\ \ \ noexcept(\ is\_nothrow\_default\_constructible\_v<typename\ \mbox{\hyperlink{classstd_1_1math_1_1fs__tensor}{fs\_tensor}}<T,L,A,Ds...>::\mbox{\hyperlink{classstd_1_1math_1_1fs__tensor_a877b9014a0d86a6945084d5f18b5f065}{element\_type}}>\ )}
-\DoxyCodeLine{00258\ \{}
-\DoxyCodeLine{00259\ \}}
-\DoxyCodeLine{00260\ }
-\DoxyCodeLine{00261\ \textcolor{keyword}{template}\ <\ \textcolor{keyword}{class\ }T,\ \textcolor{keyword}{class\ }L,\ \textcolor{keyword}{class\ }A,\ \textcolor{keywordtype}{size\_t}\ ...\ Ds\ >\ \textcolor{keyword}{requires}\ (\ (\ Ds\ >=\ 0\ )\ \&\&\ ...\ )}
-\DoxyCodeLine{00262\ \textcolor{keyword}{constexpr}\ \mbox{\hyperlink{classstd_1_1math_1_1fs__tensor_af594ddfc17bc3fbc63d30e7097a3b044}{fs\_tensor<T,L,A,Ds...>::fs\_tensor}}(\ \mbox{\hyperlink{classstd_1_1math_1_1fs__tensor}{fs\_tensor}}\&\&\ rhs\ )}
-\DoxyCodeLine{00263\ \ \ \textcolor{keyword}{noexcept}(\ is\_nothrow\_move\_constructible\_v<element\_type>\ )\ :}
-\DoxyCodeLine{00264\ \ \ elems\_(\ move(\ rhs.elems\_\ )\ )}
-\DoxyCodeLine{00265\ \{}
-\DoxyCodeLine{00266\ \}}
-\DoxyCodeLine{00267\ }
-\DoxyCodeLine{00268\ \textcolor{keyword}{template}\ <\ \textcolor{keyword}{class\ }T,\ \textcolor{keyword}{class\ }L,\ \textcolor{keyword}{class\ }A,\ \textcolor{keywordtype}{size\_t}\ ...\ Ds\ >\ \textcolor{keyword}{requires}\ (\ (\ Ds\ >=\ 0\ )\ \&\&\ ...\ )}
-\DoxyCodeLine{00269\ \textcolor{keyword}{constexpr}\ \mbox{\hyperlink{classstd_1_1math_1_1fs__tensor_af594ddfc17bc3fbc63d30e7097a3b044}{fs\_tensor<T,L,A,Ds...>::fs\_tensor}}(\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classstd_1_1math_1_1fs__tensor}{fs\_tensor}}\&\ rhs\ )}
-\DoxyCodeLine{00270\ \ \ \textcolor{keyword}{noexcept}(\ is\_nothrow\_copy\_constructible\_v<element\_type>\ )\ :}
-\DoxyCodeLine{00271\ \ \ elems\_(\ rhs.elems\_\ )}
-\DoxyCodeLine{00272\ \{}
-\DoxyCodeLine{00273\ \}}
+\DoxyCodeLine{00237\ \textcolor{preprocessor}{\ \ \ \ \#if\ LINALG\_USE\_BRACKET\_OPERATOR}}
+\DoxyCodeLine{00238\ \ \ \ \ [[nodiscard]]\ \textcolor{keyword}{constexpr}\ \mbox{\hyperlink{classstd_1_1math_1_1fs__tensor_a69fb9ddb5f5530bf0dd4d7c262f270d3}{reference}}\ operator[](\ \textcolor{keyword}{decltype}(Ds)\ ...\ indices\ )\ \textcolor{keyword}{noexcept};}
+\DoxyCodeLine{00239\ \textcolor{preprocessor}{\ \ \ \ \#endif}}
+\DoxyCodeLine{00240\ \textcolor{preprocessor}{\ \ \ \ \#if\ LINALG\_USE\_PAREN\_OPERATOR}}
+\DoxyCodeLine{00241\ \ \ \ \ [[nodiscard]]\ \textcolor{keyword}{constexpr}\ \mbox{\hyperlink{classstd_1_1math_1_1fs__tensor_a69fb9ddb5f5530bf0dd4d7c262f270d3}{reference}}\ operator()(\ \textcolor{keyword}{decltype}(Ds)\ ...\ indices\ )\ \textcolor{keyword}{noexcept};}
+\DoxyCodeLine{00242\ \textcolor{preprocessor}{\ \ \ \ \#endif}}
+\DoxyCodeLine{00247\ \ \ \ \ \textcolor{keyword}{template}\ <\ \textcolor{keyword}{class\ }...\ SliceArgs\ >}
+\DoxyCodeLine{00248\ \ \ \ \ [[nodiscard]]\ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{auto}\ \mbox{\hyperlink{classstd_1_1math_1_1fs__tensor_a4a7e068a586cbae90fbbdd605d9c2858}{subvector}}(\ SliceArgs\ ...\ args\ )}
+\DoxyCodeLine{00249\ \ \ \ \ \textcolor{preprocessor}{\#ifdef\ LINALG\_ENABLE\_CONCEPTS}}
+\DoxyCodeLine{00250\ \ \ \ \ \ \ \textcolor{keyword}{requires}\ (\ \textcolor{keyword}{decltype}(\ ::std::experimental::submdspan(\ this-\/>\mbox{\hyperlink{classstd_1_1math_1_1fs__tensor_aec0aedbb034ef0d150cdfbac67dc64d3}{underlying\_span}}(),\ args\ ...\ )\ )::rank()\ ==\ 1\ );}
+\DoxyCodeLine{00251\ \textcolor{preprocessor}{\ \ \ \ \#else}}
+\DoxyCodeLine{00252\ \ \ \ \ \ \ ;}
+\DoxyCodeLine{00253\ \textcolor{preprocessor}{\ \ \ \ \#endif}}
+\DoxyCodeLine{00258\ \ \ \ \ \textcolor{keyword}{template}\ <\ \textcolor{keyword}{class\ }...\ SliceArgs\ >}
+\DoxyCodeLine{00259\ \ \ \ \ [[nodiscard]]\ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{auto}\ \mbox{\hyperlink{classstd_1_1math_1_1fs__tensor_a073524bea013b16d252d4c93441d677d}{submatrix}}(\ SliceArgs\ ...\ args\ )}
+\DoxyCodeLine{00260\ \ \ \ \ \textcolor{preprocessor}{\#ifdef\ LINALG\_ENABLE\_CONCEPTS}}
+\DoxyCodeLine{00261\ \ \ \ \ \ \ \textcolor{keyword}{requires}\ (\ \textcolor{keyword}{decltype}(\ ::std::experimental::submdspan(\ this-\/>\mbox{\hyperlink{classstd_1_1math_1_1fs__tensor_aec0aedbb034ef0d150cdfbac67dc64d3}{underlying\_span}}(),\ args\ ...\ )\ )::rank()\ ==\ 2\ );}
+\DoxyCodeLine{00262\ \textcolor{preprocessor}{\ \ \ \ \#else}}
+\DoxyCodeLine{00263\ \ \ \ \ \ \ ;}
+\DoxyCodeLine{00264\ \textcolor{preprocessor}{\ \ \ \ \#endif}}
+\DoxyCodeLine{00269\ \ \ \ \ \textcolor{keyword}{template}\ <\ \textcolor{keyword}{class\ }...\ SliceArgs\ >}
+\DoxyCodeLine{00270\ \ \ \ \ [[nodiscard]]\ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{auto}\ \mbox{\hyperlink{classstd_1_1math_1_1fs__tensor_a23d488f022bf4128bc71cfded914636c}{subtensor}}(\ SliceArgs\ ...\ args\ );}
+\DoxyCodeLine{00271\ }
+\DoxyCodeLine{00272\ \ \ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00273\ \ \ \ \ \textcolor{comment}{//-\/\ Data}}
 \DoxyCodeLine{00274\ }
-\DoxyCodeLine{00275\ \textcolor{keyword}{template}\ <\ \textcolor{keyword}{class\ }T,\ \textcolor{keyword}{class\ }L,\ \textcolor{keyword}{class\ }A,\ \textcolor{keywordtype}{size\_t}\ ...\ Ds\ >\ \textcolor{keyword}{requires}\ (\ (\ Ds\ >=\ 0\ )\ \&\&\ ...\ )}
-\DoxyCodeLine{00276\ \textcolor{keyword}{template}\ <\ \mbox{\hyperlink{conceptstd_1_1math_1_1concepts_1_1tensor__may__be__constructible}{concepts::tensor\_may\_be\_constructible}}<\ \mbox{\hyperlink{classstd_1_1math_1_1fs__tensor}{fs\_tensor}}<T,L,A,Ds...>\ >\ T2\ >}
-\DoxyCodeLine{00277\ \textcolor{keyword}{constexpr}\ \mbox{\hyperlink{classstd_1_1math_1_1fs__tensor_af594ddfc17bc3fbc63d30e7097a3b044}{fs\_tensor<T,L,A,Ds...>::fs\_tensor}}(\ \textcolor{keyword}{const}\ T2\&\ rhs\ )}
-\DoxyCodeLine{00278\ \{}
-\DoxyCodeLine{00279\ \ \ \mbox{\hyperlink{classstd_1_1math_1_1fs__tensor_ac7cd4d69a4e2e73ae70c1b2d9e7b51e2}{underlying\_span\_type}}\ this\_view\ \{\ this-\/>\mbox{\hyperlink{classstd_1_1math_1_1fs__tensor_ab5002b9ec652efd9051fa2c97e46fa01}{underlying\_span}}()\ \};}
-\DoxyCodeLine{00280\ \ \ \textcolor{keyword}{static\_cast<}\textcolor{keywordtype}{void}\textcolor{keyword}{>}(\ \mbox{\hyperlink{namespacestd_1_1math_1_1detail_a30f32b186e5fdf0fdde244dae8522cc0}{detail::assign\_view}}(\ this\_view,\ rhs.span()\ )\ );}
-\DoxyCodeLine{00281\ \}}
-\DoxyCodeLine{00282\ }
-\DoxyCodeLine{00283\ \textcolor{keyword}{template}\ <\ \textcolor{keyword}{class\ }T,\ \textcolor{keyword}{class\ }L,\ \textcolor{keyword}{class\ }A,\ \textcolor{keywordtype}{size\_t}\ ...\ Ds\ >\ \textcolor{keyword}{requires}\ (\ (\ Ds\ >=\ 0\ )\ \&\&\ ...\ )}
-\DoxyCodeLine{00284\ \textcolor{keyword}{template}\ <\ \mbox{\hyperlink{conceptstd_1_1math_1_1concepts_1_1view__may__be__constructible__to__tensor}{concepts::view\_may\_be\_constructible\_to\_tensor}}<\ \mbox{\hyperlink{classstd_1_1math_1_1fs__tensor}{fs\_tensor}}<T,L,A,Ds...>\ >\ MDS\ >}
-\DoxyCodeLine{00285\ \textcolor{keyword}{constexpr}\ \mbox{\hyperlink{classstd_1_1math_1_1fs__tensor_af594ddfc17bc3fbc63d30e7097a3b044}{fs\_tensor<T,L,A,Ds...>::fs\_tensor}}(\ \textcolor{keyword}{const}\ MDS\&\ view\ )}
-\DoxyCodeLine{00286\ \ \ \textcolor{keyword}{noexcept}(\ \mbox{\hyperlink{conceptstd_1_1math_1_1concepts_1_1view__is__nothrow__constructible__to__tensor}{concepts::view\_is\_nothrow\_constructible\_to\_tensor}}<\ MDS,\ \mbox{\hyperlink{classstd_1_1math_1_1fs__tensor}{fs\_tensor}}<T,L,A,Ds...>\ >\ )}
-\DoxyCodeLine{00287\ \{}
-\DoxyCodeLine{00288\ \ \ \mbox{\hyperlink{classstd_1_1math_1_1fs__tensor_ac7cd4d69a4e2e73ae70c1b2d9e7b51e2}{underlying\_span\_type}}\ this\_view\ \{\ this-\/>\mbox{\hyperlink{classstd_1_1math_1_1fs__tensor_ab5002b9ec652efd9051fa2c97e46fa01}{underlying\_span}}()\ \};}
-\DoxyCodeLine{00289\ \ \ \textcolor{keyword}{static\_cast<}\textcolor{keywordtype}{void}\textcolor{keyword}{>}(\ \mbox{\hyperlink{namespacestd_1_1math_1_1detail_a30f32b186e5fdf0fdde244dae8522cc0}{detail::assign\_view}}(\ this\_view,\ view\ )\ );}
-\DoxyCodeLine{00290\ \}}
-\DoxyCodeLine{00291\ }
-\DoxyCodeLine{00292\ \textcolor{keyword}{template}\ <\ \textcolor{keyword}{class\ }T,\ \textcolor{keyword}{class\ }L,\ \textcolor{keyword}{class\ }A,\ \textcolor{keywordtype}{size\_t}\ ...\ Ds\ >\ \textcolor{keyword}{requires}\ (\ (\ Ds\ >=\ 0\ )\ \&\&\ ...\ )}
-\DoxyCodeLine{00293\ \textcolor{keyword}{template}\ <\ \textcolor{keyword}{class}\ Lambda\ >}
-\DoxyCodeLine{00294\ \textcolor{keyword}{constexpr}\ \mbox{\hyperlink{classstd_1_1math_1_1fs__tensor_af594ddfc17bc3fbc63d30e7097a3b044}{fs\_tensor<T,L,A,Ds...>::fs\_tensor}}(\ Lambda\&\&\ lambda\ )\ \textcolor{keyword}{noexcept}(\ \textcolor{keyword}{noexcept}(\ declval<Lambda\&\&>()(\ Ds\ ...\ )\ )\ )}
-\DoxyCodeLine{00295\ \ \ \textcolor{keyword}{requires}\ \textcolor{keyword}{requires}\ \{\ \{\ declval<Lambda\&\&>().operator()(\ Ds\ ...\ )\ \}\ -\/>\ convertible\_to<\textcolor{keyword}{typename}\ \mbox{\hyperlink{classstd_1_1math_1_1fs__tensor}{fs\_tensor}}<T,L,A,Ds...>\mbox{\hyperlink{classstd_1_1math_1_1fs__tensor_a877b9014a0d86a6945084d5f18b5f065}{::element\_type}}>;\ \}}
-\DoxyCodeLine{00296\ \{}
-\DoxyCodeLine{00297\ \ \ \textcolor{comment}{//\ If\ expression\ is\ no\ except,\ then\ no\ need\ to\ capture\ last\ exception}}
-\DoxyCodeLine{00298\ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{bool}\ lambda\_is\_noexcept\ =\ is\_nothrow\_convertible\_v<\ decltype(\ declval<Lambda\&\&>()(\ Ds\ ...\ )\ ),\ \mbox{\hyperlink{classstd_1_1math_1_1fs__tensor_a877b9014a0d86a6945084d5f18b5f065}{element\_type}}\ >;}
-\DoxyCodeLine{00299\ \ \ \textcolor{keywordflow}{if}\ \textcolor{keyword}{constexpr}\ (\ lambda\_is\_noexcept\ )}
-\DoxyCodeLine{00300\ \ \ \{}
-\DoxyCodeLine{00301\ \ \ \ \ \textcolor{comment}{//\ Construct\ all\ elements\ from\ lambda\ output}}
-\DoxyCodeLine{00302\ \ \ \ \ \textcolor{keyword}{auto}\ ctor\ =\ [\textcolor{keyword}{this},\&lambda]<\ \textcolor{keyword}{class\ }...\ SizeType\ >(\ SizeType\ ...\ indices\ )\ constexpr\ noexcept}
-\DoxyCodeLine{00303\ \ \ \ \ \{}
-\DoxyCodeLine{00304\ \ \ \ \ \ \ this-\/>underlying\_span()[\ indices\ ...\ ]\ =\ lambda(\ indices\ ...\ );}
-\DoxyCodeLine{00305\ \ \ \ \ \};}
-\DoxyCodeLine{00306\ \ \ \ \ \mbox{\hyperlink{namespacestd_1_1math_1_1detail_a0632c805386c46488956a9bdc72c749b}{detail::apply\_all}}(\ this-\/>\mbox{\hyperlink{classstd_1_1math_1_1fs__tensor_ab5002b9ec652efd9051fa2c97e46fa01}{underlying\_span}}(),\ ctor,\ execution::unseq\ );}
-\DoxyCodeLine{00307\ \ \ \}}
-\DoxyCodeLine{00308\ \ \ \textcolor{keywordflow}{else}}
-\DoxyCodeLine{00309\ \ \ \{}
-\DoxyCodeLine{00310\ \ \ \ \ \textcolor{comment}{//\ Cache\ the\ last\ exception\ to\ be\ thrown}}
-\DoxyCodeLine{00311\ \ \ \ \ exception\_ptr\ eptr;}
-\DoxyCodeLine{00312\ \ \ \ \ \textcolor{comment}{//\ Construct\ all\ elements\ from\ lambda\ output}}
-\DoxyCodeLine{00313\ \ \ \ \ \textcolor{keyword}{auto}\ ctor\ =\ [\textcolor{keyword}{this},\&lambda,\&eptr]<\ \textcolor{keyword}{class\ }...\ SizeType\ >(\ SizeType\ ...\ indices\ )\ constexpr\ noexcept}
-\DoxyCodeLine{00314\ \ \ \ \ \{}
-\DoxyCodeLine{00315\ \ \ \ \ \ \ \textcolor{keywordflow}{try}}
-\DoxyCodeLine{00316\ \ \ \ \ \ \ \{}
-\DoxyCodeLine{00317\ \ \ \ \ \ \ \ \ this-\/>underlying\_span()(indices...)\ =\ lambda(indices...);}
-\DoxyCodeLine{00318\ \ \ \ \ \ \ \}}
-\DoxyCodeLine{00319\ \ \ \ \ \ \ \textcolor{keywordflow}{catch}\ (\ ...\ )}
-\DoxyCodeLine{00320\ \ \ \ \ \ \ \{}
-\DoxyCodeLine{00321\ \ \ \ \ \ \ \ \ eptr\ =\ current\_exception();}
-\DoxyCodeLine{00322\ \ \ \ \ \ \ \}}
-\DoxyCodeLine{00323\ \ \ \ \ \};}
-\DoxyCodeLine{00324\ \ \ \ \ \textcolor{comment}{//\ Apply\ lambda}}
-\DoxyCodeLine{00325\ \ \ \ \ \mbox{\hyperlink{namespacestd_1_1math_1_1detail_a0632c805386c46488956a9bdc72c749b}{detail::apply\_all}}(\ this-\/>\mbox{\hyperlink{classstd_1_1math_1_1fs__tensor_ab5002b9ec652efd9051fa2c97e46fa01}{underlying\_span}}(),\ ctor,\ execution::unseq\ );}
-\DoxyCodeLine{00326\ \ \ \ \ \textcolor{comment}{//\ Rethrow\ last\ exception\ caught}}
-\DoxyCodeLine{00327\ \ \ \ \ \textcolor{keywordflow}{if}\ (\ eptr\ )\ [[unlikely]]}
-\DoxyCodeLine{00328\ \ \ \ \ \{}
-\DoxyCodeLine{00329\ \ \ \ \ \ \ rethrow\_exception(\ eptr\ );}
-\DoxyCodeLine{00330\ \ \ \ \ \}}
-\DoxyCodeLine{00331\ \ \ \}}
-\DoxyCodeLine{00332\ \}}
-\DoxyCodeLine{00333\ }
-\DoxyCodeLine{00334\ \textcolor{keyword}{template}\ <\ \textcolor{keyword}{class\ }T,\ \textcolor{keyword}{class\ }L,\ \textcolor{keyword}{class\ }A,\ \textcolor{keywordtype}{size\_t}\ ...\ Ds\ >\ \textcolor{keyword}{requires}\ (\ (\ Ds\ >=\ 0\ )\ \&\&\ ...\ )}
-\DoxyCodeLine{00335\ \textcolor{keyword}{template}\ <\ concepts::tensor\_may\_be\_constructible<\ \mbox{\hyperlink{classstd_1_1math_1_1fs__tensor_af594ddfc17bc3fbc63d30e7097a3b044}{fs\_tensor}}<T,L,A,Ds...>\ >\ T2\ >}
-\DoxyCodeLine{00336\ \textcolor{keyword}{constexpr}\ \mbox{\hyperlink{classstd_1_1math_1_1fs__tensor}{fs\_tensor}}<T,L,A,Ds...>\&\ \mbox{\hyperlink{classstd_1_1math_1_1fs__tensor_aea3334196188553dab5a08935fe401e6}{fs\_tensor<T,L,A,Ds...>::operator\ =\ }}(\ \textcolor{keyword}{const}\ T2\&\ rhs\ )}
-\DoxyCodeLine{00337\ \{}
-\DoxyCodeLine{00338\ \ \ \mbox{\hyperlink{classstd_1_1math_1_1fs__tensor_ac7cd4d69a4e2e73ae70c1b2d9e7b51e2}{underlying\_span\_type}}\ this\_view\ \{\ this-\/>\mbox{\hyperlink{classstd_1_1math_1_1fs__tensor_ab5002b9ec652efd9051fa2c97e46fa01}{underlying\_span}}()\ \};}
-\DoxyCodeLine{00339\ \ \ \textcolor{keyword}{static\_cast<}\textcolor{keywordtype}{void}\textcolor{keyword}{>}(\ \mbox{\hyperlink{namespacestd_1_1math_1_1detail_a30f32b186e5fdf0fdde244dae8522cc0}{detail::assign\_view}}(\ this\_view,\ rhs.span()\ )\ );}
-\DoxyCodeLine{00340\ \ \ \textcolor{keywordflow}{return}\ *\textcolor{keyword}{this};}
-\DoxyCodeLine{00341\ \}}
-\DoxyCodeLine{00342\ }
-\DoxyCodeLine{00343\ \textcolor{keyword}{template}\ <\ \textcolor{keyword}{class\ }T,\ \textcolor{keyword}{class\ }L,\ \textcolor{keyword}{class\ }A,\ \textcolor{keywordtype}{size\_t}\ ...\ Ds\ >\ \textcolor{keyword}{requires}\ (\ (\ Ds\ >=\ 0\ )\ \&\&\ ...\ )}
-\DoxyCodeLine{00344\ \textcolor{keyword}{template}\ <\ \mbox{\hyperlink{conceptstd_1_1math_1_1concepts_1_1view__may__be__constructible__to__tensor}{concepts::view\_may\_be\_constructible\_to\_tensor}}<\ \mbox{\hyperlink{classstd_1_1math_1_1fs__tensor}{fs\_tensor}}<T,L,A,Ds...>\ >\ MDS\ >}
-\DoxyCodeLine{00345\ \textcolor{keyword}{constexpr}\ \mbox{\hyperlink{classstd_1_1math_1_1fs__tensor}{fs\_tensor}}<T,L,A,Ds...>\&\ \mbox{\hyperlink{classstd_1_1math_1_1fs__tensor_aea3334196188553dab5a08935fe401e6}{fs\_tensor<T,L,A,Ds...>::operator\ =\ }}(\ \textcolor{keyword}{const}\ MDS\&\ view\ )}
-\DoxyCodeLine{00346\ \{}
-\DoxyCodeLine{00347\ \ \ \mbox{\hyperlink{classstd_1_1math_1_1fs__tensor_ac7cd4d69a4e2e73ae70c1b2d9e7b51e2}{underlying\_span\_type}}\ this\_view\ =\ \{\ this-\/>\mbox{\hyperlink{classstd_1_1math_1_1fs__tensor_ab5002b9ec652efd9051fa2c97e46fa01}{underlying\_span}}()\ \};}
-\DoxyCodeLine{00348\ \ \ \textcolor{keyword}{static\_cast<}\textcolor{keywordtype}{void}\textcolor{keyword}{>}(\ \mbox{\hyperlink{namespacestd_1_1math_1_1detail_a30f32b186e5fdf0fdde244dae8522cc0}{detail::assign\_view}}(\ this\_view,\ view\ )\ );}
-\DoxyCodeLine{00349\ \ \ \textcolor{keywordflow}{return}\ *\textcolor{keyword}{this};}
-\DoxyCodeLine{00350\ \}}
-\DoxyCodeLine{00351\ }
-\DoxyCodeLine{00352\ \textcolor{comment}{//-\/\ Size\ /\ Capacity}}
-\DoxyCodeLine{00353\ }
-\DoxyCodeLine{00354\ \textcolor{keyword}{template}\ <\ \textcolor{keyword}{class\ }T,\ \textcolor{keyword}{class\ }L,\ \textcolor{keyword}{class\ }A,\ \textcolor{keywordtype}{size\_t}\ ...\ Ds\ >\ \textcolor{keyword}{requires}\ (\ (\ Ds\ >=\ 0\ )\ \&\&\ ...\ )}
-\DoxyCodeLine{00355\ [[nodiscard]]\ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{typename}\ \mbox{\hyperlink{classstd_1_1math_1_1fs__tensor}{fs\_tensor}}<T,L,A,Ds...>\mbox{\hyperlink{classstd_1_1math_1_1fs__tensor_a08e3329f952a65f70b1d7239ea5bb5b1}{::extents\_type}}}
-\DoxyCodeLine{00356\ \mbox{\hyperlink{classstd_1_1math_1_1fs__tensor_a497060433432fe92c79c9b7a6698c770}{fs\_tensor<T,L,A,Ds...>::size}}()\ const\ noexcept}
-\DoxyCodeLine{00357\ \{}
-\DoxyCodeLine{00358\ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{classstd_1_1math_1_1fs__tensor_a08e3329f952a65f70b1d7239ea5bb5b1}{extents\_type}}();}
-\DoxyCodeLine{00359\ \}}
-\DoxyCodeLine{00360\ }
-\DoxyCodeLine{00361\ \textcolor{keyword}{template}\ <\ \textcolor{keyword}{class\ }T,\ \textcolor{keyword}{class\ }L,\ \textcolor{keyword}{class\ }A,\ \textcolor{keywordtype}{size\_t}\ ...\ Ds\ >\ \textcolor{keyword}{requires}\ (\ (\ Ds\ >=\ 0\ )\ \&\&\ ...\ )}
-\DoxyCodeLine{00362\ [[nodiscard]]\ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{typename}\ \mbox{\hyperlink{classstd_1_1math_1_1fs__tensor}{fs\_tensor}}<T,L,A,Ds...>\mbox{\hyperlink{classstd_1_1math_1_1fs__tensor_a08e3329f952a65f70b1d7239ea5bb5b1}{::extents\_type}}}
-\DoxyCodeLine{00363\ \mbox{\hyperlink{classstd_1_1math_1_1fs__tensor_aae53c2a9799db658bd6c5751ea9a4033}{fs\_tensor<T,L,A,Ds...>::capacity}}()\ const\ noexcept}
-\DoxyCodeLine{00364\ \{}
-\DoxyCodeLine{00365\ \ \ \textcolor{keywordflow}{return}\ this-\/>\mbox{\hyperlink{classstd_1_1math_1_1fs__tensor_a497060433432fe92c79c9b7a6698c770}{size}}();}
-\DoxyCodeLine{00366\ \}}
-\DoxyCodeLine{00367\ }
-\DoxyCodeLine{00368\ \textcolor{comment}{//-\/\ Const\ views}}
-\DoxyCodeLine{00369\ }
-\DoxyCodeLine{00370\ \textcolor{keyword}{template}\ <\ \textcolor{keyword}{class\ }T,\ \textcolor{keyword}{class\ }L,\ \textcolor{keyword}{class\ }A,\ \textcolor{keywordtype}{size\_t}\ ...\ Ds\ >\ \textcolor{keyword}{requires}\ (\ (\ Ds\ >=\ 0\ )\ \&\&\ ...\ )}
-\DoxyCodeLine{00371\ [[nodiscard]]\ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{typename}\ \mbox{\hyperlink{classstd_1_1math_1_1fs__tensor}{fs\_tensor}}<T,L,A,Ds...>\mbox{\hyperlink{classstd_1_1math_1_1fs__tensor_a4a98dc2c12f713dae7481d9ffa23ff38}{::value\_type}}}
-\DoxyCodeLine{00372\ \mbox{\hyperlink{classstd_1_1math_1_1fs__tensor_a6936aef5a03927e137a662cd0351a07f}{fs\_tensor<T,L,A,Ds...>::operator[]}}(\ \textcolor{keyword}{decltype}(Ds)\ ...\ indices\ )\ \textcolor{keyword}{const}\ \textcolor{keyword}{noexcept}}
-\DoxyCodeLine{00373\ \{}
-\DoxyCodeLine{00374\ \ \ \textcolor{keywordflow}{return}\ this-\/>\mbox{\hyperlink{classstd_1_1math_1_1fs__tensor_ab5002b9ec652efd9051fa2c97e46fa01}{underlying\_span}}()[\ indices\ ...\ ];}
-\DoxyCodeLine{00375\ \}}
-\DoxyCodeLine{00376\ }
-\DoxyCodeLine{00377\ \textcolor{keyword}{template}\ <\ \textcolor{keyword}{class\ }T,\ \textcolor{keyword}{class\ }L,\ \textcolor{keyword}{class\ }A,\ \textcolor{keywordtype}{size\_t}\ ...\ Ds\ >\ \textcolor{keyword}{requires}\ (\ (\ Ds\ >=\ 0\ )\ \&\&\ ...\ )}
-\DoxyCodeLine{00378\ [[nodiscard]]\ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{typename}\ \mbox{\hyperlink{classstd_1_1math_1_1fs__tensor}{fs\_tensor}}<T,L,A,Ds...>\mbox{\hyperlink{classstd_1_1math_1_1fs__tensor_a4a98dc2c12f713dae7481d9ffa23ff38}{::value\_type}}}
-\DoxyCodeLine{00379\ \mbox{\hyperlink{classstd_1_1math_1_1fs__tensor_ace57dfbb29223a7feed9883d26fb912d}{fs\_tensor<T,L,A,Ds...>::at}}(\ \textcolor{keyword}{decltype}(Ds)\ ...\ indices\ )\textcolor{keyword}{\ const}}
-\DoxyCodeLine{00380\ \textcolor{keyword}{}\{}
-\DoxyCodeLine{00381\ \ \ \textcolor{keywordflow}{return}\ this-\/>\mbox{\hyperlink{classstd_1_1math_1_1fs__tensor_ab5002b9ec652efd9051fa2c97e46fa01}{underlying\_span}}()[\ indices\ ...\ ];}
-\DoxyCodeLine{00382\ \}}
-\DoxyCodeLine{00383\ }
-\DoxyCodeLine{00384\ \textcolor{keyword}{template}\ <\ \textcolor{keyword}{class\ }T,\ \textcolor{keyword}{class\ }L,\ \textcolor{keyword}{class\ }A,\ \textcolor{keywordtype}{size\_t}\ ...\ Ds\ >\ \textcolor{keyword}{requires}\ (\ (\ Ds\ >=\ 0\ )\ \&\&\ ...\ )}
-\DoxyCodeLine{00385\ \textcolor{keyword}{template}\ <\ \textcolor{keyword}{class\ }...\ SliceArgs\ >}
-\DoxyCodeLine{00386\ [[nodiscard]]\ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{auto}\ \mbox{\hyperlink{classstd_1_1math_1_1fs__tensor_aaf97188df08eac26b6ddfc6274b818f5}{fs\_tensor<T,L,A,Ds...>::subvector}}(\ SliceArgs\ ...\ args\ )\ \textcolor{keyword}{const}}
-\DoxyCodeLine{00387\ \ \ \textcolor{keyword}{requires}\ (\ \textcolor{keyword}{decltype}(\ experimental::submdspan(\ this-\/>\mbox{\hyperlink{classstd_1_1math_1_1fs__tensor_ab5002b9ec652efd9051fa2c97e46fa01}{underlying\_span}}(),\ args\ ...\ )\ )::rank()\ ==\ 1\ )}
-\DoxyCodeLine{00388\ \{}
-\DoxyCodeLine{00389\ \ \ \textcolor{keyword}{using\ }subspan\_type\ =\ \textcolor{keyword}{decltype}(\ experimental::submdspan(\ this-\/>\mbox{\hyperlink{classstd_1_1math_1_1fs__tensor_ab5002b9ec652efd9051fa2c97e46fa01}{underlying\_span}}(),\ args\ ...\ )\ );}
-\DoxyCodeLine{00390\ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{classstd_1_1math_1_1vector__view}{vector\_view<subspan\_type>}}(\ experimental::submdspan(\ this-\/>\mbox{\hyperlink{classstd_1_1math_1_1fs__tensor_ab5002b9ec652efd9051fa2c97e46fa01}{underlying\_span}}(),\ args\ ...\ )\ );}
-\DoxyCodeLine{00391\ \}}
-\DoxyCodeLine{00392\ }
-\DoxyCodeLine{00393\ \textcolor{keyword}{template}\ <\ \textcolor{keyword}{class\ }T,\ \textcolor{keyword}{class\ }L,\ \textcolor{keyword}{class\ }A,\ \textcolor{keywordtype}{size\_t}\ ...\ Ds\ >\ \textcolor{keyword}{requires}\ (\ (\ Ds\ >=\ 0\ )\ \&\&\ ...\ )}
-\DoxyCodeLine{00394\ \textcolor{keyword}{template}\ <\ \textcolor{keyword}{class\ }...\ SliceArgs\ >}
-\DoxyCodeLine{00395\ [[nodiscard]]\ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{auto}\ \mbox{\hyperlink{classstd_1_1math_1_1fs__tensor_a92ed5bfc38c49b77cf6ddbd8c836c8bf}{fs\_tensor<T,L,A,Ds...>::submatrix}}(\ SliceArgs\ ...\ args\ )\ \textcolor{keyword}{const}}
-\DoxyCodeLine{00396\ \ \ \textcolor{keyword}{requires}\ (\ \textcolor{keyword}{decltype}(\ experimental::submdspan(\ this-\/>\mbox{\hyperlink{classstd_1_1math_1_1fs__tensor_ab5002b9ec652efd9051fa2c97e46fa01}{underlying\_span}}(),\ args\ ...\ )\ )::rank()\ ==\ 2\ )}
-\DoxyCodeLine{00397\ \{}
-\DoxyCodeLine{00398\ \ \ \textcolor{keyword}{using\ }subspan\_type\ =\ \textcolor{keyword}{decltype}(\ experimental::submdspan(\ this-\/>\mbox{\hyperlink{classstd_1_1math_1_1fs__tensor_ab5002b9ec652efd9051fa2c97e46fa01}{underlying\_span}}(),\ args\ ...\ )\ );}
-\DoxyCodeLine{00399\ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{classstd_1_1math_1_1matrix__view}{matrix\_view<subspan\_type>}}(\ experimental::submdspan(\ this-\/>\mbox{\hyperlink{classstd_1_1math_1_1fs__tensor_ab5002b9ec652efd9051fa2c97e46fa01}{underlying\_span}}(),\ args\ ...\ )\ );}
-\DoxyCodeLine{00400\ \}}
-\DoxyCodeLine{00401\ }
-\DoxyCodeLine{00402\ \textcolor{keyword}{template}\ <\ \textcolor{keyword}{class\ }T,\ \textcolor{keyword}{class\ }L,\ \textcolor{keyword}{class\ }A,\ \textcolor{keywordtype}{size\_t}\ ...\ Ds\ >\ \textcolor{keyword}{requires}\ (\ (\ Ds\ >=\ 0\ )\ \&\&\ ...\ )}
-\DoxyCodeLine{00403\ [[nodiscard]]\ \textcolor{keyword}{constexpr}\ \mbox{\hyperlink{classstd_1_1math_1_1fs__tensor}{fs\_tensor}}<T,L,A,Ds...>\mbox{\hyperlink{classstd_1_1math_1_1fs__tensor_a32af6f99c7d8b3f4bcfb9be3f06437f4}{::const\_subtensor\_type}}}
-\DoxyCodeLine{00404\ \mbox{\hyperlink{classstd_1_1math_1_1fs__tensor_aee14335da4e84836b83d31caa9676a37}{fs\_tensor<T,L,A,Ds...>::subtensor}}(\ \mbox{\hyperlink{classstd_1_1math_1_1fs__tensor_a85d3152ad0a10147b519921da001e5a1}{tuple\_type}}\ start,}
-\DoxyCodeLine{00405\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classstd_1_1math_1_1fs__tensor_a85d3152ad0a10147b519921da001e5a1}{tuple\_type}}\ end\ )\textcolor{keyword}{\ const}}
-\DoxyCodeLine{00406\ \textcolor{keyword}{}\{}
-\DoxyCodeLine{00407\ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{classstd_1_1math_1_1tensor__view}{const\_subtensor\_type}}\ \{\ \mbox{\hyperlink{namespacestd_1_1math_1_1detail_af274dde876e47ba2ec1b483608c81d69}{detail::submdspan}}(\ this-\/>\mbox{\hyperlink{classstd_1_1math_1_1fs__tensor_ab5002b9ec652efd9051fa2c97e46fa01}{underlying\_span}}(),\ start,\ end\ )\ \};}
-\DoxyCodeLine{00408\ \}}
+\DoxyCodeLine{00276\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classstd_1_1math_1_1fs__tensor_ad694c160eddef094640e5ea7eccf884e}{size\_type}}\ nelems\_\ =\ \mbox{\hyperlink{namespacestd_1_1math_1_1detail_a89f0f932595eeb3d9e41578f2e4a34dc}{detail::product}}(\ Ds\ ...\ );}
+\DoxyCodeLine{00278\ \ \ \ \ ::std::array<element\_type,nelems\_>\ elems\_;}
+\DoxyCodeLine{00279\ \};}
+\DoxyCodeLine{00280\ }
+\DoxyCodeLine{00281\ \textcolor{comment}{//-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{00282\ \textcolor{comment}{//\ Implementation\ of\ fs\_tensor<T,R,C,L,A>}}
+\DoxyCodeLine{00283\ \textcolor{comment}{//-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{00284\ }
+\DoxyCodeLine{00285\ \textcolor{comment}{//-\/\ Destructor\ /\ Constructors\ /\ Assignments}}
+\DoxyCodeLine{00286\ }
+\DoxyCodeLine{00287\ \textcolor{keyword}{template}\ <\ \textcolor{keyword}{class\ }T,\ \textcolor{keyword}{class\ }L,\ \textcolor{keyword}{class\ }A,\ ::std::size\_t\ ...\ Ds\ >}
+\DoxyCodeLine{00288\ \textcolor{preprocessor}{\#ifdef\ LINALG\_ENABLE\_CONCEPTS}}
+\DoxyCodeLine{00289\ \ \ \textcolor{keyword}{requires}\ (\ (\ Ds\ >=\ 0\ )\ \&\&\ ...\ )}
+\DoxyCodeLine{00290\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00291\ \textcolor{keyword}{constexpr}\ \mbox{\hyperlink{classstd_1_1math_1_1fs__tensor_acb7fb6bde2108bd49c161b9f6db7929f}{fs\_tensor<T,L,A,Ds...>::fs\_tensor}}()}
+\DoxyCodeLine{00292\ \ \ noexcept(\ ::\mbox{\hyperlink{namespacestd}{std}}::is\_nothrow\_default\_constructible\_v<typename\ \mbox{\hyperlink{classstd_1_1math_1_1fs__tensor}{fs\_tensor}}<T,L,A,Ds...>::\mbox{\hyperlink{classstd_1_1math_1_1fs__tensor_a877b9014a0d86a6945084d5f18b5f065}{element\_type}}>\ )\ :}
+\DoxyCodeLine{00293\ \ \ elems\_()}
+\DoxyCodeLine{00294\ \{}
+\DoxyCodeLine{00295\ \}}
+\DoxyCodeLine{00296\ }
+\DoxyCodeLine{00297\ \textcolor{keyword}{template}\ <\ \textcolor{keyword}{class\ }T,\ \textcolor{keyword}{class\ }L,\ \textcolor{keyword}{class\ }A,\ ::std::size\_t\ ...\ Ds\ >}
+\DoxyCodeLine{00298\ \textcolor{preprocessor}{\#ifdef\ LINALG\_ENABLE\_CONCEPTS}}
+\DoxyCodeLine{00299\ \ \ \textcolor{keyword}{requires}\ (\ (\ Ds\ >=\ 0\ )\ \&\&\ ...\ )}
+\DoxyCodeLine{00300\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00301\ \textcolor{keyword}{constexpr}\ \mbox{\hyperlink{classstd_1_1math_1_1fs__tensor_acb7fb6bde2108bd49c161b9f6db7929f}{fs\_tensor<T,L,A,Ds...>::fs\_tensor}}(\ \mbox{\hyperlink{classstd_1_1math_1_1fs__tensor}{fs\_tensor}}\&\&\ rhs\ )}
+\DoxyCodeLine{00302\ \ \ \textcolor{keyword}{noexcept}(\ ::std::is\_nothrow\_move\_constructible\_v<element\_type>\ )\ :}
+\DoxyCodeLine{00303\ \ \ elems\_(\ ::std::move(\ rhs.elems\_\ )\ )}
+\DoxyCodeLine{00304\ \{}
+\DoxyCodeLine{00305\ \}}
+\DoxyCodeLine{00306\ }
+\DoxyCodeLine{00307\ \textcolor{keyword}{template}\ <\ \textcolor{keyword}{class\ }T,\ \textcolor{keyword}{class\ }L,\ \textcolor{keyword}{class\ }A,\ ::std::size\_t\ ...\ Ds\ >}
+\DoxyCodeLine{00308\ \textcolor{preprocessor}{\#ifdef\ LINALG\_ENABLE\_CONCEPTS}}
+\DoxyCodeLine{00309\ \ \ \textcolor{keyword}{requires}\ (\ (\ Ds\ >=\ 0\ )\ \&\&\ ...\ )}
+\DoxyCodeLine{00310\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00311\ \textcolor{keyword}{constexpr}\ \mbox{\hyperlink{classstd_1_1math_1_1fs__tensor_acb7fb6bde2108bd49c161b9f6db7929f}{fs\_tensor<T,L,A,Ds...>::fs\_tensor}}(\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classstd_1_1math_1_1fs__tensor}{fs\_tensor}}\&\ rhs\ )}
+\DoxyCodeLine{00312\ \ \ \textcolor{keyword}{noexcept}(\ ::std::is\_nothrow\_copy\_constructible\_v<element\_type>\ )\ :}
+\DoxyCodeLine{00313\ \ \ elems\_(\ rhs.elems\_\ )}
+\DoxyCodeLine{00314\ \{}
+\DoxyCodeLine{00315\ \}}
+\DoxyCodeLine{00316\ }
+\DoxyCodeLine{00317\ \textcolor{keyword}{template}\ <\ \textcolor{keyword}{class\ }T,\ \textcolor{keyword}{class\ }L,\ \textcolor{keyword}{class\ }A,\ ::std::size\_t\ ...\ Ds\ >}
+\DoxyCodeLine{00318\ \textcolor{preprocessor}{\#ifdef\ LINALG\_ENABLE\_CONCEPTS}}
+\DoxyCodeLine{00319\ \ \ \textcolor{keyword}{requires}\ (\ (\ Ds\ >=\ 0\ )\ \&\&\ ...\ )}
+\DoxyCodeLine{00320\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00321\ \textcolor{preprocessor}{\#ifdef\ LINALG\_ENABLE\_CONCEPTS}}
+\DoxyCodeLine{00322\ \textcolor{keyword}{template}\ <\ \mbox{\hyperlink{namespacestd_1_1math_1_1concepts_a37d161e63019ad29f5d04f5cc484d5c9}{concepts::tensor\_may\_be\_constructible}}<\ \mbox{\hyperlink{classstd_1_1math_1_1fs__tensor}{fs\_tensor}}<T,L,A,Ds...>\ >\ T2\ >}
+\DoxyCodeLine{00323\ \textcolor{preprocessor}{\#else}}
+\DoxyCodeLine{00324\ \textcolor{keyword}{template}\ <\ \textcolor{keyword}{class}\ T2,\ \textcolor{keyword}{typename}\ >}
+\DoxyCodeLine{00325\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00326\ \textcolor{keyword}{constexpr}\ \mbox{\hyperlink{classstd_1_1math_1_1fs__tensor_acb7fb6bde2108bd49c161b9f6db7929f}{fs\_tensor<T,L,A,Ds...>::fs\_tensor}}(\ \textcolor{keyword}{const}\ T2\&\ rhs\ )}
+\DoxyCodeLine{00327\ \{}
+\DoxyCodeLine{00328\ \ \ \mbox{\hyperlink{classstd_1_1math_1_1fs__tensor_ad65bcae09b9e0ca7ab11d5f253188fad}{underlying\_span\_type}}\ this\_view\ \{\ this-\/>underlying\_span()\ \};}
+\DoxyCodeLine{00329\ \ \ \textcolor{keyword}{static\_cast<}\textcolor{keywordtype}{void}\textcolor{keyword}{>}(\ \mbox{\hyperlink{namespacestd_1_1math_1_1detail_a924ef9e93feb28cfc93aca123d4c1c2c}{detail::assign\_view}}(\ this\_view,\ rhs.span()\ )\ );}
+\DoxyCodeLine{00330\ \}}
+\DoxyCodeLine{00331\ }
+\DoxyCodeLine{00332\ \textcolor{keyword}{template}\ <\ \textcolor{keyword}{class\ }T,\ \textcolor{keyword}{class\ }L,\ \textcolor{keyword}{class\ }A,\ ::std::size\_t\ ...\ Ds\ >}
+\DoxyCodeLine{00333\ \textcolor{preprocessor}{\#ifdef\ LINALG\_ENABLE\_CONCEPTS}}
+\DoxyCodeLine{00334\ \ \ \textcolor{keyword}{requires}\ (\ (\ Ds\ >=\ 0\ )\ \&\&\ ...\ )}
+\DoxyCodeLine{00335\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00336\ \textcolor{preprocessor}{\#ifdef\ LINALG\_ENABLE\_CONCEPTS}}
+\DoxyCodeLine{00337\ \textcolor{keyword}{template}\ <\ \mbox{\hyperlink{namespacestd_1_1math_1_1concepts_ace3f73f1713cef14d221a6a38e4c55fb}{concepts::view\_may\_be\_constructible\_to\_tensor}}<\ \mbox{\hyperlink{classstd_1_1math_1_1fs__tensor}{fs\_tensor}}<T,L,A,Ds...>\ >\ MDS\ >}
+\DoxyCodeLine{00338\ \textcolor{preprocessor}{\#else}}
+\DoxyCodeLine{00339\ \textcolor{keyword}{template}\ <\ \textcolor{keyword}{class}\ MDS,\ \textcolor{keyword}{typename},\ \textcolor{keyword}{typename}\ >}
+\DoxyCodeLine{00340\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00341\ \textcolor{keyword}{constexpr}\ \mbox{\hyperlink{classstd_1_1math_1_1fs__tensor_acb7fb6bde2108bd49c161b9f6db7929f}{fs\_tensor<T,L,A,Ds...>::fs\_tensor}}(\ \textcolor{keyword}{const}\ MDS\&\ view\ )}
+\DoxyCodeLine{00342\ \ \ \textcolor{keyword}{noexcept}(\ \mbox{\hyperlink{namespacestd_1_1math_1_1concepts_a59af87894438c58999ff10b1d00aa39f}{concepts::view\_is\_nothrow\_constructible\_to\_tensor}}<\ MDS,\ \mbox{\hyperlink{classstd_1_1math_1_1fs__tensor}{fs\_tensor}}<T,L,A,Ds...>\ >\ )}
+\DoxyCodeLine{00343\ \{}
+\DoxyCodeLine{00344\ \ \ \mbox{\hyperlink{classstd_1_1math_1_1fs__tensor_ad65bcae09b9e0ca7ab11d5f253188fad}{underlying\_span\_type}}\ this\_view\ \{\ this-\/>underlying\_span()\ \};}
+\DoxyCodeLine{00345\ \ \ \textcolor{keyword}{static\_cast<}\textcolor{keywordtype}{void}\textcolor{keyword}{>}(\ \mbox{\hyperlink{namespacestd_1_1math_1_1detail_a924ef9e93feb28cfc93aca123d4c1c2c}{detail::assign\_view}}(\ this\_view,\ view\ )\ );}
+\DoxyCodeLine{00346\ \}}
+\DoxyCodeLine{00347\ }
+\DoxyCodeLine{00348\ \textcolor{keyword}{template}\ <\ \textcolor{keyword}{class\ }T,\ \textcolor{keyword}{class\ }L,\ \textcolor{keyword}{class\ }A,\ ::std::size\_t\ ...\ Ds\ >}
+\DoxyCodeLine{00349\ \textcolor{preprocessor}{\#ifdef\ LINALG\_ENABLE\_CONCEPTS}}
+\DoxyCodeLine{00350\ \ \ \textcolor{keyword}{requires}\ (\ (\ Ds\ >=\ 0\ )\ \&\&\ ...\ )}
+\DoxyCodeLine{00351\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00352\ \textcolor{preprocessor}{\#ifdef\ LINALG\_ENABLE\_CONCEPTS}}
+\DoxyCodeLine{00353\ \textcolor{keyword}{template}\ <\ \textcolor{keyword}{class}\ Lambda\ >}
+\DoxyCodeLine{00354\ \textcolor{preprocessor}{\#else}}
+\DoxyCodeLine{00355\ \textcolor{keyword}{template}\ <\ \textcolor{keyword}{class}\ Lambda,\ \textcolor{keyword}{typename}\ >}
+\DoxyCodeLine{00356\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00357\ \textcolor{keyword}{constexpr}\ \mbox{\hyperlink{classstd_1_1math_1_1fs__tensor_acb7fb6bde2108bd49c161b9f6db7929f}{fs\_tensor<T,L,A,Ds...>::fs\_tensor}}(\ Lambda\&\&\ lambda\ )\ \textcolor{keyword}{noexcept}(\ \textcolor{keyword}{noexcept}(\ ::std::declval<Lambda\&\&>()(\ Ds\ ...\ )\ )\ )}
+\DoxyCodeLine{00358\ \#ifdef\ LINALG\_ENABLE\_CONCEPTS}
+\DoxyCodeLine{00359\ \ \ \textcolor{keyword}{requires}\ \textcolor{keyword}{requires}\ \{\ \{\ ::std::declval<Lambda\&\&>().operator()(\ Ds\ ...\ )\ \}\ -\/>\ ::std::convertible\_to<\textcolor{keyword}{typename}\ \mbox{\hyperlink{classstd_1_1math_1_1fs__tensor}{fs\_tensor}}<T,L,A,Ds...>::element\_type>;\ \}}
+\DoxyCodeLine{00360\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00361\ \{}
+\DoxyCodeLine{00362\ \ \ \textcolor{comment}{//\ If\ expression\ is\ no\ except,\ then\ no\ need\ to\ capture\ last\ exception}}
+\DoxyCodeLine{00363\ \ \ \textcolor{keyword}{constexpr}\ \textcolor{keywordtype}{bool}\ lambda\_is\_noexcept\ =\ detail::is\_nothrow\_convertible\_v<\ decltype(\ ::std::declval<Lambda\&\&>()(\ Ds\ ...\ )\ ),\ element\_type\ >;}
+\DoxyCodeLine{00364\ \ \ \textcolor{comment}{//\ Construct\ all\ elements\ from\ lambda\ output}}
+\DoxyCodeLine{00365\ \ \ \textcolor{keyword}{auto}\ ctor\ =\ [\textcolor{keyword}{this},\&lambda](\ \textcolor{keyword}{auto}\ ...\ indices\ )\ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{noexcept}(\ lambda\_is\_noexcept\ )}
+\DoxyCodeLine{00366\ \ \ \{}
+\DoxyCodeLine{00367\ \textcolor{preprocessor}{\ \ \ \ \#if\ LINALG\_USE\_BRACKET\_OPERATOR}}
+\DoxyCodeLine{00368\ \ \ \ \ this-\/>underlying\_span()[\ indices\ ...\ ]\ =\ lambda(\ indices\ ...\ );}
+\DoxyCodeLine{00369\ \textcolor{preprocessor}{\ \ \ \ \#else}}
+\DoxyCodeLine{00370\ \ \ \ \ this-\/>underlying\_span()(\ indices\ ...\ )\ =\ lambda(\ indices\ ...\ );}
+\DoxyCodeLine{00371\ \textcolor{preprocessor}{\ \ \ \ \#endif}}
+\DoxyCodeLine{00372\ \ \ \};}
+\DoxyCodeLine{00373\ \ \ \mbox{\hyperlink{namespacestd_1_1math_1_1detail_ac0482c6fc61255b38599f11b984467aa}{detail::apply\_all}}(\ this-\/>underlying\_span(),\ ctor,\ \mbox{\hyperlink{macros_8hpp_aa1537f18dfb799b73c3e0b3314b9a421}{LINALG\_EXECUTION\_UNSEQ}}\ );}
+\DoxyCodeLine{00374\ \}}
+\DoxyCodeLine{00375\ }
+\DoxyCodeLine{00376\ \textcolor{keyword}{template}\ <\ \textcolor{keyword}{class\ }T,\ \textcolor{keyword}{class\ }L,\ \textcolor{keyword}{class\ }A,\ ::std::size\_t\ ...\ Ds\ >}
+\DoxyCodeLine{00377\ \textcolor{preprocessor}{\#ifdef\ LINALG\_ENABLE\_CONCEPTS}}
+\DoxyCodeLine{00378\ \ \ \textcolor{keyword}{requires}\ (\ (\ Ds\ >=\ 0\ )\ \&\&\ ...\ )}
+\DoxyCodeLine{00379\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00380\ \textcolor{preprocessor}{\#ifdef\ LINALG\_ENABLE\_CONCEPTS}}
+\DoxyCodeLine{00381\ \textcolor{keyword}{template}\ <\ \mbox{\hyperlink{namespacestd_1_1math_1_1concepts_a37d161e63019ad29f5d04f5cc484d5c9}{concepts::tensor\_may\_be\_constructible}}<\ fs\_tensor<T,L,A,Ds...>\ >\ T2\ >}
+\DoxyCodeLine{00382\ \textcolor{preprocessor}{\#else}}
+\DoxyCodeLine{00383\ \textcolor{keyword}{template}\ <\ \textcolor{keyword}{class}\ T2,\ \textcolor{keyword}{typename}\ >}
+\DoxyCodeLine{00384\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00385\ \textcolor{keyword}{constexpr}\ \mbox{\hyperlink{classstd_1_1math_1_1fs__tensor}{fs\_tensor}}<T,L,A,Ds...>\&\ \mbox{\hyperlink{classstd_1_1math_1_1fs__tensor_aea3334196188553dab5a08935fe401e6}{fs\_tensor<T,L,A,Ds...>::operator\ =\ }}(\ \textcolor{keyword}{const}\ T2\&\ rhs\ )}
+\DoxyCodeLine{00386\ \{}
+\DoxyCodeLine{00387\ \ \ \mbox{\hyperlink{classstd_1_1math_1_1fs__tensor_ad65bcae09b9e0ca7ab11d5f253188fad}{underlying\_span\_type}}\ this\_view\ \{\ this-\/>underlying\_span()\ \};}
+\DoxyCodeLine{00388\ \ \ \textcolor{keyword}{static\_cast<}\textcolor{keywordtype}{void}\textcolor{keyword}{>}(\ \mbox{\hyperlink{namespacestd_1_1math_1_1detail_a924ef9e93feb28cfc93aca123d4c1c2c}{detail::assign\_view}}(\ this\_view,\ rhs.span()\ )\ );}
+\DoxyCodeLine{00389\ \ \ \textcolor{keywordflow}{return}\ *\textcolor{keyword}{this};}
+\DoxyCodeLine{00390\ \}}
+\DoxyCodeLine{00391\ }
+\DoxyCodeLine{00392\ \textcolor{keyword}{template}\ <\ \textcolor{keyword}{class\ }T,\ \textcolor{keyword}{class\ }L,\ \textcolor{keyword}{class\ }A,\ ::std::size\_t\ ...\ Ds\ >}
+\DoxyCodeLine{00393\ \textcolor{preprocessor}{\#ifdef\ LINALG\_ENABLE\_CONCEPTS}}
+\DoxyCodeLine{00394\ \ \ \textcolor{keyword}{requires}\ (\ (\ Ds\ >=\ 0\ )\ \&\&\ ...\ )}
+\DoxyCodeLine{00395\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00396\ \textcolor{preprocessor}{\#ifdef\ LINALG\_ENABLE\_CONCEPTS}}
+\DoxyCodeLine{00397\ \textcolor{keyword}{template}\ <\ \mbox{\hyperlink{namespacestd_1_1math_1_1concepts_ace3f73f1713cef14d221a6a38e4c55fb}{concepts::view\_may\_be\_constructible\_to\_tensor}}<\ \mbox{\hyperlink{classstd_1_1math_1_1fs__tensor}{fs\_tensor}}<T,L,A,Ds...>\ >\ MDS\ >}
+\DoxyCodeLine{00398\ \textcolor{preprocessor}{\#else}}
+\DoxyCodeLine{00399\ \textcolor{keyword}{template}\ <\ \textcolor{keyword}{class}\ MDS,\ \textcolor{keyword}{typename},\ \textcolor{keyword}{typename}\ >}
+\DoxyCodeLine{00400\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00401\ \textcolor{keyword}{constexpr}\ \mbox{\hyperlink{classstd_1_1math_1_1fs__tensor}{fs\_tensor}}<T,L,A,Ds...>\&\ \mbox{\hyperlink{classstd_1_1math_1_1fs__tensor_aea3334196188553dab5a08935fe401e6}{fs\_tensor<T,L,A,Ds...>::operator\ =\ }}(\ \textcolor{keyword}{const}\ MDS\&\ view\ )}
+\DoxyCodeLine{00402\ \{}
+\DoxyCodeLine{00403\ \ \ \mbox{\hyperlink{classstd_1_1math_1_1fs__tensor_ad65bcae09b9e0ca7ab11d5f253188fad}{underlying\_span\_type}}\ this\_view\ =\ \{\ this-\/>underlying\_span()\ \};}
+\DoxyCodeLine{00404\ \ \ \textcolor{keyword}{static\_cast<}\textcolor{keywordtype}{void}\textcolor{keyword}{>}(\ \mbox{\hyperlink{namespacestd_1_1math_1_1detail_a924ef9e93feb28cfc93aca123d4c1c2c}{detail::assign\_view}}(\ this\_view,\ view\ )\ );}
+\DoxyCodeLine{00405\ \ \ \textcolor{keywordflow}{return}\ *\textcolor{keyword}{this};}
+\DoxyCodeLine{00406\ \}}
+\DoxyCodeLine{00407\ }
+\DoxyCodeLine{00408\ \textcolor{comment}{//-\/\ Size\ /\ Capacity}}
 \DoxyCodeLine{00409\ }
-\DoxyCodeLine{00410\ \textcolor{comment}{//-\/\ Mutable\ views}}
-\DoxyCodeLine{00411\ }
-\DoxyCodeLine{00412\ \textcolor{keyword}{template}\ <\ \textcolor{keyword}{class\ }T,\ \textcolor{keyword}{class\ }L,\ \textcolor{keyword}{class\ }A,\ \textcolor{keywordtype}{size\_t}\ ...\ Ds\ >\ \textcolor{keyword}{requires}\ (\ (\ Ds\ >=\ 0\ )\ \&\&\ ...\ )}
-\DoxyCodeLine{00413\ [[nodiscard]]\ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{typename}\ \mbox{\hyperlink{classstd_1_1math_1_1fs__tensor}{fs\_tensor}}<T,L,A,Ds...>\mbox{\hyperlink{classstd_1_1math_1_1fs__tensor_a256bd11d1699a9acb0f926725f8fffc6}{::reference\_type}}}
-\DoxyCodeLine{00414\ \mbox{\hyperlink{classstd_1_1math_1_1fs__tensor_a6936aef5a03927e137a662cd0351a07f}{fs\_tensor<T,L,A,Ds...>::operator[]}}(\ \textcolor{keyword}{decltype}(Ds)\ ...\ indices\ )\ \textcolor{keyword}{noexcept}}
-\DoxyCodeLine{00415\ \{}
-\DoxyCodeLine{00416\ \ \ \textcolor{keywordflow}{return}\ this-\/>\mbox{\hyperlink{classstd_1_1math_1_1fs__tensor_ab5002b9ec652efd9051fa2c97e46fa01}{underlying\_span}}()[\ indices\ ...\ ];}
-\DoxyCodeLine{00417\ \}}
-\DoxyCodeLine{00418\ }
-\DoxyCodeLine{00419\ \textcolor{keyword}{template}\ <\ \textcolor{keyword}{class\ }T,\ \textcolor{keyword}{class\ }L,\ \textcolor{keyword}{class\ }A,\ \textcolor{keywordtype}{size\_t}\ ...\ Ds\ >\ \textcolor{keyword}{requires}\ (\ (\ Ds\ >=\ 0\ )\ \&\&\ ...\ )}
-\DoxyCodeLine{00420\ [[nodiscard]]\ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{typename}\ \mbox{\hyperlink{classstd_1_1math_1_1fs__tensor}{fs\_tensor}}<T,L,A,Ds...>\mbox{\hyperlink{classstd_1_1math_1_1fs__tensor_a256bd11d1699a9acb0f926725f8fffc6}{::reference\_type}}}
-\DoxyCodeLine{00421\ \mbox{\hyperlink{classstd_1_1math_1_1fs__tensor_ace57dfbb29223a7feed9883d26fb912d}{fs\_tensor<T,L,A,Ds...>::at}}(\ \textcolor{keyword}{decltype}(Ds)\ ...\ indices\ )}
-\DoxyCodeLine{00422\ \{}
-\DoxyCodeLine{00423\ \ \ \textcolor{keywordflow}{return}\ this-\/>\mbox{\hyperlink{classstd_1_1math_1_1fs__tensor_ab5002b9ec652efd9051fa2c97e46fa01}{underlying\_span}}()[\ indices\ ...\ ];}
-\DoxyCodeLine{00424\ \}}
-\DoxyCodeLine{00425\ }
-\DoxyCodeLine{00426\ \textcolor{keyword}{template}\ <\ \textcolor{keyword}{class\ }T,\ \textcolor{keyword}{class\ }L,\ \textcolor{keyword}{class\ }A,\ \textcolor{keywordtype}{size\_t}\ ...\ Ds\ >\ \textcolor{keyword}{requires}\ (\ (\ Ds\ >=\ 0\ )\ \&\&\ ...\ )}
-\DoxyCodeLine{00427\ \textcolor{keyword}{template}\ <\ \textcolor{keyword}{class\ }...\ SliceArgs\ >}
-\DoxyCodeLine{00428\ [[nodiscard]]\ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{auto}\ \mbox{\hyperlink{classstd_1_1math_1_1fs__tensor_aaf97188df08eac26b6ddfc6274b818f5}{fs\_tensor<T,L,A,Ds...>::subvector}}(\ SliceArgs\ ...\ args\ )}
-\DoxyCodeLine{00429\ \ \ \textcolor{keyword}{requires}\ (\ \textcolor{keyword}{decltype}(\ experimental::submdspan(\ this-\/>\mbox{\hyperlink{classstd_1_1math_1_1fs__tensor_ab5002b9ec652efd9051fa2c97e46fa01}{underlying\_span}}(),\ args\ ...\ )\ )::rank()\ ==\ 1\ )}
-\DoxyCodeLine{00430\ \{}
-\DoxyCodeLine{00431\ \ \ \textcolor{keyword}{using\ }subspan\_type\ =\ \textcolor{keyword}{decltype}(\ experimental::submdspan(\ this-\/>\mbox{\hyperlink{classstd_1_1math_1_1fs__tensor_ab5002b9ec652efd9051fa2c97e46fa01}{underlying\_span}}(),\ args\ ...\ )\ );}
-\DoxyCodeLine{00432\ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{classstd_1_1math_1_1vector__view}{vector\_view<subspan\_type>}}(\ experimental::submdspan(\ this-\/>\mbox{\hyperlink{classstd_1_1math_1_1fs__tensor_ab5002b9ec652efd9051fa2c97e46fa01}{underlying\_span}}(),\ args\ ...\ )\ );}
-\DoxyCodeLine{00433\ \}}
-\DoxyCodeLine{00434\ }
-\DoxyCodeLine{00435\ \textcolor{keyword}{template}\ <\ \textcolor{keyword}{class\ }T,\ \textcolor{keyword}{class\ }L,\ \textcolor{keyword}{class\ }A,\ \textcolor{keywordtype}{size\_t}\ ...\ Ds\ >\ \textcolor{keyword}{requires}\ (\ (\ Ds\ >=\ 0\ )\ \&\&\ ...\ )}
-\DoxyCodeLine{00436\ \textcolor{keyword}{template}\ <\ \textcolor{keyword}{class\ }...\ SliceArgs\ >}
-\DoxyCodeLine{00437\ [[nodiscard]]\ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{auto}\ \mbox{\hyperlink{classstd_1_1math_1_1fs__tensor_a92ed5bfc38c49b77cf6ddbd8c836c8bf}{fs\_tensor<T,L,A,Ds...>::submatrix}}(\ SliceArgs\ ...\ args\ )}
-\DoxyCodeLine{00438\ \ \ \textcolor{keyword}{requires}\ (\ \textcolor{keyword}{decltype}(\ experimental::submdspan(\ this-\/>\mbox{\hyperlink{classstd_1_1math_1_1fs__tensor_ab5002b9ec652efd9051fa2c97e46fa01}{underlying\_span}}(),\ args\ ...\ )\ )::rank()\ ==\ 2\ )}
+\DoxyCodeLine{00410\ \textcolor{keyword}{template}\ <\ \textcolor{keyword}{class\ }T,\ \textcolor{keyword}{class\ }L,\ \textcolor{keyword}{class\ }A,\ ::std::size\_t\ ...\ Ds\ >}
+\DoxyCodeLine{00411\ \textcolor{preprocessor}{\#ifdef\ LINALG\_ENABLE\_CONCEPTS}}
+\DoxyCodeLine{00412\ \ \ \textcolor{keyword}{requires}\ (\ (\ Ds\ >=\ 0\ )\ \&\&\ ...\ )}
+\DoxyCodeLine{00413\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00414\ [[nodiscard]]\ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{typename}\ \mbox{\hyperlink{classstd_1_1math_1_1fs__tensor}{fs\_tensor}}<T,L,A,Ds...>::extents\_type}
+\DoxyCodeLine{00415\ \mbox{\hyperlink{classstd_1_1math_1_1fs__tensor_a49e752975d2624f769f94fe0162e5bc1}{fs\_tensor<T,L,A,Ds...>::size}}()\ const\ noexcept}
+\DoxyCodeLine{00416\ \{}
+\DoxyCodeLine{00417\ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{classstd_1_1math_1_1fs__tensor_ab7081bbf3090395174207de84318521c}{extents\_type}}();}
+\DoxyCodeLine{00418\ \}}
+\DoxyCodeLine{00419\ }
+\DoxyCodeLine{00420\ \textcolor{keyword}{template}\ <\ \textcolor{keyword}{class\ }T,\ \textcolor{keyword}{class\ }L,\ \textcolor{keyword}{class\ }A,\ ::std::size\_t\ ...\ Ds\ >}
+\DoxyCodeLine{00421\ \textcolor{preprocessor}{\#ifdef\ LINALG\_ENABLE\_CONCEPTS}}
+\DoxyCodeLine{00422\ \ \ \textcolor{keyword}{requires}\ (\ (\ Ds\ >=\ 0\ )\ \&\&\ ...\ )}
+\DoxyCodeLine{00423\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00424\ [[nodiscard]]\ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{typename}\ \mbox{\hyperlink{classstd_1_1math_1_1fs__tensor}{fs\_tensor}}<T,L,A,Ds...>::extents\_type}
+\DoxyCodeLine{00425\ \mbox{\hyperlink{classstd_1_1math_1_1fs__tensor_a982dd2aa10f2235abbb3722a20322f7a}{fs\_tensor<T,L,A,Ds...>::capacity}}()\ const\ noexcept}
+\DoxyCodeLine{00426\ \{}
+\DoxyCodeLine{00427\ \ \ \textcolor{keywordflow}{return}\ this-\/>size();}
+\DoxyCodeLine{00428\ \}}
+\DoxyCodeLine{00429\ }
+\DoxyCodeLine{00430\ \textcolor{comment}{//-\/\ Const\ views}}
+\DoxyCodeLine{00431\ }
+\DoxyCodeLine{00432\ \textcolor{preprocessor}{\#if\ LINALG\_USE\_BRACKET\_OPERATOR}}
+\DoxyCodeLine{00433\ \textcolor{keyword}{template}\ <\ \textcolor{keyword}{class\ }T,\ \textcolor{keyword}{class\ }L,\ \textcolor{keyword}{class\ }A,\ ::std::size\_t\ ...\ Ds\ >}
+\DoxyCodeLine{00434\ \textcolor{preprocessor}{\#ifdef\ LINALG\_ENABLE\_CONCEPTS}}
+\DoxyCodeLine{00435\ \ \ \textcolor{keyword}{requires}\ (\ (\ Ds\ >=\ 0\ )\ \&\&\ ...\ )}
+\DoxyCodeLine{00436\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00437\ [[nodiscard]]\ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{typename}\ \mbox{\hyperlink{classstd_1_1math_1_1fs__tensor}{fs\_tensor}}<T,L,A,Ds...>::value\_type}
+\DoxyCodeLine{00438\ \mbox{\hyperlink{classstd_1_1math_1_1fs__tensor}{fs\_tensor<T,L,A,Ds...>::operator[]}}(\ \textcolor{keyword}{decltype}(Ds)\ ...\ indices\ )\ \textcolor{keyword}{const}\ \textcolor{keyword}{noexcept}}
 \DoxyCodeLine{00439\ \{}
-\DoxyCodeLine{00440\ \ \ \textcolor{keyword}{using\ }subspan\_type\ =\ \textcolor{keyword}{decltype}(\ experimental::submdspan(\ this-\/>\mbox{\hyperlink{classstd_1_1math_1_1fs__tensor_ab5002b9ec652efd9051fa2c97e46fa01}{underlying\_span}}(),\ args\ ...\ )\ );}
-\DoxyCodeLine{00441\ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{classstd_1_1math_1_1matrix__view}{matrix\_view<subspan\_type>}}(\ experimental::submdspan(\ this-\/>\mbox{\hyperlink{classstd_1_1math_1_1fs__tensor_ab5002b9ec652efd9051fa2c97e46fa01}{underlying\_span}}(),\ args\ ...\ )\ );}
-\DoxyCodeLine{00442\ \}}
+\DoxyCodeLine{00440\ \ \ \textcolor{keywordflow}{return}\ this-\/>underlying\_span()[\ indices\ ...\ ];}
+\DoxyCodeLine{00441\ \}}
+\DoxyCodeLine{00442\ \textcolor{preprocessor}{\#endif}}
 \DoxyCodeLine{00443\ }
-\DoxyCodeLine{00444\ \textcolor{keyword}{template}\ <\ \textcolor{keyword}{class\ }T,\ \textcolor{keyword}{class\ }L,\ \textcolor{keyword}{class\ }A,\ \textcolor{keywordtype}{size\_t}\ ...\ Ds\ >\ \textcolor{keyword}{requires}\ (\ (\ Ds\ >=\ 0\ )\ \&\&\ ...\ )}
-\DoxyCodeLine{00445\ [[nodiscard]]\ \textcolor{keyword}{constexpr}\ \mbox{\hyperlink{classstd_1_1math_1_1fs__tensor}{fs\_tensor}}<T,L,A,Ds...>\mbox{\hyperlink{classstd_1_1math_1_1fs__tensor_aaba257a3e56969194719ce879502bc34}{::subtensor\_type}}}
-\DoxyCodeLine{00446\ \mbox{\hyperlink{classstd_1_1math_1_1fs__tensor_aee14335da4e84836b83d31caa9676a37}{fs\_tensor<T,L,A,Ds...>::subtensor}}(\ \mbox{\hyperlink{classstd_1_1math_1_1fs__tensor_a85d3152ad0a10147b519921da001e5a1}{tuple\_type}}\ start,}
-\DoxyCodeLine{00447\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classstd_1_1math_1_1fs__tensor_a85d3152ad0a10147b519921da001e5a1}{tuple\_type}}\ end\ )}
-\DoxyCodeLine{00448\ \{}
-\DoxyCodeLine{00449\ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{classstd_1_1math_1_1tensor__view}{subtensor\_type}}\ \{\ \mbox{\hyperlink{namespacestd_1_1math_1_1detail_af274dde876e47ba2ec1b483608c81d69}{detail::submdspan}}(\ this-\/>\mbox{\hyperlink{classstd_1_1math_1_1fs__tensor_ab5002b9ec652efd9051fa2c97e46fa01}{underlying\_span}}(),\ start,\ end\ )\ \};}
-\DoxyCodeLine{00450\ \}}
-\DoxyCodeLine{00451\ }
-\DoxyCodeLine{00452\ \textcolor{comment}{//-\/\ Data\ access}}
-\DoxyCodeLine{00453\ }
-\DoxyCodeLine{00454\ \textcolor{keyword}{template}\ <\ \textcolor{keyword}{class\ }T,\ \textcolor{keyword}{class\ }L,\ \textcolor{keyword}{class\ }A,\ \textcolor{keywordtype}{size\_t}\ ...\ Ds\ >\ \textcolor{keyword}{requires}\ (\ (\ Ds\ >=\ 0\ )\ \&\&\ ...\ )}
-\DoxyCodeLine{00455\ [[nodiscard]]\ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{typename}\ \mbox{\hyperlink{classstd_1_1math_1_1fs__tensor}{fs\_tensor}}<T,L,A,Ds...>\mbox{\hyperlink{classstd_1_1math_1_1fs__tensor_af59d3880e164152fd061acf97c1ec2cb}{::span\_type}}}
-\DoxyCodeLine{00456\ \mbox{\hyperlink{classstd_1_1math_1_1fs__tensor_a12c92b52a1d1a6695cc3d1ee2e77b2f8}{fs\_tensor<T,L,A,Ds...>::span}}()\ const\ noexcept}
-\DoxyCodeLine{00457\ \{}
-\DoxyCodeLine{00458\ \ \ \textcolor{keywordflow}{return}\ this-\/>\mbox{\hyperlink{classstd_1_1math_1_1fs__tensor_ab5002b9ec652efd9051fa2c97e46fa01}{underlying\_span}}();}
-\DoxyCodeLine{00459\ \}}
-\DoxyCodeLine{00460\ }
-\DoxyCodeLine{00461\ \textcolor{keyword}{template}\ <\ \textcolor{keyword}{class\ }T,\ \textcolor{keyword}{class\ }L,\ \textcolor{keyword}{class\ }A,\ \textcolor{keywordtype}{size\_t}\ ...\ Ds\ >\ \textcolor{keyword}{requires}\ (\ (\ Ds\ >=\ 0\ )\ \&\&\ ...\ )}
-\DoxyCodeLine{00462\ [[nodiscard]]\ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{typename}\ \mbox{\hyperlink{classstd_1_1math_1_1fs__tensor}{fs\_tensor}}<T,L,A,Ds...>\mbox{\hyperlink{classstd_1_1math_1_1fs__tensor_ac7cd4d69a4e2e73ae70c1b2d9e7b51e2}{::underlying\_span\_type}}}
-\DoxyCodeLine{00463\ \mbox{\hyperlink{classstd_1_1math_1_1fs__tensor_ab5002b9ec652efd9051fa2c97e46fa01}{fs\_tensor<T,L,A,Ds...>::underlying\_span}}()\ noexcept}
-\DoxyCodeLine{00464\ \{}
-\DoxyCodeLine{00465\ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{classstd_1_1math_1_1fs__tensor_ac7cd4d69a4e2e73ae70c1b2d9e7b51e2}{underlying\_span\_type}}(\ \&this-\/>elems\_[0],\ \mbox{\hyperlink{classstd_1_1math_1_1fs__tensor_a08e3329f952a65f70b1d7239ea5bb5b1}{extents\_type}}()\ );}
-\DoxyCodeLine{00466\ \}}
-\DoxyCodeLine{00467\ }
-\DoxyCodeLine{00468\ \textcolor{keyword}{template}\ <\ \textcolor{keyword}{class\ }T,\ \textcolor{keyword}{class\ }L,\ \textcolor{keyword}{class\ }A,\ \textcolor{keywordtype}{size\_t}\ ...\ Ds\ >\ \textcolor{keyword}{requires}\ (\ (\ Ds\ >=\ 0\ )\ \&\&\ ...\ )}
-\DoxyCodeLine{00469\ [[nodiscard]]\ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{typename}\ \mbox{\hyperlink{classstd_1_1math_1_1fs__tensor}{fs\_tensor}}<T,L,A,Ds...>\mbox{\hyperlink{classstd_1_1math_1_1fs__tensor_ae13ebf0e9711df67ffb51339358db5c2}{::const\_underlying\_span\_type}}}
-\DoxyCodeLine{00470\ \mbox{\hyperlink{classstd_1_1math_1_1fs__tensor_ab5002b9ec652efd9051fa2c97e46fa01}{fs\_tensor<T,L,A,Ds...>::underlying\_span}}()\ const\ noexcept}
-\DoxyCodeLine{00471\ \{}
-\DoxyCodeLine{00472\ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{classstd_1_1math_1_1fs__tensor_ae13ebf0e9711df67ffb51339358db5c2}{const\_underlying\_span\_type}}(\ \&this-\/>elems\_[0],\ \mbox{\hyperlink{classstd_1_1math_1_1fs__tensor_a08e3329f952a65f70b1d7239ea5bb5b1}{extents\_type}}()\ );}
-\DoxyCodeLine{00473\ \}}
-\DoxyCodeLine{00474\ }
-\DoxyCodeLine{00475\ \}\ \ \ \ \ \ \ \textcolor{comment}{//-\/\ math\ namespace}}
-\DoxyCodeLine{00476\ \}\ \ \ \ \ \ \ \textcolor{comment}{//-\/\ std\ namespace}}
-\DoxyCodeLine{00477\ \textcolor{preprocessor}{\#endif\ \ }\textcolor{comment}{//-\/\ LINEAR\_ALGEBRA\_FIXED\_SIZE\_MATRIX\_ENGINE\_HPP}}
+\DoxyCodeLine{00444\ \textcolor{preprocessor}{\#if\ LINALG\_USE\_PAREN\_OPERATOR}}
+\DoxyCodeLine{00445\ \textcolor{keyword}{template}\ <\ \textcolor{keyword}{class\ }T,\ \textcolor{keyword}{class\ }L,\ \textcolor{keyword}{class\ }A,\ ::std::size\_t\ ...\ Ds\ >}
+\DoxyCodeLine{00446\ \textcolor{preprocessor}{\#ifdef\ LINALG\_ENABLE\_CONCEPTS}}
+\DoxyCodeLine{00447\ \ \ \textcolor{keyword}{requires}\ (\ (\ Ds\ >=\ 0\ )\ \&\&\ ...\ )}
+\DoxyCodeLine{00448\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00449\ [[nodiscard]]\ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{typename}\ fs\_tensor<T,L,A,Ds...>::value\_type}
+\DoxyCodeLine{00450\ fs\_tensor<T,L,A,Ds...>::operator()(\ \textcolor{keyword}{decltype}(Ds)\ ...\ indices\ )\ \textcolor{keyword}{const}\ \textcolor{keyword}{noexcept}}
+\DoxyCodeLine{00451\ \{}
+\DoxyCodeLine{00452\ \ \ \textcolor{keywordflow}{return}\ this-\/>underlying\_span()(\ indices\ ...\ );}
+\DoxyCodeLine{00453\ \}}
+\DoxyCodeLine{00454\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00455\ }
+\DoxyCodeLine{00456\ \textcolor{keyword}{template}\ <\ \textcolor{keyword}{class\ }T,\ \textcolor{keyword}{class\ }L,\ \textcolor{keyword}{class\ }A,\ ::std::size\_t\ ...\ Ds\ >}
+\DoxyCodeLine{00457\ \textcolor{preprocessor}{\#ifdef\ LINALG\_ENABLE\_CONCEPTS}}
+\DoxyCodeLine{00458\ \ \ \textcolor{keyword}{requires}\ (\ (\ Ds\ >=\ 0\ )\ \&\&\ ...\ )}
+\DoxyCodeLine{00459\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00460\ \textcolor{keyword}{template}\ <\ \textcolor{keyword}{class\ }...\ SliceArgs\ >}
+\DoxyCodeLine{00461\ [[nodiscard]]\ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{auto}\ \mbox{\hyperlink{classstd_1_1math_1_1fs__tensor_a5b46194792ecccd2e6ba91c5db65a834}{fs\_tensor<T,L,A,Ds...>::subvector}}(\ SliceArgs\ ...\ args\ )\ \textcolor{keyword}{const}}
+\DoxyCodeLine{00462\ \textcolor{preprocessor}{\#ifdef\ LINALG\_ENABLE\_CONCEPTS}}
+\DoxyCodeLine{00463\ \ \ \textcolor{keyword}{requires}\ (\ \textcolor{keyword}{decltype}(\ ::std::experimental::submdspan(\ this-\/>underlying\_span(),\ args\ ...\ )\ )::rank()\ ==\ 1\ )}
+\DoxyCodeLine{00464\ \#endif}
+\DoxyCodeLine{00465\ \{}
+\DoxyCodeLine{00466\ \ \ \textcolor{keyword}{using\ }subspan\_type\ =\ \textcolor{keyword}{decltype}(\ ::std::experimental::submdspan(\ this-\/>underlying\_span(),\ args\ ...\ )\ );}
+\DoxyCodeLine{00467\ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{classstd_1_1math_1_1vector__view}{vector\_view<subspan\_type>}}(\ ::std::experimental::submdspan(\ this-\/>underlying\_span(),\ args\ ...\ )\ );}
+\DoxyCodeLine{00468\ \}}
+\DoxyCodeLine{00469\ }
+\DoxyCodeLine{00470\ \textcolor{keyword}{template}\ <\ \textcolor{keyword}{class\ }T,\ \textcolor{keyword}{class\ }L,\ \textcolor{keyword}{class\ }A,\ ::std::size\_t\ ...\ Ds\ >}
+\DoxyCodeLine{00471\ \textcolor{preprocessor}{\#ifdef\ LINALG\_ENABLE\_CONCEPTS}}
+\DoxyCodeLine{00472\ \ \ \textcolor{keyword}{requires}\ (\ (\ Ds\ >=\ 0\ )\ \&\&\ ...\ )}
+\DoxyCodeLine{00473\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00474\ \textcolor{keyword}{template}\ <\ \textcolor{keyword}{class\ }...\ SliceArgs\ >}
+\DoxyCodeLine{00475\ [[nodiscard]]\ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{auto}\ \mbox{\hyperlink{classstd_1_1math_1_1fs__tensor_aeb727e37e5321638e49de857f028869a}{fs\_tensor<T,L,A,Ds...>::submatrix}}(\ SliceArgs\ ...\ args\ )\ \textcolor{keyword}{const}}
+\DoxyCodeLine{00476\ \textcolor{preprocessor}{\#ifdef\ LINALG\_ENABLE\_CONCEPTS}}
+\DoxyCodeLine{00477\ \ \ \textcolor{keyword}{requires}\ (\ \textcolor{keyword}{decltype}(\ ::std::experimental::submdspan(\ this-\/>underlying\_span(),\ args\ ...\ )\ )::rank()\ ==\ 2\ )}
+\DoxyCodeLine{00478\ \#endif}
+\DoxyCodeLine{00479\ \{}
+\DoxyCodeLine{00480\ \ \ \textcolor{keyword}{using\ }subspan\_type\ =\ \textcolor{keyword}{decltype}(\ ::std::experimental::submdspan(\ this-\/>underlying\_span(),\ args\ ...\ )\ );}
+\DoxyCodeLine{00481\ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{classstd_1_1math_1_1matrix__view}{matrix\_view<subspan\_type>}}(\ ::std::experimental::submdspan(\ this-\/>underlying\_span(),\ args\ ...\ )\ );}
+\DoxyCodeLine{00482\ \}}
+\DoxyCodeLine{00483\ }
+\DoxyCodeLine{00484\ \textcolor{keyword}{template}\ <\ \textcolor{keyword}{class\ }T,\ \textcolor{keyword}{class\ }L,\ \textcolor{keyword}{class\ }A,\ ::std::size\_t\ ...\ Ds\ >}
+\DoxyCodeLine{00485\ \textcolor{preprocessor}{\#ifdef\ LINALG\_ENABLE\_CONCEPTS}}
+\DoxyCodeLine{00486\ \ \ \textcolor{keyword}{requires}\ (\ (\ Ds\ >=\ 0\ )\ \&\&\ ...\ )}
+\DoxyCodeLine{00487\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00488\ \textcolor{keyword}{template}\ <\ \textcolor{keyword}{class\ }...\ SliceArgs\ >}
+\DoxyCodeLine{00489\ [[nodiscard]]\ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{auto}\ \mbox{\hyperlink{classstd_1_1math_1_1fs__tensor_a4c1363153f15e3992e331f131a465ef5}{fs\_tensor<T,L,A,Ds...>::subtensor}}(\ SliceArgs\ ...\ args\ )\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00490\ \textcolor{keyword}{}\{}
+\DoxyCodeLine{00491\ \ \ \textcolor{keyword}{using\ }subspan\_type\ =\ \textcolor{keyword}{decltype}(\ ::std::experimental::submdspan(\ this-\/>underlying\_span(),\ args\ ...\ )\ );}
+\DoxyCodeLine{00492\ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{classstd_1_1math_1_1tensor__view}{tensor\_view<subspan\_type>}}(\ ::std::experimental::submdspan(\ this-\/>underlying\_span(),\ args\ ...\ )\ );}
+\DoxyCodeLine{00493\ \}}
+\DoxyCodeLine{00494\ }
+\DoxyCodeLine{00495\ \textcolor{comment}{//-\/\ Mutable\ views}}
+\DoxyCodeLine{00496\ }
+\DoxyCodeLine{00497\ \textcolor{preprocessor}{\#if\ LINALG\_USE\_BRACKET\_OPERATOR}}
+\DoxyCodeLine{00498\ \textcolor{keyword}{template}\ <\ \textcolor{keyword}{class\ }T,\ \textcolor{keyword}{class\ }L,\ \textcolor{keyword}{class\ }A,\ ::std::size\_t\ ...\ Ds\ >}
+\DoxyCodeLine{00499\ \textcolor{preprocessor}{\#ifdef\ LINALG\_ENABLE\_CONCEPTS}}
+\DoxyCodeLine{00500\ \ \ \textcolor{keyword}{requires}\ (\ (\ Ds\ >=\ 0\ )\ \&\&\ ...\ )}
+\DoxyCodeLine{00501\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00502\ [[nodiscard]]\ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{typename}\ \mbox{\hyperlink{classstd_1_1math_1_1fs__tensor}{fs\_tensor}}<T,L,A,Ds...>::reference}
+\DoxyCodeLine{00503\ \mbox{\hyperlink{classstd_1_1math_1_1fs__tensor}{fs\_tensor<T,L,A,Ds...>::operator[]}}(\ \textcolor{keyword}{decltype}(Ds)\ ...\ indices\ )\ \textcolor{keyword}{noexcept}}
+\DoxyCodeLine{00504\ \{}
+\DoxyCodeLine{00505\ \ \ \textcolor{keywordflow}{return}\ this-\/>underlying\_span()[\ indices\ ...\ ];}
+\DoxyCodeLine{00506\ \}}
+\DoxyCodeLine{00507\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00508\ }
+\DoxyCodeLine{00509\ \textcolor{preprocessor}{\#if\ LINALG\_USE\_PAREN\_OPERATOR}}
+\DoxyCodeLine{00510\ \textcolor{keyword}{template}\ <\ \textcolor{keyword}{class\ }T,\ \textcolor{keyword}{class\ }L,\ \textcolor{keyword}{class\ }A,\ ::std::size\_t\ ...\ Ds\ >}
+\DoxyCodeLine{00511\ \textcolor{preprocessor}{\#ifdef\ LINALG\_ENABLE\_CONCEPTS}}
+\DoxyCodeLine{00512\ \ \ \textcolor{keyword}{requires}\ (\ (\ Ds\ >=\ 0\ )\ \&\&\ ...\ )}
+\DoxyCodeLine{00513\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00514\ [[nodiscard]]\ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{typename}\ fs\_tensor<T,L,A,Ds...>::reference}
+\DoxyCodeLine{00515\ fs\_tensor<T,L,A,Ds...>::operator()(\ \textcolor{keyword}{decltype}(Ds)\ ...\ indices\ )\ \textcolor{keyword}{noexcept}}
+\DoxyCodeLine{00516\ \{}
+\DoxyCodeLine{00517\ \ \ \textcolor{keywordflow}{return}\ this-\/>underlying\_span()(\ indices\ ...\ );}
+\DoxyCodeLine{00518\ \}}
+\DoxyCodeLine{00519\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00520\ }
+\DoxyCodeLine{00521\ \textcolor{keyword}{template}\ <\ \textcolor{keyword}{class\ }T,\ \textcolor{keyword}{class\ }L,\ \textcolor{keyword}{class\ }A,\ ::std::size\_t\ ...\ Ds\ >}
+\DoxyCodeLine{00522\ \textcolor{preprocessor}{\#ifdef\ LINALG\_ENABLE\_CONCEPTS}}
+\DoxyCodeLine{00523\ \ \ \textcolor{keyword}{requires}\ (\ (\ Ds\ >=\ 0\ )\ \&\&\ ...\ )}
+\DoxyCodeLine{00524\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00525\ \textcolor{keyword}{template}\ <\ \textcolor{keyword}{class\ }...\ SliceArgs\ >}
+\DoxyCodeLine{00526\ [[nodiscard]]\ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{auto}\ \mbox{\hyperlink{classstd_1_1math_1_1fs__tensor_a5b46194792ecccd2e6ba91c5db65a834}{fs\_tensor<T,L,A,Ds...>::subvector}}(\ SliceArgs\ ...\ args\ )}
+\DoxyCodeLine{00527\ \textcolor{preprocessor}{\#ifdef\ LINALG\_ENABLE\_CONCEPTS}}
+\DoxyCodeLine{00528\ \ \ \textcolor{keyword}{requires}\ (\ \textcolor{keyword}{decltype}(\ ::std::experimental::submdspan(\ this-\/>underlying\_span(),\ args\ ...\ )\ )::rank()\ ==\ 1\ )}
+\DoxyCodeLine{00529\ \#endif}
+\DoxyCodeLine{00530\ \{}
+\DoxyCodeLine{00531\ \ \ \textcolor{keyword}{using\ }subspan\_type\ =\ \textcolor{keyword}{decltype}(\ ::std::experimental::submdspan(\ this-\/>underlying\_span(),\ args\ ...\ )\ );}
+\DoxyCodeLine{00532\ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{classstd_1_1math_1_1vector__view}{vector\_view<subspan\_type>}}(\ ::std::experimental::submdspan(\ this-\/>underlying\_span(),\ args\ ...\ )\ );}
+\DoxyCodeLine{00533\ \}}
+\DoxyCodeLine{00534\ }
+\DoxyCodeLine{00535\ \textcolor{keyword}{template}\ <\ \textcolor{keyword}{class\ }T,\ \textcolor{keyword}{class\ }L,\ \textcolor{keyword}{class\ }A,\ ::std::size\_t\ ...\ Ds\ >}
+\DoxyCodeLine{00536\ \textcolor{preprocessor}{\#ifdef\ LINALG\_ENABLE\_CONCEPTS}}
+\DoxyCodeLine{00537\ \ \ \textcolor{keyword}{requires}\ (\ (\ Ds\ >=\ 0\ )\ \&\&\ ...\ )}
+\DoxyCodeLine{00538\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00539\ \textcolor{keyword}{template}\ <\ \textcolor{keyword}{class\ }...\ SliceArgs\ >}
+\DoxyCodeLine{00540\ [[nodiscard]]\ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{auto}\ \mbox{\hyperlink{classstd_1_1math_1_1fs__tensor_aeb727e37e5321638e49de857f028869a}{fs\_tensor<T,L,A,Ds...>::submatrix}}(\ SliceArgs\ ...\ args\ )}
+\DoxyCodeLine{00541\ \textcolor{preprocessor}{\#ifdef\ LINALG\_ENABLE\_CONCEPTS}}
+\DoxyCodeLine{00542\ \ \ \textcolor{keyword}{requires}\ (\ \textcolor{keyword}{decltype}(\ ::std::experimental::submdspan(\ this-\/>underlying\_span(),\ args\ ...\ )\ )::rank()\ ==\ 2\ )}
+\DoxyCodeLine{00543\ \#endif}
+\DoxyCodeLine{00544\ \{}
+\DoxyCodeLine{00545\ \ \ \textcolor{keyword}{using\ }subspan\_type\ =\ \textcolor{keyword}{decltype}(\ ::std::experimental::submdspan(\ this-\/>underlying\_span(),\ args\ ...\ )\ );}
+\DoxyCodeLine{00546\ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{classstd_1_1math_1_1matrix__view}{matrix\_view<subspan\_type>}}(\ ::std::experimental::submdspan(\ this-\/>underlying\_span(),\ args\ ...\ )\ );}
+\DoxyCodeLine{00547\ \}}
+\DoxyCodeLine{00548\ }
+\DoxyCodeLine{00549\ \textcolor{keyword}{template}\ <\ \textcolor{keyword}{class\ }T,\ \textcolor{keyword}{class\ }L,\ \textcolor{keyword}{class\ }A,\ ::std::size\_t\ ...\ Ds\ >}
+\DoxyCodeLine{00550\ \textcolor{preprocessor}{\#ifdef\ LINALG\_ENABLE\_CONCEPTS}}
+\DoxyCodeLine{00551\ \ \ \textcolor{keyword}{requires}\ (\ (\ Ds\ >=\ 0\ )\ \&\&\ ...\ )}
+\DoxyCodeLine{00552\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00553\ \textcolor{keyword}{template}\ <\ \textcolor{keyword}{class\ }...\ SliceArgs\ >}
+\DoxyCodeLine{00554\ [[nodiscard]]\ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{auto}\ \mbox{\hyperlink{classstd_1_1math_1_1fs__tensor_a4c1363153f15e3992e331f131a465ef5}{fs\_tensor<T,L,A,Ds...>::subtensor}}(\ SliceArgs\ ...\ args\ )}
+\DoxyCodeLine{00555\ \{}
+\DoxyCodeLine{00556\ \ \ \textcolor{keyword}{using\ }subspan\_type\ =\ \textcolor{keyword}{decltype}(\ ::std::experimental::submdspan(\ this-\/>underlying\_span(),\ args\ ...\ )\ );}
+\DoxyCodeLine{00557\ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{classstd_1_1math_1_1tensor__view}{tensor\_view<subspan\_type>}}(\ ::std::experimental::submdspan(\ this-\/>underlying\_span(),\ args\ ...\ )\ );}
+\DoxyCodeLine{00558\ \}}
+\DoxyCodeLine{00559\ }
+\DoxyCodeLine{00560\ \textcolor{comment}{//-\/\ Data\ access}}
+\DoxyCodeLine{00561\ }
+\DoxyCodeLine{00562\ \textcolor{keyword}{template}\ <\ \textcolor{keyword}{class\ }T,\ \textcolor{keyword}{class\ }L,\ \textcolor{keyword}{class\ }A,\ ::std::size\_t\ ...\ Ds\ >}
+\DoxyCodeLine{00563\ \textcolor{preprocessor}{\#ifdef\ LINALG\_ENABLE\_CONCEPTS}}
+\DoxyCodeLine{00564\ \ \ \textcolor{keyword}{requires}\ (\ (\ Ds\ >=\ 0\ )\ \&\&\ ...\ )}
+\DoxyCodeLine{00565\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00566\ [[nodiscard]]\ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{typename}\ \mbox{\hyperlink{classstd_1_1math_1_1fs__tensor}{fs\_tensor}}<T,L,A,Ds...>::span\_type}
+\DoxyCodeLine{00567\ \mbox{\hyperlink{classstd_1_1math_1_1fs__tensor_a29f27c679df3db9ceb72bee92a652b88}{fs\_tensor<T,L,A,Ds...>::span}}()\ const\ noexcept}
+\DoxyCodeLine{00568\ \{}
+\DoxyCodeLine{00569\ \ \ \textcolor{keywordflow}{return}\ this-\/>underlying\_span();}
+\DoxyCodeLine{00570\ \}}
+\DoxyCodeLine{00571\ }
+\DoxyCodeLine{00572\ \textcolor{keyword}{template}\ <\ \textcolor{keyword}{class\ }T,\ \textcolor{keyword}{class\ }L,\ \textcolor{keyword}{class\ }A,\ ::std::size\_t\ ...\ Ds\ >}
+\DoxyCodeLine{00573\ \textcolor{preprocessor}{\#ifdef\ LINALG\_ENABLE\_CONCEPTS}}
+\DoxyCodeLine{00574\ \ \ \textcolor{keyword}{requires}\ (\ (\ Ds\ >=\ 0\ )\ \&\&\ ...\ )}
+\DoxyCodeLine{00575\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00576\ [[nodiscard]]\ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{typename}\ \mbox{\hyperlink{classstd_1_1math_1_1fs__tensor}{fs\_tensor}}<T,L,A,Ds...>::underlying\_span\_type}
+\DoxyCodeLine{00577\ \mbox{\hyperlink{classstd_1_1math_1_1fs__tensor_aec0aedbb034ef0d150cdfbac67dc64d3}{fs\_tensor<T,L,A,Ds...>::underlying\_span}}()\ noexcept}
+\DoxyCodeLine{00578\ \{}
+\DoxyCodeLine{00579\ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{classstd_1_1math_1_1fs__tensor_ad65bcae09b9e0ca7ab11d5f253188fad}{underlying\_span\_type}}(\ \&this-\/>elems\_[0],\ \mbox{\hyperlink{classstd_1_1math_1_1fs__tensor_ab7081bbf3090395174207de84318521c}{extents\_type}}()\ );}
+\DoxyCodeLine{00580\ \}}
+\DoxyCodeLine{00581\ }
+\DoxyCodeLine{00582\ \textcolor{keyword}{template}\ <\ \textcolor{keyword}{class\ }T,\ \textcolor{keyword}{class\ }L,\ \textcolor{keyword}{class\ }A,\ ::std::size\_t\ ...\ Ds\ >}
+\DoxyCodeLine{00583\ \textcolor{preprocessor}{\#ifdef\ LINALG\_ENABLE\_CONCEPTS}}
+\DoxyCodeLine{00584\ \ \ \textcolor{keyword}{requires}\ (\ (\ Ds\ >=\ 0\ )\ \&\&\ ...\ )}
+\DoxyCodeLine{00585\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00586\ [[nodiscard]]\ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{typename}\ \mbox{\hyperlink{classstd_1_1math_1_1fs__tensor}{fs\_tensor}}<T,L,A,Ds...>::const\_underlying\_span\_type}
+\DoxyCodeLine{00587\ \mbox{\hyperlink{classstd_1_1math_1_1fs__tensor_aec0aedbb034ef0d150cdfbac67dc64d3}{fs\_tensor<T,L,A,Ds...>::underlying\_span}}()\ const\ noexcept}
+\DoxyCodeLine{00588\ \{}
+\DoxyCodeLine{00589\ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{classstd_1_1math_1_1fs__tensor_a66bbf3d9637400bd5a6cdf0a86626364}{const\_underlying\_span\_type}}(\ \&this-\/>elems\_[0],\ \mbox{\hyperlink{classstd_1_1math_1_1fs__tensor_ab7081bbf3090395174207de84318521c}{extents\_type}}()\ );}
+\DoxyCodeLine{00590\ \}}
+\DoxyCodeLine{00591\ }
+\DoxyCodeLine{00592\ \}\ \ \ \ \ \ \ \textcolor{comment}{//-\/\ math\ namespace}}
+\DoxyCodeLine{00593\ \}\ \ \ \ \ \ \ \textcolor{comment}{//-\/\ std\ namespace}}
+\DoxyCodeLine{00594\ \textcolor{preprocessor}{\#endif\ \ }\textcolor{comment}{//-\/\ LINEAR\_ALGEBRA\_FIXED\_SIZE\_TENSOR\_HPP}}
 
 \end{DoxyCode}

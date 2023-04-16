@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=11"/>
 <meta name="generator" content="Doxygen 1.9.6"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>Linear Algebra: std::math::fs_vector&lt; T, N, L, A &gt; Class Template Reference</title>
+<title>Linear Algebra: std::math::fs_vector&lt; T, N, L, A, typename &gt; Class Template Reference</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -78,7 +78,7 @@ $(function() {
 <a href="#pub-types">Public Types</a> &#124;
 <a href="#pub-methods">Public Member Functions</a> &#124;
 <a href="classstd_1_1math_1_1fs__vector-members.html">List of all members</a>  </div>
-  <div class="headertitle"><div class="title">std::math::fs_vector&lt; T, N, L, A &gt; Class Template Reference</div></div>
+  <div class="headertitle"><div class="title">std::math::fs_vector&lt; T, N, L, A, typename &gt; Class Template Reference</div></div>
 </div><!--header-->
 <div class="contents">
 
@@ -87,13 +87,13 @@ $(function() {
 
 <p><code>#include &lt;<a class="el" href="fixed__size__vector_8hpp_source.html">fixed_size_vector.hpp</a>&gt;</code></p>
 <div class="dynheader">
-Inheritance diagram for std::math::fs_vector&lt; T, N, L, A &gt;:</div>
+Inheritance diagram for std::math::fs_vector&lt; T, N, L, A, typename &gt;:</div>
 <div class="dyncontent">
 <div class="center"><div class="zoom"><iframe scrolling="no" frameborder="0" src="classstd_1_1math_1_1fs__vector__inherit__graph.svg" width="100%" height="600"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
 </div>
 </div>
 <div class="dynheader">
-Collaboration diagram for std::math::fs_vector&lt; T, N, L, A &gt;:</div>
+Collaboration diagram for std::math::fs_vector&lt; T, N, L, A, typename &gt;:</div>
 <div class="dyncontent">
 <div class="center"><div class="zoom"><iframe scrolling="no" frameborder="0" src="classstd_1_1math_1_1fs__vector__coll__graph.svg" width="100%" height="600"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
 </div>
@@ -107,53 +107,53 @@ Classes</h2></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-types" name="pub-types"></a>
 Public Types</h2></td></tr>
-<tr class="memitem:a34c5cd8d9804e3f091da2ffc4f1e8576"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classstd_1_1math_1_1fs__vector.html#a34c5cd8d9804e3f091da2ffc4f1e8576">layout_type</a> = typename <a class="el" href="classstd_1_1math_1_1fs__tensor.html#aa0d6ef16218fd8c5edc33065308b1913">base_type::layout_type</a></td></tr>
-<tr class="memdesc:a34c5cd8d9804e3f091da2ffc4f1e8576"><td class="mdescLeft">&#160;</td><td class="mdescRight">Type used to define memory layout.  <br /></td></tr>
-<tr class="separator:a34c5cd8d9804e3f091da2ffc4f1e8576"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a703befcb6a9b7345d33faac49facd3f7"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classstd_1_1math_1_1fs__vector.html#a703befcb6a9b7345d33faac49facd3f7">accessor_type</a> = typename <a class="el" href="classstd_1_1math_1_1fs__tensor.html#aa2dc98e6be4a3eefc84394a144219593">base_type::accessor_type</a></td></tr>
-<tr class="memdesc:a703befcb6a9b7345d33faac49facd3f7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Type used to define access into memory.  <br /></td></tr>
-<tr class="separator:a703befcb6a9b7345d33faac49facd3f7"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a66c4df20928fdfe34bcd47a6c12599c3"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classstd_1_1math_1_1fs__vector.html#a66c4df20928fdfe34bcd47a6c12599c3">element_type</a> = typename <a class="el" href="classstd_1_1math_1_1fs__tensor.html#a877b9014a0d86a6945084d5f18b5f065">base_type::element_type</a></td></tr>
-<tr class="memdesc:a66c4df20928fdfe34bcd47a6c12599c3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Type contained by the vector.  <br /></td></tr>
-<tr class="separator:a66c4df20928fdfe34bcd47a6c12599c3"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a60fb8d0b2889b9c229caaa9c7005a0ed"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classstd_1_1math_1_1fs__vector.html#a60fb8d0b2889b9c229caaa9c7005a0ed">value_type</a> = typename <a class="el" href="classstd_1_1math_1_1fs__tensor.html#a4a98dc2c12f713dae7481d9ffa23ff38">base_type::value_type</a></td></tr>
-<tr class="memdesc:a60fb8d0b2889b9c229caaa9c7005a0ed"><td class="mdescLeft">&#160;</td><td class="mdescRight">Type returned by const index access.  <br /></td></tr>
-<tr class="separator:a60fb8d0b2889b9c229caaa9c7005a0ed"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a3197132736349e781c89ee7086d68cb2"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classstd_1_1math_1_1fs__vector.html#a3197132736349e781c89ee7086d68cb2">index_type</a> = typename <a class="el" href="classstd_1_1math_1_1fs__tensor.html#a2ac859bbdca290af00c7ae6133b7dce0">base_type::index_type</a></td></tr>
-<tr class="memdesc:a3197132736349e781c89ee7086d68cb2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Type used for indexing.  <br /></td></tr>
-<tr class="separator:a3197132736349e781c89ee7086d68cb2"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:acabefa963f4b2f33910c4f53231fadbb"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classstd_1_1math_1_1fs__vector.html#acabefa963f4b2f33910c4f53231fadbb">size_type</a> = typename <a class="el" href="classstd_1_1math_1_1fs__tensor.html#a75a492a9a1079e6eeb5a34093b98b390">base_type::size_type</a></td></tr>
-<tr class="memdesc:acabefa963f4b2f33910c4f53231fadbb"><td class="mdescLeft">&#160;</td><td class="mdescRight">Type used for size along any dimension.  <br /></td></tr>
-<tr class="separator:acabefa963f4b2f33910c4f53231fadbb"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a8fb59427b680161e8c5e7ed45ca6d5c5"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classstd_1_1math_1_1fs__vector.html#a8fb59427b680161e8c5e7ed45ca6d5c5">extents_type</a> = typename <a class="el" href="classstd_1_1math_1_1fs__tensor.html#a08e3329f952a65f70b1d7239ea5bb5b1">base_type::extents_type</a></td></tr>
-<tr class="memdesc:a8fb59427b680161e8c5e7ed45ca6d5c5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Type used to express size of tensor.  <br /></td></tr>
-<tr class="separator:a8fb59427b680161e8c5e7ed45ca6d5c5"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:add2af9dd5fd91bb96248ef8334fb1e57"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classstd_1_1math_1_1fs__vector.html#add2af9dd5fd91bb96248ef8334fb1e57">tuple_type</a> = typename <a class="el" href="classstd_1_1math_1_1fs__tensor.html#a85d3152ad0a10147b519921da001e5a1">base_type::tuple_type</a></td></tr>
-<tr class="memdesc:add2af9dd5fd91bb96248ef8334fb1e57"><td class="mdescLeft">&#160;</td><td class="mdescRight">Type used to represent a node in the tensor.  <br /></td></tr>
-<tr class="separator:add2af9dd5fd91bb96248ef8334fb1e57"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:af88e450b5fde5075cb88d27265f49ff7"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classstd_1_1math_1_1fs__vector.html#af88e450b5fde5075cb88d27265f49ff7">const_underlying_span_type</a> = typename <a class="el" href="classstd_1_1math_1_1fs__tensor.html#ae13ebf0e9711df67ffb51339358db5c2">base_type::const_underlying_span_type</a></td></tr>
-<tr class="memdesc:af88e450b5fde5075cb88d27265f49ff7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Type used to const view memory.  <br /></td></tr>
-<tr class="separator:af88e450b5fde5075cb88d27265f49ff7"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:accaaa8ad8ac546abeaf513e2f7d9d5e6"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classstd_1_1math_1_1fs__vector.html#accaaa8ad8ac546abeaf513e2f7d9d5e6">underlying_span_type</a> = typename <a class="el" href="classstd_1_1math_1_1fs__tensor.html#ac7cd4d69a4e2e73ae70c1b2d9e7b51e2">base_type::underlying_span_type</a></td></tr>
-<tr class="memdesc:accaaa8ad8ac546abeaf513e2f7d9d5e6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Type used to view memory.  <br /></td></tr>
-<tr class="separator:accaaa8ad8ac546abeaf513e2f7d9d5e6"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:af5c6dd35239b4d29fe677c9933a57eb1"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classstd_1_1math_1_1fs__vector.html#af5c6dd35239b4d29fe677c9933a57eb1">span_type</a> = typename <a class="el" href="classstd_1_1math_1_1fs__tensor.html#af59d3880e164152fd061acf97c1ec2cb">base_type::span_type</a></td></tr>
-<tr class="memdesc:af5c6dd35239b4d29fe677c9933a57eb1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Type used to portray tensor as an N dimensional view.  <br /></td></tr>
-<tr class="separator:af5c6dd35239b4d29fe677c9933a57eb1"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:afb8d088bc694d8733695530233962b79"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classstd_1_1math_1_1fs__vector.html#afb8d088bc694d8733695530233962b79">reference_type</a> = typename <a class="el" href="classstd_1_1math_1_1fs__tensor.html#a256bd11d1699a9acb0f926725f8fffc6">base_type::reference_type</a></td></tr>
-<tr class="memdesc:afb8d088bc694d8733695530233962b79"><td class="mdescLeft">&#160;</td><td class="mdescRight">Type returned by mutable index access.  <br /></td></tr>
-<tr class="separator:afb8d088bc694d8733695530233962b79"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a42d27b62761230b9caac4e1394c3e4f7"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classstd_1_1math_1_1fs__vector.html#a42d27b62761230b9caac4e1394c3e4f7">subvector_type</a> = <a class="el" href="classstd_1_1math_1_1vector__view.html">vector_view</a>&lt; decltype(experimental::submdspan(declval&lt; <a class="el" href="classstd_1_1math_1_1fs__vector.html#accaaa8ad8ac546abeaf513e2f7d9d5e6">underlying_span_type</a> &gt;(), declval&lt; tuple&lt; <a class="el" href="classstd_1_1math_1_1fs__vector.html#a3197132736349e781c89ee7086d68cb2">index_type</a>, <a class="el" href="classstd_1_1math_1_1fs__vector.html#a3197132736349e781c89ee7086d68cb2">index_type</a> &gt; &gt;())) &gt;</td></tr>
-<tr class="memdesc:a42d27b62761230b9caac4e1394c3e4f7"><td class="mdescLeft">&#160;</td><td class="mdescRight">mutable view of a subtensor  <br /></td></tr>
-<tr class="separator:a42d27b62761230b9caac4e1394c3e4f7"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a0811928d0a680f8c1c7e776909a7b54a"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classstd_1_1math_1_1fs__vector.html#a0811928d0a680f8c1c7e776909a7b54a">const_subvector_type</a> = <a class="el" href="classstd_1_1math_1_1vector__view.html">vector_view</a>&lt; decltype(experimental::submdspan(declval&lt; <a class="el" href="classstd_1_1math_1_1fs__vector.html#af88e450b5fde5075cb88d27265f49ff7">const_underlying_span_type</a> &gt;(), declval&lt; tuple&lt; <a class="el" href="classstd_1_1math_1_1fs__vector.html#a3197132736349e781c89ee7086d68cb2">index_type</a>, <a class="el" href="classstd_1_1math_1_1fs__vector.html#a3197132736349e781c89ee7086d68cb2">index_type</a> &gt; &gt;())) &gt;</td></tr>
-<tr class="memdesc:a0811928d0a680f8c1c7e776909a7b54a"><td class="mdescLeft">&#160;</td><td class="mdescRight">const view of a subtensor  <br /></td></tr>
-<tr class="separator:a0811928d0a680f8c1c7e776909a7b54a"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:af6559fcd47f350b5dd68e5effd32c103"><td class="memTemplParams" colspan="2">template&lt;class ValueType , class LayoutType  = layout_type, class AccessorType  = accessor_type&gt; </td></tr>
-<tr class="memitem:af6559fcd47f350b5dd68e5effd32c103"><td class="memTemplItemLeft" align="right" valign="top">using&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="classstd_1_1math_1_1fs__vector.html#af6559fcd47f350b5dd68e5effd32c103">rebind_t</a> = typename <a class="el" href="classstd_1_1math_1_1fs__vector_1_1rebind.html">rebind</a>&lt; ValueType, LayoutType, AccessorType &gt;::type</td></tr>
-<tr class="memdesc:af6559fcd47f350b5dd68e5effd32c103"><td class="mdescLeft">&#160;</td><td class="mdescRight">Helper for defining rebound type.  <br /></td></tr>
-<tr class="separator:af6559fcd47f350b5dd68e5effd32c103"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="inherit_header pub_types_classstd_1_1math_1_1fs__tensor"><td colspan="2" onclick="javascript:toggleInherit('pub_types_classstd_1_1math_1_1fs__tensor')"><img src="closed.png" alt="-"/>&#160;Public Types inherited from <a class="el" href="classstd_1_1math_1_1fs__tensor.html">std::math::fs_tensor&lt; T, L, A, Ds &gt;</a></td></tr>
+<tr class="memitem:afa2d600449d5872677e4812f1d451eea"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classstd_1_1math_1_1fs__vector.html#afa2d600449d5872677e4812f1d451eea">layout_type</a> = typename <a class="el" href="classstd_1_1math_1_1fs__tensor.html#aa0d6ef16218fd8c5edc33065308b1913">base_type::layout_type</a></td></tr>
+<tr class="memdesc:afa2d600449d5872677e4812f1d451eea"><td class="mdescLeft">&#160;</td><td class="mdescRight">Type used to define memory layout.  <br /></td></tr>
+<tr class="separator:afa2d600449d5872677e4812f1d451eea"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a00862f515d4b8ce28651ddba36d1519b"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classstd_1_1math_1_1fs__vector.html#a00862f515d4b8ce28651ddba36d1519b">accessor_type</a> = typename <a class="el" href="classstd_1_1math_1_1fs__tensor.html#aa2dc98e6be4a3eefc84394a144219593">base_type::accessor_type</a></td></tr>
+<tr class="memdesc:a00862f515d4b8ce28651ddba36d1519b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Type used to define access into memory.  <br /></td></tr>
+<tr class="separator:a00862f515d4b8ce28651ddba36d1519b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac5a82013ccfc69c383d5ccd6f1cd7d23"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classstd_1_1math_1_1fs__vector.html#ac5a82013ccfc69c383d5ccd6f1cd7d23">element_type</a> = typename <a class="el" href="classstd_1_1math_1_1fs__tensor.html#a877b9014a0d86a6945084d5f18b5f065">base_type::element_type</a></td></tr>
+<tr class="memdesc:ac5a82013ccfc69c383d5ccd6f1cd7d23"><td class="mdescLeft">&#160;</td><td class="mdescRight">Type contained by the vector.  <br /></td></tr>
+<tr class="separator:ac5a82013ccfc69c383d5ccd6f1cd7d23"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:accb0a868d3b147f6519403442983b45c"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classstd_1_1math_1_1fs__vector.html#accb0a868d3b147f6519403442983b45c">value_type</a> = typename <a class="el" href="classstd_1_1math_1_1fs__tensor.html#ad5e47b3c811336fa55b7f07159d8e2bc">base_type::value_type</a></td></tr>
+<tr class="memdesc:accb0a868d3b147f6519403442983b45c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Type returned by const index access.  <br /></td></tr>
+<tr class="separator:accb0a868d3b147f6519403442983b45c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7028ea16e1a8e5561432572a5c6fe8ef"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classstd_1_1math_1_1fs__vector.html#a7028ea16e1a8e5561432572a5c6fe8ef">index_type</a> = typename base_type::index_type</td></tr>
+<tr class="memdesc:a7028ea16e1a8e5561432572a5c6fe8ef"><td class="mdescLeft">&#160;</td><td class="mdescRight">Type used for indexing.  <br /></td></tr>
+<tr class="separator:a7028ea16e1a8e5561432572a5c6fe8ef"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a86bd9959d301d520da56454e497a162f"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classstd_1_1math_1_1fs__vector.html#a86bd9959d301d520da56454e497a162f">size_type</a> = typename <a class="el" href="classstd_1_1math_1_1fs__tensor.html#ad694c160eddef094640e5ea7eccf884e">base_type::size_type</a></td></tr>
+<tr class="memdesc:a86bd9959d301d520da56454e497a162f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Type used for size along any dimension.  <br /></td></tr>
+<tr class="separator:a86bd9959d301d520da56454e497a162f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0045948399dc0be1ba510ca4e0de5f77"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classstd_1_1math_1_1fs__vector.html#a0045948399dc0be1ba510ca4e0de5f77">extents_type</a> = typename <a class="el" href="classstd_1_1math_1_1fs__tensor.html#ab7081bbf3090395174207de84318521c">base_type::extents_type</a></td></tr>
+<tr class="memdesc:a0045948399dc0be1ba510ca4e0de5f77"><td class="mdescLeft">&#160;</td><td class="mdescRight">Type used to express size of tensor.  <br /></td></tr>
+<tr class="separator:a0045948399dc0be1ba510ca4e0de5f77"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aecd4932a2fef8de5eec8c6d1fa1db2bb"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classstd_1_1math_1_1fs__vector.html#aecd4932a2fef8de5eec8c6d1fa1db2bb">tuple_type</a> = typename <a class="el" href="classstd_1_1math_1_1fs__tensor.html#a85d3152ad0a10147b519921da001e5a1">base_type::tuple_type</a></td></tr>
+<tr class="memdesc:aecd4932a2fef8de5eec8c6d1fa1db2bb"><td class="mdescLeft">&#160;</td><td class="mdescRight">Type used to represent a node in the tensor.  <br /></td></tr>
+<tr class="separator:aecd4932a2fef8de5eec8c6d1fa1db2bb"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8bdb0d46e01a1ac27be48bc3ce738788"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classstd_1_1math_1_1fs__vector.html#a8bdb0d46e01a1ac27be48bc3ce738788">const_underlying_span_type</a> = typename <a class="el" href="classstd_1_1math_1_1fs__tensor.html#a66bbf3d9637400bd5a6cdf0a86626364">base_type::const_underlying_span_type</a></td></tr>
+<tr class="memdesc:a8bdb0d46e01a1ac27be48bc3ce738788"><td class="mdescLeft">&#160;</td><td class="mdescRight">Type used to const view memory.  <br /></td></tr>
+<tr class="separator:a8bdb0d46e01a1ac27be48bc3ce738788"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aebea5b09b3ca22eefc386bd65bba63e5"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classstd_1_1math_1_1fs__vector.html#aebea5b09b3ca22eefc386bd65bba63e5">underlying_span_type</a> = typename <a class="el" href="classstd_1_1math_1_1fs__tensor.html#ad65bcae09b9e0ca7ab11d5f253188fad">base_type::underlying_span_type</a></td></tr>
+<tr class="memdesc:aebea5b09b3ca22eefc386bd65bba63e5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Type used to view memory.  <br /></td></tr>
+<tr class="separator:aebea5b09b3ca22eefc386bd65bba63e5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6e1ec9fd932d11e5aa051678d1a00072"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classstd_1_1math_1_1fs__vector.html#a6e1ec9fd932d11e5aa051678d1a00072">span_type</a> = typename <a class="el" href="classstd_1_1math_1_1fs__tensor.html#af59d3880e164152fd061acf97c1ec2cb">base_type::span_type</a></td></tr>
+<tr class="memdesc:a6e1ec9fd932d11e5aa051678d1a00072"><td class="mdescLeft">&#160;</td><td class="mdescRight">Type used to portray tensor as an N dimensional view.  <br /></td></tr>
+<tr class="separator:a6e1ec9fd932d11e5aa051678d1a00072"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab15ca077e57b663ecaa7f485b2f816a9"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classstd_1_1math_1_1fs__vector.html#ab15ca077e57b663ecaa7f485b2f816a9">reference</a> = typename <a class="el" href="classstd_1_1math_1_1fs__tensor.html#a69fb9ddb5f5530bf0dd4d7c262f270d3">base_type::reference</a></td></tr>
+<tr class="memdesc:ab15ca077e57b663ecaa7f485b2f816a9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Type returned by mutable index access.  <br /></td></tr>
+<tr class="separator:ab15ca077e57b663ecaa7f485b2f816a9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aecef4a5078c20e47636114760fc02bdc"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classstd_1_1math_1_1fs__vector.html#aecef4a5078c20e47636114760fc02bdc">subvector_type</a> = <a class="el" href="classstd_1_1math_1_1vector__view.html">vector_view</a>&lt; decltype(::std::experimental::submdspan(::std::declval&lt; <a class="el" href="classstd_1_1math_1_1fs__vector.html#aebea5b09b3ca22eefc386bd65bba63e5">underlying_span_type</a> &gt;(), ::std::declval&lt; ::std::tuple&lt; <a class="el" href="classstd_1_1math_1_1fs__vector.html#a7028ea16e1a8e5561432572a5c6fe8ef">index_type</a>, <a class="el" href="classstd_1_1math_1_1fs__vector.html#a7028ea16e1a8e5561432572a5c6fe8ef">index_type</a> &gt; &gt;())) &gt;</td></tr>
+<tr class="memdesc:aecef4a5078c20e47636114760fc02bdc"><td class="mdescLeft">&#160;</td><td class="mdescRight">mutable view of a subtensor  <br /></td></tr>
+<tr class="separator:aecef4a5078c20e47636114760fc02bdc"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7f4fd8cf934f5ea9d4a3b596b8474b1d"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classstd_1_1math_1_1fs__vector.html#a7f4fd8cf934f5ea9d4a3b596b8474b1d">const_subvector_type</a> = <a class="el" href="classstd_1_1math_1_1vector__view.html">vector_view</a>&lt; decltype(::std::experimental::submdspan(::std::declval&lt; <a class="el" href="classstd_1_1math_1_1fs__vector.html#a8bdb0d46e01a1ac27be48bc3ce738788">const_underlying_span_type</a> &gt;(), ::std::declval&lt; ::std::tuple&lt; <a class="el" href="classstd_1_1math_1_1fs__vector.html#a7028ea16e1a8e5561432572a5c6fe8ef">index_type</a>, <a class="el" href="classstd_1_1math_1_1fs__vector.html#a7028ea16e1a8e5561432572a5c6fe8ef">index_type</a> &gt; &gt;())) &gt;</td></tr>
+<tr class="memdesc:a7f4fd8cf934f5ea9d4a3b596b8474b1d"><td class="mdescLeft">&#160;</td><td class="mdescRight">const view of a subtensor  <br /></td></tr>
+<tr class="separator:a7f4fd8cf934f5ea9d4a3b596b8474b1d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5412e778166bf8c25ca6eb4c081b8022"><td class="memTemplParams" colspan="2">template&lt;class ValueType , class LayoutType  = layout_type, class AccessorType  = accessor_type&gt; </td></tr>
+<tr class="memitem:a5412e778166bf8c25ca6eb4c081b8022"><td class="memTemplItemLeft" align="right" valign="top">using&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="classstd_1_1math_1_1fs__vector.html#a5412e778166bf8c25ca6eb4c081b8022">rebind_t</a> = typename <a class="el" href="classstd_1_1math_1_1fs__vector_1_1rebind.html">rebind</a>&lt; ValueType, LayoutType, AccessorType &gt;::type</td></tr>
+<tr class="memdesc:a5412e778166bf8c25ca6eb4c081b8022"><td class="mdescLeft">&#160;</td><td class="mdescRight">Helper for defining rebound type.  <br /></td></tr>
+<tr class="separator:a5412e778166bf8c25ca6eb4c081b8022"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="inherit_header pub_types_classstd_1_1math_1_1fs__tensor"><td colspan="2" onclick="javascript:toggleInherit('pub_types_classstd_1_1math_1_1fs__tensor')"><img src="closed.png" alt="-"/>&#160;Public Types inherited from <a class="el" href="classstd_1_1math_1_1fs__tensor.html">std::math::fs_tensor&lt; T, L, A, N &gt;</a></td></tr>
 <tr class="memitem:aa0d6ef16218fd8c5edc33065308b1913 inherit pub_types_classstd_1_1math_1_1fs__tensor"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classstd_1_1math_1_1fs__tensor.html#aa0d6ef16218fd8c5edc33065308b1913">layout_type</a> = L</td></tr>
 <tr class="memdesc:aa0d6ef16218fd8c5edc33065308b1913 inherit pub_types_classstd_1_1math_1_1fs__tensor"><td class="mdescLeft">&#160;</td><td class="mdescRight">Type used to define memory layout.  <br /></td></tr>
 <tr class="separator:aa0d6ef16218fd8c5edc33065308b1913 inherit pub_types_classstd_1_1math_1_1fs__tensor"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -163,230 +163,161 @@ Public Types</h2></td></tr>
 <tr class="memitem:a877b9014a0d86a6945084d5f18b5f065 inherit pub_types_classstd_1_1math_1_1fs__tensor"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classstd_1_1math_1_1fs__tensor.html#a877b9014a0d86a6945084d5f18b5f065">element_type</a> = typename accessor_type::element_type</td></tr>
 <tr class="memdesc:a877b9014a0d86a6945084d5f18b5f065 inherit pub_types_classstd_1_1math_1_1fs__tensor"><td class="mdescLeft">&#160;</td><td class="mdescRight">Type contained by the tensor.  <br /></td></tr>
 <tr class="separator:a877b9014a0d86a6945084d5f18b5f065 inherit pub_types_classstd_1_1math_1_1fs__tensor"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a4a98dc2c12f713dae7481d9ffa23ff38 inherit pub_types_classstd_1_1math_1_1fs__tensor"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classstd_1_1math_1_1fs__tensor.html#a4a98dc2c12f713dae7481d9ffa23ff38">value_type</a> = remove_cv_t&lt; <a class="el" href="classstd_1_1math_1_1fs__tensor.html#a877b9014a0d86a6945084d5f18b5f065">element_type</a> &gt;</td></tr>
-<tr class="memdesc:a4a98dc2c12f713dae7481d9ffa23ff38 inherit pub_types_classstd_1_1math_1_1fs__tensor"><td class="mdescLeft">&#160;</td><td class="mdescRight">Type returned by const index access.  <br /></td></tr>
-<tr class="separator:a4a98dc2c12f713dae7481d9ffa23ff38 inherit pub_types_classstd_1_1math_1_1fs__tensor"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a2ac859bbdca290af00c7ae6133b7dce0 inherit pub_types_classstd_1_1math_1_1fs__tensor"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classstd_1_1math_1_1fs__tensor.html#a2ac859bbdca290af00c7ae6133b7dce0">index_type</a> = ptrdiff_t</td></tr>
-<tr class="memdesc:a2ac859bbdca290af00c7ae6133b7dce0 inherit pub_types_classstd_1_1math_1_1fs__tensor"><td class="mdescLeft">&#160;</td><td class="mdescRight">Type used for indexing.  <br /></td></tr>
-<tr class="separator:a2ac859bbdca290af00c7ae6133b7dce0 inherit pub_types_classstd_1_1math_1_1fs__tensor"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a75a492a9a1079e6eeb5a34093b98b390 inherit pub_types_classstd_1_1math_1_1fs__tensor"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classstd_1_1math_1_1fs__tensor.html#a75a492a9a1079e6eeb5a34093b98b390">size_type</a> = size_t</td></tr>
-<tr class="memdesc:a75a492a9a1079e6eeb5a34093b98b390 inherit pub_types_classstd_1_1math_1_1fs__tensor"><td class="mdescLeft">&#160;</td><td class="mdescRight">Type used for size along any dimension.  <br /></td></tr>
-<tr class="separator:a75a492a9a1079e6eeb5a34093b98b390 inherit pub_types_classstd_1_1math_1_1fs__tensor"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a08e3329f952a65f70b1d7239ea5bb5b1 inherit pub_types_classstd_1_1math_1_1fs__tensor"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classstd_1_1math_1_1fs__tensor.html#a08e3329f952a65f70b1d7239ea5bb5b1">extents_type</a> = experimental::extents&lt; <a class="el" href="classstd_1_1math_1_1fs__tensor.html#a75a492a9a1079e6eeb5a34093b98b390">size_type</a>, Ds... &gt;</td></tr>
-<tr class="memdesc:a08e3329f952a65f70b1d7239ea5bb5b1 inherit pub_types_classstd_1_1math_1_1fs__tensor"><td class="mdescLeft">&#160;</td><td class="mdescRight">Type used to express size of tensor.  <br /></td></tr>
-<tr class="separator:a08e3329f952a65f70b1d7239ea5bb5b1 inherit pub_types_classstd_1_1math_1_1fs__tensor"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad5e47b3c811336fa55b7f07159d8e2bc inherit pub_types_classstd_1_1math_1_1fs__tensor"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classstd_1_1math_1_1fs__tensor.html#ad5e47b3c811336fa55b7f07159d8e2bc">value_type</a> = ::std::remove_cv_t&lt; <a class="el" href="classstd_1_1math_1_1fs__tensor.html#a877b9014a0d86a6945084d5f18b5f065">element_type</a> &gt;</td></tr>
+<tr class="memdesc:ad5e47b3c811336fa55b7f07159d8e2bc inherit pub_types_classstd_1_1math_1_1fs__tensor"><td class="mdescLeft">&#160;</td><td class="mdescRight">Type returned by const index access.  <br /></td></tr>
+<tr class="separator:ad5e47b3c811336fa55b7f07159d8e2bc inherit pub_types_classstd_1_1math_1_1fs__tensor"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab8644d8fc0a33afec0a0c3f31f9dee37 inherit pub_types_classstd_1_1math_1_1fs__tensor"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classstd_1_1math_1_1fs__tensor.html#ab8644d8fc0a33afec0a0c3f31f9dee37">index_type</a> = ::std::ptrdiff_t</td></tr>
+<tr class="memdesc:ab8644d8fc0a33afec0a0c3f31f9dee37 inherit pub_types_classstd_1_1math_1_1fs__tensor"><td class="mdescLeft">&#160;</td><td class="mdescRight">Type used for indexing.  <br /></td></tr>
+<tr class="separator:ab8644d8fc0a33afec0a0c3f31f9dee37 inherit pub_types_classstd_1_1math_1_1fs__tensor"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad694c160eddef094640e5ea7eccf884e inherit pub_types_classstd_1_1math_1_1fs__tensor"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classstd_1_1math_1_1fs__tensor.html#ad694c160eddef094640e5ea7eccf884e">size_type</a> = ::std::size_t</td></tr>
+<tr class="memdesc:ad694c160eddef094640e5ea7eccf884e inherit pub_types_classstd_1_1math_1_1fs__tensor"><td class="mdescLeft">&#160;</td><td class="mdescRight">Type used for size along any dimension.  <br /></td></tr>
+<tr class="separator:ad694c160eddef094640e5ea7eccf884e inherit pub_types_classstd_1_1math_1_1fs__tensor"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab7081bbf3090395174207de84318521c inherit pub_types_classstd_1_1math_1_1fs__tensor"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classstd_1_1math_1_1fs__tensor.html#ab7081bbf3090395174207de84318521c">extents_type</a> = ::std::experimental::extents&lt; <a class="el" href="classstd_1_1math_1_1fs__tensor.html#ad694c160eddef094640e5ea7eccf884e">size_type</a>, Ds... &gt;</td></tr>
+<tr class="memdesc:ab7081bbf3090395174207de84318521c inherit pub_types_classstd_1_1math_1_1fs__tensor"><td class="mdescLeft">&#160;</td><td class="mdescRight">Type used to express size of tensor.  <br /></td></tr>
+<tr class="separator:ab7081bbf3090395174207de84318521c inherit pub_types_classstd_1_1math_1_1fs__tensor"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a85d3152ad0a10147b519921da001e5a1 inherit pub_types_classstd_1_1math_1_1fs__tensor"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classstd_1_1math_1_1fs__tensor.html#a85d3152ad0a10147b519921da001e5a1">tuple_type</a> = tuple&lt; decltype(Ds) ... &gt;</td></tr>
 <tr class="memdesc:a85d3152ad0a10147b519921da001e5a1 inherit pub_types_classstd_1_1math_1_1fs__tensor"><td class="mdescLeft">&#160;</td><td class="mdescRight">Type used to represent a node in the tensor.  <br /></td></tr>
 <tr class="separator:a85d3152ad0a10147b519921da001e5a1 inherit pub_types_classstd_1_1math_1_1fs__tensor"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ae13ebf0e9711df67ffb51339358db5c2 inherit pub_types_classstd_1_1math_1_1fs__tensor"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classstd_1_1math_1_1fs__tensor.html#ae13ebf0e9711df67ffb51339358db5c2">const_underlying_span_type</a> = experimental::mdspan&lt; const <a class="el" href="classstd_1_1math_1_1fs__tensor.html#a877b9014a0d86a6945084d5f18b5f065">element_type</a>, <a class="el" href="classstd_1_1math_1_1fs__tensor.html#a08e3329f952a65f70b1d7239ea5bb5b1">extents_type</a>, <a class="el" href="classstd_1_1math_1_1fs__tensor.html#aa0d6ef16218fd8c5edc33065308b1913">layout_type</a>, <a class="el" href="namespacestd_1_1math_1_1detail.html#a66ad73a2afe0cb3a49bfaad6497ce6a1">detail::rebind_accessor_t</a>&lt; <a class="el" href="classstd_1_1math_1_1fs__tensor.html#aa2dc98e6be4a3eefc84394a144219593">accessor_type</a>, const <a class="el" href="classstd_1_1math_1_1fs__tensor.html#a877b9014a0d86a6945084d5f18b5f065">element_type</a> &gt; &gt;</td></tr>
-<tr class="memdesc:ae13ebf0e9711df67ffb51339358db5c2 inherit pub_types_classstd_1_1math_1_1fs__tensor"><td class="mdescLeft">&#160;</td><td class="mdescRight">Type used to const view memory.  <br /></td></tr>
-<tr class="separator:ae13ebf0e9711df67ffb51339358db5c2 inherit pub_types_classstd_1_1math_1_1fs__tensor"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ac7cd4d69a4e2e73ae70c1b2d9e7b51e2 inherit pub_types_classstd_1_1math_1_1fs__tensor"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classstd_1_1math_1_1fs__tensor.html#ac7cd4d69a4e2e73ae70c1b2d9e7b51e2">underlying_span_type</a> = experimental::mdspan&lt; <a class="el" href="classstd_1_1math_1_1fs__tensor.html#a877b9014a0d86a6945084d5f18b5f065">element_type</a>, <a class="el" href="classstd_1_1math_1_1fs__tensor.html#a08e3329f952a65f70b1d7239ea5bb5b1">extents_type</a>, <a class="el" href="classstd_1_1math_1_1fs__tensor.html#aa0d6ef16218fd8c5edc33065308b1913">layout_type</a>, <a class="el" href="classstd_1_1math_1_1fs__tensor.html#aa2dc98e6be4a3eefc84394a144219593">accessor_type</a> &gt;</td></tr>
-<tr class="memdesc:ac7cd4d69a4e2e73ae70c1b2d9e7b51e2 inherit pub_types_classstd_1_1math_1_1fs__tensor"><td class="mdescLeft">&#160;</td><td class="mdescRight">Type used to view memory.  <br /></td></tr>
-<tr class="separator:ac7cd4d69a4e2e73ae70c1b2d9e7b51e2 inherit pub_types_classstd_1_1math_1_1fs__tensor"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:af59d3880e164152fd061acf97c1ec2cb inherit pub_types_classstd_1_1math_1_1fs__tensor"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classstd_1_1math_1_1fs__tensor.html#af59d3880e164152fd061acf97c1ec2cb">span_type</a> = <a class="el" href="classstd_1_1math_1_1fs__tensor.html#ae13ebf0e9711df67ffb51339358db5c2">const_underlying_span_type</a></td></tr>
+<tr class="memitem:a66bbf3d9637400bd5a6cdf0a86626364 inherit pub_types_classstd_1_1math_1_1fs__tensor"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classstd_1_1math_1_1fs__tensor.html#a66bbf3d9637400bd5a6cdf0a86626364">const_underlying_span_type</a> = ::std::experimental::mdspan&lt; const <a class="el" href="classstd_1_1math_1_1fs__tensor.html#a877b9014a0d86a6945084d5f18b5f065">element_type</a>, <a class="el" href="classstd_1_1math_1_1fs__tensor.html#ab7081bbf3090395174207de84318521c">extents_type</a>, <a class="el" href="classstd_1_1math_1_1fs__tensor.html#aa0d6ef16218fd8c5edc33065308b1913">layout_type</a>, <a class="el" href="namespacestd_1_1math_1_1detail.html#a66ad73a2afe0cb3a49bfaad6497ce6a1">detail::rebind_accessor_t</a>&lt; <a class="el" href="classstd_1_1math_1_1fs__tensor.html#aa2dc98e6be4a3eefc84394a144219593">accessor_type</a>, const <a class="el" href="classstd_1_1math_1_1fs__tensor.html#a877b9014a0d86a6945084d5f18b5f065">element_type</a> &gt; &gt;</td></tr>
+<tr class="memdesc:a66bbf3d9637400bd5a6cdf0a86626364 inherit pub_types_classstd_1_1math_1_1fs__tensor"><td class="mdescLeft">&#160;</td><td class="mdescRight">Type used to const view memory.  <br /></td></tr>
+<tr class="separator:a66bbf3d9637400bd5a6cdf0a86626364 inherit pub_types_classstd_1_1math_1_1fs__tensor"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad65bcae09b9e0ca7ab11d5f253188fad inherit pub_types_classstd_1_1math_1_1fs__tensor"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classstd_1_1math_1_1fs__tensor.html#ad65bcae09b9e0ca7ab11d5f253188fad">underlying_span_type</a> = ::std::experimental::mdspan&lt; <a class="el" href="classstd_1_1math_1_1fs__tensor.html#a877b9014a0d86a6945084d5f18b5f065">element_type</a>, <a class="el" href="classstd_1_1math_1_1fs__tensor.html#ab7081bbf3090395174207de84318521c">extents_type</a>, <a class="el" href="classstd_1_1math_1_1fs__tensor.html#aa0d6ef16218fd8c5edc33065308b1913">layout_type</a>, <a class="el" href="classstd_1_1math_1_1fs__tensor.html#aa2dc98e6be4a3eefc84394a144219593">accessor_type</a> &gt;</td></tr>
+<tr class="memdesc:ad65bcae09b9e0ca7ab11d5f253188fad inherit pub_types_classstd_1_1math_1_1fs__tensor"><td class="mdescLeft">&#160;</td><td class="mdescRight">Type used to view memory.  <br /></td></tr>
+<tr class="separator:ad65bcae09b9e0ca7ab11d5f253188fad inherit pub_types_classstd_1_1math_1_1fs__tensor"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af59d3880e164152fd061acf97c1ec2cb inherit pub_types_classstd_1_1math_1_1fs__tensor"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classstd_1_1math_1_1fs__tensor.html#af59d3880e164152fd061acf97c1ec2cb">span_type</a> = <a class="el" href="classstd_1_1math_1_1fs__tensor.html#a66bbf3d9637400bd5a6cdf0a86626364">const_underlying_span_type</a></td></tr>
 <tr class="memdesc:af59d3880e164152fd061acf97c1ec2cb inherit pub_types_classstd_1_1math_1_1fs__tensor"><td class="mdescLeft">&#160;</td><td class="mdescRight">Type used to portray tensor as an N dimensional view.  <br /></td></tr>
 <tr class="separator:af59d3880e164152fd061acf97c1ec2cb inherit pub_types_classstd_1_1math_1_1fs__tensor"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a256bd11d1699a9acb0f926725f8fffc6 inherit pub_types_classstd_1_1math_1_1fs__tensor"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classstd_1_1math_1_1fs__tensor.html#a256bd11d1699a9acb0f926725f8fffc6">reference_type</a> = typename accessor_type::reference</td></tr>
-<tr class="memdesc:a256bd11d1699a9acb0f926725f8fffc6 inherit pub_types_classstd_1_1math_1_1fs__tensor"><td class="mdescLeft">&#160;</td><td class="mdescRight">Type returned by mutable index access.  <br /></td></tr>
-<tr class="separator:a256bd11d1699a9acb0f926725f8fffc6 inherit pub_types_classstd_1_1math_1_1fs__tensor"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aaba257a3e56969194719ce879502bc34 inherit pub_types_classstd_1_1math_1_1fs__tensor"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classstd_1_1math_1_1fs__tensor.html#aaba257a3e56969194719ce879502bc34">subtensor_type</a> = <a class="el" href="classstd_1_1math_1_1tensor__view.html">tensor_view</a>&lt; decltype(<a class="el" href="namespacestd_1_1math_1_1detail.html#af274dde876e47ba2ec1b483608c81d69">detail::submdspan</a>(declval&lt; <a class="el" href="classstd_1_1math_1_1fs__tensor.html#ac7cd4d69a4e2e73ae70c1b2d9e7b51e2">underlying_span_type</a> &gt;(), declval&lt; <a class="el" href="classstd_1_1math_1_1fs__tensor.html#a85d3152ad0a10147b519921da001e5a1">tuple_type</a> &gt;(), declval&lt; <a class="el" href="classstd_1_1math_1_1fs__tensor.html#a85d3152ad0a10147b519921da001e5a1">tuple_type</a> &gt;())) &gt;</td></tr>
-<tr class="memdesc:aaba257a3e56969194719ce879502bc34 inherit pub_types_classstd_1_1math_1_1fs__tensor"><td class="mdescLeft">&#160;</td><td class="mdescRight">mutable view of a subtensor  <br /></td></tr>
-<tr class="separator:aaba257a3e56969194719ce879502bc34 inherit pub_types_classstd_1_1math_1_1fs__tensor"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a32af6f99c7d8b3f4bcfb9be3f06437f4 inherit pub_types_classstd_1_1math_1_1fs__tensor"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classstd_1_1math_1_1fs__tensor.html#a32af6f99c7d8b3f4bcfb9be3f06437f4">const_subtensor_type</a> = <a class="el" href="classstd_1_1math_1_1tensor__view.html">tensor_view</a>&lt; decltype(<a class="el" href="namespacestd_1_1math_1_1detail.html#af274dde876e47ba2ec1b483608c81d69">detail::submdspan</a>(declval&lt; <a class="el" href="classstd_1_1math_1_1fs__tensor.html#ae13ebf0e9711df67ffb51339358db5c2">const_underlying_span_type</a> &gt;(), declval&lt; <a class="el" href="classstd_1_1math_1_1fs__tensor.html#a85d3152ad0a10147b519921da001e5a1">tuple_type</a> &gt;(), declval&lt; <a class="el" href="classstd_1_1math_1_1fs__tensor.html#a85d3152ad0a10147b519921da001e5a1">tuple_type</a> &gt;())) &gt;</td></tr>
-<tr class="memdesc:a32af6f99c7d8b3f4bcfb9be3f06437f4 inherit pub_types_classstd_1_1math_1_1fs__tensor"><td class="mdescLeft">&#160;</td><td class="mdescRight">const view of a subtensor  <br /></td></tr>
-<tr class="separator:a32af6f99c7d8b3f4bcfb9be3f06437f4 inherit pub_types_classstd_1_1math_1_1fs__tensor"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a185d9b0604955afcd268118ea0a7ad92 inherit pub_types_classstd_1_1math_1_1fs__tensor"><td class="memTemplParams" colspan="2">template&lt;class ValueType , class LayoutType  = layout_type, class AccessorType  = accessor_type&gt; </td></tr>
-<tr class="memitem:a185d9b0604955afcd268118ea0a7ad92 inherit pub_types_classstd_1_1math_1_1fs__tensor"><td class="memTemplItemLeft" align="right" valign="top">using&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="classstd_1_1math_1_1fs__tensor.html#a185d9b0604955afcd268118ea0a7ad92">rebind_t</a> = typename <a class="el" href="classstd_1_1math_1_1fs__tensor_1_1rebind.html">rebind</a>&lt; ValueType, LayoutType, AccessorType &gt;::type</td></tr>
+<tr class="memitem:a69fb9ddb5f5530bf0dd4d7c262f270d3 inherit pub_types_classstd_1_1math_1_1fs__tensor"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classstd_1_1math_1_1fs__tensor.html#a69fb9ddb5f5530bf0dd4d7c262f270d3">reference</a> = typename accessor_type::reference</td></tr>
+<tr class="memdesc:a69fb9ddb5f5530bf0dd4d7c262f270d3 inherit pub_types_classstd_1_1math_1_1fs__tensor"><td class="mdescLeft">&#160;</td><td class="mdescRight">Type returned by mutable index access.  <br /></td></tr>
+<tr class="separator:a69fb9ddb5f5530bf0dd4d7c262f270d3 inherit pub_types_classstd_1_1math_1_1fs__tensor"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a185d9b0604955afcd268118ea0a7ad92 inherit pub_types_classstd_1_1math_1_1fs__tensor"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classstd_1_1math_1_1fs__tensor.html#a185d9b0604955afcd268118ea0a7ad92">rebind_t</a> = typename rebind&lt; ValueType, LayoutType, AccessorType &gt;::type</td></tr>
 <tr class="memdesc:a185d9b0604955afcd268118ea0a7ad92 inherit pub_types_classstd_1_1math_1_1fs__tensor"><td class="mdescLeft">&#160;</td><td class="mdescRight">Helper for defining rebound tensor type.  <br /></td></tr>
 <tr class="separator:a185d9b0604955afcd268118ea0a7ad92 inherit pub_types_classstd_1_1math_1_1fs__tensor"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:a96fd3a3810eb501fd716a065984819ac"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classstd_1_1math_1_1fs__vector.html#a96fd3a3810eb501fd716a065984819ac">~fs_vector</a> ()=default</td></tr>
-<tr class="memdesc:a96fd3a3810eb501fd716a065984819ac"><td class="mdescLeft">&#160;</td><td class="mdescRight">Default destructor.  <br /></td></tr>
-<tr class="separator:a96fd3a3810eb501fd716a065984819ac"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ab68c902cb37c5421f21f0eb9241716f5"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classstd_1_1math_1_1fs__vector.html#ab68c902cb37c5421f21f0eb9241716f5">fs_vector</a> ()=default</td></tr>
-<tr class="memdesc:ab68c902cb37c5421f21f0eb9241716f5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Default constructor.  <br /></td></tr>
-<tr class="separator:ab68c902cb37c5421f21f0eb9241716f5"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ab77e91553f5552bf49e08f6d50081b5f"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classstd_1_1math_1_1fs__vector.html#ab77e91553f5552bf49e08f6d50081b5f">fs_vector</a> (<a class="el" href="classstd_1_1math_1_1fs__vector.html">fs_vector</a> &amp;&amp;)=default</td></tr>
-<tr class="memdesc:ab77e91553f5552bf49e08f6d50081b5f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Default move constructor.  <br /></td></tr>
-<tr class="separator:ab77e91553f5552bf49e08f6d50081b5f"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:af9dedeb5b9a4a8e4ec022eb810d595de"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classstd_1_1math_1_1fs__vector.html#af9dedeb5b9a4a8e4ec022eb810d595de">fs_vector</a> (const <a class="el" href="classstd_1_1math_1_1fs__vector.html">fs_vector</a> &amp;)=default</td></tr>
-<tr class="memdesc:af9dedeb5b9a4a8e4ec022eb810d595de"><td class="mdescLeft">&#160;</td><td class="mdescRight">Default copy constructor.  <br /></td></tr>
-<tr class="separator:af9dedeb5b9a4a8e4ec022eb810d595de"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:add36c956746ee747ea48d4deb6ce3e00"><td class="memTemplParams" colspan="2">template&lt;concepts::tensor_may_be_constructible&lt; <a class="el" href="classstd_1_1math_1_1fs__vector.html">fs_vector</a> &gt; T2&gt; <br />
-requires ( N &gt;= 0 )</td></tr>
-<tr class="memitem:add36c956746ee747ea48d4deb6ce3e00"><td class="memTemplItemLeft" align="right" valign="top">constexpr&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="classstd_1_1math_1_1fs__vector.html#add36c956746ee747ea48d4deb6ce3e00">fs_vector</a> (const T2 &amp;rhs) noexcept(noexcept(<a class="el" href="classstd_1_1math_1_1fs__tensor.html">base_type</a>(rhs)))</td></tr>
-<tr class="memdesc:add36c956746ee747ea48d4deb6ce3e00"><td class="mdescLeft">&#160;</td><td class="mdescRight">Template copy constructor.  <br /></td></tr>
-<tr class="separator:add36c956746ee747ea48d4deb6ce3e00"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ac81bdeda3c2f1766e1db7ccad1b00671"><td class="memTemplParams" colspan="2">template&lt;concepts::view_may_be_constructible_to_tensor&lt; <a class="el" href="classstd_1_1math_1_1fs__vector.html">fs_vector</a> &gt; MDS&gt; <br />
-requires ( N &gt;= 0 )</td></tr>
-<tr class="memitem:ac81bdeda3c2f1766e1db7ccad1b00671"><td class="memTemplItemLeft" align="right" valign="top">constexpr&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="classstd_1_1math_1_1fs__vector.html#ac81bdeda3c2f1766e1db7ccad1b00671">fs_vector</a> (const MDS &amp;view) noexcept(noexcept(<a class="el" href="classstd_1_1math_1_1fs__tensor.html">base_type</a>(view)))</td></tr>
-<tr class="memdesc:ac81bdeda3c2f1766e1db7ccad1b00671"><td class="mdescLeft">&#160;</td><td class="mdescRight">Construct from a view.  <br /></td></tr>
-<tr class="separator:ac81bdeda3c2f1766e1db7ccad1b00671"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a44bacc7ce84d4488c03be4acb66dcae6"><td class="memTemplParams" colspan="2">template&lt;class Lambda &gt; <br />
-requires requires { { declval&lt;Lambda&amp;&amp;&gt;()( declval&lt;<a class="el" href="classstd_1_1math_1_1fs__vector.html#a3197132736349e781c89ee7086d68cb2">index_type</a>&gt;() ) } -&gt; convertible_to&lt;<a class="el" href="classstd_1_1math_1_1fs__vector.html#a66c4df20928fdfe34bcd47a6c12599c3">element_type</a>&gt;; }</td></tr>
-<tr class="memitem:a44bacc7ce84d4488c03be4acb66dcae6"><td class="memTemplItemLeft" align="right" valign="top">constexpr&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="classstd_1_1math_1_1fs__vector.html#a44bacc7ce84d4488c03be4acb66dcae6">fs_vector</a> (Lambda &amp;&amp;lambda) noexcept(noexcept(declval&lt; Lambda &amp;&amp; &gt;()(declval&lt; <a class="el" href="classstd_1_1math_1_1fs__vector.html#a3197132736349e781c89ee7086d68cb2">index_type</a> &gt;())))</td></tr>
-<tr class="memdesc:a44bacc7ce84d4488c03be4acb66dcae6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Construct by applying lambda to every element in the vector.  <br /></td></tr>
-<tr class="separator:a44bacc7ce84d4488c03be4acb66dcae6"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a552ba45a574f3edd6a639db3e7230b7a"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classstd_1_1math_1_1fs__vector.html">fs_vector</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classstd_1_1math_1_1fs__vector.html#a552ba45a574f3edd6a639db3e7230b7a">operator=</a> (<a class="el" href="classstd_1_1math_1_1fs__vector.html">fs_vector</a> &amp;&amp;)=default</td></tr>
-<tr class="memdesc:a552ba45a574f3edd6a639db3e7230b7a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Default move constructor.  <br /></td></tr>
-<tr class="separator:a552ba45a574f3edd6a639db3e7230b7a"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ad1d685b98006c0f8a2a65869edebf575"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classstd_1_1math_1_1fs__vector.html">fs_vector</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classstd_1_1math_1_1fs__vector.html#ad1d685b98006c0f8a2a65869edebf575">operator=</a> (const <a class="el" href="classstd_1_1math_1_1fs__vector.html">fs_vector</a> &amp;)=default</td></tr>
-<tr class="memdesc:ad1d685b98006c0f8a2a65869edebf575"><td class="mdescLeft">&#160;</td><td class="mdescRight">Default copy constructor.  <br /></td></tr>
-<tr class="separator:ad1d685b98006c0f8a2a65869edebf575"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a899bd9871ba7cce68c6d4624bd0a8f48"><td class="memTemplParams" colspan="2">template&lt;concepts::tensor_may_be_constructible&lt; <a class="el" href="classstd_1_1math_1_1fs__vector.html">fs_vector</a> &gt; T2&gt; </td></tr>
-<tr class="memitem:a899bd9871ba7cce68c6d4624bd0a8f48"><td class="memTemplItemLeft" align="right" valign="top">constexpr <a class="el" href="classstd_1_1math_1_1fs__vector.html">fs_vector</a> &amp;&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="classstd_1_1math_1_1fs__vector.html#a899bd9871ba7cce68c6d4624bd0a8f48">operator=</a> (const T2 &amp;rhs) noexcept(noexcept(declval&lt; <a class="el" href="classstd_1_1math_1_1fs__tensor.html">base_type</a> &gt;()=rhs))</td></tr>
-<tr class="memdesc:a899bd9871ba7cce68c6d4624bd0a8f48"><td class="mdescLeft">&#160;</td><td class="mdescRight">Template copy constructor.  <br /></td></tr>
-<tr class="separator:a899bd9871ba7cce68c6d4624bd0a8f48"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aaf38dba09fa6b71d7d36a9664fb00828"><td class="memTemplParams" colspan="2">template&lt;concepts::view_may_be_constructible_to_tensor&lt; <a class="el" href="classstd_1_1math_1_1fs__vector.html">fs_vector</a> &gt; MDS&gt; </td></tr>
-<tr class="memitem:aaf38dba09fa6b71d7d36a9664fb00828"><td class="memTemplItemLeft" align="right" valign="top">constexpr <a class="el" href="classstd_1_1math_1_1fs__vector.html">fs_vector</a> &amp;&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="classstd_1_1math_1_1fs__vector.html#aaf38dba09fa6b71d7d36a9664fb00828">operator=</a> (const MDS &amp;view) noexcept(noexcept(declval&lt; <a class="el" href="classstd_1_1math_1_1fs__tensor.html">base_type</a> &gt;()=view))</td></tr>
-<tr class="memdesc:aaf38dba09fa6b71d7d36a9664fb00828"><td class="mdescLeft">&#160;</td><td class="mdescRight">Construct from a one dimensional view.  <br /></td></tr>
-<tr class="separator:aaf38dba09fa6b71d7d36a9664fb00828"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a8ca426854bab91a33f2ce77130ae74cf"><td class="memItemLeft" align="right" valign="top">constexpr <a class="el" href="classstd_1_1math_1_1fs__vector.html#a0811928d0a680f8c1c7e776909a7b54a">const_subvector_type</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classstd_1_1math_1_1fs__vector.html#a8ca426854bab91a33f2ce77130ae74cf">subvector</a> (<a class="el" href="classstd_1_1math_1_1fs__vector.html#a3197132736349e781c89ee7086d68cb2">index_type</a> start, <a class="el" href="classstd_1_1math_1_1fs__vector.html#a3197132736349e781c89ee7086d68cb2">index_type</a> end) const</td></tr>
-<tr class="memdesc:a8ca426854bab91a33f2ce77130ae74cf"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns a const view of the specified subvector.  <br /></td></tr>
-<tr class="separator:a8ca426854bab91a33f2ce77130ae74cf"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a60047001cbd04567d2bc7a783acfb04d"><td class="memItemLeft" align="right" valign="top">constexpr <a class="el" href="classstd_1_1math_1_1fs__vector.html#a42d27b62761230b9caac4e1394c3e4f7">subvector_type</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classstd_1_1math_1_1fs__vector.html#a60047001cbd04567d2bc7a783acfb04d">subvector</a> (<a class="el" href="classstd_1_1math_1_1fs__vector.html#a3197132736349e781c89ee7086d68cb2">index_type</a> start, <a class="el" href="classstd_1_1math_1_1fs__vector.html#a3197132736349e781c89ee7086d68cb2">index_type</a> end)</td></tr>
-<tr class="memdesc:a60047001cbd04567d2bc7a783acfb04d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns a mutable view of the specified subvector.  <br /></td></tr>
-<tr class="separator:a60047001cbd04567d2bc7a783acfb04d"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a2066fa6a0b01d0878e717fdf77cecf6d"><td class="memTemplParams" colspan="2">template&lt;concepts::tensor_may_be_constructible&lt; <a class="el" href="classstd_1_1math_1_1fs__vector.html">fs_vector</a>&lt; T, N, L, A &gt; &gt; T2&gt; <br />
-requires ( N &gt;= 0 )</td></tr>
-<tr class="memitem:a2066fa6a0b01d0878e717fdf77cecf6d"><td class="memTemplItemLeft" align="right" valign="top">constexpr <a class="el" href="classstd_1_1math_1_1fs__vector.html">fs_vector</a>&lt; T, N, L, A &gt; &amp;&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="classstd_1_1math_1_1fs__vector.html#a2066fa6a0b01d0878e717fdf77cecf6d">operator=</a> (const T2 &amp;rhs) noexcept(noexcept(declval&lt; typename <a class="el" href="classstd_1_1math_1_1fs__vector.html">fs_vector</a>&lt; T, N, L, A &gt;::base_type &gt;()=rhs))</td></tr>
-<tr class="separator:a2066fa6a0b01d0878e717fdf77cecf6d"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ab7abfa4721e5e0b7a82f1daa1b1cff97"><td class="memTemplParams" colspan="2">template&lt;concepts::view_may_be_constructible_to_tensor&lt; <a class="el" href="classstd_1_1math_1_1fs__vector.html">fs_vector</a>&lt; T, N, L, A &gt; &gt; MDS&gt; <br />
-requires ( N &gt;= 0 )</td></tr>
-<tr class="memitem:ab7abfa4721e5e0b7a82f1daa1b1cff97"><td class="memTemplItemLeft" align="right" valign="top">constexpr <a class="el" href="classstd_1_1math_1_1fs__vector.html">fs_vector</a>&lt; T, N, L, A &gt; &amp;&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="classstd_1_1math_1_1fs__vector.html#ab7abfa4721e5e0b7a82f1daa1b1cff97">operator=</a> (const MDS &amp;view) noexcept(noexcept(declval&lt; typename <a class="el" href="classstd_1_1math_1_1fs__vector.html">fs_vector</a>&lt; T, N, L, A &gt;::base_type &gt;()=view))</td></tr>
-<tr class="separator:ab7abfa4721e5e0b7a82f1daa1b1cff97"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a497060433432fe92c79c9b7a6698c770"><td class="memItemLeft" align="right" valign="top">constexpr <a class="el" href="classstd_1_1math_1_1fs__vector.html#a8fb59427b680161e8c5e7ed45ca6d5c5">extents_type</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classstd_1_1math_1_1fs__vector.html#a497060433432fe92c79c9b7a6698c770">size</a> () const noexcept</td></tr>
-<tr class="memdesc:a497060433432fe92c79c9b7a6698c770"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the current number of (rows,columns,depth,etc..)  <br /></td></tr>
-<tr class="separator:a497060433432fe92c79c9b7a6698c770"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aae53c2a9799db658bd6c5751ea9a4033"><td class="memItemLeft" align="right" valign="top">constexpr <a class="el" href="classstd_1_1math_1_1fs__vector.html#a8fb59427b680161e8c5e7ed45ca6d5c5">extents_type</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classstd_1_1math_1_1fs__vector.html#aae53c2a9799db658bd6c5751ea9a4033">capacity</a> () const noexcept</td></tr>
-<tr class="memdesc:aae53c2a9799db658bd6c5751ea9a4033"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the current capacity of (rows,columns,depth,etc...)  <br /></td></tr>
-<tr class="separator:aae53c2a9799db658bd6c5751ea9a4033"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ace57dfbb29223a7feed9883d26fb912d"><td class="memItemLeft" align="right" valign="top">constexpr <a class="el" href="classstd_1_1math_1_1fs__vector.html#a60fb8d0b2889b9c229caaa9c7005a0ed">value_type</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classstd_1_1math_1_1fs__vector.html#ace57dfbb29223a7feed9883d26fb912d">at</a> (decltype(Ds) ... indices) const</td></tr>
-<tr class="memdesc:ace57dfbb29223a7feed9883d26fb912d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the value at (indices...) with index bounds checking.  <br /></td></tr>
-<tr class="separator:ace57dfbb29223a7feed9883d26fb912d"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a4fcd2d237148b1056fa0824f09e84c02"><td class="memItemLeft" align="right" valign="top">constexpr <a class="el" href="classstd_1_1math_1_1fs__vector.html#afb8d088bc694d8733695530233962b79">reference_type</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classstd_1_1math_1_1fs__vector.html#a4fcd2d237148b1056fa0824f09e84c02">at</a> (decltype(Ds) ... indices)</td></tr>
-<tr class="memdesc:a4fcd2d237148b1056fa0824f09e84c02"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns a mutable value at (indices...) with index bounds checking.  <br /></td></tr>
-<tr class="separator:a4fcd2d237148b1056fa0824f09e84c02"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a12c92b52a1d1a6695cc3d1ee2e77b2f8"><td class="memItemLeft" align="right" valign="top">constexpr <a class="el" href="classstd_1_1math_1_1fs__vector.html#af5c6dd35239b4d29fe677c9933a57eb1">span_type</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classstd_1_1math_1_1fs__vector.html#a12c92b52a1d1a6695cc3d1ee2e77b2f8">span</a> () const noexcept</td></tr>
-<tr class="memdesc:a12c92b52a1d1a6695cc3d1ee2e77b2f8"><td class="mdescLeft">&#160;</td><td class="mdescRight">returns a const N dimensional span of extents(Ds...)  <br /></td></tr>
-<tr class="separator:a12c92b52a1d1a6695cc3d1ee2e77b2f8"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ab5002b9ec652efd9051fa2c97e46fa01"><td class="memItemLeft" align="right" valign="top">constexpr <a class="el" href="classstd_1_1math_1_1fs__vector.html#accaaa8ad8ac546abeaf513e2f7d9d5e6">underlying_span_type</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classstd_1_1math_1_1fs__vector.html#ab5002b9ec652efd9051fa2c97e46fa01">underlying_span</a> () noexcept</td></tr>
-<tr class="memdesc:ab5002b9ec652efd9051fa2c97e46fa01"><td class="mdescLeft">&#160;</td><td class="mdescRight">returns a mutable N dimensional span of extents(Ds...)  <br /></td></tr>
-<tr class="separator:ab5002b9ec652efd9051fa2c97e46fa01"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a51ea6e18e0cc2f4d3bf747a3e9507d5e"><td class="memItemLeft" align="right" valign="top">constexpr <a class="el" href="classstd_1_1math_1_1fs__vector.html#af88e450b5fde5075cb88d27265f49ff7">const_underlying_span_type</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classstd_1_1math_1_1fs__vector.html#a51ea6e18e0cc2f4d3bf747a3e9507d5e">underlying_span</a> () const noexcept</td></tr>
-<tr class="memdesc:a51ea6e18e0cc2f4d3bf747a3e9507d5e"><td class="mdescLeft">&#160;</td><td class="mdescRight">returns a const N dimensional span of extents(Ds...)  <br /></td></tr>
-<tr class="separator:a51ea6e18e0cc2f4d3bf747a3e9507d5e"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="inherit_header pub_methods_classstd_1_1math_1_1fs__tensor"><td colspan="2" onclick="javascript:toggleInherit('pub_methods_classstd_1_1math_1_1fs__tensor')"><img src="closed.png" alt="-"/>&#160;Public Member Functions inherited from <a class="el" href="classstd_1_1math_1_1fs__tensor.html">std::math::fs_tensor&lt; T, L, A, Ds &gt;</a></td></tr>
-<tr class="memitem:a544e618cc71ad9d13ee04d5376970305 inherit pub_methods_classstd_1_1math_1_1fs__tensor"><td class="memItemLeft" align="right" valign="top">constexpr&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classstd_1_1math_1_1fs__tensor.html#a544e618cc71ad9d13ee04d5376970305">~fs_tensor</a> () noexcept(is_nothrow_destructible_v&lt; <a class="el" href="classstd_1_1math_1_1fs__tensor.html#a877b9014a0d86a6945084d5f18b5f065">element_type</a> &gt;)</td></tr>
-<tr class="memdesc:a544e618cc71ad9d13ee04d5376970305 inherit pub_methods_classstd_1_1math_1_1fs__tensor"><td class="mdescLeft">&#160;</td><td class="mdescRight">Destructor.  <br /></td></tr>
-<tr class="separator:a544e618cc71ad9d13ee04d5376970305 inherit pub_methods_classstd_1_1math_1_1fs__tensor"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:af594ddfc17bc3fbc63d30e7097a3b044 inherit pub_methods_classstd_1_1math_1_1fs__tensor"><td class="memItemLeft" align="right" valign="top">constexpr&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classstd_1_1math_1_1fs__tensor.html#af594ddfc17bc3fbc63d30e7097a3b044">fs_tensor</a> () noexcept(is_nothrow_default_constructible_v&lt; <a class="el" href="classstd_1_1math_1_1fs__tensor.html#a877b9014a0d86a6945084d5f18b5f065">element_type</a> &gt;)</td></tr>
-<tr class="memdesc:af594ddfc17bc3fbc63d30e7097a3b044 inherit pub_methods_classstd_1_1math_1_1fs__tensor"><td class="mdescLeft">&#160;</td><td class="mdescRight">Default constructor.  <br /></td></tr>
-<tr class="separator:af594ddfc17bc3fbc63d30e7097a3b044 inherit pub_methods_classstd_1_1math_1_1fs__tensor"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a4bd7c14544efc340dd4b1be508688cd6 inherit pub_methods_classstd_1_1math_1_1fs__tensor"><td class="memItemLeft" align="right" valign="top">constexpr&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classstd_1_1math_1_1fs__tensor.html#a4bd7c14544efc340dd4b1be508688cd6">fs_tensor</a> (<a class="el" href="classstd_1_1math_1_1fs__tensor.html">fs_tensor</a> &amp;&amp;) noexcept(is_nothrow_move_constructible_v&lt; <a class="el" href="classstd_1_1math_1_1fs__tensor.html#a877b9014a0d86a6945084d5f18b5f065">element_type</a> &gt;)</td></tr>
-<tr class="memdesc:a4bd7c14544efc340dd4b1be508688cd6 inherit pub_methods_classstd_1_1math_1_1fs__tensor"><td class="mdescLeft">&#160;</td><td class="mdescRight">Default move constructor.  <br /></td></tr>
-<tr class="separator:a4bd7c14544efc340dd4b1be508688cd6 inherit pub_methods_classstd_1_1math_1_1fs__tensor"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a9649d5a0f11589d9a810b8eb0e8b635a inherit pub_methods_classstd_1_1math_1_1fs__tensor"><td class="memItemLeft" align="right" valign="top">constexpr&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classstd_1_1math_1_1fs__tensor.html#a9649d5a0f11589d9a810b8eb0e8b635a">fs_tensor</a> (const <a class="el" href="classstd_1_1math_1_1fs__tensor.html">fs_tensor</a> &amp;) noexcept(is_nothrow_copy_constructible_v&lt; <a class="el" href="classstd_1_1math_1_1fs__tensor.html#a877b9014a0d86a6945084d5f18b5f065">element_type</a> &gt;)</td></tr>
-<tr class="memdesc:a9649d5a0f11589d9a810b8eb0e8b635a inherit pub_methods_classstd_1_1math_1_1fs__tensor"><td class="mdescLeft">&#160;</td><td class="mdescRight">Default copy constructor.  <br /></td></tr>
-<tr class="separator:a9649d5a0f11589d9a810b8eb0e8b635a inherit pub_methods_classstd_1_1math_1_1fs__tensor"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aa9ae54baf186ba9d361bff83fdd526f9 inherit pub_methods_classstd_1_1math_1_1fs__tensor"><td class="memTemplParams" colspan="2">template&lt;concepts::tensor_may_be_constructible&lt; <a class="el" href="classstd_1_1math_1_1fs__tensor.html">fs_tensor</a> &gt; T2&gt; <br />
-requires ( ( Ds &gt;= 0 ) &amp;&amp; ... )</td></tr>
-<tr class="memitem:aa9ae54baf186ba9d361bff83fdd526f9 inherit pub_methods_classstd_1_1math_1_1fs__tensor"><td class="memTemplItemLeft" align="right" valign="top">constexpr&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="classstd_1_1math_1_1fs__tensor.html#aa9ae54baf186ba9d361bff83fdd526f9">fs_tensor</a> (const T2 &amp;rhs)</td></tr>
-<tr class="memdesc:aa9ae54baf186ba9d361bff83fdd526f9 inherit pub_methods_classstd_1_1math_1_1fs__tensor"><td class="mdescLeft">&#160;</td><td class="mdescRight">Template copy constructor.  <br /></td></tr>
-<tr class="separator:aa9ae54baf186ba9d361bff83fdd526f9 inherit pub_methods_classstd_1_1math_1_1fs__tensor"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a7579d942034e6fa9cefb17bb73978c0b inherit pub_methods_classstd_1_1math_1_1fs__tensor"><td class="memTemplParams" colspan="2">template&lt;concepts::view_may_be_constructible_to_tensor&lt; <a class="el" href="classstd_1_1math_1_1fs__tensor.html">fs_tensor</a> &gt; MDS&gt; <br />
-requires ( ( Ds &gt;= 0 ) &amp;&amp; ... )</td></tr>
-<tr class="memitem:a7579d942034e6fa9cefb17bb73978c0b inherit pub_methods_classstd_1_1math_1_1fs__tensor"><td class="memTemplItemLeft" align="right" valign="top">constexpr&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="classstd_1_1math_1_1fs__tensor.html#a7579d942034e6fa9cefb17bb73978c0b">fs_tensor</a> (const MDS &amp;view) noexcept(concepts::view_is_nothrow_constructible_to_tensor&lt; MDS, <a class="el" href="classstd_1_1math_1_1fs__tensor.html">fs_tensor</a> &gt;)</td></tr>
-<tr class="memdesc:a7579d942034e6fa9cefb17bb73978c0b inherit pub_methods_classstd_1_1math_1_1fs__tensor"><td class="mdescLeft">&#160;</td><td class="mdescRight">Construct from a view.  <br /></td></tr>
-<tr class="separator:a7579d942034e6fa9cefb17bb73978c0b inherit pub_methods_classstd_1_1math_1_1fs__tensor"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a1f8dea15eb9dcb8c288f532d0a8a945f inherit pub_methods_classstd_1_1math_1_1fs__tensor"><td class="memTemplParams" colspan="2">template&lt;class Lambda &gt; <br />
-requires requires { { declval&lt;Lambda&amp;&amp;&gt;().operator()( Ds ... ) } -&gt; convertible_to&lt;<a class="el" href="classstd_1_1math_1_1fs__tensor.html#a877b9014a0d86a6945084d5f18b5f065">element_type</a>&gt;; }</td></tr>
-<tr class="memitem:a1f8dea15eb9dcb8c288f532d0a8a945f inherit pub_methods_classstd_1_1math_1_1fs__tensor"><td class="memTemplItemLeft" align="right" valign="top">constexpr&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="classstd_1_1math_1_1fs__tensor.html#a1f8dea15eb9dcb8c288f532d0a8a945f">fs_tensor</a> (Lambda &amp;&amp;lambda) noexcept(noexcept(declval&lt; Lambda &amp;&amp; &gt;()(Ds ...)))</td></tr>
-<tr class="memdesc:a1f8dea15eb9dcb8c288f532d0a8a945f inherit pub_methods_classstd_1_1math_1_1fs__tensor"><td class="mdescLeft">&#160;</td><td class="mdescRight">Construct by applying lambda to every element in the tensor.  <br /></td></tr>
-<tr class="separator:a1f8dea15eb9dcb8c288f532d0a8a945f inherit pub_methods_classstd_1_1math_1_1fs__tensor"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:adcd39cc3bf7ec5ba8098afc36c7f258c"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classstd_1_1math_1_1fs__vector.html#adcd39cc3bf7ec5ba8098afc36c7f258c">~fs_vector</a> ()=default</td></tr>
+<tr class="memdesc:adcd39cc3bf7ec5ba8098afc36c7f258c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Default destructor.  <br /></td></tr>
+<tr class="separator:adcd39cc3bf7ec5ba8098afc36c7f258c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8bdbbcfdf2ea2ff7120c90ed2d7b4c7a"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classstd_1_1math_1_1fs__vector.html#a8bdbbcfdf2ea2ff7120c90ed2d7b4c7a">fs_vector</a> ()=default</td></tr>
+<tr class="memdesc:a8bdbbcfdf2ea2ff7120c90ed2d7b4c7a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Default constructor.  <br /></td></tr>
+<tr class="separator:a8bdbbcfdf2ea2ff7120c90ed2d7b4c7a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a36333bbcae34491657c4839f31bb44ab"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classstd_1_1math_1_1fs__vector.html#a36333bbcae34491657c4839f31bb44ab">fs_vector</a> (<a class="el" href="classstd_1_1math_1_1fs__vector.html">fs_vector</a> &amp;&amp;)=default</td></tr>
+<tr class="memdesc:a36333bbcae34491657c4839f31bb44ab"><td class="mdescLeft">&#160;</td><td class="mdescRight">Default move constructor.  <br /></td></tr>
+<tr class="separator:a36333bbcae34491657c4839f31bb44ab"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6a93c1edc7355abc8c87c1978b02e1e6"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classstd_1_1math_1_1fs__vector.html#a6a93c1edc7355abc8c87c1978b02e1e6">fs_vector</a> (const <a class="el" href="classstd_1_1math_1_1fs__vector.html">fs_vector</a> &amp;)=default</td></tr>
+<tr class="memdesc:a6a93c1edc7355abc8c87c1978b02e1e6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Default copy constructor.  <br /></td></tr>
+<tr class="separator:a6a93c1edc7355abc8c87c1978b02e1e6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3c89e06eeb8c8da779f5fe22782e6314"><td class="memTemplParams" colspan="2">template&lt;class V2 , typename  = ::std::enable_if_t&lt; concepts::tensor_may_be_constructible&lt; V2, fs_vector &gt; &gt;&gt; </td></tr>
+<tr class="memitem:a3c89e06eeb8c8da779f5fe22782e6314"><td class="memTemplItemLeft" align="right" valign="top">constexpr&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="classstd_1_1math_1_1fs__vector.html#a3c89e06eeb8c8da779f5fe22782e6314">fs_vector</a> (const V2 &amp;rhs) noexcept(noexcept(<a class="el" href="classstd_1_1math_1_1fs__tensor.html">base_type</a>(rhs)))</td></tr>
+<tr class="memdesc:a3c89e06eeb8c8da779f5fe22782e6314"><td class="mdescLeft">&#160;</td><td class="mdescRight">Template copy constructor.  <br /></td></tr>
+<tr class="separator:a3c89e06eeb8c8da779f5fe22782e6314"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0c274db3d751d97a8351d7ae663feb0b"><td class="memTemplParams" colspan="2">template&lt;class MDS , typename  = ::std::enable_if_t&lt; concepts::view_may_be_constructible_to_tensor&lt;MDS,fs_vector&gt; &gt;, typename  = ::std::enable_if_t&lt;true&gt;&gt; </td></tr>
+<tr class="memitem:a0c274db3d751d97a8351d7ae663feb0b"><td class="memTemplItemLeft" align="right" valign="top">constexpr&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="classstd_1_1math_1_1fs__vector.html#a0c274db3d751d97a8351d7ae663feb0b">fs_vector</a> (const MDS &amp;view) noexcept(noexcept(<a class="el" href="classstd_1_1math_1_1fs__tensor.html">base_type</a>(view)))</td></tr>
+<tr class="memdesc:a0c274db3d751d97a8351d7ae663feb0b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Construct from a view.  <br /></td></tr>
+<tr class="separator:a0c274db3d751d97a8351d7ae663feb0b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a73e9056c6357065f61a1af3dd63e3bce"><td class="memTemplParams" colspan="2">template&lt;class Lambda , typename  = ::std::enable_if_t&lt; is_convertible_v&lt; decltype( ::std::declval&lt;Lambda&amp;&amp;&gt;()( ::std::declval&lt;index_type&gt;() ) ), element_type &gt;&gt; </td></tr>
+<tr class="memitem:a73e9056c6357065f61a1af3dd63e3bce"><td class="memTemplItemLeft" align="right" valign="top">constexpr&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="classstd_1_1math_1_1fs__vector.html#a73e9056c6357065f61a1af3dd63e3bce">fs_vector</a> (Lambda &amp;&amp;lambda) noexcept(noexcept(::std::declval&lt; Lambda &amp;&amp; &gt;()(::std::declval&lt; <a class="el" href="classstd_1_1math_1_1fs__vector.html#a7028ea16e1a8e5561432572a5c6fe8ef">index_type</a> &gt;())))</td></tr>
+<tr class="memdesc:a73e9056c6357065f61a1af3dd63e3bce"><td class="mdescLeft">&#160;</td><td class="mdescRight">Construct by applying lambda to every element in the vector.  <br /></td></tr>
+<tr class="separator:a73e9056c6357065f61a1af3dd63e3bce"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5e9c8d827d0c1795303ab75953c350ac"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classstd_1_1math_1_1fs__vector.html">fs_vector</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classstd_1_1math_1_1fs__vector.html#a5e9c8d827d0c1795303ab75953c350ac">operator=</a> (<a class="el" href="classstd_1_1math_1_1fs__vector.html">fs_vector</a> &amp;&amp;)=default</td></tr>
+<tr class="memdesc:a5e9c8d827d0c1795303ab75953c350ac"><td class="mdescLeft">&#160;</td><td class="mdescRight">Default move constructor.  <br /></td></tr>
+<tr class="separator:a5e9c8d827d0c1795303ab75953c350ac"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a65ceefe26c23669073db8d95f4f63f30"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classstd_1_1math_1_1fs__vector.html">fs_vector</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classstd_1_1math_1_1fs__vector.html#a65ceefe26c23669073db8d95f4f63f30">operator=</a> (const <a class="el" href="classstd_1_1math_1_1fs__vector.html">fs_vector</a> &amp;)=default</td></tr>
+<tr class="memdesc:a65ceefe26c23669073db8d95f4f63f30"><td class="mdescLeft">&#160;</td><td class="mdescRight">Default copy constructor.  <br /></td></tr>
+<tr class="separator:a65ceefe26c23669073db8d95f4f63f30"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a32fee97e54845f53e21f58111a827aad"><td class="memTemplParams" colspan="2">template&lt;class V2 , typename  = ::std::enable_if_t&lt; concepts::tensor_may_be_constructible&lt; V2, fs_vector &gt; &gt;&gt; </td></tr>
+<tr class="memitem:a32fee97e54845f53e21f58111a827aad"><td class="memTemplItemLeft" align="right" valign="top">constexpr <a class="el" href="classstd_1_1math_1_1fs__vector.html">fs_vector</a> &amp;&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="classstd_1_1math_1_1fs__vector.html#a32fee97e54845f53e21f58111a827aad">operator=</a> (const V2 &amp;rhs) noexcept(noexcept(::std::declval&lt; <a class="el" href="classstd_1_1math_1_1fs__tensor.html">base_type</a> &gt;()=rhs))</td></tr>
+<tr class="memdesc:a32fee97e54845f53e21f58111a827aad"><td class="mdescLeft">&#160;</td><td class="mdescRight">Template copy constructor.  <br /></td></tr>
+<tr class="separator:a32fee97e54845f53e21f58111a827aad"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a62c6bf20f2ba5436f2d2a5300e769673"><td class="memTemplParams" colspan="2">template&lt;class MDS , typename  = ::std::enable_if_t&lt; concepts::view_may_be_constructible_to_tensor&lt;MDS,fs_vector&gt; &gt;, typename  = ::std::enable_if_t&lt;true&gt;&gt; </td></tr>
+<tr class="memitem:a62c6bf20f2ba5436f2d2a5300e769673"><td class="memTemplItemLeft" align="right" valign="top">constexpr <a class="el" href="classstd_1_1math_1_1fs__vector.html">fs_vector</a> &amp;&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="classstd_1_1math_1_1fs__vector.html#a62c6bf20f2ba5436f2d2a5300e769673">operator=</a> (const MDS &amp;view) noexcept(noexcept(::std::declval&lt; <a class="el" href="classstd_1_1math_1_1fs__tensor.html">base_type</a> &gt;()=view))</td></tr>
+<tr class="memdesc:a62c6bf20f2ba5436f2d2a5300e769673"><td class="mdescLeft">&#160;</td><td class="mdescRight">Construct from a one dimensional view.  <br /></td></tr>
+<tr class="separator:a62c6bf20f2ba5436f2d2a5300e769673"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a149b4c191cb3d317e8af9643f5dc02df"><td class="memItemLeft" align="right" valign="top">constexpr <a class="el" href="classstd_1_1math_1_1fs__vector.html#a7f4fd8cf934f5ea9d4a3b596b8474b1d">const_subvector_type</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classstd_1_1math_1_1fs__vector.html#a149b4c191cb3d317e8af9643f5dc02df">subvector</a> (<a class="el" href="classstd_1_1math_1_1fs__vector.html#a7028ea16e1a8e5561432572a5c6fe8ef">index_type</a> start, <a class="el" href="classstd_1_1math_1_1fs__vector.html#a7028ea16e1a8e5561432572a5c6fe8ef">index_type</a> end) const</td></tr>
+<tr class="memdesc:a149b4c191cb3d317e8af9643f5dc02df"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns a const view of the specified subvector.  <br /></td></tr>
+<tr class="separator:a149b4c191cb3d317e8af9643f5dc02df"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad584e6611963c259ed2931e1cfa29dbd"><td class="memItemLeft" align="right" valign="top">constexpr <a class="el" href="classstd_1_1math_1_1fs__vector.html#aecef4a5078c20e47636114760fc02bdc">subvector_type</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classstd_1_1math_1_1fs__vector.html#ad584e6611963c259ed2931e1cfa29dbd">subvector</a> (<a class="el" href="classstd_1_1math_1_1fs__vector.html#a7028ea16e1a8e5561432572a5c6fe8ef">index_type</a> start, <a class="el" href="classstd_1_1math_1_1fs__vector.html#a7028ea16e1a8e5561432572a5c6fe8ef">index_type</a> end)</td></tr>
+<tr class="memdesc:ad584e6611963c259ed2931e1cfa29dbd"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns a mutable view of the specified subvector.  <br /></td></tr>
+<tr class="separator:ad584e6611963c259ed2931e1cfa29dbd"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aaec8f19145b65b5cdfbdc53a3a4caa0a"><td class="memTemplParams" colspan="2">template&lt;class V2 , typename &gt; </td></tr>
+<tr class="memitem:aaec8f19145b65b5cdfbdc53a3a4caa0a"><td class="memTemplItemLeft" align="right" valign="top">constexpr <a class="el" href="classstd_1_1math_1_1fs__vector.html">fs_vector</a>&lt; T, N, L, A, Dummy &gt; &amp;&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="classstd_1_1math_1_1fs__vector.html#aaec8f19145b65b5cdfbdc53a3a4caa0a">operator=</a> (const V2 &amp;rhs) noexcept(noexcept(::std::declval&lt; typename <a class="el" href="classstd_1_1math_1_1fs__vector.html">fs_vector</a>&lt; T, N, L, A, Dummy &gt;::base_type &gt;()=rhs))</td></tr>
+<tr class="separator:aaec8f19145b65b5cdfbdc53a3a4caa0a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1d331b22e6753d432cfc08c97a8d6751"><td class="memTemplParams" colspan="2">template&lt;class MDS , typename , typename &gt; </td></tr>
+<tr class="memitem:a1d331b22e6753d432cfc08c97a8d6751"><td class="memTemplItemLeft" align="right" valign="top">constexpr <a class="el" href="classstd_1_1math_1_1fs__vector.html">fs_vector</a>&lt; T, N, L, A, Dummy &gt; &amp;&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="classstd_1_1math_1_1fs__vector.html#a1d331b22e6753d432cfc08c97a8d6751">operator=</a> (const MDS &amp;view) noexcept(noexcept(::std::declval&lt; typename <a class="el" href="classstd_1_1math_1_1fs__vector.html">fs_vector</a>&lt; T, N, L, A, Dummy &gt;::base_type &gt;()=view))</td></tr>
+<tr class="separator:a1d331b22e6753d432cfc08c97a8d6751"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="inherit_header pub_methods_classstd_1_1math_1_1fs__tensor"><td colspan="2" onclick="javascript:toggleInherit('pub_methods_classstd_1_1math_1_1fs__tensor')"><img src="closed.png" alt="-"/>&#160;Public Member Functions inherited from <a class="el" href="classstd_1_1math_1_1fs__tensor.html">std::math::fs_tensor&lt; T, L, A, N &gt;</a></td></tr>
+<tr class="memitem:acb7fb6bde2108bd49c161b9f6db7929f inherit pub_methods_classstd_1_1math_1_1fs__tensor"><td class="memItemLeft" align="right" valign="top">constexpr&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classstd_1_1math_1_1fs__tensor.html#acb7fb6bde2108bd49c161b9f6db7929f">fs_tensor</a> () noexcept(::std::is_nothrow_default_constructible_v&lt; <a class="el" href="classstd_1_1math_1_1fs__tensor.html#a877b9014a0d86a6945084d5f18b5f065">element_type</a> &gt;)</td></tr>
+<tr class="memdesc:acb7fb6bde2108bd49c161b9f6db7929f inherit pub_methods_classstd_1_1math_1_1fs__tensor"><td class="mdescLeft">&#160;</td><td class="mdescRight">Default constructor.  <br /></td></tr>
+<tr class="separator:acb7fb6bde2108bd49c161b9f6db7929f inherit pub_methods_classstd_1_1math_1_1fs__tensor"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a364a3e6abaf8fbb09bead62b0db5c90e inherit pub_methods_classstd_1_1math_1_1fs__tensor"><td class="memItemLeft" align="right" valign="top">constexpr&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classstd_1_1math_1_1fs__tensor.html#a364a3e6abaf8fbb09bead62b0db5c90e">fs_tensor</a> (<a class="el" href="classstd_1_1math_1_1fs__tensor.html">fs_tensor</a> &amp;&amp;) noexcept(::std::is_nothrow_move_constructible_v&lt; <a class="el" href="classstd_1_1math_1_1fs__tensor.html#a877b9014a0d86a6945084d5f18b5f065">element_type</a> &gt;)</td></tr>
+<tr class="memdesc:a364a3e6abaf8fbb09bead62b0db5c90e inherit pub_methods_classstd_1_1math_1_1fs__tensor"><td class="mdescLeft">&#160;</td><td class="mdescRight">Default move constructor.  <br /></td></tr>
+<tr class="separator:a364a3e6abaf8fbb09bead62b0db5c90e inherit pub_methods_classstd_1_1math_1_1fs__tensor"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a76f9be7545609f2cfef0a152e9957744 inherit pub_methods_classstd_1_1math_1_1fs__tensor"><td class="memItemLeft" align="right" valign="top">constexpr&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classstd_1_1math_1_1fs__tensor.html#a76f9be7545609f2cfef0a152e9957744">fs_tensor</a> (const <a class="el" href="classstd_1_1math_1_1fs__tensor.html">fs_tensor</a> &amp;) noexcept(::std::is_nothrow_copy_constructible_v&lt; <a class="el" href="classstd_1_1math_1_1fs__tensor.html#a877b9014a0d86a6945084d5f18b5f065">element_type</a> &gt;)</td></tr>
+<tr class="memdesc:a76f9be7545609f2cfef0a152e9957744 inherit pub_methods_classstd_1_1math_1_1fs__tensor"><td class="mdescLeft">&#160;</td><td class="mdescRight">Default copy constructor.  <br /></td></tr>
+<tr class="separator:a76f9be7545609f2cfef0a152e9957744 inherit pub_methods_classstd_1_1math_1_1fs__tensor"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa3ae41d99f2bb0eefb5c377a4015038b inherit pub_methods_classstd_1_1math_1_1fs__tensor"><td class="memItemLeft" align="right" valign="top">constexpr&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classstd_1_1math_1_1fs__tensor.html#aa3ae41d99f2bb0eefb5c377a4015038b">fs_tensor</a> (const T2 &amp;rhs)</td></tr>
+<tr class="memdesc:aa3ae41d99f2bb0eefb5c377a4015038b inherit pub_methods_classstd_1_1math_1_1fs__tensor"><td class="mdescLeft">&#160;</td><td class="mdescRight">Template copy constructor.  <br /></td></tr>
+<tr class="separator:aa3ae41d99f2bb0eefb5c377a4015038b inherit pub_methods_classstd_1_1math_1_1fs__tensor"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a208e93f262ceb95685ed52f66c7ad8d3 inherit pub_methods_classstd_1_1math_1_1fs__tensor"><td class="memItemLeft" align="right" valign="top">constexpr&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classstd_1_1math_1_1fs__tensor.html#a208e93f262ceb95685ed52f66c7ad8d3">fs_tensor</a> (const MDS &amp;view) noexcept(concepts::view_is_nothrow_constructible_to_tensor&lt; MDS, <a class="el" href="classstd_1_1math_1_1fs__tensor.html">fs_tensor</a> &gt;)</td></tr>
+<tr class="memdesc:a208e93f262ceb95685ed52f66c7ad8d3 inherit pub_methods_classstd_1_1math_1_1fs__tensor"><td class="mdescLeft">&#160;</td><td class="mdescRight">Construct from a view.  <br /></td></tr>
+<tr class="separator:a208e93f262ceb95685ed52f66c7ad8d3 inherit pub_methods_classstd_1_1math_1_1fs__tensor"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5802ee2b5311f4502ff13b15a7e2a975 inherit pub_methods_classstd_1_1math_1_1fs__tensor"><td class="memItemLeft" align="right" valign="top">constexpr&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classstd_1_1math_1_1fs__tensor.html#a5802ee2b5311f4502ff13b15a7e2a975">fs_tensor</a> (Lambda &amp;&amp;lambda) noexcept(noexcept(::std::declval&lt; Lambda &amp;&amp; &gt;()(Ds ...)))</td></tr>
+<tr class="memdesc:a5802ee2b5311f4502ff13b15a7e2a975 inherit pub_methods_classstd_1_1math_1_1fs__tensor"><td class="mdescLeft">&#160;</td><td class="mdescRight">Construct by applying lambda to every element in the tensor.  <br /></td></tr>
+<tr class="separator:a5802ee2b5311f4502ff13b15a7e2a975 inherit pub_methods_classstd_1_1math_1_1fs__tensor"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aea3334196188553dab5a08935fe401e6 inherit pub_methods_classstd_1_1math_1_1fs__tensor"><td class="memItemLeft" align="right" valign="top">constexpr <a class="el" href="classstd_1_1math_1_1fs__tensor.html">fs_tensor</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classstd_1_1math_1_1fs__tensor.html#aea3334196188553dab5a08935fe401e6">operator=</a> (<a class="el" href="classstd_1_1math_1_1fs__tensor.html">fs_tensor</a> &amp;&amp;)=default</td></tr>
 <tr class="memdesc:aea3334196188553dab5a08935fe401e6 inherit pub_methods_classstd_1_1math_1_1fs__tensor"><td class="mdescLeft">&#160;</td><td class="mdescRight">Default move assignment.  <br /></td></tr>
 <tr class="separator:aea3334196188553dab5a08935fe401e6 inherit pub_methods_classstd_1_1math_1_1fs__tensor"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a5cf701661e7e7bed4e9eeeb32f3203f6 inherit pub_methods_classstd_1_1math_1_1fs__tensor"><td class="memItemLeft" align="right" valign="top">constexpr <a class="el" href="classstd_1_1math_1_1fs__tensor.html">fs_tensor</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classstd_1_1math_1_1fs__tensor.html#a5cf701661e7e7bed4e9eeeb32f3203f6">operator=</a> (const <a class="el" href="classstd_1_1math_1_1fs__tensor.html">fs_tensor</a> &amp;)=default</td></tr>
 <tr class="memdesc:a5cf701661e7e7bed4e9eeeb32f3203f6 inherit pub_methods_classstd_1_1math_1_1fs__tensor"><td class="mdescLeft">&#160;</td><td class="mdescRight">Default copy assignment.  <br /></td></tr>
 <tr class="separator:a5cf701661e7e7bed4e9eeeb32f3203f6 inherit pub_methods_classstd_1_1math_1_1fs__tensor"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a4ebfc9e28e8597fa1e26ba94a2854905 inherit pub_methods_classstd_1_1math_1_1fs__tensor"><td class="memTemplParams" colspan="2">template&lt;concepts::tensor_may_be_constructible&lt; <a class="el" href="classstd_1_1math_1_1fs__tensor.html">fs_tensor</a> &gt; T2&gt; </td></tr>
-<tr class="memitem:a4ebfc9e28e8597fa1e26ba94a2854905 inherit pub_methods_classstd_1_1math_1_1fs__tensor"><td class="memTemplItemLeft" align="right" valign="top">constexpr <a class="el" href="classstd_1_1math_1_1fs__tensor.html">fs_tensor</a> &amp;&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="classstd_1_1math_1_1fs__tensor.html#a4ebfc9e28e8597fa1e26ba94a2854905">operator=</a> (const T2 &amp;rhs)</td></tr>
-<tr class="memdesc:a4ebfc9e28e8597fa1e26ba94a2854905 inherit pub_methods_classstd_1_1math_1_1fs__tensor"><td class="mdescLeft">&#160;</td><td class="mdescRight">Template copy assignment.  <br /></td></tr>
-<tr class="separator:a4ebfc9e28e8597fa1e26ba94a2854905 inherit pub_methods_classstd_1_1math_1_1fs__tensor"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a821b2788ae0f4e1624de75c8796a9881 inherit pub_methods_classstd_1_1math_1_1fs__tensor"><td class="memTemplParams" colspan="2">template&lt;concepts::view_may_be_constructible_to_tensor&lt; <a class="el" href="classstd_1_1math_1_1fs__tensor.html">fs_tensor</a> &gt; MDS&gt; </td></tr>
-<tr class="memitem:a821b2788ae0f4e1624de75c8796a9881 inherit pub_methods_classstd_1_1math_1_1fs__tensor"><td class="memTemplItemLeft" align="right" valign="top">constexpr <a class="el" href="classstd_1_1math_1_1fs__tensor.html">fs_tensor</a> &amp;&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="classstd_1_1math_1_1fs__tensor.html#a821b2788ae0f4e1624de75c8796a9881">operator=</a> (const MDS &amp;view)</td></tr>
-<tr class="memdesc:a821b2788ae0f4e1624de75c8796a9881 inherit pub_methods_classstd_1_1math_1_1fs__tensor"><td class="mdescLeft">&#160;</td><td class="mdescRight">Construct from a two dimensional view.  <br /></td></tr>
-<tr class="separator:a821b2788ae0f4e1624de75c8796a9881 inherit pub_methods_classstd_1_1math_1_1fs__tensor"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a497060433432fe92c79c9b7a6698c770 inherit pub_methods_classstd_1_1math_1_1fs__tensor"><td class="memItemLeft" align="right" valign="top">constexpr <a class="el" href="classstd_1_1math_1_1fs__tensor.html#a08e3329f952a65f70b1d7239ea5bb5b1">extents_type</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classstd_1_1math_1_1fs__tensor.html#a497060433432fe92c79c9b7a6698c770">size</a> () const noexcept</td></tr>
-<tr class="memdesc:a497060433432fe92c79c9b7a6698c770 inherit pub_methods_classstd_1_1math_1_1fs__tensor"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the current number of (rows,columns,depth,etc..)  <br /></td></tr>
-<tr class="separator:a497060433432fe92c79c9b7a6698c770 inherit pub_methods_classstd_1_1math_1_1fs__tensor"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aae53c2a9799db658bd6c5751ea9a4033 inherit pub_methods_classstd_1_1math_1_1fs__tensor"><td class="memItemLeft" align="right" valign="top">constexpr <a class="el" href="classstd_1_1math_1_1fs__tensor.html#a08e3329f952a65f70b1d7239ea5bb5b1">extents_type</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classstd_1_1math_1_1fs__tensor.html#aae53c2a9799db658bd6c5751ea9a4033">capacity</a> () const noexcept</td></tr>
-<tr class="memdesc:aae53c2a9799db658bd6c5751ea9a4033 inherit pub_methods_classstd_1_1math_1_1fs__tensor"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the current capacity of (rows,columns,depth,etc...)  <br /></td></tr>
-<tr class="separator:aae53c2a9799db658bd6c5751ea9a4033 inherit pub_methods_classstd_1_1math_1_1fs__tensor"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a12c92b52a1d1a6695cc3d1ee2e77b2f8 inherit pub_methods_classstd_1_1math_1_1fs__tensor"><td class="memItemLeft" align="right" valign="top">constexpr <a class="el" href="classstd_1_1math_1_1fs__tensor.html#af59d3880e164152fd061acf97c1ec2cb">span_type</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classstd_1_1math_1_1fs__tensor.html#a12c92b52a1d1a6695cc3d1ee2e77b2f8">span</a> () const noexcept</td></tr>
-<tr class="memdesc:a12c92b52a1d1a6695cc3d1ee2e77b2f8 inherit pub_methods_classstd_1_1math_1_1fs__tensor"><td class="mdescLeft">&#160;</td><td class="mdescRight">returns a const N dimensional span of extents(Ds...)  <br /></td></tr>
-<tr class="separator:a12c92b52a1d1a6695cc3d1ee2e77b2f8 inherit pub_methods_classstd_1_1math_1_1fs__tensor"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ab5002b9ec652efd9051fa2c97e46fa01 inherit pub_methods_classstd_1_1math_1_1fs__tensor"><td class="memItemLeft" align="right" valign="top">constexpr <a class="el" href="classstd_1_1math_1_1fs__tensor.html#ac7cd4d69a4e2e73ae70c1b2d9e7b51e2">underlying_span_type</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classstd_1_1math_1_1fs__tensor.html#ab5002b9ec652efd9051fa2c97e46fa01">underlying_span</a> () noexcept</td></tr>
-<tr class="memdesc:ab5002b9ec652efd9051fa2c97e46fa01 inherit pub_methods_classstd_1_1math_1_1fs__tensor"><td class="mdescLeft">&#160;</td><td class="mdescRight">returns a mutable N dimensional span of extents(Ds...)  <br /></td></tr>
-<tr class="separator:ab5002b9ec652efd9051fa2c97e46fa01 inherit pub_methods_classstd_1_1math_1_1fs__tensor"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a51ea6e18e0cc2f4d3bf747a3e9507d5e inherit pub_methods_classstd_1_1math_1_1fs__tensor"><td class="memItemLeft" align="right" valign="top">constexpr <a class="el" href="classstd_1_1math_1_1fs__tensor.html#ae13ebf0e9711df67ffb51339358db5c2">const_underlying_span_type</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classstd_1_1math_1_1fs__tensor.html#a51ea6e18e0cc2f4d3bf747a3e9507d5e">underlying_span</a> () const noexcept</td></tr>
-<tr class="memdesc:a51ea6e18e0cc2f4d3bf747a3e9507d5e inherit pub_methods_classstd_1_1math_1_1fs__tensor"><td class="mdescLeft">&#160;</td><td class="mdescRight">returns a const N dimensional span of extents(Ds...)  <br /></td></tr>
-<tr class="separator:a51ea6e18e0cc2f4d3bf747a3e9507d5e inherit pub_methods_classstd_1_1math_1_1fs__tensor"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a6936aef5a03927e137a662cd0351a07f inherit pub_methods_classstd_1_1math_1_1fs__tensor"><td class="memItemLeft" align="right" valign="top">constexpr <a class="el" href="classstd_1_1math_1_1fs__tensor.html#a4a98dc2c12f713dae7481d9ffa23ff38">value_type</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classstd_1_1math_1_1fs__tensor.html#a6936aef5a03927e137a662cd0351a07f">operator[]</a> (decltype(Ds) ... indices) const noexcept</td></tr>
-<tr class="memdesc:a6936aef5a03927e137a662cd0351a07f inherit pub_methods_classstd_1_1math_1_1fs__tensor"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the value at (indices...) without index bounds checking.  <br /></td></tr>
-<tr class="separator:a6936aef5a03927e137a662cd0351a07f inherit pub_methods_classstd_1_1math_1_1fs__tensor"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ace57dfbb29223a7feed9883d26fb912d inherit pub_methods_classstd_1_1math_1_1fs__tensor"><td class="memItemLeft" align="right" valign="top">constexpr <a class="el" href="classstd_1_1math_1_1fs__tensor.html#a4a98dc2c12f713dae7481d9ffa23ff38">value_type</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classstd_1_1math_1_1fs__tensor.html#ace57dfbb29223a7feed9883d26fb912d">at</a> (decltype(Ds) ... indices) const</td></tr>
-<tr class="memdesc:ace57dfbb29223a7feed9883d26fb912d inherit pub_methods_classstd_1_1math_1_1fs__tensor"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the value at (indices...) with index bounds checking.  <br /></td></tr>
-<tr class="separator:ace57dfbb29223a7feed9883d26fb912d inherit pub_methods_classstd_1_1math_1_1fs__tensor"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aaf97188df08eac26b6ddfc6274b818f5 inherit pub_methods_classstd_1_1math_1_1fs__tensor"><td class="memTemplParams" colspan="2">template&lt;class ... SliceArgs&gt; <br />
-requires ( decltype( experimental::submdspan( this-&gt;<a class="el" href="classstd_1_1math_1_1fs__tensor.html#ab5002b9ec652efd9051fa2c97e46fa01">underlying_span</a>(), args ... ) )::rank() == 1 )</td></tr>
-<tr class="memitem:aaf97188df08eac26b6ddfc6274b818f5 inherit pub_methods_classstd_1_1math_1_1fs__tensor"><td class="memTemplItemLeft" align="right" valign="top">constexpr auto&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="classstd_1_1math_1_1fs__tensor.html#aaf97188df08eac26b6ddfc6274b818f5">subvector</a> (SliceArgs ... args) const</td></tr>
-<tr class="memdesc:aaf97188df08eac26b6ddfc6274b818f5 inherit pub_methods_classstd_1_1math_1_1fs__tensor"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns a const vector view.  <br /></td></tr>
-<tr class="separator:aaf97188df08eac26b6ddfc6274b818f5 inherit pub_methods_classstd_1_1math_1_1fs__tensor"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a92ed5bfc38c49b77cf6ddbd8c836c8bf inherit pub_methods_classstd_1_1math_1_1fs__tensor"><td class="memTemplParams" colspan="2">template&lt;class ... SliceArgs&gt; <br />
-requires ( decltype( experimental::submdspan( this-&gt;<a class="el" href="classstd_1_1math_1_1fs__tensor.html#ab5002b9ec652efd9051fa2c97e46fa01">underlying_span</a>(), args ... ) )::rank() == 2 )</td></tr>
-<tr class="memitem:a92ed5bfc38c49b77cf6ddbd8c836c8bf inherit pub_methods_classstd_1_1math_1_1fs__tensor"><td class="memTemplItemLeft" align="right" valign="top">constexpr auto&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="classstd_1_1math_1_1fs__tensor.html#a92ed5bfc38c49b77cf6ddbd8c836c8bf">submatrix</a> (SliceArgs ... args) const</td></tr>
-<tr class="memdesc:a92ed5bfc38c49b77cf6ddbd8c836c8bf inherit pub_methods_classstd_1_1math_1_1fs__tensor"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns a const matrix view.  <br /></td></tr>
-<tr class="separator:a92ed5bfc38c49b77cf6ddbd8c836c8bf inherit pub_methods_classstd_1_1math_1_1fs__tensor"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aee14335da4e84836b83d31caa9676a37 inherit pub_methods_classstd_1_1math_1_1fs__tensor"><td class="memItemLeft" align="right" valign="top">constexpr <a class="el" href="classstd_1_1math_1_1fs__tensor.html#a32af6f99c7d8b3f4bcfb9be3f06437f4">const_subtensor_type</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classstd_1_1math_1_1fs__tensor.html#aee14335da4e84836b83d31caa9676a37">subtensor</a> (<a class="el" href="classstd_1_1math_1_1fs__tensor.html#a85d3152ad0a10147b519921da001e5a1">tuple_type</a> start, <a class="el" href="classstd_1_1math_1_1fs__tensor.html#a85d3152ad0a10147b519921da001e5a1">tuple_type</a> end) const</td></tr>
-<tr class="memdesc:aee14335da4e84836b83d31caa9676a37 inherit pub_methods_classstd_1_1math_1_1fs__tensor"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns a const view of the specified subtensor.  <br /></td></tr>
-<tr class="separator:aee14335da4e84836b83d31caa9676a37 inherit pub_methods_classstd_1_1math_1_1fs__tensor"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aaab82ce66a65b828572029e81e34a471 inherit pub_methods_classstd_1_1math_1_1fs__tensor"><td class="memItemLeft" align="right" valign="top">constexpr <a class="el" href="classstd_1_1math_1_1fs__tensor.html#a256bd11d1699a9acb0f926725f8fffc6">reference_type</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classstd_1_1math_1_1fs__tensor.html#aaab82ce66a65b828572029e81e34a471">operator[]</a> (decltype(Ds) ... indices) noexcept</td></tr>
-<tr class="memdesc:aaab82ce66a65b828572029e81e34a471 inherit pub_methods_classstd_1_1math_1_1fs__tensor"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns a mutable value at (indices...) without index bounds checking.  <br /></td></tr>
-<tr class="separator:aaab82ce66a65b828572029e81e34a471 inherit pub_methods_classstd_1_1math_1_1fs__tensor"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a4fcd2d237148b1056fa0824f09e84c02 inherit pub_methods_classstd_1_1math_1_1fs__tensor"><td class="memItemLeft" align="right" valign="top">constexpr <a class="el" href="classstd_1_1math_1_1fs__tensor.html#a256bd11d1699a9acb0f926725f8fffc6">reference_type</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classstd_1_1math_1_1fs__tensor.html#a4fcd2d237148b1056fa0824f09e84c02">at</a> (decltype(Ds) ... indices)</td></tr>
-<tr class="memdesc:a4fcd2d237148b1056fa0824f09e84c02 inherit pub_methods_classstd_1_1math_1_1fs__tensor"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns a mutable value at (indices...) with index bounds checking.  <br /></td></tr>
-<tr class="separator:a4fcd2d237148b1056fa0824f09e84c02 inherit pub_methods_classstd_1_1math_1_1fs__tensor"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a426006d7690a33ad91920ea8eda8796f inherit pub_methods_classstd_1_1math_1_1fs__tensor"><td class="memTemplParams" colspan="2">template&lt;class ... SliceArgs&gt; <br />
-requires ( decltype( experimental::submdspan( this-&gt;<a class="el" href="classstd_1_1math_1_1fs__tensor.html#ab5002b9ec652efd9051fa2c97e46fa01">underlying_span</a>(), args ... ) )::rank() == 1 )</td></tr>
-<tr class="memitem:a426006d7690a33ad91920ea8eda8796f inherit pub_methods_classstd_1_1math_1_1fs__tensor"><td class="memTemplItemLeft" align="right" valign="top">constexpr auto&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="classstd_1_1math_1_1fs__tensor.html#a426006d7690a33ad91920ea8eda8796f">subvector</a> (SliceArgs ... args)</td></tr>
-<tr class="memdesc:a426006d7690a33ad91920ea8eda8796f inherit pub_methods_classstd_1_1math_1_1fs__tensor"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns a vector view.  <br /></td></tr>
-<tr class="separator:a426006d7690a33ad91920ea8eda8796f inherit pub_methods_classstd_1_1math_1_1fs__tensor"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a546deb7d9ee284ae5431661e55cb4092 inherit pub_methods_classstd_1_1math_1_1fs__tensor"><td class="memTemplParams" colspan="2">template&lt;class ... SliceArgs&gt; <br />
-requires ( decltype( experimental::submdspan( this-&gt;<a class="el" href="classstd_1_1math_1_1fs__tensor.html#ab5002b9ec652efd9051fa2c97e46fa01">underlying_span</a>(), args ... ) )::rank() == 2 )</td></tr>
-<tr class="memitem:a546deb7d9ee284ae5431661e55cb4092 inherit pub_methods_classstd_1_1math_1_1fs__tensor"><td class="memTemplItemLeft" align="right" valign="top">constexpr auto&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="classstd_1_1math_1_1fs__tensor.html#a546deb7d9ee284ae5431661e55cb4092">submatrix</a> (SliceArgs ... args)</td></tr>
-<tr class="memdesc:a546deb7d9ee284ae5431661e55cb4092 inherit pub_methods_classstd_1_1math_1_1fs__tensor"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns a matrix view.  <br /></td></tr>
-<tr class="separator:a546deb7d9ee284ae5431661e55cb4092 inherit pub_methods_classstd_1_1math_1_1fs__tensor"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a22993c8c585b93a17a877327c5a7b47d inherit pub_methods_classstd_1_1math_1_1fs__tensor"><td class="memItemLeft" align="right" valign="top">constexpr <a class="el" href="classstd_1_1math_1_1fs__tensor.html#aaba257a3e56969194719ce879502bc34">subtensor_type</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classstd_1_1math_1_1fs__tensor.html#a22993c8c585b93a17a877327c5a7b47d">subtensor</a> (<a class="el" href="classstd_1_1math_1_1fs__tensor.html#a85d3152ad0a10147b519921da001e5a1">tuple_type</a> start, <a class="el" href="classstd_1_1math_1_1fs__tensor.html#a85d3152ad0a10147b519921da001e5a1">tuple_type</a> end)</td></tr>
-<tr class="memdesc:a22993c8c585b93a17a877327c5a7b47d inherit pub_methods_classstd_1_1math_1_1fs__tensor"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns a mutable view of the specified subtensor.  <br /></td></tr>
-<tr class="separator:a22993c8c585b93a17a877327c5a7b47d inherit pub_methods_classstd_1_1math_1_1fs__tensor"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a41ae46ea49cabee0681a6d9b0530d513 inherit pub_methods_classstd_1_1math_1_1fs__tensor"><td class="memTemplParams" colspan="2">template&lt;concepts::tensor_may_be_constructible&lt; <a class="el" href="classstd_1_1math_1_1fs__tensor.html">fs_tensor</a>&lt; T, L, A, Ds... &gt; &gt; T2&gt; <br />
-requires ( ( Ds &gt;= 0 ) &amp;&amp; ... )</td></tr>
-<tr class="memitem:a41ae46ea49cabee0681a6d9b0530d513 inherit pub_methods_classstd_1_1math_1_1fs__tensor"><td class="memTemplItemLeft" align="right" valign="top">constexpr <a class="el" href="classstd_1_1math_1_1fs__tensor.html">fs_tensor</a>&lt; T, L, A, Ds... &gt; &amp;&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="classstd_1_1math_1_1fs__tensor.html#a41ae46ea49cabee0681a6d9b0530d513">operator=</a> (const T2 &amp;rhs)</td></tr>
-<tr class="separator:a41ae46ea49cabee0681a6d9b0530d513 inherit pub_methods_classstd_1_1math_1_1fs__tensor"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aff60eb834289d42f111cdce8307c5c04 inherit pub_methods_classstd_1_1math_1_1fs__tensor"><td class="memTemplParams" colspan="2">template&lt;concepts::view_may_be_constructible_to_tensor&lt; <a class="el" href="classstd_1_1math_1_1fs__tensor.html">fs_tensor</a>&lt; T, L, A, Ds... &gt; &gt; MDS&gt; <br />
-requires ( ( Ds &gt;= 0 ) &amp;&amp; ... )</td></tr>
-<tr class="memitem:aff60eb834289d42f111cdce8307c5c04 inherit pub_methods_classstd_1_1math_1_1fs__tensor"><td class="memTemplItemLeft" align="right" valign="top">constexpr <a class="el" href="classstd_1_1math_1_1fs__tensor.html">fs_tensor</a>&lt; T, L, A, Ds... &gt; &amp;&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="classstd_1_1math_1_1fs__tensor.html#aff60eb834289d42f111cdce8307c5c04">operator=</a> (const MDS &amp;view)</td></tr>
-<tr class="separator:aff60eb834289d42f111cdce8307c5c04 inherit pub_methods_classstd_1_1math_1_1fs__tensor"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a88f70cb279b9b865d1bb47fd13ec9ba3 inherit pub_methods_classstd_1_1math_1_1fs__tensor"><td class="memItemLeft" align="right" valign="top">constexpr <a class="el" href="classstd_1_1math_1_1fs__tensor.html">fs_tensor</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classstd_1_1math_1_1fs__tensor.html#a88f70cb279b9b865d1bb47fd13ec9ba3">operator=</a> (const T2 &amp;rhs)</td></tr>
+<tr class="memdesc:a88f70cb279b9b865d1bb47fd13ec9ba3 inherit pub_methods_classstd_1_1math_1_1fs__tensor"><td class="mdescLeft">&#160;</td><td class="mdescRight">Template copy assignment.  <br /></td></tr>
+<tr class="separator:a88f70cb279b9b865d1bb47fd13ec9ba3 inherit pub_methods_classstd_1_1math_1_1fs__tensor"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a38d92ecd0efd9d0acf89895685697095 inherit pub_methods_classstd_1_1math_1_1fs__tensor"><td class="memItemLeft" align="right" valign="top">constexpr <a class="el" href="classstd_1_1math_1_1fs__tensor.html">fs_tensor</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classstd_1_1math_1_1fs__tensor.html#a38d92ecd0efd9d0acf89895685697095">operator=</a> (const MDS &amp;view)</td></tr>
+<tr class="memdesc:a38d92ecd0efd9d0acf89895685697095 inherit pub_methods_classstd_1_1math_1_1fs__tensor"><td class="mdescLeft">&#160;</td><td class="mdescRight">Construct from a two dimensional view.  <br /></td></tr>
+<tr class="separator:a38d92ecd0efd9d0acf89895685697095 inherit pub_methods_classstd_1_1math_1_1fs__tensor"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af8db43cc691794483636d041e2c62c10 inherit pub_methods_classstd_1_1math_1_1fs__tensor"><td class="memItemLeft" align="right" valign="top">constexpr <a class="el" href="classstd_1_1math_1_1fs__tensor.html">fs_tensor</a>&lt; T, L, A, Ds... &gt; &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classstd_1_1math_1_1fs__tensor.html#af8db43cc691794483636d041e2c62c10">operator=</a> (const T2 &amp;rhs)</td></tr>
+<tr class="separator:af8db43cc691794483636d041e2c62c10 inherit pub_methods_classstd_1_1math_1_1fs__tensor"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a630ffb7fa1f07f8dbcdf606ec5e7dfc1 inherit pub_methods_classstd_1_1math_1_1fs__tensor"><td class="memItemLeft" align="right" valign="top">constexpr <a class="el" href="classstd_1_1math_1_1fs__tensor.html">fs_tensor</a>&lt; T, L, A, Ds... &gt; &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classstd_1_1math_1_1fs__tensor.html#a630ffb7fa1f07f8dbcdf606ec5e7dfc1">operator=</a> (const MDS &amp;view)</td></tr>
+<tr class="separator:a630ffb7fa1f07f8dbcdf606ec5e7dfc1 inherit pub_methods_classstd_1_1math_1_1fs__tensor"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a49e752975d2624f769f94fe0162e5bc1 inherit pub_methods_classstd_1_1math_1_1fs__tensor"><td class="memItemLeft" align="right" valign="top">constexpr <a class="el" href="classstd_1_1math_1_1fs__tensor.html#ab7081bbf3090395174207de84318521c">extents_type</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classstd_1_1math_1_1fs__tensor.html#a49e752975d2624f769f94fe0162e5bc1">size</a> () const noexcept</td></tr>
+<tr class="memdesc:a49e752975d2624f769f94fe0162e5bc1 inherit pub_methods_classstd_1_1math_1_1fs__tensor"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the current number of (rows,columns,depth,etc..)  <br /></td></tr>
+<tr class="separator:a49e752975d2624f769f94fe0162e5bc1 inherit pub_methods_classstd_1_1math_1_1fs__tensor"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a982dd2aa10f2235abbb3722a20322f7a inherit pub_methods_classstd_1_1math_1_1fs__tensor"><td class="memItemLeft" align="right" valign="top">constexpr <a class="el" href="classstd_1_1math_1_1fs__tensor.html#ab7081bbf3090395174207de84318521c">extents_type</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classstd_1_1math_1_1fs__tensor.html#a982dd2aa10f2235abbb3722a20322f7a">capacity</a> () const noexcept</td></tr>
+<tr class="memdesc:a982dd2aa10f2235abbb3722a20322f7a inherit pub_methods_classstd_1_1math_1_1fs__tensor"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the current capacity of (rows,columns,depth,etc...)  <br /></td></tr>
+<tr class="separator:a982dd2aa10f2235abbb3722a20322f7a inherit pub_methods_classstd_1_1math_1_1fs__tensor"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a29f27c679df3db9ceb72bee92a652b88 inherit pub_methods_classstd_1_1math_1_1fs__tensor"><td class="memItemLeft" align="right" valign="top">constexpr <a class="el" href="classstd_1_1math_1_1fs__tensor.html#af59d3880e164152fd061acf97c1ec2cb">span_type</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classstd_1_1math_1_1fs__tensor.html#a29f27c679df3db9ceb72bee92a652b88">span</a> () const noexcept</td></tr>
+<tr class="memdesc:a29f27c679df3db9ceb72bee92a652b88 inherit pub_methods_classstd_1_1math_1_1fs__tensor"><td class="mdescLeft">&#160;</td><td class="mdescRight">returns a const N dimensional span of extents(Ds...)  <br /></td></tr>
+<tr class="separator:a29f27c679df3db9ceb72bee92a652b88 inherit pub_methods_classstd_1_1math_1_1fs__tensor"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aec0aedbb034ef0d150cdfbac67dc64d3 inherit pub_methods_classstd_1_1math_1_1fs__tensor"><td class="memItemLeft" align="right" valign="top">constexpr <a class="el" href="classstd_1_1math_1_1fs__tensor.html#ad65bcae09b9e0ca7ab11d5f253188fad">underlying_span_type</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classstd_1_1math_1_1fs__tensor.html#aec0aedbb034ef0d150cdfbac67dc64d3">underlying_span</a> () noexcept</td></tr>
+<tr class="memdesc:aec0aedbb034ef0d150cdfbac67dc64d3 inherit pub_methods_classstd_1_1math_1_1fs__tensor"><td class="mdescLeft">&#160;</td><td class="mdescRight">returns a mutable N dimensional span of extents(Ds...)  <br /></td></tr>
+<tr class="separator:aec0aedbb034ef0d150cdfbac67dc64d3 inherit pub_methods_classstd_1_1math_1_1fs__tensor"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aab6cebd4fd226087a0f08b7f2d05305c inherit pub_methods_classstd_1_1math_1_1fs__tensor"><td class="memItemLeft" align="right" valign="top">constexpr <a class="el" href="classstd_1_1math_1_1fs__tensor.html#a66bbf3d9637400bd5a6cdf0a86626364">const_underlying_span_type</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classstd_1_1math_1_1fs__tensor.html#aab6cebd4fd226087a0f08b7f2d05305c">underlying_span</a> () const noexcept</td></tr>
+<tr class="memdesc:aab6cebd4fd226087a0f08b7f2d05305c inherit pub_methods_classstd_1_1math_1_1fs__tensor"><td class="mdescLeft">&#160;</td><td class="mdescRight">returns a const N dimensional span of extents(Ds...)  <br /></td></tr>
+<tr class="separator:aab6cebd4fd226087a0f08b7f2d05305c inherit pub_methods_classstd_1_1math_1_1fs__tensor"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5b46194792ecccd2e6ba91c5db65a834 inherit pub_methods_classstd_1_1math_1_1fs__tensor"><td class="memItemLeft" align="right" valign="top">constexpr auto&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classstd_1_1math_1_1fs__tensor.html#a5b46194792ecccd2e6ba91c5db65a834">subvector</a> (SliceArgs ... args) const</td></tr>
+<tr class="memdesc:a5b46194792ecccd2e6ba91c5db65a834 inherit pub_methods_classstd_1_1math_1_1fs__tensor"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the value at (indices...) without index bounds checking.  <br /></td></tr>
+<tr class="separator:a5b46194792ecccd2e6ba91c5db65a834 inherit pub_methods_classstd_1_1math_1_1fs__tensor"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4a7e068a586cbae90fbbdd605d9c2858 inherit pub_methods_classstd_1_1math_1_1fs__tensor"><td class="memItemLeft" align="right" valign="top">constexpr auto&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classstd_1_1math_1_1fs__tensor.html#a4a7e068a586cbae90fbbdd605d9c2858">subvector</a> (SliceArgs ... args)</td></tr>
+<tr class="memdesc:a4a7e068a586cbae90fbbdd605d9c2858 inherit pub_methods_classstd_1_1math_1_1fs__tensor"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns a mutable value at (indices...) without index bounds checking.  <br /></td></tr>
+<tr class="separator:a4a7e068a586cbae90fbbdd605d9c2858 inherit pub_methods_classstd_1_1math_1_1fs__tensor"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aeb727e37e5321638e49de857f028869a inherit pub_methods_classstd_1_1math_1_1fs__tensor"><td class="memItemLeft" align="right" valign="top">constexpr auto&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classstd_1_1math_1_1fs__tensor.html#aeb727e37e5321638e49de857f028869a">submatrix</a> (SliceArgs ... args) const</td></tr>
+<tr class="memdesc:aeb727e37e5321638e49de857f028869a inherit pub_methods_classstd_1_1math_1_1fs__tensor"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns a const matrix view.  <br /></td></tr>
+<tr class="separator:aeb727e37e5321638e49de857f028869a inherit pub_methods_classstd_1_1math_1_1fs__tensor"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a073524bea013b16d252d4c93441d677d inherit pub_methods_classstd_1_1math_1_1fs__tensor"><td class="memItemLeft" align="right" valign="top">constexpr auto&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classstd_1_1math_1_1fs__tensor.html#a073524bea013b16d252d4c93441d677d">submatrix</a> (SliceArgs ... args)</td></tr>
+<tr class="memdesc:a073524bea013b16d252d4c93441d677d inherit pub_methods_classstd_1_1math_1_1fs__tensor"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns a matrix view.  <br /></td></tr>
+<tr class="separator:a073524bea013b16d252d4c93441d677d inherit pub_methods_classstd_1_1math_1_1fs__tensor"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4c1363153f15e3992e331f131a465ef5 inherit pub_methods_classstd_1_1math_1_1fs__tensor"><td class="memItemLeft" align="right" valign="top">constexpr auto&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classstd_1_1math_1_1fs__tensor.html#a4c1363153f15e3992e331f131a465ef5">subtensor</a> (SliceArgs ... args) const</td></tr>
+<tr class="memdesc:a4c1363153f15e3992e331f131a465ef5 inherit pub_methods_classstd_1_1math_1_1fs__tensor"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns a const view of the specified subtensor.  <br /></td></tr>
+<tr class="separator:a4c1363153f15e3992e331f131a465ef5 inherit pub_methods_classstd_1_1math_1_1fs__tensor"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a23d488f022bf4128bc71cfded914636c inherit pub_methods_classstd_1_1math_1_1fs__tensor"><td class="memItemLeft" align="right" valign="top">constexpr auto&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classstd_1_1math_1_1fs__tensor.html#a23d488f022bf4128bc71cfded914636c">subtensor</a> (SliceArgs ... args)</td></tr>
+<tr class="memdesc:a23d488f022bf4128bc71cfded914636c inherit pub_methods_classstd_1_1math_1_1fs__tensor"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns a mutable view of the specified subtensor.  <br /></td></tr>
+<tr class="separator:a23d488f022bf4128bc71cfded914636c inherit pub_methods_classstd_1_1math_1_1fs__tensor"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock"><div class="compoundTemplParams">template&lt;class T, size_t N, class L = experimental::layout_right, class A = experimental::default_accessor&lt;T&gt;&gt;<br />
-requires ( N &gt;= 0 )<br />
-class std::math::fs_vector&lt; T, N, L, A &gt;</div><p>Fixed-size, fixed-capacity vector. </p>
+<div class="textblock"><div class="compoundTemplParams">template&lt;class T, ::std::size_t N, class L, class A, typename&gt;<br />
+class std::math::fs_vector&lt; T, N, L, A, typename &gt;</div><p>Fixed-size, fixed-capacity vector. </p>
 <dl class="tparams"><dt>Template Parameters</dt><dd>
   <table class="tparams">
     <tr><td class="paramname">T</td><td>element_type </td></tr>
@@ -397,16 +328,16 @@ class std::math::fs_vector&lt; T, N, L, A &gt;</div><p>Fixed-size, fixed-capacit
   </dd>
 </dl>
 </div><h2 class="groupheader">Member Typedef Documentation</h2>
-<a id="a703befcb6a9b7345d33faac49facd3f7" name="a703befcb6a9b7345d33faac49facd3f7"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a703befcb6a9b7345d33faac49facd3f7">&#9670;&#160;</a></span>accessor_type</h2>
+<a id="a00862f515d4b8ce28651ddba36d1519b" name="a00862f515d4b8ce28651ddba36d1519b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a00862f515d4b8ce28651ddba36d1519b">&#9670;&#160;</a></span>accessor_type</h2>
 
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;class T , size_t N, class L  = experimental::layout_right, class A  = experimental::default_accessor&lt;T&gt;&gt; </div>
+template&lt;class T , ::std::size_t N, class L , class A , typename &gt; </div>
       <table class="memname">
         <tr>
-          <td class="memname">using <a class="el" href="classstd_1_1math_1_1fs__vector.html">std::math::fs_vector</a>&lt; T, N, L, A &gt;::accessor_type =  typename <a class="el" href="classstd_1_1math_1_1fs__tensor.html#aa2dc98e6be4a3eefc84394a144219593">base_type::accessor_type</a></td>
+          <td class="memname">using <a class="el" href="classstd_1_1math_1_1fs__vector.html">std::math::fs_vector</a>&lt; T, N, L, A, typename &gt;::accessor_type =  typename <a class="el" href="classstd_1_1math_1_1fs__tensor.html#aa2dc98e6be4a3eefc84394a144219593">base_type::accessor_type</a></td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -415,16 +346,16 @@ template&lt;class T , size_t N, class L  = experimental::layout_right, class A  
 
 </div>
 </div>
-<a id="a0811928d0a680f8c1c7e776909a7b54a" name="a0811928d0a680f8c1c7e776909a7b54a"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a0811928d0a680f8c1c7e776909a7b54a">&#9670;&#160;</a></span>const_subvector_type</h2>
+<a id="a7f4fd8cf934f5ea9d4a3b596b8474b1d" name="a7f4fd8cf934f5ea9d4a3b596b8474b1d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7f4fd8cf934f5ea9d4a3b596b8474b1d">&#9670;&#160;</a></span>const_subvector_type</h2>
 
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;class T , size_t N, class L  = experimental::layout_right, class A  = experimental::default_accessor&lt;T&gt;&gt; </div>
+template&lt;class T , ::std::size_t N, class L , class A , typename &gt; </div>
       <table class="memname">
         <tr>
-          <td class="memname">using <a class="el" href="classstd_1_1math_1_1fs__vector.html">std::math::fs_vector</a>&lt; T, N, L, A &gt;::const_subvector_type =  <a class="el" href="classstd_1_1math_1_1vector__view.html">vector_view</a>&lt;decltype( experimental::submdspan( declval&lt;<a class="el" href="classstd_1_1math_1_1fs__vector.html#af88e450b5fde5075cb88d27265f49ff7">const_underlying_span_type</a>&gt;(), declval&lt; tuple&lt;<a class="el" href="classstd_1_1math_1_1fs__vector.html#a3197132736349e781c89ee7086d68cb2">index_type</a>,<a class="el" href="classstd_1_1math_1_1fs__vector.html#a3197132736349e781c89ee7086d68cb2">index_type</a>&gt; &gt;() ) ) &gt;</td>
+          <td class="memname">using <a class="el" href="classstd_1_1math_1_1fs__vector.html">std::math::fs_vector</a>&lt; T, N, L, A, typename &gt;::const_subvector_type =  <a class="el" href="classstd_1_1math_1_1vector__view.html">vector_view</a>&lt;decltype( ::std::experimental::submdspan( ::std::declval&lt;<a class="el" href="classstd_1_1math_1_1fs__vector.html#a8bdb0d46e01a1ac27be48bc3ce738788">const_underlying_span_type</a>&gt;(), ::std::declval&lt; ::std::tuple&lt;<a class="el" href="classstd_1_1math_1_1fs__vector.html#a7028ea16e1a8e5561432572a5c6fe8ef">index_type</a>,<a class="el" href="classstd_1_1math_1_1fs__vector.html#a7028ea16e1a8e5561432572a5c6fe8ef">index_type</a>&gt; &gt;() ) ) &gt;</td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -433,16 +364,16 @@ template&lt;class T , size_t N, class L  = experimental::layout_right, class A  
 
 </div>
 </div>
-<a id="af88e450b5fde5075cb88d27265f49ff7" name="af88e450b5fde5075cb88d27265f49ff7"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#af88e450b5fde5075cb88d27265f49ff7">&#9670;&#160;</a></span>const_underlying_span_type</h2>
+<a id="a8bdb0d46e01a1ac27be48bc3ce738788" name="a8bdb0d46e01a1ac27be48bc3ce738788"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8bdb0d46e01a1ac27be48bc3ce738788">&#9670;&#160;</a></span>const_underlying_span_type</h2>
 
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;class T , size_t N, class L  = experimental::layout_right, class A  = experimental::default_accessor&lt;T&gt;&gt; </div>
+template&lt;class T , ::std::size_t N, class L , class A , typename &gt; </div>
       <table class="memname">
         <tr>
-          <td class="memname">using <a class="el" href="classstd_1_1math_1_1fs__vector.html">std::math::fs_vector</a>&lt; T, N, L, A &gt;::const_underlying_span_type =  typename <a class="el" href="classstd_1_1math_1_1fs__tensor.html#ae13ebf0e9711df67ffb51339358db5c2">base_type::const_underlying_span_type</a></td>
+          <td class="memname">using <a class="el" href="classstd_1_1math_1_1fs__vector.html">std::math::fs_vector</a>&lt; T, N, L, A, typename &gt;::const_underlying_span_type =  typename <a class="el" href="classstd_1_1math_1_1fs__tensor.html#a66bbf3d9637400bd5a6cdf0a86626364">base_type::const_underlying_span_type</a></td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -451,16 +382,16 @@ template&lt;class T , size_t N, class L  = experimental::layout_right, class A  
 
 </div>
 </div>
-<a id="a66c4df20928fdfe34bcd47a6c12599c3" name="a66c4df20928fdfe34bcd47a6c12599c3"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a66c4df20928fdfe34bcd47a6c12599c3">&#9670;&#160;</a></span>element_type</h2>
+<a id="ac5a82013ccfc69c383d5ccd6f1cd7d23" name="ac5a82013ccfc69c383d5ccd6f1cd7d23"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac5a82013ccfc69c383d5ccd6f1cd7d23">&#9670;&#160;</a></span>element_type</h2>
 
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;class T , size_t N, class L  = experimental::layout_right, class A  = experimental::default_accessor&lt;T&gt;&gt; </div>
+template&lt;class T , ::std::size_t N, class L , class A , typename &gt; </div>
       <table class="memname">
         <tr>
-          <td class="memname">using <a class="el" href="classstd_1_1math_1_1fs__vector.html">std::math::fs_vector</a>&lt; T, N, L, A &gt;::element_type =  typename <a class="el" href="classstd_1_1math_1_1fs__tensor.html#a877b9014a0d86a6945084d5f18b5f065">base_type::element_type</a></td>
+          <td class="memname">using <a class="el" href="classstd_1_1math_1_1fs__vector.html">std::math::fs_vector</a>&lt; T, N, L, A, typename &gt;::element_type =  typename <a class="el" href="classstd_1_1math_1_1fs__tensor.html#a877b9014a0d86a6945084d5f18b5f065">base_type::element_type</a></td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -469,16 +400,16 @@ template&lt;class T , size_t N, class L  = experimental::layout_right, class A  
 
 </div>
 </div>
-<a id="a8fb59427b680161e8c5e7ed45ca6d5c5" name="a8fb59427b680161e8c5e7ed45ca6d5c5"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a8fb59427b680161e8c5e7ed45ca6d5c5">&#9670;&#160;</a></span>extents_type</h2>
+<a id="a0045948399dc0be1ba510ca4e0de5f77" name="a0045948399dc0be1ba510ca4e0de5f77"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0045948399dc0be1ba510ca4e0de5f77">&#9670;&#160;</a></span>extents_type</h2>
 
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;class T , size_t N, class L  = experimental::layout_right, class A  = experimental::default_accessor&lt;T&gt;&gt; </div>
+template&lt;class T , ::std::size_t N, class L , class A , typename &gt; </div>
       <table class="memname">
         <tr>
-          <td class="memname">using <a class="el" href="classstd_1_1math_1_1fs__vector.html">std::math::fs_vector</a>&lt; T, N, L, A &gt;::extents_type =  typename <a class="el" href="classstd_1_1math_1_1fs__tensor.html#a08e3329f952a65f70b1d7239ea5bb5b1">base_type::extents_type</a></td>
+          <td class="memname">using <a class="el" href="classstd_1_1math_1_1fs__vector.html">std::math::fs_vector</a>&lt; T, N, L, A, typename &gt;::extents_type =  typename <a class="el" href="classstd_1_1math_1_1fs__tensor.html#ab7081bbf3090395174207de84318521c">base_type::extents_type</a></td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -487,16 +418,16 @@ template&lt;class T , size_t N, class L  = experimental::layout_right, class A  
 
 </div>
 </div>
-<a id="a3197132736349e781c89ee7086d68cb2" name="a3197132736349e781c89ee7086d68cb2"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a3197132736349e781c89ee7086d68cb2">&#9670;&#160;</a></span>index_type</h2>
+<a id="a7028ea16e1a8e5561432572a5c6fe8ef" name="a7028ea16e1a8e5561432572a5c6fe8ef"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7028ea16e1a8e5561432572a5c6fe8ef">&#9670;&#160;</a></span>index_type</h2>
 
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;class T , size_t N, class L  = experimental::layout_right, class A  = experimental::default_accessor&lt;T&gt;&gt; </div>
+template&lt;class T , ::std::size_t N, class L , class A , typename &gt; </div>
       <table class="memname">
         <tr>
-          <td class="memname">using <a class="el" href="classstd_1_1math_1_1fs__vector.html">std::math::fs_vector</a>&lt; T, N, L, A &gt;::index_type =  typename <a class="el" href="classstd_1_1math_1_1fs__tensor.html#a2ac859bbdca290af00c7ae6133b7dce0">base_type::index_type</a></td>
+          <td class="memname">using <a class="el" href="classstd_1_1math_1_1fs__vector.html">std::math::fs_vector</a>&lt; T, N, L, A, typename &gt;::index_type =  typename base_type::index_type</td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -505,16 +436,16 @@ template&lt;class T , size_t N, class L  = experimental::layout_right, class A  
 
 </div>
 </div>
-<a id="a34c5cd8d9804e3f091da2ffc4f1e8576" name="a34c5cd8d9804e3f091da2ffc4f1e8576"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a34c5cd8d9804e3f091da2ffc4f1e8576">&#9670;&#160;</a></span>layout_type</h2>
+<a id="afa2d600449d5872677e4812f1d451eea" name="afa2d600449d5872677e4812f1d451eea"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#afa2d600449d5872677e4812f1d451eea">&#9670;&#160;</a></span>layout_type</h2>
 
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;class T , size_t N, class L  = experimental::layout_right, class A  = experimental::default_accessor&lt;T&gt;&gt; </div>
+template&lt;class T , ::std::size_t N, class L , class A , typename &gt; </div>
       <table class="memname">
         <tr>
-          <td class="memname">using <a class="el" href="classstd_1_1math_1_1fs__vector.html">std::math::fs_vector</a>&lt; T, N, L, A &gt;::layout_type =  typename <a class="el" href="classstd_1_1math_1_1fs__tensor.html#aa0d6ef16218fd8c5edc33065308b1913">base_type::layout_type</a></td>
+          <td class="memname">using <a class="el" href="classstd_1_1math_1_1fs__vector.html">std::math::fs_vector</a>&lt; T, N, L, A, typename &gt;::layout_type =  typename <a class="el" href="classstd_1_1math_1_1fs__tensor.html#aa0d6ef16218fd8c5edc33065308b1913">base_type::layout_type</a></td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -523,18 +454,18 @@ template&lt;class T , size_t N, class L  = experimental::layout_right, class A  
 
 </div>
 </div>
-<a id="af6559fcd47f350b5dd68e5effd32c103" name="af6559fcd47f350b5dd68e5effd32c103"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#af6559fcd47f350b5dd68e5effd32c103">&#9670;&#160;</a></span>rebind_t</h2>
+<a id="a5412e778166bf8c25ca6eb4c081b8022" name="a5412e778166bf8c25ca6eb4c081b8022"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5412e778166bf8c25ca6eb4c081b8022">&#9670;&#160;</a></span>rebind_t</h2>
 
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;class T , size_t N, class L  = experimental::layout_right, class A  = experimental::default_accessor&lt;T&gt;&gt; </div>
+template&lt;class T , ::std::size_t N, class L , class A , typename &gt; </div>
 <div class="memtemplate">
 template&lt;class ValueType , class LayoutType  = layout_type, class AccessorType  = accessor_type&gt; </div>
       <table class="memname">
         <tr>
-          <td class="memname">using <a class="el" href="classstd_1_1math_1_1fs__vector.html">std::math::fs_vector</a>&lt; T, N, L, A &gt;::rebind_t =  typename <a class="el" href="classstd_1_1math_1_1fs__vector_1_1rebind.html">rebind</a>&lt; ValueType, LayoutType, AccessorType &gt;::type</td>
+          <td class="memname">using <a class="el" href="classstd_1_1math_1_1fs__vector.html">std::math::fs_vector</a>&lt; T, N, L, A, typename &gt;::rebind_t =  typename <a class="el" href="classstd_1_1math_1_1fs__vector_1_1rebind.html">rebind</a>&lt; ValueType, LayoutType, AccessorType &gt;::type</td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -551,16 +482,16 @@ template&lt;class ValueType , class LayoutType  = layout_type, class AccessorTyp
 
 </div>
 </div>
-<a id="afb8d088bc694d8733695530233962b79" name="afb8d088bc694d8733695530233962b79"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#afb8d088bc694d8733695530233962b79">&#9670;&#160;</a></span>reference_type</h2>
+<a id="ab15ca077e57b663ecaa7f485b2f816a9" name="ab15ca077e57b663ecaa7f485b2f816a9"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab15ca077e57b663ecaa7f485b2f816a9">&#9670;&#160;</a></span>reference</h2>
 
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;class T , size_t N, class L  = experimental::layout_right, class A  = experimental::default_accessor&lt;T&gt;&gt; </div>
+template&lt;class T , ::std::size_t N, class L , class A , typename &gt; </div>
       <table class="memname">
         <tr>
-          <td class="memname">using <a class="el" href="classstd_1_1math_1_1fs__vector.html">std::math::fs_vector</a>&lt; T, N, L, A &gt;::reference_type =  typename <a class="el" href="classstd_1_1math_1_1fs__tensor.html#a256bd11d1699a9acb0f926725f8fffc6">base_type::reference_type</a></td>
+          <td class="memname">using <a class="el" href="classstd_1_1math_1_1fs__vector.html">std::math::fs_vector</a>&lt; T, N, L, A, typename &gt;::reference =  typename <a class="el" href="classstd_1_1math_1_1fs__tensor.html#a69fb9ddb5f5530bf0dd4d7c262f270d3">base_type::reference</a></td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -569,16 +500,16 @@ template&lt;class T , size_t N, class L  = experimental::layout_right, class A  
 
 </div>
 </div>
-<a id="acabefa963f4b2f33910c4f53231fadbb" name="acabefa963f4b2f33910c4f53231fadbb"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#acabefa963f4b2f33910c4f53231fadbb">&#9670;&#160;</a></span>size_type</h2>
+<a id="a86bd9959d301d520da56454e497a162f" name="a86bd9959d301d520da56454e497a162f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a86bd9959d301d520da56454e497a162f">&#9670;&#160;</a></span>size_type</h2>
 
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;class T , size_t N, class L  = experimental::layout_right, class A  = experimental::default_accessor&lt;T&gt;&gt; </div>
+template&lt;class T , ::std::size_t N, class L , class A , typename &gt; </div>
       <table class="memname">
         <tr>
-          <td class="memname">using <a class="el" href="classstd_1_1math_1_1fs__vector.html">std::math::fs_vector</a>&lt; T, N, L, A &gt;::size_type =  typename <a class="el" href="classstd_1_1math_1_1fs__tensor.html#a75a492a9a1079e6eeb5a34093b98b390">base_type::size_type</a></td>
+          <td class="memname">using <a class="el" href="classstd_1_1math_1_1fs__vector.html">std::math::fs_vector</a>&lt; T, N, L, A, typename &gt;::size_type =  typename <a class="el" href="classstd_1_1math_1_1fs__tensor.html#ad694c160eddef094640e5ea7eccf884e">base_type::size_type</a></td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -587,16 +518,16 @@ template&lt;class T , size_t N, class L  = experimental::layout_right, class A  
 
 </div>
 </div>
-<a id="af5c6dd35239b4d29fe677c9933a57eb1" name="af5c6dd35239b4d29fe677c9933a57eb1"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#af5c6dd35239b4d29fe677c9933a57eb1">&#9670;&#160;</a></span>span_type</h2>
+<a id="a6e1ec9fd932d11e5aa051678d1a00072" name="a6e1ec9fd932d11e5aa051678d1a00072"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6e1ec9fd932d11e5aa051678d1a00072">&#9670;&#160;</a></span>span_type</h2>
 
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;class T , size_t N, class L  = experimental::layout_right, class A  = experimental::default_accessor&lt;T&gt;&gt; </div>
+template&lt;class T , ::std::size_t N, class L , class A , typename &gt; </div>
       <table class="memname">
         <tr>
-          <td class="memname">using <a class="el" href="classstd_1_1math_1_1fs__vector.html">std::math::fs_vector</a>&lt; T, N, L, A &gt;::span_type =  typename <a class="el" href="classstd_1_1math_1_1fs__tensor.html#af59d3880e164152fd061acf97c1ec2cb">base_type::span_type</a></td>
+          <td class="memname">using <a class="el" href="classstd_1_1math_1_1fs__vector.html">std::math::fs_vector</a>&lt; T, N, L, A, typename &gt;::span_type =  typename <a class="el" href="classstd_1_1math_1_1fs__tensor.html#af59d3880e164152fd061acf97c1ec2cb">base_type::span_type</a></td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -605,16 +536,16 @@ template&lt;class T , size_t N, class L  = experimental::layout_right, class A  
 
 </div>
 </div>
-<a id="a42d27b62761230b9caac4e1394c3e4f7" name="a42d27b62761230b9caac4e1394c3e4f7"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a42d27b62761230b9caac4e1394c3e4f7">&#9670;&#160;</a></span>subvector_type</h2>
+<a id="aecef4a5078c20e47636114760fc02bdc" name="aecef4a5078c20e47636114760fc02bdc"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aecef4a5078c20e47636114760fc02bdc">&#9670;&#160;</a></span>subvector_type</h2>
 
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;class T , size_t N, class L  = experimental::layout_right, class A  = experimental::default_accessor&lt;T&gt;&gt; </div>
+template&lt;class T , ::std::size_t N, class L , class A , typename &gt; </div>
       <table class="memname">
         <tr>
-          <td class="memname">using <a class="el" href="classstd_1_1math_1_1fs__vector.html">std::math::fs_vector</a>&lt; T, N, L, A &gt;::subvector_type =  <a class="el" href="classstd_1_1math_1_1vector__view.html">vector_view</a>&lt;decltype( experimental::submdspan( declval&lt;<a class="el" href="classstd_1_1math_1_1fs__vector.html#accaaa8ad8ac546abeaf513e2f7d9d5e6">underlying_span_type</a>&gt;(), declval&lt; tuple&lt;<a class="el" href="classstd_1_1math_1_1fs__vector.html#a3197132736349e781c89ee7086d68cb2">index_type</a>,<a class="el" href="classstd_1_1math_1_1fs__vector.html#a3197132736349e781c89ee7086d68cb2">index_type</a>&gt; &gt;() ) ) &gt;</td>
+          <td class="memname">using <a class="el" href="classstd_1_1math_1_1fs__vector.html">std::math::fs_vector</a>&lt; T, N, L, A, typename &gt;::subvector_type =  <a class="el" href="classstd_1_1math_1_1vector__view.html">vector_view</a>&lt;decltype( ::std::experimental::submdspan( ::std::declval&lt;<a class="el" href="classstd_1_1math_1_1fs__vector.html#aebea5b09b3ca22eefc386bd65bba63e5">underlying_span_type</a>&gt;(), ::std::declval&lt; ::std::tuple&lt;<a class="el" href="classstd_1_1math_1_1fs__vector.html#a7028ea16e1a8e5561432572a5c6fe8ef">index_type</a>,<a class="el" href="classstd_1_1math_1_1fs__vector.html#a7028ea16e1a8e5561432572a5c6fe8ef">index_type</a>&gt; &gt;() ) ) &gt;</td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -623,16 +554,16 @@ template&lt;class T , size_t N, class L  = experimental::layout_right, class A  
 
 </div>
 </div>
-<a id="add2af9dd5fd91bb96248ef8334fb1e57" name="add2af9dd5fd91bb96248ef8334fb1e57"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#add2af9dd5fd91bb96248ef8334fb1e57">&#9670;&#160;</a></span>tuple_type</h2>
+<a id="aecd4932a2fef8de5eec8c6d1fa1db2bb" name="aecd4932a2fef8de5eec8c6d1fa1db2bb"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aecd4932a2fef8de5eec8c6d1fa1db2bb">&#9670;&#160;</a></span>tuple_type</h2>
 
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;class T , size_t N, class L  = experimental::layout_right, class A  = experimental::default_accessor&lt;T&gt;&gt; </div>
+template&lt;class T , ::std::size_t N, class L , class A , typename &gt; </div>
       <table class="memname">
         <tr>
-          <td class="memname">using <a class="el" href="classstd_1_1math_1_1fs__vector.html">std::math::fs_vector</a>&lt; T, N, L, A &gt;::tuple_type =  typename <a class="el" href="classstd_1_1math_1_1fs__tensor.html#a85d3152ad0a10147b519921da001e5a1">base_type::tuple_type</a></td>
+          <td class="memname">using <a class="el" href="classstd_1_1math_1_1fs__vector.html">std::math::fs_vector</a>&lt; T, N, L, A, typename &gt;::tuple_type =  typename <a class="el" href="classstd_1_1math_1_1fs__tensor.html#a85d3152ad0a10147b519921da001e5a1">base_type::tuple_type</a></td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -641,16 +572,16 @@ template&lt;class T , size_t N, class L  = experimental::layout_right, class A  
 
 </div>
 </div>
-<a id="accaaa8ad8ac546abeaf513e2f7d9d5e6" name="accaaa8ad8ac546abeaf513e2f7d9d5e6"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#accaaa8ad8ac546abeaf513e2f7d9d5e6">&#9670;&#160;</a></span>underlying_span_type</h2>
+<a id="aebea5b09b3ca22eefc386bd65bba63e5" name="aebea5b09b3ca22eefc386bd65bba63e5"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aebea5b09b3ca22eefc386bd65bba63e5">&#9670;&#160;</a></span>underlying_span_type</h2>
 
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;class T , size_t N, class L  = experimental::layout_right, class A  = experimental::default_accessor&lt;T&gt;&gt; </div>
+template&lt;class T , ::std::size_t N, class L , class A , typename &gt; </div>
       <table class="memname">
         <tr>
-          <td class="memname">using <a class="el" href="classstd_1_1math_1_1fs__vector.html">std::math::fs_vector</a>&lt; T, N, L, A &gt;::underlying_span_type =  typename <a class="el" href="classstd_1_1math_1_1fs__tensor.html#ac7cd4d69a4e2e73ae70c1b2d9e7b51e2">base_type::underlying_span_type</a></td>
+          <td class="memname">using <a class="el" href="classstd_1_1math_1_1fs__vector.html">std::math::fs_vector</a>&lt; T, N, L, A, typename &gt;::underlying_span_type =  typename <a class="el" href="classstd_1_1math_1_1fs__tensor.html#ad65bcae09b9e0ca7ab11d5f253188fad">base_type::underlying_span_type</a></td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -659,16 +590,16 @@ template&lt;class T , size_t N, class L  = experimental::layout_right, class A  
 
 </div>
 </div>
-<a id="a60fb8d0b2889b9c229caaa9c7005a0ed" name="a60fb8d0b2889b9c229caaa9c7005a0ed"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a60fb8d0b2889b9c229caaa9c7005a0ed">&#9670;&#160;</a></span>value_type</h2>
+<a id="accb0a868d3b147f6519403442983b45c" name="accb0a868d3b147f6519403442983b45c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#accb0a868d3b147f6519403442983b45c">&#9670;&#160;</a></span>value_type</h2>
 
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;class T , size_t N, class L  = experimental::layout_right, class A  = experimental::default_accessor&lt;T&gt;&gt; </div>
+template&lt;class T , ::std::size_t N, class L , class A , typename &gt; </div>
       <table class="memname">
         <tr>
-          <td class="memname">using <a class="el" href="classstd_1_1math_1_1fs__vector.html">std::math::fs_vector</a>&lt; T, N, L, A &gt;::value_type =  typename <a class="el" href="classstd_1_1math_1_1fs__tensor.html#a4a98dc2c12f713dae7481d9ffa23ff38">base_type::value_type</a></td>
+          <td class="memname">using <a class="el" href="classstd_1_1math_1_1fs__vector.html">std::math::fs_vector</a>&lt; T, N, L, A, typename &gt;::value_type =  typename <a class="el" href="classstd_1_1math_1_1fs__tensor.html#ad5e47b3c811336fa55b7f07159d8e2bc">base_type::value_type</a></td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -678,19 +609,19 @@ template&lt;class T , size_t N, class L  = experimental::layout_right, class A  
 </div>
 </div>
 <h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
-<a id="a96fd3a3810eb501fd716a065984819ac" name="a96fd3a3810eb501fd716a065984819ac"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a96fd3a3810eb501fd716a065984819ac">&#9670;&#160;</a></span>~fs_vector()</h2>
+<a id="adcd39cc3bf7ec5ba8098afc36c7f258c" name="adcd39cc3bf7ec5ba8098afc36c7f258c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#adcd39cc3bf7ec5ba8098afc36c7f258c">&#9670;&#160;</a></span>~fs_vector()</h2>
 
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;class T , size_t N, class L  = experimental::layout_right, class A  = experimental::default_accessor&lt;T&gt;&gt; </div>
+template&lt;class T , ::std::size_t N, class L , class A , typename &gt; </div>
 <table class="mlabels">
   <tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="classstd_1_1math_1_1fs__vector.html">std::math::fs_vector</a>&lt; T, N, L, A &gt;::~<a class="el" href="classstd_1_1math_1_1fs__vector.html">fs_vector</a> </td>
+          <td class="memname"><a class="el" href="classstd_1_1math_1_1fs__vector.html">std::math::fs_vector</a>&lt; T, N, L, A, typename &gt;::~<a class="el" href="classstd_1_1math_1_1fs__vector.html">fs_vector</a> </td>
           <td>(</td>
           <td class="paramname"></td><td>)</td>
           <td></td>
@@ -707,19 +638,19 @@ template&lt;class T , size_t N, class L  = experimental::layout_right, class A  
 
 </div>
 </div>
-<a id="ab68c902cb37c5421f21f0eb9241716f5" name="ab68c902cb37c5421f21f0eb9241716f5"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ab68c902cb37c5421f21f0eb9241716f5">&#9670;&#160;</a></span>fs_vector() <span class="overload">[1/6]</span></h2>
+<a id="a8bdbbcfdf2ea2ff7120c90ed2d7b4c7a" name="a8bdbbcfdf2ea2ff7120c90ed2d7b4c7a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8bdbbcfdf2ea2ff7120c90ed2d7b4c7a">&#9670;&#160;</a></span>fs_vector() <span class="overload">[1/6]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;class T , size_t N, class L  = experimental::layout_right, class A  = experimental::default_accessor&lt;T&gt;&gt; </div>
+template&lt;class T , ::std::size_t N, class L , class A , typename &gt; </div>
 <table class="mlabels">
   <tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="classstd_1_1math_1_1fs__vector.html">std::math::fs_vector</a>&lt; T, N, L, A &gt;::fs_vector </td>
+          <td class="memname"><a class="el" href="classstd_1_1math_1_1fs__vector.html">std::math::fs_vector</a>&lt; T, N, L, A, typename &gt;::fs_vector </td>
           <td>(</td>
           <td class="paramname"></td><td>)</td>
           <td></td>
@@ -736,21 +667,21 @@ template&lt;class T , size_t N, class L  = experimental::layout_right, class A  
 
 </div>
 </div>
-<a id="ab77e91553f5552bf49e08f6d50081b5f" name="ab77e91553f5552bf49e08f6d50081b5f"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ab77e91553f5552bf49e08f6d50081b5f">&#9670;&#160;</a></span>fs_vector() <span class="overload">[2/6]</span></h2>
+<a id="a36333bbcae34491657c4839f31bb44ab" name="a36333bbcae34491657c4839f31bb44ab"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a36333bbcae34491657c4839f31bb44ab">&#9670;&#160;</a></span>fs_vector() <span class="overload">[2/6]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;class T , size_t N, class L  = experimental::layout_right, class A  = experimental::default_accessor&lt;T&gt;&gt; </div>
+template&lt;class T , ::std::size_t N, class L , class A , typename &gt; </div>
 <table class="mlabels">
   <tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="classstd_1_1math_1_1fs__vector.html">std::math::fs_vector</a>&lt; T, N, L, A &gt;::fs_vector </td>
+          <td class="memname"><a class="el" href="classstd_1_1math_1_1fs__vector.html">std::math::fs_vector</a>&lt; T, N, L, A, typename &gt;::fs_vector </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="classstd_1_1math_1_1fs__vector.html">fs_vector</a>&lt; T, N, L, A &gt; &amp;&amp;&#160;</td>
+          <td class="paramtype"><a class="el" href="classstd_1_1math_1_1fs__vector.html">fs_vector</a>&lt; T, N, L, A, typename &gt; &amp;&amp;&#160;</td>
           <td class="paramname"></td><td>)</td>
           <td></td>
         </tr>
@@ -772,21 +703,21 @@ template&lt;class T , size_t N, class L  = experimental::layout_right, class A  
 
 </div>
 </div>
-<a id="af9dedeb5b9a4a8e4ec022eb810d595de" name="af9dedeb5b9a4a8e4ec022eb810d595de"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#af9dedeb5b9a4a8e4ec022eb810d595de">&#9670;&#160;</a></span>fs_vector() <span class="overload">[3/6]</span></h2>
+<a id="a6a93c1edc7355abc8c87c1978b02e1e6" name="a6a93c1edc7355abc8c87c1978b02e1e6"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6a93c1edc7355abc8c87c1978b02e1e6">&#9670;&#160;</a></span>fs_vector() <span class="overload">[3/6]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;class T , size_t N, class L  = experimental::layout_right, class A  = experimental::default_accessor&lt;T&gt;&gt; </div>
+template&lt;class T , ::std::size_t N, class L , class A , typename &gt; </div>
 <table class="mlabels">
   <tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="classstd_1_1math_1_1fs__vector.html">std::math::fs_vector</a>&lt; T, N, L, A &gt;::fs_vector </td>
+          <td class="memname"><a class="el" href="classstd_1_1math_1_1fs__vector.html">std::math::fs_vector</a>&lt; T, N, L, A, typename &gt;::fs_vector </td>
           <td>(</td>
-          <td class="paramtype">const <a class="el" href="classstd_1_1math_1_1fs__vector.html">fs_vector</a>&lt; T, N, L, A &gt; &amp;&#160;</td>
+          <td class="paramtype">const <a class="el" href="classstd_1_1math_1_1fs__vector.html">fs_vector</a>&lt; T, N, L, A, typename &gt; &amp;&#160;</td>
           <td class="paramname"></td><td>)</td>
           <td></td>
         </tr>
@@ -808,25 +739,23 @@ template&lt;class T , size_t N, class L  = experimental::layout_right, class A  
 
 </div>
 </div>
-<a id="add36c956746ee747ea48d4deb6ce3e00" name="add36c956746ee747ea48d4deb6ce3e00"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#add36c956746ee747ea48d4deb6ce3e00">&#9670;&#160;</a></span>fs_vector() <span class="overload">[4/6]</span></h2>
+<a id="a3c89e06eeb8c8da779f5fe22782e6314" name="a3c89e06eeb8c8da779f5fe22782e6314"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3c89e06eeb8c8da779f5fe22782e6314">&#9670;&#160;</a></span>fs_vector() <span class="overload">[4/6]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;class T , size_t N, class L , class A &gt; <br />
-requires ( N &gt;= 0 )</div>
+template&lt;class T , ::std::size_t N, class L , class A , typename Dummy &gt; </div>
 <div class="memtemplate">
-template&lt;concepts::tensor_may_be_constructible&lt; <a class="el" href="classstd_1_1math_1_1fs__vector.html">fs_vector</a>&lt; T, N, L, A &gt; &gt; T2&gt; <br />
-requires ( N &gt;= 0 )</div>
+template&lt;class V2 , typename &gt; </div>
 <table class="mlabels">
   <tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">constexpr <a class="el" href="classstd_1_1math_1_1fs__vector.html">std::math::fs_vector</a>&lt; T, N, L, A &gt;::fs_vector </td>
+          <td class="memname">constexpr <a class="el" href="classstd_1_1math_1_1fs__vector.html">std::math::fs_vector</a>&lt; T, N, L, A, Dummy &gt;::fs_vector </td>
           <td>(</td>
-          <td class="paramtype">const T2 &amp;&#160;</td>
+          <td class="paramtype">const V2 &amp;&#160;</td>
           <td class="paramname"><em>rhs</em></td><td>)</td>
           <td></td>
         </tr>
@@ -848,23 +777,21 @@ requires ( N &gt;= 0 )</div>
 
 </div>
 </div>
-<a id="ac81bdeda3c2f1766e1db7ccad1b00671" name="ac81bdeda3c2f1766e1db7ccad1b00671"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ac81bdeda3c2f1766e1db7ccad1b00671">&#9670;&#160;</a></span>fs_vector() <span class="overload">[5/6]</span></h2>
+<a id="a0c274db3d751d97a8351d7ae663feb0b" name="a0c274db3d751d97a8351d7ae663feb0b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0c274db3d751d97a8351d7ae663feb0b">&#9670;&#160;</a></span>fs_vector() <span class="overload">[5/6]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;class T , size_t N, class L , class A &gt; <br />
-requires ( N &gt;= 0 )</div>
+template&lt;class T , ::std::size_t N, class L , class A , typename Dummy &gt; </div>
 <div class="memtemplate">
-template&lt;concepts::view_may_be_constructible_to_tensor&lt; <a class="el" href="classstd_1_1math_1_1fs__vector.html">fs_vector</a>&lt; T, N, L, A &gt; &gt; MDS&gt; <br />
-requires ( N &gt;= 0 )</div>
+template&lt;class MDS , typename , typename &gt; </div>
 <table class="mlabels">
   <tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">constexpr <a class="el" href="classstd_1_1math_1_1fs__vector.html">std::math::fs_vector</a>&lt; T, N, L, A &gt;::fs_vector </td>
+          <td class="memname">constexpr <a class="el" href="classstd_1_1math_1_1fs__vector.html">std::math::fs_vector</a>&lt; T, N, L, A, Dummy &gt;::fs_vector </td>
           <td>(</td>
           <td class="paramtype">const MDS &amp;&#160;</td>
           <td class="paramname"><em>view</em></td><td>)</td>
@@ -888,23 +815,21 @@ requires ( N &gt;= 0 )</div>
 
 </div>
 </div>
-<a id="a44bacc7ce84d4488c03be4acb66dcae6" name="a44bacc7ce84d4488c03be4acb66dcae6"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a44bacc7ce84d4488c03be4acb66dcae6">&#9670;&#160;</a></span>fs_vector() <span class="overload">[6/6]</span></h2>
+<a id="a73e9056c6357065f61a1af3dd63e3bce" name="a73e9056c6357065f61a1af3dd63e3bce"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a73e9056c6357065f61a1af3dd63e3bce">&#9670;&#160;</a></span>fs_vector() <span class="overload">[6/6]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;class T , size_t N, class L , class A &gt; <br />
-requires requires { { declval&lt;Lambda&amp;&amp;&gt;()( declval&lt;<a class="el" href="classstd_1_1math_1_1fs__vector.html#a3197132736349e781c89ee7086d68cb2">index_type</a>&gt;() ) } -&gt; convertible_to&lt;<a class="el" href="classstd_1_1math_1_1fs__vector.html#a66c4df20928fdfe34bcd47a6c12599c3">element_type</a>&gt;; }</div>
+template&lt;class T , ::std::size_t N, class L , class A , typename Dummy &gt; </div>
 <div class="memtemplate">
-template&lt;class Lambda &gt; <br />
-requires requires { { declval&lt;Lambda&amp;&amp;&gt;()( declval&lt;<a class="el" href="classstd_1_1math_1_1fs__vector.html#a3197132736349e781c89ee7086d68cb2">index_type</a>&gt;() ) } -&gt; convertible_to&lt;<a class="el" href="classstd_1_1math_1_1fs__vector.html#a66c4df20928fdfe34bcd47a6c12599c3">element_type</a>&gt;; }</div>
+template&lt;class Lambda , typename &gt; </div>
 <table class="mlabels">
   <tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">constexpr <a class="el" href="classstd_1_1math_1_1fs__vector.html">std::math::fs_vector</a>&lt; T, N, L, A &gt;::fs_vector </td>
+          <td class="memname">constexpr <a class="el" href="classstd_1_1math_1_1fs__vector.html">std::math::fs_vector</a>&lt; T, N, L, A, Dummy &gt;::fs_vector </td>
           <td>(</td>
           <td class="paramtype">Lambda &amp;&amp;&#160;</td>
           <td class="paramname"><em>lambda</em></td><td>)</td>
@@ -929,122 +854,21 @@ requires requires { { declval&lt;Lambda&amp;&amp;&gt;()( declval&lt;<a class="el
 </div>
 </div>
 <h2 class="groupheader">Member Function Documentation</h2>
-<a id="a4fcd2d237148b1056fa0824f09e84c02" name="a4fcd2d237148b1056fa0824f09e84c02"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a4fcd2d237148b1056fa0824f09e84c02">&#9670;&#160;</a></span>at() <span class="overload">[1/2]</span></h2>
+<a id="a65ceefe26c23669073db8d95f4f63f30" name="a65ceefe26c23669073db8d95f4f63f30"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a65ceefe26c23669073db8d95f4f63f30">&#9670;&#160;</a></span>operator=() <span class="overload">[1/6]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;class T , size_t N, class L  = experimental::layout_right, class A  = experimental::default_accessor&lt;T&gt;&gt; </div>
+template&lt;class T , ::std::size_t N, class L , class A , typename &gt; </div>
 <table class="mlabels">
   <tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">constexpr <a class="el" href="classstd_1_1math_1_1fs__tensor.html">fs_tensor</a>&lt; T, L, A, Ds... &gt;<a class="el" href="classstd_1_1math_1_1fs__vector.html#afb8d088bc694d8733695530233962b79">::reference_type</a> <a class="el" href="classstd_1_1math_1_1fs__tensor.html">std::math::fs_tensor</a>&lt; T, L, A, Ds &gt;::at </td>
+          <td class="memname"><a class="el" href="classstd_1_1math_1_1fs__vector.html">fs_vector</a> &amp; <a class="el" href="classstd_1_1math_1_1fs__vector.html">std::math::fs_vector</a>&lt; T, N, L, A, typename &gt;::operator= </td>
           <td>(</td>
-          <td class="paramtype">decltype(Ds) ...&#160;</td>
-          <td class="paramname"><em>indices</em></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">constexpr</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p>Returns a mutable value at (indices...) with index bounds checking. </p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">indices</td><td>set indices representing a node in the tensor </td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="section return"><dt>Returns</dt><dd>mutable value at row i, column j, depth k, etc. </dd></dl>
-
-</div>
-</div>
-<a id="ace57dfbb29223a7feed9883d26fb912d" name="ace57dfbb29223a7feed9883d26fb912d"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ace57dfbb29223a7feed9883d26fb912d">&#9670;&#160;</a></span>at() <span class="overload">[2/2]</span></h2>
-
-<div class="memitem">
-<div class="memproto">
-<div class="memtemplate">
-template&lt;class T , size_t N, class L  = experimental::layout_right, class A  = experimental::default_accessor&lt;T&gt;&gt; </div>
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">constexpr <a class="el" href="classstd_1_1math_1_1fs__tensor.html">fs_tensor</a>&lt; T, L, A, Ds... &gt;<a class="el" href="classstd_1_1math_1_1fs__vector.html#a60fb8d0b2889b9c229caaa9c7005a0ed">::value_type</a> <a class="el" href="classstd_1_1math_1_1fs__tensor.html">std::math::fs_tensor</a>&lt; T, L, A, Ds &gt;::at </td>
-          <td>(</td>
-          <td class="paramtype">decltype(Ds) ...&#160;</td>
-          <td class="paramname"><em>indices</em></td><td>)</td>
-          <td> const</td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">constexpr</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p>Returns the value at (indices...) with index bounds checking. </p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">indices</td><td>set indices representing a node in the tensor </td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="section return"><dt>Returns</dt><dd>value at row i, column j, depth k, etc. </dd></dl>
-
-</div>
-</div>
-<a id="aae53c2a9799db658bd6c5751ea9a4033" name="aae53c2a9799db658bd6c5751ea9a4033"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aae53c2a9799db658bd6c5751ea9a4033">&#9670;&#160;</a></span>capacity()</h2>
-
-<div class="memitem">
-<div class="memproto">
-<div class="memtemplate">
-template&lt;class T , size_t N, class L  = experimental::layout_right, class A  = experimental::default_accessor&lt;T&gt;&gt; </div>
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">constexpr <a class="el" href="classstd_1_1math_1_1fs__tensor.html">fs_tensor</a>&lt; T, L, A, Ds... &gt;<a class="el" href="classstd_1_1math_1_1fs__vector.html#a8fb59427b680161e8c5e7ed45ca6d5c5">::extents_type</a> <a class="el" href="classstd_1_1math_1_1fs__tensor.html">std::math::fs_tensor</a>&lt; T, L, A, Ds &gt;::capacity</td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">constexpr</span><span class="mlabel">noexcept</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p>Returns the current capacity of (rows,columns,depth,etc...) </p>
-<dl class="section return"><dt>Returns</dt><dd>capacity of (rows,columns) </dd></dl>
-
-</div>
-</div>
-<a id="ad1d685b98006c0f8a2a65869edebf575" name="ad1d685b98006c0f8a2a65869edebf575"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ad1d685b98006c0f8a2a65869edebf575">&#9670;&#160;</a></span>operator=() <span class="overload">[1/6]</span></h2>
-
-<div class="memitem">
-<div class="memproto">
-<div class="memtemplate">
-template&lt;class T , size_t N, class L  = experimental::layout_right, class A  = experimental::default_accessor&lt;T&gt;&gt; </div>
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname"><a class="el" href="classstd_1_1math_1_1fs__vector.html">fs_vector</a> &amp; <a class="el" href="classstd_1_1math_1_1fs__vector.html">std::math::fs_vector</a>&lt; T, N, L, A &gt;::operator= </td>
-          <td>(</td>
-          <td class="paramtype">const <a class="el" href="classstd_1_1math_1_1fs__vector.html">fs_vector</a>&lt; T, N, L, A &gt; &amp;&#160;</td>
+          <td class="paramtype">const <a class="el" href="classstd_1_1math_1_1fs__vector.html">fs_vector</a>&lt; T, N, L, A, typename &gt; &amp;&#160;</td>
           <td class="paramname"></td><td>)</td>
           <td></td>
         </tr>
@@ -1067,21 +891,21 @@ template&lt;class T , size_t N, class L  = experimental::layout_right, class A  
 
 </div>
 </div>
-<a id="aaf38dba09fa6b71d7d36a9664fb00828" name="aaf38dba09fa6b71d7d36a9664fb00828"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aaf38dba09fa6b71d7d36a9664fb00828">&#9670;&#160;</a></span>operator=() <span class="overload">[2/6]</span></h2>
+<a id="a62c6bf20f2ba5436f2d2a5300e769673" name="a62c6bf20f2ba5436f2d2a5300e769673"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a62c6bf20f2ba5436f2d2a5300e769673">&#9670;&#160;</a></span>operator=() <span class="overload">[2/6]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;class T , size_t N, class L  = experimental::layout_right, class A  = experimental::default_accessor&lt;T&gt;&gt; </div>
+template&lt;class T , ::std::size_t N, class L , class A , typename &gt; </div>
 <div class="memtemplate">
-template&lt;concepts::view_may_be_constructible_to_tensor&lt; <a class="el" href="classstd_1_1math_1_1fs__vector.html">fs_vector</a> &gt; MDS&gt; </div>
+template&lt;class MDS , typename  = ::std::enable_if_t&lt; concepts::view_may_be_constructible_to_tensor&lt;MDS,fs_vector&gt; &gt;, typename  = ::std::enable_if_t&lt;true&gt;&gt; </div>
 <table class="mlabels">
   <tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">constexpr <a class="el" href="classstd_1_1math_1_1fs__vector.html">fs_vector</a> &amp; <a class="el" href="classstd_1_1math_1_1fs__vector.html">std::math::fs_vector</a>&lt; T, N, L, A &gt;::operator= </td>
+          <td class="memname">constexpr <a class="el" href="classstd_1_1math_1_1fs__vector.html">fs_vector</a> &amp; <a class="el" href="classstd_1_1math_1_1fs__vector.html">std::math::fs_vector</a>&lt; T, N, L, A, typename &gt;::operator= </td>
           <td>(</td>
           <td class="paramtype">const MDS &amp;&#160;</td>
           <td class="paramname"><em>view</em></td><td>)</td>
@@ -1112,22 +936,21 @@ template&lt;concepts::view_may_be_constructible_to_tensor&lt; <a class="el" href
 
 </div>
 </div>
-<a id="ab7abfa4721e5e0b7a82f1daa1b1cff97" name="ab7abfa4721e5e0b7a82f1daa1b1cff97"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ab7abfa4721e5e0b7a82f1daa1b1cff97">&#9670;&#160;</a></span>operator=() <span class="overload">[3/6]</span></h2>
+<a id="a1d331b22e6753d432cfc08c97a8d6751" name="a1d331b22e6753d432cfc08c97a8d6751"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1d331b22e6753d432cfc08c97a8d6751">&#9670;&#160;</a></span>operator=() <span class="overload">[3/6]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;class T , size_t N, class L  = experimental::layout_right, class A  = experimental::default_accessor&lt;T&gt;&gt; </div>
+template&lt;class T , ::std::size_t N, class L , class A , typename &gt; </div>
 <div class="memtemplate">
-template&lt;concepts::view_may_be_constructible_to_tensor&lt; <a class="el" href="classstd_1_1math_1_1fs__vector.html">fs_vector</a>&lt; T, N, L, A &gt; &gt; MDS&gt; <br />
-requires ( N &gt;= 0 )</div>
+template&lt;class MDS , typename , typename &gt; </div>
 <table class="mlabels">
   <tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">constexpr <a class="el" href="classstd_1_1math_1_1fs__vector.html">fs_vector</a>&lt; T, N, L, A &gt; &amp; <a class="el" href="classstd_1_1math_1_1fs__vector.html">std::math::fs_vector</a>&lt; T, N, L, A &gt;::operator= </td>
+          <td class="memname">constexpr <a class="el" href="classstd_1_1math_1_1fs__vector.html">fs_vector</a>&lt; T, N, L, A, Dummy &gt; &amp; <a class="el" href="classstd_1_1math_1_1fs__vector.html">std::math::fs_vector</a>&lt; T, N, L, A, typename &gt;::operator= </td>
           <td>(</td>
           <td class="paramtype">const MDS &amp;&#160;</td>
           <td class="paramname"><em>view</em></td><td>)</td>
@@ -1143,23 +966,23 @@ requires ( N &gt;= 0 )</div>
 
 </div>
 </div>
-<a id="a899bd9871ba7cce68c6d4624bd0a8f48" name="a899bd9871ba7cce68c6d4624bd0a8f48"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a899bd9871ba7cce68c6d4624bd0a8f48">&#9670;&#160;</a></span>operator=() <span class="overload">[4/6]</span></h2>
+<a id="a32fee97e54845f53e21f58111a827aad" name="a32fee97e54845f53e21f58111a827aad"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a32fee97e54845f53e21f58111a827aad">&#9670;&#160;</a></span>operator=() <span class="overload">[4/6]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;class T , size_t N, class L  = experimental::layout_right, class A  = experimental::default_accessor&lt;T&gt;&gt; </div>
+template&lt;class T , ::std::size_t N, class L , class A , typename &gt; </div>
 <div class="memtemplate">
-template&lt;concepts::tensor_may_be_constructible&lt; <a class="el" href="classstd_1_1math_1_1fs__vector.html">fs_vector</a> &gt; T2&gt; </div>
+template&lt;class V2 , typename  = ::std::enable_if_t&lt; concepts::tensor_may_be_constructible&lt; V2, fs_vector &gt; &gt;&gt; </div>
 <table class="mlabels">
   <tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">constexpr <a class="el" href="classstd_1_1math_1_1fs__vector.html">fs_vector</a> &amp; <a class="el" href="classstd_1_1math_1_1fs__vector.html">std::math::fs_vector</a>&lt; T, N, L, A &gt;::operator= </td>
+          <td class="memname">constexpr <a class="el" href="classstd_1_1math_1_1fs__vector.html">fs_vector</a> &amp; <a class="el" href="classstd_1_1math_1_1fs__vector.html">std::math::fs_vector</a>&lt; T, N, L, A, typename &gt;::operator= </td>
           <td>(</td>
-          <td class="paramtype">const T2 &amp;&#160;</td>
+          <td class="paramtype">const V2 &amp;&#160;</td>
           <td class="paramname"><em>rhs</em></td><td>)</td>
           <td></td>
         </tr>
@@ -1188,24 +1011,23 @@ template&lt;concepts::tensor_may_be_constructible&lt; <a class="el" href="classs
 
 </div>
 </div>
-<a id="a2066fa6a0b01d0878e717fdf77cecf6d" name="a2066fa6a0b01d0878e717fdf77cecf6d"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a2066fa6a0b01d0878e717fdf77cecf6d">&#9670;&#160;</a></span>operator=() <span class="overload">[5/6]</span></h2>
+<a id="aaec8f19145b65b5cdfbdc53a3a4caa0a" name="aaec8f19145b65b5cdfbdc53a3a4caa0a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aaec8f19145b65b5cdfbdc53a3a4caa0a">&#9670;&#160;</a></span>operator=() <span class="overload">[5/6]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;class T , size_t N, class L  = experimental::layout_right, class A  = experimental::default_accessor&lt;T&gt;&gt; </div>
+template&lt;class T , ::std::size_t N, class L , class A , typename &gt; </div>
 <div class="memtemplate">
-template&lt;concepts::tensor_may_be_constructible&lt; <a class="el" href="classstd_1_1math_1_1fs__vector.html">fs_vector</a>&lt; T, N, L, A &gt; &gt; T2&gt; <br />
-requires ( N &gt;= 0 )</div>
+template&lt;class V2 , typename &gt; </div>
 <table class="mlabels">
   <tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">constexpr <a class="el" href="classstd_1_1math_1_1fs__vector.html">fs_vector</a>&lt; T, N, L, A &gt; &amp; <a class="el" href="classstd_1_1math_1_1fs__vector.html">std::math::fs_vector</a>&lt; T, N, L, A &gt;::operator= </td>
+          <td class="memname">constexpr <a class="el" href="classstd_1_1math_1_1fs__vector.html">fs_vector</a>&lt; T, N, L, A, Dummy &gt; &amp; <a class="el" href="classstd_1_1math_1_1fs__vector.html">std::math::fs_vector</a>&lt; T, N, L, A, typename &gt;::operator= </td>
           <td>(</td>
-          <td class="paramtype">const T2 &amp;&#160;</td>
+          <td class="paramtype">const V2 &amp;&#160;</td>
           <td class="paramname"><em>rhs</em></td><td>)</td>
           <td></td>
         </tr>
@@ -1219,21 +1041,21 @@ requires ( N &gt;= 0 )</div>
 
 </div>
 </div>
-<a id="a552ba45a574f3edd6a639db3e7230b7a" name="a552ba45a574f3edd6a639db3e7230b7a"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a552ba45a574f3edd6a639db3e7230b7a">&#9670;&#160;</a></span>operator=() <span class="overload">[6/6]</span></h2>
+<a id="a5e9c8d827d0c1795303ab75953c350ac" name="a5e9c8d827d0c1795303ab75953c350ac"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5e9c8d827d0c1795303ab75953c350ac">&#9670;&#160;</a></span>operator=() <span class="overload">[6/6]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;class T , size_t N, class L  = experimental::layout_right, class A  = experimental::default_accessor&lt;T&gt;&gt; </div>
+template&lt;class T , ::std::size_t N, class L , class A , typename &gt; </div>
 <table class="mlabels">
   <tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="classstd_1_1math_1_1fs__vector.html">fs_vector</a> &amp; <a class="el" href="classstd_1_1math_1_1fs__vector.html">std::math::fs_vector</a>&lt; T, N, L, A &gt;::operator= </td>
+          <td class="memname"><a class="el" href="classstd_1_1math_1_1fs__vector.html">fs_vector</a> &amp; <a class="el" href="classstd_1_1math_1_1fs__vector.html">std::math::fs_vector</a>&lt; T, N, L, A, typename &gt;::operator= </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="classstd_1_1math_1_1fs__vector.html">fs_vector</a>&lt; T, N, L, A &gt; &amp;&amp;&#160;</td>
+          <td class="paramtype"><a class="el" href="classstd_1_1math_1_1fs__vector.html">fs_vector</a>&lt; T, N, L, A, typename &gt; &amp;&amp;&#160;</td>
           <td class="paramname"></td><td>)</td>
           <td></td>
         </tr>
@@ -1256,83 +1078,27 @@ template&lt;class T , size_t N, class L  = experimental::layout_right, class A  
 
 </div>
 </div>
-<a id="a497060433432fe92c79c9b7a6698c770" name="a497060433432fe92c79c9b7a6698c770"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a497060433432fe92c79c9b7a6698c770">&#9670;&#160;</a></span>size()</h2>
+<a id="ad584e6611963c259ed2931e1cfa29dbd" name="ad584e6611963c259ed2931e1cfa29dbd"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad584e6611963c259ed2931e1cfa29dbd">&#9670;&#160;</a></span>subvector() <span class="overload">[1/2]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;class T , size_t N, class L  = experimental::layout_right, class A  = experimental::default_accessor&lt;T&gt;&gt; </div>
+template&lt;class T , ::std::size_t N, class L , class A , typename Dummy &gt; </div>
 <table class="mlabels">
   <tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">constexpr <a class="el" href="classstd_1_1math_1_1fs__tensor.html">fs_tensor</a>&lt; T, L, A, Ds... &gt;<a class="el" href="classstd_1_1math_1_1fs__vector.html#a8fb59427b680161e8c5e7ed45ca6d5c5">::extents_type</a> <a class="el" href="classstd_1_1math_1_1fs__tensor.html">std::math::fs_tensor</a>&lt; T, L, A, Ds &gt;::size</td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">constexpr</span><span class="mlabel">noexcept</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p>Returns the current number of (rows,columns,depth,etc..) </p>
-<dl class="section return"><dt>Returns</dt><dd>number of (rows,columns) </dd></dl>
-
-</div>
-</div>
-<a id="a12c92b52a1d1a6695cc3d1ee2e77b2f8" name="a12c92b52a1d1a6695cc3d1ee2e77b2f8"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a12c92b52a1d1a6695cc3d1ee2e77b2f8">&#9670;&#160;</a></span>span()</h2>
-
-<div class="memitem">
-<div class="memproto">
-<div class="memtemplate">
-template&lt;class T , size_t N, class L  = experimental::layout_right, class A  = experimental::default_accessor&lt;T&gt;&gt; </div>
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">constexpr <a class="el" href="classstd_1_1math_1_1fs__tensor.html">fs_tensor</a>&lt; T, L, A, Ds... &gt;<a class="el" href="classstd_1_1math_1_1fs__vector.html#af5c6dd35239b4d29fe677c9933a57eb1">::span_type</a> <a class="el" href="classstd_1_1math_1_1fs__tensor.html">std::math::fs_tensor</a>&lt; T, L, A, Ds &gt;::span</td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">constexpr</span><span class="mlabel">noexcept</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p>returns a const N dimensional span of extents(Ds...) </p>
-<dl class="section return"><dt>Returns</dt><dd>const N dimensional span of extents(Ds...) <br  />
- </dd></dl>
-
-</div>
-</div>
-<a id="a60047001cbd04567d2bc7a783acfb04d" name="a60047001cbd04567d2bc7a783acfb04d"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a60047001cbd04567d2bc7a783acfb04d">&#9670;&#160;</a></span>subvector() <span class="overload">[1/2]</span></h2>
-
-<div class="memitem">
-<div class="memproto">
-<div class="memtemplate">
-template&lt;class T , size_t N, class L , class A &gt; <br />
-requires ( N &gt;= 0 )</div>
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">constexpr <a class="el" href="classstd_1_1math_1_1fs__vector.html">fs_vector</a>&lt; T, N, L, A &gt;<a class="el" href="classstd_1_1math_1_1fs__vector.html#a42d27b62761230b9caac4e1394c3e4f7">::subvector_type</a> <a class="el" href="classstd_1_1math_1_1fs__vector.html">std::math::fs_vector</a>&lt; T, N, L, A &gt;::subvector </td>
+          <td class="memname">constexpr <a class="el" href="classstd_1_1math_1_1fs__vector.html">fs_vector</a>&lt; T, N, L, A, Dummy &gt;<a class="el" href="classstd_1_1math_1_1fs__vector.html#aecef4a5078c20e47636114760fc02bdc">::subvector_type</a> <a class="el" href="classstd_1_1math_1_1fs__vector.html">std::math::fs_vector</a>&lt; T, N, L, A, Dummy &gt;::subvector </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="classstd_1_1math_1_1fs__vector.html#a3197132736349e781c89ee7086d68cb2">index_type</a>&#160;</td>
+          <td class="paramtype"><a class="el" href="classstd_1_1math_1_1fs__vector.html#a7028ea16e1a8e5561432572a5c6fe8ef">index_type</a>&#160;</td>
           <td class="paramname"><em>start</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype"><a class="el" href="classstd_1_1math_1_1fs__vector.html#a3197132736349e781c89ee7086d68cb2">index_type</a>&#160;</td>
+          <td class="paramtype"><a class="el" href="classstd_1_1math_1_1fs__vector.html#a7028ea16e1a8e5561432572a5c6fe8ef">index_type</a>&#160;</td>
           <td class="paramname"><em>end</em>&#160;</td>
         </tr>
         <tr>
@@ -1360,28 +1126,27 @@ requires ( N &gt;= 0 )</div>
 
 </div>
 </div>
-<a id="a8ca426854bab91a33f2ce77130ae74cf" name="a8ca426854bab91a33f2ce77130ae74cf"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a8ca426854bab91a33f2ce77130ae74cf">&#9670;&#160;</a></span>subvector() <span class="overload">[2/2]</span></h2>
+<a id="a149b4c191cb3d317e8af9643f5dc02df" name="a149b4c191cb3d317e8af9643f5dc02df"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a149b4c191cb3d317e8af9643f5dc02df">&#9670;&#160;</a></span>subvector() <span class="overload">[2/2]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;class T , size_t N, class L , class A &gt; <br />
-requires ( N &gt;= 0 )</div>
+template&lt;class T , ::std::size_t N, class L , class A , typename Dummy &gt; </div>
 <table class="mlabels">
   <tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">constexpr <a class="el" href="classstd_1_1math_1_1fs__vector.html">fs_vector</a>&lt; T, N, L, A &gt;<a class="el" href="classstd_1_1math_1_1fs__vector.html#a0811928d0a680f8c1c7e776909a7b54a">::const_subvector_type</a> <a class="el" href="classstd_1_1math_1_1fs__vector.html">std::math::fs_vector</a>&lt; T, N, L, A &gt;::subvector </td>
+          <td class="memname">constexpr <a class="el" href="classstd_1_1math_1_1fs__vector.html">fs_vector</a>&lt; T, N, L, A, Dummy &gt;<a class="el" href="classstd_1_1math_1_1fs__vector.html#a7f4fd8cf934f5ea9d4a3b596b8474b1d">::const_subvector_type</a> <a class="el" href="classstd_1_1math_1_1fs__vector.html">std::math::fs_vector</a>&lt; T, N, L, A, Dummy &gt;::subvector </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="classstd_1_1math_1_1fs__vector.html#a3197132736349e781c89ee7086d68cb2">index_type</a>&#160;</td>
+          <td class="paramtype"><a class="el" href="classstd_1_1math_1_1fs__vector.html#a7028ea16e1a8e5561432572a5c6fe8ef">index_type</a>&#160;</td>
           <td class="paramname"><em>start</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype"><a class="el" href="classstd_1_1math_1_1fs__vector.html#a3197132736349e781c89ee7086d68cb2">index_type</a>&#160;</td>
+          <td class="paramtype"><a class="el" href="classstd_1_1math_1_1fs__vector.html#a7028ea16e1a8e5561432572a5c6fe8ef">index_type</a>&#160;</td>
           <td class="paramname"><em>end</em>&#160;</td>
         </tr>
         <tr>
@@ -1406,61 +1171,6 @@ requires ( N &gt;= 0 )</div>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>const view of the specified subvector </dd></dl>
-
-</div>
-</div>
-<a id="a51ea6e18e0cc2f4d3bf747a3e9507d5e" name="a51ea6e18e0cc2f4d3bf747a3e9507d5e"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a51ea6e18e0cc2f4d3bf747a3e9507d5e">&#9670;&#160;</a></span>underlying_span() <span class="overload">[1/2]</span></h2>
-
-<div class="memitem">
-<div class="memproto">
-<div class="memtemplate">
-template&lt;class T , size_t N, class L  = experimental::layout_right, class A  = experimental::default_accessor&lt;T&gt;&gt; </div>
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">constexpr <a class="el" href="classstd_1_1math_1_1fs__tensor.html">fs_tensor</a>&lt; T, L, A, Ds... &gt;<a class="el" href="classstd_1_1math_1_1fs__vector.html#af88e450b5fde5075cb88d27265f49ff7">::const_underlying_span_type</a> <a class="el" href="classstd_1_1math_1_1fs__tensor.html">std::math::fs_tensor</a>&lt; T, L, A, Ds &gt;::underlying_span</td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">constexpr</span><span class="mlabel">noexcept</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p>returns a const N dimensional span of extents(Ds...) </p>
-<dl class="section return"><dt>Returns</dt><dd>const N dimensional span of extents(Ds...) <br  />
- </dd></dl>
-
-</div>
-</div>
-<a id="ab5002b9ec652efd9051fa2c97e46fa01" name="ab5002b9ec652efd9051fa2c97e46fa01"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ab5002b9ec652efd9051fa2c97e46fa01">&#9670;&#160;</a></span>underlying_span() <span class="overload">[2/2]</span></h2>
-
-<div class="memitem">
-<div class="memproto">
-<div class="memtemplate">
-template&lt;class T , size_t N, class L  = experimental::layout_right, class A  = experimental::default_accessor&lt;T&gt;&gt; </div>
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">constexpr <a class="el" href="classstd_1_1math_1_1fs__tensor.html">fs_tensor</a>&lt; T, L, A, Ds... &gt;<a class="el" href="classstd_1_1math_1_1fs__vector.html#accaaa8ad8ac546abeaf513e2f7d9d5e6">::underlying_span_type</a> <a class="el" href="classstd_1_1math_1_1fs__tensor.html">std::math::fs_tensor</a>&lt; T, L, A, Ds &gt;::underlying_span</td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">constexpr</span><span class="mlabel">noexcept</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p>returns a mutable N dimensional span of extents(Ds...) </p>
-<dl class="section return"><dt>Returns</dt><dd>mutable N dimensional span of extents(Ds...) </dd></dl>
 
 </div>
 </div>

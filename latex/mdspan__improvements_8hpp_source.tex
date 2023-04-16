@@ -207,10 +207,10 @@
 \DoxyCodeLine{00203\ \ \ \textcolor{keyword}{operator}\ IndexType()\ noexcept\ \{\ \textcolor{keywordflow}{return}\ this-\/>extent(0);\ \}}
 \DoxyCodeLine{00204\ }
 \DoxyCodeLine{00205\ \ \ \textcolor{comment}{//\ Comparison\ operators}}
-\DoxyCodeLine{00206\ \ \ \textcolor{keyword}{template}\ <\ \textcolor{keyword}{class}\ OtherIndexType\ >}
+\DoxyCodeLine{00206\ \ \ \textcolor{keyword}{template}\ <\ \textcolor{keyword}{class}\ OtherIndexType,\ \textcolor{keyword}{typename}\ =\ enable\_if\_t<\ !detail::\_\_is\_extents\_v<OtherIndexType>\ >\ >}
 \DoxyCodeLine{00207\ \ \ MDSPAN\_INLINE\_FUNCTION}
-\DoxyCodeLine{00208\ \ \ \textcolor{keyword}{constexpr}\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{classstd_1_1experimental_1_1extents_3_01_index_type_00_01_extent_01_4_aae9f61e071ec3dc6e5b7478c975814dd}{operator==}}(\ OtherIndexType\ \textcolor{keyword}{const}\&\ rhs\ )\ \textcolor{keyword}{noexcept}\ \textcolor{keyword}{requires}\ (\ !detail::\_\_is\_extents\_v<OtherIndexType>\ )\ \{}
-\DoxyCodeLine{00209\ \ \ \ \ \textcolor{keywordflow}{return}\ this-\/>extent(0)\ ==\ rhs;}
+\DoxyCodeLine{00208\ \ \ \textcolor{keyword}{constexpr}\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{classstd_1_1experimental_1_1extents_3_01_index_type_00_01_extent_01_4_a628f6b0e84f0ad9bbc2601c754c3cdbe}{operator==}}(\ OtherIndexType\ \textcolor{keyword}{const}\&\ rhs\ )\ \textcolor{keyword}{noexcept}\ \{}
+\DoxyCodeLine{00209\ \ \ \ \ \textcolor{keywordflow}{return}\ this-\/>extent(0)\ ==\ \mbox{\hyperlink{classstd_1_1experimental_1_1extents_3_01_index_type_00_01_extent_01_4_a2a46d9564622215033650f188041fbc7}{index\_type}}(rhs);}
 \DoxyCodeLine{00210\ \ \ \}}
 \DoxyCodeLine{00211\ \};}
 \DoxyCodeLine{00212\ }

@@ -1,6 +1,8 @@
 var searchData=
 [
-  ['negation_0',['negation',['../classstd_1_1math_1_1instant__evaluated__operations_1_1negation.html',1,'std::math::instant_evaluated_operations']]],
-  ['nondynamic_5frank_1',['nondynamic_rank',['../structstd_1_1math_1_1detail_1_1nondynamic__rank.html',1,'std::math::detail']]],
-  ['nondynamic_5frank_3c_20e_3c_20t_2c_20extents_2e_2e_2e_20_3e_20_3e_2',['nondynamic_rank&lt; E&lt; T, Extents... &gt; &gt;',['../structstd_1_1math_1_1detail_1_1nondynamic__rank_3_01_e_3_01_t_00_01_extents_8_8_8_01_4_01_4.html',1,'std::math::detail']]]
+  ['make_5fvoid_0',['make_void',['../structstd_1_1math_1_1detail_1_1make__void.html',1,'std::math::detail']]],
+  ['matrix_1',['matrix',['../structstd_1_1math_1_1concepts_1_1matrix.html',1,'std::math::concepts']]],
+  ['matrix_5fdata_2',['matrix_data',['../structstd_1_1math_1_1concepts_1_1matrix__data.html',1,'std::math::concepts']]],
+  ['matrix_5fmatrix_5fproduct_3',['matrix_matrix_product',['../classstd_1_1math_1_1instant__evaluated__operations_1_1matrix__matrix__product.html',1,'std::math::instant_evaluated_operations']]],
+  ['matrix_5fview_4',['matrix_view',['../classstd_1_1math_1_1matrix__view.html',1,'std::math']]]
 ];

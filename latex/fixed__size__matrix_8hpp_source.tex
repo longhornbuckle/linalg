@@ -22,246 +22,345 @@
 \DoxyCodeLine{00019\ \textcolor{comment}{//\ \ \ \ \ \ \ \ \ Implementation\ satisfies\ the\ following\ concepts:}}
 \DoxyCodeLine{00020\ \textcolor{comment}{//\ \ \ \ \ \ \ \ \ concepts::fixed\_size\_matrix}}
 \DoxyCodeLine{00021\ \textcolor{comment}{//\ \ \ \ \ \ \ \ \ concepts::writable\_matrix}}
-\DoxyCodeLine{00027\ \textcolor{comment}{}\textcolor{keyword}{template}\ <\ \textcolor{keyword}{class\ \ }T,}
-\DoxyCodeLine{00028\ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{size\_t}\ R,}
-\DoxyCodeLine{00029\ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{size\_t}\ C,}
-\DoxyCodeLine{00030\ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{class\ \ }L\ =\ experimental::layout\_right,}
-\DoxyCodeLine{00031\ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{class\ \ }A\ =\ experimental::default\_accessor<T>\ >\ \textcolor{keyword}{requires}\ }
-\DoxyCodeLine{00032\ \ \ (\ (\ R\ >=\ 0\ )\ \&\&\ (\ C\ >=\ 0\ )\ )\ \textcolor{comment}{//\ Row\ and\ column\ must\ be\ >=\ 0}}
-\DoxyCodeLine{00033\ \textcolor{keyword}{class}\ \mbox{\hyperlink{classstd_1_1math_1_1fs__matrix}{fs\_matrix}}\ :\ \textcolor{keyword}{public}\ \mbox{\hyperlink{classstd_1_1math_1_1fs__tensor}{fs\_tensor<T,L,A,R,C>}}}
-\DoxyCodeLine{00034\ \{}
-\DoxyCodeLine{00035\ \ \ \textcolor{keyword}{private}:}
-\DoxyCodeLine{00036\ \ \ \ \ \textcolor{comment}{//\ Base\ tensor\ type}}
-\DoxyCodeLine{00037\ \ \ \ \ \textcolor{keyword}{using\ }\mbox{\hyperlink{classstd_1_1math_1_1fs__tensor}{base\_type}}\ =\ \mbox{\hyperlink{classstd_1_1math_1_1fs__tensor}{fs\_tensor<T,L,A,R,C>}};}
-\DoxyCodeLine{00038\ \ \ \textcolor{keyword}{public}:}
-\DoxyCodeLine{00039\ \ \ \ \ \textcolor{comment}{//-\/\ Types}}
-\DoxyCodeLine{00040\ }
-\DoxyCodeLine{00042\ \ \ \ \ \textcolor{keyword}{using\ }\mbox{\hyperlink{classstd_1_1math_1_1fs__matrix_aede8cc70231926aca37c7e20afb4254c}{layout\_type}}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ =\ \textcolor{keyword}{typename}\ \mbox{\hyperlink{classstd_1_1math_1_1fs__tensor_aa0d6ef16218fd8c5edc33065308b1913}{base\_type::layout\_type}};}
-\DoxyCodeLine{00044\ \ \ \ \ \textcolor{keyword}{using\ }\mbox{\hyperlink{classstd_1_1math_1_1fs__matrix_a7d9e5de9dcbf95349bb906f15bdb69f8}{accessor\_type}}\ \ \ \ \ \ \ \ \ \ \ \ \ \ =\ \textcolor{keyword}{typename}\ \mbox{\hyperlink{classstd_1_1math_1_1fs__tensor_aa2dc98e6be4a3eefc84394a144219593}{base\_type::accessor\_type}};}
-\DoxyCodeLine{00046\ \ \ \ \ \textcolor{keyword}{using\ }\mbox{\hyperlink{classstd_1_1math_1_1fs__matrix_ab8e79084f3cb54f72165627ea03375e4}{element\_type}}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ =\ \textcolor{keyword}{typename}\ \mbox{\hyperlink{classstd_1_1math_1_1fs__tensor_a877b9014a0d86a6945084d5f18b5f065}{base\_type::element\_type}};}
-\DoxyCodeLine{00048\ \ \ \ \ \textcolor{keyword}{using\ }\mbox{\hyperlink{classstd_1_1math_1_1fs__matrix_af2cb57c1cbe4a3e1061f72f2319f35ea}{value\_type}}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ =\ \textcolor{keyword}{typename}\ \mbox{\hyperlink{classstd_1_1math_1_1fs__tensor_a4a98dc2c12f713dae7481d9ffa23ff38}{base\_type::value\_type}};}
-\DoxyCodeLine{00050\ \ \ \ \ \textcolor{keyword}{using\ }\mbox{\hyperlink{classstd_1_1math_1_1fs__matrix_a25ba155f6a28afce82152bf7795e3588}{index\_type}}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ =\ \textcolor{keyword}{typename}\ \mbox{\hyperlink{classstd_1_1math_1_1fs__tensor_a2ac859bbdca290af00c7ae6133b7dce0}{base\_type::index\_type}};}
-\DoxyCodeLine{00052\ \ \ \ \ \textcolor{keyword}{using\ }\mbox{\hyperlink{classstd_1_1math_1_1fs__matrix_aff77647193d29dcfe24fcd59e882212c}{size\_type}}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ =\ \textcolor{keyword}{typename}\ \mbox{\hyperlink{classstd_1_1math_1_1fs__tensor_a75a492a9a1079e6eeb5a34093b98b390}{base\_type::size\_type}};}
-\DoxyCodeLine{00054\ \ \ \ \ \textcolor{keyword}{using\ }\mbox{\hyperlink{classstd_1_1math_1_1fs__matrix_aaa0f12f5b416c613e39ebef6e8973838}{extents\_type}}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ =\ \textcolor{keyword}{typename}\ \mbox{\hyperlink{classstd_1_1math_1_1fs__tensor_a08e3329f952a65f70b1d7239ea5bb5b1}{base\_type::extents\_type}};}
-\DoxyCodeLine{00056\ \ \ \ \ \textcolor{keyword}{using\ }\mbox{\hyperlink{classstd_1_1math_1_1fs__matrix_a41c2bfd8e0b883c162553eba47fc3cf6}{tuple\_type}}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ =\ \textcolor{keyword}{typename}\ \mbox{\hyperlink{classstd_1_1math_1_1fs__tensor_a85d3152ad0a10147b519921da001e5a1}{base\_type::tuple\_type}};}
-\DoxyCodeLine{00058\ \ \ \ \ \textcolor{keyword}{using\ }\mbox{\hyperlink{classstd_1_1math_1_1fs__matrix_a5f883bf5e21fc71eb142ac858f0703e5}{const\_underlying\_span\_type}}\ =\ \textcolor{keyword}{typename}\ \mbox{\hyperlink{classstd_1_1math_1_1fs__tensor_ae13ebf0e9711df67ffb51339358db5c2}{base\_type::const\_underlying\_span\_type}};}
-\DoxyCodeLine{00060\ \ \ \ \ \textcolor{keyword}{using\ }\mbox{\hyperlink{classstd_1_1math_1_1fs__matrix_a7a9bc7707e74186bd53ba276845c7b88}{underlying\_span\_type}}\ \ \ \ \ \ \ =\ \textcolor{keyword}{typename}\ \mbox{\hyperlink{classstd_1_1math_1_1fs__tensor_ac7cd4d69a4e2e73ae70c1b2d9e7b51e2}{base\_type::underlying\_span\_type}};}
-\DoxyCodeLine{00062\ \ \ \ \ \textcolor{keyword}{using\ }\mbox{\hyperlink{classstd_1_1math_1_1fs__matrix_a3a9b6bb42755fc083e343e4bd07f271d}{span\_type}}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ =\ \textcolor{keyword}{typename}\ \mbox{\hyperlink{classstd_1_1math_1_1fs__tensor_af59d3880e164152fd061acf97c1ec2cb}{base\_type::span\_type}};}
-\DoxyCodeLine{00064\ \ \ \ \ \textcolor{keyword}{using\ }\mbox{\hyperlink{classstd_1_1math_1_1fs__matrix_a589e62d33721d473e2b2bb3c26487f9c}{reference\_type}}\ \ \ \ \ \ \ \ \ \ \ \ \ =\ \textcolor{keyword}{typename}\ \mbox{\hyperlink{classstd_1_1math_1_1fs__tensor_a256bd11d1699a9acb0f926725f8fffc6}{base\_type::reference\_type}};}
-\DoxyCodeLine{00066\ \ \ \ \ \textcolor{keyword}{using\ }\mbox{\hyperlink{classstd_1_1math_1_1fs__matrix_a3536c7c3780ded954d4e24b2110a723e}{subtensor\_type}}\ \ \ \ \ \ \ \ \ \ \ \ \ =\ \textcolor{keyword}{typename}\ \mbox{\hyperlink{classstd_1_1math_1_1tensor__view}{base\_type::subtensor\_type}};}
-\DoxyCodeLine{00068\ \ \ \ \ \textcolor{keyword}{using\ }\mbox{\hyperlink{classstd_1_1math_1_1fs__matrix_a3b23fa01c594cef4c2f1e0cd4d84e724}{const\_subtensor\_type}}\ \ \ \ \ \ \ =\ \textcolor{keyword}{typename}\ \mbox{\hyperlink{classstd_1_1math_1_1tensor__view}{base\_type::const\_subtensor\_type}};}
-\DoxyCodeLine{00070\ \ \ \ \ \textcolor{keyword}{using\ }\mbox{\hyperlink{classstd_1_1math_1_1vector__view}{column\_type}}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ =\ \mbox{\hyperlink{classstd_1_1math_1_1vector__view}{vector\_view<decltype(\ experimental::submdspan(\ declval<underlying\_span\_type>}}(),\ declval<experimental::full\_extent\_t>(),\ declval<index\_type>()\ )\ )>;}
-\DoxyCodeLine{00072\ \ \ \ \ \textcolor{keyword}{using\ }\mbox{\hyperlink{classstd_1_1math_1_1vector__view}{const\_column\_type}}\ \ \ \ \ \ \ \ \ \ =\ \mbox{\hyperlink{classstd_1_1math_1_1vector__view}{vector\_view<decltype(\ experimental::submdspan(\ declval<const\_underlying\_span\_type>}}(),\ declval<experimental::full\_extent\_t>(),\ declval<index\_type>()\ )\ )>;}
-\DoxyCodeLine{00074\ \ \ \ \ \textcolor{keyword}{using\ }\mbox{\hyperlink{classstd_1_1math_1_1vector__view}{row\_type}}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ =\ \mbox{\hyperlink{classstd_1_1math_1_1vector__view}{vector\_view<decltype(\ experimental::submdspan(\ declval<underlying\_span\_type>}}(),\ declval<index\_type>(),\ declval<experimental::full\_extent\_t>()\ )\ )>;}
-\DoxyCodeLine{00076\ \ \ \ \ \textcolor{keyword}{using\ }\mbox{\hyperlink{classstd_1_1math_1_1vector__view}{const\_row\_type}}\ \ \ \ \ \ \ \ \ \ \ \ \ =\ \mbox{\hyperlink{classstd_1_1math_1_1vector__view}{vector\_view<decltype(\ experimental::submdspan(\ declval<const\_underlying\_span\_type>}}(),\ declval<index\_type>(),\ declval<experimental::full\_extent\_t>()\ )\ )>;}
-\DoxyCodeLine{00078\ \ \ \ \ \textcolor{keyword}{using\ }\mbox{\hyperlink{classstd_1_1math_1_1matrix__view}{submatrix\_type}}\ \ \ \ \ \ \ \ \ \ \ \ \ =\ \mbox{\hyperlink{classstd_1_1math_1_1matrix__view}{matrix\_view<decltype(\ detail::submdspan(\ declval<underlying\_span\_type>}}(),\ declval<tuple\_type>(),\ declval<tuple\_type>()\ )\ )>;}
-\DoxyCodeLine{00080\ \ \ \ \ \textcolor{keyword}{using\ }\mbox{\hyperlink{classstd_1_1math_1_1matrix__view}{const\_submatrix\_type}}\ \ \ \ \ \ \ =\ \mbox{\hyperlink{classstd_1_1math_1_1matrix__view}{matrix\_view<decltype(\ detail::submdspan(\ declval<const\_underlying\_span\_type>}}(),\ declval<tuple\_type>(),\ declval<tuple\_type>()\ )\ )>;}
-\DoxyCodeLine{00082\ \ \ \ \ \textcolor{keyword}{using\ }\mbox{\hyperlink{classstd_1_1math_1_1fs__matrix}{transpose\_type}}\ \ \ \ \ \ \ \ \ \ \ \ \ =\ \mbox{\hyperlink{classstd_1_1math_1_1fs__matrix}{fs\_matrix<T,C,R,L,A>}};}
-\DoxyCodeLine{00083\ }
-\DoxyCodeLine{00084\ \ \ \ \ \textcolor{comment}{//-\/\ Rebind}}
-\DoxyCodeLine{00085\ }
-\DoxyCodeLine{00090\ \ \ \ \ \textcolor{keyword}{template}\ <\ \textcolor{keyword}{class\ }ValueType,}
-\DoxyCodeLine{00091\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{class\ }LayoutType\ \ \ =\ \mbox{\hyperlink{classstd_1_1math_1_1fs__matrix_aede8cc70231926aca37c7e20afb4254c}{layout\_type}},}
-\DoxyCodeLine{00092\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{class\ }AccessorType\ =\ \mbox{\hyperlink{classstd_1_1math_1_1fs__matrix_a7d9e5de9dcbf95349bb906f15bdb69f8}{accessor\_type}}\ >}
-\DoxyCodeLine{00093\ \ \ \ \ \textcolor{keyword}{class\ }\mbox{\hyperlink{classstd_1_1math_1_1fs__matrix_1_1rebind}{rebind}}}
-\DoxyCodeLine{00094\ \ \ \ \ \{}
-\DoxyCodeLine{00095\ \ \ \ \ \textcolor{keyword}{private}:}
-\DoxyCodeLine{00096\ \ \ \ \ \ \ \textcolor{keyword}{using\ }rebind\_accessor\_type\ =\ \mbox{\hyperlink{namespacestd_1_1math_1_1detail_a66ad73a2afe0cb3a49bfaad6497ce6a1}{detail::rebind\_accessor\_t<AccessorType,ValueType>}};}
-\DoxyCodeLine{00097\ \ \ \ \ \ \ \textcolor{keyword}{using\ }rebind\_element\_type\ \ =\ \textcolor{keyword}{typename}\ rebind\_accessor\_type::element\_type;}
-\DoxyCodeLine{00098\ \ \ \ \ \textcolor{keyword}{public}:}
-\DoxyCodeLine{00099\ \ \ \ \ \ \ \textcolor{keyword}{using\ }\mbox{\hyperlink{classstd_1_1math_1_1fs__matrix}{type}}\ =\ \mbox{\hyperlink{classstd_1_1math_1_1fs__matrix}{fs\_matrix}}<\ ValueType,}
-\DoxyCodeLine{00100\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ R,}
-\DoxyCodeLine{00101\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ C,}
-\DoxyCodeLine{00102\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ LayoutType,}
-\DoxyCodeLine{00103\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ rebind\_accessor\_type\ >;}
-\DoxyCodeLine{00104\ \ \ \ \ \};}
-\DoxyCodeLine{00109\ \ \ \ \ \textcolor{keyword}{template}\ <\ \textcolor{keyword}{class\ }ValueType,}
-\DoxyCodeLine{00110\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{class\ }LayoutType\ \ \ =\ \mbox{\hyperlink{classstd_1_1math_1_1fs__matrix_aede8cc70231926aca37c7e20afb4254c}{layout\_type}},}
-\DoxyCodeLine{00111\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{class\ }AccessorType\ =\ \mbox{\hyperlink{classstd_1_1math_1_1fs__matrix_a7d9e5de9dcbf95349bb906f15bdb69f8}{accessor\_type}}\ >}
-\DoxyCodeLine{00112\ \ \ \ \ \textcolor{keyword}{using\ }\mbox{\hyperlink{classstd_1_1math_1_1fs__matrix_abdc749ea0b52178cf8f050d74c407784}{rebind\_t}}\ =\ \textcolor{keyword}{typename}\ \mbox{\hyperlink{classstd_1_1math_1_1fs__matrix}{rebind<\ ValueType,\ LayoutType,\ AccessorType\ >::type}};}
-\DoxyCodeLine{00113\ }
-\DoxyCodeLine{00114\ \ \ \ \ \textcolor{comment}{//-\/\ Destructor\ /\ Constructors\ /\ Assignments}}
-\DoxyCodeLine{00115\ }
-\DoxyCodeLine{00117\ \ \ \ \ \mbox{\hyperlink{classstd_1_1math_1_1fs__matrix_a81d1152bdf896536797c73ef032265b4}{\string~fs\_matrix}}()\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ =\ \textcolor{keywordflow}{default};}
-\DoxyCodeLine{00119\ \ \ \ \ \mbox{\hyperlink{classstd_1_1math_1_1fs__matrix_aa51263288c2a72f91827b5cb60d81550}{fs\_matrix}}()\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ =\ \textcolor{keywordflow}{default};}
-\DoxyCodeLine{00122\ \ \ \ \ \mbox{\hyperlink{classstd_1_1math_1_1fs__matrix_a9051e70c3231e66ae86521ddf5818987}{fs\_matrix}}(\ \mbox{\hyperlink{classstd_1_1math_1_1fs__matrix}{fs\_matrix}}\&\&\ )\ \ \ \ \ \ =\ \textcolor{keywordflow}{default};}
-\DoxyCodeLine{00125\ \ \ \ \ \mbox{\hyperlink{classstd_1_1math_1_1fs__matrix_ac73086640d257bcefbacdcc03efd7820}{fs\_matrix}}(\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classstd_1_1math_1_1fs__matrix}{fs\_matrix}}\&\ )\ =\ \textcolor{keywordflow}{default};}
-\DoxyCodeLine{00128\ \ \ \ \ \textcolor{keyword}{template}\ <\ concepts::tensor\_may\_be\_constructible<\ fs\_matrix\ >\ M2\ >}
-\DoxyCodeLine{00129\ \ \ \ \ \textcolor{keyword}{explicit}\ \textcolor{keyword}{constexpr}\ \mbox{\hyperlink{classstd_1_1math_1_1fs__matrix}{fs\_matrix}}(\ \textcolor{keyword}{const}\ M2\&\ rhs\ )\ \textcolor{keyword}{noexcept}(\ \textcolor{keyword}{noexcept}(\ \mbox{\hyperlink{classstd_1_1math_1_1fs__tensor}{base\_type}}(rhs)\ )\ );}
-\DoxyCodeLine{00132\ \ \ \ \ \textcolor{keyword}{template}\ <\ concepts::view\_may\_be\_constructible\_to\_tensor<\ fs\_matrix\ >\ MDS\ >}
-\DoxyCodeLine{00133\ \ \ \ \ \textcolor{keyword}{explicit}\ \textcolor{keyword}{constexpr}\ \mbox{\hyperlink{classstd_1_1math_1_1fs__matrix}{fs\_matrix}}(\ \textcolor{keyword}{const}\ MDS\&\ view\ )\ \textcolor{keyword}{noexcept}(\ \textcolor{keyword}{noexcept}(\ \mbox{\hyperlink{classstd_1_1math_1_1fs__tensor}{base\_type}}(view)\ )\ );}
-\DoxyCodeLine{00136\ \ \ \ \ \textcolor{keyword}{template}\ <\ \textcolor{keyword}{class}\ Lambda\ >}
-\DoxyCodeLine{00137\ \ \ \ \ \textcolor{keyword}{explicit}\ \textcolor{keyword}{constexpr}\ \mbox{\hyperlink{classstd_1_1math_1_1fs__matrix}{fs\_matrix}}(\ Lambda\&\&\ lambda\ )\ \textcolor{keyword}{noexcept}(\ \textcolor{keyword}{noexcept}(\ declval<Lambda\&\&>()(\ declval<index\_type>(),\ declval<index\_type>()\ )\ )\ )}
-\DoxyCodeLine{00138\ \ \ \ \ \ \ \textcolor{keyword}{requires}\ \textcolor{keyword}{requires}\ \{\ \{\ declval<Lambda\&\&>()(\ declval<index\_type>(),\ declval<index\_type>()\ )\ \}\ -\/>\ convertible\_to<element\_type>;\ \};}
-\DoxyCodeLine{00142\ \ \ \ \ \mbox{\hyperlink{classstd_1_1math_1_1fs__matrix}{fs\_matrix}}\&\ operator\ =\ (\ \mbox{\hyperlink{classstd_1_1math_1_1fs__matrix}{fs\_matrix}}\&\&\ )\ \ \ \ \ \ =\ \textcolor{keywordflow}{default};}
-\DoxyCodeLine{00146\ \ \ \ \ \mbox{\hyperlink{classstd_1_1math_1_1fs__matrix}{fs\_matrix}}\&\ operator\ =\ (\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classstd_1_1math_1_1fs__matrix}{fs\_matrix}}\&\ )\ =\ \textcolor{keywordflow}{default};}
-\DoxyCodeLine{00151\ \ \ \ \ \textcolor{keyword}{template}\ <\ concepts::tensor\_may\_be\_constructible<\ fs\_matrix\ >\ M2\ >}
-\DoxyCodeLine{00152\ \ \ \ \ \textcolor{keyword}{constexpr}\ \mbox{\hyperlink{classstd_1_1math_1_1fs__matrix}{fs\_matrix}}\&\ operator\ =\ (\ \textcolor{keyword}{const}\ M2\&\ rhs\ )\ \textcolor{keyword}{noexcept}(\ \textcolor{keyword}{noexcept}(\ declval<base\_type>()\ =\ rhs\ )\ );}
-\DoxyCodeLine{00157\ \ \ \ \ \textcolor{keyword}{template}\ <\ concepts::view\_may\_be\_constructible\_to\_tensor<\ fs\_matrix\ >\ MDS\ >}
-\DoxyCodeLine{00158\ \ \ \ \ \textcolor{keyword}{constexpr}\ \mbox{\hyperlink{classstd_1_1math_1_1fs__matrix}{fs\_matrix}}\&\ operator\ =\ (\ \textcolor{keyword}{const}\ MDS\&\ view\ )\ \textcolor{keyword}{noexcept}(\ \textcolor{keyword}{noexcept}(\ declval<base\_type>()\ =\ view\ )\ );}
-\DoxyCodeLine{00159\ }
-\DoxyCodeLine{00160\ \ \ \ \ \textcolor{comment}{//-\/\ Size\ /\ Capacity}}
-\DoxyCodeLine{00161\ }
-\DoxyCodeLine{00162\ \ \ \ \ \textcolor{keyword}{using\ }base\_type::size;}
-\DoxyCodeLine{00163\ \ \ \ \ \textcolor{keyword}{using\ }base\_type::capacity;}
-\DoxyCodeLine{00164\ }
-\DoxyCodeLine{00167\ \ \ \ \ [[nodiscard]]\ \textcolor{keyword}{constexpr}\ \mbox{\hyperlink{classstd_1_1math_1_1fs__matrix_aff77647193d29dcfe24fcd59e882212c}{size\_type}}\ \ columns()\ const\ noexcept;}
-\DoxyCodeLine{00170\ \ \ \ \ [[nodiscard]]\ constexpr\ \mbox{\hyperlink{classstd_1_1math_1_1fs__matrix_aff77647193d29dcfe24fcd59e882212c}{size\_type}}\ \ rows()\ const\ noexcept;}
-\DoxyCodeLine{00173\ \ \ \ \ [[nodiscard]]\ constexpr\ \mbox{\hyperlink{classstd_1_1math_1_1fs__matrix_aff77647193d29dcfe24fcd59e882212c}{size\_type}}\ \ column\_capacity()\ const\ noexcept;}
-\DoxyCodeLine{00176\ \ \ \ \ [[nodiscard]]\ constexpr\ \mbox{\hyperlink{classstd_1_1math_1_1fs__matrix_aff77647193d29dcfe24fcd59e882212c}{size\_type}}\ \ row\_capacity()\ const\ noexcept;}
-\DoxyCodeLine{00177\ }
-\DoxyCodeLine{00178\ \ \ \ \ \textcolor{comment}{//-\/\ Const\ views}}
-\DoxyCodeLine{00179\ }
-\DoxyCodeLine{00180\ \ \ \ \ using\ \mbox{\hyperlink{classstd_1_1math_1_1fs__tensor}{base\_type}}::operator[];\ \textcolor{comment}{//\ Brings\ into\ scope\ const\ and\ mutable}}
-\DoxyCodeLine{00181\ \ \ \ \ using\ \mbox{\hyperlink{classstd_1_1math_1_1fs__tensor}{base\_type}}::at;\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Brings\ into\ scope\ const\ and\ mutable}}
-\DoxyCodeLine{00182\ }
-\DoxyCodeLine{00186\ \ \ \ \ [[nodiscard]]\ constexpr\ \mbox{\hyperlink{classstd_1_1math_1_1vector__view}{const\_column\_type}}\ column(\ \mbox{\hyperlink{classstd_1_1math_1_1fs__matrix_a25ba155f6a28afce82152bf7795e3588}{index\_type}}\ j\ )\ const;}
-\DoxyCodeLine{00190\ \ \ \ \ [[nodiscard]]\ constexpr\ \mbox{\hyperlink{classstd_1_1math_1_1vector__view}{const\_row\_type}}\ row(\ \mbox{\hyperlink{classstd_1_1math_1_1fs__matrix_a25ba155f6a28afce82152bf7795e3588}{index\_type}}\ i\ )\ const;}
-\DoxyCodeLine{00195\ \ \ \ \ [[nodiscard]]\ constexpr\ \mbox{\hyperlink{classstd_1_1math_1_1matrix__view}{const\_submatrix\_type}}\ submatrix(\ \mbox{\hyperlink{classstd_1_1math_1_1fs__matrix_a41c2bfd8e0b883c162553eba47fc3cf6}{tuple\_type}}\ start,}
-\DoxyCodeLine{00196\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classstd_1_1math_1_1fs__matrix_a41c2bfd8e0b883c162553eba47fc3cf6}{tuple\_type}}\ end\ )\ const;}
-\DoxyCodeLine{00197\ }
-\DoxyCodeLine{00198\ \ \ \ \ \textcolor{comment}{//-\/\ Mutable\ views}}
-\DoxyCodeLine{00199\ }
-\DoxyCodeLine{00203\ \ \ \ \ [[nodiscard]]\ constexpr\ \mbox{\hyperlink{classstd_1_1math_1_1vector__view}{column\_type}}\ column(\ \mbox{\hyperlink{classstd_1_1math_1_1fs__matrix_a25ba155f6a28afce82152bf7795e3588}{index\_type}}\ j\ );}
-\DoxyCodeLine{00207\ \ \ \ \ [[nodiscard]]\ constexpr\ \mbox{\hyperlink{classstd_1_1math_1_1vector__view}{row\_type}}\ row(\ \mbox{\hyperlink{classstd_1_1math_1_1fs__matrix_a25ba155f6a28afce82152bf7795e3588}{index\_type}}\ i\ );}
-\DoxyCodeLine{00212\ \ \ \ \ [[nodiscard]]\ constexpr\ \mbox{\hyperlink{classstd_1_1math_1_1matrix__view}{submatrix\_type}}\ submatrix(\ \mbox{\hyperlink{classstd_1_1math_1_1fs__matrix_a41c2bfd8e0b883c162553eba47fc3cf6}{tuple\_type}}\ start,}
-\DoxyCodeLine{00213\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classstd_1_1math_1_1fs__matrix_a41c2bfd8e0b883c162553eba47fc3cf6}{tuple\_type}}\ end\ );}
-\DoxyCodeLine{00214\ }
-\DoxyCodeLine{00215\ \ \ \ \ \textcolor{comment}{//-\/\ Data\ access}}
-\DoxyCodeLine{00216\ }
-\DoxyCodeLine{00217\ \ \ \ \ using\ \mbox{\hyperlink{classstd_1_1math_1_1fs__tensor}{base\_type}}::span;}
-\DoxyCodeLine{00218\ \ \ \ \ using\ \mbox{\hyperlink{classstd_1_1math_1_1fs__tensor}{base\_type}}::underlying\_span;}
-\DoxyCodeLine{00219\ }
-\DoxyCodeLine{00220\ \};}
-\DoxyCodeLine{00221\ }
-\DoxyCodeLine{00222\ \textcolor{comment}{//-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
-\DoxyCodeLine{00223\ \textcolor{comment}{//\ Implementation\ of\ fs\_matrix<T,R,C,L,A>}}
-\DoxyCodeLine{00224\ \textcolor{comment}{//-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
-\DoxyCodeLine{00225\ }
-\DoxyCodeLine{00226\ \textcolor{comment}{//-\/\ Destructor\ /\ Constructors\ /\ Assignments}}
-\DoxyCodeLine{00227\ }
-\DoxyCodeLine{00228\ template\ <\ class\ T,\ \textcolor{keywordtype}{size\_t}\ R,\ \textcolor{keywordtype}{size\_t}\ C,\ class\ L,\ class\ A\ >\ requires\ (\ (\ R\ >=\ 0\ )\ \&\&\ (\ C\ >=\ 0\ )\ )}
-\DoxyCodeLine{00229\ template\ <\ concepts::tensor\_may\_be\_constructible<\ \mbox{\hyperlink{classstd_1_1math_1_1fs__matrix}{fs\_matrix}}<T,R,C,L,A>\ >\ M2\ >}
-\DoxyCodeLine{00230\ constexpr\ \mbox{\hyperlink{classstd_1_1math_1_1fs__matrix}{fs\_matrix}}<T,R,C,L,A>::\mbox{\hyperlink{classstd_1_1math_1_1fs__matrix}{fs\_matrix}}(\ const\ M2\&\ rhs\ )}
-\DoxyCodeLine{00231\ \ \ noexcept(\ noexcept(\ \mbox{\hyperlink{classstd_1_1math_1_1fs__matrix}{fs\_matrix}}<T,R,C,L,A>::\mbox{\hyperlink{classstd_1_1math_1_1fs__tensor}{base\_type}}(\ rhs\ )\ )\ )\ :}
-\DoxyCodeLine{00232\ \ \ \mbox{\hyperlink{classstd_1_1math_1_1fs__matrix}{fs\_matrix}}<T,R,C,L,A>::\mbox{\hyperlink{classstd_1_1math_1_1fs__tensor}{base\_type}}(\ rhs\ )}
-\DoxyCodeLine{00233\ \{}
-\DoxyCodeLine{00234\ \}}
-\DoxyCodeLine{00235\ }
-\DoxyCodeLine{00236\ \textcolor{keyword}{template}\ <\ \textcolor{keyword}{class}\ T,\ \textcolor{keywordtype}{size\_t}\ R,\ \textcolor{keywordtype}{size\_t}\ C,\ \textcolor{keyword}{class}\ L,\ \textcolor{keyword}{class}\ A\ >\ \textcolor{keyword}{requires}\ (\ (\ R\ >=\ 0\ )\ \&\&\ (\ C\ >=\ 0\ )\ )}
-\DoxyCodeLine{00237\ \textcolor{keyword}{template}\ <\ \mbox{\hyperlink{conceptstd_1_1math_1_1concepts_1_1view__may__be__constructible__to__tensor}{concepts::view\_may\_be\_constructible\_to\_tensor}}<\ \mbox{\hyperlink{classstd_1_1math_1_1fs__matrix}{fs\_matrix<T,R,C,L,A>}}\ >\ MDS\ >}
-\DoxyCodeLine{00238\ \textcolor{keyword}{constexpr}\ \mbox{\hyperlink{classstd_1_1math_1_1fs__matrix}{fs\_matrix<T,R,C,L,A>::fs\_matrix}}(\ \textcolor{keyword}{const}\ MDS\&\ view\ )}
-\DoxyCodeLine{00239\ \ \ \textcolor{keyword}{noexcept}(\ \textcolor{keyword}{noexcept}(\ \mbox{\hyperlink{classstd_1_1math_1_1fs__tensor}{fs\_matrix<T,R,C,L,A>::base\_type}}(\ view\ )\ )\ )\ :}
-\DoxyCodeLine{00240\ \ \ \mbox{\hyperlink{classstd_1_1math_1_1fs__tensor}{fs\_matrix<T,R,C,L,A>::base\_type}}(\ view\ )}
-\DoxyCodeLine{00241\ \{}
-\DoxyCodeLine{00242\ \}}
-\DoxyCodeLine{00243\ }
-\DoxyCodeLine{00244\ \textcolor{keyword}{template}\ <\ \textcolor{keyword}{class}\ T,\ \textcolor{keywordtype}{size\_t}\ R,\ \textcolor{keywordtype}{size\_t}\ C,\ \textcolor{keyword}{class}\ L,\ \textcolor{keyword}{class}\ A\ >\ \textcolor{keyword}{requires}\ (\ (\ R\ >=\ 0\ )\ \&\&\ (\ C\ >=\ 0\ )\ )}
-\DoxyCodeLine{00245\ template\ <\ class\ Lambda\ >}
-\DoxyCodeLine{00246\ \textcolor{keyword}{constexpr}\ \mbox{\hyperlink{classstd_1_1math_1_1fs__matrix}{fs\_matrix<T,R,C,L,A>::fs\_matrix}}(\ Lambda\&\&\ lambda\ )\ \textcolor{keyword}{noexcept}(\ \textcolor{keyword}{noexcept}(\ declval<Lambda\&\&>()(\ declval<index\_type>(),\ declval<index\_type>()\ )\ )\ )}
-\DoxyCodeLine{00247\ \ \ \textcolor{keyword}{requires}\ \textcolor{keyword}{requires}\ \{\ \{\ declval<Lambda\&\&>()(\ declval<index\_type>(),\ declval<index\_type>()\ )\ \}\ -\/>\ convertible\_to<element\_type>;\ \}\ :}
-\DoxyCodeLine{00248\ \ \ \mbox{\hyperlink{classstd_1_1math_1_1fs__tensor}{fs\_matrix<T,R,C,L,A>::base\_type}}(\ lambda\ )}
-\DoxyCodeLine{00249\ \{}
-\DoxyCodeLine{00250\ \}}
-\DoxyCodeLine{00251\ }
-\DoxyCodeLine{00252\ \textcolor{keyword}{template}\ <\ \textcolor{keyword}{class}\ T,\ \textcolor{keywordtype}{size\_t}\ R,\ \textcolor{keywordtype}{size\_t}\ C,\ \textcolor{keyword}{class}\ L,\ \textcolor{keyword}{class}\ A\ >\ \textcolor{keyword}{requires}\ (\ (\ R\ >=\ 0\ )\ \&\&\ (\ C\ >=\ 0\ )\ )}
-\DoxyCodeLine{00253\ \textcolor{keyword}{template}\ <\ concepts::tensor\_may\_be\_constructible<\ fs\_matrix<T,R,C,L,A>\ >\ M2\ >}
-\DoxyCodeLine{00254\ \textcolor{keyword}{constexpr}\ \mbox{\hyperlink{classstd_1_1math_1_1fs__matrix}{fs\_matrix<T,R,C,L,A>}}\&\ \mbox{\hyperlink{classstd_1_1math_1_1fs__matrix}{fs\_matrix<T,R,C,L,A>::operator}}\ =\ (\ \textcolor{keyword}{const}\ M2\&\ rhs\ )}
-\DoxyCodeLine{00255\ \ \ \textcolor{keyword}{noexcept}(\ \textcolor{keyword}{noexcept}(\ declval<typename\ fs\_matrix<T,R,C,L,A>::base\_type>()\ =\ rhs\ )\ )}
-\DoxyCodeLine{00256\ \{}
-\DoxyCodeLine{00257\ \ \ \textcolor{keyword}{static\_cast<}\textcolor{keywordtype}{void}\textcolor{keyword}{>}(\ this-\/>base\_type::operator=(rhs)\ );}
-\DoxyCodeLine{00258\ \ \ \textcolor{keywordflow}{return}\ *\textcolor{keyword}{this};}
+\DoxyCodeLine{00027\ \textcolor{comment}{}\textcolor{keyword}{template}\ <\ \textcolor{keyword}{class\ \ \ \ \ \ \ \ \ }T,}
+\DoxyCodeLine{00028\ \ \ \ \ \ \ \ \ \ \ \ ::std::size\_t\ R,}
+\DoxyCodeLine{00029\ \ \ \ \ \ \ \ \ \ \ \ ::std::size\_t\ C,}
+\DoxyCodeLine{00030\ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{class\ \ \ \ \ \ \ \ \ }L,}
+\DoxyCodeLine{00031\ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{class\ \ \ \ \ \ \ \ \ }A}
+\DoxyCodeLine{00032\ \textcolor{preprocessor}{\#ifdef\ LINALG\_ENABLE\_CONCEPTS}}
+\DoxyCodeLine{00033\ \ \ \ \ \ \ \ \ \ \ \ >\ \textcolor{keyword}{requires}\ (\ (\ R\ >=\ 0\ )\ \&\&\ (\ C\ >=\ 0\ )\ )\ \textcolor{comment}{//\ Row\ and\ column\ must\ be\ >=\ 0}}
+\DoxyCodeLine{00034\ \#\textcolor{keywordflow}{else}}
+\DoxyCodeLine{00035\ \ \ \ \ \ \ \ \ \ \ \ ,\ \textcolor{keyword}{typename}\ >}
+\DoxyCodeLine{00036\ \#endif}
+\DoxyCodeLine{00037\ \textcolor{keyword}{class}\ \mbox{\hyperlink{classstd_1_1math_1_1fs__matrix}{fs\_matrix}}\ :\ \textcolor{keyword}{public}\ \mbox{\hyperlink{classstd_1_1math_1_1fs__tensor}{fs\_tensor<T,L,A,R,C>}}}
+\DoxyCodeLine{00038\ \{}
+\DoxyCodeLine{00039\ \ \ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00040\ \ \ \ \ \textcolor{comment}{//\ Base\ tensor\ type}}
+\DoxyCodeLine{00041\ \ \ \ \ \textcolor{keyword}{using\ }\mbox{\hyperlink{classstd_1_1math_1_1fs__tensor}{base\_type}}\ =\ \mbox{\hyperlink{classstd_1_1math_1_1fs__tensor}{fs\_tensor<T,L,A,R,C>}};}
+\DoxyCodeLine{00042\ \ \ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00043\ \ \ \ \ \textcolor{comment}{//-\/\ Types}}
+\DoxyCodeLine{00044\ }
+\DoxyCodeLine{00046\ \ \ \ \ \textcolor{keyword}{using\ }\mbox{\hyperlink{classstd_1_1math_1_1fs__matrix_aad427be021fe94896d6b6bf133d32c00}{layout\_type}}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ =\ \textcolor{keyword}{typename}\ \mbox{\hyperlink{classstd_1_1math_1_1fs__tensor_aa0d6ef16218fd8c5edc33065308b1913}{base\_type::layout\_type}};}
+\DoxyCodeLine{00048\ \ \ \ \ \textcolor{keyword}{using\ }\mbox{\hyperlink{classstd_1_1math_1_1fs__matrix_af91c359a6ef3877d41a2b679b431f135}{accessor\_type}}\ \ \ \ \ \ \ \ \ \ \ \ \ \ =\ \textcolor{keyword}{typename}\ \mbox{\hyperlink{classstd_1_1math_1_1fs__tensor_aa2dc98e6be4a3eefc84394a144219593}{base\_type::accessor\_type}};}
+\DoxyCodeLine{00050\ \ \ \ \ \textcolor{keyword}{using\ }\mbox{\hyperlink{classstd_1_1math_1_1fs__matrix_a6b7d0dd2cf49a5653517a0acb4e5437e}{element\_type}}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ =\ \textcolor{keyword}{typename}\ \mbox{\hyperlink{classstd_1_1math_1_1fs__tensor_a877b9014a0d86a6945084d5f18b5f065}{base\_type::element\_type}};}
+\DoxyCodeLine{00052\ \ \ \ \ \textcolor{keyword}{using\ }\mbox{\hyperlink{classstd_1_1math_1_1fs__matrix_a8e8f51d40af8a07912df4bd2f549e930}{value\_type}}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ =\ \textcolor{keyword}{typename}\ \mbox{\hyperlink{classstd_1_1math_1_1fs__tensor_ad5e47b3c811336fa55b7f07159d8e2bc}{base\_type::value\_type}};}
+\DoxyCodeLine{00054\ \ \ \ \ \textcolor{keyword}{using\ }\mbox{\hyperlink{classstd_1_1math_1_1fs__matrix_aea544d0bcfb1a33ccb6f0bda7795d08c}{index\_type}}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ =\ \textcolor{keyword}{typename}\ base\_type::index\_type;}
+\DoxyCodeLine{00056\ \ \ \ \ \textcolor{keyword}{using\ }\mbox{\hyperlink{classstd_1_1math_1_1fs__matrix_a27f98890dd6e2718dd8b13d45a239572}{size\_type}}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ =\ \textcolor{keyword}{typename}\ \mbox{\hyperlink{classstd_1_1math_1_1fs__tensor_ad694c160eddef094640e5ea7eccf884e}{base\_type::size\_type}};}
+\DoxyCodeLine{00058\ \ \ \ \ \textcolor{keyword}{using\ }\mbox{\hyperlink{classstd_1_1math_1_1fs__matrix_a9b839327cf085af7ec11f815af38a56d}{extents\_type}}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ =\ \textcolor{keyword}{typename}\ \mbox{\hyperlink{classstd_1_1math_1_1fs__tensor_ab7081bbf3090395174207de84318521c}{base\_type::extents\_type}};}
+\DoxyCodeLine{00060\ \ \ \ \ \textcolor{keyword}{using\ }\mbox{\hyperlink{classstd_1_1math_1_1fs__matrix_a1df97ab1e9bdc5bea5f58ca0be04474d}{tuple\_type}}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ =\ \textcolor{keyword}{typename}\ \mbox{\hyperlink{classstd_1_1math_1_1fs__tensor_a85d3152ad0a10147b519921da001e5a1}{base\_type::tuple\_type}};}
+\DoxyCodeLine{00062\ \ \ \ \ \textcolor{keyword}{using\ }\mbox{\hyperlink{classstd_1_1math_1_1fs__matrix_aae8396d6cb6519ec64a73b7b98bc34c4}{const\_underlying\_span\_type}}\ =\ \textcolor{keyword}{typename}\ \mbox{\hyperlink{classstd_1_1math_1_1fs__tensor_a66bbf3d9637400bd5a6cdf0a86626364}{base\_type::const\_underlying\_span\_type}};}
+\DoxyCodeLine{00064\ \ \ \ \ \textcolor{keyword}{using\ }\mbox{\hyperlink{classstd_1_1math_1_1fs__matrix_a5e7f00f6e9d76531934979528a20d61b}{underlying\_span\_type}}\ \ \ \ \ \ \ =\ \textcolor{keyword}{typename}\ \mbox{\hyperlink{classstd_1_1math_1_1fs__tensor_ad65bcae09b9e0ca7ab11d5f253188fad}{base\_type::underlying\_span\_type}};}
+\DoxyCodeLine{00066\ \ \ \ \ \textcolor{keyword}{using\ }\mbox{\hyperlink{classstd_1_1math_1_1fs__matrix_af2b90e76358e9e37560233a4ff3cf060}{span\_type}}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ =\ \textcolor{keyword}{typename}\ \mbox{\hyperlink{classstd_1_1math_1_1fs__tensor_af59d3880e164152fd061acf97c1ec2cb}{base\_type::span\_type}};}
+\DoxyCodeLine{00068\ \ \ \ \ \textcolor{keyword}{using\ }\mbox{\hyperlink{classstd_1_1math_1_1fs__matrix_a2c8ddf39d667892478c4aa7fe104b468}{reference}}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ =\ \textcolor{keyword}{typename}\ \mbox{\hyperlink{classstd_1_1math_1_1fs__tensor_a69fb9ddb5f5530bf0dd4d7c262f270d3}{base\_type::reference}};}
+\DoxyCodeLine{00070\ \ \ \ \ \textcolor{keyword}{using\ }\mbox{\hyperlink{classstd_1_1math_1_1vector__view}{column\_type}}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ =\ \mbox{\hyperlink{classstd_1_1math_1_1vector__view}{vector\_view<decltype(\ ::std::experimental::submdspan(\ ::std::declval<underlying\_span\_type>}}(),\ ::std::declval<::std::experimental::full\_extent\_t>(),\ ::std::declval<index\_type>()\ )\ )>;}
+\DoxyCodeLine{00072\ \ \ \ \ \textcolor{keyword}{using\ }\mbox{\hyperlink{classstd_1_1math_1_1vector__view}{const\_column\_type}}\ \ \ \ \ \ \ \ \ \ =\ \mbox{\hyperlink{classstd_1_1math_1_1vector__view}{vector\_view<decltype(\ ::std::experimental::submdspan(\ ::std::declval<const\_underlying\_span\_type>}}(),\ ::std::declval<::std::experimental::full\_extent\_t>(),\ ::std::declval<index\_type>()\ )\ )>;}
+\DoxyCodeLine{00074\ \ \ \ \ \textcolor{keyword}{using\ }\mbox{\hyperlink{classstd_1_1math_1_1vector__view}{row\_type}}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ =\ \mbox{\hyperlink{classstd_1_1math_1_1vector__view}{vector\_view<decltype(\ ::std::experimental::submdspan(\ ::std::declval<underlying\_span\_type>}}(),\ ::std::declval<index\_type>(),\ ::std::declval<::std::experimental::full\_extent\_t>()\ )\ )>;}
+\DoxyCodeLine{00076\ \ \ \ \ \textcolor{keyword}{using\ }\mbox{\hyperlink{classstd_1_1math_1_1vector__view}{const\_row\_type}}\ \ \ \ \ \ \ \ \ \ \ \ \ =\ \mbox{\hyperlink{classstd_1_1math_1_1vector__view}{vector\_view<decltype(\ ::std::experimental::submdspan(\ ::std::declval<const\_underlying\_span\_type>}}(),\ ::std::declval<index\_type>(),\ ::std::declval<::std::experimental::full\_extent\_t>()\ )\ )>;}
+\DoxyCodeLine{00077\ \ \ \ \ }
+\DoxyCodeLine{00078\ \ \ \ \ \textcolor{comment}{//-\/\ Rebind}}
+\DoxyCodeLine{00079\ }
+\DoxyCodeLine{00084\ \ \ \ \ \textcolor{keyword}{template}\ <\ \textcolor{keyword}{class\ }ValueType,}
+\DoxyCodeLine{00085\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{class\ }LayoutType\ \ \ =\ \mbox{\hyperlink{classstd_1_1math_1_1fs__matrix_aad427be021fe94896d6b6bf133d32c00}{layout\_type}},}
+\DoxyCodeLine{00086\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{class\ }AccessorType\ =\ \mbox{\hyperlink{classstd_1_1math_1_1fs__matrix_af91c359a6ef3877d41a2b679b431f135}{accessor\_type}}\ >}
+\DoxyCodeLine{00087\ \ \ \ \ \textcolor{keyword}{class\ }\mbox{\hyperlink{classstd_1_1math_1_1fs__matrix_1_1rebind}{rebind}}}
+\DoxyCodeLine{00088\ \ \ \ \ \{}
+\DoxyCodeLine{00089\ \ \ \ \ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00090\ \ \ \ \ \ \ \textcolor{keyword}{using\ }rebind\_accessor\_type\ =\ \mbox{\hyperlink{namespacestd_1_1math_1_1detail_a66ad73a2afe0cb3a49bfaad6497ce6a1}{detail::rebind\_accessor\_t<AccessorType,ValueType>}};}
+\DoxyCodeLine{00091\ \ \ \ \ \ \ \textcolor{keyword}{using\ }rebind\_element\_type\ \ =\ \textcolor{keyword}{typename}\ rebind\_accessor\_type::element\_type;}
+\DoxyCodeLine{00092\ \ \ \ \ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00093\ \ \ \ \ \ \ \textcolor{keyword}{using\ }\mbox{\hyperlink{classstd_1_1math_1_1fs__matrix}{type}}\ =\ \mbox{\hyperlink{classstd_1_1math_1_1fs__matrix}{fs\_matrix}}<\ ValueType,}
+\DoxyCodeLine{00094\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ R,}
+\DoxyCodeLine{00095\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ C,}
+\DoxyCodeLine{00096\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ LayoutType,}
+\DoxyCodeLine{00097\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ rebind\_accessor\_type\ >;}
+\DoxyCodeLine{00098\ \ \ \ \ \};}
+\DoxyCodeLine{00103\ \ \ \ \ \textcolor{keyword}{template}\ <\ \textcolor{keyword}{class\ }ValueType,}
+\DoxyCodeLine{00104\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{class\ }LayoutType\ \ \ =\ \mbox{\hyperlink{classstd_1_1math_1_1fs__matrix_aad427be021fe94896d6b6bf133d32c00}{layout\_type}},}
+\DoxyCodeLine{00105\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{class\ }AccessorType\ =\ \mbox{\hyperlink{classstd_1_1math_1_1fs__matrix_af91c359a6ef3877d41a2b679b431f135}{accessor\_type}}\ >}
+\DoxyCodeLine{00106\ \ \ \ \ \textcolor{keyword}{using\ }\mbox{\hyperlink{classstd_1_1math_1_1fs__matrix_a32b1cd5d2ad3f8e5e1545063cd014a08}{rebind\_t}}\ =\ \textcolor{keyword}{typename}\ \mbox{\hyperlink{classstd_1_1math_1_1fs__matrix}{rebind<\ ValueType,\ LayoutType,\ AccessorType\ >::type}};}
+\DoxyCodeLine{00107\ }
+\DoxyCodeLine{00108\ \ \ \ \ \textcolor{comment}{//-\/\ Destructor\ /\ Constructors\ /\ Assignments}}
+\DoxyCodeLine{00109\ }
+\DoxyCodeLine{00111\ \ \ \ \ \mbox{\hyperlink{classstd_1_1math_1_1fs__matrix_a7bcae6e7354cf2cba52ea3eae13e2f08}{\string~fs\_matrix}}()\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ =\ \textcolor{keywordflow}{default};}
+\DoxyCodeLine{00113\ \ \ \ \ \mbox{\hyperlink{classstd_1_1math_1_1fs__matrix_addcd6bb4597c33b367cb2ce0f616262f}{fs\_matrix}}()\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ =\ \textcolor{keywordflow}{default};}
+\DoxyCodeLine{00116\ \ \ \ \ \mbox{\hyperlink{classstd_1_1math_1_1fs__matrix_a88479fe8c3092ca56d243b0aac0d4ef8}{fs\_matrix}}(\ \mbox{\hyperlink{classstd_1_1math_1_1fs__matrix}{fs\_matrix}}\&\&\ )\ \ \ \ \ \ =\ \textcolor{keywordflow}{default};}
+\DoxyCodeLine{00119\ \ \ \ \ \mbox{\hyperlink{classstd_1_1math_1_1fs__matrix_aa14de89e42f8c542844a26f23b1759af}{fs\_matrix}}(\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classstd_1_1math_1_1fs__matrix}{fs\_matrix}}\&\ )\ =\ \textcolor{keywordflow}{default};}
+\DoxyCodeLine{00122\ \textcolor{preprocessor}{\ \ \ \ \#ifdef\ LINALG\_ENABLE\_CONCEPTS}}
+\DoxyCodeLine{00123\ \ \ \ \ \textcolor{keyword}{template}\ <\ concepts::tensor\_may\_be\_constructible<\ fs\_matrix\ >\ M2\ >}
+\DoxyCodeLine{00124\ \textcolor{preprocessor}{\ \ \ \ \#else}}
+\DoxyCodeLine{00125\ \ \ \ \ \textcolor{keyword}{template}\ <\ \textcolor{keyword}{class}\ M2,\ \textcolor{keyword}{typename}\ =\ ::std::enable\_if\_t<\ concepts::tensor\_may\_be\_constructible<\ M2,\ fs\_matrix\ >\ >\ >}
+\DoxyCodeLine{00126\ \textcolor{preprocessor}{\ \ \ \ \#endif}}
+\DoxyCodeLine{00127\ \ \ \ \ \textcolor{keyword}{explicit}\ \textcolor{keyword}{constexpr}\ \mbox{\hyperlink{classstd_1_1math_1_1fs__matrix}{fs\_matrix}}(\ \textcolor{keyword}{const}\ M2\&\ rhs\ )\ \textcolor{keyword}{noexcept}(\ \textcolor{keyword}{noexcept}(\ \mbox{\hyperlink{classstd_1_1math_1_1fs__tensor}{base\_type}}(rhs)\ )\ );}
+\DoxyCodeLine{00130\ \textcolor{preprocessor}{\ \ \ \ \#ifdef\ LINALG\_ENABLE\_CONCEPTS}}
+\DoxyCodeLine{00131\ \ \ \ \ \textcolor{keyword}{template}\ <\ concepts::view\_may\_be\_constructible\_to\_tensor<\ fs\_matrix\ >\ MDS\ >}
+\DoxyCodeLine{00132\ \textcolor{preprocessor}{\ \ \ \ \#else}}
+\DoxyCodeLine{00133\ \ \ \ \ \textcolor{keyword}{template}\ <\ \textcolor{keyword}{class}\ MDS,\ \textcolor{keyword}{typename}\ =\ ::std::enable\_if\_t<\ concepts::view\_may\_be\_constructible\_to\_tensor<MDS,fs\_matrix>\ >,\ \textcolor{keyword}{typename}\ =\ ::std::enable\_if\_t<true>\ >}
+\DoxyCodeLine{00134\ \textcolor{preprocessor}{\ \ \ \ \#endif}}
+\DoxyCodeLine{00135\ \ \ \ \ \textcolor{keyword}{explicit}\ \textcolor{keyword}{constexpr}\ \mbox{\hyperlink{classstd_1_1math_1_1fs__matrix}{fs\_matrix}}(\ \textcolor{keyword}{const}\ MDS\&\ view\ )\ \textcolor{keyword}{noexcept}(\ \textcolor{keyword}{noexcept}(\ \mbox{\hyperlink{classstd_1_1math_1_1fs__tensor}{base\_type}}(view)\ )\ );}
+\DoxyCodeLine{00138\ \textcolor{preprocessor}{\ \ \ \ \#ifdef\ LINALG\_ENABLE\_CONCEPTS}}
+\DoxyCodeLine{00139\ \ \ \ \ \textcolor{keyword}{template}\ <\ \textcolor{keyword}{class}\ Lambda\ >}
+\DoxyCodeLine{00140\ \textcolor{preprocessor}{\ \ \ \ \#else}}
+\DoxyCodeLine{00141\ \ \ \ \ \textcolor{keyword}{template}\ <\ \textcolor{keyword}{class\ }Lambda,}
+\DoxyCodeLine{00142\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{typename}\ =\ ::std::enable\_if\_t<\ ::std::is\_convertible\_v<\ decltype(\ ::std::declval<Lambda\&\&>()(\ ::std::declval<index\_type>(),\ ::std::declval<index\_type>()\ )\ ),\ \mbox{\hyperlink{classstd_1_1math_1_1fs__matrix_a6b7d0dd2cf49a5653517a0acb4e5437e}{element\_type}}\ >\ >\ >}
+\DoxyCodeLine{00143\ \textcolor{preprocessor}{\ \ \ \ \#endif}}
+\DoxyCodeLine{00144\ \ \ \ \ \textcolor{keyword}{explicit}\ \textcolor{keyword}{constexpr}\ \mbox{\hyperlink{classstd_1_1math_1_1fs__matrix}{fs\_matrix}}(\ Lambda\&\&\ lambda\ )\ \textcolor{keyword}{noexcept}(\ \textcolor{keyword}{noexcept}(\ ::std::declval<Lambda\&\&>()(\ ::std::declval<index\_type>(),\ ::std::declval<index\_type>()\ )\ )\ )}
+\DoxyCodeLine{00145\ \ \ \ \ \#ifdef\ LINALG\_ENABLE\_CONCEPTS}
+\DoxyCodeLine{00146\ \ \ \ \ \ \ \textcolor{keyword}{requires}\ \textcolor{keyword}{requires}\ \{\ \{\ ::std::declval<Lambda\&\&>()(\ ::std::declval<index\_type>(),\ ::std::declval<index\_type>()\ )\ \}\ -\/>\ ::std::convertible\_to<element\_type>;\ \};}
+\DoxyCodeLine{00147\ \textcolor{preprocessor}{\ \ \ \ \#else}}
+\DoxyCodeLine{00148\ \ \ \ \ \ \ ;}
+\DoxyCodeLine{00149\ \textcolor{preprocessor}{\ \ \ \ \#endif}}
+\DoxyCodeLine{00153\ \ \ \ \ \mbox{\hyperlink{classstd_1_1math_1_1fs__matrix}{fs\_matrix}}\&\ operator\ =\ (\ \mbox{\hyperlink{classstd_1_1math_1_1fs__matrix}{fs\_matrix}}\&\&\ )\ \ \ \ \ \ =\ \textcolor{keywordflow}{default};}
+\DoxyCodeLine{00157\ \ \ \ \ \mbox{\hyperlink{classstd_1_1math_1_1fs__matrix}{fs\_matrix}}\&\ operator\ =\ (\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classstd_1_1math_1_1fs__matrix}{fs\_matrix}}\&\ )\ =\ \textcolor{keywordflow}{default};}
+\DoxyCodeLine{00162\ \textcolor{preprocessor}{\ \ \ \ \#ifdef\ LINALG\_ENABLE\_CONCEPTS}}
+\DoxyCodeLine{00163\ \ \ \ \ \textcolor{keyword}{template}\ <\ concepts::tensor\_may\_be\_constructible<\ fs\_matrix\ >\ M2\ >}
+\DoxyCodeLine{00164\ \textcolor{preprocessor}{\ \ \ \ \#else}}
+\DoxyCodeLine{00165\ \ \ \ \ \textcolor{keyword}{template}\ <\ \textcolor{keyword}{class}\ M2,\ \textcolor{keyword}{typename}\ =\ ::std::enable\_if\_t<\ concepts::tensor\_may\_be\_constructible<\ M2,\ fs\_matrix\ >\ >\ >}
+\DoxyCodeLine{00166\ \textcolor{preprocessor}{\ \ \ \ \#endif}}
+\DoxyCodeLine{00167\ \ \ \ \ \textcolor{keyword}{constexpr}\ \mbox{\hyperlink{classstd_1_1math_1_1fs__matrix}{fs\_matrix}}\&\ operator\ =\ (\ \textcolor{keyword}{const}\ M2\&\ rhs\ )\ \textcolor{keyword}{noexcept}(\ \textcolor{keyword}{noexcept}(\ ::std::declval<base\_type>()\ =\ rhs\ )\ );}
+\DoxyCodeLine{00172\ \textcolor{preprocessor}{\ \ \ \ \#ifdef\ LINALG\_ENABLE\_CONCEPTS}}
+\DoxyCodeLine{00173\ \ \ \ \ \textcolor{keyword}{template}\ <\ concepts::view\_may\_be\_constructible\_to\_tensor<\ fs\_matrix\ >\ MDS\ >}
+\DoxyCodeLine{00174\ \textcolor{preprocessor}{\ \ \ \ \#else}}
+\DoxyCodeLine{00175\ \ \ \ \ \textcolor{keyword}{template}\ <\ \textcolor{keyword}{class}\ MDS,\ \textcolor{keyword}{typename}\ =\ ::std::enable\_if\_t<\ concepts::view\_may\_be\_constructible\_to\_tensor<MDS,fs\_matrix>\ >,\ \textcolor{keyword}{typename}\ =\ ::std::enable\_if\_t<true>\ >}
+\DoxyCodeLine{00176\ \textcolor{preprocessor}{\ \ \ \ \#endif}}
+\DoxyCodeLine{00177\ \ \ \ \ \textcolor{keyword}{constexpr}\ \mbox{\hyperlink{classstd_1_1math_1_1fs__matrix}{fs\_matrix}}\&\ operator\ =\ (\ \textcolor{keyword}{const}\ MDS\&\ view\ )\ \textcolor{keyword}{noexcept}(\ \textcolor{keyword}{noexcept}(\ ::std::declval<base\_type>()\ =\ view\ )\ );}
+\DoxyCodeLine{00178\ }
+\DoxyCodeLine{00179\ \ \ \ \ \textcolor{comment}{//-\/\ Size\ /\ Capacity}}
+\DoxyCodeLine{00180\ }
+\DoxyCodeLine{00181\ \ \ \ \ \textcolor{keyword}{using\ }base\_type::size;}
+\DoxyCodeLine{00182\ \ \ \ \ \textcolor{keyword}{using\ }base\_type::capacity;}
+\DoxyCodeLine{00183\ }
+\DoxyCodeLine{00186\ \ \ \ \ [[nodiscard]]\ \textcolor{keyword}{constexpr}\ \mbox{\hyperlink{classstd_1_1math_1_1fs__matrix_a27f98890dd6e2718dd8b13d45a239572}{size\_type}}\ \ columns()\ const\ noexcept;}
+\DoxyCodeLine{00189\ \ \ \ \ [[nodiscard]]\ constexpr\ \mbox{\hyperlink{classstd_1_1math_1_1fs__matrix_a27f98890dd6e2718dd8b13d45a239572}{size\_type}}\ \ rows()\ const\ noexcept;}
+\DoxyCodeLine{00192\ \ \ \ \ [[nodiscard]]\ constexpr\ \mbox{\hyperlink{classstd_1_1math_1_1fs__matrix_a27f98890dd6e2718dd8b13d45a239572}{size\_type}}\ \ column\_capacity()\ const\ noexcept;}
+\DoxyCodeLine{00195\ \ \ \ \ [[nodiscard]]\ constexpr\ \mbox{\hyperlink{classstd_1_1math_1_1fs__matrix_a27f98890dd6e2718dd8b13d45a239572}{size\_type}}\ \ row\_capacity()\ const\ noexcept;}
+\DoxyCodeLine{00196\ }
+\DoxyCodeLine{00197\ \ \ \ \ \textcolor{comment}{//-\/\ Const\ views}}
+\DoxyCodeLine{00198\ }
+\DoxyCodeLine{00199\ \ \ \ \ \textcolor{preprocessor}{\#if\ LINALG\_USE\_BRACKET\_OPERATOR}}
+\DoxyCodeLine{00200\ \ \ \ \ \textcolor{keyword}{using\ }base\_type::operator[];\ \textcolor{comment}{//\ Brings\ into\ scope\ const\ and\ mutable}}
+\DoxyCodeLine{00201\ \textcolor{preprocessor}{\ \ \ \ \#endif}}
+\DoxyCodeLine{00202\ \textcolor{preprocessor}{\ \ \ \ \#if\ LINALG\_USE\_PAREN\_OPERATOR}}
+\DoxyCodeLine{00203\ \ \ \ \ \textcolor{keyword}{using\ }base\_type::operator();\ \textcolor{comment}{//\ Brings\ into\ scope\ const\ and\ mutable}}
+\DoxyCodeLine{00204\ \textcolor{preprocessor}{\ \ \ \ \#endif}}
+\DoxyCodeLine{00205\ \ \ \ \ \textcolor{keyword}{using\ }base\_type::subvector;\ \ \textcolor{comment}{//\ Brings\ into\ scope\ const\ and\ mutable}}
+\DoxyCodeLine{00206\ \ \ \ \ \textcolor{keyword}{using\ }base\_type::submatrix;\ \ \textcolor{comment}{//\ Brings\ into\ scope\ const\ and\ mutable}}
+\DoxyCodeLine{00207\ }
+\DoxyCodeLine{00211\ \ \ \ \ [[nodiscard]]\ \textcolor{keyword}{constexpr}\ \mbox{\hyperlink{classstd_1_1math_1_1vector__view}{const\_column\_type}}\ column(\ \mbox{\hyperlink{classstd_1_1math_1_1fs__matrix_aea544d0bcfb1a33ccb6f0bda7795d08c}{index\_type}}\ j\ )\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00215\ \ \ \ \ [[nodiscard]]\ \textcolor{keyword}{constexpr}\ \mbox{\hyperlink{classstd_1_1math_1_1vector__view}{const\_row\_type}}\ row(\ \mbox{\hyperlink{classstd_1_1math_1_1fs__matrix_aea544d0bcfb1a33ccb6f0bda7795d08c}{index\_type}}\ i\ )\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00216\ \ \ \ \ }
+\DoxyCodeLine{00217\ \ \ \ \ \textcolor{comment}{//-\/\ Mutable\ views}}
+\DoxyCodeLine{00218\ }
+\DoxyCodeLine{00222\ \ \ \ \ [[nodiscard]]\ \textcolor{keyword}{constexpr}\ \mbox{\hyperlink{classstd_1_1math_1_1vector__view}{column\_type}}\ column(\ \mbox{\hyperlink{classstd_1_1math_1_1fs__matrix_aea544d0bcfb1a33ccb6f0bda7795d08c}{index\_type}}\ j\ );}
+\DoxyCodeLine{00226\ \ \ \ \ [[nodiscard]]\ \textcolor{keyword}{constexpr}\ \mbox{\hyperlink{classstd_1_1math_1_1vector__view}{row\_type}}\ row(\ \mbox{\hyperlink{classstd_1_1math_1_1fs__matrix_aea544d0bcfb1a33ccb6f0bda7795d08c}{index\_type}}\ i\ );}
+\DoxyCodeLine{00227\ \ \ \ \ }
+\DoxyCodeLine{00228\ \ \ \ \ \textcolor{comment}{//-\/\ Data\ access}}
+\DoxyCodeLine{00229\ }
+\DoxyCodeLine{00230\ \ \ \ \ \textcolor{keyword}{using\ }base\_type::span;}
+\DoxyCodeLine{00231\ \ \ \ \ \textcolor{keyword}{using\ }base\_type::underlying\_span;}
+\DoxyCodeLine{00232\ }
+\DoxyCodeLine{00233\ \};}
+\DoxyCodeLine{00234\ }
+\DoxyCodeLine{00235\ \textcolor{comment}{//-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{00236\ \textcolor{comment}{//\ Implementation\ of\ fs\_matrix<T,R,C,L,A>}}
+\DoxyCodeLine{00237\ \textcolor{comment}{//-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{00238\ }
+\DoxyCodeLine{00239\ \textcolor{comment}{//-\/\ Destructor\ /\ Constructors\ /\ Assignments}}
+\DoxyCodeLine{00240\ }
+\DoxyCodeLine{00241\ \textcolor{preprocessor}{\#ifdef\ LINALG\_ENABLE\_CONCEPTS}}
+\DoxyCodeLine{00242\ \textcolor{keyword}{template}\ <\ \textcolor{keyword}{class}\ T,\ ::std::\textcolor{keywordtype}{size\_t}\ R,\ ::std::\textcolor{keywordtype}{size\_t}\ C,\ \textcolor{keyword}{class}\ L,\ \textcolor{keyword}{class}\ A\ >\ \textcolor{keyword}{requires}\ (\ (\ R\ >=\ 0\ )\ \&\&\ (\ C\ >=\ 0\ )\ )}
+\DoxyCodeLine{00243\ \textcolor{keyword}{template}\ <\ \mbox{\hyperlink{namespacestd_1_1math_1_1concepts_a37d161e63019ad29f5d04f5cc484d5c9}{concepts::tensor\_may\_be\_constructible}}<\ \mbox{\hyperlink{classstd_1_1math_1_1fs__matrix}{fs\_matrix<T,R,C,L,A>}}\ >\ M2\ >}
+\DoxyCodeLine{00244\ \textcolor{keyword}{constexpr}\ \mbox{\hyperlink{classstd_1_1math_1_1fs__matrix}{fs\_matrix<T,R,C,L,A>}}::}
+\DoxyCodeLine{00245\ \#\textcolor{keywordflow}{else}}
+\DoxyCodeLine{00246\ template\ <\ class\ T,\ ::std::size\_t\ R,\ ::std::size\_t\ C,\ class\ L,\ class\ A,\ typename\ Dummy\ >}
+\DoxyCodeLine{00247\ template\ <\ class\ M2,\ typename\ >}
+\DoxyCodeLine{00248\ \textcolor{keyword}{constexpr}\ \mbox{\hyperlink{classstd_1_1math_1_1fs__matrix}{fs\_matrix<T,R,C,L,A,Dummy>}}::}
+\DoxyCodeLine{00249\ \#endif}
+\DoxyCodeLine{00250\ \mbox{\hyperlink{classstd_1_1math_1_1fs__matrix}{fs\_matrix}}(\ \textcolor{keyword}{const}\ M2\&\ rhs\ )}
+\DoxyCodeLine{00251\ \textcolor{preprocessor}{\#ifdef\ LINALG\_ENABLE\_CONCEPTS}}
+\DoxyCodeLine{00252\ \ \ \textcolor{keyword}{noexcept}(\ \textcolor{keyword}{noexcept}(\ \mbox{\hyperlink{classstd_1_1math_1_1fs__tensor}{fs\_matrix<T,R,C,L,A>::base\_type}}(\ rhs\ )\ )\ )\ :}
+\DoxyCodeLine{00253\ \ \ \mbox{\hyperlink{classstd_1_1math_1_1fs__tensor}{fs\_matrix<T,R,C,L,A>::base\_type}}(\ rhs\ )}
+\DoxyCodeLine{00254\ \textcolor{preprocessor}{\#else}}
+\DoxyCodeLine{00255\ \ \ \textcolor{keyword}{noexcept}(\ \textcolor{keyword}{noexcept}(\ \mbox{\hyperlink{classstd_1_1math_1_1fs__tensor}{fs\_matrix<T,R,C,L,A,Dummy>::base\_type}}(\ rhs\ )\ )\ )\ :}
+\DoxyCodeLine{00256\ \ \ \mbox{\hyperlink{classstd_1_1math_1_1fs__matrix}{fs\_matrix}}<T,R,C,L,A,Dummy>::\mbox{\hyperlink{classstd_1_1math_1_1fs__tensor}{base\_type}}(\ rhs\ )}
+\DoxyCodeLine{00257\ \#endif}
+\DoxyCodeLine{00258\ \{}
 \DoxyCodeLine{00259\ \}}
 \DoxyCodeLine{00260\ }
-\DoxyCodeLine{00261\ \textcolor{keyword}{template}\ <\ \textcolor{keyword}{class}\ T,\ \textcolor{keywordtype}{size\_t}\ R,\ \textcolor{keywordtype}{size\_t}\ C,\ \textcolor{keyword}{class}\ L,\ \textcolor{keyword}{class}\ A\ >\ \textcolor{keyword}{requires}\ (\ (\ R\ >=\ 0\ )\ \&\&\ (\ C\ >=\ 0\ )\ )}
-\DoxyCodeLine{00262\ \textcolor{keyword}{template}\ <\ \mbox{\hyperlink{conceptstd_1_1math_1_1concepts_1_1view__may__be__constructible__to__tensor}{concepts::view\_may\_be\_constructible\_to\_tensor}}<\ \mbox{\hyperlink{classstd_1_1math_1_1fs__matrix}{fs\_matrix<T,R,C,L,A>}}\ >\ MDS\ >}
-\DoxyCodeLine{00263\ \textcolor{keyword}{constexpr}\ \mbox{\hyperlink{classstd_1_1math_1_1fs__matrix}{fs\_matrix<T,R,C,L,A>}}\&\ \mbox{\hyperlink{classstd_1_1math_1_1fs__matrix}{fs\_matrix<T,R,C,L,A>::operator}}\ =\ (\ \textcolor{keyword}{const}\ MDS\&\ view\ )}
-\DoxyCodeLine{00264\ \ \ \textcolor{keyword}{noexcept}(\ \textcolor{keyword}{noexcept}(\ declval<typename\ fs\_matrix<T,R,C,L,A>::base\_type>()\ =\ view\ )\ )}
-\DoxyCodeLine{00265\ \{}
-\DoxyCodeLine{00266\ \ \ \textcolor{keyword}{static\_cast<}\textcolor{keywordtype}{void}\textcolor{keyword}{>}(\ this-\/>base\_type::operator=(view)\ );}
-\DoxyCodeLine{00267\ \ \ \textcolor{keywordflow}{return}\ *\textcolor{keyword}{this};}
-\DoxyCodeLine{00268\ \}}
-\DoxyCodeLine{00269\ }
-\DoxyCodeLine{00270\ \textcolor{comment}{//-\/\ Size\ /\ Capacity}}
-\DoxyCodeLine{00271\ }
-\DoxyCodeLine{00272\ \textcolor{keyword}{template}\ <\ \textcolor{keyword}{class}\ T,\ \textcolor{keywordtype}{size\_t}\ R,\ \textcolor{keywordtype}{size\_t}\ C,\ \textcolor{keyword}{class}\ L,\ \textcolor{keyword}{class}\ A\ >\ \textcolor{keyword}{requires}\ (\ (\ R\ >=\ 0\ )\ \&\&\ (\ C\ >=\ 0\ )\ )}
-\DoxyCodeLine{00273\ [[nodiscard]]\ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{typename}\ \mbox{\hyperlink{classstd_1_1math_1_1fs__matrix_aff77647193d29dcfe24fcd59e882212c}{fs\_matrix<T,R,C,L,A>::size\_type}}}
-\DoxyCodeLine{00274\ \mbox{\hyperlink{classstd_1_1math_1_1fs__matrix}{fs\_matrix<T,R,C,L,A>::columns}}()\ \textcolor{keyword}{const}\ \textcolor{keyword}{noexcept}}
-\DoxyCodeLine{00275\ \{}
-\DoxyCodeLine{00276\ \ \ \textcolor{keywordflow}{return}\ C;}
-\DoxyCodeLine{00277\ \}}
-\DoxyCodeLine{00278\ }
-\DoxyCodeLine{00279\ \textcolor{keyword}{template}\ <\ \textcolor{keyword}{class}\ T,\ \textcolor{keywordtype}{size\_t}\ R,\ \textcolor{keywordtype}{size\_t}\ C,\ \textcolor{keyword}{class}\ L,\ \textcolor{keyword}{class}\ A\ >\ \textcolor{keyword}{requires}\ (\ (\ R\ >=\ 0\ )\ \&\&\ (\ C\ >=\ 0\ )\ )}
-\DoxyCodeLine{00280\ [[nodiscard]]\ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{typename}\ \mbox{\hyperlink{classstd_1_1math_1_1fs__matrix_aff77647193d29dcfe24fcd59e882212c}{fs\_matrix<T,R,C,L,A>::size\_type}}}
-\DoxyCodeLine{00281\ \mbox{\hyperlink{classstd_1_1math_1_1fs__matrix}{fs\_matrix<T,R,C,L,A>::rows}}()\ \textcolor{keyword}{const}\ \textcolor{keyword}{noexcept}}
-\DoxyCodeLine{00282\ \{}
-\DoxyCodeLine{00283\ \ \ \textcolor{keywordflow}{return}\ R;}
-\DoxyCodeLine{00284\ \}}
-\DoxyCodeLine{00285\ }
-\DoxyCodeLine{00286\ \textcolor{keyword}{template}\ <\ \textcolor{keyword}{class}\ T,\ \textcolor{keywordtype}{size\_t}\ R,\ \textcolor{keywordtype}{size\_t}\ C,\ \textcolor{keyword}{class}\ L,\ \textcolor{keyword}{class}\ A\ >\ \textcolor{keyword}{requires}\ (\ (\ R\ >=\ 0\ )\ \&\&\ (\ C\ >=\ 0\ )\ )}
-\DoxyCodeLine{00287\ [[nodiscard]]\ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{typename}\ \mbox{\hyperlink{classstd_1_1math_1_1fs__matrix_aff77647193d29dcfe24fcd59e882212c}{fs\_matrix<T,R,C,L,A>::size\_type}}}
-\DoxyCodeLine{00288\ \mbox{\hyperlink{classstd_1_1math_1_1fs__matrix}{fs\_matrix<T,R,C,L,A>::column\_capacity}}()\ \textcolor{keyword}{const}\ \textcolor{keyword}{noexcept}}
-\DoxyCodeLine{00289\ \{}
-\DoxyCodeLine{00290\ \ \ \textcolor{keywordflow}{return}\ this-\/>columns();}
-\DoxyCodeLine{00291\ \}}
-\DoxyCodeLine{00292\ }
-\DoxyCodeLine{00293\ \textcolor{keyword}{template}\ <\ \textcolor{keyword}{class}\ T,\ \textcolor{keywordtype}{size\_t}\ R,\ \textcolor{keywordtype}{size\_t}\ C,\ \textcolor{keyword}{class}\ L,\ \textcolor{keyword}{class}\ A\ >\ \textcolor{keyword}{requires}\ (\ (\ R\ >=\ 0\ )\ \&\&\ (\ C\ >=\ 0\ )\ )}
-\DoxyCodeLine{00294\ [[nodiscard]]\ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{typename}\ \mbox{\hyperlink{classstd_1_1math_1_1fs__matrix_aff77647193d29dcfe24fcd59e882212c}{fs\_matrix<T,R,C,L,A>::size\_type}}}
-\DoxyCodeLine{00295\ \mbox{\hyperlink{classstd_1_1math_1_1fs__matrix}{fs\_matrix<T,R,C,L,A>::row\_capacity}}()\ \textcolor{keyword}{const}\ \textcolor{keyword}{noexcept}}
-\DoxyCodeLine{00296\ \{}
-\DoxyCodeLine{00297\ \ \ \textcolor{keywordflow}{return}\ this-\/>rows();}
+\DoxyCodeLine{00261\ \textcolor{preprocessor}{\#ifdef\ LINALG\_ENABLE\_CONCEPTS}}
+\DoxyCodeLine{00262\ \textcolor{keyword}{template}\ <\ \textcolor{keyword}{class}\ T,\ ::std::\textcolor{keywordtype}{size\_t}\ R,\ ::std::\textcolor{keywordtype}{size\_t}\ C,\ \textcolor{keyword}{class}\ L,\ \textcolor{keyword}{class}\ A\ >\ \textcolor{keyword}{requires}\ (\ (\ R\ >=\ 0\ )\ \&\&\ (\ C\ >=\ 0\ )\ )}
+\DoxyCodeLine{00263\ \textcolor{keyword}{template}\ <\ \mbox{\hyperlink{namespacestd_1_1math_1_1concepts_ace3f73f1713cef14d221a6a38e4c55fb}{concepts::view\_may\_be\_constructible\_to\_tensor}}<\ \mbox{\hyperlink{classstd_1_1math_1_1fs__matrix}{fs\_matrix<T,R,C,L,A>}}\ >\ MDS\ >}
+\DoxyCodeLine{00264\ \textcolor{keyword}{constexpr}\ \mbox{\hyperlink{classstd_1_1math_1_1fs__matrix}{fs\_matrix<T,R,C,L,A>}}::}
+\DoxyCodeLine{00265\ \#\textcolor{keywordflow}{else}}
+\DoxyCodeLine{00266\ template\ <\ class\ T,\ ::std::size\_t\ R,\ ::std::size\_t\ C,\ class\ L,\ class\ A\ ,\ typename\ Dummy\ >}
+\DoxyCodeLine{00267\ template\ <\ class\ MDS,\ typename,\ typename\ >}
+\DoxyCodeLine{00268\ \textcolor{keyword}{constexpr}\ \mbox{\hyperlink{classstd_1_1math_1_1fs__matrix}{fs\_matrix<T,R,C,L,A,Dummy>}}::}
+\DoxyCodeLine{00269\ \#endif}
+\DoxyCodeLine{00270\ \mbox{\hyperlink{classstd_1_1math_1_1fs__matrix}{fs\_matrix}}(\ \textcolor{keyword}{const}\ MDS\&\ view\ )}
+\DoxyCodeLine{00271\ \textcolor{preprocessor}{\#ifdef\ LINALG\_ENABLE\_CONCEPTS}}
+\DoxyCodeLine{00272\ \ \ \textcolor{keyword}{noexcept}(\ \textcolor{keyword}{noexcept}(\ \mbox{\hyperlink{classstd_1_1math_1_1fs__tensor}{fs\_matrix<T,R,C,L,A>::base\_type}}(\ view\ )\ )\ )\ :}
+\DoxyCodeLine{00273\ \ \ \mbox{\hyperlink{classstd_1_1math_1_1fs__tensor}{fs\_matrix<T,R,C,L,A>::base\_type}}(\ view\ )}
+\DoxyCodeLine{00274\ \textcolor{preprocessor}{\#else}}
+\DoxyCodeLine{00275\ \ \ \textcolor{keyword}{noexcept}(\ \textcolor{keyword}{noexcept}(\ \mbox{\hyperlink{classstd_1_1math_1_1fs__tensor}{fs\_matrix<T,R,C,L,A,Dummy>::base\_type}}(\ view\ )\ )\ )\ :}
+\DoxyCodeLine{00276\ \ \ \mbox{\hyperlink{classstd_1_1math_1_1fs__matrix}{fs\_matrix}}<T,R,C,L,A,Dummy>::\mbox{\hyperlink{classstd_1_1math_1_1fs__tensor}{base\_type}}(\ view\ )}
+\DoxyCodeLine{00277\ \#endif}
+\DoxyCodeLine{00278\ \{}
+\DoxyCodeLine{00279\ \}}
+\DoxyCodeLine{00280\ }
+\DoxyCodeLine{00281\ \textcolor{preprocessor}{\#ifdef\ LINALG\_ENABLE\_CONCEPTS}}
+\DoxyCodeLine{00282\ \textcolor{keyword}{template}\ <\ \textcolor{keyword}{class}\ T,\ ::std::\textcolor{keywordtype}{size\_t}\ R,\ ::std::\textcolor{keywordtype}{size\_t}\ C,\ \textcolor{keyword}{class}\ L,\ \textcolor{keyword}{class}\ A\ >\ \textcolor{keyword}{requires}\ (\ (\ R\ >=\ 0\ )\ \&\&\ (\ C\ >=\ 0\ )\ )}
+\DoxyCodeLine{00283\ template\ <\ class\ Lambda\ >}
+\DoxyCodeLine{00284\ \textcolor{keyword}{constexpr}\ \mbox{\hyperlink{classstd_1_1math_1_1fs__matrix}{fs\_matrix<T,R,C,L,A>}}::}
+\DoxyCodeLine{00285\ \#\textcolor{keywordflow}{else}}
+\DoxyCodeLine{00286\ template\ <\ class\ T,\ ::std::size\_t\ R,\ ::std::size\_t\ C,\ class\ L,\ class\ A\ ,\ typename\ Dummy\ >}
+\DoxyCodeLine{00287\ template\ <\ class\ Lambda,\ typename\ >}
+\DoxyCodeLine{00288\ \textcolor{keyword}{constexpr}\ \mbox{\hyperlink{classstd_1_1math_1_1fs__matrix}{fs\_matrix<T,R,C,L,A,Dummy>}}::}
+\DoxyCodeLine{00289\ \#endif}
+\DoxyCodeLine{00290\ \mbox{\hyperlink{classstd_1_1math_1_1fs__matrix}{fs\_matrix}}(\ Lambda\&\&\ lambda\ )\ \textcolor{keyword}{noexcept}(\ \textcolor{keyword}{noexcept}(\ ::std::declval<Lambda\&\&>()(\ ::std::declval<index\_type>(),\ ::std::declval<index\_type>()\ )\ )\ )}
+\DoxyCodeLine{00291\ \#ifdef\ LINALG\_ENABLE\_CONCEPTS}
+\DoxyCodeLine{00292\ \ \ \textcolor{keyword}{requires}\ \textcolor{keyword}{requires}\ \{\ \{\ ::std::declval<Lambda\&\&>()(\ ::std::declval<index\_type>(),\ ::std::declval<index\_type>()\ )\ \}\ -\/>\ ::std::convertible\_to<element\_type>;\ \}\ :}
+\DoxyCodeLine{00293\ \textcolor{preprocessor}{\#else}}
+\DoxyCodeLine{00294\ \ \ :}
+\DoxyCodeLine{00295\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00296\ \ \ \mbox{\hyperlink{classstd_1_1math_1_1fs__tensor}{fs\_matrix<T,R,C,L,A>::base\_type}}(\ lambda\ )}
+\DoxyCodeLine{00297\ \{}
 \DoxyCodeLine{00298\ \}}
 \DoxyCodeLine{00299\ }
-\DoxyCodeLine{00300\ \textcolor{comment}{//-\/\ Const\ views}}
-\DoxyCodeLine{00301\ }
-\DoxyCodeLine{00302\ \textcolor{keyword}{template}\ <\ \textcolor{keyword}{class}\ T,\ \textcolor{keywordtype}{size\_t}\ R,\ \textcolor{keywordtype}{size\_t}\ C,\ \textcolor{keyword}{class}\ L,\ \textcolor{keyword}{class}\ A\ >\ \textcolor{keyword}{requires}\ (\ (\ R\ >=\ 0\ )\ \&\&\ (\ C\ >=\ 0\ )\ )}
-\DoxyCodeLine{00303\ [[nodiscard]]\ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{typename}\ \mbox{\hyperlink{classstd_1_1math_1_1vector__view}{fs\_matrix<T,R,C,L,A>::const\_column\_type}}}
-\DoxyCodeLine{00304\ \mbox{\hyperlink{classstd_1_1math_1_1fs__matrix}{fs\_matrix<T,R,C,L,A>::column}}(\ \textcolor{keyword}{typename}\ \mbox{\hyperlink{classstd_1_1math_1_1fs__matrix_a25ba155f6a28afce82152bf7795e3588}{fs\_matrix<T,R,C,L,A>::index\_type}}\ j\ )\ \textcolor{keyword}{const}}
-\DoxyCodeLine{00305\ \{}
-\DoxyCodeLine{00306\ \ \ \textcolor{keywordflow}{return}\ const\_column\_type\ \{\ experimental::submdspan(\ this-\/>underlying\_span(),\ experimental::full\_extent,\ j\ )\ \};}
-\DoxyCodeLine{00307\ \}}
-\DoxyCodeLine{00308\ }
-\DoxyCodeLine{00309\ \textcolor{keyword}{template}\ <\ \textcolor{keyword}{class}\ T,\ \textcolor{keywordtype}{size\_t}\ R,\ \textcolor{keywordtype}{size\_t}\ C,\ \textcolor{keyword}{class}\ L,\ \textcolor{keyword}{class}\ A\ >\ \textcolor{keyword}{requires}\ (\ (\ R\ >=\ 0\ )\ \&\&\ (\ C\ >=\ 0\ )\ )}
-\DoxyCodeLine{00310\ [[nodiscard]]\ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{typename}\ \mbox{\hyperlink{classstd_1_1math_1_1fs__matrix_a62a3d9a06dee9c6d7c6e5aa957b7e6c7}{fs\_matrix<T,R,C,L,A>::const\_row\_type}}}
-\DoxyCodeLine{00311\ \mbox{\hyperlink{classstd_1_1math_1_1fs__matrix_a58fbec297bfe8794b308b059d7c6a3cc}{fs\_matrix<T,R,C,L,A>::row}}(\ \textcolor{keyword}{typename}\ \mbox{\hyperlink{classstd_1_1math_1_1fs__matrix_a25ba155f6a28afce82152bf7795e3588}{fs\_matrix<T,R,C,L,A>::index\_type}}\ i\ )\ \textcolor{keyword}{const}}
-\DoxyCodeLine{00312\ \{}
-\DoxyCodeLine{00313\ \ \ \textcolor{keywordflow}{return}\ const\_row\_type\ \{\ experimental::submdspan(\ this-\/>underlying\_span(),\ i,\ experimental::full\_extent\ )\ \};}
+\DoxyCodeLine{00300\ \textcolor{preprocessor}{\#ifdef\ LINALG\_ENABLE\_CONCEPTS}}
+\DoxyCodeLine{00301\ \textcolor{keyword}{template}\ <\ \textcolor{keyword}{class}\ T,\ ::std::\textcolor{keywordtype}{size\_t}\ R,\ ::std::\textcolor{keywordtype}{size\_t}\ C,\ \textcolor{keyword}{class}\ L,\ \textcolor{keyword}{class}\ A\ >\ \textcolor{keyword}{requires}\ (\ (\ R\ >=\ 0\ )\ \&\&\ (\ C\ >=\ 0\ )\ )}
+\DoxyCodeLine{00302\ \textcolor{keyword}{template}\ <\ \mbox{\hyperlink{namespacestd_1_1math_1_1concepts_a37d161e63019ad29f5d04f5cc484d5c9}{concepts::tensor\_may\_be\_constructible}}<\ fs\_matrix<T,R,C,L,A>\ >\ M2\ >}
+\DoxyCodeLine{00303\ \textcolor{keyword}{constexpr}\ fs\_matrix<T,R,C,L,A>\&\ fs\_matrix<T,R,C,L,A>::}
+\DoxyCodeLine{00304\ \#\textcolor{keywordflow}{else}}
+\DoxyCodeLine{00305\ template\ <\ class\ T,\ ::std::size\_t\ R,\ ::std::size\_t\ C,\ class\ L,\ class\ A,\ typename\ Dummy\ >}
+\DoxyCodeLine{00306\ template\ <\ class\ M2,\ typename\ >}
+\DoxyCodeLine{00307\ \textcolor{keyword}{constexpr}\ \mbox{\hyperlink{classstd_1_1math_1_1fs__matrix}{fs\_matrix<T,R,C,L,A,Dummy>}}\&\ \mbox{\hyperlink{classstd_1_1math_1_1fs__matrix}{fs\_matrix<T,R,C,L,A,Dummy>}}::}
+\DoxyCodeLine{00308\ \#endif}
+\DoxyCodeLine{00309\ \textcolor{keyword}{operator}\ =\ (\ \textcolor{keyword}{const}\ M2\&\ rhs\ )}
+\DoxyCodeLine{00310\ \ \ \textcolor{keyword}{noexcept}(\ \textcolor{keyword}{noexcept}(\ ::std::declval<base\_type>()\ =\ rhs\ )\ )}
+\DoxyCodeLine{00311\ \{}
+\DoxyCodeLine{00312\ \ \ \textcolor{keyword}{static\_cast<}\textcolor{keywordtype}{void}\textcolor{keyword}{>}(\ this-\/>base\_type::operator=(rhs)\ );}
+\DoxyCodeLine{00313\ \ \ \textcolor{keywordflow}{return}\ *\textcolor{keyword}{this};}
 \DoxyCodeLine{00314\ \}}
 \DoxyCodeLine{00315\ }
-\DoxyCodeLine{00316\ \textcolor{keyword}{template}\ <\ \textcolor{keyword}{class}\ T,\ \textcolor{keywordtype}{size\_t}\ R,\ \textcolor{keywordtype}{size\_t}\ C,\ \textcolor{keyword}{class}\ L,\ \textcolor{keyword}{class}\ A\ >\ \textcolor{keyword}{requires}\ (\ (\ R\ >=\ 0\ )\ \&\&\ (\ C\ >=\ 0\ )\ )}
-\DoxyCodeLine{00317\ [[nodiscard]]\ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{typename}\ \mbox{\hyperlink{classstd_1_1math_1_1fs__matrix_a24e473decf06cfee39e9b2520c41a399}{fs\_matrix<T,R,C,L,A>::const\_submatrix\_type}}}
-\DoxyCodeLine{00318\ \mbox{\hyperlink{classstd_1_1math_1_1fs__matrix}{fs\_matrix<T,R,C,L,A>::submatrix}}(\ \mbox{\hyperlink{classstd_1_1math_1_1fs__matrix_a41c2bfd8e0b883c162553eba47fc3cf6}{tuple\_type}}\ start,}
-\DoxyCodeLine{00319\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classstd_1_1math_1_1fs__matrix_a41c2bfd8e0b883c162553eba47fc3cf6}{tuple\_type}}\ end\ )\ \textcolor{keyword}{const}}
-\DoxyCodeLine{00320\ \{}
-\DoxyCodeLine{00321\ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{classstd_1_1math_1_1matrix__view}{const\_submatrix\_type}}\ \{\ \mbox{\hyperlink{namespacestd_1_1math_1_1detail_af274dde876e47ba2ec1b483608c81d69}{detail::submdspan}}(\ this-\/>underlying\_span(),\ start,\ end\ )\ \};}
-\DoxyCodeLine{00322\ \}}
-\DoxyCodeLine{00323\ }
-\DoxyCodeLine{00324\ \textcolor{comment}{//-\/\ Mutable\ views}}
-\DoxyCodeLine{00325\ }
-\DoxyCodeLine{00326\ \textcolor{keyword}{template}\ <\ \textcolor{keyword}{class}\ T,\ \textcolor{keywordtype}{size\_t}\ R,\ \textcolor{keywordtype}{size\_t}\ C,\ \textcolor{keyword}{class}\ L,\ \textcolor{keyword}{class}\ A\ >\ \textcolor{keyword}{requires}\ (\ (\ R\ >=\ 0\ )\ \&\&\ (\ C\ >=\ 0\ )\ )}
-\DoxyCodeLine{00327\ [[nodiscard]]\ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{typename}\ \mbox{\hyperlink{classstd_1_1math_1_1vector__view}{fs\_matrix<T,R,C,L,A>::column\_type}}}
-\DoxyCodeLine{00328\ \mbox{\hyperlink{classstd_1_1math_1_1fs__matrix}{fs\_matrix<T,R,C,L,A>::column}}(\ \textcolor{keyword}{typename}\ \mbox{\hyperlink{classstd_1_1math_1_1fs__matrix_a25ba155f6a28afce82152bf7795e3588}{fs\_matrix<T,R,C,L,A>::index\_type}}\ j\ )}
-\DoxyCodeLine{00329\ \{}
-\DoxyCodeLine{00330\ \ \ \textcolor{keywordflow}{return}\ column\_type\ \{\ experimental::submdspan(\ this-\/>underlying\_span(),\ experimental::full\_extent,\ j\ )\ \};}
-\DoxyCodeLine{00331\ \}}
-\DoxyCodeLine{00332\ }
-\DoxyCodeLine{00333\ \textcolor{keyword}{template}\ <\ \textcolor{keyword}{class}\ T,\ \textcolor{keywordtype}{size\_t}\ R,\ \textcolor{keywordtype}{size\_t}\ C,\ \textcolor{keyword}{class}\ L,\ \textcolor{keyword}{class}\ A\ >\ \textcolor{keyword}{requires}\ (\ (\ R\ >=\ 0\ )\ \&\&\ (\ C\ >=\ 0\ )\ )}
-\DoxyCodeLine{00334\ [[nodiscard]]\ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{typename}\ \mbox{\hyperlink{classstd_1_1math_1_1fs__matrix_aac9da85f3fc7970b960d6d33c0ed4f68}{fs\_matrix<T,R,C,L,A>::row\_type}}}
-\DoxyCodeLine{00335\ \mbox{\hyperlink{classstd_1_1math_1_1fs__matrix_a58fbec297bfe8794b308b059d7c6a3cc}{fs\_matrix<T,R,C,L,A>::row}}(\ \textcolor{keyword}{typename}\ \mbox{\hyperlink{classstd_1_1math_1_1fs__matrix_a25ba155f6a28afce82152bf7795e3588}{fs\_matrix<T,R,C,L,A>::index\_type}}\ i\ )}
-\DoxyCodeLine{00336\ \{}
-\DoxyCodeLine{00337\ \ \ \textcolor{keywordflow}{return}\ row\_type\ \{\ experimental::submdspan(\ this-\/>underlying\_span(),\ i,\ experimental::full\_extent\ )\ \};}
-\DoxyCodeLine{00338\ \}}
-\DoxyCodeLine{00339\ }
-\DoxyCodeLine{00340\ \textcolor{keyword}{template}\ <\ \textcolor{keyword}{class}\ T,\ \textcolor{keywordtype}{size\_t}\ R,\ \textcolor{keywordtype}{size\_t}\ C,\ \textcolor{keyword}{class}\ L,\ \textcolor{keyword}{class}\ A\ >\ \textcolor{keyword}{requires}\ (\ (\ R\ >=\ 0\ )\ \&\&\ (\ C\ >=\ 0\ )\ )}
-\DoxyCodeLine{00341\ [[nodiscard]]\ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{typename}\ \mbox{\hyperlink{classstd_1_1math_1_1fs__matrix_abc961953e224651f7f44c048ad603369}{fs\_matrix<T,R,C,L,A>::submatrix\_type}}}
-\DoxyCodeLine{00342\ \mbox{\hyperlink{classstd_1_1math_1_1fs__matrix}{fs\_matrix<T,R,C,L,A>::submatrix}}(\ \mbox{\hyperlink{classstd_1_1math_1_1fs__matrix_a41c2bfd8e0b883c162553eba47fc3cf6}{tuple\_type}}\ start,}
-\DoxyCodeLine{00343\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classstd_1_1math_1_1fs__matrix_a41c2bfd8e0b883c162553eba47fc3cf6}{tuple\_type}}\ end\ )}
-\DoxyCodeLine{00344\ \{}
-\DoxyCodeLine{00345\ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{classstd_1_1math_1_1matrix__view}{submatrix\_type}}\ \{\ \mbox{\hyperlink{namespacestd_1_1math_1_1detail_af274dde876e47ba2ec1b483608c81d69}{detail::submdspan}}(\ this-\/>underlying\_span(),\ start,\ end\ )\ \};}
-\DoxyCodeLine{00346\ \}}
-\DoxyCodeLine{00347\ }
-\DoxyCodeLine{00348\ \}\ \ \ \ \ \ \ \textcolor{comment}{//-\/\ math\ namespace}}
-\DoxyCodeLine{00349\ \}\ \ \ \ \ \ \ \textcolor{comment}{//-\/\ std\ namespace}}
-\DoxyCodeLine{00350\ \textcolor{preprocessor}{\#endif\ \ }\textcolor{comment}{//-\/\ LINEAR\_ALGEBRA\_FIXED\_SIZE\_MATRIX\_HPP}}
+\DoxyCodeLine{00316\ \textcolor{preprocessor}{\#ifdef\ LINALG\_ENABLE\_CONCEPTS}}
+\DoxyCodeLine{00317\ \textcolor{keyword}{template}\ <\ \textcolor{keyword}{class}\ T,\ ::std::\textcolor{keywordtype}{size\_t}\ R,\ ::std::\textcolor{keywordtype}{size\_t}\ C,\ \textcolor{keyword}{class}\ L,\ \textcolor{keyword}{class}\ A\ >\ \textcolor{keyword}{requires}\ (\ (\ R\ >=\ 0\ )\ \&\&\ (\ C\ >=\ 0\ )\ )}
+\DoxyCodeLine{00318\ \textcolor{keyword}{template}\ <\ \mbox{\hyperlink{namespacestd_1_1math_1_1concepts_ace3f73f1713cef14d221a6a38e4c55fb}{concepts::view\_may\_be\_constructible\_to\_tensor}}<\ \mbox{\hyperlink{classstd_1_1math_1_1fs__matrix}{fs\_matrix<T,R,C,L,A>}}\ >\ MDS\ >}
+\DoxyCodeLine{00319\ \textcolor{keyword}{constexpr}\ \mbox{\hyperlink{classstd_1_1math_1_1fs__matrix}{fs\_matrix<T,R,C,L,A>}}\&\ \mbox{\hyperlink{classstd_1_1math_1_1fs__matrix}{fs\_matrix<T,R,C,L,A>}}::}
+\DoxyCodeLine{00320\ \#\textcolor{keywordflow}{else}}
+\DoxyCodeLine{00321\ template\ <\ class\ T,\ ::std::size\_t\ R,\ ::std::size\_t\ C,\ class\ L,\ class\ A\ ,\ typename\ Dummy\ >}
+\DoxyCodeLine{00322\ template\ <\ class\ MDS,\ typename,\ typename\ >}
+\DoxyCodeLine{00323\ \textcolor{keyword}{constexpr}\ \mbox{\hyperlink{classstd_1_1math_1_1fs__matrix}{fs\_matrix<T,R,C,L,A,Dummy>}}\&\ \mbox{\hyperlink{classstd_1_1math_1_1fs__matrix}{fs\_matrix<T,R,C,L,A,Dummy>}}::}
+\DoxyCodeLine{00324\ \#endif}
+\DoxyCodeLine{00325\ \textcolor{keyword}{operator}\ =\ (\ \textcolor{keyword}{const}\ MDS\&\ view\ )}
+\DoxyCodeLine{00326\ \ \ \textcolor{keyword}{noexcept}(\ \textcolor{keyword}{noexcept}(\ ::std::declval<base\_type>()\ =\ view\ )\ )}
+\DoxyCodeLine{00327\ \{}
+\DoxyCodeLine{00328\ \ \ \textcolor{keyword}{static\_cast<}\textcolor{keywordtype}{void}\textcolor{keyword}{>}(\ this-\/>base\_type::operator=(view)\ );}
+\DoxyCodeLine{00329\ \ \ \textcolor{keywordflow}{return}\ *\textcolor{keyword}{this};}
+\DoxyCodeLine{00330\ \}}
+\DoxyCodeLine{00331\ }
+\DoxyCodeLine{00332\ \textcolor{comment}{//-\/\ Size\ /\ Capacity}}
+\DoxyCodeLine{00333\ }
+\DoxyCodeLine{00334\ \textcolor{preprocessor}{\#ifdef\ LINALG\_ENABLE\_CONCEPTS}}
+\DoxyCodeLine{00335\ \textcolor{keyword}{template}\ <\ \textcolor{keyword}{class}\ T,\ ::std::\textcolor{keywordtype}{size\_t}\ R,\ ::std::\textcolor{keywordtype}{size\_t}\ C,\ \textcolor{keyword}{class}\ L,\ \textcolor{keyword}{class}\ A\ >\ \textcolor{keyword}{requires}\ (\ (\ R\ >=\ 0\ )\ \&\&\ (\ C\ >=\ 0\ )\ )}
+\DoxyCodeLine{00336\ [[nodiscard]]\ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{typename}\ \mbox{\hyperlink{classstd_1_1math_1_1fs__matrix_a27f98890dd6e2718dd8b13d45a239572}{fs\_matrix<T,R,C,L,A>::size\_type}}\ \mbox{\hyperlink{classstd_1_1math_1_1fs__matrix}{fs\_matrix<T,R,C,L,A>}}::}
+\DoxyCodeLine{00337\ \#\textcolor{keywordflow}{else}}
+\DoxyCodeLine{00338\ template\ <\ class\ T,\ ::std::size\_t\ R,\ ::std::size\_t\ C,\ class\ L,\ class\ A,\ typename\ Dummy\ >}
+\DoxyCodeLine{00339\ [[nodiscard]]\ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{typename}\ \mbox{\hyperlink{classstd_1_1math_1_1fs__matrix_a27f98890dd6e2718dd8b13d45a239572}{fs\_matrix<T,R,C,L,A,Dummy>::size\_type}}\ \mbox{\hyperlink{classstd_1_1math_1_1fs__matrix}{fs\_matrix<T,R,C,L,A,Dummy>}}::}
+\DoxyCodeLine{00340\ \#endif}
+\DoxyCodeLine{00341\ columns()\ \textcolor{keyword}{const}\ \textcolor{keyword}{noexcept}}
+\DoxyCodeLine{00342\ \{}
+\DoxyCodeLine{00343\ \ \ \textcolor{keywordflow}{return}\ C;}
+\DoxyCodeLine{00344\ \}}
+\DoxyCodeLine{00345\ }
+\DoxyCodeLine{00346\ \textcolor{preprocessor}{\#ifdef\ LINALG\_ENABLE\_CONCEPTS}}
+\DoxyCodeLine{00347\ \textcolor{keyword}{template}\ <\ \textcolor{keyword}{class}\ T,\ ::std::\textcolor{keywordtype}{size\_t}\ R,\ ::std::\textcolor{keywordtype}{size\_t}\ C,\ \textcolor{keyword}{class}\ L,\ \textcolor{keyword}{class}\ A\ >\ \textcolor{keyword}{requires}\ (\ (\ R\ >=\ 0\ )\ \&\&\ (\ C\ >=\ 0\ )\ )}
+\DoxyCodeLine{00348\ [[nodiscard]]\ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{typename}\ \mbox{\hyperlink{classstd_1_1math_1_1fs__matrix_a27f98890dd6e2718dd8b13d45a239572}{fs\_matrix<T,R,C,L,A>::size\_type}}\ \mbox{\hyperlink{classstd_1_1math_1_1fs__matrix}{fs\_matrix<T,R,C,L,A>}}::}
+\DoxyCodeLine{00349\ \#\textcolor{keywordflow}{else}}
+\DoxyCodeLine{00350\ template\ <\ class\ T,\ ::std::size\_t\ R,\ ::std::size\_t\ C,\ class\ L,\ class\ A,\ typename\ Dummy\ >}
+\DoxyCodeLine{00351\ [[nodiscard]]\ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{typename}\ \mbox{\hyperlink{classstd_1_1math_1_1fs__matrix_a27f98890dd6e2718dd8b13d45a239572}{fs\_matrix<T,R,C,L,A,Dummy>::size\_type}}\ \mbox{\hyperlink{classstd_1_1math_1_1fs__matrix}{fs\_matrix<T,R,C,L,A,Dummy>}}::}
+\DoxyCodeLine{00352\ \#endif}
+\DoxyCodeLine{00353\ rows()\ \textcolor{keyword}{const}\ \textcolor{keyword}{noexcept}}
+\DoxyCodeLine{00354\ \{}
+\DoxyCodeLine{00355\ \ \ \textcolor{keywordflow}{return}\ R;}
+\DoxyCodeLine{00356\ \}}
+\DoxyCodeLine{00357\ }
+\DoxyCodeLine{00358\ \textcolor{preprocessor}{\#ifdef\ LINALG\_ENABLE\_CONCEPTS}}
+\DoxyCodeLine{00359\ \textcolor{keyword}{template}\ <\ \textcolor{keyword}{class}\ T,\ ::std::\textcolor{keywordtype}{size\_t}\ R,\ ::std::\textcolor{keywordtype}{size\_t}\ C,\ \textcolor{keyword}{class}\ L,\ \textcolor{keyword}{class}\ A\ >\ \textcolor{keyword}{requires}\ (\ (\ R\ >=\ 0\ )\ \&\&\ (\ C\ >=\ 0\ )\ )}
+\DoxyCodeLine{00360\ [[nodiscard]]\ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{typename}\ \mbox{\hyperlink{classstd_1_1math_1_1fs__matrix_a27f98890dd6e2718dd8b13d45a239572}{fs\_matrix<T,R,C,L,A>::size\_type}}\ \mbox{\hyperlink{classstd_1_1math_1_1fs__matrix}{fs\_matrix<T,R,C,L,A>}}::}
+\DoxyCodeLine{00361\ \#\textcolor{keywordflow}{else}}
+\DoxyCodeLine{00362\ template\ <\ class\ T,\ ::std::size\_t\ R,\ ::std::size\_t\ C,\ class\ L,\ class\ A,\ typename\ Dummy\ >}
+\DoxyCodeLine{00363\ [[nodiscard]]\ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{typename}\ \mbox{\hyperlink{classstd_1_1math_1_1fs__matrix_a27f98890dd6e2718dd8b13d45a239572}{fs\_matrix<T,R,C,L,A,Dummy>::size\_type}}\ \mbox{\hyperlink{classstd_1_1math_1_1fs__matrix}{fs\_matrix<T,R,C,L,A,Dummy>}}::}
+\DoxyCodeLine{00364\ \#endif}
+\DoxyCodeLine{00365\ column\_capacity()\ \textcolor{keyword}{const}\ \textcolor{keyword}{noexcept}}
+\DoxyCodeLine{00366\ \{}
+\DoxyCodeLine{00367\ \ \ \textcolor{keywordflow}{return}\ this-\/>columns();}
+\DoxyCodeLine{00368\ \}}
+\DoxyCodeLine{00369\ }
+\DoxyCodeLine{00370\ \textcolor{preprocessor}{\#ifdef\ LINALG\_ENABLE\_CONCEPTS}}
+\DoxyCodeLine{00371\ \textcolor{keyword}{template}\ <\ \textcolor{keyword}{class}\ T,\ ::std::\textcolor{keywordtype}{size\_t}\ R,\ ::std::\textcolor{keywordtype}{size\_t}\ C,\ \textcolor{keyword}{class}\ L,\ \textcolor{keyword}{class}\ A\ >\ \textcolor{keyword}{requires}\ (\ (\ R\ >=\ 0\ )\ \&\&\ (\ C\ >=\ 0\ )\ )}
+\DoxyCodeLine{00372\ [[nodiscard]]\ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{typename}\ \mbox{\hyperlink{classstd_1_1math_1_1fs__matrix_a27f98890dd6e2718dd8b13d45a239572}{fs\_matrix<T,R,C,L,A>::size\_type}}\ \mbox{\hyperlink{classstd_1_1math_1_1fs__matrix}{fs\_matrix<T,R,C,L,A>}}::}
+\DoxyCodeLine{00373\ \#\textcolor{keywordflow}{else}}
+\DoxyCodeLine{00374\ template\ <\ class\ T,\ ::std::size\_t\ R,\ ::std::size\_t\ C,\ class\ L,\ class\ A,\ typename\ Dummy\ >}
+\DoxyCodeLine{00375\ [[nodiscard]]\ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{typename}\ \mbox{\hyperlink{classstd_1_1math_1_1fs__matrix_a27f98890dd6e2718dd8b13d45a239572}{fs\_matrix<T,R,C,L,A,Dummy>::size\_type}}\ \mbox{\hyperlink{classstd_1_1math_1_1fs__matrix}{fs\_matrix<T,R,C,L,A,Dummy>}}::}
+\DoxyCodeLine{00376\ \#endif}
+\DoxyCodeLine{00377\ row\_capacity()\ \textcolor{keyword}{const}\ \textcolor{keyword}{noexcept}}
+\DoxyCodeLine{00378\ \{}
+\DoxyCodeLine{00379\ \ \ \textcolor{keywordflow}{return}\ this-\/>rows();}
+\DoxyCodeLine{00380\ \}}
+\DoxyCodeLine{00381\ }
+\DoxyCodeLine{00382\ \textcolor{comment}{//-\/\ Const\ views}}
+\DoxyCodeLine{00383\ }
+\DoxyCodeLine{00384\ \textcolor{preprocessor}{\#ifdef\ LINALG\_ENABLE\_CONCEPTS}}
+\DoxyCodeLine{00385\ \textcolor{keyword}{template}\ <\ \textcolor{keyword}{class}\ T,\ ::std::\textcolor{keywordtype}{size\_t}\ R,\ ::std::\textcolor{keywordtype}{size\_t}\ C,\ \textcolor{keyword}{class}\ L,\ \textcolor{keyword}{class}\ A\ >\ \textcolor{keyword}{requires}\ (\ (\ R\ >=\ 0\ )\ \&\&\ (\ C\ >=\ 0\ )\ )}
+\DoxyCodeLine{00386\ [[nodiscard]]\ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{typename}\ \mbox{\hyperlink{classstd_1_1math_1_1vector__view}{fs\_matrix<T,R,C,L,A>::const\_column\_type}}\ \mbox{\hyperlink{classstd_1_1math_1_1fs__matrix}{fs\_matrix<T,R,C,L,A>}}::}
+\DoxyCodeLine{00387\ \#\textcolor{keywordflow}{else}}
+\DoxyCodeLine{00388\ template\ <\ class\ T,\ ::std::size\_t\ R,\ ::std::size\_t\ C,\ class\ L,\ class\ A,\ typename\ Dummy\ >}
+\DoxyCodeLine{00389\ [[nodiscard]]\ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{typename}\ \mbox{\hyperlink{classstd_1_1math_1_1vector__view}{fs\_matrix<T,R,C,L,A,Dummy>::const\_column\_type}}\ \mbox{\hyperlink{classstd_1_1math_1_1fs__matrix}{fs\_matrix<T,R,C,L,A,Dummy>}}::}
+\DoxyCodeLine{00390\ \#endif}
+\DoxyCodeLine{00391\ column(\ \mbox{\hyperlink{classstd_1_1math_1_1fs__matrix_aea544d0bcfb1a33ccb6f0bda7795d08c}{index\_type}}\ j\ )\ \textcolor{keyword}{const}}
+\DoxyCodeLine{00392\ \{}
+\DoxyCodeLine{00393\ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{classstd_1_1math_1_1vector__view}{const\_column\_type}}\ \{\ ::std::experimental::submdspan(\ this-\/>underlying\_span(),\ ::std::experimental::full\_extent,\ j\ )\ \};}
+\DoxyCodeLine{00394\ \}}
+\DoxyCodeLine{00395\ }
+\DoxyCodeLine{00396\ \textcolor{preprocessor}{\#ifdef\ LINALG\_ENABLE\_CONCEPTS}}
+\DoxyCodeLine{00397\ \textcolor{keyword}{template}\ <\ \textcolor{keyword}{class}\ T,\ ::std::\textcolor{keywordtype}{size\_t}\ R,\ ::std::\textcolor{keywordtype}{size\_t}\ C,\ \textcolor{keyword}{class}\ L,\ \textcolor{keyword}{class}\ A\ >\ \textcolor{keyword}{requires}\ (\ (\ R\ >=\ 0\ )\ \&\&\ (\ C\ >=\ 0\ )\ )}
+\DoxyCodeLine{00398\ [[nodiscard]]\ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{typename}\ \mbox{\hyperlink{classstd_1_1math_1_1vector__view}{fs\_matrix<T,R,C,L,A>::const\_row\_type}}\ \mbox{\hyperlink{classstd_1_1math_1_1fs__matrix}{fs\_matrix<T,R,C,L,A>}}::}
+\DoxyCodeLine{00399\ \#\textcolor{keywordflow}{else}}
+\DoxyCodeLine{00400\ template\ <\ class\ T,\ ::std::size\_t\ R,\ ::std::size\_t\ C,\ class\ L,\ class\ A,\ typename\ Dummy\ >}
+\DoxyCodeLine{00401\ [[nodiscard]]\ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{typename}\ \mbox{\hyperlink{classstd_1_1math_1_1vector__view}{fs\_matrix<T,R,C,L,A,Dummy>::const\_row\_type}}\ \mbox{\hyperlink{classstd_1_1math_1_1fs__matrix}{fs\_matrix<T,R,C,L,A,Dummy>}}::}
+\DoxyCodeLine{00402\ \#endif}
+\DoxyCodeLine{00403\ row(\ \mbox{\hyperlink{classstd_1_1math_1_1fs__matrix_aea544d0bcfb1a33ccb6f0bda7795d08c}{index\_type}}\ i\ )\ \textcolor{keyword}{const}}
+\DoxyCodeLine{00404\ \{}
+\DoxyCodeLine{00405\ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{classstd_1_1math_1_1vector__view}{const\_row\_type}}\ \{\ ::std::experimental::submdspan(\ this-\/>underlying\_span(),\ i,\ ::std::experimental::full\_extent\ )\ \};}
+\DoxyCodeLine{00406\ \}}
+\DoxyCodeLine{00407\ }
+\DoxyCodeLine{00408\ \textcolor{comment}{//-\/\ Mutable\ views}}
+\DoxyCodeLine{00409\ }
+\DoxyCodeLine{00410\ \textcolor{preprocessor}{\#ifdef\ LINALG\_ENABLE\_CONCEPTS}}
+\DoxyCodeLine{00411\ \textcolor{keyword}{template}\ <\ \textcolor{keyword}{class}\ T,\ ::std::\textcolor{keywordtype}{size\_t}\ R,\ ::std::\textcolor{keywordtype}{size\_t}\ C,\ \textcolor{keyword}{class}\ L,\ \textcolor{keyword}{class}\ A\ >\ \textcolor{keyword}{requires}\ (\ (\ R\ >=\ 0\ )\ \&\&\ (\ C\ >=\ 0\ )\ )}
+\DoxyCodeLine{00412\ [[nodiscard]]\ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{typename}\ \mbox{\hyperlink{classstd_1_1math_1_1vector__view}{fs\_matrix<T,R,C,L,A>::column\_type}}\ \mbox{\hyperlink{classstd_1_1math_1_1fs__matrix}{fs\_matrix<T,R,C,L,A>}}::}
+\DoxyCodeLine{00413\ \#\textcolor{keywordflow}{else}}
+\DoxyCodeLine{00414\ template\ <\ class\ T,\ ::std::size\_t\ R,\ ::std::size\_t\ C,\ class\ L,\ class\ A,\ typename\ Dummy\ >}
+\DoxyCodeLine{00415\ [[nodiscard]]\ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{typename}\ \mbox{\hyperlink{classstd_1_1math_1_1vector__view}{fs\_matrix<T,R,C,L,A,Dummy>::column\_type}}\ \mbox{\hyperlink{classstd_1_1math_1_1fs__matrix}{fs\_matrix<T,R,C,L,A,Dummy>}}::}
+\DoxyCodeLine{00416\ \#endif}
+\DoxyCodeLine{00417\ column(\ \mbox{\hyperlink{classstd_1_1math_1_1fs__matrix_aea544d0bcfb1a33ccb6f0bda7795d08c}{index\_type}}\ j\ )}
+\DoxyCodeLine{00418\ \{}
+\DoxyCodeLine{00419\ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{classstd_1_1math_1_1vector__view}{column\_type}}\ \{\ ::std::experimental::submdspan(\ this-\/>underlying\_span(),\ ::std::experimental::full\_extent,\ j\ )\ \};}
+\DoxyCodeLine{00420\ \}}
+\DoxyCodeLine{00421\ }
+\DoxyCodeLine{00422\ \textcolor{preprocessor}{\#ifdef\ LINALG\_ENABLE\_CONCEPTS}}
+\DoxyCodeLine{00423\ \textcolor{keyword}{template}\ <\ \textcolor{keyword}{class}\ T,\ ::std::\textcolor{keywordtype}{size\_t}\ R,\ ::std::\textcolor{keywordtype}{size\_t}\ C,\ \textcolor{keyword}{class}\ L,\ \textcolor{keyword}{class}\ A\ >\ \textcolor{keyword}{requires}\ (\ (\ R\ >=\ 0\ )\ \&\&\ (\ C\ >=\ 0\ )\ )}
+\DoxyCodeLine{00424\ [[nodiscard]]\ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{typename}\ \mbox{\hyperlink{classstd_1_1math_1_1vector__view}{fs\_matrix<T,R,C,L,A>::row\_type}}\ \mbox{\hyperlink{classstd_1_1math_1_1fs__matrix}{fs\_matrix<T,R,C,L,A>}}::}
+\DoxyCodeLine{00425\ \#\textcolor{keywordflow}{else}}
+\DoxyCodeLine{00426\ template\ <\ class\ T,\ ::std::size\_t\ R,\ ::std::size\_t\ C,\ class\ L,\ class\ A,\ typename\ Dummy\ >}
+\DoxyCodeLine{00427\ [[nodiscard]]\ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{typename}\ \mbox{\hyperlink{classstd_1_1math_1_1vector__view}{fs\_matrix<T,R,C,L,A,Dummy>::row\_type}}\ \mbox{\hyperlink{classstd_1_1math_1_1fs__matrix}{fs\_matrix<T,R,C,L,A,Dummy>}}::}
+\DoxyCodeLine{00428\ \#endif}
+\DoxyCodeLine{00429\ row(\ \mbox{\hyperlink{classstd_1_1math_1_1fs__matrix_aea544d0bcfb1a33ccb6f0bda7795d08c}{index\_type}}\ i\ )}
+\DoxyCodeLine{00430\ \{}
+\DoxyCodeLine{00431\ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{classstd_1_1math_1_1vector__view}{row\_type}}\ \{\ ::std::experimental::submdspan(\ this-\/>underlying\_span(),\ i,\ ::std::experimental::full\_extent\ )\ \};}
+\DoxyCodeLine{00432\ \}}
+\DoxyCodeLine{00433\ }
+\DoxyCodeLine{00434\ \}\ \ \ \ \ \ \ \textcolor{comment}{//-\/\ math\ namespace}}
+\DoxyCodeLine{00435\ \}\ \ \ \ \ \ \ \textcolor{comment}{//-\/\ std\ namespace}}
+\DoxyCodeLine{00436\ \textcolor{preprocessor}{\#endif\ \ }\textcolor{comment}{//-\/\ LINEAR\_ALGEBRA\_FIXED\_SIZE\_MATRIX\_HPP}}
 
 \end{DoxyCode}

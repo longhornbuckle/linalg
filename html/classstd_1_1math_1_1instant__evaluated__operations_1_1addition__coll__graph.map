@@ -1,3 +1,3 @@
-<map id="std::math::instant_evaluated_operations::addition&lt; T1, T2 &gt;" name="std::math::instant_evaluated_operations::addition&lt; T1, T2 &gt;">
-<area shape="rect" id="node1" title="Defines addition operation on a pair of tensors." alt="" coords="5,5,157,127"/>
+<map id="std::math::instant_evaluated_operations::addition&lt; T1, T2, typename &gt;" name="std::math::instant_evaluated_operations::addition&lt; T1, T2, typename &gt;">
+<area shape="rect" id="node1" title="Defines addition operation on a pair of tensors." alt="" coords="5,5,208,127"/>
 </map>

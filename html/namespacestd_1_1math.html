@@ -76,6 +76,7 @@ $(function() {
   <div class="summary">
 <a href="#namespaces">Namespaces</a> &#124;
 <a href="#nested-classes">Classes</a> &#124;
+<a href="#typedef-members">Typedefs</a> &#124;
 <a href="#func-members">Functions</a>  </div>
   <div class="headertitle"><div class="title">std::math Namespace Reference</div></div>
 </div><!--header-->
@@ -113,98 +114,109 @@ Classes</h2></td></tr>
 <tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Fixed-size, fixed-capacity vector.  <a href="classstd_1_1math_1_1fs__vector.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classstd_1_1math_1_1matrix__view.html">matrix_view</a></td></tr>
-<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Matrix view.  <a href="classstd_1_1math_1_1matrix__view.html#details">More...</a><br /></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Non-owning matrix view.  <a href="classstd_1_1math_1_1matrix__view.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classstd_1_1math_1_1tensor__view.html">tensor_view</a></td></tr>
-<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Tensor view.  <a href="classstd_1_1math_1_1tensor__view.html#details">More...</a><br /></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Non-owning ensor view.  <a href="classstd_1_1math_1_1tensor__view.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classstd_1_1math_1_1vector__view.html">vector_view</a></td></tr>
 <tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Vector view.  <a href="classstd_1_1math_1_1vector__view.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="typedef-members" name="typedef-members"></a>
+Typedefs</h2></td></tr>
+<tr class="memitem:ac2cd009d5ab8b17ef398accc0714a2c6"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacestd_1_1math.html#ac2cd009d5ab8b17ef398accc0714a2c6">default_layout</a> = ::std::experimental::layout_right</td></tr>
+<tr class="separator:ac2cd009d5ab8b17ef398accc0714a2c6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="func-members" name="func-members"></a>
 Functions</h2></td></tr>
-<tr class="memitem:ae0ebbca9368067db0126a9ebbfa28040"><td class="memTemplParams" colspan="2">template&lt;concepts::tensor_data T&gt; </td></tr>
-<tr class="memitem:ae0ebbca9368067db0126a9ebbfa28040"><td class="memTemplItemLeft" align="right" valign="top">constexpr decltype(auto)&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespacestd_1_1math.html#ae0ebbca9368067db0126a9ebbfa28040">operator-</a> (const T &amp;t) noexcept(noexcept(operations::template negation&lt; T &gt;::negate(t)))</td></tr>
-<tr class="separator:ae0ebbca9368067db0126a9ebbfa28040"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aad19d9284c196e0f59cf9a4e03794b99"><td class="memTemplParams" colspan="2">template&lt;concepts::matrix_data M&gt; </td></tr>
-<tr class="memitem:aad19d9284c196e0f59cf9a4e03794b99"><td class="memTemplItemLeft" align="right" valign="top">constexpr decltype(auto)&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespacestd_1_1math.html#aad19d9284c196e0f59cf9a4e03794b99">trans</a> (const M &amp;m) noexcept(noexcept(operations::template transpose_matrix&lt; M &gt;::trans(m)))</td></tr>
-<tr class="separator:aad19d9284c196e0f59cf9a4e03794b99"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:abda6cbd6bfc2db633b23c3be56c2657c"><td class="memTemplParams" colspan="2">template&lt;concepts::vector_data V&gt; </td></tr>
-<tr class="memitem:abda6cbd6bfc2db633b23c3be56c2657c"><td class="memTemplItemLeft" align="right" valign="top">constexpr decltype(auto)&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespacestd_1_1math.html#abda6cbd6bfc2db633b23c3be56c2657c">trans</a> (const V &amp;v) noexcept(noexcept(operations::template transpose_vector&lt; V &gt;::trans(v)))</td></tr>
-<tr class="separator:abda6cbd6bfc2db633b23c3be56c2657c"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a381ab766e72b583fd5859302b2c643b2"><td class="memTemplParams" colspan="2">template&lt;concepts::matrix_data M&gt; </td></tr>
-<tr class="memitem:a381ab766e72b583fd5859302b2c643b2"><td class="memTemplItemLeft" align="right" valign="top">constexpr decltype(auto)&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespacestd_1_1math.html#a381ab766e72b583fd5859302b2c643b2">conj</a> (const M &amp;m) noexcept(noexcept(operations::template conjugate_matrix&lt; M &gt;::conjugate(m)))</td></tr>
-<tr class="separator:a381ab766e72b583fd5859302b2c643b2"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a0837991426dc71210aea26716a4a32c4"><td class="memTemplParams" colspan="2">template&lt;concepts::vector_data V&gt; </td></tr>
-<tr class="memitem:a0837991426dc71210aea26716a4a32c4"><td class="memTemplItemLeft" align="right" valign="top">constexpr decltype(auto)&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespacestd_1_1math.html#a0837991426dc71210aea26716a4a32c4">conj</a> (const V &amp;v) noexcept(noexcept(operations::template conjugate_vector&lt; V &gt;::conjugate(v)))</td></tr>
-<tr class="separator:a0837991426dc71210aea26716a4a32c4"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a0396356ee67b1983e87decdf75e74917"><td class="memTemplParams" colspan="2">template&lt;concepts::tensor_data T1, concepts::tensor_data T2&gt; </td></tr>
-<tr class="memitem:a0396356ee67b1983e87decdf75e74917"><td class="memTemplItemLeft" align="right" valign="top">constexpr decltype(auto)&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespacestd_1_1math.html#a0396356ee67b1983e87decdf75e74917">operator+</a> (const T1 &amp;t1, const T2 &amp;t2) noexcept(noexcept(operations::template addition&lt; T1, T2 &gt;::add(t1, t2)))</td></tr>
-<tr class="separator:a0396356ee67b1983e87decdf75e74917"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ac1efb74b1ddfd4881a4cbbe111804abc"><td class="memTemplParams" colspan="2">template&lt;concepts::tensor_data T1, concepts::tensor_data T2&gt; <br />
-requires is_convertible_v&lt; decltype( declval&lt;typename T1::value_type&gt;() + declval&lt;typename T2::value_type&gt;() ), typename T1::element_type &gt;</td></tr>
-<tr class="memitem:ac1efb74b1ddfd4881a4cbbe111804abc"><td class="memTemplItemLeft" align="right" valign="top">constexpr T1 &amp;&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespacestd_1_1math.html#ac1efb74b1ddfd4881a4cbbe111804abc">operator+=</a> (T1 &amp;t1, const T2 &amp;t2) noexcept(noexcept(operations::template addition&lt; T1, T2 &gt;::add(t1, t2)))</td></tr>
-<tr class="separator:ac1efb74b1ddfd4881a4cbbe111804abc"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a6c38bdb9c467d22fd84a7db877a9b003"><td class="memTemplParams" colspan="2">template&lt;concepts::tensor_data T1, concepts::tensor_data T2&gt; </td></tr>
-<tr class="memitem:a6c38bdb9c467d22fd84a7db877a9b003"><td class="memTemplItemLeft" align="right" valign="top">constexpr decltype(auto)&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespacestd_1_1math.html#a6c38bdb9c467d22fd84a7db877a9b003">operator-</a> (const T1 &amp;t1, const T2 &amp;t2) noexcept(noexcept(operations::template subtraction&lt; T1, T2 &gt;::subtract(t1, t2)))</td></tr>
-<tr class="separator:a6c38bdb9c467d22fd84a7db877a9b003"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a1c2d3f15db6c82288d26d64023154241"><td class="memTemplParams" colspan="2">template&lt;concepts::tensor_data T1, concepts::tensor_data T2&gt; <br />
-requires is_convertible_v&lt; decltype( declval&lt;typename T1::value_type&gt;() - declval&lt;typename T2::value_type&gt;() ), typename T1::element_type &gt;</td></tr>
-<tr class="memitem:a1c2d3f15db6c82288d26d64023154241"><td class="memTemplItemLeft" align="right" valign="top">constexpr T1 &amp;&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespacestd_1_1math.html#a1c2d3f15db6c82288d26d64023154241">operator-=</a> (T1 &amp;t1, const T2 &amp;t2) noexcept(noexcept(operations::template subtraction&lt; T1, T2 &gt;::subtract(t1, t2)))</td></tr>
-<tr class="separator:a1c2d3f15db6c82288d26d64023154241"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a49e56c9886cd363e4855c1355587c285"><td class="memTemplParams" colspan="2">template&lt;class S , concepts::tensor_data T&gt; <br />
-requires requires { s * declval&lt; typename T::value_type &gt;(); } &amp;&amp; ( !concepts::tensor_data&lt;S&gt; )</td></tr>
-<tr class="memitem:a49e56c9886cd363e4855c1355587c285"><td class="memTemplItemLeft" align="right" valign="top">constexpr decltype(auto)&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespacestd_1_1math.html#a49e56c9886cd363e4855c1355587c285">operator*</a> (const S &amp;s, const T &amp;t) noexcept(noexcept(operations::template scalar_product&lt; S, T &gt;::prod(s, t)))</td></tr>
-<tr class="separator:a49e56c9886cd363e4855c1355587c285"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a80a67c5251d05cd81c89dc46e2a1c342"><td class="memTemplParams" colspan="2">template&lt;concepts::tensor_data T, class S &gt; <br />
-requires requires { declval&lt; typename T::value_type &gt;() * s; } &amp;&amp; ( !concepts::tensor_data&lt;S&gt; )</td></tr>
-<tr class="memitem:a80a67c5251d05cd81c89dc46e2a1c342"><td class="memTemplItemLeft" align="right" valign="top">constexpr decltype(auto)&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespacestd_1_1math.html#a80a67c5251d05cd81c89dc46e2a1c342">operator*</a> (const T &amp;t, const S &amp;s) noexcept(noexcept(operations::template scalar_product&lt; S, T &gt;::prod(t, s)))</td></tr>
-<tr class="separator:a80a67c5251d05cd81c89dc46e2a1c342"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:adc521aa60c4af6a8df03dd0343535a7c"><td class="memTemplParams" colspan="2">template&lt;concepts::tensor_data T, class S &gt; <br />
-requires requires { declval&lt; typename T::value_type &gt;() * s; } &amp;&amp; ( !concepts::tensor_data&lt;S&gt; ) &amp;&amp; is_convertible_v&lt; decltype( declval&lt;typename T::value_type&gt;() * declval&lt;S&gt;() ), typename T::element_type &gt;</td></tr>
-<tr class="memitem:adc521aa60c4af6a8df03dd0343535a7c"><td class="memTemplItemLeft" align="right" valign="top">constexpr T &amp;&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespacestd_1_1math.html#adc521aa60c4af6a8df03dd0343535a7c">operator*=</a> (T &amp;t, const S &amp;s) noexcept(noexcept(operations::template scalar_product&lt; S, T &gt;::prod(t, s)))</td></tr>
-<tr class="separator:adc521aa60c4af6a8df03dd0343535a7c"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a593c6de1d8b08210bf93542d7645eacc"><td class="memTemplParams" colspan="2">template&lt;concepts::tensor_data T, class S &gt; <br />
-requires requires { declval&lt; typename T::value_type &gt;() / s; }</td></tr>
-<tr class="memitem:a593c6de1d8b08210bf93542d7645eacc"><td class="memTemplItemLeft" align="right" valign="top">constexpr decltype(auto)&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespacestd_1_1math.html#a593c6de1d8b08210bf93542d7645eacc">operator/</a> (const T &amp;t, const S &amp;s) noexcept(noexcept(operations::template scalar_division&lt; T, S &gt;::divide(t, s)))</td></tr>
-<tr class="separator:a593c6de1d8b08210bf93542d7645eacc"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a7abbafdd1c2f2304b244108162cf33c0"><td class="memTemplParams" colspan="2">template&lt;concepts::tensor_data T, class S &gt; <br />
-requires requires { declval&lt; typename T::value_type &gt;() / s; } &amp;&amp; ( !concepts::tensor_data&lt;S&gt; ) &amp;&amp; is_convertible_v&lt; decltype( declval&lt;typename T::value_type&gt;() / declval&lt;S&gt;() ), typename T::element_type &gt;</td></tr>
-<tr class="memitem:a7abbafdd1c2f2304b244108162cf33c0"><td class="memTemplItemLeft" align="right" valign="top">constexpr T &amp;&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespacestd_1_1math.html#a7abbafdd1c2f2304b244108162cf33c0">operator/=</a> (T &amp;t, const S &amp;s) noexcept(noexcept(operations::template scalar_division&lt; T, S &gt;::divide(t, s)))</td></tr>
-<tr class="separator:a7abbafdd1c2f2304b244108162cf33c0"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ae595d72c25d55b2d8d8086ef2b65bfe2"><td class="memTemplParams" colspan="2">template&lt;concepts::vector_data V1, concepts::vector_data V2&gt; </td></tr>
-<tr class="memitem:ae595d72c25d55b2d8d8086ef2b65bfe2"><td class="memTemplItemLeft" align="right" valign="top">constexpr decltype(auto)&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespacestd_1_1math.html#ae595d72c25d55b2d8d8086ef2b65bfe2">inner_prod</a> (const V1 &amp;v1, const V2 &amp;v2) noexcept(noexcept(operations::template inner_product&lt; V1, V2 &gt;::prod(v1, v2)))</td></tr>
-<tr class="separator:ae595d72c25d55b2d8d8086ef2b65bfe2"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a16d9bb61f2dd78e168c6318baed2625b"><td class="memTemplParams" colspan="2">template&lt;concepts::vector_data V1, concepts::vector_data V2&gt; </td></tr>
-<tr class="memitem:a16d9bb61f2dd78e168c6318baed2625b"><td class="memTemplItemLeft" align="right" valign="top">constexpr decltype(auto)&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespacestd_1_1math.html#a16d9bb61f2dd78e168c6318baed2625b">outer_prod</a> (const V1 &amp;v1, const V2 &amp;v2) noexcept(noexcept(operations::template outer_product&lt; V1, V2 &gt;::prod(v1, v2)))</td></tr>
-<tr class="separator:a16d9bb61f2dd78e168c6318baed2625b"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:adf64b13ce0bd2e7f0d73fb960d419b8e"><td class="memTemplParams" colspan="2">template&lt;concepts::vector_data V, concepts::matrix_data M&gt; </td></tr>
-<tr class="memitem:adf64b13ce0bd2e7f0d73fb960d419b8e"><td class="memTemplItemLeft" align="right" valign="top">constexpr decltype(auto)&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespacestd_1_1math.html#adf64b13ce0bd2e7f0d73fb960d419b8e">operator*</a> (const V &amp;v, const M &amp;m) noexcept(noexcept(operations::template vector_matrix_product&lt; V, M &gt;::prod(v, m)))</td></tr>
-<tr class="separator:adf64b13ce0bd2e7f0d73fb960d419b8e"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a7587b33b94c9d5f8387030c03fdc58bd"><td class="memTemplParams" colspan="2">template&lt;concepts::vector_data V, concepts::matrix_data M&gt; <br />
-requires <a class="el" href="namespacestd_1_1math_1_1detail.html#a3e4a4cdf0946fc014991348863e3065f">detail::extents_may_be_equal_v</a>&lt; typename V::extents_type, typename decltype( const_cast&lt;const V&amp;&gt;(v) * m )::extents_type &gt;</td></tr>
-<tr class="memitem:a7587b33b94c9d5f8387030c03fdc58bd"><td class="memTemplItemLeft" align="right" valign="top">constexpr V &amp;&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespacestd_1_1math.html#a7587b33b94c9d5f8387030c03fdc58bd">operator*=</a> (V &amp;v, const M &amp;m) noexcept(noexcept(operations::template vector_matrix_product&lt; V, M &gt;::prod(v, m)))</td></tr>
-<tr class="separator:a7587b33b94c9d5f8387030c03fdc58bd"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ac1502b79be61fb6ca050071c5db4b534"><td class="memTemplParams" colspan="2">template&lt;concepts::matrix_data M, concepts::vector_data V&gt; </td></tr>
-<tr class="memitem:ac1502b79be61fb6ca050071c5db4b534"><td class="memTemplItemLeft" align="right" valign="top">constexpr decltype(auto)&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespacestd_1_1math.html#ac1502b79be61fb6ca050071c5db4b534">operator*</a> (const M &amp;m, const V &amp;v) noexcept(noexcept(operations::template vector_matrix_product&lt; V, M &gt;::prod(m, v)))</td></tr>
-<tr class="separator:ac1502b79be61fb6ca050071c5db4b534"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a06371be2fd0c2fdccebac1af1fb800a9"><td class="memTemplParams" colspan="2">template&lt;concepts::matrix_data M1, concepts::matrix_data M2&gt; </td></tr>
-<tr class="memitem:a06371be2fd0c2fdccebac1af1fb800a9"><td class="memTemplItemLeft" align="right" valign="top">constexpr decltype(auto)&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespacestd_1_1math.html#a06371be2fd0c2fdccebac1af1fb800a9">operator*</a> (const M1 &amp;m1, const M2 &amp;m2) noexcept(noexcept(operations::template matrix_matrix_product&lt; M1, M2 &gt;::prod(m1, m2)))</td></tr>
-<tr class="separator:a06371be2fd0c2fdccebac1af1fb800a9"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:af76fde7d82fcf2eb67bc2988763c0426"><td class="memTemplParams" colspan="2">template&lt;concepts::matrix_data M1, concepts::matrix_data M2&gt; <br />
-requires <a class="el" href="namespacestd_1_1math_1_1detail.html#a3e4a4cdf0946fc014991348863e3065f">detail::extents_may_be_equal_v</a>&lt; typename M1::extents_type, typename decltype( const_cast&lt;const M1&amp;&gt;(m1) * m2 )::extents_type &gt;</td></tr>
-<tr class="memitem:af76fde7d82fcf2eb67bc2988763c0426"><td class="memTemplItemLeft" align="right" valign="top">constexpr M1 &amp;&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespacestd_1_1math.html#af76fde7d82fcf2eb67bc2988763c0426">operator*=</a> (M1 &amp;m1, const M2 &amp;m2) noexcept(noexcept(operations::template matrix_matrix_product&lt; M1, M2 &gt;::prod(m1, m2)))</td></tr>
-<tr class="separator:af76fde7d82fcf2eb67bc2988763c0426"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a96d6d345149ee19d394bbb50cb832640"><td class="memTemplParams" colspan="2">template&lt;class T , typename  = ::std::enable_if_t&lt; concepts::tensor_data_v&lt;T&gt; &gt;&gt; </td></tr>
+<tr class="memitem:a96d6d345149ee19d394bbb50cb832640"><td class="memTemplItemLeft" align="right" valign="top">constexpr decltype(auto)&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespacestd_1_1math.html#a96d6d345149ee19d394bbb50cb832640">operator-</a> (const T &amp;t) noexcept(noexcept(operations::template negation&lt; T &gt;::negate(t)))</td></tr>
+<tr class="separator:a96d6d345149ee19d394bbb50cb832640"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae82a9727c2ed37e6d54c26d97cb1ca7e"><td class="memTemplParams" colspan="2">template&lt;class M , typename  = ::std::enable_if_t&lt; concepts::matrix_data_v&lt;M&gt; &gt;&gt; </td></tr>
+<tr class="memitem:ae82a9727c2ed37e6d54c26d97cb1ca7e"><td class="memTemplItemLeft" align="right" valign="top">constexpr decltype(auto)&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespacestd_1_1math.html#ae82a9727c2ed37e6d54c26d97cb1ca7e">trans</a> (const M &amp;m) noexcept(noexcept(operations::template transpose_matrix&lt; M &gt;::trans(m)))</td></tr>
+<tr class="separator:ae82a9727c2ed37e6d54c26d97cb1ca7e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac5098ff00eb6cf1baa08bb550b8d0013"><td class="memTemplParams" colspan="2">template&lt;class V , typename  = ::std::enable_if_t&lt; concepts::vector_data_v&lt;V&gt; &gt;, typename  = ::std::enable_if_t&lt;true&gt;&gt; </td></tr>
+<tr class="memitem:ac5098ff00eb6cf1baa08bb550b8d0013"><td class="memTemplItemLeft" align="right" valign="top">constexpr decltype(auto)&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespacestd_1_1math.html#ac5098ff00eb6cf1baa08bb550b8d0013">trans</a> (const V &amp;v) noexcept(noexcept(operations::template transpose_vector&lt; V &gt;::trans(v)))</td></tr>
+<tr class="separator:ac5098ff00eb6cf1baa08bb550b8d0013"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5de07ffd7ce1b2a4b5264b7754522b1b"><td class="memTemplParams" colspan="2">template&lt;class M , typename  = ::std::enable_if_t&lt; concepts::matrix_data_v&lt;M&gt; &gt;&gt; </td></tr>
+<tr class="memitem:a5de07ffd7ce1b2a4b5264b7754522b1b"><td class="memTemplItemLeft" align="right" valign="top">constexpr decltype(auto)&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespacestd_1_1math.html#a5de07ffd7ce1b2a4b5264b7754522b1b">conj</a> (const M &amp;m) noexcept(noexcept(operations::template conjugate_matrix&lt; M &gt;::conjugate(m)))</td></tr>
+<tr class="separator:a5de07ffd7ce1b2a4b5264b7754522b1b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af9810b3eb460f0927294422090884e43"><td class="memTemplParams" colspan="2">template&lt;class V , typename  = ::std::enable_if_t&lt; concepts::vector_data_v&lt;V&gt; &gt;, typename  = ::std::enable_if_t&lt;true&gt;&gt; </td></tr>
+<tr class="memitem:af9810b3eb460f0927294422090884e43"><td class="memTemplItemLeft" align="right" valign="top">constexpr decltype(auto)&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespacestd_1_1math.html#af9810b3eb460f0927294422090884e43">conj</a> (const V &amp;v) noexcept(noexcept(operations::template conjugate_vector&lt; V &gt;::conjugate(v)))</td></tr>
+<tr class="separator:af9810b3eb460f0927294422090884e43"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:acf454a5786b787e1b3eb09bcdf29c9aa"><td class="memTemplParams" colspan="2">template&lt;class T1 , class T2 , typename  = ::std::enable_if_t&lt; concepts::tensor_data_v&lt;T1&gt; &amp;&amp; concepts::tensor_data_v&lt;T2&gt; &gt;&gt; </td></tr>
+<tr class="memitem:acf454a5786b787e1b3eb09bcdf29c9aa"><td class="memTemplItemLeft" align="right" valign="top">constexpr decltype(auto)&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespacestd_1_1math.html#acf454a5786b787e1b3eb09bcdf29c9aa">operator+</a> (const T1 &amp;t1, const T2 &amp;t2) noexcept(noexcept(operations::template addition&lt; T1, T2 &gt;::add(t1, t2)))</td></tr>
+<tr class="separator:acf454a5786b787e1b3eb09bcdf29c9aa"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae293f2c25475f1ba04aca68da7fd2a79"><td class="memTemplParams" colspan="2">template&lt;class T1 , class T2 , typename  = enable_if_t&lt; concepts::tensor_data_v&lt;T1&gt; &amp;&amp;                                   concepts::tensor_data_v&lt;T2&gt; &amp;&amp;                                   ::std::is_convertible_v&lt; decltype( declval&lt;typename T1::value_type&gt;() + declval&lt;typename T2::value_type&gt;() ), typename T1::element_type &gt;&gt; </td></tr>
+<tr class="memitem:ae293f2c25475f1ba04aca68da7fd2a79"><td class="memTemplItemLeft" align="right" valign="top">constexpr T1 &amp;&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespacestd_1_1math.html#ae293f2c25475f1ba04aca68da7fd2a79">operator+=</a> (T1 &amp;t1, const T2 &amp;t2) noexcept(noexcept(operations::template addition&lt; T1, T2 &gt;::add(t1, t2)))</td></tr>
+<tr class="separator:ae293f2c25475f1ba04aca68da7fd2a79"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a09b2165f2c3bffeb9b293edca35f0b2e"><td class="memTemplParams" colspan="2">template&lt;class T1 , class T2 , typename  = ::std::enable_if_t&lt; concepts::tensor_data_v&lt;T1&gt; &amp;&amp; concepts::tensor_data_v&lt;T2&gt; &gt;&gt; </td></tr>
+<tr class="memitem:a09b2165f2c3bffeb9b293edca35f0b2e"><td class="memTemplItemLeft" align="right" valign="top">constexpr decltype(auto)&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespacestd_1_1math.html#a09b2165f2c3bffeb9b293edca35f0b2e">operator-</a> (const T1 &amp;t1, const T2 &amp;t2) noexcept(noexcept(operations::template subtraction&lt; T1, T2 &gt;::subtract(t1, t2)))</td></tr>
+<tr class="separator:a09b2165f2c3bffeb9b293edca35f0b2e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4f6e8272ffda073ed7e3ab8ece790990"><td class="memTemplParams" colspan="2">template&lt;class T1 , class T2 , typename  = enable_if_t&lt; concepts::tensor_data_v&lt;T1&gt; &amp;&amp;                                   concepts::tensor_data_v&lt;T2&gt; &amp;&amp;                                   ::std::is_convertible_v&lt; decltype( declval&lt;typename T1::value_type&gt;() - declval&lt;typename T2::value_type&gt;() ), typename T1::element_type &gt;&gt; </td></tr>
+<tr class="memitem:a4f6e8272ffda073ed7e3ab8ece790990"><td class="memTemplItemLeft" align="right" valign="top">constexpr T1 &amp;&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespacestd_1_1math.html#a4f6e8272ffda073ed7e3ab8ece790990">operator-=</a> (T1 &amp;t1, const T2 &amp;t2) noexcept(noexcept(operations::template subtraction&lt; T1, T2 &gt;::subtract(t1, t2)))</td></tr>
+<tr class="separator:a4f6e8272ffda073ed7e3ab8ece790990"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aaaba9e144f3b3f40d947b5482b885b5d"><td class="memTemplParams" colspan="2">template&lt;class S , class T , typename  = ::std::enable_if_t&lt; concepts::tensor_data_v&lt;T&gt; &amp;&amp;                                          !concepts::tensor_data_v&lt;S&gt; &gt;, typename  = ::std::enable_if_t&lt; concepts::product_exists_v&lt; typename T::value_type, S &gt; &gt;&gt; </td></tr>
+<tr class="memitem:aaaba9e144f3b3f40d947b5482b885b5d"><td class="memTemplItemLeft" align="right" valign="top">constexpr decltype(auto)&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespacestd_1_1math.html#aaaba9e144f3b3f40d947b5482b885b5d">operator*</a> (const S &amp;s, const T &amp;t) noexcept(noexcept(operations::template scalar_product&lt; S, T &gt;::prod(s, t)))</td></tr>
+<tr class="separator:aaaba9e144f3b3f40d947b5482b885b5d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a262dff53ea621a086935aea94bd6a64d"><td class="memTemplParams" colspan="2">template&lt;class T , class S , typename  = ::std::enable_if_t&lt; concepts::tensor_data_v&lt;T&gt; &amp;&amp;                                          !concepts::tensor_data_v&lt;S&gt; &gt;, typename  = ::std::enable_if_t&lt; concepts::product_exists_v&lt; typename T::value_type, S &gt; &gt;, typename  = ::std::enable_if_t&lt;true&gt;&gt; </td></tr>
+<tr class="memitem:a262dff53ea621a086935aea94bd6a64d"><td class="memTemplItemLeft" align="right" valign="top">constexpr decltype(auto)&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespacestd_1_1math.html#a262dff53ea621a086935aea94bd6a64d">operator*</a> (const T &amp;t, const S &amp;s) noexcept(noexcept(operations::template scalar_product&lt; S, T &gt;::prod(t, s)))</td></tr>
+<tr class="separator:a262dff53ea621a086935aea94bd6a64d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8ce5946ea5a3d9b7a65fe914fbd107bc"><td class="memTemplParams" colspan="2">template&lt;class T , class S , typename  = ::std::enable_if_t&lt; concepts::tensor_data_v&lt;T&gt; &amp;&amp;                                          !concepts::tensor_data_v&lt;S&gt; &amp;&amp;                                          concepts::product_exists_v&lt; typename T::value_type, S &gt; &amp;&amp;                                          ::std::is_convertible_v&lt; decltype( declval&lt;typename T::value_type&gt;() * declval&lt;S&gt;() ), typename T::element_type &gt;&gt; </td></tr>
+<tr class="memitem:a8ce5946ea5a3d9b7a65fe914fbd107bc"><td class="memTemplItemLeft" align="right" valign="top">constexpr T &amp;&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespacestd_1_1math.html#a8ce5946ea5a3d9b7a65fe914fbd107bc">operator*=</a> (T &amp;t, const S &amp;s) noexcept(noexcept(operations::template scalar_product&lt; S, T &gt;::prod(t, s)))</td></tr>
+<tr class="separator:a8ce5946ea5a3d9b7a65fe914fbd107bc"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6d48c8c6cbe3f05f3dbced6efb3d2bb4"><td class="memTemplParams" colspan="2">template&lt;class T , class S , typename  = ::std::enable_if_t&lt; concepts::tensor_data_v&lt;T&gt; &amp;&amp;                                          concepts::division_exists_v&lt; typename T::value_type, S &gt; &gt;&gt; </td></tr>
+<tr class="memitem:a6d48c8c6cbe3f05f3dbced6efb3d2bb4"><td class="memTemplItemLeft" align="right" valign="top">constexpr decltype(auto)&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespacestd_1_1math.html#a6d48c8c6cbe3f05f3dbced6efb3d2bb4">operator/</a> (const T &amp;t, const S &amp;s) noexcept(noexcept(operations::template scalar_division&lt; T, S &gt;::divide(t, s)))</td></tr>
+<tr class="separator:a6d48c8c6cbe3f05f3dbced6efb3d2bb4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa5687dfeb751c189d8dffaff793ef5b5"><td class="memTemplParams" colspan="2">template&lt;class T , class S , typename  = ::std::enable_if_t&lt; concepts::tensor_data_v&lt;T&gt; &amp;&amp;                                          concepts::division_exists_v&lt; typename T::value_type, S &gt; &amp;&amp;                                          ::std::is_convertible_v&lt; decltype( declval&lt;typename T::value_type&gt;() * declval&lt;S&gt;() ), typename T::element_type &gt;&gt; </td></tr>
+<tr class="memitem:aa5687dfeb751c189d8dffaff793ef5b5"><td class="memTemplItemLeft" align="right" valign="top">constexpr T &amp;&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespacestd_1_1math.html#aa5687dfeb751c189d8dffaff793ef5b5">operator/=</a> (T &amp;t, const S &amp;s) noexcept(noexcept(operations::template scalar_division&lt; T, S &gt;::divide(t, s)))</td></tr>
+<tr class="separator:aa5687dfeb751c189d8dffaff793ef5b5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8197d469913a3e9264f768a8fb234008"><td class="memTemplParams" colspan="2">template&lt;class V1 , class V2 , typename  = ::std::enable_if_t&lt; concepts::vector_data_v&lt;V1&gt; &amp;&amp; concepts::vector_data_v&lt;V2&gt; &gt;&gt; </td></tr>
+<tr class="memitem:a8197d469913a3e9264f768a8fb234008"><td class="memTemplItemLeft" align="right" valign="top">constexpr decltype(auto)&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespacestd_1_1math.html#a8197d469913a3e9264f768a8fb234008">inner_prod</a> (const V1 &amp;v1, const V2 &amp;v2) noexcept(noexcept(operations::template inner_product&lt; V1, V2 &gt;::prod(v1, v2)))</td></tr>
+<tr class="separator:a8197d469913a3e9264f768a8fb234008"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af7a6263c7c6a337e346859602c85b7c1"><td class="memTemplParams" colspan="2">template&lt;class V1 , class V2 , typename  = ::std::enable_if_t&lt; concepts::vector_data_v&lt;V1&gt; &amp;&amp; concepts::vector_data_v&lt;V2&gt; &gt;&gt; </td></tr>
+<tr class="memitem:af7a6263c7c6a337e346859602c85b7c1"><td class="memTemplItemLeft" align="right" valign="top">constexpr decltype(auto)&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespacestd_1_1math.html#af7a6263c7c6a337e346859602c85b7c1">outer_prod</a> (const V1 &amp;v1, const V2 &amp;v2) noexcept(noexcept(operations::template outer_product&lt; V1, V2 &gt;::prod(v1, v2)))</td></tr>
+<tr class="separator:af7a6263c7c6a337e346859602c85b7c1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5066264a4625216ddd1e1e269e19d433"><td class="memTemplParams" colspan="2">template&lt;class V , class M , typename  = ::std::enable_if_t&lt; concepts::vector_data_v&lt;V&gt; &amp;&amp;                                          concepts::matrix_data_v&lt;M&gt; &gt;, typename  = ::std::enable_if_t&lt;true&gt;, typename  = ::std::enable_if_t&lt;true&gt;, typename  = ::std::enable_if_t&lt;true&gt;&gt; </td></tr>
+<tr class="memitem:a5066264a4625216ddd1e1e269e19d433"><td class="memTemplItemLeft" align="right" valign="top">constexpr decltype(auto)&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespacestd_1_1math.html#a5066264a4625216ddd1e1e269e19d433">operator*</a> (const V &amp;v, const M &amp;m) noexcept(noexcept(operations::template vector_matrix_product&lt; V, M &gt;::prod(v, m)))</td></tr>
+<tr class="separator:a5066264a4625216ddd1e1e269e19d433"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a230cfbf2dd26d259a2093322b0a07ca6"><td class="memTemplParams" colspan="2">template&lt;class V , class M , typename  = ::std::enable_if_t&lt; concepts::vector_data_v&lt;V&gt; &amp;&amp;                                          concepts::matrix_data_v&lt;M&gt; &amp;&amp;                                          detail::extents_may_be_equal_v&lt; typename V::extents_type, typename decltype( declval&lt;V&gt;() * declval&lt;M&gt;() )::extents_type &gt;, typename  = ::std::enable_if_t&lt;true&gt;&gt; </td></tr>
+<tr class="memitem:a230cfbf2dd26d259a2093322b0a07ca6"><td class="memTemplItemLeft" align="right" valign="top">constexpr V &amp;&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespacestd_1_1math.html#a230cfbf2dd26d259a2093322b0a07ca6">operator*=</a> (V &amp;v, const M &amp;m) noexcept(noexcept(operations::template vector_matrix_product&lt; V, M &gt;::prod(v, m)))</td></tr>
+<tr class="separator:a230cfbf2dd26d259a2093322b0a07ca6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:acc315759396876f403d1bbe4817b415b"><td class="memTemplParams" colspan="2">template&lt;class M , class V , typename  = ::std::enable_if_t&lt; concepts::matrix_data_v&lt;M&gt; &amp;&amp; concepts::vector_data_v&lt;V&gt; &gt;, typename  = ::std::enable_if_t&lt;true&gt;, typename  = ::std::enable_if_t&lt;true&gt;, typename  = ::std::enable_if_t&lt;true&gt;, typename  = ::std::enable_if_t&lt;true&gt;&gt; </td></tr>
+<tr class="memitem:acc315759396876f403d1bbe4817b415b"><td class="memTemplItemLeft" align="right" valign="top">constexpr decltype(auto)&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespacestd_1_1math.html#acc315759396876f403d1bbe4817b415b">operator*</a> (const M &amp;m, const V &amp;v) noexcept(noexcept(operations::template vector_matrix_product&lt; V, M &gt;::prod(m, v)))</td></tr>
+<tr class="separator:acc315759396876f403d1bbe4817b415b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a41e2c24a154bb3c69efed15514f9ddd5"><td class="memTemplParams" colspan="2">template&lt;class M1 , class M2 , typename  = ::std::enable_if_t&lt; concepts::matrix_data_v&lt;M1&gt; &amp;&amp; concepts::matrix_data_v&lt;M2&gt; &gt;, typename  = ::std::enable_if_t&lt;true&gt;, typename  = ::std::enable_if_t&lt;true&gt;, typename  = ::std::enable_if_t&lt;true&gt;, typename  = ::std::enable_if_t&lt;true&gt;, typename  = ::std::enable_if_t&lt;true&gt;&gt; </td></tr>
+<tr class="memitem:a41e2c24a154bb3c69efed15514f9ddd5"><td class="memTemplItemLeft" align="right" valign="top">constexpr decltype(auto)&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespacestd_1_1math.html#a41e2c24a154bb3c69efed15514f9ddd5">operator*</a> (const M1 &amp;m1, const M2 &amp;m2) noexcept(noexcept(operations::template matrix_matrix_product&lt; M1, M2 &gt;::prod(m1, m2)))</td></tr>
+<tr class="separator:a41e2c24a154bb3c69efed15514f9ddd5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8d72c69bfb3c993efdf8a93ef92fc0f2"><td class="memTemplParams" colspan="2">template&lt;class M1 , class M2 , typename  = ::std::enable_if_t&lt; concepts::matrix_data_v&lt;M1&gt; &amp;&amp;                                          concepts::matrix_data_v&lt;M2&gt; &amp;&amp;                                          detail::extents_may_be_equal_v&lt; typename M1::extents_type, typename decltype( declval&lt;M1&gt;() * declval&lt;M2&gt;() )::extents_type &gt;, typename  = ::std::enable_if_t&lt;true&gt;, typename  = ::std::enable_if_t&lt;true&gt;&gt; </td></tr>
+<tr class="memitem:a8d72c69bfb3c993efdf8a93ef92fc0f2"><td class="memTemplItemLeft" align="right" valign="top">constexpr M1 &amp;&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespacestd_1_1math.html#a8d72c69bfb3c993efdf8a93ef92fc0f2">operator*=</a> (M1 &amp;m1, const M2 &amp;m2) noexcept(noexcept(operations::template matrix_matrix_product&lt; M1, M2 &gt;::prod(m1, m2)))</td></tr>
+<tr class="separator:a8d72c69bfb3c993efdf8a93ef92fc0f2"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
+<h2 class="groupheader">Typedef Documentation</h2>
+<a id="ac2cd009d5ab8b17ef398accc0714a2c6" name="ac2cd009d5ab8b17ef398accc0714a2c6"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac2cd009d5ab8b17ef398accc0714a2c6">&#9670;&#160;</a></span>default_layout</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">using <a class="el" href="namespacestd_1_1math.html#ac2cd009d5ab8b17ef398accc0714a2c6">std::math::default_layout</a> = typedef ::std::experimental::layout_right</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
 <h2 class="groupheader">Function Documentation</h2>
-<a id="a381ab766e72b583fd5859302b2c643b2" name="a381ab766e72b583fd5859302b2c643b2"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a381ab766e72b583fd5859302b2c643b2">&#9670;&#160;</a></span>conj() <span class="overload">[1/2]</span></h2>
+<a id="a5de07ffd7ce1b2a4b5264b7754522b1b" name="a5de07ffd7ce1b2a4b5264b7754522b1b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5de07ffd7ce1b2a4b5264b7754522b1b">&#9670;&#160;</a></span>conj() <span class="overload">[1/2]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;concepts::matrix_data M&gt; </div>
+template&lt;class M , typename  = ::std::enable_if_t&lt; concepts::matrix_data_v&lt;M&gt; &gt;&gt; </div>
 <table class="mlabels">
   <tr>
   <td class="mlabels-left">
@@ -226,13 +238,13 @@ template&lt;concepts::matrix_data M&gt; </div>
 
 </div>
 </div>
-<a id="a0837991426dc71210aea26716a4a32c4" name="a0837991426dc71210aea26716a4a32c4"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a0837991426dc71210aea26716a4a32c4">&#9670;&#160;</a></span>conj() <span class="overload">[2/2]</span></h2>
+<a id="af9810b3eb460f0927294422090884e43" name="af9810b3eb460f0927294422090884e43"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af9810b3eb460f0927294422090884e43">&#9670;&#160;</a></span>conj() <span class="overload">[2/2]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;concepts::vector_data V&gt; </div>
+template&lt;class V , typename  = ::std::enable_if_t&lt; concepts::vector_data_v&lt;V&gt; &gt;, typename  = ::std::enable_if_t&lt;true&gt;&gt; </div>
 <table class="mlabels">
   <tr>
   <td class="mlabels-left">
@@ -254,13 +266,13 @@ template&lt;concepts::vector_data V&gt; </div>
 
 </div>
 </div>
-<a id="ae595d72c25d55b2d8d8086ef2b65bfe2" name="ae595d72c25d55b2d8d8086ef2b65bfe2"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ae595d72c25d55b2d8d8086ef2b65bfe2">&#9670;&#160;</a></span>inner_prod()</h2>
+<a id="a8197d469913a3e9264f768a8fb234008" name="a8197d469913a3e9264f768a8fb234008"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8197d469913a3e9264f768a8fb234008">&#9670;&#160;</a></span>inner_prod()</h2>
 
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;concepts::vector_data V1, concepts::vector_data V2&gt; </div>
+template&lt;class V1 , class V2 , typename  = ::std::enable_if_t&lt; concepts::vector_data_v&lt;V1&gt; &amp;&amp; concepts::vector_data_v&lt;V2&gt; &gt;&gt; </div>
 <table class="mlabels">
   <tr>
   <td class="mlabels-left">
@@ -292,13 +304,13 @@ template&lt;concepts::vector_data V1, concepts::vector_data V2&gt; </div>
 
 </div>
 </div>
-<a id="ac1502b79be61fb6ca050071c5db4b534" name="ac1502b79be61fb6ca050071c5db4b534"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ac1502b79be61fb6ca050071c5db4b534">&#9670;&#160;</a></span>operator*() <span class="overload">[1/5]</span></h2>
+<a id="acc315759396876f403d1bbe4817b415b" name="acc315759396876f403d1bbe4817b415b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#acc315759396876f403d1bbe4817b415b">&#9670;&#160;</a></span>operator*() <span class="overload">[1/5]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;concepts::matrix_data M, concepts::vector_data V&gt; </div>
+template&lt;class M , class V , typename  = ::std::enable_if_t&lt; concepts::matrix_data_v&lt;M&gt; &amp;&amp; concepts::vector_data_v&lt;V&gt; &gt;, typename  = ::std::enable_if_t&lt;true&gt;, typename  = ::std::enable_if_t&lt;true&gt;, typename  = ::std::enable_if_t&lt;true&gt;, typename  = ::std::enable_if_t&lt;true&gt;&gt; </div>
 <table class="mlabels">
   <tr>
   <td class="mlabels-left">
@@ -330,13 +342,13 @@ template&lt;concepts::matrix_data M, concepts::vector_data V&gt; </div>
 
 </div>
 </div>
-<a id="a06371be2fd0c2fdccebac1af1fb800a9" name="a06371be2fd0c2fdccebac1af1fb800a9"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a06371be2fd0c2fdccebac1af1fb800a9">&#9670;&#160;</a></span>operator*() <span class="overload">[2/5]</span></h2>
+<a id="a41e2c24a154bb3c69efed15514f9ddd5" name="a41e2c24a154bb3c69efed15514f9ddd5"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a41e2c24a154bb3c69efed15514f9ddd5">&#9670;&#160;</a></span>operator*() <span class="overload">[2/5]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;concepts::matrix_data M1, concepts::matrix_data M2&gt; </div>
+template&lt;class M1 , class M2 , typename  = ::std::enable_if_t&lt; concepts::matrix_data_v&lt;M1&gt; &amp;&amp; concepts::matrix_data_v&lt;M2&gt; &gt;, typename  = ::std::enable_if_t&lt;true&gt;, typename  = ::std::enable_if_t&lt;true&gt;, typename  = ::std::enable_if_t&lt;true&gt;, typename  = ::std::enable_if_t&lt;true&gt;, typename  = ::std::enable_if_t&lt;true&gt;&gt; </div>
 <table class="mlabels">
   <tr>
   <td class="mlabels-left">
@@ -368,14 +380,13 @@ template&lt;concepts::matrix_data M1, concepts::matrix_data M2&gt; </div>
 
 </div>
 </div>
-<a id="a49e56c9886cd363e4855c1355587c285" name="a49e56c9886cd363e4855c1355587c285"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a49e56c9886cd363e4855c1355587c285">&#9670;&#160;</a></span>operator*() <span class="overload">[3/5]</span></h2>
+<a id="aaaba9e144f3b3f40d947b5482b885b5d" name="aaaba9e144f3b3f40d947b5482b885b5d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aaaba9e144f3b3f40d947b5482b885b5d">&#9670;&#160;</a></span>operator*() <span class="overload">[3/5]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;class S , concepts::tensor_data T&gt; <br />
-requires requires { s * declval&lt; typename T::value_type &gt;(); } &amp;&amp; ( !concepts::tensor_data&lt;S&gt; )</div>
+template&lt;class S , class T , typename  = ::std::enable_if_t&lt; concepts::tensor_data_v&lt;T&gt; &amp;&amp;                                          !concepts::tensor_data_v&lt;S&gt; &gt;, typename  = ::std::enable_if_t&lt; concepts::product_exists_v&lt; typename T::value_type, S &gt; &gt;&gt; </div>
 <table class="mlabels">
   <tr>
   <td class="mlabels-left">
@@ -407,14 +418,13 @@ requires requires { s * declval&lt; typename T::value_type &gt;(); } &amp;&amp; 
 
 </div>
 </div>
-<a id="a80a67c5251d05cd81c89dc46e2a1c342" name="a80a67c5251d05cd81c89dc46e2a1c342"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a80a67c5251d05cd81c89dc46e2a1c342">&#9670;&#160;</a></span>operator*() <span class="overload">[4/5]</span></h2>
+<a id="a262dff53ea621a086935aea94bd6a64d" name="a262dff53ea621a086935aea94bd6a64d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a262dff53ea621a086935aea94bd6a64d">&#9670;&#160;</a></span>operator*() <span class="overload">[4/5]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;concepts::tensor_data T, class S &gt; <br />
-requires requires { declval&lt; typename T::value_type &gt;() * s; } &amp;&amp; ( !concepts::tensor_data&lt;S&gt; )</div>
+template&lt;class T , class S , typename  = ::std::enable_if_t&lt; concepts::tensor_data_v&lt;T&gt; &amp;&amp;                                          !concepts::tensor_data_v&lt;S&gt; &gt;, typename  = ::std::enable_if_t&lt; concepts::product_exists_v&lt; typename T::value_type, S &gt; &gt;, typename  = ::std::enable_if_t&lt;true&gt;&gt; </div>
 <table class="mlabels">
   <tr>
   <td class="mlabels-left">
@@ -446,13 +456,13 @@ requires requires { declval&lt; typename T::value_type &gt;() * s; } &amp;&amp; 
 
 </div>
 </div>
-<a id="adf64b13ce0bd2e7f0d73fb960d419b8e" name="adf64b13ce0bd2e7f0d73fb960d419b8e"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#adf64b13ce0bd2e7f0d73fb960d419b8e">&#9670;&#160;</a></span>operator*() <span class="overload">[5/5]</span></h2>
+<a id="a5066264a4625216ddd1e1e269e19d433" name="a5066264a4625216ddd1e1e269e19d433"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5066264a4625216ddd1e1e269e19d433">&#9670;&#160;</a></span>operator*() <span class="overload">[5/5]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;concepts::vector_data V, concepts::matrix_data M&gt; </div>
+template&lt;class V , class M , typename  = ::std::enable_if_t&lt; concepts::vector_data_v&lt;V&gt; &amp;&amp;                                          concepts::matrix_data_v&lt;M&gt; &gt;, typename  = ::std::enable_if_t&lt;true&gt;, typename  = ::std::enable_if_t&lt;true&gt;, typename  = ::std::enable_if_t&lt;true&gt;&gt; </div>
 <table class="mlabels">
   <tr>
   <td class="mlabels-left">
@@ -484,14 +494,13 @@ template&lt;concepts::vector_data V, concepts::matrix_data M&gt; </div>
 
 </div>
 </div>
-<a id="af76fde7d82fcf2eb67bc2988763c0426" name="af76fde7d82fcf2eb67bc2988763c0426"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#af76fde7d82fcf2eb67bc2988763c0426">&#9670;&#160;</a></span>operator*=() <span class="overload">[1/3]</span></h2>
+<a id="a8d72c69bfb3c993efdf8a93ef92fc0f2" name="a8d72c69bfb3c993efdf8a93ef92fc0f2"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8d72c69bfb3c993efdf8a93ef92fc0f2">&#9670;&#160;</a></span>operator*=() <span class="overload">[1/3]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;concepts::matrix_data M1, concepts::matrix_data M2&gt; <br />
-requires <a class="el" href="namespacestd_1_1math_1_1detail.html#a3e4a4cdf0946fc014991348863e3065f">detail::extents_may_be_equal_v</a>&lt; typename M1::extents_type, typename decltype( const_cast&lt;const M1&amp;&gt;(m1) * m2 )::extents_type &gt;</div>
+template&lt;class M1 , class M2 , typename  = ::std::enable_if_t&lt; concepts::matrix_data_v&lt;M1&gt; &amp;&amp;                                          concepts::matrix_data_v&lt;M2&gt; &amp;&amp;                                          detail::extents_may_be_equal_v&lt; typename M1::extents_type, typename decltype( declval&lt;M1&gt;() * declval&lt;M2&gt;() )::extents_type &gt;, typename  = ::std::enable_if_t&lt;true&gt;, typename  = ::std::enable_if_t&lt;true&gt;&gt; </div>
 <table class="mlabels">
   <tr>
   <td class="mlabels-left">
@@ -523,14 +532,13 @@ requires <a class="el" href="namespacestd_1_1math_1_1detail.html#a3e4a4cdf0946fc
 
 </div>
 </div>
-<a id="adc521aa60c4af6a8df03dd0343535a7c" name="adc521aa60c4af6a8df03dd0343535a7c"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#adc521aa60c4af6a8df03dd0343535a7c">&#9670;&#160;</a></span>operator*=() <span class="overload">[2/3]</span></h2>
+<a id="a8ce5946ea5a3d9b7a65fe914fbd107bc" name="a8ce5946ea5a3d9b7a65fe914fbd107bc"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8ce5946ea5a3d9b7a65fe914fbd107bc">&#9670;&#160;</a></span>operator*=() <span class="overload">[2/3]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;concepts::tensor_data T, class S &gt; <br />
-requires requires { declval&lt; typename T::value_type &gt;() * s; } &amp;&amp; ( !concepts::tensor_data&lt;S&gt; ) &amp;&amp; is_convertible_v&lt; decltype( declval&lt;typename T::value_type&gt;() * declval&lt;S&gt;() ), typename T::element_type &gt;</div>
+template&lt;class T , class S , typename  = ::std::enable_if_t&lt; concepts::tensor_data_v&lt;T&gt; &amp;&amp;                                          !concepts::tensor_data_v&lt;S&gt; &amp;&amp;                                          concepts::product_exists_v&lt; typename T::value_type, S &gt; &amp;&amp;                                          ::std::is_convertible_v&lt; decltype( declval&lt;typename T::value_type&gt;() * declval&lt;S&gt;() ), typename T::element_type &gt;&gt; </div>
 <table class="mlabels">
   <tr>
   <td class="mlabels-left">
@@ -562,14 +570,13 @@ requires requires { declval&lt; typename T::value_type &gt;() * s; } &amp;&amp; 
 
 </div>
 </div>
-<a id="a7587b33b94c9d5f8387030c03fdc58bd" name="a7587b33b94c9d5f8387030c03fdc58bd"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a7587b33b94c9d5f8387030c03fdc58bd">&#9670;&#160;</a></span>operator*=() <span class="overload">[3/3]</span></h2>
+<a id="a230cfbf2dd26d259a2093322b0a07ca6" name="a230cfbf2dd26d259a2093322b0a07ca6"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a230cfbf2dd26d259a2093322b0a07ca6">&#9670;&#160;</a></span>operator*=() <span class="overload">[3/3]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;concepts::vector_data V, concepts::matrix_data M&gt; <br />
-requires <a class="el" href="namespacestd_1_1math_1_1detail.html#a3e4a4cdf0946fc014991348863e3065f">detail::extents_may_be_equal_v</a>&lt; typename V::extents_type, typename decltype( const_cast&lt;const V&amp;&gt;(v) * m )::extents_type &gt;</div>
+template&lt;class V , class M , typename  = ::std::enable_if_t&lt; concepts::vector_data_v&lt;V&gt; &amp;&amp;                                          concepts::matrix_data_v&lt;M&gt; &amp;&amp;                                          detail::extents_may_be_equal_v&lt; typename V::extents_type, typename decltype( declval&lt;V&gt;() * declval&lt;M&gt;() )::extents_type &gt;, typename  = ::std::enable_if_t&lt;true&gt;&gt; </div>
 <table class="mlabels">
   <tr>
   <td class="mlabels-left">
@@ -601,13 +608,13 @@ requires <a class="el" href="namespacestd_1_1math_1_1detail.html#a3e4a4cdf0946fc
 
 </div>
 </div>
-<a id="a0396356ee67b1983e87decdf75e74917" name="a0396356ee67b1983e87decdf75e74917"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a0396356ee67b1983e87decdf75e74917">&#9670;&#160;</a></span>operator+()</h2>
+<a id="acf454a5786b787e1b3eb09bcdf29c9aa" name="acf454a5786b787e1b3eb09bcdf29c9aa"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#acf454a5786b787e1b3eb09bcdf29c9aa">&#9670;&#160;</a></span>operator+()</h2>
 
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;concepts::tensor_data T1, concepts::tensor_data T2&gt; </div>
+template&lt;class T1 , class T2 , typename  = ::std::enable_if_t&lt; concepts::tensor_data_v&lt;T1&gt; &amp;&amp; concepts::tensor_data_v&lt;T2&gt; &gt;&gt; </div>
 <table class="mlabels">
   <tr>
   <td class="mlabels-left">
@@ -639,14 +646,13 @@ template&lt;concepts::tensor_data T1, concepts::tensor_data T2&gt; </div>
 
 </div>
 </div>
-<a id="ac1efb74b1ddfd4881a4cbbe111804abc" name="ac1efb74b1ddfd4881a4cbbe111804abc"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ac1efb74b1ddfd4881a4cbbe111804abc">&#9670;&#160;</a></span>operator+=()</h2>
+<a id="ae293f2c25475f1ba04aca68da7fd2a79" name="ae293f2c25475f1ba04aca68da7fd2a79"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae293f2c25475f1ba04aca68da7fd2a79">&#9670;&#160;</a></span>operator+=()</h2>
 
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;concepts::tensor_data T1, concepts::tensor_data T2&gt; <br />
-requires is_convertible_v&lt; decltype( declval&lt;typename T1::value_type&gt;() + declval&lt;typename T2::value_type&gt;() ), typename T1::element_type &gt;</div>
+template&lt;class T1 , class T2 , typename  = enable_if_t&lt; concepts::tensor_data_v&lt;T1&gt; &amp;&amp;                                   concepts::tensor_data_v&lt;T2&gt; &amp;&amp;                                   ::std::is_convertible_v&lt; decltype( declval&lt;typename T1::value_type&gt;() + declval&lt;typename T2::value_type&gt;() ), typename T1::element_type &gt;&gt; </div>
 <table class="mlabels">
   <tr>
   <td class="mlabels-left">
@@ -678,13 +684,13 @@ requires is_convertible_v&lt; decltype( declval&lt;typename T1::value_type&gt;()
 
 </div>
 </div>
-<a id="ae0ebbca9368067db0126a9ebbfa28040" name="ae0ebbca9368067db0126a9ebbfa28040"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ae0ebbca9368067db0126a9ebbfa28040">&#9670;&#160;</a></span>operator-() <span class="overload">[1/2]</span></h2>
+<a id="a96d6d345149ee19d394bbb50cb832640" name="a96d6d345149ee19d394bbb50cb832640"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a96d6d345149ee19d394bbb50cb832640">&#9670;&#160;</a></span>operator-() <span class="overload">[1/2]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;concepts::tensor_data T&gt; </div>
+template&lt;class T , typename  = ::std::enable_if_t&lt; concepts::tensor_data_v&lt;T&gt; &gt;&gt; </div>
 <table class="mlabels">
   <tr>
   <td class="mlabels-left">
@@ -706,13 +712,13 @@ template&lt;concepts::tensor_data T&gt; </div>
 
 </div>
 </div>
-<a id="a6c38bdb9c467d22fd84a7db877a9b003" name="a6c38bdb9c467d22fd84a7db877a9b003"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a6c38bdb9c467d22fd84a7db877a9b003">&#9670;&#160;</a></span>operator-() <span class="overload">[2/2]</span></h2>
+<a id="a09b2165f2c3bffeb9b293edca35f0b2e" name="a09b2165f2c3bffeb9b293edca35f0b2e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a09b2165f2c3bffeb9b293edca35f0b2e">&#9670;&#160;</a></span>operator-() <span class="overload">[2/2]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;concepts::tensor_data T1, concepts::tensor_data T2&gt; </div>
+template&lt;class T1 , class T2 , typename  = ::std::enable_if_t&lt; concepts::tensor_data_v&lt;T1&gt; &amp;&amp; concepts::tensor_data_v&lt;T2&gt; &gt;&gt; </div>
 <table class="mlabels">
   <tr>
   <td class="mlabels-left">
@@ -744,14 +750,13 @@ template&lt;concepts::tensor_data T1, concepts::tensor_data T2&gt; </div>
 
 </div>
 </div>
-<a id="a1c2d3f15db6c82288d26d64023154241" name="a1c2d3f15db6c82288d26d64023154241"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a1c2d3f15db6c82288d26d64023154241">&#9670;&#160;</a></span>operator-=()</h2>
+<a id="a4f6e8272ffda073ed7e3ab8ece790990" name="a4f6e8272ffda073ed7e3ab8ece790990"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4f6e8272ffda073ed7e3ab8ece790990">&#9670;&#160;</a></span>operator-=()</h2>
 
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;concepts::tensor_data T1, concepts::tensor_data T2&gt; <br />
-requires is_convertible_v&lt; decltype( declval&lt;typename T1::value_type&gt;() - declval&lt;typename T2::value_type&gt;() ), typename T1::element_type &gt;</div>
+template&lt;class T1 , class T2 , typename  = enable_if_t&lt; concepts::tensor_data_v&lt;T1&gt; &amp;&amp;                                   concepts::tensor_data_v&lt;T2&gt; &amp;&amp;                                   ::std::is_convertible_v&lt; decltype( declval&lt;typename T1::value_type&gt;() - declval&lt;typename T2::value_type&gt;() ), typename T1::element_type &gt;&gt; </div>
 <table class="mlabels">
   <tr>
   <td class="mlabels-left">
@@ -783,14 +788,13 @@ requires is_convertible_v&lt; decltype( declval&lt;typename T1::value_type&gt;()
 
 </div>
 </div>
-<a id="a593c6de1d8b08210bf93542d7645eacc" name="a593c6de1d8b08210bf93542d7645eacc"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a593c6de1d8b08210bf93542d7645eacc">&#9670;&#160;</a></span>operator/()</h2>
+<a id="a6d48c8c6cbe3f05f3dbced6efb3d2bb4" name="a6d48c8c6cbe3f05f3dbced6efb3d2bb4"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6d48c8c6cbe3f05f3dbced6efb3d2bb4">&#9670;&#160;</a></span>operator/()</h2>
 
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;concepts::tensor_data T, class S &gt; <br />
-requires requires { declval&lt; typename T::value_type &gt;() / s; }</div>
+template&lt;class T , class S , typename  = ::std::enable_if_t&lt; concepts::tensor_data_v&lt;T&gt; &amp;&amp;                                          concepts::division_exists_v&lt; typename T::value_type, S &gt; &gt;&gt; </div>
 <table class="mlabels">
   <tr>
   <td class="mlabels-left">
@@ -822,14 +826,13 @@ requires requires { declval&lt; typename T::value_type &gt;() / s; }</div>
 
 </div>
 </div>
-<a id="a7abbafdd1c2f2304b244108162cf33c0" name="a7abbafdd1c2f2304b244108162cf33c0"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a7abbafdd1c2f2304b244108162cf33c0">&#9670;&#160;</a></span>operator/=()</h2>
+<a id="aa5687dfeb751c189d8dffaff793ef5b5" name="aa5687dfeb751c189d8dffaff793ef5b5"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa5687dfeb751c189d8dffaff793ef5b5">&#9670;&#160;</a></span>operator/=()</h2>
 
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;concepts::tensor_data T, class S &gt; <br />
-requires requires { declval&lt; typename T::value_type &gt;() / s; } &amp;&amp; ( !concepts::tensor_data&lt;S&gt; ) &amp;&amp; is_convertible_v&lt; decltype( declval&lt;typename T::value_type&gt;() / declval&lt;S&gt;() ), typename T::element_type &gt;</div>
+template&lt;class T , class S , typename  = ::std::enable_if_t&lt; concepts::tensor_data_v&lt;T&gt; &amp;&amp;                                          concepts::division_exists_v&lt; typename T::value_type, S &gt; &amp;&amp;                                          ::std::is_convertible_v&lt; decltype( declval&lt;typename T::value_type&gt;() * declval&lt;S&gt;() ), typename T::element_type &gt;&gt; </div>
 <table class="mlabels">
   <tr>
   <td class="mlabels-left">
@@ -861,13 +864,13 @@ requires requires { declval&lt; typename T::value_type &gt;() / s; } &amp;&amp; 
 
 </div>
 </div>
-<a id="a16d9bb61f2dd78e168c6318baed2625b" name="a16d9bb61f2dd78e168c6318baed2625b"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a16d9bb61f2dd78e168c6318baed2625b">&#9670;&#160;</a></span>outer_prod()</h2>
+<a id="af7a6263c7c6a337e346859602c85b7c1" name="af7a6263c7c6a337e346859602c85b7c1"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af7a6263c7c6a337e346859602c85b7c1">&#9670;&#160;</a></span>outer_prod()</h2>
 
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;concepts::vector_data V1, concepts::vector_data V2&gt; </div>
+template&lt;class V1 , class V2 , typename  = ::std::enable_if_t&lt; concepts::vector_data_v&lt;V1&gt; &amp;&amp; concepts::vector_data_v&lt;V2&gt; &gt;&gt; </div>
 <table class="mlabels">
   <tr>
   <td class="mlabels-left">
@@ -899,13 +902,13 @@ template&lt;concepts::vector_data V1, concepts::vector_data V2&gt; </div>
 
 </div>
 </div>
-<a id="aad19d9284c196e0f59cf9a4e03794b99" name="aad19d9284c196e0f59cf9a4e03794b99"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aad19d9284c196e0f59cf9a4e03794b99">&#9670;&#160;</a></span>trans() <span class="overload">[1/2]</span></h2>
+<a id="ae82a9727c2ed37e6d54c26d97cb1ca7e" name="ae82a9727c2ed37e6d54c26d97cb1ca7e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae82a9727c2ed37e6d54c26d97cb1ca7e">&#9670;&#160;</a></span>trans() <span class="overload">[1/2]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;concepts::matrix_data M&gt; </div>
+template&lt;class M , typename  = ::std::enable_if_t&lt; concepts::matrix_data_v&lt;M&gt; &gt;&gt; </div>
 <table class="mlabels">
   <tr>
   <td class="mlabels-left">
@@ -927,13 +930,13 @@ template&lt;concepts::matrix_data M&gt; </div>
 
 </div>
 </div>
-<a id="abda6cbd6bfc2db633b23c3be56c2657c" name="abda6cbd6bfc2db633b23c3be56c2657c"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#abda6cbd6bfc2db633b23c3be56c2657c">&#9670;&#160;</a></span>trans() <span class="overload">[2/2]</span></h2>
+<a id="ac5098ff00eb6cf1baa08bb550b8d0013" name="ac5098ff00eb6cf1baa08bb550b8d0013"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac5098ff00eb6cf1baa08bb550b8d0013">&#9670;&#160;</a></span>trans() <span class="overload">[2/2]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;concepts::vector_data V&gt; </div>
+template&lt;class V , typename  = ::std::enable_if_t&lt; concepts::vector_data_v&lt;V&gt; &gt;, typename  = ::std::enable_if_t&lt;true&gt;&gt; </div>
 <table class="mlabels">
   <tr>
   <td class="mlabels-left">

@@ -14,38 +14,38 @@
 \DoxyCodeLine{00010\ \textcolor{keyword}{namespace\ }concepts}
 \DoxyCodeLine{00011\ \{}
 \DoxyCodeLine{00012\ }
-\DoxyCodeLine{00013\ \textcolor{comment}{//=================================================================================================}}
-\DoxyCodeLine{00014\ \textcolor{comment}{//\ \ Tensor\ Concepts}}
+\DoxyCodeLine{00013\ \textcolor{preprocessor}{\#ifdef\ LINALG\_ENABLE\_CONCEPTS}}
+\DoxyCodeLine{00014\ }
 \DoxyCodeLine{00015\ \textcolor{comment}{//=================================================================================================}}
-\DoxyCodeLine{00016\ }
-\DoxyCodeLine{00017\ \textcolor{comment}{//\ All\ tensor\ data\ types\ must\ specify\ a\ value\ and\ index\ type}}
-\DoxyCodeLine{00018\ \textcolor{comment}{//\ All\ tensor\ data\ types\ must\ specify\ an\ extents\ type\ which\ must\ be\ of\ type\ std::extents<...>}}
-\DoxyCodeLine{00019\ \textcolor{comment}{//\ All\ tensor\ data\ types\ must\ support\ size\ /\ capacity\ const\ access\ functions}}
-\DoxyCodeLine{00020\ \textcolor{keyword}{template}\ <\ \textcolor{keyword}{class}\ T\ >}
-\DoxyCodeLine{00021\ \textcolor{keyword}{concept\ }\mbox{\hyperlink{conceptstd_1_1math_1_1concepts_1_1tensor__data}{tensor\_data}}\ =\ \textcolor{keyword}{requires}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Types}}
-\DoxyCodeLine{00022\ \{}
-\DoxyCodeLine{00023\ \ \ \textcolor{keyword}{typename}\ T::value\_type;}
-\DoxyCodeLine{00024\ \ \ \textcolor{keyword}{typename}\ T::index\_type;}
-\DoxyCodeLine{00025\ \ \ \textcolor{keyword}{typename}\ T::size\_type;}
-\DoxyCodeLine{00026\ \ \ \textcolor{keyword}{typename}\ T::extents\_type;}
-\DoxyCodeLine{00027\ \}\ \&\&}
-\DoxyCodeLine{00028\ (\ detail::is\_extents\_v<typename\ T::extents\_type>\ )\ \&\&}
-\DoxyCodeLine{00029\ \textcolor{keyword}{requires}(\ T\&\ t\ )\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Functions}}
-\DoxyCodeLine{00030\ \{}
-\DoxyCodeLine{00031\ \ \ \{\ t.size()\ \}\ \ \ \ \ \textcolor{keyword}{noexcept};}
-\DoxyCodeLine{00032\ \ \ \{\ t.capacity()\ \}\ \textcolor{keyword}{noexcept};}
-\DoxyCodeLine{00033\ \}\ \&\&}
-\DoxyCodeLine{00034\ (\ is\_same\_v<\ decltype(\ declval<T>().size()\ ),\ \textcolor{keyword}{typename}\ T::extents\_type\ >\ ||}
-\DoxyCodeLine{00035\ \ \ (\ is\_same\_v<\ \textcolor{keyword}{decltype}(\ declval<T>().size()\ ),\ \textcolor{keyword}{typename}\ T::size\_type\ >\ \&\&\ (\ T::extents\_type::rank()\ ==\ 1\ )\ )\ )\ \&\&}
-\DoxyCodeLine{00036\ (\ is\_same\_v<\ \textcolor{keyword}{decltype}(\ declval<T>().capacity()\ ),\ \textcolor{keyword}{typename}\ T::extents\_type\ >\ ||}
-\DoxyCodeLine{00037\ \ \ (\ is\_same\_v<\ \textcolor{keyword}{decltype}(\ declval<T>().capacity()\ ),\ \textcolor{keyword}{typename}\ T::size\_type\ >\ \&\&\ (\ T::extents\_type::rank()\ ==\ 1\ )\ )\ );}
+\DoxyCodeLine{00016\ \textcolor{comment}{//\ \ Tensor\ Concepts}}
+\DoxyCodeLine{00017\ \textcolor{comment}{//=================================================================================================}}
+\DoxyCodeLine{00018\ }
+\DoxyCodeLine{00019\ \textcolor{comment}{//\ All\ tensor\ data\ types\ must\ specify\ a\ value\ and\ index\ type}}
+\DoxyCodeLine{00020\ \textcolor{comment}{//\ All\ tensor\ data\ types\ must\ specify\ an\ extents\ type\ which\ must\ be\ of\ type\ ::std::extents<...>}}
+\DoxyCodeLine{00021\ \textcolor{comment}{//\ All\ tensor\ data\ types\ must\ support\ size\ /\ capacity\ const\ access\ functions}}
+\DoxyCodeLine{00022\ \textcolor{keyword}{template}\ <\ \textcolor{keyword}{class}\ T\ >}
+\DoxyCodeLine{00023\ \textcolor{keyword}{concept\ }tensor\_data\ =\ \textcolor{keyword}{requires}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Types}}
+\DoxyCodeLine{00024\ \{}
+\DoxyCodeLine{00025\ \ \ \textcolor{keyword}{typename}\ T::value\_type;}
+\DoxyCodeLine{00026\ \ \ \textcolor{keyword}{typename}\ T::index\_type;}
+\DoxyCodeLine{00027\ \ \ \textcolor{keyword}{typename}\ T::size\_type;}
+\DoxyCodeLine{00028\ \ \ \textcolor{keyword}{typename}\ T::extents\_type;}
+\DoxyCodeLine{00029\ \}\ \&\&}
+\DoxyCodeLine{00030\ (\ detail::is\_extents\_v<typename\ T::extents\_type>\ )\ \&\&}
+\DoxyCodeLine{00031\ \textcolor{keyword}{requires}(\ T\&\ t\ )\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Functions}}
+\DoxyCodeLine{00032\ \{}
+\DoxyCodeLine{00033\ \ \ \{\ t.size()\ \}\ \ \ \ \ \textcolor{keyword}{noexcept};}
+\DoxyCodeLine{00034\ \ \ \{\ t.capacity()\ \}\ \textcolor{keyword}{noexcept};}
+\DoxyCodeLine{00035\ \}\ \&\&}
+\DoxyCodeLine{00036\ is\_same\_v<\ decltype(\ ::std::declval<T>().size()\ ),\ \textcolor{keyword}{typename}\ T::extents\_type\ >\ \&\&}
+\DoxyCodeLine{00037\ is\_same\_v<\ \textcolor{keyword}{decltype}(\ ::std::declval<T>().capacity()\ ),\ \textcolor{keyword}{typename}\ T::extents\_type\ >;}
 \DoxyCodeLine{00038\ }
 \DoxyCodeLine{00039\ \textcolor{comment}{//\ All\ tensor\ types\ are\ tensor\ data\ types}}
 \DoxyCodeLine{00040\ \textcolor{comment}{//\ All\ tensor\ types\ must\ support\ scalar\ multiply\ and\ divide\ operations}}
 \DoxyCodeLine{00041\ \textcolor{comment}{//\ All\ tensor\ types\ must\ support\ unary\ functions:\ negation}}
 \DoxyCodeLine{00042\ \textcolor{comment}{//\ All\ tensor\ types\ must\ support\ binary\ functions:\ addition\ and\ subtraction}}
 \DoxyCodeLine{00043\ \textcolor{keyword}{template}\ <\ \textcolor{keyword}{class}\ T\ >}
-\DoxyCodeLine{00044\ \textcolor{keyword}{concept\ }\mbox{\hyperlink{conceptstd_1_1math_1_1concepts_1_1tensor}{tensor}}\ =\ \mbox{\hyperlink{conceptstd_1_1math_1_1concepts_1_1tensor__data}{tensor\_data<T>}}\ \&\&}
+\DoxyCodeLine{00044\ \textcolor{keyword}{concept\ }tensor\ =\ tensor\_data<T>\ \&\&}
 \DoxyCodeLine{00045\ \textcolor{keyword}{requires}\ (\ T\&\ t,\ \textcolor{keyword}{typename}\ T::value\_type\ v\ )\ \textcolor{comment}{//\ Scalar\ functions}}
 \DoxyCodeLine{00046\ \{}
 \DoxyCodeLine{00047\ \ \ v\ *\ t;\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Return\ type\ should\ also\ be\ a\ tensor\ or\ a\ derived\ type}}
@@ -68,194 +68,531 @@
 \DoxyCodeLine{00064\ \textcolor{comment}{//\ Readable\ tensor\ data\ must\ D)\ provide\ a\ const\ span\ representation}}
 \DoxyCodeLine{00065\ \textcolor{comment}{//\ Readable\ tensor\ data\ must\ E)\ provide\ an\ implementation\ defined\ view\ of\ the\ underlying\ memory.}}
 \DoxyCodeLine{00066\ \textcolor{comment}{//\ Readable\ tensor\ data\ must\ F)\ provide\ a\ const\ subtensor\ view}}
-\DoxyCodeLine{00067\ \textcolor{keyword}{template}\ <\ \textcolor{keyword}{class}\ T\ >}
-\DoxyCodeLine{00068\ \textcolor{keyword}{concept\ }\mbox{\hyperlink{conceptstd_1_1math_1_1concepts_1_1readable__tensor__data}{readable\_tensor\_data}}\ =\ \mbox{\hyperlink{conceptstd_1_1math_1_1concepts_1_1tensor__data}{tensor\_data<T>}}\ \&\&\ \textcolor{comment}{//\ A)}}
-\DoxyCodeLine{00069\ \textcolor{keyword}{requires}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ B)}}
-\DoxyCodeLine{00070\ \{}
-\DoxyCodeLine{00071\ \ \ \textcolor{keyword}{typename}\ T::tuple\_type;}
-\DoxyCodeLine{00072\ \}\ \&\&}
-\DoxyCodeLine{00073\ detail::is\_homogeneous\_tuple\_v<\ typename\ T::tuple\_type\ >\ \&\&}
-\DoxyCodeLine{00074\ (\ tuple\_size\_v<\ typename\ T::tuple\_type\ >\ ==\ T::extents\_type::rank()\ )\ \&\&}
-\DoxyCodeLine{00075\ \textcolor{keyword}{requires}(\ \textcolor{keyword}{const}\ T\&\ t\ )\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ C)}}
-\DoxyCodeLine{00076\ \{}
-\DoxyCodeLine{00077\ \ \ \textcolor{comment}{//\ TODO:\ language\ support\ doesn't\ really\ exist\ for\ enforcing:}}
-\DoxyCodeLine{00078\ \ \ \textcolor{comment}{//\ \{\ e[indices...]\ \}\ noexcept\ -\/>\ same\_as<typename\ ET::value\_type>}}
-\DoxyCodeLine{00079\ \ \ \textcolor{comment}{//\ \{\ e.at(indices...)\ \}\ -\/>\ same\_as<typename\ ET::value\_type>}}
-\DoxyCodeLine{00080\ \ \ \textcolor{comment}{//\ \ \ given\ sizeof(indices...)\ =\ ET::extents\_type::rank()}}
-\DoxyCodeLine{00081\ \ \ \textcolor{comment}{//\ Parameter\ pack\ not\ allowed\ in\ requires\ parameter\ clause}}
-\DoxyCodeLine{00082\ \ \ t;}
-\DoxyCodeLine{00083\ \}\ \&\&}
-\DoxyCodeLine{00084\ \textcolor{keyword}{requires}(\ \textcolor{keyword}{const}\ T\&\ t\ )\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ D)}}
-\DoxyCodeLine{00085\ \{}
-\DoxyCodeLine{00086\ \ \ \textcolor{keyword}{typename}\ T::span\_type;}
-\DoxyCodeLine{00087\ \ \ \{\ t.span()\ \}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{noexcept}\ -\/>\ same\_as<typename\ T::span\_type>;}
-\DoxyCodeLine{00088\ \}\ \&\&}
-\DoxyCodeLine{00089\ detail::is\_mdspan\_v<\ typename\ T::span\_type\ >\ \&\&\ \textcolor{comment}{//\ span\_type\ must\ be\ an\ mdspan}}
-\DoxyCodeLine{00090\ \textcolor{keyword}{requires}(\ \textcolor{keyword}{const}\ T\&\ t\ )\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ E)}}
-\DoxyCodeLine{00091\ \{}
-\DoxyCodeLine{00092\ \ \ \textcolor{keyword}{typename}\ T::const\_underlying\_span\_type;}
-\DoxyCodeLine{00093\ \ \ \{\ t.underlying\_span()\ \}\ \ \ \ \textcolor{keyword}{noexcept}\ -\/>\ same\_as<typename\ T::const\_underlying\_span\_type>;}
-\DoxyCodeLine{00094\ \}\ \&\&}
-\DoxyCodeLine{00095\ \textcolor{keyword}{requires}(\ \textcolor{keyword}{const}\ T\&\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ t,}
-\DoxyCodeLine{00096\ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{typename}\ T::tuple\_type\ start,}
-\DoxyCodeLine{00097\ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{typename}\ T::tuple\_type\ end\ )\ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ F)}}
-\DoxyCodeLine{00098\ \{}
-\DoxyCodeLine{00099\ \ \ \textcolor{keyword}{typename}\ T::const\_subtensor\_type;}
-\DoxyCodeLine{00100\ \ \ \{\ t.subtensor(start,end)\ \}\ -\/>\ same\_as<typename\ T::const\_subtensor\_type>;}
-\DoxyCodeLine{00101\ \ \ \{\ t.subtensor(start,end)\ \}\ -\/>\ tensor\_data;}
-\DoxyCodeLine{00102\ \};}
-\DoxyCodeLine{00103\ }
-\DoxyCodeLine{00104\ \textcolor{comment}{//\ Readable\ tensor\ must\ be\ a\ readable\ tensor\ data}}
-\DoxyCodeLine{00105\ \textcolor{comment}{//\ Readable\ tensor\ must\ be\ a\ tensor}}
-\DoxyCodeLine{00106\ \textcolor{keyword}{template}\ <\ \textcolor{keyword}{class}\ T\ >}
-\DoxyCodeLine{00107\ \textcolor{keyword}{concept\ }\mbox{\hyperlink{conceptstd_1_1math_1_1concepts_1_1readable__tensor}{readable\_tensor}}\ =\ \mbox{\hyperlink{conceptstd_1_1math_1_1concepts_1_1readable__tensor__data}{readable\_tensor\_data<T>}}\ \&\&\ \mbox{\hyperlink{conceptstd_1_1math_1_1concepts_1_1tensor}{tensor<T>}};}
-\DoxyCodeLine{00108\ }
-\DoxyCodeLine{00109\ \textcolor{comment}{//\ Writable\ tensor\ data\ must\ A)\ be\ a\ readable\ tensor}}
-\DoxyCodeLine{00110\ \textcolor{comment}{//\ Writable\ tensor\ data\ must\ B)\ provide\ a\ mutable\ scalar\ view}}
-\DoxyCodeLine{00111\ \textcolor{comment}{//\ Writable\ tensor\ data\ must\ C)\ provide\ an\ implementation\ defined\ mutable\ view\ of\ the\ underlying\ memory.}}
-\DoxyCodeLine{00112\ \textcolor{comment}{//\ Writable\ tensor\ data\ must\ D)\ provide\ a\ mutable\ subtensor\ view}}
-\DoxyCodeLine{00113\ \textcolor{keyword}{template}\ <\ \textcolor{keyword}{class}\ T\ >}
-\DoxyCodeLine{00114\ \textcolor{keyword}{concept\ }\mbox{\hyperlink{conceptstd_1_1math_1_1concepts_1_1writable__tensor__data}{writable\_tensor\_data}}\ =\ \mbox{\hyperlink{conceptstd_1_1math_1_1concepts_1_1readable__tensor__data}{readable\_tensor\_data<T>}}\ \&\&\ \textcolor{comment}{//\ A)}}
-\DoxyCodeLine{00115\ \textcolor{keyword}{requires}(\ T\&\ t\ )\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ B)}}
-\DoxyCodeLine{00116\ \{}
-\DoxyCodeLine{00117\ \ \ \textcolor{keyword}{typename}\ T::reference\_type;}
-\DoxyCodeLine{00118\ \ \ \textcolor{comment}{//\ TODO:\ language\ support\ doesn't\ really\ exist\ for\ enforcing:}}
-\DoxyCodeLine{00119\ \ \ \textcolor{comment}{//\ \{\ e[indices...]\ \}\ noexcept\ -\/>\ same\_as<typename\ ET::reference\_type>}}
-\DoxyCodeLine{00120\ \ \ \textcolor{comment}{//\ \{\ e.at(indices...)\ \}\ -\/>\ same\_as<typename\ ET::reference\_type>}}
-\DoxyCodeLine{00121\ \ \ \textcolor{comment}{//\ \ \ given\ sizeof(indices...)\ =\ ET::extents\_type::rank()}}
-\DoxyCodeLine{00122\ \ \ \textcolor{comment}{//\ Parameter\ pack\ not\ allowed\ in\ requires\ parameter\ clause}}
-\DoxyCodeLine{00123\ \}\ \&\&}
-\DoxyCodeLine{00124\ (\ !is\_const\_v<\ remove\_reference\_t<\ typename\ T::reference\_type\ >\ >\ )\ \&\&}
-\DoxyCodeLine{00125\ \textcolor{keyword}{requires}(\ T\&\ t\ )\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ C)}}
-\DoxyCodeLine{00126\ \{}
-\DoxyCodeLine{00127\ \ \ \textcolor{keyword}{typename}\ T::underlying\_span\_type;}
-\DoxyCodeLine{00128\ \ \ \{\ t.underlying\_span()\ \}\ \ \ \ \textcolor{keyword}{noexcept}\ -\/>\ same\_as<typename\ T::underlying\_span\_type>;}
-\DoxyCodeLine{00129\ \}\ \&\&}
-\DoxyCodeLine{00130\ \textcolor{keyword}{requires}(\ T\&\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ t,}
-\DoxyCodeLine{00131\ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{typename}\ T::tuple\_type\ start,}
-\DoxyCodeLine{00132\ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{typename}\ T::tuple\_type\ end\ )\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ D)}}
-\DoxyCodeLine{00133\ \{}
-\DoxyCodeLine{00134\ \ \ \textcolor{keyword}{typename}\ T::subtensor\_type;}
-\DoxyCodeLine{00135\ \ \ \{\ t.subtensor(start,end)\ \}\ -\/>\ same\_as<typename\ T::subtensor\_type>;}
-\DoxyCodeLine{00136\ \ \ \{\ t.subtensor(start,end)\ \}\ -\/>\ tensor\_data;}
-\DoxyCodeLine{00137\ \};}
-\DoxyCodeLine{00138\ }
-\DoxyCodeLine{00139\ \textcolor{comment}{//\ Writable\ tensor\ must\ be\ a\ writable\ tensor\ data}}
-\DoxyCodeLine{00140\ \textcolor{comment}{//\ Writable\ tensor\ must\ be\ a\ tensor}}
-\DoxyCodeLine{00141\ \textcolor{keyword}{template}\ <\ \textcolor{keyword}{class}\ T\ >}
-\DoxyCodeLine{00142\ \textcolor{keyword}{concept\ }\mbox{\hyperlink{conceptstd_1_1math_1_1concepts_1_1writable__tensor}{writable\_tensor}}\ =\ \mbox{\hyperlink{conceptstd_1_1math_1_1concepts_1_1writable__tensor__data}{writable\_tensor\_data<T>}}\ \&\&\ \mbox{\hyperlink{conceptstd_1_1math_1_1concepts_1_1readable__tensor}{readable\_tensor<T>}};}
-\DoxyCodeLine{00143\ }
-\DoxyCodeLine{00144\ \textcolor{comment}{//\ Dynamic\ tensor\ data}}
-\DoxyCodeLine{00145\ \textcolor{comment}{//\ Dynamic\ tensor\ data\ must\ be\ resizable}}
-\DoxyCodeLine{00146\ \textcolor{comment}{//\ Dynamic\ tensor\ data\ must\ be\ reservable}}
-\DoxyCodeLine{00147\ \textcolor{comment}{//\ Dynamic\ tensor\ data\ must\ define\ an\ allocator\ type}}
-\DoxyCodeLine{00148\ \textcolor{comment}{//\ Dynamic\ tensor\ data\ must\ be\ constructible\ with\ an\ allocator}}
-\DoxyCodeLine{00149\ \textcolor{comment}{//\ Dynamic\ tensor\ data\ must\ be\ constructible\ with\ an\ allocator\ and\ size}}
-\DoxyCodeLine{00150\ \textcolor{comment}{//\ Dynamic\ tensor\ data\ must\ be\ constructible\ with\ an\ allocator\ and\ size,\ capacity}}
-\DoxyCodeLine{00151\ \textcolor{comment}{//\ Dynamic\ tensor\ data\ must\ provide\ mutable/const\ access\ to\ underlying\ allocator}}
-\DoxyCodeLine{00152\ \textcolor{keyword}{template}\ <\ \textcolor{keyword}{class}\ T\ >}
-\DoxyCodeLine{00153\ \textcolor{keyword}{concept\ }\mbox{\hyperlink{conceptstd_1_1math_1_1concepts_1_1dynamic__tensor__data}{dynamic\_tensor\_data}}\ =\ \mbox{\hyperlink{conceptstd_1_1math_1_1concepts_1_1tensor__data}{tensor\_data<T>}}\ \&\&\ \textcolor{keyword}{requires}}
-\DoxyCodeLine{00154\ \{}
-\DoxyCodeLine{00155\ \ \ \textcolor{keyword}{typename}\ T::allocator\_type;}
-\DoxyCodeLine{00156\ \}\ \&\&}
-\DoxyCodeLine{00157\ \textcolor{keyword}{requires}(\ T\&\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ t,}
-\DoxyCodeLine{00158\ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{typename}\ T::extents\_type\ \ \ \ \ \ \ \ \ \ size,}
-\DoxyCodeLine{00159\ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{typename}\ T::extents\_type\ \ \ \ \ \ \ \ \ \ cap,}
-\DoxyCodeLine{00160\ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{typename}\ T::allocator\_type\&\ alloc\ )}
-\DoxyCodeLine{00161\ \{}
-\DoxyCodeLine{00162\ \ \ \{\ T(\ alloc\ )\};}
-\DoxyCodeLine{00163\ \ \ \{\ T(\ size,\ alloc\ )\ \};}
-\DoxyCodeLine{00164\ \ \ \{\ T(\ size,\ cap,\ alloc\ )\ \};}
-\DoxyCodeLine{00165\ \ \ \{\ t.set\_allocator(\ alloc\ )\ \};}
-\DoxyCodeLine{00166\ \ \ \{\ \textcolor{keyword}{static\_cast<}\textcolor{keyword}{const\ }T\&\textcolor{keyword}{>}(t).get\_allocator()\ \}\ -\/>\ same\_as<const\ typename\ T::allocator\_type\&>;}
-\DoxyCodeLine{00167\ \}\ \&\&}
-\DoxyCodeLine{00168\ (\ \textcolor{keyword}{requires}(\ T\&\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ t,}
-\DoxyCodeLine{00169\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{typename}\ T::extents\_type\ size,}
-\DoxyCodeLine{00170\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{typename}\ T::extents\_type\ cap\ )}
-\DoxyCodeLine{00171\ \ \ \{}
-\DoxyCodeLine{00172\ \ \ \ \ \{\ t.resize(\ size\ )\ \};}
-\DoxyCodeLine{00173\ \ \ \ \ \{\ t.reserve(\ cap\ )\ \};}
-\DoxyCodeLine{00174\ \ \ \}\ ||}
-\DoxyCodeLine{00175\ \ \ (\ \textcolor{keyword}{requires}(\ T\&\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ t,}
-\DoxyCodeLine{00176\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{typename}\ T::size\_type\ size,}
-\DoxyCodeLine{00177\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{typename}\ T::size\_type\ cap\ )}
-\DoxyCodeLine{00178\ \ \ \ \ \{}
-\DoxyCodeLine{00179\ \ \ \ \ \ \ \{\ t.resize(\ size\ )\ \};}
-\DoxyCodeLine{00180\ \ \ \ \ \ \ \{\ t.reserve(\ cap\ )\ \};}
-\DoxyCodeLine{00181\ \ \ \ \ \}\ \&\&\ (\ T::extents\_type::rank()\ ==\ 1\ )}
-\DoxyCodeLine{00182\ \ \ )}
-\DoxyCodeLine{00183\ );}
+\DoxyCodeLine{00067\ \textcolor{comment}{//\ Note:\ subtensor(...)\ does\ not\ have\ an\ easily\ enforceable\ interface}}
+\DoxyCodeLine{00068\ \textcolor{keyword}{template}\ <\ \textcolor{keyword}{class}\ T\ >}
+\DoxyCodeLine{00069\ \textcolor{keyword}{concept\ }readable\_tensor\_data\ =\ tensor\_data<T>\ \&\&\ \textcolor{comment}{//\ A)}}
+\DoxyCodeLine{00070\ \textcolor{keyword}{requires}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ B)}}
+\DoxyCodeLine{00071\ \{}
+\DoxyCodeLine{00072\ \ \ \textcolor{keyword}{typename}\ T::tuple\_type;}
+\DoxyCodeLine{00073\ \}\ \&\&}
+\DoxyCodeLine{00074\ detail::is\_homogeneous\_tuple\_v<\ typename\ T::tuple\_type\ >\ \&\&}
+\DoxyCodeLine{00075\ (\ tuple\_size\_v<\ typename\ T::tuple\_type\ >\ ==\ T::extents\_type::rank()\ )\ \&\&}
+\DoxyCodeLine{00076\ \textcolor{keyword}{requires}(\ \textcolor{keyword}{const}\ T\&\ t\ )\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ C)}}
+\DoxyCodeLine{00077\ \{}
+\DoxyCodeLine{00078\ \ \ \textcolor{comment}{//\ TODO:\ language\ support\ doesn't\ really\ exist\ for\ enforcing:}}
+\DoxyCodeLine{00079\ \ \ \textcolor{comment}{//\ \{\ e[indices...]\ \}\ noexcept\ -\/>\ same\_as<typename\ ET::value\_type>}}
+\DoxyCodeLine{00080\ \ \ \textcolor{comment}{//\ \{\ e.at(indices...)\ \}\ -\/>\ same\_as<typename\ ET::value\_type>}}
+\DoxyCodeLine{00081\ \ \ \textcolor{comment}{//\ \ \ given\ sizeof(indices...)\ =\ ET::extents\_type::rank()}}
+\DoxyCodeLine{00082\ \ \ \textcolor{comment}{//\ Parameter\ pack\ not\ allowed\ in\ requires\ parameter\ clause}}
+\DoxyCodeLine{00083\ \ \ t;}
+\DoxyCodeLine{00084\ \}\ \&\&}
+\DoxyCodeLine{00085\ \textcolor{keyword}{requires}(\ \textcolor{keyword}{const}\ T\&\ t\ )\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ D)}}
+\DoxyCodeLine{00086\ \{}
+\DoxyCodeLine{00087\ \ \ \textcolor{keyword}{typename}\ T::span\_type;}
+\DoxyCodeLine{00088\ \ \ \{\ t.span()\ \}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{noexcept}\ -\/>\ ::std::same\_as<typename\ T::span\_type>;}
+\DoxyCodeLine{00089\ \}\ \&\&}
+\DoxyCodeLine{00090\ detail::is\_mdspan\_v<\ typename\ T::span\_type\ >\ \&\&\ \textcolor{comment}{//\ span\_type\ must\ be\ an\ mdspan}}
+\DoxyCodeLine{00091\ \textcolor{keyword}{requires}(\ \textcolor{keyword}{const}\ T\&\ t\ )\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ E)}}
+\DoxyCodeLine{00092\ \{}
+\DoxyCodeLine{00093\ \ \ \textcolor{keyword}{typename}\ T::const\_underlying\_span\_type;}
+\DoxyCodeLine{00094\ \ \ \{\ t.underlying\_span()\ \}\ \ \ \ \textcolor{keyword}{noexcept}\ -\/>\ ::std::same\_as<typename\ T::const\_underlying\_span\_type>;}
+\DoxyCodeLine{00095\ \};}
+\DoxyCodeLine{00096\ }
+\DoxyCodeLine{00097\ \textcolor{comment}{//\ Readable\ tensor\ must\ be\ a\ readable\ tensor\ data}}
+\DoxyCodeLine{00098\ \textcolor{comment}{//\ Readable\ tensor\ must\ be\ a\ tensor}}
+\DoxyCodeLine{00099\ \textcolor{keyword}{template}\ <\ \textcolor{keyword}{class}\ T\ >}
+\DoxyCodeLine{00100\ \textcolor{keyword}{concept\ }readable\_tensor\ =\ readable\_tensor\_data<T>\ \&\&\ tensor<T>;}
+\DoxyCodeLine{00101\ }
+\DoxyCodeLine{00102\ \textcolor{comment}{//\ Writable\ tensor\ data\ must\ A)\ be\ a\ readable\ tensor}}
+\DoxyCodeLine{00103\ \textcolor{comment}{//\ Writable\ tensor\ data\ must\ B)\ provide\ a\ mutable\ scalar\ view}}
+\DoxyCodeLine{00104\ \textcolor{comment}{//\ Writable\ tensor\ data\ must\ C)\ provide\ an\ implementation\ defined\ mutable\ view\ of\ the\ underlying\ memory.}}
+\DoxyCodeLine{00105\ \textcolor{comment}{//\ Writable\ tensor\ data\ must\ D)\ provide\ a\ mutable\ subtensor\ view}}
+\DoxyCodeLine{00106\ \textcolor{comment}{//\ Note:\ subtensor(...)\ does\ not\ have\ an\ easily\ enforceable\ interface}}
+\DoxyCodeLine{00107\ \textcolor{keyword}{template}\ <\ \textcolor{keyword}{class}\ T\ >}
+\DoxyCodeLine{00108\ \textcolor{keyword}{concept\ }writable\_tensor\_data\ =\ readable\_tensor\_data<T>\ \&\&\ \textcolor{comment}{//\ A)}}
+\DoxyCodeLine{00109\ \textcolor{keyword}{requires}(\ T\&\ t\ )\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ B)}}
+\DoxyCodeLine{00110\ \{}
+\DoxyCodeLine{00111\ \ \ \textcolor{keyword}{typename}\ T::reference;}
+\DoxyCodeLine{00112\ \ \ \textcolor{comment}{//\ TODO:\ language\ support\ doesn't\ really\ exist\ for\ enforcing:}}
+\DoxyCodeLine{00113\ \ \ \textcolor{comment}{//\ \{\ e[indices...]\ \}\ noexcept\ -\/>\ same\_as<typename\ ET::reference>}}
+\DoxyCodeLine{00114\ \ \ \textcolor{comment}{//\ \{\ e.at(indices...)\ \}\ -\/>\ same\_as<typename\ ET::reference>}}
+\DoxyCodeLine{00115\ \ \ \textcolor{comment}{//\ \ \ given\ sizeof(indices...)\ =\ ET::extents\_type::rank()}}
+\DoxyCodeLine{00116\ \ \ \textcolor{comment}{//\ Parameter\ pack\ not\ allowed\ in\ requires\ parameter\ clause}}
+\DoxyCodeLine{00117\ \}\ \&\&}
+\DoxyCodeLine{00118\ (\ !::std::is\_const\_v<\ ::std::remove\_reference\_t<\ typename\ T::reference\ >\ >\ )\ \&\&}
+\DoxyCodeLine{00119\ \textcolor{keyword}{requires}(\ T\&\ t\ )\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ C)}}
+\DoxyCodeLine{00120\ \{}
+\DoxyCodeLine{00121\ \ \ \textcolor{keyword}{typename}\ T::underlying\_span\_type;}
+\DoxyCodeLine{00122\ \ \ \{\ t.underlying\_span()\ \}\ \ \ \ \textcolor{keyword}{noexcept}\ -\/>\ ::std::same\_as<typename\ T::underlying\_span\_type>;}
+\DoxyCodeLine{00123\ \};}
+\DoxyCodeLine{00124\ }
+\DoxyCodeLine{00125\ \textcolor{comment}{//\ Writable\ tensor\ must\ be\ a\ writable\ tensor\ data}}
+\DoxyCodeLine{00126\ \textcolor{comment}{//\ Writable\ tensor\ must\ be\ a\ tensor}}
+\DoxyCodeLine{00127\ \textcolor{keyword}{template}\ <\ \textcolor{keyword}{class}\ T\ >}
+\DoxyCodeLine{00128\ \textcolor{keyword}{concept\ }writable\_tensor\ =\ writable\_tensor\_data<T>\ \&\&\ readable\_tensor<T>;}
+\DoxyCodeLine{00129\ }
+\DoxyCodeLine{00130\ \textcolor{comment}{//\ Dynamic\ tensor\ data}}
+\DoxyCodeLine{00131\ \textcolor{comment}{//\ Dynamic\ tensor\ data\ must\ be\ resizable}}
+\DoxyCodeLine{00132\ \textcolor{comment}{//\ Dynamic\ tensor\ data\ must\ be\ reservable}}
+\DoxyCodeLine{00133\ \textcolor{comment}{//\ Dynamic\ tensor\ data\ must\ define\ an\ allocator\ type}}
+\DoxyCodeLine{00134\ \textcolor{comment}{//\ Dynamic\ tensor\ data\ must\ be\ constructible\ with\ an\ allocator}}
+\DoxyCodeLine{00135\ \textcolor{comment}{//\ Dynamic\ tensor\ data\ must\ be\ constructible\ with\ an\ allocator\ and\ size}}
+\DoxyCodeLine{00136\ \textcolor{comment}{//\ Dynamic\ tensor\ data\ must\ be\ constructible\ with\ an\ allocator\ and\ size,\ capacity}}
+\DoxyCodeLine{00137\ \textcolor{comment}{//\ Dynamic\ tensor\ data\ must\ provide\ mutable/const\ access\ to\ underlying\ allocator}}
+\DoxyCodeLine{00138\ \textcolor{keyword}{template}\ <\ \textcolor{keyword}{class}\ T\ >}
+\DoxyCodeLine{00139\ \textcolor{keyword}{concept\ }dynamic\_tensor\_data\ =\ tensor\_data<T>\ \&\&\ \textcolor{keyword}{requires}}
+\DoxyCodeLine{00140\ \{}
+\DoxyCodeLine{00141\ \ \ \textcolor{keyword}{typename}\ T::allocator\_type;}
+\DoxyCodeLine{00142\ \}\ \&\&}
+\DoxyCodeLine{00143\ \textcolor{keyword}{requires}(\ T\&\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ t,}
+\DoxyCodeLine{00144\ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{typename}\ T::extents\_type\ \ \ \ \ \ \ \ \ \ size,}
+\DoxyCodeLine{00145\ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{typename}\ T::extents\_type\ \ \ \ \ \ \ \ \ \ cap,}
+\DoxyCodeLine{00146\ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{typename}\ T::allocator\_type\&\ alloc\ )}
+\DoxyCodeLine{00147\ \{}
+\DoxyCodeLine{00148\ \ \ \{\ T(\ alloc\ )\};}
+\DoxyCodeLine{00149\ \ \ \{\ T(\ size,\ alloc\ )\ \};}
+\DoxyCodeLine{00150\ \ \ \{\ T(\ size,\ cap,\ alloc\ )\ \};}
+\DoxyCodeLine{00151\ \ \ \{\ t.set\_allocator(\ alloc\ )\ \};}
+\DoxyCodeLine{00152\ \ \ \{\ \textcolor{keyword}{static\_cast<}\textcolor{keyword}{const\ }T\&\textcolor{keyword}{>}(t).get\_allocator()\ \}\ -\/>\ ::std::same\_as<const\ typename\ T::allocator\_type\&>;}
+\DoxyCodeLine{00153\ \}\ \&\&}
+\DoxyCodeLine{00154\ \textcolor{keyword}{requires}(\ T\&\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ t,}
+\DoxyCodeLine{00155\ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{typename}\ T::extents\_type\ size,}
+\DoxyCodeLine{00156\ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{typename}\ T::extents\_type\ cap\ )}
+\DoxyCodeLine{00157\ \{}
+\DoxyCodeLine{00158\ \ \ \{\ t.resize(\ size\ )\ \};}
+\DoxyCodeLine{00159\ \ \ \{\ t.reserve(\ cap\ )\ \};}
+\DoxyCodeLine{00160\ \};}
+\DoxyCodeLine{00161\ }
+\DoxyCodeLine{00162\ \textcolor{comment}{//\ Dynamic\ tensor\ must\ be\ a\ dynamic\ tensor\ data}}
+\DoxyCodeLine{00163\ \textcolor{comment}{//\ Dynamic\ tensor\ must\ be\ a\ tensor}}
+\DoxyCodeLine{00164\ \textcolor{keyword}{template}\ <\ \textcolor{keyword}{class}\ T\ >}
+\DoxyCodeLine{00165\ \textcolor{keyword}{concept\ }dynamic\_tensor\ =\ dynamic\_tensor\_data<T>\ \&\&\ tensor<T>;}
+\DoxyCodeLine{00166\ }
+\DoxyCodeLine{00167\ \textcolor{comment}{//\ Fixed\ size\ tensor\ data}}
+\DoxyCodeLine{00168\ \textcolor{comment}{//\ A\ fixed\ size\ tensor\ data\ must\ be\ compile-\/time\ constructible}}
+\DoxyCodeLine{00169\ \textcolor{comment}{//\ A\ fixed\ size\ tensor\ data\ must\ support\ constant\ expression\ size\ functions.}}
+\DoxyCodeLine{00170\ \textcolor{comment}{//\ A\ fixed\ size\ tensor\ data\ must\ support\ constant\ expression\ capacity\ functions.}}
+\DoxyCodeLine{00171\ \textcolor{comment}{//\ A\ fixed\ size\ tensor\ data\ must\ have\ equivalent\ size\ and\ capacity.}}
+\DoxyCodeLine{00172\ \textcolor{keyword}{template}\ <\ \textcolor{keyword}{class}\ T\ >}
+\DoxyCodeLine{00173\ \textcolor{keyword}{concept\ }fixed\_size\_tensor\_data\ =\ tensor\_data<T>\ \&\&}
+\DoxyCodeLine{00174\ detail::extents\_is\_static\_v<typename\ T::extents\_type>\ \&\&}
+\DoxyCodeLine{00175\ \mbox{\hyperlink{namespacestd_1_1math_1_1detail_a6661f390a6c982712ceecc4ce1ea0459}{detail::is\_constexpr}}(\ []\{\ T();\ \}\ )\ \&\&}
+\DoxyCodeLine{00176\ \mbox{\hyperlink{namespacestd_1_1math_1_1detail_a6661f390a6c982712ceecc4ce1ea0459}{detail::is\_constexpr}}(\ []\{\ \textcolor{keyword}{decltype}(\ ::std::declval<T>().size()\ )\ \ \ \ \ nodiscard\_warning\ =\ T().size();\ \}\ )\ \&\&}
+\DoxyCodeLine{00177\ \mbox{\hyperlink{namespacestd_1_1math_1_1detail_a6661f390a6c982712ceecc4ce1ea0459}{detail::is\_constexpr}}(\ []\{\ \textcolor{keyword}{decltype}(\ ::std::declval<T>().capacity()\ )\ nodiscard\_warning\ =\ T().capacity();\ \}\ )\ \&\&}
+\DoxyCodeLine{00178\ (\ T().size()\ ==\ T().capacity()\ );}
+\DoxyCodeLine{00179\ }
+\DoxyCodeLine{00180\ \textcolor{comment}{//\ Fixed\ size\ tensor\ must\ be\ a\ fixed\ size\ tensor\ data}}
+\DoxyCodeLine{00181\ \textcolor{comment}{//\ Fixed\ size\ tensor\ must\ be\ a\ tensor}}
+\DoxyCodeLine{00182\ \textcolor{keyword}{template}\ <\ \textcolor{keyword}{class}\ T\ >}
+\DoxyCodeLine{00183\ \textcolor{keyword}{concept\ }fixed\_size\_tensor\ =\ fixed\_size\_tensor\_data<T>\ \&\&\ tensor<T>;}
 \DoxyCodeLine{00184\ }
-\DoxyCodeLine{00185\ \textcolor{comment}{//\ Dynamic\ tensor\ must\ be\ a\ dynamic\ tensor\ data}}
-\DoxyCodeLine{00186\ \textcolor{comment}{//\ Dynamic\ tensor\ must\ be\ a\ tensor}}
-\DoxyCodeLine{00187\ \textcolor{keyword}{template}\ <\ \textcolor{keyword}{class}\ T\ >}
-\DoxyCodeLine{00188\ \textcolor{keyword}{concept\ }\mbox{\hyperlink{conceptstd_1_1math_1_1concepts_1_1dynamic__tensor}{dynamic\_tensor}}\ =\ \mbox{\hyperlink{conceptstd_1_1math_1_1concepts_1_1dynamic__tensor__data}{dynamic\_tensor\_data<T>}}\ \&\&\ \mbox{\hyperlink{conceptstd_1_1math_1_1concepts_1_1tensor}{tensor<T>}};}
-\DoxyCodeLine{00189\ }
-\DoxyCodeLine{00190\ \textcolor{comment}{//\ Fixed\ size\ tensor\ data}}
-\DoxyCodeLine{00191\ \textcolor{comment}{//\ A\ fixed\ size\ tensor\ data\ must\ be\ compile-\/time\ constructible}}
-\DoxyCodeLine{00192\ \textcolor{comment}{//\ A\ fixed\ size\ tensor\ data\ must\ support\ constant\ expression\ size\ functions.}}
-\DoxyCodeLine{00193\ \textcolor{comment}{//\ A\ fixed\ size\ tensor\ data\ must\ support\ constant\ expression\ capacity\ functions.}}
-\DoxyCodeLine{00194\ \textcolor{comment}{//\ A\ fixed\ size\ tensor\ data\ must\ have\ equivalent\ size\ and\ capacity.}}
-\DoxyCodeLine{00195\ \textcolor{keyword}{template}\ <\ \textcolor{keyword}{class}\ T\ >}
-\DoxyCodeLine{00196\ \textcolor{keyword}{concept\ }\mbox{\hyperlink{conceptstd_1_1math_1_1concepts_1_1fixed__size__tensor__data}{fixed\_size\_tensor\_data}}\ =\ \mbox{\hyperlink{conceptstd_1_1math_1_1concepts_1_1tensor__data}{tensor\_data<T>}}\ \&\&}
-\DoxyCodeLine{00197\ detail::extents\_is\_static\_v<typename\ T::extents\_type>\ \&\&}
-\DoxyCodeLine{00198\ \mbox{\hyperlink{namespacestd_1_1math_1_1detail_a6661f390a6c982712ceecc4ce1ea0459}{detail::is\_constexpr}}(\ []\{\ T();\ \}\ )\ \&\&}
-\DoxyCodeLine{00199\ \mbox{\hyperlink{namespacestd_1_1math_1_1detail_a6661f390a6c982712ceecc4ce1ea0459}{detail::is\_constexpr}}(\ []\{\ \textcolor{keyword}{decltype}(\ declval<T>().size()\ )\ \ \ \ \ nodiscard\_warning\ =\ T().size();\ \}\ )\ \&\&}
-\DoxyCodeLine{00200\ \mbox{\hyperlink{namespacestd_1_1math_1_1detail_a6661f390a6c982712ceecc4ce1ea0459}{detail::is\_constexpr}}(\ []\{\ \textcolor{keyword}{decltype}(\ declval<T>().capacity()\ )\ nodiscard\_warning\ =\ T().capacity();\ \}\ )\ \&\&}
-\DoxyCodeLine{00201\ (\ T().size()\ ==\ T().capacity()\ );}
-\DoxyCodeLine{00202\ }
-\DoxyCodeLine{00203\ \textcolor{comment}{//\ Fixed\ size\ tensor\ must\ be\ a\ fixed\ size\ tensor\ data}}
-\DoxyCodeLine{00204\ \textcolor{comment}{//\ Fixed\ size\ tensor\ must\ be\ a\ tensor}}
-\DoxyCodeLine{00205\ \textcolor{keyword}{template}\ <\ \textcolor{keyword}{class}\ T\ >}
-\DoxyCodeLine{00206\ \textcolor{keyword}{concept\ }\mbox{\hyperlink{conceptstd_1_1math_1_1concepts_1_1fixed__size__tensor}{fixed\_size\_tensor}}\ =\ \mbox{\hyperlink{conceptstd_1_1math_1_1concepts_1_1fixed__size__tensor__data}{fixed\_size\_tensor\_data<T>}}\ \&\&\ \mbox{\hyperlink{conceptstd_1_1math_1_1concepts_1_1tensor}{tensor<T>}};}
+\DoxyCodeLine{00185\ \textcolor{comment}{//=================================================================================================}}
+\DoxyCodeLine{00186\ \textcolor{comment}{//\ \ Additional\ Tensor\ Concepts}}
+\DoxyCodeLine{00187\ \textcolor{comment}{//=================================================================================================}}
+\DoxyCodeLine{00188\ }
+\DoxyCodeLine{00189\ \textcolor{comment}{//\ Tensor\ may\ be\ constructible}}
+\DoxyCodeLine{00190\ \textcolor{comment}{//\ Enforces\ both\ types\ are\ tensor\ which\ have\ constructible\ elements}}
+\DoxyCodeLine{00191\ \textcolor{comment}{//\ and\ both\ have\ potentially\ compatible\ extents}}
+\DoxyCodeLine{00192\ \textcolor{keyword}{template}\ <\ \textcolor{keyword}{class}\ From,\ \textcolor{keyword}{class}\ To\ >}
+\DoxyCodeLine{00193\ \textcolor{keyword}{concept\ }\mbox{\hyperlink{namespacestd_1_1math_1_1concepts_a37d161e63019ad29f5d04f5cc484d5c9}{tensor\_may\_be\_constructible}}\ =}
+\DoxyCodeLine{00194\ tensor<From>\ \&\&\ tensor<To>\ \&\&}
+\DoxyCodeLine{00195\ (\ ::std::is\_constructible\_v<\ typename\ From::value\_type,\ typename\ To::value\_type\ >\ )\ \&\&}
+\DoxyCodeLine{00196\ detail::extents\_may\_be\_equal\_v<\ typename\ From::extents\_type,\ typename\ To::extents\_type\ >;}
+\DoxyCodeLine{00197\ }
+\DoxyCodeLine{00198\ \textcolor{comment}{//\ View\ may\ be\ constructible\ to\ tensor}}
+\DoxyCodeLine{00199\ \textcolor{comment}{//\ Enforces\ view\ is\ an\ mdspan\ of\ rank\ equal\ to\ tensor\ with\ elements}}
+\DoxyCodeLine{00200\ \textcolor{comment}{//\ \ \ Each\ extent\ must\ be\ the\ same\ or\ dynamic}}
+\DoxyCodeLine{00201\ \textcolor{comment}{//\ View\ element\ must\ be\ constructible\ to\ the\ tensor\ elements}}
+\DoxyCodeLine{00202\ \textcolor{keyword}{template}\ <\ \textcolor{keyword}{class}\ From,\ \textcolor{keyword}{class}\ To\ >}
+\DoxyCodeLine{00203\ \textcolor{keyword}{concept\ }\mbox{\hyperlink{namespacestd_1_1math_1_1concepts_ace3f73f1713cef14d221a6a38e4c55fb}{view\_may\_be\_constructible\_to\_tensor}}\ =}
+\DoxyCodeLine{00204\ detail::is\_mdspan\_v<From>\ \&\&\ tensor<To>\ \&\&}
+\DoxyCodeLine{00205\ (\ ::std::is\_constructible\_v<typename\ From::value\_type,typename\ To::value\_type>\ )\ \&\&}
+\DoxyCodeLine{00206\ detail::extents\_may\_be\_equal\_v<\ typename\ From::extents\_type,\ typename\ To::extents\_type\ >;}
 \DoxyCodeLine{00207\ }
-\DoxyCodeLine{00208\ \textcolor{comment}{//=================================================================================================}}
-\DoxyCodeLine{00209\ \textcolor{comment}{//\ \ Additional\ Tensor\ Concepts}}
-\DoxyCodeLine{00210\ \textcolor{comment}{//=================================================================================================}}
-\DoxyCodeLine{00211\ }
-\DoxyCodeLine{00212\ \textcolor{comment}{//\ Tensor\ may\ be\ constructible}}
-\DoxyCodeLine{00213\ \textcolor{comment}{//\ Enforces\ both\ types\ are\ tensor\ which\ have\ constructible\ elements}}
-\DoxyCodeLine{00214\ \textcolor{comment}{//\ and\ both\ have\ potentially\ compatible\ extents}}
-\DoxyCodeLine{00215\ \textcolor{keyword}{template}\ <\ \textcolor{keyword}{class}\ From,\ \textcolor{keyword}{class}\ To\ >}
-\DoxyCodeLine{00216\ \textcolor{keyword}{concept\ }\mbox{\hyperlink{conceptstd_1_1math_1_1concepts_1_1tensor__may__be__constructible}{tensor\_may\_be\_constructible}}\ =}
-\DoxyCodeLine{00217\ \mbox{\hyperlink{conceptstd_1_1math_1_1concepts_1_1tensor}{tensor<From>}}\ \&\&\ \mbox{\hyperlink{conceptstd_1_1math_1_1concepts_1_1tensor}{tensor<To>}}\ \&\&}
-\DoxyCodeLine{00218\ (\ is\_constructible\_v<\ typename\ From::value\_type,\ typename\ To::value\_type\ >\ )\ \&\&}
-\DoxyCodeLine{00219\ detail::extents\_may\_be\_equal\_v<\ typename\ From::extents\_type,\ typename\ To::extents\_type\ >;}
-\DoxyCodeLine{00220\ }
-\DoxyCodeLine{00221\ \textcolor{comment}{//\ View\ may\ be\ constructible\ to\ tensor}}
-\DoxyCodeLine{00222\ \textcolor{comment}{//\ Enforces\ view\ is\ an\ mdspan\ of\ rank\ equal\ to\ tensor\ with\ elements}}
-\DoxyCodeLine{00223\ \textcolor{comment}{//\ \ \ Each\ extent\ must\ be\ the\ same\ or\ dynamic}}
-\DoxyCodeLine{00224\ \textcolor{comment}{//\ View\ element\ must\ be\ constructible\ to\ the\ tensor\ elements}}
-\DoxyCodeLine{00225\ \textcolor{keyword}{template}\ <\ \textcolor{keyword}{class}\ From,\ \textcolor{keyword}{class}\ To\ >}
-\DoxyCodeLine{00226\ \textcolor{keyword}{concept\ }\mbox{\hyperlink{conceptstd_1_1math_1_1concepts_1_1view__may__be__constructible__to__tensor}{view\_may\_be\_constructible\_to\_tensor}}\ =}
-\DoxyCodeLine{00227\ detail::is\_mdspan\_v<From>\ \&\&\ \mbox{\hyperlink{conceptstd_1_1math_1_1concepts_1_1tensor}{tensor<To>}}\ \&\&}
-\DoxyCodeLine{00228\ (\ is\_constructible\_v<typename\ From::value\_type,typename\ To::value\_type>\ )\ \&\&}
-\DoxyCodeLine{00229\ detail::extents\_may\_be\_equal\_v<\ typename\ From::extents\_type,\ typename\ To::extents\_type\ >;}
-\DoxyCodeLine{00230\ }
-\DoxyCodeLine{00231\ \textcolor{comment}{//\ View\ is\ constructible\ to\ tensor}}
-\DoxyCodeLine{00232\ \textcolor{comment}{//\ Enforces\ view\ is\ an\ mdspan\ of\ rank\ equal\ to\ tensor\ with\ elements}}
-\DoxyCodeLine{00233\ \textcolor{comment}{//\ \ \ Each\ extent\ must\ be\ the\ same\ (and\ not\ dynamic)}}
-\DoxyCodeLine{00234\ \textcolor{comment}{//\ View\ element\ must\ be\ constructible\ to\ the\ tensor\ elements}}
-\DoxyCodeLine{00235\ \textcolor{keyword}{template}\ <\ \textcolor{keyword}{class}\ From,\ \textcolor{keyword}{class}\ To\ >}
-\DoxyCodeLine{00236\ \textcolor{keyword}{concept\ }\mbox{\hyperlink{conceptstd_1_1math_1_1concepts_1_1view__is__constructible__to__tensor}{view\_is\_constructible\_to\_tensor}}\ =}
-\DoxyCodeLine{00237\ detail::is\_mdspan\_v<From>\ \&\&\ \mbox{\hyperlink{conceptstd_1_1math_1_1concepts_1_1tensor}{tensor<To>}}\ \&\&}
-\DoxyCodeLine{00238\ (\ is\_constructible\_v<typename\ From::value\_type,typename\ To::value\_type>\ )\ \&\&}
-\DoxyCodeLine{00239\ detail::extents\_is\_equal\_v<\ typename\ From::extents\_type,\ typename\ To::extents\_type\ >;}
-\DoxyCodeLine{00240\ }
-\DoxyCodeLine{00241\ \textcolor{comment}{//\ View\ is\ nothrow\ constructible\ to\ tensor}}
-\DoxyCodeLine{00242\ \textcolor{comment}{//\ Enforces\ view\ is\ an\ mdspan\ of\ rank\ equal\ to\ tensor\ with\ elements}}
-\DoxyCodeLine{00243\ \textcolor{comment}{//\ \ \ Each\ extent\ must\ be\ the\ same\ (and\ not\ dynamic)}}
-\DoxyCodeLine{00244\ \textcolor{comment}{//\ View\ element\ must\ be\ nothrow\ constructible\ to\ the\ tensor\ elements}}
-\DoxyCodeLine{00245\ \textcolor{keyword}{template}\ <\ \textcolor{keyword}{class}\ From,\ \textcolor{keyword}{class}\ To\ >}
-\DoxyCodeLine{00246\ \textcolor{keyword}{concept\ }\mbox{\hyperlink{conceptstd_1_1math_1_1concepts_1_1view__is__nothrow__constructible__to__tensor}{view\_is\_nothrow\_constructible\_to\_tensor}}\ =}
-\DoxyCodeLine{00247\ detail::is\_mdspan\_v<From>\ \&\&\ \mbox{\hyperlink{conceptstd_1_1math_1_1concepts_1_1tensor}{tensor<To>}}\ \&\&}
-\DoxyCodeLine{00248\ (\ is\_nothrow\_constructible\_v<typename\ From::value\_type,typename\ To::value\_type>\ )\ \&\&}
-\DoxyCodeLine{00249\ detail::extents\_is\_equal\_v<\ typename\ From::extents\_type,\ typename\ To::extents\_type\ >;}
-\DoxyCodeLine{00250\ }
-\DoxyCodeLine{00251\ \}\ \ \ \ \ \ \ \textcolor{comment}{//-\/\ concepts\ namespace}}
-\DoxyCodeLine{00252\ \}\ \ \ \ \ \ \ \textcolor{comment}{//-\/\ math\ namespace}}
-\DoxyCodeLine{00253\ \}\ \ \ \ \ \ \ \textcolor{comment}{//-\/\ std\ namespace}}
-\DoxyCodeLine{00254\ }
-\DoxyCodeLine{00255\ \textcolor{preprocessor}{\#endif\ \ }\textcolor{comment}{//-\/\ LINEAR\_ALGEBRA\_TENSOR\_CONCEPTS\_HPP}}
+\DoxyCodeLine{00208\ \textcolor{comment}{//\ View\ is\ constructible\ to\ tensor}}
+\DoxyCodeLine{00209\ \textcolor{comment}{//\ Enforces\ view\ is\ an\ mdspan\ of\ rank\ equal\ to\ tensor\ with\ elements}}
+\DoxyCodeLine{00210\ \textcolor{comment}{//\ \ \ Each\ extent\ must\ be\ the\ same\ (and\ not\ dynamic)}}
+\DoxyCodeLine{00211\ \textcolor{comment}{//\ View\ element\ must\ be\ constructible\ to\ the\ tensor\ elements}}
+\DoxyCodeLine{00212\ \textcolor{keyword}{template}\ <\ \textcolor{keyword}{class}\ From,\ \textcolor{keyword}{class}\ To\ >}
+\DoxyCodeLine{00213\ \textcolor{keyword}{concept\ }\mbox{\hyperlink{namespacestd_1_1math_1_1concepts_a499642446ead7534ab6a17727219b145}{view\_is\_constructible\_to\_tensor}}\ =}
+\DoxyCodeLine{00214\ detail::is\_mdspan\_v<From>\ \&\&\ tensor<To>\ \&\&}
+\DoxyCodeLine{00215\ (\ ::std::is\_constructible\_v<typename\ From::value\_type,typename\ To::value\_type>\ )\ \&\&}
+\DoxyCodeLine{00216\ detail::extents\_are\_equal\_v<\ typename\ From::extents\_type,\ typename\ To::extents\_type\ >;}
+\DoxyCodeLine{00217\ }
+\DoxyCodeLine{00218\ \textcolor{comment}{//\ View\ is\ nothrow\ constructible\ to\ tensor}}
+\DoxyCodeLine{00219\ \textcolor{comment}{//\ Enforces\ view\ is\ an\ mdspan\ of\ rank\ equal\ to\ tensor\ with\ elements}}
+\DoxyCodeLine{00220\ \textcolor{comment}{//\ \ \ Each\ extent\ must\ be\ the\ same\ (and\ not\ dynamic)}}
+\DoxyCodeLine{00221\ \textcolor{comment}{//\ View\ element\ must\ be\ nothrow\ constructible\ to\ the\ tensor\ elements}}
+\DoxyCodeLine{00222\ \textcolor{keyword}{template}\ <\ \textcolor{keyword}{class}\ From,\ \textcolor{keyword}{class}\ To\ >}
+\DoxyCodeLine{00223\ \textcolor{keyword}{concept\ }\mbox{\hyperlink{namespacestd_1_1math_1_1concepts_a59af87894438c58999ff10b1d00aa39f}{view\_is\_nothrow\_constructible\_to\_tensor}}\ =}
+\DoxyCodeLine{00224\ detail::is\_mdspan\_v<From>\ \&\&\ tensor<To>\ \&\&}
+\DoxyCodeLine{00225\ (\ ::std::is\_nothrow\_constructible\_v<typename\ From::value\_type,typename\ To::value\_type>\ )\ \&\&}
+\DoxyCodeLine{00226\ detail::extents\_are\_equal\_v<\ typename\ From::extents\_type,\ typename\ To::extents\_type\ >;}
+\DoxyCodeLine{00227\ }
+\DoxyCodeLine{00228\ \textcolor{preprocessor}{\#else}}
+\DoxyCodeLine{00229\ }
+\DoxyCodeLine{00230\ \textcolor{comment}{//-\/\ Tests\ for\ aliases}}
+\DoxyCodeLine{00231\ }
+\DoxyCodeLine{00232\ \textcolor{comment}{//\ Test\ if\ T\ has\ alias\ value\_type}}
+\DoxyCodeLine{00233\ \textcolor{keyword}{template}\ <\ \textcolor{keyword}{class}\ T,\ \textcolor{keyword}{class}\ =\ \textcolor{keywordtype}{void}\ >\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structstd_1_1math_1_1concepts_1_1has__value__type}{has\_value\_type}}\ :\ \textcolor{keyword}{public}\ ::std::false\_type\ \{\ \};}
+\DoxyCodeLine{00234\ \textcolor{keyword}{template}\ <\ \textcolor{keyword}{class}\ T\ >\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structstd_1_1math_1_1concepts_1_1has__value__type}{has\_value\_type}}<\ T,\ ::std::enable\_if\_t<\ ::std::is\_same\_v<\ typename\ T::value\_type,\ typename\ T::value\_type\ >\ >\ >\ :\ \textcolor{keyword}{public}\ ::std::true\_type\ \{\ \};}
+\DoxyCodeLine{00235\ \textcolor{keyword}{template}\ <\ \textcolor{keyword}{class}\ T\ >\ \textcolor{keyword}{inline}\ \textcolor{keyword}{constexpr}\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{namespacestd_1_1math_1_1concepts_a27e1062e606542885a7ee3b69e5fb384}{has\_value\_type\_v}}\ =\ \mbox{\hyperlink{structstd_1_1math_1_1concepts_1_1has__value__type}{has\_value\_type<T>::value}};}
+\DoxyCodeLine{00236\ }
+\DoxyCodeLine{00237\ \textcolor{comment}{//\ Test\ if\ T\ has\ alias\ index\_type}}
+\DoxyCodeLine{00238\ \textcolor{keyword}{template}\ <\ \textcolor{keyword}{class}\ T,\ \textcolor{keyword}{class}\ =\ \textcolor{keywordtype}{void}\ >\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structstd_1_1math_1_1concepts_1_1has__index__type}{has\_index\_type}}\ :\ \textcolor{keyword}{public}\ ::std::false\_type\ \{\ \};}
+\DoxyCodeLine{00239\ \textcolor{keyword}{template}\ <\ \textcolor{keyword}{class}\ T\ >\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structstd_1_1math_1_1concepts_1_1has__index__type}{has\_index\_type}}<\ T,\ ::std::enable\_if\_t<\ ::std::is\_same\_v<\ typename\ T::index\_type,\ typename\ T::index\_type\ >\ >\ >\ :\ \textcolor{keyword}{public}\ ::std::true\_type\ \{\ \};}
+\DoxyCodeLine{00240\ \textcolor{keyword}{template}\ <\ \textcolor{keyword}{class}\ T\ >\ \textcolor{keyword}{inline}\ \textcolor{keyword}{constexpr}\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{namespacestd_1_1math_1_1concepts_a2d4228df3361d5d4cbf0dcd043fb306a}{has\_index\_type\_v}}\ =\ \mbox{\hyperlink{structstd_1_1math_1_1concepts_1_1has__index__type}{has\_index\_type<T>::value}};}
+\DoxyCodeLine{00241\ }
+\DoxyCodeLine{00242\ \textcolor{comment}{//\ Test\ if\ T\ has\ alias\ size\_type}}
+\DoxyCodeLine{00243\ \textcolor{keyword}{template}\ <\ \textcolor{keyword}{class}\ T,\ \textcolor{keyword}{class}\ =\ \textcolor{keywordtype}{void}\ >\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structstd_1_1math_1_1concepts_1_1has__size__type}{has\_size\_type}}\ :\ \textcolor{keyword}{public}\ ::std::false\_type\ \{\ \};}
+\DoxyCodeLine{00244\ \textcolor{keyword}{template}\ <\ \textcolor{keyword}{class}\ T\ >\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structstd_1_1math_1_1concepts_1_1has__size__type}{has\_size\_type}}<\ T,\ ::std::enable\_if\_t<\ ::std::is\_same\_v<\ typename\ T::size\_type,\ typename\ T::size\_type\ >\ >\ >\ :\ \textcolor{keyword}{public}\ ::std::true\_type\ \{\ \};}
+\DoxyCodeLine{00245\ \textcolor{keyword}{template}\ <\ \textcolor{keyword}{class}\ T\ >\ \textcolor{keyword}{inline}\ \textcolor{keyword}{constexpr}\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{namespacestd_1_1math_1_1concepts_a9738ecfe3701d17e7e20bf5e357a00d6}{has\_size\_type\_v}}\ =\ \mbox{\hyperlink{structstd_1_1math_1_1concepts_1_1has__size__type}{has\_size\_type<T>::value}};}
+\DoxyCodeLine{00246\ }
+\DoxyCodeLine{00247\ \textcolor{comment}{//\ Test\ if\ T\ has\ alias\ extents\_type}}
+\DoxyCodeLine{00248\ \textcolor{keyword}{template}\ <\ \textcolor{keyword}{class}\ T,\ \textcolor{keyword}{class}\ =\ \textcolor{keywordtype}{void}\ >\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structstd_1_1math_1_1concepts_1_1has__extents__type}{has\_extents\_type}}\ :\ \textcolor{keyword}{public}\ ::std::false\_type\ \{\ \};}
+\DoxyCodeLine{00249\ \textcolor{keyword}{template}\ <\ \textcolor{keyword}{class}\ T\ >\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structstd_1_1math_1_1concepts_1_1has__extents__type}{has\_extents\_type}}<\ T,\ ::std::enable\_if\_t<\ ::std::is\_same\_v<\ typename\ T::extents\_type,\ typename\ T::extents\_type\ >\ \&\&\ detail::is\_extents\_v<\ typename\ T::extents\_type\ >\ >\ >\ :\ \textcolor{keyword}{public}\ ::std::true\_type\ \{\ \};}
+\DoxyCodeLine{00250\ \textcolor{keyword}{template}\ <\ \textcolor{keyword}{class}\ T\ >\ \textcolor{keyword}{inline}\ \textcolor{keyword}{constexpr}\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{namespacestd_1_1math_1_1concepts_aa54d29db53238c685a7f0c52cc59b4a8}{has\_extents\_type\_v}}\ =\ \mbox{\hyperlink{structstd_1_1math_1_1concepts_1_1has__extents__type}{has\_extents\_type<T>::value}};}
+\DoxyCodeLine{00251\ }
+\DoxyCodeLine{00252\ \textcolor{comment}{//\ Test\ if\ T\ has\ alias\ tuple\_type}}
+\DoxyCodeLine{00253\ \textcolor{keyword}{template}\ <\ \textcolor{keyword}{class}\ T,\ \textcolor{keyword}{class}\ =\ \textcolor{keywordtype}{void}\ >\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structstd_1_1math_1_1concepts_1_1has__tuple__type}{has\_tuple\_type}}\ :\ \textcolor{keyword}{public}\ ::std::false\_type\ \{\ \};}
+\DoxyCodeLine{00254\ \textcolor{keyword}{template}\ <\ \textcolor{keyword}{class}\ T\ >\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structstd_1_1math_1_1concepts_1_1has__tuple__type}{has\_tuple\_type}}<\ T,\ ::std::enable\_if\_t<\ ::std::is\_same\_v<\ typename\ T::tuple\_type,\ typename\ T::tuple\_type\ >\ >\ >\ :\ \textcolor{keyword}{public}\ ::std::true\_type\ \{\ \};}
+\DoxyCodeLine{00255\ \textcolor{keyword}{template}\ <\ \textcolor{keyword}{class}\ T\ >\ \textcolor{keyword}{inline}\ \textcolor{keyword}{constexpr}\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{namespacestd_1_1math_1_1concepts_a684aa91203cdbe67230538d5d0ccdc82}{has\_tuple\_type\_v}}\ =\ \mbox{\hyperlink{structstd_1_1math_1_1concepts_1_1has__tuple__type}{has\_tuple\_type<T>::value}};}
+\DoxyCodeLine{00256\ }
+\DoxyCodeLine{00257\ \textcolor{comment}{//\ Test\ if\ T\ has\ alias\ span\_type}}
+\DoxyCodeLine{00258\ \textcolor{keyword}{template}\ <\ \textcolor{keyword}{class}\ T,\ \textcolor{keyword}{class}\ =\ \textcolor{keywordtype}{void}\ >\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structstd_1_1math_1_1concepts_1_1has__span__type}{has\_span\_type}}\ :\ \textcolor{keyword}{public}\ ::std::false\_type\ \{\ \};}
+\DoxyCodeLine{00259\ \textcolor{keyword}{template}\ <\ \textcolor{keyword}{class}\ T\ >\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structstd_1_1math_1_1concepts_1_1has__span__type}{has\_span\_type}}<\ T,\ ::std::enable\_if\_t<\ ::std::is\_same\_v<\ typename\ T::span\_type,\ typename\ T::span\_type\ >\ >\ >\ :\ \textcolor{keyword}{public}\ ::std::true\_type\ \{\ \};}
+\DoxyCodeLine{00260\ \textcolor{keyword}{template}\ <\ \textcolor{keyword}{class}\ T\ >\ \textcolor{keyword}{inline}\ \textcolor{keyword}{constexpr}\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{namespacestd_1_1math_1_1concepts_ac0a0605c8ceb804dced9a8e13e3bcd76}{has\_span\_type\_v}}\ =\ \mbox{\hyperlink{structstd_1_1math_1_1concepts_1_1has__span__type}{has\_span\_type<T>::value}};}
+\DoxyCodeLine{00261\ }
+\DoxyCodeLine{00262\ \textcolor{comment}{//\ Test\ if\ T\ has\ alias\ reference}}
+\DoxyCodeLine{00263\ \textcolor{keyword}{template}\ <\ \textcolor{keyword}{class}\ T,\ \textcolor{keyword}{class}\ =\ \textcolor{keywordtype}{void}\ >\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structstd_1_1math_1_1concepts_1_1has__reference}{has\_reference}}\ :\ \textcolor{keyword}{public}\ ::std::false\_type\ \{\ \};}
+\DoxyCodeLine{00264\ \textcolor{keyword}{template}\ <\ \textcolor{keyword}{class}\ T\ >\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structstd_1_1math_1_1concepts_1_1has__reference}{has\_reference}}<\ T,\ ::std::enable\_if\_t<\ ::std::is\_same\_v<\ typename\ T::reference,\ typename\ T::reference\ >\ >\ >\ :\ \textcolor{keyword}{public}\ ::std::true\_type\ \{\ \};}
+\DoxyCodeLine{00265\ \textcolor{keyword}{template}\ <\ \textcolor{keyword}{class}\ T\ >\ \textcolor{keyword}{inline}\ \textcolor{keyword}{constexpr}\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{namespacestd_1_1math_1_1concepts_a264bf9362bf8e45ae4a884b13718a22f}{has\_reference\_v}}\ =\ \mbox{\hyperlink{structstd_1_1math_1_1concepts_1_1has__reference}{has\_reference<T>::value}};}
+\DoxyCodeLine{00266\ }
+\DoxyCodeLine{00267\ \textcolor{comment}{//\ Test\ if\ T\ has\ alias\ underlying\_span\_type}}
+\DoxyCodeLine{00268\ \textcolor{keyword}{template}\ <\ \textcolor{keyword}{class}\ T,\ \textcolor{keyword}{class}\ =\ \textcolor{keywordtype}{void}\ >\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structstd_1_1math_1_1concepts_1_1has__underlying__span__type}{has\_underlying\_span\_type}}\ :\ \textcolor{keyword}{public}\ ::std::false\_type\ \{\ \};}
+\DoxyCodeLine{00269\ \textcolor{keyword}{template}\ <\ \textcolor{keyword}{class}\ T\ >\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structstd_1_1math_1_1concepts_1_1has__underlying__span__type}{has\_underlying\_span\_type}}<\ T,\ ::std::enable\_if\_t<\ ::std::is\_same\_v<\ typename\ T::underlying\_span\_type,\ typename\ T::underlying\_span\_type\ >\ >\ >\ :\ \textcolor{keyword}{public}\ ::std::true\_type\ \{\ \};}
+\DoxyCodeLine{00270\ \textcolor{keyword}{template}\ <\ \textcolor{keyword}{class}\ T\ >\ \textcolor{keyword}{inline}\ \textcolor{keyword}{constexpr}\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{namespacestd_1_1math_1_1concepts_a15e2e6fd76ed8795039542522794bf0d}{has\_underlying\_span\_type\_v}}\ =\ \mbox{\hyperlink{structstd_1_1math_1_1concepts_1_1has__underlying__span__type}{has\_underlying\_span\_type<T>::value}};}
+\DoxyCodeLine{00271\ }
+\DoxyCodeLine{00272\ \textcolor{comment}{//\ Test\ if\ T\ has\ alias\ const\_underlying\_span\_type}}
+\DoxyCodeLine{00273\ \textcolor{keyword}{template}\ <\ \textcolor{keyword}{class}\ T,\ \textcolor{keyword}{class}\ =\ \textcolor{keywordtype}{void}\ >\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structstd_1_1math_1_1concepts_1_1has__const__underlying__span__type}{has\_const\_underlying\_span\_type}}\ :\ \textcolor{keyword}{public}\ ::std::false\_type\ \{\ \};}
+\DoxyCodeLine{00274\ \textcolor{keyword}{template}\ <\ \textcolor{keyword}{class}\ T\ >\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structstd_1_1math_1_1concepts_1_1has__const__underlying__span__type}{has\_const\_underlying\_span\_type}}<\ T,\ ::std::enable\_if\_t<\ ::std::is\_same\_v<\ typename\ T::const\_underlying\_span\_type,\ typename\ T::const\_underlying\_span\_type\ >\ >\ >\ :\ \textcolor{keyword}{public}\ ::std::true\_type\ \{\ \};}
+\DoxyCodeLine{00275\ \textcolor{keyword}{template}\ <\ \textcolor{keyword}{class}\ T\ >\ \textcolor{keyword}{inline}\ \textcolor{keyword}{constexpr}\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{namespacestd_1_1math_1_1concepts_a5d76d125189e7646489c2c6558092ab9}{has\_const\_underlying\_span\_type\_v}}\ =\ \mbox{\hyperlink{structstd_1_1math_1_1concepts_1_1has__const__underlying__span__type}{has\_const\_underlying\_span\_type<T>::value}};}
+\DoxyCodeLine{00276\ }
+\DoxyCodeLine{00277\ }
+\DoxyCodeLine{00278\ \textcolor{comment}{//\ Test\ if\ T\ has\ alias\ allocator\_type}}
+\DoxyCodeLine{00279\ \textcolor{keyword}{template}\ <\ \textcolor{keyword}{class}\ T,\ \textcolor{keyword}{class}\ =\ \textcolor{keywordtype}{void}\ >\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structstd_1_1math_1_1concepts_1_1has__allocator__type}{has\_allocator\_type}}\ :\ \textcolor{keyword}{public}\ ::std::false\_type\ \{\ \};}
+\DoxyCodeLine{00280\ \textcolor{keyword}{template}\ <\ \textcolor{keyword}{class}\ T\ >\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structstd_1_1math_1_1concepts_1_1has__allocator__type}{has\_allocator\_type}}<\ T,\ ::std::enable\_if\_t<\ ::std::is\_same\_v<\ typename\ T::allocator\_type,\ typename\ T::allocator\_type\ >\ >\ >\ :\ \textcolor{keyword}{public}\ ::std::true\_type\ \{\ \};}
+\DoxyCodeLine{00281\ \textcolor{keyword}{template}\ <\ \textcolor{keyword}{class}\ T\ >\ \textcolor{keyword}{inline}\ \textcolor{keyword}{constexpr}\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{namespacestd_1_1math_1_1concepts_a99d65a0d76311c0878318a8a866238d3}{has\_allocator\_type\_v}}\ =\ \mbox{\hyperlink{structstd_1_1math_1_1concepts_1_1has__allocator__type}{has\_allocator\_type<T>::value}};}
+\DoxyCodeLine{00282\ }
+\DoxyCodeLine{00283\ \textcolor{comment}{//-\/\ Test\ for\ functions}}
+\DoxyCodeLine{00284\ }
+\DoxyCodeLine{00285\ \textcolor{comment}{//\ Test\ for\ size\ function}}
+\DoxyCodeLine{00286\ \textcolor{keyword}{template}\ <\ \textcolor{keyword}{class}\ T,\ \textcolor{keyword}{class}\ =\ \textcolor{keywordtype}{void}\ >\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structstd_1_1math_1_1concepts_1_1has__size__func}{has\_size\_func}}\ :\ \textcolor{keyword}{public}\ ::std::false\_type\ \{\ \};}
+\DoxyCodeLine{00287\ \textcolor{keyword}{template}\ <\ \textcolor{keyword}{class}\ T\ >\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structstd_1_1math_1_1concepts_1_1has__size__func}{has\_size\_func}}<\ T,\ ::std::enable\_if\_t<\ ::std::is\_same\_v<\ decltype(\ ::std::declval<const\ T>().size()\ ),\ typename\ T::extents\_type\ >\ >\ >\ :\ \textcolor{keyword}{public}\ ::std::true\_type\ \{\ \};}
+\DoxyCodeLine{00288\ \textcolor{keyword}{template}\ <\ \textcolor{keyword}{class}\ T\ >\ \textcolor{keyword}{inline}\ \textcolor{keyword}{constexpr}\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{namespacestd_1_1math_1_1concepts_a927ad702a03fe91674c40617d118232a}{has\_size\_func\_v}}\ =\ \mbox{\hyperlink{structstd_1_1math_1_1concepts_1_1has__size__func}{has\_size\_func<T>::value}};}
+\DoxyCodeLine{00289\ }
+\DoxyCodeLine{00290\ \textcolor{comment}{//\ Test\ for\ capacity\ function}}
+\DoxyCodeLine{00291\ \textcolor{keyword}{template}\ <\ \textcolor{keyword}{class}\ T,\ \textcolor{keyword}{class}\ =\ \textcolor{keywordtype}{void}\ >\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structstd_1_1math_1_1concepts_1_1has__capacity__func}{has\_capacity\_func}}\ :\ \textcolor{keyword}{public}\ ::std::false\_type\ \{\ \};}
+\DoxyCodeLine{00292\ \textcolor{keyword}{template}\ <\ \textcolor{keyword}{class}\ T\ >\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structstd_1_1math_1_1concepts_1_1has__capacity__func}{has\_capacity\_func}}<\ T,\ ::std::enable\_if\_t<\ ::std::is\_same\_v<\ decltype(\ ::std::declval<const\ T>().capacity()\ ),\ typename\ T::extents\_type\ >\ >\ >\ :\ \textcolor{keyword}{public}\ ::std::true\_type\ \{\ \};}
+\DoxyCodeLine{00293\ \textcolor{keyword}{template}\ <\ \textcolor{keyword}{class}\ T\ >\ \textcolor{keyword}{inline}\ \textcolor{keyword}{constexpr}\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{namespacestd_1_1math_1_1concepts_abe928a209906964d91624217f5693458}{has\_capacity\_func\_v}}\ =\ \mbox{\hyperlink{structstd_1_1math_1_1concepts_1_1has__capacity__func}{has\_capacity\_func<T>::value}};}
+\DoxyCodeLine{00294\ }
+\DoxyCodeLine{00295\ \textcolor{keyword}{template}\ <\ \textcolor{keyword}{class}\ T,\ \textcolor{keyword}{typename}\ =\ \textcolor{keywordtype}{void}\ >\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structstd_1_1math_1_1concepts_1_1value__type__helper}{value\_type\_helper}}\ \{\ \textcolor{keyword}{using\ }\mbox{\hyperlink{structstd_1_1math_1_1concepts_1_1value__type__helper_a3ab30f95e3c51561a9236d65de8184a3}{type}}\ =\ void;\ \};}
+\DoxyCodeLine{00296\ \textcolor{keyword}{template}\ <\ \textcolor{keyword}{class}\ T\ >\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structstd_1_1math_1_1concepts_1_1value__type__helper}{value\_type\_helper}}<\ T,\ ::std::enable\_if\_t<\ has\_value\_type\_v<T>\ >\ >\ \{\ \textcolor{keyword}{using\ }\mbox{\hyperlink{structstd_1_1math_1_1concepts_1_1value__type__helper_3_01_t_00_01_1_1std_1_1enable__if__t_3_01had6cdb75df85e6751680ddfbef79fa5f0_a2523d380827dbab6b9b09734442a6796}{type}}\ =\ \textcolor{keyword}{typename}\ T::value\_type;\ \};}
+\DoxyCodeLine{00297\ }
+\DoxyCodeLine{00298\ \textcolor{comment}{//\ Test\ for\ scalar\ pre-\/multiply}}
+\DoxyCodeLine{00299\ \textcolor{keyword}{template}\ <\ \textcolor{keyword}{class}\ T,\ \textcolor{keyword}{class}\ S\ =\ \textcolor{keywordtype}{void},\ \textcolor{keyword}{class}\ =\ \textcolor{keywordtype}{void}\ >\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structstd_1_1math_1_1concepts_1_1has__scalar__premultiply__func}{has\_scalar\_premultiply\_func}}\ :\ \textcolor{keyword}{public}\ ::std::false\_type\ \{\ \};}
+\DoxyCodeLine{00300\ \textcolor{keyword}{template}\ <\ \textcolor{keyword}{class}\ T,\ \textcolor{keyword}{class}\ S\ >\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structstd_1_1math_1_1concepts_1_1has__scalar__premultiply__func}{has\_scalar\_premultiply\_func}}<\ T,\ S,\ ::std::enable\_if\_t<\ ::std::is\_same\_v<\ decltype(\ ::std::declval<S>()\ *\ ::std::declval<const\ T>()\ ),\ decltype(\ ::std::declval<S>()\ *\ ::std::declval<const\ T>()\ )\ >\ >\ >\ :\ \textcolor{keyword}{public}\ ::std::true\_type\ \{\ \};}
+\DoxyCodeLine{00301\ template\ <\ class\ T,\ class\ S\ =\ typename\ value\_type\_helper<T>::type\ >\ \textcolor{keyword}{inline}\ \textcolor{keyword}{constexpr}\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{namespacestd_1_1math_1_1concepts_ae8c8e31a01380a702597c7d7b81666b4}{has\_scalar\_premultiply\_func\_v}}\ =\ \mbox{\hyperlink{structstd_1_1math_1_1concepts_1_1has__scalar__premultiply__func}{has\_scalar\_premultiply\_func<T,S>::value}};}
+\DoxyCodeLine{00302\ }
+\DoxyCodeLine{00303\ \textcolor{comment}{//\ Test\ for\ scalar\ post-\/multiply}}
+\DoxyCodeLine{00304\ \textcolor{keyword}{template}\ <\ \textcolor{keyword}{class}\ T,\ \textcolor{keyword}{class}\ S\ =\ \textcolor{keywordtype}{void},\ \textcolor{keyword}{class}\ =\ \textcolor{keywordtype}{void}\ >\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structstd_1_1math_1_1concepts_1_1has__scalar__postmultiply__func}{has\_scalar\_postmultiply\_func}}\ :\ \textcolor{keyword}{public}\ ::std::false\_type\ \{\ \};}
+\DoxyCodeLine{00305\ \textcolor{keyword}{template}\ <\ \textcolor{keyword}{class}\ T,\ \textcolor{keyword}{class}\ S\ >\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structstd_1_1math_1_1concepts_1_1has__scalar__postmultiply__func}{has\_scalar\_postmultiply\_func}}<\ T,\ S,\ ::std::enable\_if\_t<\ ::std::is\_same\_v<\ decltype(\ ::std::declval<const\ T>()\ *\ ::std::declval<S>()\ ),\ decltype(\ ::std::declval<const\ T>()\ *\ ::std::declval<S>()\ )\ >\ >\ >\ :\ \textcolor{keyword}{public}\ ::std::true\_type\ \{\ \};}
+\DoxyCodeLine{00306\ template\ <\ class\ T,\ class\ S\ =\ typename\ value\_type\_helper<T>::type\ >\ \textcolor{keyword}{inline}\ \textcolor{keyword}{constexpr}\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{namespacestd_1_1math_1_1concepts_a4be26770c52b44b9559d0893e77742b5}{has\_scalar\_postmultiply\_func\_v}}\ =\ \mbox{\hyperlink{structstd_1_1math_1_1concepts_1_1has__scalar__postmultiply__func}{has\_scalar\_postmultiply\_func<T,S>::value}};}
+\DoxyCodeLine{00307\ }
+\DoxyCodeLine{00308\ \textcolor{comment}{//\ Test\ for\ scalar\ divide}}
+\DoxyCodeLine{00309\ \textcolor{keyword}{template}\ <\ \textcolor{keyword}{class}\ T,\ \textcolor{keyword}{class}\ S\ =\ \textcolor{keywordtype}{void},\ \textcolor{keyword}{class}\ =\ \textcolor{keywordtype}{void}\ >\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structstd_1_1math_1_1concepts_1_1has__scalar__divide__func}{has\_scalar\_divide\_func}}\ :\ \textcolor{keyword}{public}\ ::std::false\_type\ \{\ \};}
+\DoxyCodeLine{00310\ \textcolor{keyword}{template}\ <\ \textcolor{keyword}{class}\ T,\ \textcolor{keyword}{class}\ S\ >\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structstd_1_1math_1_1concepts_1_1has__scalar__divide__func}{has\_scalar\_divide\_func}}<\ T,\ S,\ ::std::enable\_if\_t<\ ::std::is\_same\_v<\ decltype(\ ::std::declval<const\ T>()\ /\ ::std::declval<S>()\ ),\ decltype(\ ::std::declval<const\ T>()\ /\ ::std::declval<S>()\ )\ >\ >\ >\ :\ \textcolor{keyword}{public}\ ::std::true\_type\ \{\ \};}
+\DoxyCodeLine{00311\ template\ <\ class\ T,\ class\ S\ =\ typename\ value\_type\_helper<T>::type\ >\ \textcolor{keyword}{inline}\ \textcolor{keyword}{constexpr}\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{namespacestd_1_1math_1_1concepts_aacd1c9b0591f8c8c43a5d83bacddf1cc}{has\_scalar\_divide\_func\_v}}\ =\ \mbox{\hyperlink{structstd_1_1math_1_1concepts_1_1has__scalar__divide__func}{has\_scalar\_divide\_func<T,S>::value}};}
+\DoxyCodeLine{00312\ }
+\DoxyCodeLine{00313\ \textcolor{comment}{//\ Test\ for\ negation}}
+\DoxyCodeLine{00314\ \textcolor{keyword}{template}\ <\ \textcolor{keyword}{class}\ T,\ \textcolor{keyword}{class}\ =\ \textcolor{keywordtype}{void}\ >\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structstd_1_1math_1_1concepts_1_1has__negate__func}{has\_negate\_func}}\ :\ \textcolor{keyword}{public}\ ::std::false\_type\ \{\ \};}
+\DoxyCodeLine{00315\ \textcolor{keyword}{template}\ <\ \textcolor{keyword}{class}\ T\ >\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structstd_1_1math_1_1concepts_1_1has__negate__func}{has\_negate\_func}}<\ T,\ ::std::enable\_if\_t<\ ::std::is\_same\_v<\ decltype(\ -\/declval<const\ T>()\ ),\ decltype(\ -\/declval<const\ T>()\ )\ >\ >\ >\ :\ \textcolor{keyword}{public}\ ::std::true\_type\ \{\ \};}
+\DoxyCodeLine{00316\ \textcolor{keyword}{template}\ <\ \textcolor{keyword}{class}\ T\ >\ \textcolor{keyword}{inline}\ \textcolor{keyword}{constexpr}\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{namespacestd_1_1math_1_1concepts_aaf773af32c7782ada810e5669f6ee878}{has\_negate\_func\_v}}\ =\ \mbox{\hyperlink{structstd_1_1math_1_1concepts_1_1has__negate__func}{has\_negate\_func<T>::value}};}
+\DoxyCodeLine{00317\ }
+\DoxyCodeLine{00318\ \textcolor{comment}{//\ Test\ for\ addition}}
+\DoxyCodeLine{00319\ \textcolor{keyword}{template}\ <\ \textcolor{keyword}{class}\ T,\ \textcolor{keyword}{class}\ =\ \textcolor{keywordtype}{void}\ >\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structstd_1_1math_1_1concepts_1_1has__add__func}{has\_add\_func}}\ :\ \textcolor{keyword}{public}\ ::std::false\_type\ \{\ \};}
+\DoxyCodeLine{00320\ \textcolor{keyword}{template}\ <\ \textcolor{keyword}{class}\ T\ >\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structstd_1_1math_1_1concepts_1_1has__add__func}{has\_add\_func}}<\ T,\ ::std::enable\_if\_t<\ ::std::is\_same\_v<\ decltype(\ ::std::declval<const\ T>()\ +\ ::std::declval<const\ T>()\ ),\ decltype(\ ::std::declval<const\ T>()\ +\ ::std::declval<const\ T>()\ )\ >\ >\ >\ :\ \textcolor{keyword}{public}\ ::std::true\_type\ \{\ \};}
+\DoxyCodeLine{00321\ \textcolor{keyword}{template}\ <\ \textcolor{keyword}{class}\ T\ >\ \textcolor{keyword}{inline}\ \textcolor{keyword}{constexpr}\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{namespacestd_1_1math_1_1concepts_ab81dfb2774082d9bce7ba092874d7e1e}{has\_add\_func\_v}}\ =\ \mbox{\hyperlink{structstd_1_1math_1_1concepts_1_1has__add__func}{has\_add\_func<T>::value}};}
+\DoxyCodeLine{00322\ }
+\DoxyCodeLine{00323\ \textcolor{comment}{//\ Test\ for\ subtraction}}
+\DoxyCodeLine{00324\ \textcolor{keyword}{template}\ <\ \textcolor{keyword}{class}\ T,\ \textcolor{keyword}{class}\ =\ \textcolor{keywordtype}{void}\ >\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structstd_1_1math_1_1concepts_1_1has__subtract__func}{has\_subtract\_func}}\ :\ \textcolor{keyword}{public}\ ::std::false\_type\ \{\ \};}
+\DoxyCodeLine{00325\ \textcolor{keyword}{template}\ <\ \textcolor{keyword}{class}\ T\ >\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structstd_1_1math_1_1concepts_1_1has__subtract__func}{has\_subtract\_func}}<\ T,\ ::std::enable\_if\_t<\ ::std::is\_same\_v<\ decltype(\ ::std::declval<const\ T>()\ -\/\ ::std::declval<const\ T>()\ ),\ decltype(\ ::std::declval<const\ T>()\ -\/\ ::std::declval<const\ T>()\ )\ >\ >\ >\ :\ \textcolor{keyword}{public}\ ::std::true\_type\ \{\ \};}
+\DoxyCodeLine{00326\ \textcolor{keyword}{template}\ <\ \textcolor{keyword}{class}\ T\ >\ \textcolor{keyword}{inline}\ \textcolor{keyword}{constexpr}\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{namespacestd_1_1math_1_1concepts_afa60b82236284704a543de0cadd15fbe}{has\_subtract\_func\_v}}\ =\ \mbox{\hyperlink{structstd_1_1math_1_1concepts_1_1has__subtract__func}{has\_subtract\_func<T>::value}};}
+\DoxyCodeLine{00327\ }
+\DoxyCodeLine{00328\ \textcolor{comment}{//\ Test\ for\ span\ function}}
+\DoxyCodeLine{00329\ \textcolor{keyword}{template}\ <\ \textcolor{keyword}{class}\ T,\ \textcolor{keyword}{class}\ =\ \textcolor{keywordtype}{void}\ >\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structstd_1_1math_1_1concepts_1_1has__span__func}{has\_span\_func}}\ :\ \textcolor{keyword}{public}\ ::std::false\_type\ \{\ \};}
+\DoxyCodeLine{00330\ \textcolor{keyword}{template}\ <\ \textcolor{keyword}{class}\ T\ >\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structstd_1_1math_1_1concepts_1_1has__span__func}{has\_span\_func}}<\ T,\ ::std::enable\_if\_t<\ ::std::is\_same\_v<\ decltype(\ ::std::declval<const\ T>().span()\ ),\ const\ typename\ T::span\_type\ >\ >\ >\ :\ \textcolor{keyword}{public}\ ::std::true\_type\ \{\ \};}
+\DoxyCodeLine{00331\ \textcolor{keyword}{template}\ <\ \textcolor{keyword}{class}\ T\ >\ \textcolor{keyword}{inline}\ \textcolor{keyword}{constexpr}\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{namespacestd_1_1math_1_1concepts_a6ef1dd744f83017fce3a64faaf4c5f23}{has\_span\_func\_v}}\ =\ \mbox{\hyperlink{structstd_1_1math_1_1concepts_1_1has__span__func}{has\_span\_func<T>::value}};}
+\DoxyCodeLine{00332\ }
+\DoxyCodeLine{00333\ \textcolor{comment}{//\ Test\ for\ underlying\ span\ function}}
+\DoxyCodeLine{00334\ \textcolor{keyword}{template}\ <\ \textcolor{keyword}{class}\ T,\ \textcolor{keyword}{class}\ =\ \textcolor{keywordtype}{void}\ >\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structstd_1_1math_1_1concepts_1_1has__underlying__span__func}{has\_underlying\_span\_func}}\ :\ \textcolor{keyword}{public}\ ::std::false\_type\ \{\ \};}
+\DoxyCodeLine{00335\ \textcolor{keyword}{template}\ <\ \textcolor{keyword}{class}\ T\ >\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structstd_1_1math_1_1concepts_1_1has__underlying__span__func}{has\_underlying\_span\_func}}<\ T,\ ::std::enable\_if\_t<\ ::std::is\_same\_v<\ decltype(\ ::std::declval<T>().underlying\_span()\ ),\ typename\ T::underlying\_span\_type\ >\ >\ >\ :\ \textcolor{keyword}{public}\ ::std::true\_type\ \{\ \};}
+\DoxyCodeLine{00336\ \textcolor{keyword}{template}\ <\ \textcolor{keyword}{class}\ T\ >\ \textcolor{keyword}{inline}\ \textcolor{keyword}{constexpr}\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{namespacestd_1_1math_1_1concepts_a4bcae03934ea93986befcf36a9145cfc}{has\_underlying\_span\_func\_v}}\ =\ \mbox{\hyperlink{structstd_1_1math_1_1concepts_1_1has__underlying__span__func}{has\_underlying\_span\_func<T>::value}};}
+\DoxyCodeLine{00337\ }
+\DoxyCodeLine{00338\ \textcolor{comment}{//\ Test\ for\ const\ underlying\ span\ function}}
+\DoxyCodeLine{00339\ \textcolor{keyword}{template}\ <\ \textcolor{keyword}{class}\ T,\ \textcolor{keyword}{class}\ =\ \textcolor{keywordtype}{void}\ >\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structstd_1_1math_1_1concepts_1_1has__const__underlying__span__func}{has\_const\_underlying\_span\_func}}\ :\ \textcolor{keyword}{public}\ ::std::false\_type\ \{\ \};}
+\DoxyCodeLine{00340\ \textcolor{keyword}{template}\ <\ \textcolor{keyword}{class}\ T\ >\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structstd_1_1math_1_1concepts_1_1has__const__underlying__span__func}{has\_const\_underlying\_span\_func}}<\ T,\ ::std::enable\_if\_t<\ ::std::is\_same\_v<\ decltype(\ ::std::declval<const\ T>().underlying\_span()\ ),\ typename\ T::underlying\_span\_type\ >\ >\ >\ :\ \textcolor{keyword}{public}\ ::std::true\_type\ \{\ \};}
+\DoxyCodeLine{00341\ \textcolor{keyword}{template}\ <\ \textcolor{keyword}{class}\ T\ >\ \textcolor{keyword}{inline}\ \textcolor{keyword}{constexpr}\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{namespacestd_1_1math_1_1concepts_a42f23714e6f40296481f071e43261365}{has\_const\_underlying\_span\_func\_v}}\ =\ \mbox{\hyperlink{structstd_1_1math_1_1concepts_1_1has__const__underlying__span__func}{has\_const\_underlying\_span\_func<T>::value}};}
+\DoxyCodeLine{00342\ }
+\DoxyCodeLine{00343\ \textcolor{comment}{//\ Test\ for\ get\_allocator\ function}}
+\DoxyCodeLine{00344\ \textcolor{keyword}{template}\ <\ \textcolor{keyword}{class}\ T,\ \textcolor{keyword}{class}\ =\ \textcolor{keywordtype}{void}\ >\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structstd_1_1math_1_1concepts_1_1has__get__allocator__func}{has\_get\_allocator\_func}}\ :\ \textcolor{keyword}{public}\ ::std::false\_type\ \{\ \};}
+\DoxyCodeLine{00345\ \textcolor{keyword}{template}\ <\ \textcolor{keyword}{class}\ T\ >\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structstd_1_1math_1_1concepts_1_1has__get__allocator__func}{has\_get\_allocator\_func}}<\ T,\ ::std::enable\_if\_t<\ ::std::is\_same\_v<\ decltype(\ ::std::declval<const\ T>().get\_allocator()\ ),\ const\ typename\ T::allocator\_type\&\ >\ >\ >\ :\ \textcolor{keyword}{public}\ ::std::true\_type\ \{\ \};}
+\DoxyCodeLine{00346\ \textcolor{keyword}{template}\ <\ \textcolor{keyword}{class}\ T\ >\ \textcolor{keyword}{inline}\ \textcolor{keyword}{constexpr}\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{namespacestd_1_1math_1_1concepts_aad0643d1d025712a4361613beb1dfdb2}{has\_get\_allocator\_func\_v}}\ =\ \mbox{\hyperlink{structstd_1_1math_1_1concepts_1_1has__get__allocator__func}{has\_get\_allocator\_func<T>::value}};}
+\DoxyCodeLine{00347\ }
+\DoxyCodeLine{00348\ \textcolor{comment}{//\ Test\ for\ set\_allocator\ function}}
+\DoxyCodeLine{00349\ \textcolor{keyword}{template}\ <\ \textcolor{keyword}{class}\ T,\ \textcolor{keyword}{class}\ =\ \textcolor{keywordtype}{void}\ >\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structstd_1_1math_1_1concepts_1_1has__set__allocator__func}{has\_set\_allocator\_func}}\ :\ \textcolor{keyword}{public}\ ::std::false\_type\ \{\ \};}
+\DoxyCodeLine{00350\ \textcolor{keyword}{template}\ <\ \textcolor{keyword}{class}\ T\ >\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structstd_1_1math_1_1concepts_1_1has__set__allocator__func}{has\_set\_allocator\_func}}<\ T,\ ::std::enable\_if\_t<\ ::std::is\_same\_v<\ decltype(\ ::std::declval<T>().set\_allocator(\ ::std::declval<const\ typename\ T::allocator\_type\&>()\ )\ ),\ decltype(\ ::std::declval<T>().set\_allocator(\ ::std::declval<const\ typename\ T::allocator\_type\&>()\ )\ )\ >\ >\ >\ :\ \textcolor{keyword}{public}\ ::std::true\_type\ \{\ \};}
+\DoxyCodeLine{00351\ \textcolor{keyword}{template}\ <\ \textcolor{keyword}{class}\ T\ >\ \textcolor{keyword}{inline}\ \textcolor{keyword}{constexpr}\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{namespacestd_1_1math_1_1concepts_a339eccb0c1a066be8b4f93b9085eb018}{has\_set\_allocator\_func\_v}}\ =\ \mbox{\hyperlink{structstd_1_1math_1_1concepts_1_1has__set__allocator__func}{has\_set\_allocator\_func<T>::value}};}
+\DoxyCodeLine{00352\ }
+\DoxyCodeLine{00353\ \textcolor{comment}{//\ Test\ for\ resize\ function}}
+\DoxyCodeLine{00354\ \textcolor{keyword}{template}\ <\ \textcolor{keyword}{class}\ T,\ \textcolor{keyword}{class}\ =\ \textcolor{keywordtype}{void}\ >\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structstd_1_1math_1_1concepts_1_1has__resize__func}{has\_resize\_func}}\ :\ \textcolor{keyword}{public}\ ::std::false\_type\ \{\ \};}
+\DoxyCodeLine{00355\ \textcolor{keyword}{template}\ <\ \textcolor{keyword}{class}\ T\ >\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structstd_1_1math_1_1concepts_1_1has__resize__func}{has\_resize\_func}}<\ T,\ ::std::enable\_if\_t<\ ::std::is\_same\_v<\ decltype(\ ::std::declval<T>().resize(\ ::std::declval<typename\ T::extents\_type>()\ )\ ),\ decltype(\ ::std::declval<T>().resize(\ ::std::declval<typename\ T::extents\_type>()\ )\ )\ >\ >\ >\ :\ \textcolor{keyword}{public}\ ::std::true\_type\ \{\ \};}
+\DoxyCodeLine{00356\ \textcolor{keyword}{template}\ <\ \textcolor{keyword}{class}\ T\ >\ \textcolor{keyword}{inline}\ \textcolor{keyword}{constexpr}\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{namespacestd_1_1math_1_1concepts_a0d33c4803a1322a90592519afb447dba}{has\_resize\_func\_v}}\ =\ \mbox{\hyperlink{structstd_1_1math_1_1concepts_1_1has__resize__func}{has\_resize\_func<T>::value}};}
+\DoxyCodeLine{00357\ }
+\DoxyCodeLine{00358\ \textcolor{comment}{//\ Test\ for\ reserve\ function}}
+\DoxyCodeLine{00359\ \textcolor{keyword}{template}\ <\ \textcolor{keyword}{class}\ T,\ \textcolor{keyword}{class}\ =\ \textcolor{keywordtype}{void}\ >\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structstd_1_1math_1_1concepts_1_1has__reserve__func}{has\_reserve\_func}}\ :\ \textcolor{keyword}{public}\ ::std::false\_type\ \{\ \};}
+\DoxyCodeLine{00360\ \textcolor{keyword}{template}\ <\ \textcolor{keyword}{class}\ T\ >\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structstd_1_1math_1_1concepts_1_1has__reserve__func}{has\_reserve\_func}}<\ T,\ ::std::enable\_if\_t<\ ::std::is\_same\_v<\ decltype(\ ::std::declval<T>().reserve(\ ::std::declval<typename\ T::extents\_type>()\ )\ ),\ decltype(\ ::std::declval<T>().reserve(\ ::std::declval<typename\ T::extents\_type>()\ )\ )\ >\ >\ >\ :\ \textcolor{keyword}{public}\ ::std::true\_type\ \{\ \};}
+\DoxyCodeLine{00361\ \textcolor{keyword}{template}\ <\ \textcolor{keyword}{class}\ T\ >\ \textcolor{keyword}{inline}\ \textcolor{keyword}{constexpr}\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{namespacestd_1_1math_1_1concepts_a3fd02b2ad97d4bd854665bd8ba032436}{has\_reserve\_func\_v}}\ =\ \mbox{\hyperlink{structstd_1_1math_1_1concepts_1_1has__reserve__func}{has\_reserve\_func<T>::value}};}
+\DoxyCodeLine{00362\ }
+\DoxyCodeLine{00363\ \textcolor{comment}{//\ Test\ for\ construct\ from\ allocator}}
+\DoxyCodeLine{00364\ \textcolor{keyword}{template}\ <\ \textcolor{keyword}{class}\ T,\ \textcolor{keyword}{class}\ =\ \textcolor{keywordtype}{void}\ >\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structstd_1_1math_1_1concepts_1_1constructible__from__alloc}{constructible\_from\_alloc}}\ :\ \textcolor{keyword}{public}\ ::std::false\_type\ \{\ \};}
+\DoxyCodeLine{00365\ \textcolor{keyword}{template}\ <\ \textcolor{keyword}{class}\ T\ >\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structstd_1_1math_1_1concepts_1_1constructible__from__alloc}{constructible\_from\_alloc}}<\ T,\ ::std::enable\_if\_t<\ is\_constructible\_v<\ T,\ typename\ T::allocator\_type\ >\ >\ >\ :\ \textcolor{keyword}{public}\ ::std::true\_type\ \{\ \};}
+\DoxyCodeLine{00366\ \textcolor{keyword}{template}\ <\ \textcolor{keyword}{class}\ T\ >\ \textcolor{keyword}{inline}\ \textcolor{keyword}{constexpr}\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{namespacestd_1_1math_1_1concepts_a98a9cad5b0e86118ee8a569dedba184a}{constructible\_from\_alloc\_v}}\ =\ \mbox{\hyperlink{structstd_1_1math_1_1concepts_1_1constructible__from__alloc}{constructible\_from\_alloc<T>::value}};}
+\DoxyCodeLine{00367\ }
+\DoxyCodeLine{00368\ \textcolor{comment}{//\ Test\ for\ construct\ from\ size\ and\ allocator}}
+\DoxyCodeLine{00369\ \textcolor{keyword}{template}\ <\ \textcolor{keyword}{class}\ T,\ \textcolor{keyword}{class}\ =\ \textcolor{keywordtype}{void}\ >\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structstd_1_1math_1_1concepts_1_1constructible__from__size__and__alloc}{constructible\_from\_size\_and\_alloc}}\ :\ \textcolor{keyword}{public}\ ::std::false\_type\ \{\ \};}
+\DoxyCodeLine{00370\ \textcolor{keyword}{template}\ <\ \textcolor{keyword}{class}\ T\ >\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structstd_1_1math_1_1concepts_1_1constructible__from__size__and__alloc}{constructible\_from\_size\_and\_alloc}}<\ T,\ ::std::enable\_if\_t<\ is\_constructible\_v<\ T,\ typename\ T::extents\_type,\ typename\ T::allocator\_type\ >\ >\ >\ :\ \textcolor{keyword}{public}\ ::std::true\_type\ \{\ \};}
+\DoxyCodeLine{00371\ \textcolor{keyword}{template}\ <\ \textcolor{keyword}{class}\ T\ >\ \textcolor{keyword}{inline}\ \textcolor{keyword}{constexpr}\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{namespacestd_1_1math_1_1concepts_aeedd209816eefbdb2f0229c6c86c5ec1}{constructible\_from\_size\_and\_alloc\_v}}\ =\ \mbox{\hyperlink{structstd_1_1math_1_1concepts_1_1constructible__from__size__and__alloc}{constructible\_from\_size\_and\_alloc<T>::value}};}
+\DoxyCodeLine{00372\ }
+\DoxyCodeLine{00373\ \textcolor{comment}{//\ Test\ for\ construct\ from\ size\ capacity\ and\ allocator}}
+\DoxyCodeLine{00374\ \textcolor{keyword}{template}\ <\ \textcolor{keyword}{class}\ T,\ \textcolor{keyword}{class}\ =\ \textcolor{keywordtype}{void}\ >\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structstd_1_1math_1_1concepts_1_1constructible__from__size__cap__and__alloc}{constructible\_from\_size\_cap\_and\_alloc}}\ :\ \textcolor{keyword}{public}\ ::std::false\_type\ \{\ \};}
+\DoxyCodeLine{00375\ \textcolor{keyword}{template}\ <\ \textcolor{keyword}{class}\ T\ >\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structstd_1_1math_1_1concepts_1_1constructible__from__size__cap__and__alloc}{constructible\_from\_size\_cap\_and\_alloc}}<\ T,\ ::std::enable\_if\_t<\ is\_constructible\_v<\ T,\ typename\ T::extents\_type,\ typename\ T::extents\_type,\ typename\ T::allocator\_type\ >\ >\ >\ :\ \textcolor{keyword}{public}\ ::std::true\_type\ \{\ \};}
+\DoxyCodeLine{00376\ \textcolor{keyword}{template}\ <\ \textcolor{keyword}{class}\ T\ >\ \textcolor{keyword}{inline}\ \textcolor{keyword}{constexpr}\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{namespacestd_1_1math_1_1concepts_ad2749e273758d9b24b072b8be2e9d2b7}{constructible\_from\_size\_cap\_and\_alloc\_v}}\ =\ \mbox{\hyperlink{structstd_1_1math_1_1concepts_1_1constructible__from__size__cap__and__alloc}{constructible\_from\_size\_cap\_and\_alloc<T>::value}};}
+\DoxyCodeLine{00377\ }
+\DoxyCodeLine{00378\ \textcolor{comment}{//\ Test\ for\ transpose}}
+\DoxyCodeLine{00379\ \textcolor{keyword}{template}\ <\ \textcolor{keyword}{class}\ T,\ \textcolor{keyword}{class}\ =\ \textcolor{keywordtype}{void}\ >\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structstd_1_1math_1_1concepts_1_1has__trans__func}{has\_trans\_func}}\ :\ \textcolor{keyword}{public}\ ::std::false\_type\ \{\ \};}
+\DoxyCodeLine{00380\ \textcolor{keyword}{template}\ <\ \textcolor{keyword}{class}\ T\ >\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structstd_1_1math_1_1concepts_1_1has__trans__func}{has\_trans\_func}}<\ T,\ ::std::enable\_if\_t<\ ::std::is\_same\_v<\ decltype(\ trans(\ ::std::declval<T>()\ )\ ),\ decltype(\ trans(\ ::std::declval<T>()\ )\ )\ >\ >\ >\ :\ \textcolor{keyword}{public}\ ::std::true\_type\ \{\ \};}
+\DoxyCodeLine{00381\ \textcolor{keyword}{template}\ <\ \textcolor{keyword}{class}\ T\ >\ \textcolor{keyword}{inline}\ \textcolor{keyword}{constexpr}\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{namespacestd_1_1math_1_1concepts_a11729e1caa6b9f3609d76dacbc4f629a}{has\_trans\_func\_v}}\ =\ \mbox{\hyperlink{structstd_1_1math_1_1concepts_1_1has__trans__func}{has\_trans\_func<T>::value}};}
+\DoxyCodeLine{00382\ }
+\DoxyCodeLine{00383\ \textcolor{comment}{//\ Test\ for\ conjugate}}
+\DoxyCodeLine{00384\ \textcolor{keyword}{template}\ <\ \textcolor{keyword}{class}\ T,\ \textcolor{keyword}{class}\ =\ \textcolor{keywordtype}{void}\ >\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structstd_1_1math_1_1concepts_1_1has__conj__func}{has\_conj\_func}}\ :\ \textcolor{keyword}{public}\ ::std::false\_type\ \{\ \};}
+\DoxyCodeLine{00385\ \textcolor{keyword}{template}\ <\ \textcolor{keyword}{class}\ T\ >\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structstd_1_1math_1_1concepts_1_1has__conj__func}{has\_conj\_func}}<\ T,\ ::std::enable\_if\_t<\ ::std::is\_same\_v<\ decltype(\ conj(\ ::std::declval<T>()\ )\ ),\ decltype(\ conj(\ ::std::declval<T>()\ )\ )\ >\ >\ >\ :\ \textcolor{keyword}{public}\ ::std::true\_type\ \{\ \};}
+\DoxyCodeLine{00386\ \textcolor{keyword}{template}\ <\ \textcolor{keyword}{class}\ T\ >\ \textcolor{keyword}{inline}\ \textcolor{keyword}{constexpr}\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{namespacestd_1_1math_1_1concepts_aba46ee825fb52bd5f2485fd9425d7ba8}{has\_conj\_func\_v}}\ =\ \mbox{\hyperlink{structstd_1_1math_1_1concepts_1_1has__conj__func}{has\_conj\_func<T>::value}};}
+\DoxyCodeLine{00387\ }
+\DoxyCodeLine{00388\ \textcolor{comment}{//-\/\ Additional\ tests}}
+\DoxyCodeLine{00389\ }
+\DoxyCodeLine{00390\ \textcolor{comment}{//\ Test\ for\ extents\ which\ may\ be\ equal}}
+\DoxyCodeLine{00391\ \textcolor{keyword}{template}\ <\ \textcolor{keyword}{class}\ T,\ \textcolor{keyword}{class}\ U,\ \textcolor{keyword}{class}\ =\ \textcolor{keywordtype}{void}\ >\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structstd_1_1math_1_1concepts_1_1extents__may__be__equal}{extents\_may\_be\_equal}}\ :\ \textcolor{keyword}{public}\ ::std::false\_type\ \{\ \};}
+\DoxyCodeLine{00392\ \textcolor{keyword}{template}\ <\ \textcolor{keyword}{class}\ T,\ \textcolor{keyword}{class}\ U\ >\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structstd_1_1math_1_1concepts_1_1extents__may__be__equal}{extents\_may\_be\_equal}}<\ T,\ U,\ ::std::enable\_if\_t<\ detail::extents\_may\_be\_equal\_v<\ typename\ T::extents\_type,\ typename\ U::extents\_type\ >\ >\ >\ :\ \textcolor{keyword}{public}\ ::std::true\_type\ \{\ \};}
+\DoxyCodeLine{00393\ \textcolor{keyword}{template}\ <\ \textcolor{keyword}{class}\ T,\ \textcolor{keyword}{class}\ U\ >\ \textcolor{keyword}{inline}\ \textcolor{keyword}{constexpr}\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{namespacestd_1_1math_1_1concepts_ac0484c13de69006132aa2e5ebbec72a1}{extents\_may\_be\_equal\_v}}\ =\ \mbox{\hyperlink{structstd_1_1math_1_1concepts_1_1extents__may__be__equal}{extents\_may\_be\_equal<T,U>::value}};}
+\DoxyCodeLine{00394\ }
+\DoxyCodeLine{00395\ \textcolor{comment}{//\ Test\ for\ extents\ which\ are\ equal}}
+\DoxyCodeLine{00396\ \textcolor{keyword}{template}\ <\ \textcolor{keyword}{class}\ T,\ \textcolor{keyword}{class}\ U,\ \textcolor{keyword}{class}\ =\ \textcolor{keywordtype}{void}\ >\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structstd_1_1math_1_1concepts_1_1extents__are__equal}{extents\_are\_equal}}\ :\ \textcolor{keyword}{public}\ ::std::false\_type\ \{\ \};}
+\DoxyCodeLine{00397\ \textcolor{keyword}{template}\ <\ \textcolor{keyword}{class}\ T,\ \textcolor{keyword}{class}\ U\ >\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structstd_1_1math_1_1concepts_1_1extents__are__equal}{extents\_are\_equal}}<\ T,\ U,\ ::std::enable\_if\_t<\ detail::extents\_are\_equal\_v<\ typename\ T::extents\_type,\ typename\ U::extents\_type\ >\ >\ >\ :\ \textcolor{keyword}{public}\ ::std::true\_type\ \{\ \};}
+\DoxyCodeLine{00398\ \textcolor{keyword}{template}\ <\ \textcolor{keyword}{class}\ T,\ \textcolor{keyword}{class}\ U\ >\ \textcolor{keyword}{inline}\ \textcolor{keyword}{constexpr}\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{namespacestd_1_1math_1_1concepts_a695e5e4d7a27e65f882ec97a08ffd681}{extents\_are\_equal\_v}}\ =\ \mbox{\hyperlink{structstd_1_1math_1_1concepts_1_1extents__are__equal}{extents\_are\_equal<T,U>::value}};}
+\DoxyCodeLine{00399\ }
+\DoxyCodeLine{00400\ \textcolor{comment}{//\ Test\ values\ are\ convertible}}
+\DoxyCodeLine{00401\ \textcolor{keyword}{template}\ <\ \textcolor{keyword}{class}\ T,\ \textcolor{keyword}{class}\ U,\ \textcolor{keyword}{class}\ =\ \textcolor{keywordtype}{void}\ >\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structstd_1_1math_1_1concepts_1_1values__are__constructible}{values\_are\_constructible}}\ :\ \textcolor{keyword}{public}\ ::std::false\_type\ \{\ \};}
+\DoxyCodeLine{00402\ \textcolor{keyword}{template}\ <\ \textcolor{keyword}{class}\ T,\ \textcolor{keyword}{class}\ U\ >\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structstd_1_1math_1_1concepts_1_1values__are__constructible}{values\_are\_constructible}}<\ T,\ U,\ ::std::enable\_if\_t<\ is\_constructible\_v<\ typename\ T::value\_type,\ typename\ U::value\_type\ >\ >\ >\ :\ \textcolor{keyword}{public}\ ::std::true\_type\ \{\ \};}
+\DoxyCodeLine{00403\ \textcolor{keyword}{template}\ <\ \textcolor{keyword}{class}\ T,\ \textcolor{keyword}{class}\ U\ >\ \textcolor{keyword}{inline}\ \textcolor{keyword}{constexpr}\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{namespacestd_1_1math_1_1concepts_a5da14ca689700d2dc7151b4eec6bc453}{values\_are\_constructible\_v}}\ =\ \mbox{\hyperlink{structstd_1_1math_1_1concepts_1_1values__are__constructible}{values\_are\_constructible<T,U>::value}};}
+\DoxyCodeLine{00404\ }
+\DoxyCodeLine{00405\ \textcolor{comment}{//\ Test\ values\ are\ convertible}}
+\DoxyCodeLine{00406\ \textcolor{keyword}{template}\ <\ \textcolor{keyword}{class}\ T,\ \textcolor{keyword}{class}\ U,\ \textcolor{keyword}{class}\ =\ \textcolor{keywordtype}{void}\ >\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structstd_1_1math_1_1concepts_1_1values__are__nothrow__constructible}{values\_are\_nothrow\_constructible}}\ :\ \textcolor{keyword}{public}\ ::std::false\_type\ \{\ \};}
+\DoxyCodeLine{00407\ \textcolor{keyword}{template}\ <\ \textcolor{keyword}{class}\ T,\ \textcolor{keyword}{class}\ U\ >\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structstd_1_1math_1_1concepts_1_1values__are__nothrow__constructible}{values\_are\_nothrow\_constructible}}<\ T,\ U,\ ::std::enable\_if\_t<\ is\_nothrow\_constructible\_v<\ typename\ T::value\_type,\ typename\ U::value\_type\ >\ >\ >\ :\ \textcolor{keyword}{public}\ ::std::true\_type\ \{\ \};}
+\DoxyCodeLine{00408\ \textcolor{keyword}{template}\ <\ \textcolor{keyword}{class}\ T,\ \textcolor{keyword}{class}\ U\ >\ \textcolor{keyword}{inline}\ \textcolor{keyword}{constexpr}\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{namespacestd_1_1math_1_1concepts_a0c4c71d2c11f2dc828ebfb5a0b48e009}{values\_are\_nothrow\_constructible\_v}}\ =\ \mbox{\hyperlink{structstd_1_1math_1_1concepts_1_1values__are__nothrow__constructible}{values\_are\_nothrow\_constructible<T,U>::value}};}
+\DoxyCodeLine{00409\ }
+\DoxyCodeLine{00410\ \textcolor{comment}{//\ Test\ addition\ exists}}
+\DoxyCodeLine{00411\ \textcolor{keyword}{template}\ <\ \textcolor{keyword}{class}\ T,\ \textcolor{keyword}{class}\ U,\ \textcolor{keyword}{class}\ =\ \textcolor{keywordtype}{void}\ >\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structstd_1_1math_1_1concepts_1_1addition__exists}{addition\_exists}}\ :\ \textcolor{keyword}{public}\ ::std::false\_type\ \{\ \};}
+\DoxyCodeLine{00412\ \textcolor{keyword}{template}\ <\ \textcolor{keyword}{class}\ T,\ \textcolor{keyword}{class}\ U\ >\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structstd_1_1math_1_1concepts_1_1addition__exists}{addition\_exists}}<\ T,\ U,\ ::std::enable\_if\_t<\ is\_same\_v<\ decltype(\ ::std::declval<T>()\ +\ ::std::declval<U>()\ ),\ decltype(\ ::std::declval<T>()\ +\ ::std::declval<U>()\ )\ >\ >\ >\ :\ \textcolor{keyword}{public}\ ::std::true\_type\ \{\ \};}
+\DoxyCodeLine{00413\ \textcolor{keyword}{template}\ <\ \textcolor{keyword}{class}\ T,\ \textcolor{keyword}{class}\ U\ >\ \textcolor{keyword}{inline}\ \textcolor{keyword}{constexpr}\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{namespacestd_1_1math_1_1concepts_a71639c015371f955442381c27526b1a0}{addition\_exists\_v}}\ =\ \mbox{\hyperlink{structstd_1_1math_1_1concepts_1_1addition__exists}{addition\_exists<T,U>::value}};}
+\DoxyCodeLine{00414\ }
+\DoxyCodeLine{00415\ \textcolor{comment}{//\ Test\ subtraction\ exists}}
+\DoxyCodeLine{00416\ \textcolor{keyword}{template}\ <\ \textcolor{keyword}{class}\ T,\ \textcolor{keyword}{class}\ U,\ \textcolor{keyword}{class}\ =\ \textcolor{keywordtype}{void}\ >\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structstd_1_1math_1_1concepts_1_1subtraction__exists}{subtraction\_exists}}\ :\ \textcolor{keyword}{public}\ ::std::false\_type\ \{\ \};}
+\DoxyCodeLine{00417\ \textcolor{keyword}{template}\ <\ \textcolor{keyword}{class}\ T,\ \textcolor{keyword}{class}\ U\ >\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structstd_1_1math_1_1concepts_1_1subtraction__exists}{subtraction\_exists}}<\ T,\ U,\ ::std::enable\_if\_t<\ is\_same\_v<\ decltype(\ ::std::declval<T>()\ -\/\ ::std::declval<U>()\ ),\ decltype(\ ::std::declval<T>()\ -\/\ ::std::declval<U>()\ )\ >\ >\ >\ :\ \textcolor{keyword}{public}\ ::std::true\_type\ \{\ \};}
+\DoxyCodeLine{00418\ \textcolor{keyword}{template}\ <\ \textcolor{keyword}{class}\ T,\ \textcolor{keyword}{class}\ U\ >\ \textcolor{keyword}{inline}\ \textcolor{keyword}{constexpr}\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{namespacestd_1_1math_1_1concepts_a3ed769d5ae95c8eca2a805ca64a860e9}{subtraction\_exists\_v}}\ =\ \mbox{\hyperlink{structstd_1_1math_1_1concepts_1_1subtraction__exists}{subtraction\_exists<T,U>::value}};}
+\DoxyCodeLine{00419\ }
+\DoxyCodeLine{00420\ \textcolor{comment}{//\ Test\ product\ exists}}
+\DoxyCodeLine{00421\ \textcolor{keyword}{template}\ <\ \textcolor{keyword}{class}\ T,\ \textcolor{keyword}{class}\ U,\ \textcolor{keyword}{class}\ =\ \textcolor{keywordtype}{void}\ >\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structstd_1_1math_1_1concepts_1_1product__exists}{product\_exists}}\ :\ \textcolor{keyword}{public}\ ::std::false\_type\ \{\ \};}
+\DoxyCodeLine{00422\ \textcolor{keyword}{template}\ <\ \textcolor{keyword}{class}\ T,\ \textcolor{keyword}{class}\ U\ >\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structstd_1_1math_1_1concepts_1_1product__exists}{product\_exists}}<\ T,\ U,\ ::std::enable\_if\_t<\ is\_same\_v<\ decltype(\ ::std::declval<T>()\ *\ ::std::declval<U>()\ ),\ decltype(\ ::std::declval<T>()\ *\ ::std::declval<U>()\ )\ >\ >\ >\ :\ \textcolor{keyword}{public}\ ::std::true\_type\ \{\ \};}
+\DoxyCodeLine{00423\ \textcolor{keyword}{template}\ <\ \textcolor{keyword}{class}\ T,\ \textcolor{keyword}{class}\ U\ >\ \textcolor{keyword}{inline}\ \textcolor{keyword}{constexpr}\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{namespacestd_1_1math_1_1concepts_a5f1103d1c6b2b4fe582799d1a856f3e0}{product\_exists\_v}}\ =\ \mbox{\hyperlink{structstd_1_1math_1_1concepts_1_1product__exists}{product\_exists<T,U>::value}};}
+\DoxyCodeLine{00424\ }
+\DoxyCodeLine{00425\ \textcolor{comment}{//\ Test\ division\ exists}}
+\DoxyCodeLine{00426\ \textcolor{keyword}{template}\ <\ \textcolor{keyword}{class}\ T,\ \textcolor{keyword}{class}\ U,\ \textcolor{keyword}{class}\ =\ \textcolor{keywordtype}{void}\ >\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structstd_1_1math_1_1concepts_1_1division__exists}{division\_exists}}\ :\ \textcolor{keyword}{public}\ ::std::false\_type\ \{\ \};}
+\DoxyCodeLine{00427\ \textcolor{keyword}{template}\ <\ \textcolor{keyword}{class}\ T,\ \textcolor{keyword}{class}\ U\ >\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structstd_1_1math_1_1concepts_1_1division__exists}{division\_exists}}<\ T,\ U,\ ::std::enable\_if\_t<\ is\_same\_v<\ decltype(\ ::std::declval<T>()\ /\ ::std::declval<U>()\ ),\ decltype(\ ::std::declval<T>()\ /\ ::std::declval<U>()\ )\ >\ >\ >\ :\ \textcolor{keyword}{public}\ ::std::true\_type\ \{\ \};}
+\DoxyCodeLine{00428\ \textcolor{keyword}{template}\ <\ \textcolor{keyword}{class}\ T,\ \textcolor{keyword}{class}\ U\ >\ \textcolor{keyword}{inline}\ \textcolor{keyword}{constexpr}\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{namespacestd_1_1math_1_1concepts_a103ea0bc290f7898f411f719e610c0a2}{division\_exists\_v}}\ =\ \mbox{\hyperlink{structstd_1_1math_1_1concepts_1_1division__exists}{division\_exists<T,U>::value}};}
+\DoxyCodeLine{00429\ }
+\DoxyCodeLine{00430\ \textcolor{comment}{//\ Test\ for\ rank\ N\ tensor}}
+\DoxyCodeLine{00431\ \textcolor{keyword}{template}\ <\ \textcolor{keyword}{class}\ T,\ auto\ N,\ \textcolor{keyword}{class}\ =\ \textcolor{keywordtype}{void}\ >\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structstd_1_1math_1_1concepts_1_1is__rank}{is\_rank}}\ :\ \textcolor{keyword}{public}\ ::std::false\_type\ \{\ \};}
+\DoxyCodeLine{00432\ \textcolor{keyword}{template}\ <\ \textcolor{keyword}{class}\ T,\ auto\ N\ >\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structstd_1_1math_1_1concepts_1_1is__rank}{is\_rank}}<\ T,\ N,\ ::std::enable\_if\_t<\ T::extents\_type::rank()\ ==\ N\ >\ >\ :\ \textcolor{keyword}{public}\ ::std::true\_type\ \{\ \};}
+\DoxyCodeLine{00433\ \textcolor{keyword}{template}\ <\ \textcolor{keyword}{class}\ T,\ auto\ N\ >\ \textcolor{keyword}{inline}\ \textcolor{keyword}{constexpr}\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{namespacestd_1_1math_1_1concepts_ad4fbadf420eb058bd75323e36fedb200}{is\_rank\_v}}\ =\ \mbox{\hyperlink{structstd_1_1math_1_1concepts_1_1is__rank}{is\_rank<T,N>::value}};}
+\DoxyCodeLine{00434\ }
+\DoxyCodeLine{00435\ \textcolor{comment}{//\ Test\ for\ constant\ tensor}}
+\DoxyCodeLine{00436\ \textcolor{keyword}{template}\ <\ \textcolor{keyword}{class}\ T,\ \textcolor{keyword}{class}\ =\ \textcolor{keywordtype}{void}\ >\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structstd_1_1math_1_1concepts_1_1is__const__tensor}{is\_const\_tensor}}\ :\ \textcolor{keyword}{public}\ ::std::false\_type\ \{\ \};}
+\DoxyCodeLine{00437\ \textcolor{keyword}{template}\ <\ \textcolor{keyword}{class}\ T\ >\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structstd_1_1math_1_1concepts_1_1is__const__tensor}{is\_const\_tensor}}<\ T,\ ::std::enable\_if\_t<\ ::std::is\_const\_v<\ ::std::remove\_reference\_t<\ typename\ T::reference\ >\ >\ >\ >\ :\ \textcolor{keyword}{public}\ ::std::true\_type\ \{\ \};}
+\DoxyCodeLine{00438\ \textcolor{keyword}{template}\ <\ \textcolor{keyword}{class}\ T\ >\ \textcolor{keyword}{inline}\ \textcolor{keyword}{constexpr}\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{namespacestd_1_1math_1_1concepts_a0390a08d616aa10d8369a42e3a56f40c}{is\_const\_tensor\_v}}\ =\ \mbox{\hyperlink{structstd_1_1math_1_1concepts_1_1is__const__tensor}{is\_const\_tensor<T>::value}};}
+\DoxyCodeLine{00439\ }
+\DoxyCodeLine{00440\ \textcolor{comment}{//\ Test\ for\ static\ extents}}
+\DoxyCodeLine{00441\ \textcolor{keyword}{template}\ <\ \textcolor{keyword}{class}\ T,\ \textcolor{keyword}{class}\ =\ \textcolor{keywordtype}{void}\ >\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structstd_1_1math_1_1concepts_1_1has__static__extents}{has\_static\_extents}}\ :\ \textcolor{keyword}{public}\ ::std::false\_type\ \{\ \};}
+\DoxyCodeLine{00442\ \textcolor{keyword}{template}\ <\ \textcolor{keyword}{class}\ T\ >\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structstd_1_1math_1_1concepts_1_1has__static__extents}{has\_static\_extents}}<\ T,\ ::std::enable\_if\_t<\ detail::extents\_is\_static\_v<typename\ T::extents\_type>\ >\ >\ :\ \textcolor{keyword}{public}\ ::std::true\_type\ \{\ \};}
+\DoxyCodeLine{00443\ \textcolor{keyword}{template}\ <\ \textcolor{keyword}{class}\ T\ >\ \textcolor{keyword}{inline}\ \textcolor{keyword}{constexpr}\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{namespacestd_1_1math_1_1concepts_a066afbbf4a659bf3b55d45aa4ac30bdc}{has\_static\_extents\_v}}\ =\ \mbox{\hyperlink{structstd_1_1math_1_1concepts_1_1has__static__extents}{has\_static\_extents<T>::value}};}
+\DoxyCodeLine{00444\ }
+\DoxyCodeLine{00445\ \textcolor{comment}{//\ Test\ for\ homogeneous\ tuple\ type}}
+\DoxyCodeLine{00446\ \textcolor{keyword}{template}\ <\ \textcolor{keyword}{class}\ T,\ \textcolor{keyword}{class}\ =\ \textcolor{keywordtype}{void}\ >\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structstd_1_1math_1_1concepts_1_1has__homogeneous__tuple__type}{has\_homogeneous\_tuple\_type}}\ :\ \textcolor{keyword}{public}\ ::std::false\_type\ \{\ \};}
+\DoxyCodeLine{00447\ \textcolor{keyword}{template}\ <\ \textcolor{keyword}{class}\ T\ >\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structstd_1_1math_1_1concepts_1_1has__homogeneous__tuple__type}{has\_homogeneous\_tuple\_type}}<\ T,\ ::std::enable\_if\_t<\ detail::is\_homogeneous\_tuple\_v<\ typename\ T::tuple\_type\ >\ >\ >\ :\ \textcolor{keyword}{public}\ ::std::true\_type\ \{\ \};}
+\DoxyCodeLine{00448\ \textcolor{keyword}{template}\ <\ \textcolor{keyword}{class}\ T\ >\ \textcolor{keyword}{inline}\ \textcolor{keyword}{constexpr}\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{namespacestd_1_1math_1_1concepts_a9d3879e868fe5d72f584d3d172606c92}{has\_homogeneous\_tuple\_type\_v}}\ =\ \mbox{\hyperlink{structstd_1_1math_1_1concepts_1_1has__homogeneous__tuple__type}{has\_homogeneous\_tuple\_type<T>::value}};}
+\DoxyCodeLine{00449\ }
+\DoxyCodeLine{00450\ \textcolor{comment}{//\ Test\ for\ capabitible\ tuple\ size}}
+\DoxyCodeLine{00451\ \textcolor{keyword}{template}\ <\ \textcolor{keyword}{class}\ T,\ \textcolor{keyword}{class}\ =\ \textcolor{keywordtype}{void}\ >\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structstd_1_1math_1_1concepts_1_1has__capatible__tuple__size}{has\_capatible\_tuple\_size}}\ :\ \textcolor{keyword}{public}\ ::std::false\_type\ \{\ \};}
+\DoxyCodeLine{00452\ \textcolor{keyword}{template}\ <\ \textcolor{keyword}{class}\ T\ >\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structstd_1_1math_1_1concepts_1_1has__capatible__tuple__size}{has\_capatible\_tuple\_size}}<\ T,\ ::std::enable\_if\_t<\ (\ tuple\_size\_v<\ typename\ T::tuple\_type\ >\ ==\ T::extents\_type::rank()\ )\ >\ >\ :\ \textcolor{keyword}{public}\ ::std::true\_type\ \{\ \};}
+\DoxyCodeLine{00453\ \textcolor{keyword}{template}\ <\ \textcolor{keyword}{class}\ T\ >\ \textcolor{keyword}{inline}\ \textcolor{keyword}{constexpr}\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{namespacestd_1_1math_1_1concepts_a6c9e9b6dbc08b9e261d11ed0479bfa2a}{has\_capatible\_tuple\_size\_v}}\ =\ \mbox{\hyperlink{structstd_1_1math_1_1concepts_1_1has__capatible__tuple__size}{has\_capatible\_tuple\_size<T>::value}};}
+\DoxyCodeLine{00454\ }
+\DoxyCodeLine{00455\ \textcolor{comment}{//-\/\ Test\ for\ tensors}}
+\DoxyCodeLine{00456\ }
+\DoxyCodeLine{00457\ \textcolor{comment}{//\ Tensor\ data}}
+\DoxyCodeLine{00458\ \textcolor{keyword}{template}\ <\ \textcolor{keyword}{class}\ T\ >\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structstd_1_1math_1_1concepts_1_1tensor__data}{tensor\_data}}\ :\ \textcolor{keyword}{public}\ ::std::conditional\_t<\ }
+\DoxyCodeLine{00459\ \ \ has\_value\_type\_v<T>\ \&\&}
+\DoxyCodeLine{00460\ \ \ has\_index\_type\_v<T>\ \&\&}
+\DoxyCodeLine{00461\ \ \ has\_size\_type\_v<T>\ \&\&}
+\DoxyCodeLine{00462\ \ \ has\_extents\_type\_v<T>\ \&\&}
+\DoxyCodeLine{00463\ \ \ has\_size\_func\_v<T>\ \&\&}
+\DoxyCodeLine{00464\ \ \ has\_capacity\_func\_v<T>,\ ::std::true\_type,\ ::std::false\_type\ >\ \{\ \};}
+\DoxyCodeLine{00465\ \textcolor{keyword}{template}\ <\ \textcolor{keyword}{class}\ T\ >\ \textcolor{keyword}{inline}\ \textcolor{keyword}{constexpr}\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{namespacestd_1_1math_1_1concepts_a82a3704f71fe04bd9f11299a7df8939f}{tensor\_data\_v}}\ =\ \mbox{\hyperlink{structstd_1_1math_1_1concepts_1_1tensor__data}{tensor\_data<T>::value}};}
+\DoxyCodeLine{00466\ }
+\DoxyCodeLine{00467\ \textcolor{comment}{//\ Tensor}}
+\DoxyCodeLine{00468\ \textcolor{keyword}{template}\ <\ \textcolor{keyword}{class}\ T\ >\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structstd_1_1math_1_1concepts_1_1tensor}{tensor}}\ :\ \textcolor{keyword}{public}\ ::std::conditional\_t<\ }
+\DoxyCodeLine{00469\ \ \ tensor\_data\_v<T>\ \&\&}
+\DoxyCodeLine{00470\ \ \ has\_scalar\_premultiply\_func\_v<T>\ \&\&}
+\DoxyCodeLine{00471\ \ \ has\_scalar\_postmultiply\_func\_v<T>\ \&\&}
+\DoxyCodeLine{00472\ \ \ has\_scalar\_divide\_func\_v<T>\ \&\&}
+\DoxyCodeLine{00473\ \ \ has\_negate\_func\_v<T>\ \&\&}
+\DoxyCodeLine{00474\ \ \ has\_add\_func\_v<T>\ \&\&}
+\DoxyCodeLine{00475\ \ \ has\_subtract\_func\_v<T>,\ ::std::true\_type,\ ::std::false\_type\ >\ \{\ \};}
+\DoxyCodeLine{00476\ \textcolor{keyword}{template}\ <\ \textcolor{keyword}{class}\ T\ >\ \textcolor{keyword}{inline}\ \textcolor{keyword}{constexpr}\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{namespacestd_1_1math_1_1concepts_a1256d05e82959fe7c468fa65af17b6d2}{tensor\_v}}\ =\ \mbox{\hyperlink{structstd_1_1math_1_1concepts_1_1tensor}{tensor<T>::value}};}
+\DoxyCodeLine{00477\ }
+\DoxyCodeLine{00478\ \textcolor{comment}{//\ Readable\ tensor\ data}}
+\DoxyCodeLine{00479\ \textcolor{keyword}{template}\ <\ \textcolor{keyword}{class}\ T\ >\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structstd_1_1math_1_1concepts_1_1readable__tensor__data}{readable\_tensor\_data}}\ :\ \textcolor{keyword}{public}\ ::std::conditional\_t<\ }
+\DoxyCodeLine{00480\ \ \ tensor\_data\_v<T>\ \&\&}
+\DoxyCodeLine{00481\ \ \ has\_tuple\_type\_v<T>\ \&\&}
+\DoxyCodeLine{00482\ \ \ has\_homogeneous\_tuple\_type\_v<T>\ \&\&}
+\DoxyCodeLine{00483\ \ \ has\_capatible\_tuple\_size\_v<T>\ \&\&}
+\DoxyCodeLine{00484\ \ \ has\_span\_type\_v<T>\ \&\&}
+\DoxyCodeLine{00485\ \ \ has\_const\_underlying\_span\_type\_v<T>\ \&\&}
+\DoxyCodeLine{00486\ \ \ has\_span\_func\_v<T>\ \&\&}
+\DoxyCodeLine{00487\ \ \ has\_const\_underlying\_span\_func\_v<T>,\ ::std::true\_type,\ ::std::false\_type\ >\ \{\ \};}
+\DoxyCodeLine{00488\ \textcolor{keyword}{template}\ <\ \textcolor{keyword}{class}\ T\ >\ \textcolor{keyword}{inline}\ \textcolor{keyword}{constexpr}\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{namespacestd_1_1math_1_1concepts_a89102e1c1df8eb6b35f69fd003c5789f}{readable\_tensor\_data\_v}}\ =\ \mbox{\hyperlink{structstd_1_1math_1_1concepts_1_1readable__tensor__data}{readable\_tensor\_data<T>::value}};}
+\DoxyCodeLine{00489\ }
+\DoxyCodeLine{00490\ \textcolor{comment}{//\ Readable\ tensor}}
+\DoxyCodeLine{00491\ \textcolor{keyword}{template}\ <\ \textcolor{keyword}{class}\ T\ >\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structstd_1_1math_1_1concepts_1_1readable__tensor}{readable\_tensor}}\ :\ \textcolor{keyword}{public}\ ::std::conditional\_t<\ }
+\DoxyCodeLine{00492\ \ \ readable\_tensor\_data\_v<T>\ \&\&}
+\DoxyCodeLine{00493\ \ \ tensor\_v<T>,\ ::std::true\_type,\ ::std::false\_type\ >\ \{\ \};}
+\DoxyCodeLine{00494\ \textcolor{keyword}{template}\ <\ \textcolor{keyword}{class}\ T\ >\ \textcolor{keyword}{inline}\ \textcolor{keyword}{constexpr}\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{namespacestd_1_1math_1_1concepts_a4094f74dadb30bc6f23bcd6135fc6419}{readable\_tensor\_v}}\ =\ \mbox{\hyperlink{structstd_1_1math_1_1concepts_1_1readable__tensor}{readable\_tensor<T>::value}};}
+\DoxyCodeLine{00495\ }
+\DoxyCodeLine{00496\ \textcolor{comment}{//\ Writable\ tensor\ data}}
+\DoxyCodeLine{00497\ \textcolor{keyword}{template}\ <\ \textcolor{keyword}{class}\ T\ >\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structstd_1_1math_1_1concepts_1_1writable__tensor__data}{writable\_tensor\_data}}\ :\ \textcolor{keyword}{public}\ ::std::conditional\_t<\ }
+\DoxyCodeLine{00498\ \ \ readable\_tensor\_data\_v<T>\ \&\&}
+\DoxyCodeLine{00499\ \ \ has\_reference\_v<T>\ \&\&}
+\DoxyCodeLine{00500\ \ \ is\_const\_tensor\_v<T>\ \&\&}
+\DoxyCodeLine{00501\ \ \ has\_underlying\_span\_type\_v<T>\ \&\&}
+\DoxyCodeLine{00502\ \ \ has\_underlying\_span\_func\_v<T>,\ ::std::true\_type,\ ::std::false\_type\ >\ \{\ \};}
+\DoxyCodeLine{00503\ \textcolor{keyword}{template}\ <\ \textcolor{keyword}{class}\ T\ >\ \textcolor{keyword}{inline}\ \textcolor{keyword}{constexpr}\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{namespacestd_1_1math_1_1concepts_aac4ad12a015d6a0962e282a2b80b7802}{writable\_tensor\_data\_v}}\ =\ \mbox{\hyperlink{structstd_1_1math_1_1concepts_1_1writable__tensor__data}{writable\_tensor\_data<T>::value}};}
+\DoxyCodeLine{00504\ }
+\DoxyCodeLine{00505\ \textcolor{comment}{//\ Writable\ tensor}}
+\DoxyCodeLine{00506\ \textcolor{keyword}{template}\ <\ \textcolor{keyword}{class}\ T\ >\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structstd_1_1math_1_1concepts_1_1writable__tensor}{writable\_tensor}}\ :\ \textcolor{keyword}{public}\ ::std::conditional\_t<\ }
+\DoxyCodeLine{00507\ \ \ writable\_tensor\_data\_v<T>\ \&\&}
+\DoxyCodeLine{00508\ \ \ tensor\_v<T>,\ ::std::true\_type,\ ::std::false\_type\ >\ \{\ \};}
+\DoxyCodeLine{00509\ \textcolor{keyword}{template}\ <\ \textcolor{keyword}{class}\ T\ >\ \textcolor{keyword}{inline}\ \textcolor{keyword}{constexpr}\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{namespacestd_1_1math_1_1concepts_a6ad69897a7ef3c0335a0f366c472a282}{writable\_tensor\_v}}\ =\ \mbox{\hyperlink{structstd_1_1math_1_1concepts_1_1writable__tensor}{writable\_tensor<T>::value}};}
+\DoxyCodeLine{00510\ }
+\DoxyCodeLine{00511\ \textcolor{comment}{//\ Dynamic\ tensor\ data}}
+\DoxyCodeLine{00512\ \textcolor{keyword}{template}\ <\ \textcolor{keyword}{class}\ T\ >\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structstd_1_1math_1_1concepts_1_1dynamic__tensor__data}{dynamic\_tensor\_data}}\ :\ \textcolor{keyword}{public}\ ::std::conditional\_t<}
+\DoxyCodeLine{00513\ \ \ tensor\_data\_v<T>\ \&\&}
+\DoxyCodeLine{00514\ \ \ has\_allocator\_type\_v<T>\ \textcolor{comment}{/*\&\&}}
+\DoxyCodeLine{00515\ \textcolor{comment}{\ \ constructible\_from\_alloc\_v<T>\ \&\&}}
+\DoxyCodeLine{00516\ \textcolor{comment}{\ \ constructible\_from\_size\_and\_alloc\_v<T>\ \&\&}}
+\DoxyCodeLine{00517\ \textcolor{comment}{\ \ constructible\_from\_size\_cap\_and\_alloc\_v<T>*/}\ \&\&}
+\DoxyCodeLine{00518\ \ \ has\_resize\_func\_v<T>\ \&\&}
+\DoxyCodeLine{00519\ \ \ has\_reserve\_func\_v<T>,\ ::std::true\_type,\ ::std::false\_type\ >\ \{\ \};}
+\DoxyCodeLine{00520\ \textcolor{keyword}{template}\ <\ \textcolor{keyword}{class}\ T\ >\ \textcolor{keyword}{inline}\ \textcolor{keyword}{constexpr}\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{namespacestd_1_1math_1_1concepts_ad834e64ea17e9853129048b33c8393b1}{dynamic\_tensor\_data\_v}}\ =\ \mbox{\hyperlink{structstd_1_1math_1_1concepts_1_1dynamic__tensor__data}{dynamic\_tensor\_data<T>::value}};}
+\DoxyCodeLine{00521\ }
+\DoxyCodeLine{00522\ \textcolor{comment}{//\ Dynamic\ tensor}}
+\DoxyCodeLine{00523\ \textcolor{keyword}{template}\ <\ \textcolor{keyword}{class}\ T\ >\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structstd_1_1math_1_1concepts_1_1dynamic__tensor}{dynamic\_tensor}}\ :\ \textcolor{keyword}{public}\ ::std::conditional\_t<\ }
+\DoxyCodeLine{00524\ \ \ dynamic\_tensor\_data\_v<T>\ \&\&}
+\DoxyCodeLine{00525\ \ \ tensor\_v<T>,\ ::std::true\_type,\ ::std::false\_type\ >\ \{\ \};}
+\DoxyCodeLine{00526\ \textcolor{keyword}{template}\ <\ \textcolor{keyword}{class}\ T\ >\ \textcolor{keyword}{inline}\ \textcolor{keyword}{constexpr}\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{namespacestd_1_1math_1_1concepts_afd143657f402f5cd8d9f1aae796b62f0}{dynamic\_tensor\_v}}\ =\ \mbox{\hyperlink{structstd_1_1math_1_1concepts_1_1dynamic__tensor}{dynamic\_tensor<T>::value}};}
+\DoxyCodeLine{00527\ }
+\DoxyCodeLine{00528\ \textcolor{comment}{//\ Fixed\ size\ tensor\ data}}
+\DoxyCodeLine{00529\ \textcolor{keyword}{template}\ <\ \textcolor{keyword}{class}\ T\ >\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structstd_1_1math_1_1concepts_1_1fixed__size__tensor__data}{fixed\_size\_tensor\_data}}\ :\ \textcolor{keyword}{public}\ ::std::conditional\_t<\ }
+\DoxyCodeLine{00530\ \ \ tensor\_data\_v<T>\ \&\&}
+\DoxyCodeLine{00531\ \ \ has\_static\_extents\_v<T>}
+\DoxyCodeLine{00532\ \#if\ LINALG\_HAS\_CXX\_20}
+\DoxyCodeLine{00533\ \ \ \&\&\ detail::is\_constexpr(\ []\{\ T();\ \}\ )\ \&\&}
+\DoxyCodeLine{00534\ \ \ detail::is\_constexpr(\ []\{\ [[maybe\_unused]]\ decltype(\ ::std::declval<T>().size()\ )\ \ \ \ \ nodiscard\_warning\ =\ T().size();\ \}\ )\ \&\&}
+\DoxyCodeLine{00535\ \ \ detail::is\_constexpr(\ []\{\ [[maybe\_unused]]\ decltype(\ ::std::declval<T>().capacity()\ )\ nodiscard\_warning\ =\ T().capacity();\ \}\ )\ \&\&}
+\DoxyCodeLine{00536\ \ \ (\ T().size()\ ==\ T().capacity()\ )}
+\DoxyCodeLine{00537\ \#endif}
+\DoxyCodeLine{00538\ \ \ ,\ ::std::true\_type,\ ::std::false\_type\ >\ \{\ \};}
+\DoxyCodeLine{00539\ \textcolor{keyword}{template}\ <\ \textcolor{keyword}{class}\ T\ >\ \textcolor{keyword}{inline}\ \textcolor{keyword}{constexpr}\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{namespacestd_1_1math_1_1concepts_abc7e9f00b5e3b75046267cce0ac3913e}{fixed\_size\_tensor\_data\_v}}\ =\ \mbox{\hyperlink{structstd_1_1math_1_1concepts_1_1fixed__size__tensor__data}{fixed\_size\_tensor\_data<T>::value}};}
+\DoxyCodeLine{00540\ }
+\DoxyCodeLine{00541\ \textcolor{comment}{//\ Fixed\ size\ tensor}}
+\DoxyCodeLine{00542\ \textcolor{keyword}{template}\ <\ \textcolor{keyword}{class}\ T\ >\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structstd_1_1math_1_1concepts_1_1fixed__size__tensor}{fixed\_size\_tensor}}\ :\ \textcolor{keyword}{public}\ ::std::conditional\_t<\ }
+\DoxyCodeLine{00543\ \ \ fixed\_size\_tensor\_data\_v<T>\ \&\&}
+\DoxyCodeLine{00544\ \ \ tensor\_v<T>,\ ::std::true\_type,\ ::std::false\_type\ >\ \{\ \};}
+\DoxyCodeLine{00545\ \textcolor{keyword}{template}\ <\ \textcolor{keyword}{class}\ T\ >\ \textcolor{keyword}{inline}\ \textcolor{keyword}{constexpr}\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{namespacestd_1_1math_1_1concepts_abc59ae71b1b1fe37a5033fce7bbec771}{fixed\_size\_tensor\_v}}\ =\ \mbox{\hyperlink{structstd_1_1math_1_1concepts_1_1fixed__size__tensor}{fixed\_size\_tensor<T>::value}};}
+\DoxyCodeLine{00546\ }
+\DoxyCodeLine{00547\ \textcolor{comment}{//\ Tensor\ may\ be\ constructible}}
+\DoxyCodeLine{00548\ \textcolor{comment}{//\ Enforces\ both\ types\ are\ tensor\ which\ have\ constructible\ elements}}
+\DoxyCodeLine{00549\ \textcolor{comment}{//\ and\ both\ have\ potentially\ compatible\ extents}}
+\DoxyCodeLine{00550\ \textcolor{keyword}{template}\ <\ \textcolor{keyword}{class}\ From,\ \textcolor{keyword}{class}\ To\ >}
+\DoxyCodeLine{00551\ \textcolor{keyword}{inline}\ \textcolor{keyword}{constexpr}\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{namespacestd_1_1math_1_1concepts_a37d161e63019ad29f5d04f5cc484d5c9}{tensor\_may\_be\_constructible}}\ =}
+\DoxyCodeLine{00552\ tensor\_v<From>\ \&\&\ tensor\_v<To>\ \&\&}
+\DoxyCodeLine{00553\ values\_are\_constructible\_v<From,To>\ \&\&}
+\DoxyCodeLine{00554\ extents\_may\_be\_equal\_v<From,To>;}
+\DoxyCodeLine{00555\ }
+\DoxyCodeLine{00556\ \textcolor{comment}{//\ View\ may\ be\ constructible\ to\ tensor}}
+\DoxyCodeLine{00557\ \textcolor{comment}{//\ Enforces\ view\ is\ an\ mdspan\ of\ rank\ equal\ to\ tensor\ with\ elements}}
+\DoxyCodeLine{00558\ \textcolor{comment}{//\ \ \ Each\ extent\ must\ be\ the\ same\ or\ dynamic}}
+\DoxyCodeLine{00559\ \textcolor{comment}{//\ View\ element\ must\ be\ constructible\ to\ the\ tensor\ elements}}
+\DoxyCodeLine{00560\ \textcolor{keyword}{template}\ <\ \textcolor{keyword}{class}\ From,\ \textcolor{keyword}{class}\ To\ >}
+\DoxyCodeLine{00561\ \textcolor{keyword}{inline}\ \textcolor{keyword}{constexpr}\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{namespacestd_1_1math_1_1concepts_ace3f73f1713cef14d221a6a38e4c55fb}{view\_may\_be\_constructible\_to\_tensor}}\ =}
+\DoxyCodeLine{00562\ detail::is\_mdspan\_v<From>\ \&\&\ tensor\_v<To>\ \&\&}
+\DoxyCodeLine{00563\ values\_are\_constructible\_v<From,To>\ \&\&}
+\DoxyCodeLine{00564\ extents\_may\_be\_equal\_v<From,To>;}
+\DoxyCodeLine{00565\ }
+\DoxyCodeLine{00566\ \textcolor{comment}{//\ View\ is\ constructible\ to\ tensor}}
+\DoxyCodeLine{00567\ \textcolor{comment}{//\ Enforces\ view\ is\ an\ mdspan\ of\ rank\ equal\ to\ tensor\ with\ elements}}
+\DoxyCodeLine{00568\ \textcolor{comment}{//\ \ \ Each\ extent\ must\ be\ the\ same\ (and\ not\ dynamic)}}
+\DoxyCodeLine{00569\ \textcolor{comment}{//\ View\ element\ must\ be\ constructible\ to\ the\ tensor\ elements}}
+\DoxyCodeLine{00570\ \textcolor{keyword}{template}\ <\ \textcolor{keyword}{class}\ From,\ \textcolor{keyword}{class}\ To\ >}
+\DoxyCodeLine{00571\ \textcolor{keyword}{inline}\ \textcolor{keyword}{constexpr}\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{namespacestd_1_1math_1_1concepts_a499642446ead7534ab6a17727219b145}{view\_is\_constructible\_to\_tensor}}\ =}
+\DoxyCodeLine{00572\ detail::is\_mdspan\_v<From>\ \&\&\ tensor\_v<To>\ \&\&}
+\DoxyCodeLine{00573\ values\_are\_constructible\_v<From,To>\ \&\&}
+\DoxyCodeLine{00574\ extents\_are\_equal\_v<From,To>;}
+\DoxyCodeLine{00575\ }
+\DoxyCodeLine{00576\ \textcolor{comment}{//\ View\ is\ nothrow\ constructible\ to\ tensor}}
+\DoxyCodeLine{00577\ \textcolor{comment}{//\ Enforces\ view\ is\ an\ mdspan\ of\ rank\ equal\ to\ tensor\ with\ elements}}
+\DoxyCodeLine{00578\ \textcolor{comment}{//\ \ \ Each\ extent\ must\ be\ the\ same\ (and\ not\ dynamic)}}
+\DoxyCodeLine{00579\ \textcolor{comment}{//\ View\ element\ must\ be\ nothrow\ constructible\ to\ the\ tensor\ elements}}
+\DoxyCodeLine{00580\ \textcolor{keyword}{template}\ <\ \textcolor{keyword}{class}\ From,\ \textcolor{keyword}{class}\ To\ >}
+\DoxyCodeLine{00581\ \textcolor{keyword}{inline}\ \textcolor{keyword}{constexpr}\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{namespacestd_1_1math_1_1concepts_a59af87894438c58999ff10b1d00aa39f}{view\_is\_nothrow\_constructible\_to\_tensor}}\ =}
+\DoxyCodeLine{00582\ detail::is\_mdspan\_v<From>\ \&\&\ tensor\_v<To>\ \&\&}
+\DoxyCodeLine{00583\ values\_are\_nothrow\_constructible\_v<From,To>\ \&\&}
+\DoxyCodeLine{00584\ extents\_are\_equal\_v<\ From,\ To\ >;}
+\DoxyCodeLine{00585\ }
+\DoxyCodeLine{00586\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00587\ }
+\DoxyCodeLine{00588\ \}\ \ \ \ \ \ \ \textcolor{comment}{//-\/\ concepts\ namespace}}
+\DoxyCodeLine{00589\ \}\ \ \ \ \ \ \ \textcolor{comment}{//-\/\ math\ namespace}}
+\DoxyCodeLine{00590\ \}\ \ \ \ \ \ \ \textcolor{comment}{//-\/\ std\ namespace}}
+\DoxyCodeLine{00591\ }
+\DoxyCodeLine{00592\ \textcolor{preprocessor}{\#endif\ \ }\textcolor{comment}{//-\/\ LINEAR\_ALGEBRA\_TENSOR\_CONCEPTS\_HPP}}
 
 \end{DoxyCode}

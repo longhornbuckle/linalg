@@ -115,10 +115,9 @@ Public Member Functions</h2></td></tr>
 <tr class="separator:a68163fd3272d106bef4703883e2c566f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a694f553e3b5c79eace77f6065a3aa177"><td class="memItemLeft" align="right" valign="top">MDSPAN_FORCE_INLINE_FUNCTION constexpr&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classstd_1_1experimental_1_1extents_3_01_index_type_00_01_extent_01_4.html#a694f553e3b5c79eace77f6065a3aa177">operator IndexType</a> () <a class="el" href="classstd_1_1experimental_1_1extents_3_01_index_type_00_01_extent_01_4.html#aa25f63ffee8a343c9847c1e3a1b92b07">noexcept</a></td></tr>
 <tr class="separator:a694f553e3b5c79eace77f6065a3aa177"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aae9f61e071ec3dc6e5b7478c975814dd"><td class="memTemplParams" colspan="2">template&lt;class OtherIndexType &gt; <br />
-requires ( !detail::__is_extents_v&lt;OtherIndexType&gt; )</td></tr>
-<tr class="memitem:aae9f61e071ec3dc6e5b7478c975814dd"><td class="memTemplItemLeft" align="right" valign="top">MDSPAN_INLINE_FUNCTION constexpr bool&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="classstd_1_1experimental_1_1extents_3_01_index_type_00_01_extent_01_4.html#aae9f61e071ec3dc6e5b7478c975814dd">operator==</a> (OtherIndexType const &amp;rhs) <a class="el" href="classstd_1_1experimental_1_1extents_3_01_index_type_00_01_extent_01_4.html#aa25f63ffee8a343c9847c1e3a1b92b07">noexcept</a></td></tr>
-<tr class="separator:aae9f61e071ec3dc6e5b7478c975814dd"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a628f6b0e84f0ad9bbc2601c754c3cdbe"><td class="memTemplParams" colspan="2">template&lt;class OtherIndexType , typename  = enable_if_t&lt; !detail::__is_extents_v&lt;OtherIndexType&gt; &gt;&gt; </td></tr>
+<tr class="memitem:a628f6b0e84f0ad9bbc2601c754c3cdbe"><td class="memTemplItemLeft" align="right" valign="top">MDSPAN_INLINE_FUNCTION constexpr bool&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="classstd_1_1experimental_1_1extents_3_01_index_type_00_01_extent_01_4.html#a628f6b0e84f0ad9bbc2601c754c3cdbe">operator==</a> (OtherIndexType const &amp;rhs) <a class="el" href="classstd_1_1experimental_1_1extents_3_01_index_type_00_01_extent_01_4.html#aa25f63ffee8a343c9847c1e3a1b92b07">noexcept</a></td></tr>
+<tr class="separator:a628f6b0e84f0ad9bbc2601c754c3cdbe"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-static-methods" name="pub-static-methods"></a>
 Static Public Member Functions</h2></td></tr>
@@ -380,16 +379,15 @@ template&lt;class IndexType , size_t Extent&gt; </div>
 
 </div>
 </div>
-<a id="aae9f61e071ec3dc6e5b7478c975814dd" name="aae9f61e071ec3dc6e5b7478c975814dd"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aae9f61e071ec3dc6e5b7478c975814dd">&#9670;&#160;</a></span>operator==()</h2>
+<a id="a628f6b0e84f0ad9bbc2601c754c3cdbe" name="a628f6b0e84f0ad9bbc2601c754c3cdbe"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a628f6b0e84f0ad9bbc2601c754c3cdbe">&#9670;&#160;</a></span>operator==()</h2>
 
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
 template&lt;class IndexType , size_t Extent&gt; </div>
 <div class="memtemplate">
-template&lt;class OtherIndexType &gt; <br />
-requires ( !detail::__is_extents_v&lt;OtherIndexType&gt; )</div>
+template&lt;class OtherIndexType , typename  = enable_if_t&lt; !detail::__is_extents_v&lt;OtherIndexType&gt; &gt;&gt; </div>
 <table class="mlabels">
   <tr>
   <td class="mlabels-left">

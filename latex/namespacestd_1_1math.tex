@@ -27,221 +27,217 @@ class \mbox{\hyperlink{classstd_1_1math_1_1fs__tensor}{fs\+\_\+tensor}}
 class \mbox{\hyperlink{classstd_1_1math_1_1fs__vector}{fs\+\_\+vector}}
 \begin{DoxyCompactList}\small\item\em Fixed-\/size, fixed-\/capacity vector. \end{DoxyCompactList}\item 
 class \mbox{\hyperlink{classstd_1_1math_1_1matrix__view}{matrix\+\_\+view}}
-\begin{DoxyCompactList}\small\item\em Matrix view. \end{DoxyCompactList}\item 
+\begin{DoxyCompactList}\small\item\em Non-\/owning matrix view. \end{DoxyCompactList}\item 
 class \mbox{\hyperlink{classstd_1_1math_1_1tensor__view}{tensor\+\_\+view}}
-\begin{DoxyCompactList}\small\item\em Tensor view. \end{DoxyCompactList}\item 
+\begin{DoxyCompactList}\small\item\em Non-\/owning ensor view. \end{DoxyCompactList}\item 
 class \mbox{\hyperlink{classstd_1_1math_1_1vector__view}{vector\+\_\+view}}
 \begin{DoxyCompactList}\small\item\em Vector view. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Typedefs}
+\begin{DoxyCompactItemize}
+\item 
+using \mbox{\hyperlink{namespacestd_1_1math_ac2cd009d5ab8b17ef398accc0714a2c6}{default\+\_\+layout}} = \+::std\+::experimental\+::layout\+\_\+right
+\end{DoxyCompactItemize}
 \doxysubsection*{Functions}
 \begin{DoxyCompactItemize}
 \item 
-{\footnotesize template$<$concepts\+::tensor\+\_\+data T$>$ }\\constexpr decltype(auto) \mbox{\hyperlink{namespacestd_1_1math_ae0ebbca9368067db0126a9ebbfa28040}{operator-\/}} (const T \&t) noexcept(noexcept(operations\+::template negation$<$ T $>$\+::negate(t)))
+{\footnotesize template$<$class T , typename  = \+::std\+::enable\+\_\+if\+\_\+t$<$ concepts\+::tensor\+\_\+data\+\_\+v$<$\+T$>$ $>$$>$ }\\constexpr decltype(auto) \mbox{\hyperlink{namespacestd_1_1math_a96d6d345149ee19d394bbb50cb832640}{operator-\/}} (const T \&t) noexcept(noexcept(operations\+::template negation$<$ T $>$\+::negate(t)))
 \item 
-{\footnotesize template$<$concepts\+::matrix\+\_\+data M$>$ }\\constexpr decltype(auto) \mbox{\hyperlink{namespacestd_1_1math_aad19d9284c196e0f59cf9a4e03794b99}{trans}} (const M \&m) noexcept(noexcept(operations\+::template transpose\+\_\+matrix$<$ M $>$\+::trans(m)))
+{\footnotesize template$<$class M , typename  = \+::std\+::enable\+\_\+if\+\_\+t$<$ concepts\+::matrix\+\_\+data\+\_\+v$<$\+M$>$ $>$$>$ }\\constexpr decltype(auto) \mbox{\hyperlink{namespacestd_1_1math_ae82a9727c2ed37e6d54c26d97cb1ca7e}{trans}} (const M \&m) noexcept(noexcept(operations\+::template transpose\+\_\+matrix$<$ M $>$\+::trans(m)))
 \item 
-{\footnotesize template$<$concepts\+::vector\+\_\+data V$>$ }\\constexpr decltype(auto) \mbox{\hyperlink{namespacestd_1_1math_abda6cbd6bfc2db633b23c3be56c2657c}{trans}} (const V \&v) noexcept(noexcept(operations\+::template transpose\+\_\+vector$<$ V $>$\+::trans(v)))
+{\footnotesize template$<$class V , typename  = \+::std\+::enable\+\_\+if\+\_\+t$<$ concepts\+::vector\+\_\+data\+\_\+v$<$\+V$>$ $>$, typename  = \+::std\+::enable\+\_\+if\+\_\+t$<$true$>$$>$ }\\constexpr decltype(auto) \mbox{\hyperlink{namespacestd_1_1math_ac5098ff00eb6cf1baa08bb550b8d0013}{trans}} (const V \&v) noexcept(noexcept(operations\+::template transpose\+\_\+vector$<$ V $>$\+::trans(v)))
 \item 
-{\footnotesize template$<$concepts\+::matrix\+\_\+data M$>$ }\\constexpr decltype(auto) \mbox{\hyperlink{namespacestd_1_1math_a381ab766e72b583fd5859302b2c643b2}{conj}} (const M \&m) noexcept(noexcept(operations\+::template conjugate\+\_\+matrix$<$ M $>$\+::conjugate(m)))
+{\footnotesize template$<$class M , typename  = \+::std\+::enable\+\_\+if\+\_\+t$<$ concepts\+::matrix\+\_\+data\+\_\+v$<$\+M$>$ $>$$>$ }\\constexpr decltype(auto) \mbox{\hyperlink{namespacestd_1_1math_a5de07ffd7ce1b2a4b5264b7754522b1b}{conj}} (const M \&m) noexcept(noexcept(operations\+::template conjugate\+\_\+matrix$<$ M $>$\+::conjugate(m)))
 \item 
-{\footnotesize template$<$concepts\+::vector\+\_\+data V$>$ }\\constexpr decltype(auto) \mbox{\hyperlink{namespacestd_1_1math_a0837991426dc71210aea26716a4a32c4}{conj}} (const V \&v) noexcept(noexcept(operations\+::template conjugate\+\_\+vector$<$ V $>$\+::conjugate(v)))
+{\footnotesize template$<$class V , typename  = \+::std\+::enable\+\_\+if\+\_\+t$<$ concepts\+::vector\+\_\+data\+\_\+v$<$\+V$>$ $>$, typename  = \+::std\+::enable\+\_\+if\+\_\+t$<$true$>$$>$ }\\constexpr decltype(auto) \mbox{\hyperlink{namespacestd_1_1math_af9810b3eb460f0927294422090884e43}{conj}} (const V \&v) noexcept(noexcept(operations\+::template conjugate\+\_\+vector$<$ V $>$\+::conjugate(v)))
 \item 
-{\footnotesize template$<$concepts\+::tensor\+\_\+data T1, concepts\+::tensor\+\_\+data T2$>$ }\\constexpr decltype(auto) \mbox{\hyperlink{namespacestd_1_1math_a0396356ee67b1983e87decdf75e74917}{operator+}} (const T1 \&t1, const T2 \&t2) noexcept(noexcept(operations\+::template addition$<$ T1, T2 $>$\+::add(t1, t2)))
+{\footnotesize template$<$class T1 , class T2 , typename  = \+::std\+::enable\+\_\+if\+\_\+t$<$ concepts\+::tensor\+\_\+data\+\_\+v$<$\+T1$>$ \&\& concepts\+::tensor\+\_\+data\+\_\+v$<$\+T2$>$ $>$$>$ }\\constexpr decltype(auto) \mbox{\hyperlink{namespacestd_1_1math_acf454a5786b787e1b3eb09bcdf29c9aa}{operator+}} (const T1 \&t1, const T2 \&t2) noexcept(noexcept(operations\+::template addition$<$ T1, T2 $>$\+::add(t1, t2)))
 \item 
-{\footnotesize template$<$concepts\+::tensor\+\_\+data T1, concepts\+::tensor\+\_\+data T2$>$ \newline
-requires is\+\_\+convertible\+\_\+v$<$ decltype( declval$<$typename T1\+::value\+\_\+type$>$() + declval$<$typename T2\+::value\+\_\+type$>$() ), typename T1\+::element\+\_\+type $>$}\\constexpr T1 \& \mbox{\hyperlink{namespacestd_1_1math_ac1efb74b1ddfd4881a4cbbe111804abc}{operator+=}} (T1 \&t1, const T2 \&t2) noexcept(noexcept(operations\+::template addition$<$ T1, T2 $>$\+::add(t1, t2)))
+{\footnotesize template$<$class T1 , class T2 , typename  = enable\+\_\+if\+\_\+t$<$ concepts\+::tensor\+\_\+data\+\_\+v$<$\+T1$>$ \&\&                                   concepts\+::tensor\+\_\+data\+\_\+v$<$\+T2$>$ \&\&                                   \+::std\+::is\+\_\+convertible\+\_\+v$<$ decltype( declval$<$typename T1\+::value\+\_\+type$>$() + declval$<$typename T2\+::value\+\_\+type$>$() ), typename T1\+::element\+\_\+type $>$$>$ }\\constexpr T1 \& \mbox{\hyperlink{namespacestd_1_1math_ae293f2c25475f1ba04aca68da7fd2a79}{operator+=}} (T1 \&t1, const T2 \&t2) noexcept(noexcept(operations\+::template addition$<$ T1, T2 $>$\+::add(t1, t2)))
 \item 
-{\footnotesize template$<$concepts\+::tensor\+\_\+data T1, concepts\+::tensor\+\_\+data T2$>$ }\\constexpr decltype(auto) \mbox{\hyperlink{namespacestd_1_1math_a6c38bdb9c467d22fd84a7db877a9b003}{operator-\/}} (const T1 \&t1, const T2 \&t2) noexcept(noexcept(operations\+::template subtraction$<$ T1, T2 $>$\+::subtract(t1, t2)))
+{\footnotesize template$<$class T1 , class T2 , typename  = \+::std\+::enable\+\_\+if\+\_\+t$<$ concepts\+::tensor\+\_\+data\+\_\+v$<$\+T1$>$ \&\& concepts\+::tensor\+\_\+data\+\_\+v$<$\+T2$>$ $>$$>$ }\\constexpr decltype(auto) \mbox{\hyperlink{namespacestd_1_1math_a09b2165f2c3bffeb9b293edca35f0b2e}{operator-\/}} (const T1 \&t1, const T2 \&t2) noexcept(noexcept(operations\+::template subtraction$<$ T1, T2 $>$\+::subtract(t1, t2)))
 \item 
-{\footnotesize template$<$concepts\+::tensor\+\_\+data T1, concepts\+::tensor\+\_\+data T2$>$ \newline
-requires is\+\_\+convertible\+\_\+v$<$ decltype( declval$<$typename T1\+::value\+\_\+type$>$() -\/ declval$<$typename T2\+::value\+\_\+type$>$() ), typename T1\+::element\+\_\+type $>$}\\constexpr T1 \& \mbox{\hyperlink{namespacestd_1_1math_a1c2d3f15db6c82288d26d64023154241}{operator-\/=}} (T1 \&t1, const T2 \&t2) noexcept(noexcept(operations\+::template subtraction$<$ T1, T2 $>$\+::subtract(t1, t2)))
+{\footnotesize template$<$class T1 , class T2 , typename  = enable\+\_\+if\+\_\+t$<$ concepts\+::tensor\+\_\+data\+\_\+v$<$\+T1$>$ \&\&                                   concepts\+::tensor\+\_\+data\+\_\+v$<$\+T2$>$ \&\&                                   \+::std\+::is\+\_\+convertible\+\_\+v$<$ decltype( declval$<$typename T1\+::value\+\_\+type$>$() -\/ declval$<$typename T2\+::value\+\_\+type$>$() ), typename T1\+::element\+\_\+type $>$$>$ }\\constexpr T1 \& \mbox{\hyperlink{namespacestd_1_1math_a4f6e8272ffda073ed7e3ab8ece790990}{operator-\/=}} (T1 \&t1, const T2 \&t2) noexcept(noexcept(operations\+::template subtraction$<$ T1, T2 $>$\+::subtract(t1, t2)))
 \item 
-{\footnotesize template$<$class S , concepts\+::tensor\+\_\+data T$>$ \newline
-requires requires \{ s $\ast$ declval$<$ typename T\+::value\+\_\+type $>$(); \} \&\& ( !concepts\+::tensor\+\_\+data$<$S$>$ )}\\constexpr decltype(auto) \mbox{\hyperlink{namespacestd_1_1math_a49e56c9886cd363e4855c1355587c285}{operator$\ast$}} (const S \&s, const T \&t) noexcept(noexcept(operations\+::template scalar\+\_\+product$<$ S, T $>$\+::prod(s, t)))
+{\footnotesize template$<$class S , class T , typename  = \+::std\+::enable\+\_\+if\+\_\+t$<$ concepts\+::tensor\+\_\+data\+\_\+v$<$\+T$>$ \&\&                                          !concepts\+::tensor\+\_\+data\+\_\+v$<$\+S$>$ $>$, typename  = \+::std\+::enable\+\_\+if\+\_\+t$<$ concepts\+::product\+\_\+exists\+\_\+v$<$ typename T\+::value\+\_\+type, S $>$ $>$$>$ }\\constexpr decltype(auto) \mbox{\hyperlink{namespacestd_1_1math_aaaba9e144f3b3f40d947b5482b885b5d}{operator$\ast$}} (const S \&s, const T \&t) noexcept(noexcept(operations\+::template scalar\+\_\+product$<$ S, T $>$\+::prod(s, t)))
 \item 
-{\footnotesize template$<$concepts\+::tensor\+\_\+data T, class S $>$ \newline
-requires requires \{ declval$<$ typename T\+::value\+\_\+type $>$() $\ast$ s; \} \&\& ( !concepts\+::tensor\+\_\+data$<$S$>$ )}\\constexpr decltype(auto) \mbox{\hyperlink{namespacestd_1_1math_a80a67c5251d05cd81c89dc46e2a1c342}{operator$\ast$}} (const T \&t, const S \&s) noexcept(noexcept(operations\+::template scalar\+\_\+product$<$ S, T $>$\+::prod(t, s)))
+{\footnotesize template$<$class T , class S , typename  = \+::std\+::enable\+\_\+if\+\_\+t$<$ concepts\+::tensor\+\_\+data\+\_\+v$<$\+T$>$ \&\&                                          !concepts\+::tensor\+\_\+data\+\_\+v$<$\+S$>$ $>$, typename  = \+::std\+::enable\+\_\+if\+\_\+t$<$ concepts\+::product\+\_\+exists\+\_\+v$<$ typename T\+::value\+\_\+type, S $>$ $>$, typename  = \+::std\+::enable\+\_\+if\+\_\+t$<$true$>$$>$ }\\constexpr decltype(auto) \mbox{\hyperlink{namespacestd_1_1math_a262dff53ea621a086935aea94bd6a64d}{operator$\ast$}} (const T \&t, const S \&s) noexcept(noexcept(operations\+::template scalar\+\_\+product$<$ S, T $>$\+::prod(t, s)))
 \item 
-{\footnotesize template$<$concepts\+::tensor\+\_\+data T, class S $>$ \newline
-requires requires \{ declval$<$ typename T\+::value\+\_\+type $>$() $\ast$ s; \} \&\& ( !concepts\+::tensor\+\_\+data$<$S$>$ ) \&\& is\+\_\+convertible\+\_\+v$<$ decltype( declval$<$typename T\+::value\+\_\+type$>$() $\ast$ declval$<$S$>$() ), typename T\+::element\+\_\+type $>$}\\constexpr T \& \mbox{\hyperlink{namespacestd_1_1math_adc521aa60c4af6a8df03dd0343535a7c}{operator$\ast$=}} (T \&t, const S \&s) noexcept(noexcept(operations\+::template scalar\+\_\+product$<$ S, T $>$\+::prod(t, s)))
+{\footnotesize template$<$class T , class S , typename  = \+::std\+::enable\+\_\+if\+\_\+t$<$ concepts\+::tensor\+\_\+data\+\_\+v$<$\+T$>$ \&\&                                          !concepts\+::tensor\+\_\+data\+\_\+v$<$\+S$>$ \&\&                                          concepts\+::product\+\_\+exists\+\_\+v$<$ typename T\+::value\+\_\+type, S $>$ \&\&                                          \+::std\+::is\+\_\+convertible\+\_\+v$<$ decltype( declval$<$typename T\+::value\+\_\+type$>$() $\ast$ declval$<$\+S$>$() ), typename T\+::element\+\_\+type $>$$>$ }\\constexpr T \& \mbox{\hyperlink{namespacestd_1_1math_a8ce5946ea5a3d9b7a65fe914fbd107bc}{operator$\ast$=}} (T \&t, const S \&s) noexcept(noexcept(operations\+::template scalar\+\_\+product$<$ S, T $>$\+::prod(t, s)))
 \item 
-{\footnotesize template$<$concepts\+::tensor\+\_\+data T, class S $>$ \newline
-requires requires \{ declval$<$ typename T\+::value\+\_\+type $>$() / s; \}}\\constexpr decltype(auto) \mbox{\hyperlink{namespacestd_1_1math_a593c6de1d8b08210bf93542d7645eacc}{operator/}} (const T \&t, const S \&s) noexcept(noexcept(operations\+::template scalar\+\_\+division$<$ T, S $>$\+::divide(t, s)))
+{\footnotesize template$<$class T , class S , typename  = \+::std\+::enable\+\_\+if\+\_\+t$<$ concepts\+::tensor\+\_\+data\+\_\+v$<$\+T$>$ \&\&                                          concepts\+::division\+\_\+exists\+\_\+v$<$ typename T\+::value\+\_\+type, S $>$ $>$$>$ }\\constexpr decltype(auto) \mbox{\hyperlink{namespacestd_1_1math_a6d48c8c6cbe3f05f3dbced6efb3d2bb4}{operator/}} (const T \&t, const S \&s) noexcept(noexcept(operations\+::template scalar\+\_\+division$<$ T, S $>$\+::divide(t, s)))
 \item 
-{\footnotesize template$<$concepts\+::tensor\+\_\+data T, class S $>$ \newline
-requires requires \{ declval$<$ typename T\+::value\+\_\+type $>$() / s; \} \&\& ( !concepts\+::tensor\+\_\+data$<$S$>$ ) \&\& is\+\_\+convertible\+\_\+v$<$ decltype( declval$<$typename T\+::value\+\_\+type$>$() / declval$<$S$>$() ), typename T\+::element\+\_\+type $>$}\\constexpr T \& \mbox{\hyperlink{namespacestd_1_1math_a7abbafdd1c2f2304b244108162cf33c0}{operator/=}} (T \&t, const S \&s) noexcept(noexcept(operations\+::template scalar\+\_\+division$<$ T, S $>$\+::divide(t, s)))
+{\footnotesize template$<$class T , class S , typename  = \+::std\+::enable\+\_\+if\+\_\+t$<$ concepts\+::tensor\+\_\+data\+\_\+v$<$\+T$>$ \&\&                                          concepts\+::division\+\_\+exists\+\_\+v$<$ typename T\+::value\+\_\+type, S $>$ \&\&                                          \+::std\+::is\+\_\+convertible\+\_\+v$<$ decltype( declval$<$typename T\+::value\+\_\+type$>$() $\ast$ declval$<$\+S$>$() ), typename T\+::element\+\_\+type $>$$>$ }\\constexpr T \& \mbox{\hyperlink{namespacestd_1_1math_aa5687dfeb751c189d8dffaff793ef5b5}{operator/=}} (T \&t, const S \&s) noexcept(noexcept(operations\+::template scalar\+\_\+division$<$ T, S $>$\+::divide(t, s)))
 \item 
-{\footnotesize template$<$concepts\+::vector\+\_\+data V1, concepts\+::vector\+\_\+data V2$>$ }\\constexpr decltype(auto) \mbox{\hyperlink{namespacestd_1_1math_ae595d72c25d55b2d8d8086ef2b65bfe2}{inner\+\_\+prod}} (const V1 \&v1, const V2 \&v2) noexcept(noexcept(operations\+::template inner\+\_\+product$<$ V1, V2 $>$\+::prod(v1, v2)))
+{\footnotesize template$<$class V1 , class V2 , typename  = \+::std\+::enable\+\_\+if\+\_\+t$<$ concepts\+::vector\+\_\+data\+\_\+v$<$\+V1$>$ \&\& concepts\+::vector\+\_\+data\+\_\+v$<$\+V2$>$ $>$$>$ }\\constexpr decltype(auto) \mbox{\hyperlink{namespacestd_1_1math_a8197d469913a3e9264f768a8fb234008}{inner\+\_\+prod}} (const V1 \&v1, const V2 \&v2) noexcept(noexcept(operations\+::template inner\+\_\+product$<$ V1, V2 $>$\+::prod(v1, v2)))
 \item 
-{\footnotesize template$<$concepts\+::vector\+\_\+data V1, concepts\+::vector\+\_\+data V2$>$ }\\constexpr decltype(auto) \mbox{\hyperlink{namespacestd_1_1math_a16d9bb61f2dd78e168c6318baed2625b}{outer\+\_\+prod}} (const V1 \&v1, const V2 \&v2) noexcept(noexcept(operations\+::template outer\+\_\+product$<$ V1, V2 $>$\+::prod(v1, v2)))
+{\footnotesize template$<$class V1 , class V2 , typename  = \+::std\+::enable\+\_\+if\+\_\+t$<$ concepts\+::vector\+\_\+data\+\_\+v$<$\+V1$>$ \&\& concepts\+::vector\+\_\+data\+\_\+v$<$\+V2$>$ $>$$>$ }\\constexpr decltype(auto) \mbox{\hyperlink{namespacestd_1_1math_af7a6263c7c6a337e346859602c85b7c1}{outer\+\_\+prod}} (const V1 \&v1, const V2 \&v2) noexcept(noexcept(operations\+::template outer\+\_\+product$<$ V1, V2 $>$\+::prod(v1, v2)))
 \item 
-{\footnotesize template$<$concepts\+::vector\+\_\+data V, concepts\+::matrix\+\_\+data M$>$ }\\constexpr decltype(auto) \mbox{\hyperlink{namespacestd_1_1math_adf64b13ce0bd2e7f0d73fb960d419b8e}{operator$\ast$}} (const V \&v, const M \&m) noexcept(noexcept(operations\+::template vector\+\_\+matrix\+\_\+product$<$ V, M $>$\+::prod(v, m)))
+{\footnotesize template$<$class V , class M , typename  = \+::std\+::enable\+\_\+if\+\_\+t$<$ concepts\+::vector\+\_\+data\+\_\+v$<$\+V$>$ \&\&                                          concepts\+::matrix\+\_\+data\+\_\+v$<$\+M$>$ $>$, typename  = \+::std\+::enable\+\_\+if\+\_\+t$<$true$>$, typename  = \+::std\+::enable\+\_\+if\+\_\+t$<$true$>$, typename  = \+::std\+::enable\+\_\+if\+\_\+t$<$true$>$$>$ }\\constexpr decltype(auto) \mbox{\hyperlink{namespacestd_1_1math_a5066264a4625216ddd1e1e269e19d433}{operator$\ast$}} (const V \&v, const M \&m) noexcept(noexcept(operations\+::template vector\+\_\+matrix\+\_\+product$<$ V, M $>$\+::prod(v, m)))
 \item 
-{\footnotesize template$<$concepts\+::vector\+\_\+data V, concepts\+::matrix\+\_\+data M$>$ \newline
-requires \mbox{\hyperlink{namespacestd_1_1math_1_1detail_a3e4a4cdf0946fc014991348863e3065f}{detail\+::extents\+\_\+may\+\_\+be\+\_\+equal\+\_\+v}}$<$ typename V\+::extents\+\_\+type, typename decltype( const\+\_\+cast$<$const V\&$>$(v) $\ast$ m )\+::extents\+\_\+type $>$}\\constexpr V \& \mbox{\hyperlink{namespacestd_1_1math_a7587b33b94c9d5f8387030c03fdc58bd}{operator$\ast$=}} (V \&v, const M \&m) noexcept(noexcept(operations\+::template vector\+\_\+matrix\+\_\+product$<$ V, M $>$\+::prod(v, m)))
+{\footnotesize template$<$class V , class M , typename  = \+::std\+::enable\+\_\+if\+\_\+t$<$ concepts\+::vector\+\_\+data\+\_\+v$<$\+V$>$ \&\&                                          concepts\+::matrix\+\_\+data\+\_\+v$<$\+M$>$ \&\&                                          detail\+::extents\+\_\+may\+\_\+be\+\_\+equal\+\_\+v$<$ typename V\+::extents\+\_\+type, typename decltype( declval$<$\+V$>$() $\ast$ declval$<$\+M$>$() )\+::extents\+\_\+type $>$, typename  = \+::std\+::enable\+\_\+if\+\_\+t$<$true$>$$>$ }\\constexpr V \& \mbox{\hyperlink{namespacestd_1_1math_a230cfbf2dd26d259a2093322b0a07ca6}{operator$\ast$=}} (V \&v, const M \&m) noexcept(noexcept(operations\+::template vector\+\_\+matrix\+\_\+product$<$ V, M $>$\+::prod(v, m)))
 \item 
-{\footnotesize template$<$concepts\+::matrix\+\_\+data M, concepts\+::vector\+\_\+data V$>$ }\\constexpr decltype(auto) \mbox{\hyperlink{namespacestd_1_1math_ac1502b79be61fb6ca050071c5db4b534}{operator$\ast$}} (const M \&m, const V \&v) noexcept(noexcept(operations\+::template vector\+\_\+matrix\+\_\+product$<$ V, M $>$\+::prod(m, v)))
+{\footnotesize template$<$class M , class V , typename  = \+::std\+::enable\+\_\+if\+\_\+t$<$ concepts\+::matrix\+\_\+data\+\_\+v$<$\+M$>$ \&\& concepts\+::vector\+\_\+data\+\_\+v$<$\+V$>$ $>$, typename  = \+::std\+::enable\+\_\+if\+\_\+t$<$true$>$, typename  = \+::std\+::enable\+\_\+if\+\_\+t$<$true$>$, typename  = \+::std\+::enable\+\_\+if\+\_\+t$<$true$>$, typename  = \+::std\+::enable\+\_\+if\+\_\+t$<$true$>$$>$ }\\constexpr decltype(auto) \mbox{\hyperlink{namespacestd_1_1math_acc315759396876f403d1bbe4817b415b}{operator$\ast$}} (const M \&m, const V \&v) noexcept(noexcept(operations\+::template vector\+\_\+matrix\+\_\+product$<$ V, M $>$\+::prod(m, v)))
 \item 
-{\footnotesize template$<$concepts\+::matrix\+\_\+data M1, concepts\+::matrix\+\_\+data M2$>$ }\\constexpr decltype(auto) \mbox{\hyperlink{namespacestd_1_1math_a06371be2fd0c2fdccebac1af1fb800a9}{operator$\ast$}} (const M1 \&m1, const M2 \&m2) noexcept(noexcept(operations\+::template matrix\+\_\+matrix\+\_\+product$<$ M1, M2 $>$\+::prod(m1, m2)))
+{\footnotesize template$<$class M1 , class M2 , typename  = \+::std\+::enable\+\_\+if\+\_\+t$<$ concepts\+::matrix\+\_\+data\+\_\+v$<$\+M1$>$ \&\& concepts\+::matrix\+\_\+data\+\_\+v$<$\+M2$>$ $>$, typename  = \+::std\+::enable\+\_\+if\+\_\+t$<$true$>$, typename  = \+::std\+::enable\+\_\+if\+\_\+t$<$true$>$, typename  = \+::std\+::enable\+\_\+if\+\_\+t$<$true$>$, typename  = \+::std\+::enable\+\_\+if\+\_\+t$<$true$>$, typename  = \+::std\+::enable\+\_\+if\+\_\+t$<$true$>$$>$ }\\constexpr decltype(auto) \mbox{\hyperlink{namespacestd_1_1math_a41e2c24a154bb3c69efed15514f9ddd5}{operator$\ast$}} (const M1 \&m1, const M2 \&m2) noexcept(noexcept(operations\+::template matrix\+\_\+matrix\+\_\+product$<$ M1, M2 $>$\+::prod(m1, m2)))
 \item 
-{\footnotesize template$<$concepts\+::matrix\+\_\+data M1, concepts\+::matrix\+\_\+data M2$>$ \newline
-requires \mbox{\hyperlink{namespacestd_1_1math_1_1detail_a3e4a4cdf0946fc014991348863e3065f}{detail\+::extents\+\_\+may\+\_\+be\+\_\+equal\+\_\+v}}$<$ typename M1\+::extents\+\_\+type, typename decltype( const\+\_\+cast$<$const M1\&$>$(m1) $\ast$ m2 )\+::extents\+\_\+type $>$}\\constexpr M1 \& \mbox{\hyperlink{namespacestd_1_1math_af76fde7d82fcf2eb67bc2988763c0426}{operator$\ast$=}} (M1 \&m1, const M2 \&m2) noexcept(noexcept(operations\+::template matrix\+\_\+matrix\+\_\+product$<$ M1, M2 $>$\+::prod(m1, m2)))
+{\footnotesize template$<$class M1 , class M2 , typename  = \+::std\+::enable\+\_\+if\+\_\+t$<$ concepts\+::matrix\+\_\+data\+\_\+v$<$\+M1$>$ \&\&                                          concepts\+::matrix\+\_\+data\+\_\+v$<$\+M2$>$ \&\&                                          detail\+::extents\+\_\+may\+\_\+be\+\_\+equal\+\_\+v$<$ typename M1\+::extents\+\_\+type, typename decltype( declval$<$\+M1$>$() $\ast$ declval$<$\+M2$>$() )\+::extents\+\_\+type $>$, typename  = \+::std\+::enable\+\_\+if\+\_\+t$<$true$>$, typename  = \+::std\+::enable\+\_\+if\+\_\+t$<$true$>$$>$ }\\constexpr M1 \& \mbox{\hyperlink{namespacestd_1_1math_a8d72c69bfb3c993efdf8a93ef92fc0f2}{operator$\ast$=}} (M1 \&m1, const M2 \&m2) noexcept(noexcept(operations\+::template matrix\+\_\+matrix\+\_\+product$<$ M1, M2 $>$\+::prod(m1, m2)))
 \end{DoxyCompactItemize}
 
 
+\doxysubsection{Typedef Documentation}
+\mbox{\Hypertarget{namespacestd_1_1math_ac2cd009d5ab8b17ef398accc0714a2c6}\label{namespacestd_1_1math_ac2cd009d5ab8b17ef398accc0714a2c6}} 
+\index{std::math@{std::math}!default\_layout@{default\_layout}}
+\index{default\_layout@{default\_layout}!std::math@{std::math}}
+\doxysubsubsection{\texorpdfstring{default\_layout}{default\_layout}}
+{\footnotesize\ttfamily using \mbox{\hyperlink{namespacestd_1_1math_ac2cd009d5ab8b17ef398accc0714a2c6}{std\+::math\+::default\+\_\+layout}} = typedef \+::std\+::experimental\+::layout\+\_\+right}
+
+
+
 \doxysubsection{Function Documentation}
-\mbox{\Hypertarget{namespacestd_1_1math_a381ab766e72b583fd5859302b2c643b2}\label{namespacestd_1_1math_a381ab766e72b583fd5859302b2c643b2}} 
+\mbox{\Hypertarget{namespacestd_1_1math_a5de07ffd7ce1b2a4b5264b7754522b1b}\label{namespacestd_1_1math_a5de07ffd7ce1b2a4b5264b7754522b1b}} 
 \index{std::math@{std::math}!conj@{conj}}
 \index{conj@{conj}!std::math@{std::math}}
 \doxysubsubsection{\texorpdfstring{conj()}{conj()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
-{\footnotesize\ttfamily template$<$concepts\+::matrix\+\_\+data M$>$ \\
+{\footnotesize\ttfamily template$<$class M , typename  = \+::std\+::enable\+\_\+if\+\_\+t$<$ concepts\+::matrix\+\_\+data\+\_\+v$<$\+M$>$ $>$$>$ \\
 constexpr decltype(auto) std\+::math\+::conj (\begin{DoxyParamCaption}\item[{const M \&}]{m }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [constexpr]}, {\ttfamily [noexcept]}}
 
-\mbox{\Hypertarget{namespacestd_1_1math_a0837991426dc71210aea26716a4a32c4}\label{namespacestd_1_1math_a0837991426dc71210aea26716a4a32c4}} 
+\mbox{\Hypertarget{namespacestd_1_1math_af9810b3eb460f0927294422090884e43}\label{namespacestd_1_1math_af9810b3eb460f0927294422090884e43}} 
 \index{std::math@{std::math}!conj@{conj}}
 \index{conj@{conj}!std::math@{std::math}}
 \doxysubsubsection{\texorpdfstring{conj()}{conj()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
-{\footnotesize\ttfamily template$<$concepts\+::vector\+\_\+data V$>$ \\
+{\footnotesize\ttfamily template$<$class V , typename  = \+::std\+::enable\+\_\+if\+\_\+t$<$ concepts\+::vector\+\_\+data\+\_\+v$<$\+V$>$ $>$, typename  = \+::std\+::enable\+\_\+if\+\_\+t$<$true$>$$>$ \\
 constexpr decltype(auto) std\+::math\+::conj (\begin{DoxyParamCaption}\item[{const V \&}]{v }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [constexpr]}, {\ttfamily [noexcept]}}
 
-\mbox{\Hypertarget{namespacestd_1_1math_ae595d72c25d55b2d8d8086ef2b65bfe2}\label{namespacestd_1_1math_ae595d72c25d55b2d8d8086ef2b65bfe2}} 
+\mbox{\Hypertarget{namespacestd_1_1math_a8197d469913a3e9264f768a8fb234008}\label{namespacestd_1_1math_a8197d469913a3e9264f768a8fb234008}} 
 \index{std::math@{std::math}!inner\_prod@{inner\_prod}}
 \index{inner\_prod@{inner\_prod}!std::math@{std::math}}
 \doxysubsubsection{\texorpdfstring{inner\_prod()}{inner\_prod()}}
-{\footnotesize\ttfamily template$<$concepts\+::vector\+\_\+data V1, concepts\+::vector\+\_\+data V2$>$ \\
+{\footnotesize\ttfamily template$<$class V1 , class V2 , typename  = \+::std\+::enable\+\_\+if\+\_\+t$<$ concepts\+::vector\+\_\+data\+\_\+v$<$\+V1$>$ \&\& concepts\+::vector\+\_\+data\+\_\+v$<$\+V2$>$ $>$$>$ \\
 constexpr decltype(auto) std\+::math\+::inner\+\_\+prod (\begin{DoxyParamCaption}\item[{const V1 \&}]{v1,  }\item[{const V2 \&}]{v2 }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [constexpr]}, {\ttfamily [noexcept]}}
 
-\mbox{\Hypertarget{namespacestd_1_1math_ac1502b79be61fb6ca050071c5db4b534}\label{namespacestd_1_1math_ac1502b79be61fb6ca050071c5db4b534}} 
+\mbox{\Hypertarget{namespacestd_1_1math_acc315759396876f403d1bbe4817b415b}\label{namespacestd_1_1math_acc315759396876f403d1bbe4817b415b}} 
 \index{std::math@{std::math}!operator$\ast$@{operator$\ast$}}
 \index{operator$\ast$@{operator$\ast$}!std::math@{std::math}}
 \doxysubsubsection{\texorpdfstring{operator$\ast$()}{operator*()}\hspace{0.1cm}{\footnotesize\ttfamily [1/5]}}
-{\footnotesize\ttfamily template$<$concepts\+::matrix\+\_\+data M, concepts\+::vector\+\_\+data V$>$ \\
+{\footnotesize\ttfamily template$<$class M , class V , typename  = \+::std\+::enable\+\_\+if\+\_\+t$<$ concepts\+::matrix\+\_\+data\+\_\+v$<$\+M$>$ \&\& concepts\+::vector\+\_\+data\+\_\+v$<$\+V$>$ $>$, typename  = \+::std\+::enable\+\_\+if\+\_\+t$<$true$>$, typename  = \+::std\+::enable\+\_\+if\+\_\+t$<$true$>$, typename  = \+::std\+::enable\+\_\+if\+\_\+t$<$true$>$, typename  = \+::std\+::enable\+\_\+if\+\_\+t$<$true$>$$>$ \\
 constexpr decltype(auto) std\+::math\+::operator$\ast$ (\begin{DoxyParamCaption}\item[{const M \&}]{m,  }\item[{const V \&}]{v }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [constexpr]}, {\ttfamily [noexcept]}}
 
-\mbox{\Hypertarget{namespacestd_1_1math_a06371be2fd0c2fdccebac1af1fb800a9}\label{namespacestd_1_1math_a06371be2fd0c2fdccebac1af1fb800a9}} 
+\mbox{\Hypertarget{namespacestd_1_1math_a41e2c24a154bb3c69efed15514f9ddd5}\label{namespacestd_1_1math_a41e2c24a154bb3c69efed15514f9ddd5}} 
 \index{std::math@{std::math}!operator$\ast$@{operator$\ast$}}
 \index{operator$\ast$@{operator$\ast$}!std::math@{std::math}}
 \doxysubsubsection{\texorpdfstring{operator$\ast$()}{operator*()}\hspace{0.1cm}{\footnotesize\ttfamily [2/5]}}
-{\footnotesize\ttfamily template$<$concepts\+::matrix\+\_\+data M1, concepts\+::matrix\+\_\+data M2$>$ \\
+{\footnotesize\ttfamily template$<$class M1 , class M2 , typename  = \+::std\+::enable\+\_\+if\+\_\+t$<$ concepts\+::matrix\+\_\+data\+\_\+v$<$\+M1$>$ \&\& concepts\+::matrix\+\_\+data\+\_\+v$<$\+M2$>$ $>$, typename  = \+::std\+::enable\+\_\+if\+\_\+t$<$true$>$, typename  = \+::std\+::enable\+\_\+if\+\_\+t$<$true$>$, typename  = \+::std\+::enable\+\_\+if\+\_\+t$<$true$>$, typename  = \+::std\+::enable\+\_\+if\+\_\+t$<$true$>$, typename  = \+::std\+::enable\+\_\+if\+\_\+t$<$true$>$$>$ \\
 constexpr decltype(auto) std\+::math\+::operator$\ast$ (\begin{DoxyParamCaption}\item[{const M1 \&}]{m1,  }\item[{const M2 \&}]{m2 }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [constexpr]}, {\ttfamily [noexcept]}}
 
-\mbox{\Hypertarget{namespacestd_1_1math_a49e56c9886cd363e4855c1355587c285}\label{namespacestd_1_1math_a49e56c9886cd363e4855c1355587c285}} 
+\mbox{\Hypertarget{namespacestd_1_1math_aaaba9e144f3b3f40d947b5482b885b5d}\label{namespacestd_1_1math_aaaba9e144f3b3f40d947b5482b885b5d}} 
 \index{std::math@{std::math}!operator$\ast$@{operator$\ast$}}
 \index{operator$\ast$@{operator$\ast$}!std::math@{std::math}}
 \doxysubsubsection{\texorpdfstring{operator$\ast$()}{operator*()}\hspace{0.1cm}{\footnotesize\ttfamily [3/5]}}
-{\footnotesize\ttfamily template$<$class S , concepts\+::tensor\+\_\+data T$>$ \newline
-requires requires \{ s $\ast$ declval$<$ typename T\+::value\+\_\+type $>$(); \} \&\& ( !concepts\+::tensor\+\_\+data$<$S$>$ )\\
+{\footnotesize\ttfamily template$<$class S , class T , typename  = \+::std\+::enable\+\_\+if\+\_\+t$<$ concepts\+::tensor\+\_\+data\+\_\+v$<$\+T$>$ \&\&                                          !concepts\+::tensor\+\_\+data\+\_\+v$<$\+S$>$ $>$, typename  = \+::std\+::enable\+\_\+if\+\_\+t$<$ concepts\+::product\+\_\+exists\+\_\+v$<$ typename T\+::value\+\_\+type, S $>$ $>$$>$ \\
 constexpr decltype(auto) std\+::math\+::operator$\ast$ (\begin{DoxyParamCaption}\item[{const S \&}]{s,  }\item[{const T \&}]{t }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [constexpr]}, {\ttfamily [noexcept]}}
 
-\mbox{\Hypertarget{namespacestd_1_1math_a80a67c5251d05cd81c89dc46e2a1c342}\label{namespacestd_1_1math_a80a67c5251d05cd81c89dc46e2a1c342}} 
+\mbox{\Hypertarget{namespacestd_1_1math_a262dff53ea621a086935aea94bd6a64d}\label{namespacestd_1_1math_a262dff53ea621a086935aea94bd6a64d}} 
 \index{std::math@{std::math}!operator$\ast$@{operator$\ast$}}
 \index{operator$\ast$@{operator$\ast$}!std::math@{std::math}}
 \doxysubsubsection{\texorpdfstring{operator$\ast$()}{operator*()}\hspace{0.1cm}{\footnotesize\ttfamily [4/5]}}
-{\footnotesize\ttfamily template$<$concepts\+::tensor\+\_\+data T, class S $>$ \newline
-requires requires \{ declval$<$ typename T\+::value\+\_\+type $>$() $\ast$ s; \} \&\& ( !concepts\+::tensor\+\_\+data$<$S$>$ )\\
+{\footnotesize\ttfamily template$<$class T , class S , typename  = \+::std\+::enable\+\_\+if\+\_\+t$<$ concepts\+::tensor\+\_\+data\+\_\+v$<$\+T$>$ \&\&                                          !concepts\+::tensor\+\_\+data\+\_\+v$<$\+S$>$ $>$, typename  = \+::std\+::enable\+\_\+if\+\_\+t$<$ concepts\+::product\+\_\+exists\+\_\+v$<$ typename T\+::value\+\_\+type, S $>$ $>$, typename  = \+::std\+::enable\+\_\+if\+\_\+t$<$true$>$$>$ \\
 constexpr decltype(auto) std\+::math\+::operator$\ast$ (\begin{DoxyParamCaption}\item[{const T \&}]{t,  }\item[{const S \&}]{s }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [constexpr]}, {\ttfamily [noexcept]}}
 
-\mbox{\Hypertarget{namespacestd_1_1math_adf64b13ce0bd2e7f0d73fb960d419b8e}\label{namespacestd_1_1math_adf64b13ce0bd2e7f0d73fb960d419b8e}} 
+\mbox{\Hypertarget{namespacestd_1_1math_a5066264a4625216ddd1e1e269e19d433}\label{namespacestd_1_1math_a5066264a4625216ddd1e1e269e19d433}} 
 \index{std::math@{std::math}!operator$\ast$@{operator$\ast$}}
 \index{operator$\ast$@{operator$\ast$}!std::math@{std::math}}
 \doxysubsubsection{\texorpdfstring{operator$\ast$()}{operator*()}\hspace{0.1cm}{\footnotesize\ttfamily [5/5]}}
-{\footnotesize\ttfamily template$<$concepts\+::vector\+\_\+data V, concepts\+::matrix\+\_\+data M$>$ \\
+{\footnotesize\ttfamily template$<$class V , class M , typename  = \+::std\+::enable\+\_\+if\+\_\+t$<$ concepts\+::vector\+\_\+data\+\_\+v$<$\+V$>$ \&\&                                          concepts\+::matrix\+\_\+data\+\_\+v$<$\+M$>$ $>$, typename  = \+::std\+::enable\+\_\+if\+\_\+t$<$true$>$, typename  = \+::std\+::enable\+\_\+if\+\_\+t$<$true$>$, typename  = \+::std\+::enable\+\_\+if\+\_\+t$<$true$>$$>$ \\
 constexpr decltype(auto) std\+::math\+::operator$\ast$ (\begin{DoxyParamCaption}\item[{const V \&}]{v,  }\item[{const M \&}]{m }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [constexpr]}, {\ttfamily [noexcept]}}
 
-\mbox{\Hypertarget{namespacestd_1_1math_af76fde7d82fcf2eb67bc2988763c0426}\label{namespacestd_1_1math_af76fde7d82fcf2eb67bc2988763c0426}} 
+\mbox{\Hypertarget{namespacestd_1_1math_a8d72c69bfb3c993efdf8a93ef92fc0f2}\label{namespacestd_1_1math_a8d72c69bfb3c993efdf8a93ef92fc0f2}} 
 \index{std::math@{std::math}!operator$\ast$=@{operator$\ast$=}}
 \index{operator$\ast$=@{operator$\ast$=}!std::math@{std::math}}
 \doxysubsubsection{\texorpdfstring{operator$\ast$=()}{operator*=()}\hspace{0.1cm}{\footnotesize\ttfamily [1/3]}}
-{\footnotesize\ttfamily template$<$concepts\+::matrix\+\_\+data M1, concepts\+::matrix\+\_\+data M2$>$ \newline
-requires \mbox{\hyperlink{namespacestd_1_1math_1_1detail_a3e4a4cdf0946fc014991348863e3065f}{detail\+::extents\+\_\+may\+\_\+be\+\_\+equal\+\_\+v}}$<$ typename M1\+::extents\+\_\+type, typename decltype( const\+\_\+cast$<$const M1\&$>$(m1) $\ast$ m2 )\+::extents\+\_\+type $>$\\
+{\footnotesize\ttfamily template$<$class M1 , class M2 , typename  = \+::std\+::enable\+\_\+if\+\_\+t$<$ concepts\+::matrix\+\_\+data\+\_\+v$<$\+M1$>$ \&\&                                          concepts\+::matrix\+\_\+data\+\_\+v$<$\+M2$>$ \&\&                                          detail\+::extents\+\_\+may\+\_\+be\+\_\+equal\+\_\+v$<$ typename M1\+::extents\+\_\+type, typename decltype( declval$<$\+M1$>$() $\ast$ declval$<$\+M2$>$() )\+::extents\+\_\+type $>$, typename  = \+::std\+::enable\+\_\+if\+\_\+t$<$true$>$, typename  = \+::std\+::enable\+\_\+if\+\_\+t$<$true$>$$>$ \\
 constexpr M1 \& std\+::math\+::operator$\ast$= (\begin{DoxyParamCaption}\item[{M1 \&}]{m1,  }\item[{const M2 \&}]{m2 }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [constexpr]}, {\ttfamily [noexcept]}}
 
-\mbox{\Hypertarget{namespacestd_1_1math_adc521aa60c4af6a8df03dd0343535a7c}\label{namespacestd_1_1math_adc521aa60c4af6a8df03dd0343535a7c}} 
+\mbox{\Hypertarget{namespacestd_1_1math_a8ce5946ea5a3d9b7a65fe914fbd107bc}\label{namespacestd_1_1math_a8ce5946ea5a3d9b7a65fe914fbd107bc}} 
 \index{std::math@{std::math}!operator$\ast$=@{operator$\ast$=}}
 \index{operator$\ast$=@{operator$\ast$=}!std::math@{std::math}}
 \doxysubsubsection{\texorpdfstring{operator$\ast$=()}{operator*=()}\hspace{0.1cm}{\footnotesize\ttfamily [2/3]}}
-{\footnotesize\ttfamily template$<$concepts\+::tensor\+\_\+data T, class S $>$ \newline
-requires requires \{ declval$<$ typename T\+::value\+\_\+type $>$() $\ast$ s; \} \&\& ( !concepts\+::tensor\+\_\+data$<$S$>$ ) \&\& is\+\_\+convertible\+\_\+v$<$ decltype( declval$<$typename T\+::value\+\_\+type$>$() $\ast$ declval$<$S$>$() ), typename T\+::element\+\_\+type $>$\\
+{\footnotesize\ttfamily template$<$class T , class S , typename  = \+::std\+::enable\+\_\+if\+\_\+t$<$ concepts\+::tensor\+\_\+data\+\_\+v$<$\+T$>$ \&\&                                          !concepts\+::tensor\+\_\+data\+\_\+v$<$\+S$>$ \&\&                                          concepts\+::product\+\_\+exists\+\_\+v$<$ typename T\+::value\+\_\+type, S $>$ \&\&                                          \+::std\+::is\+\_\+convertible\+\_\+v$<$ decltype( declval$<$typename T\+::value\+\_\+type$>$() $\ast$ declval$<$\+S$>$() ), typename T\+::element\+\_\+type $>$$>$ \\
 constexpr T \& std\+::math\+::operator$\ast$= (\begin{DoxyParamCaption}\item[{T \&}]{t,  }\item[{const S \&}]{s }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [constexpr]}, {\ttfamily [noexcept]}}
 
-\mbox{\Hypertarget{namespacestd_1_1math_a7587b33b94c9d5f8387030c03fdc58bd}\label{namespacestd_1_1math_a7587b33b94c9d5f8387030c03fdc58bd}} 
+\mbox{\Hypertarget{namespacestd_1_1math_a230cfbf2dd26d259a2093322b0a07ca6}\label{namespacestd_1_1math_a230cfbf2dd26d259a2093322b0a07ca6}} 
 \index{std::math@{std::math}!operator$\ast$=@{operator$\ast$=}}
 \index{operator$\ast$=@{operator$\ast$=}!std::math@{std::math}}
 \doxysubsubsection{\texorpdfstring{operator$\ast$=()}{operator*=()}\hspace{0.1cm}{\footnotesize\ttfamily [3/3]}}
-{\footnotesize\ttfamily template$<$concepts\+::vector\+\_\+data V, concepts\+::matrix\+\_\+data M$>$ \newline
-requires \mbox{\hyperlink{namespacestd_1_1math_1_1detail_a3e4a4cdf0946fc014991348863e3065f}{detail\+::extents\+\_\+may\+\_\+be\+\_\+equal\+\_\+v}}$<$ typename V\+::extents\+\_\+type, typename decltype( const\+\_\+cast$<$const V\&$>$(v) $\ast$ m )\+::extents\+\_\+type $>$\\
+{\footnotesize\ttfamily template$<$class V , class M , typename  = \+::std\+::enable\+\_\+if\+\_\+t$<$ concepts\+::vector\+\_\+data\+\_\+v$<$\+V$>$ \&\&                                          concepts\+::matrix\+\_\+data\+\_\+v$<$\+M$>$ \&\&                                          detail\+::extents\+\_\+may\+\_\+be\+\_\+equal\+\_\+v$<$ typename V\+::extents\+\_\+type, typename decltype( declval$<$\+V$>$() $\ast$ declval$<$\+M$>$() )\+::extents\+\_\+type $>$, typename  = \+::std\+::enable\+\_\+if\+\_\+t$<$true$>$$>$ \\
 constexpr V \& std\+::math\+::operator$\ast$= (\begin{DoxyParamCaption}\item[{V \&}]{v,  }\item[{const M \&}]{m }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [constexpr]}, {\ttfamily [noexcept]}}
 
-\mbox{\Hypertarget{namespacestd_1_1math_a0396356ee67b1983e87decdf75e74917}\label{namespacestd_1_1math_a0396356ee67b1983e87decdf75e74917}} 
+\mbox{\Hypertarget{namespacestd_1_1math_acf454a5786b787e1b3eb09bcdf29c9aa}\label{namespacestd_1_1math_acf454a5786b787e1b3eb09bcdf29c9aa}} 
 \index{std::math@{std::math}!operator+@{operator+}}
 \index{operator+@{operator+}!std::math@{std::math}}
 \doxysubsubsection{\texorpdfstring{operator+()}{operator+()}}
-{\footnotesize\ttfamily template$<$concepts\+::tensor\+\_\+data T1, concepts\+::tensor\+\_\+data T2$>$ \\
+{\footnotesize\ttfamily template$<$class T1 , class T2 , typename  = \+::std\+::enable\+\_\+if\+\_\+t$<$ concepts\+::tensor\+\_\+data\+\_\+v$<$\+T1$>$ \&\& concepts\+::tensor\+\_\+data\+\_\+v$<$\+T2$>$ $>$$>$ \\
 constexpr decltype(auto) std\+::math\+::operator+ (\begin{DoxyParamCaption}\item[{const T1 \&}]{t1,  }\item[{const T2 \&}]{t2 }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [constexpr]}, {\ttfamily [noexcept]}}
 
-\mbox{\Hypertarget{namespacestd_1_1math_ac1efb74b1ddfd4881a4cbbe111804abc}\label{namespacestd_1_1math_ac1efb74b1ddfd4881a4cbbe111804abc}} 
+\mbox{\Hypertarget{namespacestd_1_1math_ae293f2c25475f1ba04aca68da7fd2a79}\label{namespacestd_1_1math_ae293f2c25475f1ba04aca68da7fd2a79}} 
 \index{std::math@{std::math}!operator+=@{operator+=}}
 \index{operator+=@{operator+=}!std::math@{std::math}}
 \doxysubsubsection{\texorpdfstring{operator+=()}{operator+=()}}
-{\footnotesize\ttfamily template$<$concepts\+::tensor\+\_\+data T1, concepts\+::tensor\+\_\+data T2$>$ \newline
-requires is\+\_\+convertible\+\_\+v$<$ decltype( declval$<$typename T1\+::value\+\_\+type$>$() + declval$<$typename T2\+::value\+\_\+type$>$() ), typename T1\+::element\+\_\+type $>$\\
+{\footnotesize\ttfamily template$<$class T1 , class T2 , typename  = enable\+\_\+if\+\_\+t$<$ concepts\+::tensor\+\_\+data\+\_\+v$<$\+T1$>$ \&\&                                   concepts\+::tensor\+\_\+data\+\_\+v$<$\+T2$>$ \&\&                                   \+::std\+::is\+\_\+convertible\+\_\+v$<$ decltype( declval$<$typename T1\+::value\+\_\+type$>$() + declval$<$typename T2\+::value\+\_\+type$>$() ), typename T1\+::element\+\_\+type $>$$>$ \\
 constexpr T1 \& std\+::math\+::operator+= (\begin{DoxyParamCaption}\item[{T1 \&}]{t1,  }\item[{const T2 \&}]{t2 }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [constexpr]}, {\ttfamily [noexcept]}}
 
-\mbox{\Hypertarget{namespacestd_1_1math_ae0ebbca9368067db0126a9ebbfa28040}\label{namespacestd_1_1math_ae0ebbca9368067db0126a9ebbfa28040}} 
+\mbox{\Hypertarget{namespacestd_1_1math_a96d6d345149ee19d394bbb50cb832640}\label{namespacestd_1_1math_a96d6d345149ee19d394bbb50cb832640}} 
 \index{std::math@{std::math}!operator-\/@{operator-\/}}
 \index{operator-\/@{operator-\/}!std::math@{std::math}}
 \doxysubsubsection{\texorpdfstring{operator-\/()}{operator-()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
-{\footnotesize\ttfamily template$<$concepts\+::tensor\+\_\+data T$>$ \\
+{\footnotesize\ttfamily template$<$class T , typename  = \+::std\+::enable\+\_\+if\+\_\+t$<$ concepts\+::tensor\+\_\+data\+\_\+v$<$\+T$>$ $>$$>$ \\
 constexpr decltype(auto) std\+::math\+::operator-\/ (\begin{DoxyParamCaption}\item[{const T \&}]{t }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [constexpr]}, {\ttfamily [noexcept]}}
 
-\mbox{\Hypertarget{namespacestd_1_1math_a6c38bdb9c467d22fd84a7db877a9b003}\label{namespacestd_1_1math_a6c38bdb9c467d22fd84a7db877a9b003}} 
+\mbox{\Hypertarget{namespacestd_1_1math_a09b2165f2c3bffeb9b293edca35f0b2e}\label{namespacestd_1_1math_a09b2165f2c3bffeb9b293edca35f0b2e}} 
 \index{std::math@{std::math}!operator-\/@{operator-\/}}
 \index{operator-\/@{operator-\/}!std::math@{std::math}}
 \doxysubsubsection{\texorpdfstring{operator-\/()}{operator-()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
-{\footnotesize\ttfamily template$<$concepts\+::tensor\+\_\+data T1, concepts\+::tensor\+\_\+data T2$>$ \\
+{\footnotesize\ttfamily template$<$class T1 , class T2 , typename  = \+::std\+::enable\+\_\+if\+\_\+t$<$ concepts\+::tensor\+\_\+data\+\_\+v$<$\+T1$>$ \&\& concepts\+::tensor\+\_\+data\+\_\+v$<$\+T2$>$ $>$$>$ \\
 constexpr decltype(auto) std\+::math\+::operator-\/ (\begin{DoxyParamCaption}\item[{const T1 \&}]{t1,  }\item[{const T2 \&}]{t2 }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [constexpr]}, {\ttfamily [noexcept]}}
 
-\mbox{\Hypertarget{namespacestd_1_1math_a1c2d3f15db6c82288d26d64023154241}\label{namespacestd_1_1math_a1c2d3f15db6c82288d26d64023154241}} 
+\mbox{\Hypertarget{namespacestd_1_1math_a4f6e8272ffda073ed7e3ab8ece790990}\label{namespacestd_1_1math_a4f6e8272ffda073ed7e3ab8ece790990}} 
 \index{std::math@{std::math}!operator-\/=@{operator-\/=}}
 \index{operator-\/=@{operator-\/=}!std::math@{std::math}}
 \doxysubsubsection{\texorpdfstring{operator-\/=()}{operator-=()}}
-{\footnotesize\ttfamily template$<$concepts\+::tensor\+\_\+data T1, concepts\+::tensor\+\_\+data T2$>$ \newline
-requires is\+\_\+convertible\+\_\+v$<$ decltype( declval$<$typename T1\+::value\+\_\+type$>$() -\/ declval$<$typename T2\+::value\+\_\+type$>$() ), typename T1\+::element\+\_\+type $>$\\
+{\footnotesize\ttfamily template$<$class T1 , class T2 , typename  = enable\+\_\+if\+\_\+t$<$ concepts\+::tensor\+\_\+data\+\_\+v$<$\+T1$>$ \&\&                                   concepts\+::tensor\+\_\+data\+\_\+v$<$\+T2$>$ \&\&                                   \+::std\+::is\+\_\+convertible\+\_\+v$<$ decltype( declval$<$typename T1\+::value\+\_\+type$>$() -\/ declval$<$typename T2\+::value\+\_\+type$>$() ), typename T1\+::element\+\_\+type $>$$>$ \\
 constexpr T1 \& std\+::math\+::operator-\/= (\begin{DoxyParamCaption}\item[{T1 \&}]{t1,  }\item[{const T2 \&}]{t2 }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [constexpr]}, {\ttfamily [noexcept]}}
 
-\mbox{\Hypertarget{namespacestd_1_1math_a593c6de1d8b08210bf93542d7645eacc}\label{namespacestd_1_1math_a593c6de1d8b08210bf93542d7645eacc}} 
+\mbox{\Hypertarget{namespacestd_1_1math_a6d48c8c6cbe3f05f3dbced6efb3d2bb4}\label{namespacestd_1_1math_a6d48c8c6cbe3f05f3dbced6efb3d2bb4}} 
 \index{std::math@{std::math}!operator/@{operator/}}
 \index{operator/@{operator/}!std::math@{std::math}}
 \doxysubsubsection{\texorpdfstring{operator/()}{operator/()}}
-{\footnotesize\ttfamily template$<$concepts\+::tensor\+\_\+data T, class S $>$ \newline
-requires requires \{ declval$<$ typename T\+::value\+\_\+type $>$() / s; \}\\
+{\footnotesize\ttfamily template$<$class T , class S , typename  = \+::std\+::enable\+\_\+if\+\_\+t$<$ concepts\+::tensor\+\_\+data\+\_\+v$<$\+T$>$ \&\&                                          concepts\+::division\+\_\+exists\+\_\+v$<$ typename T\+::value\+\_\+type, S $>$ $>$$>$ \\
 constexpr decltype(auto) std\+::math\+::operator/ (\begin{DoxyParamCaption}\item[{const T \&}]{t,  }\item[{const S \&}]{s }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [constexpr]}, {\ttfamily [noexcept]}}
 
-\mbox{\Hypertarget{namespacestd_1_1math_a7abbafdd1c2f2304b244108162cf33c0}\label{namespacestd_1_1math_a7abbafdd1c2f2304b244108162cf33c0}} 
+\mbox{\Hypertarget{namespacestd_1_1math_aa5687dfeb751c189d8dffaff793ef5b5}\label{namespacestd_1_1math_aa5687dfeb751c189d8dffaff793ef5b5}} 
 \index{std::math@{std::math}!operator/=@{operator/=}}
 \index{operator/=@{operator/=}!std::math@{std::math}}
 \doxysubsubsection{\texorpdfstring{operator/=()}{operator/=()}}
-{\footnotesize\ttfamily template$<$concepts\+::tensor\+\_\+data T, class S $>$ \newline
-requires requires \{ declval$<$ typename T\+::value\+\_\+type $>$() / s; \} \&\& ( !concepts\+::tensor\+\_\+data$<$S$>$ ) \&\& is\+\_\+convertible\+\_\+v$<$ decltype( declval$<$typename T\+::value\+\_\+type$>$() / declval$<$S$>$() ), typename T\+::element\+\_\+type $>$\\
+{\footnotesize\ttfamily template$<$class T , class S , typename  = \+::std\+::enable\+\_\+if\+\_\+t$<$ concepts\+::tensor\+\_\+data\+\_\+v$<$\+T$>$ \&\&                                          concepts\+::division\+\_\+exists\+\_\+v$<$ typename T\+::value\+\_\+type, S $>$ \&\&                                          \+::std\+::is\+\_\+convertible\+\_\+v$<$ decltype( declval$<$typename T\+::value\+\_\+type$>$() $\ast$ declval$<$\+S$>$() ), typename T\+::element\+\_\+type $>$$>$ \\
 constexpr T \& std\+::math\+::operator/= (\begin{DoxyParamCaption}\item[{T \&}]{t,  }\item[{const S \&}]{s }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [constexpr]}, {\ttfamily [noexcept]}}
 
-\mbox{\Hypertarget{namespacestd_1_1math_a16d9bb61f2dd78e168c6318baed2625b}\label{namespacestd_1_1math_a16d9bb61f2dd78e168c6318baed2625b}} 
+\mbox{\Hypertarget{namespacestd_1_1math_af7a6263c7c6a337e346859602c85b7c1}\label{namespacestd_1_1math_af7a6263c7c6a337e346859602c85b7c1}} 
 \index{std::math@{std::math}!outer\_prod@{outer\_prod}}
 \index{outer\_prod@{outer\_prod}!std::math@{std::math}}
 \doxysubsubsection{\texorpdfstring{outer\_prod()}{outer\_prod()}}
-{\footnotesize\ttfamily template$<$concepts\+::vector\+\_\+data V1, concepts\+::vector\+\_\+data V2$>$ \\
+{\footnotesize\ttfamily template$<$class V1 , class V2 , typename  = \+::std\+::enable\+\_\+if\+\_\+t$<$ concepts\+::vector\+\_\+data\+\_\+v$<$\+V1$>$ \&\& concepts\+::vector\+\_\+data\+\_\+v$<$\+V2$>$ $>$$>$ \\
 constexpr decltype(auto) std\+::math\+::outer\+\_\+prod (\begin{DoxyParamCaption}\item[{const V1 \&}]{v1,  }\item[{const V2 \&}]{v2 }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [constexpr]}, {\ttfamily [noexcept]}}
 
-\mbox{\Hypertarget{namespacestd_1_1math_aad19d9284c196e0f59cf9a4e03794b99}\label{namespacestd_1_1math_aad19d9284c196e0f59cf9a4e03794b99}} 
+\mbox{\Hypertarget{namespacestd_1_1math_ae82a9727c2ed37e6d54c26d97cb1ca7e}\label{namespacestd_1_1math_ae82a9727c2ed37e6d54c26d97cb1ca7e}} 
 \index{std::math@{std::math}!trans@{trans}}
 \index{trans@{trans}!std::math@{std::math}}
 \doxysubsubsection{\texorpdfstring{trans()}{trans()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
-{\footnotesize\ttfamily template$<$concepts\+::matrix\+\_\+data M$>$ \\
+{\footnotesize\ttfamily template$<$class M , typename  = \+::std\+::enable\+\_\+if\+\_\+t$<$ concepts\+::matrix\+\_\+data\+\_\+v$<$\+M$>$ $>$$>$ \\
 constexpr decltype(auto) std\+::math\+::trans (\begin{DoxyParamCaption}\item[{const M \&}]{m }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [constexpr]}, {\ttfamily [noexcept]}}
 
-\mbox{\Hypertarget{namespacestd_1_1math_abda6cbd6bfc2db633b23c3be56c2657c}\label{namespacestd_1_1math_abda6cbd6bfc2db633b23c3be56c2657c}} 
+\mbox{\Hypertarget{namespacestd_1_1math_ac5098ff00eb6cf1baa08bb550b8d0013}\label{namespacestd_1_1math_ac5098ff00eb6cf1baa08bb550b8d0013}} 
 \index{std::math@{std::math}!trans@{trans}}
 \index{trans@{trans}!std::math@{std::math}}
 \doxysubsubsection{\texorpdfstring{trans()}{trans()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
-{\footnotesize\ttfamily template$<$concepts\+::vector\+\_\+data V$>$ \\
+{\footnotesize\ttfamily template$<$class V , typename  = \+::std\+::enable\+\_\+if\+\_\+t$<$ concepts\+::vector\+\_\+data\+\_\+v$<$\+V$>$ $>$, typename  = \+::std\+::enable\+\_\+if\+\_\+t$<$true$>$$>$ \\
 constexpr decltype(auto) std\+::math\+::trans (\begin{DoxyParamCaption}\item[{const V \&}]{v }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [constexpr]}, {\ttfamily [noexcept]}}
 

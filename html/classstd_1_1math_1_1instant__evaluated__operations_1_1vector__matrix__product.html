@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=11"/>
 <meta name="generator" content="Doxygen 1.9.6"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>Linear Algebra: std::math::instant_evaluated_operations::vector_matrix_product&lt; V, M &gt; Class Template Reference</title>
+<title>Linear Algebra: std::math::instant_evaluated_operations::vector_matrix_product&lt; V, M, typename &gt; Class Template Reference</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -74,10 +74,11 @@ $(function() {
 </div><!-- top -->
 <div class="header">
   <div class="summary">
+<a href="#nested-classes">Classes</a> &#124;
 <a href="#pub-types">Public Types</a> &#124;
 <a href="#pub-static-methods">Static Public Member Functions</a> &#124;
 <a href="classstd_1_1math_1_1instant__evaluated__operations_1_1vector__matrix__product-members.html">List of all members</a>  </div>
-  <div class="headertitle"><div class="title">std::math::instant_evaluated_operations::vector_matrix_product&lt; V, M &gt; Class Template Reference</div></div>
+  <div class="headertitle"><div class="title">std::math::instant_evaluated_operations::vector_matrix_product&lt; V, M, typename &gt; Class Template Reference</div></div>
 </div><!--header-->
 <div class="contents">
 
@@ -86,7 +87,7 @@ $(function() {
 
 <p><code>#include &lt;<a class="el" href="instant__evaluated__operations_8hpp_source.html">instant_evaluated_operations.hpp</a>&gt;</code></p>
 <div class="dynheader">
-Collaboration diagram for std::math::instant_evaluated_operations::vector_matrix_product&lt; V, M &gt;:</div>
+Collaboration diagram for std::math::instant_evaluated_operations::vector_matrix_product&lt; V, M, typename &gt;:</div>
 <div class="dyncontent">
 <div class="center"><iframe scrolling="no" frameborder="0" src="classstd_1_1math_1_1instant__evaluated__operations_1_1vector__matrix__product__coll__graph.svg" width="170" height="162"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
 </div>
@@ -94,28 +95,31 @@ Collaboration diagram for std::math::instant_evaluated_operations::vector_matrix
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-types" name="pub-types"></a>
 Public Types</h2></td></tr>
-<tr class="memitem:a73bd8138f097c8af3dff6cbc39d54b5b"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classstd_1_1math_1_1instant__evaluated__operations_1_1vector__matrix__product.html#a73bd8138f097c8af3dff6cbc39d54b5b">vector_type</a> = V</td></tr>
-<tr class="memdesc:a73bd8138f097c8af3dff6cbc39d54b5b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Input vector type.  <br /></td></tr>
-<tr class="separator:a73bd8138f097c8af3dff6cbc39d54b5b"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:adc37d911d0b1352b8b25ea58a9abf7a9"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classstd_1_1math_1_1instant__evaluated__operations_1_1vector__matrix__product.html#adc37d911d0b1352b8b25ea58a9abf7a9">matrix_type</a> = M</td></tr>
-<tr class="memdesc:adc37d911d0b1352b8b25ea58a9abf7a9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Input matrix type.  <br /></td></tr>
-<tr class="separator:adc37d911d0b1352b8b25ea58a9abf7a9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a54eb2a8e6b8abb9ac87b24fa1107ddfb"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classstd_1_1math_1_1instant__evaluated__operations_1_1vector__matrix__product.html#a54eb2a8e6b8abb9ac87b24fa1107ddfb">vector_type</a> = V</td></tr>
+<tr class="memdesc:a54eb2a8e6b8abb9ac87b24fa1107ddfb"><td class="mdescLeft">&#160;</td><td class="mdescRight">Input vector type.  <br /></td></tr>
+<tr class="separator:a54eb2a8e6b8abb9ac87b24fa1107ddfb"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9e6bf4e0caae50fc78b35ae0cee6b150"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classstd_1_1math_1_1instant__evaluated__operations_1_1vector__matrix__product.html#a9e6bf4e0caae50fc78b35ae0cee6b150">matrix_type</a> = M</td></tr>
+<tr class="memdesc:a9e6bf4e0caae50fc78b35ae0cee6b150"><td class="mdescLeft">&#160;</td><td class="mdescRight">Input matrix type.  <br /></td></tr>
+<tr class="separator:a9e6bf4e0caae50fc78b35ae0cee6b150"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-static-methods" name="pub-static-methods"></a>
 Static Public Member Functions</h2></td></tr>
-<tr class="memitem:a3465fd5fb35ee0d150fbc7f44b8e76dd"><td class="memItemLeft" align="right" valign="top">static constexpr pre_result_vector_type&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classstd_1_1math_1_1instant__evaluated__operations_1_1vector__matrix__product.html#a3465fd5fb35ee0d150fbc7f44b8e76dd">prod</a> (const <a class="el" href="classstd_1_1math_1_1instant__evaluated__operations_1_1vector__matrix__product.html#a73bd8138f097c8af3dff6cbc39d54b5b">vector_type</a> &amp;v, const <a class="el" href="classstd_1_1math_1_1instant__evaluated__operations_1_1vector__matrix__product.html#adc37d911d0b1352b8b25ea58a9abf7a9">matrix_type</a> &amp;m) noexcept(noexcept(<a class="el" href="namespacestd_1_1math_1_1detail.html#ae5eb3cf5ea2a6e93d691bfd9f701768e">detail::make_from_tuple</a>&lt; pre_result_vector_type &gt;(collect_ctor_args(v, m, [&amp;v,&amp;m]&lt; class IndexType &gt;(IndexType index) constexpr noexcept { result_value_type result=0;for_each(execution::unseq, <a class="el" href="structstd_1_1math_1_1detail_1_1faux__index__iterator.html">detail::faux_index_iterator</a>&lt; typename vector_type::index_type &gt;(0), <a class="el" href="structstd_1_1math_1_1detail_1_1faux__index__iterator.html">detail::faux_index_iterator</a>&lt; typename vector_type::index_type &gt;(v.size().extent(0)), [&amp;v, &amp;m, &amp;index, &amp;result](typename vector_type::index_type index2) constexpr noexcept { result+=v[index2] *m[index2, index];});return result;}))) &amp;&amp;((vector_type::extents_type::static_extent(0) !=experimental::dynamic_extent) &amp;&amp;(matrix_type::extents_type::static_extent(0) !=experimental::dynamic_extent)))</td></tr>
-<tr class="memdesc:a3465fd5fb35ee0d150fbc7f44b8e76dd"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns v * m.  <br /></td></tr>
-<tr class="separator:a3465fd5fb35ee0d150fbc7f44b8e76dd"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aa6396d16e0932dad2708e1bad3c5cf56"><td class="memItemLeft" align="right" valign="top">static constexpr <a class="el" href="classstd_1_1math_1_1instant__evaluated__operations_1_1vector__matrix__product.html#a73bd8138f097c8af3dff6cbc39d54b5b">vector_type</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classstd_1_1math_1_1instant__evaluated__operations_1_1vector__matrix__product.html#aa6396d16e0932dad2708e1bad3c5cf56">prod</a> (<a class="el" href="classstd_1_1math_1_1instant__evaluated__operations_1_1vector__matrix__product.html#a73bd8138f097c8af3dff6cbc39d54b5b">vector_type</a> &amp;v, const <a class="el" href="classstd_1_1math_1_1instant__evaluated__operations_1_1vector__matrix__product.html#adc37d911d0b1352b8b25ea58a9abf7a9">matrix_type</a> &amp;m) noexcept(noexcept(v=move(v *m)))</td></tr>
-<tr class="memdesc:aa6396d16e0932dad2708e1bad3c5cf56"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns v *= m.  <br /></td></tr>
-<tr class="separator:aa6396d16e0932dad2708e1bad3c5cf56"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a2b0eeffa3e50cc691ebf92653aa347e0"><td class="memItemLeft" align="right" valign="top">static constexpr post_result_vector_type&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classstd_1_1math_1_1instant__evaluated__operations_1_1vector__matrix__product.html#a2b0eeffa3e50cc691ebf92653aa347e0">prod</a> (const <a class="el" href="classstd_1_1math_1_1instant__evaluated__operations_1_1vector__matrix__product.html#adc37d911d0b1352b8b25ea58a9abf7a9">matrix_type</a> &amp;m, const <a class="el" href="classstd_1_1math_1_1instant__evaluated__operations_1_1vector__matrix__product.html#a73bd8138f097c8af3dff6cbc39d54b5b">vector_type</a> &amp;v) noexcept(noexcept(<a class="el" href="namespacestd_1_1math_1_1detail.html#ae5eb3cf5ea2a6e93d691bfd9f701768e">detail::make_from_tuple</a>&lt; post_result_vector_type &gt;(collect_ctor_args(declval&lt; const <a class="el" href="classstd_1_1math_1_1instant__evaluated__operations_1_1vector__matrix__product.html#a73bd8138f097c8af3dff6cbc39d54b5b">vector_type</a> &amp; &gt;(), declval&lt; const <a class="el" href="classstd_1_1math_1_1instant__evaluated__operations_1_1vector__matrix__product.html#adc37d911d0b1352b8b25ea58a9abf7a9">matrix_type</a> &amp; &gt;(), [&amp;v,&amp;m]&lt; class IndexType &gt;(IndexType index) constexpr noexcept { result_value_type result=0;for_each(execution::unseq, <a class="el" href="structstd_1_1math_1_1detail_1_1faux__index__iterator.html">detail::faux_index_iterator</a>&lt; typename vector_type::index_type &gt;(0), <a class="el" href="structstd_1_1math_1_1detail_1_1faux__index__iterator.html">detail::faux_index_iterator</a>&lt; typename vector_type::index_type &gt;(v.size().extent(0)), [&amp;v, &amp;m, &amp;index, &amp;result](typename vector_type::index_type index2) constexpr noexcept { result+=m[index, index2] *v[index2];});return result;}))) &amp;&amp;((matrix_type::extents_type::static_extent(1) !=experimental::dynamic_extent) &amp;&amp;(vector_type::extents_type::static_extent(0) !=experimental::dynamic_extent)))</td></tr>
-<tr class="memdesc:a2b0eeffa3e50cc691ebf92653aa347e0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns m * v.  <br /></td></tr>
-<tr class="separator:a2b0eeffa3e50cc691ebf92653aa347e0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa446cf609f6dcfd0ab4fbd566b72dc14"><td class="memTemplParams" colspan="2">template&lt;typename Vec  = vector_type, typename Mat  = matrix_type, typename  = ::std::enable_if_t&lt; ( ( Vec::extents_type::static_extent(0) == Mat::extents_type::static_extent(0) ) ||                                                ( Vec::extents_type::static_extent(0) == ::std::experimental::dynamic_extent ) ||                                                ( Mat::extents_type::static_extent(0) == ::std::experimental::dynamic_extent ) ) &gt;&gt; </td></tr>
+<tr class="memitem:aa446cf609f6dcfd0ab4fbd566b72dc14"><td class="memTemplItemLeft" align="right" valign="top">static constexpr pre_result_vector_type&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="classstd_1_1math_1_1instant__evaluated__operations_1_1vector__matrix__product.html#aa446cf609f6dcfd0ab4fbd566b72dc14">prod</a> (const <a class="el" href="classstd_1_1math_1_1instant__evaluated__operations_1_1vector__matrix__product.html#a54eb2a8e6b8abb9ac87b24fa1107ddfb">vector_type</a> &amp;v, const <a class="el" href="classstd_1_1math_1_1instant__evaluated__operations_1_1vector__matrix__product.html#a9e6bf4e0caae50fc78b35ae0cee6b150">matrix_type</a> &amp;m)</td></tr>
+<tr class="memdesc:aa446cf609f6dcfd0ab4fbd566b72dc14"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns v * m.  <br /></td></tr>
+<tr class="separator:aa446cf609f6dcfd0ab4fbd566b72dc14"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af6914c3785c5b35db4ec6ffec48efcdf"><td class="memTemplParams" colspan="2">template&lt;typename Vec  = vector_type, typename Mat  = matrix_type, typename  = ::std::enable_if_t&lt; ( ( Vec::extents_type::static_extent(0) == Mat::extents_type::static_extent(0) ) &amp;&amp;                                                ( ( Vec::extents_type::static_extent(0) == Mat::extents_type::static_extent(1) ) ||                                                  ( Vec::extents_type::static_extent(0) == ::std::experimental::dynamic_extent ) ) ) &gt;&gt; </td></tr>
+<tr class="memitem:af6914c3785c5b35db4ec6ffec48efcdf"><td class="memTemplItemLeft" align="right" valign="top">static constexpr <a class="el" href="classstd_1_1math_1_1instant__evaluated__operations_1_1vector__matrix__product.html#a54eb2a8e6b8abb9ac87b24fa1107ddfb">vector_type</a> &amp;&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="classstd_1_1math_1_1instant__evaluated__operations_1_1vector__matrix__product.html#af6914c3785c5b35db4ec6ffec48efcdf">prod</a> (<a class="el" href="classstd_1_1math_1_1instant__evaluated__operations_1_1vector__matrix__product.html#a54eb2a8e6b8abb9ac87b24fa1107ddfb">vector_type</a> &amp;v, const <a class="el" href="classstd_1_1math_1_1instant__evaluated__operations_1_1vector__matrix__product.html#a9e6bf4e0caae50fc78b35ae0cee6b150">matrix_type</a> &amp;m) noexcept(noexcept(v=::std::move(v *m)))</td></tr>
+<tr class="memdesc:af6914c3785c5b35db4ec6ffec48efcdf"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns v *= m.  <br /></td></tr>
+<tr class="separator:af6914c3785c5b35db4ec6ffec48efcdf"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0b1f08307f19722f1b76c6ecc626acdc"><td class="memTemplParams" colspan="2">template&lt;typename Vec  = vector_type, typename Mat  = matrix_type, typename  = ::std::enable_if_t&lt; ( ( Mat::extents_type::static_extent(1) == Vec::extents_type::static_extent(0) ) ||                                                ( Mat::extents_type::static_extent(1) == ::std::experimental::dynamic_extent ) ||                                                ( Vec::extents_type::static_extent(0) == ::std::experimental::dynamic_extent ) ) &gt;&gt; </td></tr>
+<tr class="memitem:a0b1f08307f19722f1b76c6ecc626acdc"><td class="memTemplItemLeft" align="right" valign="top">static constexpr post_result_vector_type&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="classstd_1_1math_1_1instant__evaluated__operations_1_1vector__matrix__product.html#a0b1f08307f19722f1b76c6ecc626acdc">prod</a> (const <a class="el" href="classstd_1_1math_1_1instant__evaluated__operations_1_1vector__matrix__product.html#a9e6bf4e0caae50fc78b35ae0cee6b150">matrix_type</a> &amp;m, const <a class="el" href="classstd_1_1math_1_1instant__evaluated__operations_1_1vector__matrix__product.html#a54eb2a8e6b8abb9ac87b24fa1107ddfb">vector_type</a> &amp;v)</td></tr>
+<tr class="memdesc:a0b1f08307f19722f1b76c6ecc626acdc"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns m * v.  <br /></td></tr>
+<tr class="separator:a0b1f08307f19722f1b76c6ecc626acdc"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock"><div class="compoundTemplParams">template&lt;concepts::vector_data V, concepts::matrix_data M&gt;<br />
-class std::math::instant_evaluated_operations::vector_matrix_product&lt; V, M &gt;</div><p>Defines multiplication operation on a matrix and a vector. </p>
+<div class="textblock"><div class="compoundTemplParams">template&lt;class V, class M, typename = ::std::enable_if_t&lt; concepts::vector_data_v&lt;V&gt; &amp;&amp; concepts::matrix_data_v&lt;M&gt; &gt;&gt;<br />
+class std::math::instant_evaluated_operations::vector_matrix_product&lt; V, M, typename &gt;</div><p>Defines multiplication operation on a matrix and a vector. </p>
 <dl class="tparams"><dt>Template Parameters</dt><dd>
   <table class="tparams">
     <tr><td class="paramname">V</td><td>vector </td></tr>
@@ -124,16 +128,16 @@ class std::math::instant_evaluated_operations::vector_matrix_product&lt; V, M &g
   </dd>
 </dl>
 </div><h2 class="groupheader">Member Typedef Documentation</h2>
-<a id="adc37d911d0b1352b8b25ea58a9abf7a9" name="adc37d911d0b1352b8b25ea58a9abf7a9"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#adc37d911d0b1352b8b25ea58a9abf7a9">&#9670;&#160;</a></span>matrix_type</h2>
+<a id="a9e6bf4e0caae50fc78b35ae0cee6b150" name="a9e6bf4e0caae50fc78b35ae0cee6b150"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9e6bf4e0caae50fc78b35ae0cee6b150">&#9670;&#160;</a></span>matrix_type</h2>
 
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;concepts::vector_data V, concepts::matrix_data M&gt; </div>
+template&lt;class V , class M , typename  = ::std::enable_if_t&lt; concepts::vector_data_v&lt;V&gt; &amp;&amp; concepts::matrix_data_v&lt;M&gt; &gt;&gt; </div>
       <table class="memname">
         <tr>
-          <td class="memname">using <a class="el" href="classstd_1_1math_1_1instant__evaluated__operations_1_1vector__matrix__product.html">std::math::instant_evaluated_operations::vector_matrix_product</a>&lt; V, M &gt;::matrix_type =  M</td>
+          <td class="memname">using <a class="el" href="classstd_1_1math_1_1instant__evaluated__operations_1_1vector__matrix__product.html">std::math::instant_evaluated_operations::vector_matrix_product</a>&lt; V, M, typename &gt;::matrix_type =  M</td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -142,16 +146,16 @@ template&lt;concepts::vector_data V, concepts::matrix_data M&gt; </div>
 
 </div>
 </div>
-<a id="a73bd8138f097c8af3dff6cbc39d54b5b" name="a73bd8138f097c8af3dff6cbc39d54b5b"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a73bd8138f097c8af3dff6cbc39d54b5b">&#9670;&#160;</a></span>vector_type</h2>
+<a id="a54eb2a8e6b8abb9ac87b24fa1107ddfb" name="a54eb2a8e6b8abb9ac87b24fa1107ddfb"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a54eb2a8e6b8abb9ac87b24fa1107ddfb">&#9670;&#160;</a></span>vector_type</h2>
 
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;concepts::vector_data V, concepts::matrix_data M&gt; </div>
+template&lt;class V , class M , typename  = ::std::enable_if_t&lt; concepts::vector_data_v&lt;V&gt; &amp;&amp; concepts::matrix_data_v&lt;M&gt; &gt;&gt; </div>
       <table class="memname">
         <tr>
-          <td class="memname">using <a class="el" href="classstd_1_1math_1_1instant__evaluated__operations_1_1vector__matrix__product.html">std::math::instant_evaluated_operations::vector_matrix_product</a>&lt; V, M &gt;::vector_type =  V</td>
+          <td class="memname">using <a class="el" href="classstd_1_1math_1_1instant__evaluated__operations_1_1vector__matrix__product.html">std::math::instant_evaluated_operations::vector_matrix_product</a>&lt; V, M, typename &gt;::vector_type =  V</td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -161,27 +165,29 @@ template&lt;concepts::vector_data V, concepts::matrix_data M&gt; </div>
 </div>
 </div>
 <h2 class="groupheader">Member Function Documentation</h2>
-<a id="a2b0eeffa3e50cc691ebf92653aa347e0" name="a2b0eeffa3e50cc691ebf92653aa347e0"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a2b0eeffa3e50cc691ebf92653aa347e0">&#9670;&#160;</a></span>prod() <span class="overload">[1/3]</span></h2>
+<a id="a0b1f08307f19722f1b76c6ecc626acdc" name="a0b1f08307f19722f1b76c6ecc626acdc"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0b1f08307f19722f1b76c6ecc626acdc">&#9670;&#160;</a></span>prod() <span class="overload">[1/3]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;concepts::vector_data V, concepts::matrix_data M&gt; </div>
+template&lt;class V , class M , typename  = ::std::enable_if_t&lt; concepts::vector_data_v&lt;V&gt; &amp;&amp; concepts::matrix_data_v&lt;M&gt; &gt;&gt; </div>
+<div class="memtemplate">
+template&lt;typename Vec  = vector_type, typename Mat  = matrix_type, typename  = ::std::enable_if_t&lt; ( ( Mat::extents_type::static_extent(1) == Vec::extents_type::static_extent(0) ) ||                                                ( Mat::extents_type::static_extent(1) == ::std::experimental::dynamic_extent ) ||                                                ( Vec::extents_type::static_extent(0) == ::std::experimental::dynamic_extent ) ) &gt;&gt; </div>
 <table class="mlabels">
   <tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">static constexpr post_result_vector_type <a class="el" href="classstd_1_1math_1_1instant__evaluated__operations_1_1vector__matrix__product.html">std::math::instant_evaluated_operations::vector_matrix_product</a>&lt; V, M &gt;::prod </td>
+          <td class="memname">static constexpr post_result_vector_type <a class="el" href="classstd_1_1math_1_1instant__evaluated__operations_1_1vector__matrix__product.html">std::math::instant_evaluated_operations::vector_matrix_product</a>&lt; V, M, typename &gt;::prod </td>
           <td>(</td>
-          <td class="paramtype">const <a class="el" href="classstd_1_1math_1_1instant__evaluated__operations_1_1vector__matrix__product.html#adc37d911d0b1352b8b25ea58a9abf7a9">matrix_type</a> &amp;&#160;</td>
+          <td class="paramtype">const <a class="el" href="classstd_1_1math_1_1instant__evaluated__operations_1_1vector__matrix__product.html#a9e6bf4e0caae50fc78b35ae0cee6b150">matrix_type</a> &amp;&#160;</td>
           <td class="paramname"><em>m</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">const <a class="el" href="classstd_1_1math_1_1instant__evaluated__operations_1_1vector__matrix__product.html#a73bd8138f097c8af3dff6cbc39d54b5b">vector_type</a> &amp;&#160;</td>
+          <td class="paramtype">const <a class="el" href="classstd_1_1math_1_1instant__evaluated__operations_1_1vector__matrix__product.html#a54eb2a8e6b8abb9ac87b24fa1107ddfb">vector_type</a> &amp;&#160;</td>
           <td class="paramname"><em>v</em>&#160;</td>
         </tr>
         <tr>
@@ -192,7 +198,7 @@ template&lt;concepts::vector_data V, concepts::matrix_data M&gt; </div>
       </table>
   </td>
   <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">static</span><span class="mlabel">constexpr</span><span class="mlabel">noexcept</span></span>  </td>
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">static</span><span class="mlabel">constexpr</span></span>  </td>
   </tr>
 </table>
 </div><div class="memdoc">
@@ -201,27 +207,29 @@ template&lt;concepts::vector_data V, concepts::matrix_data M&gt; </div>
 
 </div>
 </div>
-<a id="a3465fd5fb35ee0d150fbc7f44b8e76dd" name="a3465fd5fb35ee0d150fbc7f44b8e76dd"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a3465fd5fb35ee0d150fbc7f44b8e76dd">&#9670;&#160;</a></span>prod() <span class="overload">[2/3]</span></h2>
+<a id="aa446cf609f6dcfd0ab4fbd566b72dc14" name="aa446cf609f6dcfd0ab4fbd566b72dc14"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa446cf609f6dcfd0ab4fbd566b72dc14">&#9670;&#160;</a></span>prod() <span class="overload">[2/3]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;concepts::vector_data V, concepts::matrix_data M&gt; </div>
+template&lt;class V , class M , typename  = ::std::enable_if_t&lt; concepts::vector_data_v&lt;V&gt; &amp;&amp; concepts::matrix_data_v&lt;M&gt; &gt;&gt; </div>
+<div class="memtemplate">
+template&lt;typename Vec  = vector_type, typename Mat  = matrix_type, typename  = ::std::enable_if_t&lt; ( ( Vec::extents_type::static_extent(0) == Mat::extents_type::static_extent(0) ) ||                                                ( Vec::extents_type::static_extent(0) == ::std::experimental::dynamic_extent ) ||                                                ( Mat::extents_type::static_extent(0) == ::std::experimental::dynamic_extent ) ) &gt;&gt; </div>
 <table class="mlabels">
   <tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">static constexpr pre_result_vector_type <a class="el" href="classstd_1_1math_1_1instant__evaluated__operations_1_1vector__matrix__product.html">std::math::instant_evaluated_operations::vector_matrix_product</a>&lt; V, M &gt;::prod </td>
+          <td class="memname">static constexpr pre_result_vector_type <a class="el" href="classstd_1_1math_1_1instant__evaluated__operations_1_1vector__matrix__product.html">std::math::instant_evaluated_operations::vector_matrix_product</a>&lt; V, M, typename &gt;::prod </td>
           <td>(</td>
-          <td class="paramtype">const <a class="el" href="classstd_1_1math_1_1instant__evaluated__operations_1_1vector__matrix__product.html#a73bd8138f097c8af3dff6cbc39d54b5b">vector_type</a> &amp;&#160;</td>
+          <td class="paramtype">const <a class="el" href="classstd_1_1math_1_1instant__evaluated__operations_1_1vector__matrix__product.html#a54eb2a8e6b8abb9ac87b24fa1107ddfb">vector_type</a> &amp;&#160;</td>
           <td class="paramname"><em>v</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">const <a class="el" href="classstd_1_1math_1_1instant__evaluated__operations_1_1vector__matrix__product.html#adc37d911d0b1352b8b25ea58a9abf7a9">matrix_type</a> &amp;&#160;</td>
+          <td class="paramtype">const <a class="el" href="classstd_1_1math_1_1instant__evaluated__operations_1_1vector__matrix__product.html#a9e6bf4e0caae50fc78b35ae0cee6b150">matrix_type</a> &amp;&#160;</td>
           <td class="paramname"><em>m</em>&#160;</td>
         </tr>
         <tr>
@@ -232,7 +240,7 @@ template&lt;concepts::vector_data V, concepts::matrix_data M&gt; </div>
       </table>
   </td>
   <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">static</span><span class="mlabel">constexpr</span><span class="mlabel">noexcept</span></span>  </td>
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">static</span><span class="mlabel">constexpr</span></span>  </td>
   </tr>
 </table>
 </div><div class="memdoc">
@@ -241,27 +249,29 @@ template&lt;concepts::vector_data V, concepts::matrix_data M&gt; </div>
 
 </div>
 </div>
-<a id="aa6396d16e0932dad2708e1bad3c5cf56" name="aa6396d16e0932dad2708e1bad3c5cf56"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aa6396d16e0932dad2708e1bad3c5cf56">&#9670;&#160;</a></span>prod() <span class="overload">[3/3]</span></h2>
+<a id="af6914c3785c5b35db4ec6ffec48efcdf" name="af6914c3785c5b35db4ec6ffec48efcdf"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af6914c3785c5b35db4ec6ffec48efcdf">&#9670;&#160;</a></span>prod() <span class="overload">[3/3]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;concepts::vector_data V, concepts::matrix_data M&gt; </div>
+template&lt;class V , class M , typename  = ::std::enable_if_t&lt; concepts::vector_data_v&lt;V&gt; &amp;&amp; concepts::matrix_data_v&lt;M&gt; &gt;&gt; </div>
+<div class="memtemplate">
+template&lt;typename Vec  = vector_type, typename Mat  = matrix_type, typename  = ::std::enable_if_t&lt; ( ( Vec::extents_type::static_extent(0) == Mat::extents_type::static_extent(0) ) &amp;&amp;                                                ( ( Vec::extents_type::static_extent(0) == Mat::extents_type::static_extent(1) ) ||                                                  ( Vec::extents_type::static_extent(0) == ::std::experimental::dynamic_extent ) ) ) &gt;&gt; </div>
 <table class="mlabels">
   <tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">static constexpr <a class="el" href="classstd_1_1math_1_1instant__evaluated__operations_1_1vector__matrix__product.html#a73bd8138f097c8af3dff6cbc39d54b5b">vector_type</a> &amp; <a class="el" href="classstd_1_1math_1_1instant__evaluated__operations_1_1vector__matrix__product.html">std::math::instant_evaluated_operations::vector_matrix_product</a>&lt; V, M &gt;::prod </td>
+          <td class="memname">static constexpr <a class="el" href="classstd_1_1math_1_1instant__evaluated__operations_1_1vector__matrix__product.html#a54eb2a8e6b8abb9ac87b24fa1107ddfb">vector_type</a> &amp; <a class="el" href="classstd_1_1math_1_1instant__evaluated__operations_1_1vector__matrix__product.html">std::math::instant_evaluated_operations::vector_matrix_product</a>&lt; V, M, typename &gt;::prod </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="classstd_1_1math_1_1instant__evaluated__operations_1_1vector__matrix__product.html#a73bd8138f097c8af3dff6cbc39d54b5b">vector_type</a> &amp;&#160;</td>
+          <td class="paramtype"><a class="el" href="classstd_1_1math_1_1instant__evaluated__operations_1_1vector__matrix__product.html#a54eb2a8e6b8abb9ac87b24fa1107ddfb">vector_type</a> &amp;&#160;</td>
           <td class="paramname"><em>v</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">const <a class="el" href="classstd_1_1math_1_1instant__evaluated__operations_1_1vector__matrix__product.html#adc37d911d0b1352b8b25ea58a9abf7a9">matrix_type</a> &amp;&#160;</td>
+          <td class="paramtype">const <a class="el" href="classstd_1_1math_1_1instant__evaluated__operations_1_1vector__matrix__product.html#a9e6bf4e0caae50fc78b35ae0cee6b150">matrix_type</a> &amp;&#160;</td>
           <td class="paramname"><em>m</em>&#160;</td>
         </tr>
         <tr>

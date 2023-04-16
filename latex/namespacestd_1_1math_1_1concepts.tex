@@ -1,77 +1,1445 @@
 \hypertarget{namespacestd_1_1math_1_1concepts}{}\doxysection{std\+::math\+::concepts Namespace Reference}
 \label{namespacestd_1_1math_1_1concepts}\index{std::math::concepts@{std::math::concepts}}
-\doxysubsection*{Concepts}
+\doxysubsection*{Classes}
 \begin{DoxyCompactItemize}
 \item 
-concept \mbox{\hyperlink{conceptstd_1_1math_1_1concepts_1_1matrix__data}{matrix\+\_\+data}}
+struct \mbox{\hyperlink{structstd_1_1math_1_1concepts_1_1addition__exists}{addition\+\_\+exists}}
 \item 
-concept \mbox{\hyperlink{conceptstd_1_1math_1_1concepts_1_1matrix}{matrix}}
+struct \mbox{\hyperlink{structstd_1_1math_1_1concepts_1_1addition__exists_3_01_t_00_01_u_00_01_1_1std_1_1enable__if__t_3a10e745874dbdbef2942a4470e38da0a}{addition\+\_\+exists$<$ T, U, \+::std\+::enable\+\_\+if\+\_\+t$<$ is\+\_\+same\+\_\+v$<$ decltype(\+::std\+::declval$<$ T $>$()+\+::std\+::declval$<$ U $>$()), decltype(\+::std\+::declval$<$ T $>$()+\+::std\+::declval$<$ U $>$()) $>$ $>$ $>$}}
 \item 
-concept \mbox{\hyperlink{conceptstd_1_1math_1_1concepts_1_1readable__matrix__data}{readable\+\_\+matrix\+\_\+data}}
+struct \mbox{\hyperlink{structstd_1_1math_1_1concepts_1_1constructible__from__alloc}{constructible\+\_\+from\+\_\+alloc}}
 \item 
-concept \mbox{\hyperlink{conceptstd_1_1math_1_1concepts_1_1readable__matrix}{readable\+\_\+matrix}}
+struct \mbox{\hyperlink{structstd_1_1math_1_1concepts_1_1constructible__from__alloc_3_01_t_00_01_1_1std_1_1enable__if__ta1cc115020e399bd49f8f36d2ef87a42}{constructible\+\_\+from\+\_\+alloc$<$ T, \+::std\+::enable\+\_\+if\+\_\+t$<$ is\+\_\+constructible\+\_\+v$<$ T, typename T\+::allocator\+\_\+type $>$ $>$ $>$}}
 \item 
-concept \mbox{\hyperlink{conceptstd_1_1math_1_1concepts_1_1writable__matrix__data}{writable\+\_\+matrix\+\_\+data}}
+struct \mbox{\hyperlink{structstd_1_1math_1_1concepts_1_1constructible__from__size__and__alloc}{constructible\+\_\+from\+\_\+size\+\_\+and\+\_\+alloc}}
 \item 
-concept \mbox{\hyperlink{conceptstd_1_1math_1_1concepts_1_1writable__matrix}{writable\+\_\+matrix}}
+struct \mbox{\hyperlink{structstd_1_1math_1_1concepts_1_1constructible__from__size__and__alloc_3_01_t_00_01_1_1std_1_1enc37d702233ace3fbdd978047321ce54c}{constructible\+\_\+from\+\_\+size\+\_\+and\+\_\+alloc$<$ T, \+::std\+::enable\+\_\+if\+\_\+t$<$ is\+\_\+constructible\+\_\+v$<$ T, typename T\+::extents\+\_\+type, typename T\+::allocator\+\_\+type $>$ $>$ $>$}}
 \item 
-concept \mbox{\hyperlink{conceptstd_1_1math_1_1concepts_1_1dynamic__matrix__data}{dynamic\+\_\+matrix\+\_\+data}}
+struct \mbox{\hyperlink{structstd_1_1math_1_1concepts_1_1constructible__from__size__cap__and__alloc}{constructible\+\_\+from\+\_\+size\+\_\+cap\+\_\+and\+\_\+alloc}}
 \item 
-concept \mbox{\hyperlink{conceptstd_1_1math_1_1concepts_1_1dynamic__matrix}{dynamic\+\_\+matrix}}
+struct \mbox{\hyperlink{structstd_1_1math_1_1concepts_1_1constructible__from__size__cap__and__alloc_3_01_t_00_01_1_1std_1f645c4322d1ab95fdc1fe64ef05f3fe}{constructible\+\_\+from\+\_\+size\+\_\+cap\+\_\+and\+\_\+alloc$<$ T, \+::std\+::enable\+\_\+if\+\_\+t$<$ is\+\_\+constructible\+\_\+v$<$ T, typename T\+::extents\+\_\+type, typename T\+::extents\+\_\+type, typename T\+::allocator\+\_\+type $>$ $>$ $>$}}
 \item 
-concept \mbox{\hyperlink{conceptstd_1_1math_1_1concepts_1_1fixed__size__matrix__data}{fixed\+\_\+size\+\_\+matrix\+\_\+data}}
+struct \mbox{\hyperlink{structstd_1_1math_1_1concepts_1_1division__exists}{division\+\_\+exists}}
 \item 
-concept \mbox{\hyperlink{conceptstd_1_1math_1_1concepts_1_1fixed__size__matrix}{fixed\+\_\+size\+\_\+matrix}}
+struct \mbox{\hyperlink{structstd_1_1math_1_1concepts_1_1division__exists_3_01_t_00_01_u_00_01_1_1std_1_1enable__if__t_3866ddf93dc5fdf4a5ed81f013f180650}{division\+\_\+exists$<$ T, U, \+::std\+::enable\+\_\+if\+\_\+t$<$ is\+\_\+same\+\_\+v$<$ decltype(\+::std\+::declval$<$ T $>$()/\+::std\+::declval$<$ U $>$()), decltype(\+::std\+::declval$<$ T $>$()/\+::std\+::declval$<$ U $>$()) $>$ $>$ $>$}}
 \item 
-concept \mbox{\hyperlink{conceptstd_1_1math_1_1concepts_1_1matrix__may__be__convertible}{matrix\+\_\+may\+\_\+be\+\_\+convertible}}
+struct \mbox{\hyperlink{structstd_1_1math_1_1concepts_1_1dynamic__matrix}{dynamic\+\_\+matrix}}
 \item 
-concept \mbox{\hyperlink{conceptstd_1_1math_1_1concepts_1_1view__may__be__convertible__to__matrix}{view\+\_\+may\+\_\+be\+\_\+convertible\+\_\+to\+\_\+matrix}}
+struct \mbox{\hyperlink{structstd_1_1math_1_1concepts_1_1dynamic__matrix__data}{dynamic\+\_\+matrix\+\_\+data}}
 \item 
-concept \mbox{\hyperlink{conceptstd_1_1math_1_1concepts_1_1tensor__data}{tensor\+\_\+data}}
+struct \mbox{\hyperlink{structstd_1_1math_1_1concepts_1_1dynamic__tensor}{dynamic\+\_\+tensor}}
 \item 
-concept \mbox{\hyperlink{conceptstd_1_1math_1_1concepts_1_1tensor}{tensor}}
+struct \mbox{\hyperlink{structstd_1_1math_1_1concepts_1_1dynamic__tensor__data}{dynamic\+\_\+tensor\+\_\+data}}
 \item 
-concept \mbox{\hyperlink{conceptstd_1_1math_1_1concepts_1_1readable__tensor__data}{readable\+\_\+tensor\+\_\+data}}
+struct \mbox{\hyperlink{structstd_1_1math_1_1concepts_1_1dynamic__vector}{dynamic\+\_\+vector}}
 \item 
-concept \mbox{\hyperlink{conceptstd_1_1math_1_1concepts_1_1readable__tensor}{readable\+\_\+tensor}}
+struct \mbox{\hyperlink{structstd_1_1math_1_1concepts_1_1dynamic__vector__data}{dynamic\+\_\+vector\+\_\+data}}
 \item 
-concept \mbox{\hyperlink{conceptstd_1_1math_1_1concepts_1_1writable__tensor__data}{writable\+\_\+tensor\+\_\+data}}
+struct \mbox{\hyperlink{structstd_1_1math_1_1concepts_1_1extents__are__equal}{extents\+\_\+are\+\_\+equal}}
 \item 
-concept \mbox{\hyperlink{conceptstd_1_1math_1_1concepts_1_1writable__tensor}{writable\+\_\+tensor}}
+struct \mbox{\hyperlink{structstd_1_1math_1_1concepts_1_1extents__are__equal_3_01_t_00_01_u_00_01_1_1std_1_1enable__if__89cb8bc631b0e644dd82f6c6e5670add}{extents\+\_\+are\+\_\+equal$<$ T, U, \+::std\+::enable\+\_\+if\+\_\+t$<$ detail\+::extents\+\_\+are\+\_\+equal\+\_\+v$<$ typename T\+::extents\+\_\+type, typename U\+::extents\+\_\+type $>$ $>$ $>$}}
 \item 
-concept \mbox{\hyperlink{conceptstd_1_1math_1_1concepts_1_1dynamic__tensor__data}{dynamic\+\_\+tensor\+\_\+data}}
+struct \mbox{\hyperlink{structstd_1_1math_1_1concepts_1_1extents__may__be__equal}{extents\+\_\+may\+\_\+be\+\_\+equal}}
 \item 
-concept \mbox{\hyperlink{conceptstd_1_1math_1_1concepts_1_1dynamic__tensor}{dynamic\+\_\+tensor}}
+struct \mbox{\hyperlink{structstd_1_1math_1_1concepts_1_1extents__may__be__equal_3_01_t_00_01_u_00_01_1_1std_1_1enable__29877ffef9824af2eb6072d33118d0ba}{extents\+\_\+may\+\_\+be\+\_\+equal$<$ T, U, \+::std\+::enable\+\_\+if\+\_\+t$<$ detail\+::extents\+\_\+may\+\_\+be\+\_\+equal\+\_\+v$<$ typename T\+::extents\+\_\+type, typename U\+::extents\+\_\+type $>$ $>$ $>$}}
 \item 
-concept \mbox{\hyperlink{conceptstd_1_1math_1_1concepts_1_1fixed__size__tensor__data}{fixed\+\_\+size\+\_\+tensor\+\_\+data}}
+struct \mbox{\hyperlink{structstd_1_1math_1_1concepts_1_1fixed__size__matrix}{fixed\+\_\+size\+\_\+matrix}}
 \item 
-concept \mbox{\hyperlink{conceptstd_1_1math_1_1concepts_1_1fixed__size__tensor}{fixed\+\_\+size\+\_\+tensor}}
+struct \mbox{\hyperlink{structstd_1_1math_1_1concepts_1_1fixed__size__matrix__data}{fixed\+\_\+size\+\_\+matrix\+\_\+data}}
 \item 
-concept \mbox{\hyperlink{conceptstd_1_1math_1_1concepts_1_1tensor__may__be__constructible}{tensor\+\_\+may\+\_\+be\+\_\+constructible}}
+struct \mbox{\hyperlink{structstd_1_1math_1_1concepts_1_1fixed__size__tensor}{fixed\+\_\+size\+\_\+tensor}}
 \item 
-concept \mbox{\hyperlink{conceptstd_1_1math_1_1concepts_1_1view__may__be__constructible__to__tensor}{view\+\_\+may\+\_\+be\+\_\+constructible\+\_\+to\+\_\+tensor}}
+struct \mbox{\hyperlink{structstd_1_1math_1_1concepts_1_1fixed__size__tensor__data}{fixed\+\_\+size\+\_\+tensor\+\_\+data}}
 \item 
-concept \mbox{\hyperlink{conceptstd_1_1math_1_1concepts_1_1view__is__constructible__to__tensor}{view\+\_\+is\+\_\+constructible\+\_\+to\+\_\+tensor}}
+struct \mbox{\hyperlink{structstd_1_1math_1_1concepts_1_1fixed__size__vector}{fixed\+\_\+size\+\_\+vector}}
 \item 
-concept \mbox{\hyperlink{conceptstd_1_1math_1_1concepts_1_1view__is__nothrow__constructible__to__tensor}{view\+\_\+is\+\_\+nothrow\+\_\+constructible\+\_\+to\+\_\+tensor}}
+struct \mbox{\hyperlink{structstd_1_1math_1_1concepts_1_1fixed__size__vector__data}{fixed\+\_\+size\+\_\+vector\+\_\+data}}
 \item 
-concept \mbox{\hyperlink{conceptstd_1_1math_1_1concepts_1_1vector__data}{vector\+\_\+data}}
+struct \mbox{\hyperlink{structstd_1_1math_1_1concepts_1_1has__add__func}{has\+\_\+add\+\_\+func}}
 \item 
-concept \mbox{\hyperlink{conceptstd_1_1math_1_1concepts_1_1vector}{vector}}
+struct \mbox{\hyperlink{structstd_1_1math_1_1concepts_1_1has__add__func_3_01_t_00_01_1_1std_1_1enable__if__t_3_01_1_1std1758a9d17ad40d7d9b01b6edce0a9611}{has\+\_\+add\+\_\+func$<$ T, \+::std\+::enable\+\_\+if\+\_\+t$<$ \+::std\+::is\+\_\+same\+\_\+v$<$ decltype(\+::std\+::declval$<$ const T $>$()+\+::std\+::declval$<$ const T $>$()), decltype(\+::std\+::declval$<$ const T $>$()+\+::std\+::declval$<$ const T $>$()) $>$ $>$ $>$}}
 \item 
-concept \mbox{\hyperlink{conceptstd_1_1math_1_1concepts_1_1readable__vector__data}{readable\+\_\+vector\+\_\+data}}
+struct \mbox{\hyperlink{structstd_1_1math_1_1concepts_1_1has__allocator__type}{has\+\_\+allocator\+\_\+type}}
 \item 
-concept \mbox{\hyperlink{conceptstd_1_1math_1_1concepts_1_1readable__vector}{readable\+\_\+vector}}
+struct \mbox{\hyperlink{structstd_1_1math_1_1concepts_1_1has__allocator__type_3_01_t_00_01_1_1std_1_1enable__if__t_3_01_a13a96b8515cd9cda6ff73c0af6f8dff}{has\+\_\+allocator\+\_\+type$<$ T, \+::std\+::enable\+\_\+if\+\_\+t$<$ \+::std\+::is\+\_\+same\+\_\+v$<$ typename T\+::allocator\+\_\+type, typename T\+::allocator\+\_\+type $>$ $>$ $>$}}
 \item 
-concept \mbox{\hyperlink{conceptstd_1_1math_1_1concepts_1_1writable__vector__data}{writable\+\_\+vector\+\_\+data}}
+struct \mbox{\hyperlink{structstd_1_1math_1_1concepts_1_1has__capacity__func}{has\+\_\+capacity\+\_\+func}}
 \item 
-concept \mbox{\hyperlink{conceptstd_1_1math_1_1concepts_1_1writable__vector}{writable\+\_\+vector}}
+struct \mbox{\hyperlink{structstd_1_1math_1_1concepts_1_1has__capacity__func_3_01_t_00_01_1_1std_1_1enable__if__t_3_01_17e45d20744d45f0bfecd1f3baaeef9f9}{has\+\_\+capacity\+\_\+func$<$ T, \+::std\+::enable\+\_\+if\+\_\+t$<$ \+::std\+::is\+\_\+same\+\_\+v$<$ decltype(\+::std\+::declval$<$ const T $>$().\+capacity()), typename T\+::extents\+\_\+type $>$ $>$ $>$}}
 \item 
-concept \mbox{\hyperlink{conceptstd_1_1math_1_1concepts_1_1dynamic__vector__data}{dynamic\+\_\+vector\+\_\+data}}
+struct \mbox{\hyperlink{structstd_1_1math_1_1concepts_1_1has__capatible__tuple__size}{has\+\_\+capatible\+\_\+tuple\+\_\+size}}
 \item 
-concept \mbox{\hyperlink{conceptstd_1_1math_1_1concepts_1_1dynamic__vector}{dynamic\+\_\+vector}}
+struct \mbox{\hyperlink{structstd_1_1math_1_1concepts_1_1has__capatible__tuple__size_3_01_t_00_01_1_1std_1_1enable__if__ed8bb6f297462c6c8350e59d23b56a0b}{has\+\_\+capatible\+\_\+tuple\+\_\+size$<$ T, \+::std\+::enable\+\_\+if\+\_\+t$<$(tuple\+\_\+size\+\_\+v$<$ typename T\+::tuple\+\_\+type $>$==\+T\+::extents\+\_\+type\+::rank()) $>$ $>$}}
 \item 
-concept \mbox{\hyperlink{conceptstd_1_1math_1_1concepts_1_1fixed__size__vector__data}{fixed\+\_\+size\+\_\+vector\+\_\+data}}
+struct \mbox{\hyperlink{structstd_1_1math_1_1concepts_1_1has__column__capacity__func}{has\+\_\+column\+\_\+capacity\+\_\+func}}
 \item 
-concept \mbox{\hyperlink{conceptstd_1_1math_1_1concepts_1_1fixed__size__vector}{fixed\+\_\+size\+\_\+vector}}
+struct \mbox{\hyperlink{structstd_1_1math_1_1concepts_1_1has__column__capacity__func_3_01_t_00_01_1_1std_1_1enable__if__ca425cb880d34e575ab5ac247606d55d}{has\+\_\+column\+\_\+capacity\+\_\+func$<$ T, \+::std\+::enable\+\_\+if\+\_\+t$<$ \+::std\+::is\+\_\+same\+\_\+v$<$ decltype(\+::std\+::declval$<$ const T $>$().\+column\+\_\+capacity()), typename T\+::size\+\_\+type $>$ $>$ $>$}}
+\item 
+struct \mbox{\hyperlink{structstd_1_1math_1_1concepts_1_1has__column__func}{has\+\_\+column\+\_\+func}}
+\item 
+struct \mbox{\hyperlink{structstd_1_1math_1_1concepts_1_1has__column__func_3_01_t_00_01_1_1std_1_1enable__if__t_3_01_1_10fb16bb1cc02d948f26736200b74345e}{has\+\_\+column\+\_\+func$<$ T, \+::std\+::enable\+\_\+if\+\_\+t$<$ \+::std\+::is\+\_\+same\+\_\+v$<$ decltype(\+::std\+::declval$<$ const T $>$().\+column(\+::std\+::declval$<$ typename T\+::index\+\_\+type $>$())), typename T\+::column\+\_\+type $>$ $>$ $>$}}
+\item 
+struct \mbox{\hyperlink{structstd_1_1math_1_1concepts_1_1has__column__type}{has\+\_\+column\+\_\+type}}
+\item 
+struct \mbox{\hyperlink{structstd_1_1math_1_1concepts_1_1has__column__type_3_01_t_00_01_1_1std_1_1enable__if__t_3_01_1_1122c57d43fa7c03c45a7cdfff629ef44}{has\+\_\+column\+\_\+type$<$ T, \+::std\+::enable\+\_\+if\+\_\+t$<$ \+::std\+::is\+\_\+same\+\_\+v$<$ typename T\+::column\+\_\+type, typename T\+::column\+\_\+type $>$ $>$ $>$}}
+\item 
+struct \mbox{\hyperlink{structstd_1_1math_1_1concepts_1_1has__columns__func}{has\+\_\+columns\+\_\+func}}
+\item 
+struct \mbox{\hyperlink{structstd_1_1math_1_1concepts_1_1has__columns__func_3_01_t_00_01_1_1std_1_1enable__if__t_3_01_1_9464cd05b56198f0c1b591621739e78f}{has\+\_\+columns\+\_\+func$<$ T, \+::std\+::enable\+\_\+if\+\_\+t$<$ \+::std\+::is\+\_\+same\+\_\+v$<$ decltype(\+::std\+::declval$<$ const T $>$().\+columns()), typename T\+::size\+\_\+type $>$ $>$ $>$}}
+\item 
+struct \mbox{\hyperlink{structstd_1_1math_1_1concepts_1_1has__conj__func}{has\+\_\+conj\+\_\+func}}
+\item 
+struct \mbox{\hyperlink{structstd_1_1math_1_1concepts_1_1has__conj__func_3_01_t_00_01_1_1std_1_1enable__if__t_3_01_1_1st9fc6ff0de56c3ae29553c90e70798b95}{has\+\_\+conj\+\_\+func$<$ T, \+::std\+::enable\+\_\+if\+\_\+t$<$ \+::std\+::is\+\_\+same\+\_\+v$<$ decltype(conj(\+::std\+::declval$<$ T $>$())), decltype(conj(\+::std\+::declval$<$ T $>$())) $>$ $>$ $>$}}
+\item 
+struct \mbox{\hyperlink{structstd_1_1math_1_1concepts_1_1has__const__column__func}{has\+\_\+const\+\_\+column\+\_\+func}}
+\item 
+struct \mbox{\hyperlink{structstd_1_1math_1_1concepts_1_1has__const__column__func_3_01_t_00_01_1_1std_1_1enable__if__t_3cb058fc6f4fd4d6ff94796f230bf2cc6}{has\+\_\+const\+\_\+column\+\_\+func$<$ T, \+::std\+::enable\+\_\+if\+\_\+t$<$ \+::std\+::is\+\_\+same\+\_\+v$<$ decltype(\+::std\+::declval$<$ const T $>$().\+column(\+::std\+::declval$<$ typename T\+::index\+\_\+type $>$())), typename T\+::const\+\_\+column\+\_\+type $>$ $>$ $>$}}
+\item 
+struct \mbox{\hyperlink{structstd_1_1math_1_1concepts_1_1has__const__column__type}{has\+\_\+const\+\_\+column\+\_\+type}}
+\item 
+struct \mbox{\hyperlink{structstd_1_1math_1_1concepts_1_1has__const__column__type_3_01_t_00_01_1_1std_1_1enable__if__t_3eea6a0456fabb0828397a4274ee7911c}{has\+\_\+const\+\_\+column\+\_\+type$<$ T, \+::std\+::enable\+\_\+if\+\_\+t$<$ \+::std\+::is\+\_\+same\+\_\+v$<$ typename T\+::const\+\_\+column\+\_\+type, typename T\+::const\+\_\+column\+\_\+type $>$ $>$ $>$}}
+\item 
+struct \mbox{\hyperlink{structstd_1_1math_1_1concepts_1_1has__const__index__bracket__oper__one}{has\+\_\+const\+\_\+index\+\_\+bracket\+\_\+oper\+\_\+one}}
+\item 
+struct \mbox{\hyperlink{structstd_1_1math_1_1concepts_1_1has__const__index__bracket__oper__one_3_01_t_00_01_1_1std_1_1en8a8dbfff635f6e5cebbada0d1cebc2ea}{has\+\_\+const\+\_\+index\+\_\+bracket\+\_\+oper\+\_\+one$<$ T, \+::std\+::enable\+\_\+if\+\_\+t$<$ \+::std\+::is\+\_\+same\+\_\+v$<$ decltype(\+::std\+::declval$<$ const T $>$().\+operator\mbox{[}$\,$\mbox{]}(\+::std\+::declval$<$ typename T\+::index\+\_\+type $>$())), typename T\+::value\+\_\+type $>$ $>$ $>$}}
+\item 
+struct \mbox{\hyperlink{structstd_1_1math_1_1concepts_1_1has__const__index__bracket__oper__two}{has\+\_\+const\+\_\+index\+\_\+bracket\+\_\+oper\+\_\+two}}
+\item 
+struct \mbox{\hyperlink{structstd_1_1math_1_1concepts_1_1has__const__index__bracket__oper__two_3_01_t_00_01_1_1std_1_1en6f59e1d47ae624bcdaf8ee4624aa1721}{has\+\_\+const\+\_\+index\+\_\+bracket\+\_\+oper\+\_\+two$<$ T, \+::std\+::enable\+\_\+if\+\_\+t$<$ \+::std\+::is\+\_\+same\+\_\+v$<$ decltype(\+::std\+::declval$<$ const T $>$().\+operator\mbox{[}$\,$\mbox{]}(\+::std\+::declval$<$ typename T\+::index\+\_\+type $>$(), \+::std\+::declval$<$ typename T\+::index\+\_\+type $>$())), typename T\+::value\+\_\+type $>$ $>$ $>$}}
+\item 
+struct \mbox{\hyperlink{structstd_1_1math_1_1concepts_1_1has__const__index__paren__oper__one}{has\+\_\+const\+\_\+index\+\_\+paren\+\_\+oper\+\_\+one}}
+\item 
+struct \mbox{\hyperlink{structstd_1_1math_1_1concepts_1_1has__const__index__paren__oper__one_3_01_t_00_01_1_1std_1_1enab9383781d63f192d6348af249f3496953}{has\+\_\+const\+\_\+index\+\_\+paren\+\_\+oper\+\_\+one$<$ T, \+::std\+::enable\+\_\+if\+\_\+t$<$ \+::std\+::is\+\_\+same\+\_\+v$<$ decltype(\+::std\+::declval$<$ const T $>$().\+operator()(\+::std\+::declval$<$ typename T\+::index\+\_\+type $>$())), typename T\+::value\+\_\+type $>$ $>$ $>$}}
+\item 
+struct \mbox{\hyperlink{structstd_1_1math_1_1concepts_1_1has__const__index__paren__oper__two}{has\+\_\+const\+\_\+index\+\_\+paren\+\_\+oper\+\_\+two}}
+\item 
+struct \mbox{\hyperlink{structstd_1_1math_1_1concepts_1_1has__const__index__paren__oper__two_3_01_t_00_01_1_1std_1_1enabc6bac460ce6793a9b836176d63e41c0b}{has\+\_\+const\+\_\+index\+\_\+paren\+\_\+oper\+\_\+two$<$ T, \+::std\+::enable\+\_\+if\+\_\+t$<$ \+::std\+::is\+\_\+same\+\_\+v$<$ decltype(\+::std\+::declval$<$ const T $>$().\+operator()(\+::std\+::declval$<$ typename T\+::index\+\_\+type $>$(), \+::std\+::declval$<$ typename T\+::index\+\_\+type $>$())), typename T\+::value\+\_\+type $>$ $>$ $>$}}
+\item 
+struct \mbox{\hyperlink{structstd_1_1math_1_1concepts_1_1has__const__row__func}{has\+\_\+const\+\_\+row\+\_\+func}}
+\item 
+struct \mbox{\hyperlink{structstd_1_1math_1_1concepts_1_1has__const__row__func_3_01_t_00_01_1_1std_1_1enable__if__t_3_010c71327690b40831a4102499151a80a1}{has\+\_\+const\+\_\+row\+\_\+func$<$ T, \+::std\+::enable\+\_\+if\+\_\+t$<$ \+::std\+::is\+\_\+same\+\_\+v$<$ decltype(\+::std\+::declval$<$ const T $>$().\+row(\+::std\+::declval$<$ typename T\+::index\+\_\+type $>$())), typename T\+::const\+\_\+row\+\_\+type $>$ $>$ $>$}}
+\item 
+struct \mbox{\hyperlink{structstd_1_1math_1_1concepts_1_1has__const__row__type}{has\+\_\+const\+\_\+row\+\_\+type}}
+\item 
+struct \mbox{\hyperlink{structstd_1_1math_1_1concepts_1_1has__const__row__type_3_01_t_00_01_1_1std_1_1enable__if__t_3_011141d3e926575d18c9acc766f1636985}{has\+\_\+const\+\_\+row\+\_\+type$<$ T, \+::std\+::enable\+\_\+if\+\_\+t$<$ \+::std\+::is\+\_\+same\+\_\+v$<$ typename T\+::const\+\_\+row\+\_\+type, typename T\+::const\+\_\+row\+\_\+type $>$ $>$ $>$}}
+\item 
+struct \mbox{\hyperlink{structstd_1_1math_1_1concepts_1_1has__const__submatrix__func}{has\+\_\+const\+\_\+submatrix\+\_\+func}}
+\item 
+struct \mbox{\hyperlink{structstd_1_1math_1_1concepts_1_1has__const__submatrix__func_3_01_t_00_01_1_1std_1_1enable__if__e83cd7d9ea1f51530fc13c629942333c}{has\+\_\+const\+\_\+submatrix\+\_\+func$<$ T, \+::std\+::enable\+\_\+if\+\_\+t$<$ \+::std\+::is\+\_\+same\+\_\+v$<$ decltype(\+::std\+::declval$<$ const T $>$().\+submatrix(\+::std\+::declval$<$ typename T\+::tuple\+\_\+type $>$(), \+::std\+::declval$<$ typename T\+::tuple\+\_\+type $>$())), typename T\+::const\+\_\+submatrix\+\_\+type $>$ $>$ $>$}}
+\item 
+struct \mbox{\hyperlink{structstd_1_1math_1_1concepts_1_1has__const__subvector__func}{has\+\_\+const\+\_\+subvector\+\_\+func}}
+\item 
+struct \mbox{\hyperlink{structstd_1_1math_1_1concepts_1_1has__const__subvector__func_3_01_t_00_01_1_1std_1_1enable__if__8f2fb31517eb9c2b8782637d7f4f79a9}{has\+\_\+const\+\_\+subvector\+\_\+func$<$ T, \+::std\+::enable\+\_\+if\+\_\+t$<$ \+::std\+::is\+\_\+same\+\_\+v$<$ decltype(\+::std\+::declval$<$ const T $>$().\+subvector(\+::std\+::declval$<$ typename T\+::index\+\_\+type $>$(), \+::std\+::declval$<$ typename T\+::index\+\_\+type $>$())), decltype(\+::std\+::declval$<$ const T $>$().\+subvector(\+::std\+::declval$<$ typename T\+::index\+\_\+type $>$(), \+::std\+::declval$<$ typename T\+::index\+\_\+type $>$())) $>$ $>$ $>$}}
+\item 
+struct \mbox{\hyperlink{structstd_1_1math_1_1concepts_1_1has__const__subvector__type}{has\+\_\+const\+\_\+subvector\+\_\+type}}
+\item 
+struct \mbox{\hyperlink{structstd_1_1math_1_1concepts_1_1has__const__subvector__type_3_01_t_00_01_1_1std_1_1enable__if__a25327462405c358ed67905a0438ec34}{has\+\_\+const\+\_\+subvector\+\_\+type$<$ T, \+::std\+::enable\+\_\+if\+\_\+t$<$ \+::std\+::is\+\_\+same\+\_\+v$<$ typename T\+::const\+\_\+subvector\+\_\+type, typename T\+::const\+\_\+subvector\+\_\+type $>$ $>$ $>$}}
+\item 
+struct \mbox{\hyperlink{structstd_1_1math_1_1concepts_1_1has__const__underlying__span__func}{has\+\_\+const\+\_\+underlying\+\_\+span\+\_\+func}}
+\item 
+struct \mbox{\hyperlink{structstd_1_1math_1_1concepts_1_1has__const__underlying__span__func_3_01_t_00_01_1_1std_1_1enabl9f88ebd2b4f7066b3bce14a9a197615f}{has\+\_\+const\+\_\+underlying\+\_\+span\+\_\+func$<$ T, \+::std\+::enable\+\_\+if\+\_\+t$<$ \+::std\+::is\+\_\+same\+\_\+v$<$ decltype(\+::std\+::declval$<$ const T $>$().\+underlying\+\_\+span()), typename T\+::underlying\+\_\+span\+\_\+type $>$ $>$ $>$}}
+\item 
+struct \mbox{\hyperlink{structstd_1_1math_1_1concepts_1_1has__const__underlying__span__type}{has\+\_\+const\+\_\+underlying\+\_\+span\+\_\+type}}
+\item 
+struct \mbox{\hyperlink{structstd_1_1math_1_1concepts_1_1has__const__underlying__span__type_3_01_t_00_01_1_1std_1_1enabl76895bc0af815f55fbbfd4c44ff2d31b}{has\+\_\+const\+\_\+underlying\+\_\+span\+\_\+type$<$ T, \+::std\+::enable\+\_\+if\+\_\+t$<$ \+::std\+::is\+\_\+same\+\_\+v$<$ typename T\+::const\+\_\+underlying\+\_\+span\+\_\+type, typename T\+::const\+\_\+underlying\+\_\+span\+\_\+type $>$ $>$ $>$}}
+\item 
+struct \mbox{\hyperlink{structstd_1_1math_1_1concepts_1_1has__extents__type}{has\+\_\+extents\+\_\+type}}
+\item 
+struct \mbox{\hyperlink{structstd_1_1math_1_1concepts_1_1has__extents__type_3_01_t_00_01_1_1std_1_1enable__if__t_3_01_1_ea9af978e08baae81658b4079ac26d50}{has\+\_\+extents\+\_\+type$<$ T, \+::std\+::enable\+\_\+if\+\_\+t$<$ \+::std\+::is\+\_\+same\+\_\+v$<$ typename T\+::extents\+\_\+type, typename T\+::extents\+\_\+type $>$ \&\&detail\+::is\+\_\+extents\+\_\+v$<$ typename T\+::extents\+\_\+type $>$ $>$ $>$}}
+\item 
+struct \mbox{\hyperlink{structstd_1_1math_1_1concepts_1_1has__get__allocator__func}{has\+\_\+get\+\_\+allocator\+\_\+func}}
+\item 
+struct \mbox{\hyperlink{structstd_1_1math_1_1concepts_1_1has__get__allocator__func_3_01_t_00_01_1_1std_1_1enable__if__t_1c60a55f0b2b5c9cb525d4b04ae5c644}{has\+\_\+get\+\_\+allocator\+\_\+func$<$ T, \+::std\+::enable\+\_\+if\+\_\+t$<$ \+::std\+::is\+\_\+same\+\_\+v$<$ decltype(\+::std\+::declval$<$ const T $>$().\+get\+\_\+allocator()), const typename T\+::allocator\+\_\+type \& $>$ $>$ $>$}}
+\item 
+struct \mbox{\hyperlink{structstd_1_1math_1_1concepts_1_1has__homogeneous__tuple__type}{has\+\_\+homogeneous\+\_\+tuple\+\_\+type}}
+\item 
+struct \mbox{\hyperlink{structstd_1_1math_1_1concepts_1_1has__homogeneous__tuple__type_3_01_t_00_01_1_1std_1_1enable__if12dec082583a7d7eac1827a401c874de}{has\+\_\+homogeneous\+\_\+tuple\+\_\+type$<$ T, \+::std\+::enable\+\_\+if\+\_\+t$<$ detail\+::is\+\_\+homogeneous\+\_\+tuple\+\_\+v$<$ typename T\+::tuple\+\_\+type $>$ $>$ $>$}}
+\item 
+struct \mbox{\hyperlink{structstd_1_1math_1_1concepts_1_1has__index__bracket__oper__one}{has\+\_\+index\+\_\+bracket\+\_\+oper\+\_\+one}}
+\item 
+struct \mbox{\hyperlink{structstd_1_1math_1_1concepts_1_1has__index__bracket__oper__one_3_01_t_00_01_1_1std_1_1enable__i74924f9cdf3a746428befca7a6a9d8f7}{has\+\_\+index\+\_\+bracket\+\_\+oper\+\_\+one$<$ T, \+::std\+::enable\+\_\+if\+\_\+t$<$ \+::std\+::is\+\_\+same\+\_\+v$<$ decltype(\+::std\+::declval$<$ T $>$().\+operator\mbox{[}$\,$\mbox{]}(\+::std\+::declval$<$ typename T\+::index\+\_\+type $>$())), typename T\+::reference $>$ $>$ $>$}}
+\item 
+struct \mbox{\hyperlink{structstd_1_1math_1_1concepts_1_1has__index__bracket__oper__two}{has\+\_\+index\+\_\+bracket\+\_\+oper\+\_\+two}}
+\item 
+struct \mbox{\hyperlink{structstd_1_1math_1_1concepts_1_1has__index__bracket__oper__two_3_01_t_00_01_1_1std_1_1enable__i8e31b2ff9ff0ab93ff6238bf2778e461}{has\+\_\+index\+\_\+bracket\+\_\+oper\+\_\+two$<$ T, \+::std\+::enable\+\_\+if\+\_\+t$<$ \+::std\+::is\+\_\+same\+\_\+v$<$ decltype(\+::std\+::declval$<$ T $>$().\+operator\mbox{[}$\,$\mbox{]}(\+::std\+::declval$<$ typename T\+::index\+\_\+type $>$(), \+::std\+::declval$<$ typename T\+::index\+\_\+type $>$())), typename T\+::reference $>$ $>$ $>$}}
+\item 
+struct \mbox{\hyperlink{structstd_1_1math_1_1concepts_1_1has__index__paren__oper__one}{has\+\_\+index\+\_\+paren\+\_\+oper\+\_\+one}}
+\item 
+struct \mbox{\hyperlink{structstd_1_1math_1_1concepts_1_1has__index__paren__oper__one_3_01_t_00_01_1_1std_1_1enable__if_88c28e653f25690a9f2c1758e85e2317}{has\+\_\+index\+\_\+paren\+\_\+oper\+\_\+one$<$ T, \+::std\+::enable\+\_\+if\+\_\+t$<$ \+::std\+::is\+\_\+same\+\_\+v$<$ decltype(\+::std\+::declval$<$ T $>$().\+operator()(\+::std\+::declval$<$ typename T\+::index\+\_\+type $>$())), typename T\+::reference $>$ $>$ $>$}}
+\item 
+struct \mbox{\hyperlink{structstd_1_1math_1_1concepts_1_1has__index__paren__oper__two}{has\+\_\+index\+\_\+paren\+\_\+oper\+\_\+two}}
+\item 
+struct \mbox{\hyperlink{structstd_1_1math_1_1concepts_1_1has__index__paren__oper__two_3_01_t_00_01_1_1std_1_1enable__if_6c34c9f5c70c49c81dfdbbdcdc4fd4ee}{has\+\_\+index\+\_\+paren\+\_\+oper\+\_\+two$<$ T, \+::std\+::enable\+\_\+if\+\_\+t$<$ \+::std\+::is\+\_\+same\+\_\+v$<$ decltype(\+::std\+::declval$<$ T $>$().\+operator()(\+::std\+::declval$<$ typename T\+::index\+\_\+type $>$(), \+::std\+::declval$<$ typename T\+::index\+\_\+type $>$())), typename T\+::reference $>$ $>$ $>$}}
+\item 
+struct \mbox{\hyperlink{structstd_1_1math_1_1concepts_1_1has__index__type}{has\+\_\+index\+\_\+type}}
+\item 
+struct \mbox{\hyperlink{structstd_1_1math_1_1concepts_1_1has__index__type_3_01_t_00_01_1_1std_1_1enable__if__t_3_01_1_1s706bc8ae15aedba666af5aeb18f630e2}{has\+\_\+index\+\_\+type$<$ T, \+::std\+::enable\+\_\+if\+\_\+t$<$ \+::std\+::is\+\_\+same\+\_\+v$<$ typename T\+::index\+\_\+type, typename T\+::index\+\_\+type $>$ $>$ $>$}}
+\item 
+struct \mbox{\hyperlink{structstd_1_1math_1_1concepts_1_1has__inner__prod__func}{has\+\_\+inner\+\_\+prod\+\_\+func}}
+\item 
+struct \mbox{\hyperlink{structstd_1_1math_1_1concepts_1_1has__inner__prod__func_3_01_t_00_01_1_1std_1_1enable__if__t_3_0ab32a5f27fd4e6f750671565b377397f}{has\+\_\+inner\+\_\+prod\+\_\+func$<$ T, \+::std\+::enable\+\_\+if\+\_\+t$<$ \+::std\+::is\+\_\+same\+\_\+v$<$ decltype(inner\+\_\+prod(\+::std\+::declval$<$ T $>$(), \+::std\+::declval$<$ T $>$())), decltype(inner\+\_\+prod(\+::std\+::declval$<$ T $>$(), \+::std\+::declval$<$ T $>$())) $>$ $>$ $>$}}
+\item 
+struct \mbox{\hyperlink{structstd_1_1math_1_1concepts_1_1has__matrix__multi__func}{has\+\_\+matrix\+\_\+multi\+\_\+func}}
+\item 
+struct \mbox{\hyperlink{structstd_1_1math_1_1concepts_1_1has__matrix__multi__func_3_01_t_00_01_1_1std_1_1enable__if__t_3fca76ab61054d6d261669215399fdc12}{has\+\_\+matrix\+\_\+multi\+\_\+func$<$ T, \+::std\+::enable\+\_\+if\+\_\+t$<$ \+::std\+::is\+\_\+same\+\_\+v$<$ decltype(\+::std\+::declval$<$ T $>$() $\ast$trans(\+::std\+::declval$<$ T $>$())), decltype(\+::std\+::declval$<$ T $>$() $\ast$trans(\+::std\+::declval$<$ T $>$())) $>$ $>$ $>$}}
+\item 
+struct \mbox{\hyperlink{structstd_1_1math_1_1concepts_1_1has__negate__func}{has\+\_\+negate\+\_\+func}}
+\item 
+struct \mbox{\hyperlink{structstd_1_1math_1_1concepts_1_1has__negate__func_3_01_t_00_01_1_1std_1_1enable__if__t_3_01_1_1ba8460bdb94c7abc791276ac8845a962}{has\+\_\+negate\+\_\+func$<$ T, \+::std\+::enable\+\_\+if\+\_\+t$<$ \+::std\+::is\+\_\+same\+\_\+v$<$ decltype(-\/declval$<$ const T $>$()), decltype(-\/declval$<$ const T $>$()) $>$ $>$ $>$}}
+\item 
+struct \mbox{\hyperlink{structstd_1_1math_1_1concepts_1_1has__outer__prod__func}{has\+\_\+outer\+\_\+prod\+\_\+func}}
+\item 
+struct \mbox{\hyperlink{structstd_1_1math_1_1concepts_1_1has__outer__prod__func_3_01_t_00_01_1_1std_1_1enable__if__t_3_0d6419f8983391bb12414fd00060536c6}{has\+\_\+outer\+\_\+prod\+\_\+func$<$ T, \+::std\+::enable\+\_\+if\+\_\+t$<$ \+::std\+::is\+\_\+same\+\_\+v$<$ decltype(outer\+\_\+prod(\+::std\+::declval$<$ T $>$(), \+::std\+::declval$<$ T $>$())), decltype(outer\+\_\+prod(\+::std\+::declval$<$ T $>$(), \+::std\+::declval$<$ T $>$())) $>$ $>$ $>$}}
+\item 
+struct \mbox{\hyperlink{structstd_1_1math_1_1concepts_1_1has__readable__column__vector__type}{has\+\_\+readable\+\_\+column\+\_\+vector\+\_\+type}}
+\item 
+struct \mbox{\hyperlink{structstd_1_1math_1_1concepts_1_1has__readable__column__vector__type_3_01_t_00_01_1_1std_1_1enab3c63dc0c5ff59e3ff2697701043ccd86}{has\+\_\+readable\+\_\+column\+\_\+vector\+\_\+type$<$ T, \+::std\+::enable\+\_\+if\+\_\+t$<$ readable\+\_\+vector\+\_\+data\+\_\+v$<$ typename T\+::const\+\_\+column\+\_\+vector\+\_\+type $>$ $>$ $>$}}
+\item 
+struct \mbox{\hyperlink{structstd_1_1math_1_1concepts_1_1has__readable__row__vector__type}{has\+\_\+readable\+\_\+row\+\_\+vector\+\_\+type}}
+\item 
+struct \mbox{\hyperlink{structstd_1_1math_1_1concepts_1_1has__readable__row__vector__type_3_01_t_00_01_1_1std_1_1enable_927a404294bc8712720da799dfa1bea3}{has\+\_\+readable\+\_\+row\+\_\+vector\+\_\+type$<$ T, \+::std\+::enable\+\_\+if\+\_\+t$<$ readable\+\_\+vector\+\_\+data\+\_\+v$<$ typename T\+::const\+\_\+row\+\_\+vector\+\_\+type $>$ $>$ $>$}}
+\item 
+struct \mbox{\hyperlink{structstd_1_1math_1_1concepts_1_1has__reference}{has\+\_\+reference}}
+\item 
+struct \mbox{\hyperlink{structstd_1_1math_1_1concepts_1_1has__reference_3_01_t_00_01_1_1std_1_1enable__if__t_3_01_1_1std41b1bd17dd995ba1ee37eafd003fad93}{has\+\_\+reference$<$ T, \+::std\+::enable\+\_\+if\+\_\+t$<$ \+::std\+::is\+\_\+same\+\_\+v$<$ typename T\+::reference, typename T\+::reference $>$ $>$ $>$}}
+\item 
+struct \mbox{\hyperlink{structstd_1_1math_1_1concepts_1_1has__reserve__func}{has\+\_\+reserve\+\_\+func}}
+\item 
+struct \mbox{\hyperlink{structstd_1_1math_1_1concepts_1_1has__reserve__func_3_01_t_00_01_1_1std_1_1enable__if__t_3_01_1_f843c2572528694ae04be2543ed759fc}{has\+\_\+reserve\+\_\+func$<$ T, \+::std\+::enable\+\_\+if\+\_\+t$<$ \+::std\+::is\+\_\+same\+\_\+v$<$ decltype(\+::std\+::declval$<$ T $>$().\+reserve(\+::std\+::declval$<$ typename T\+::extents\+\_\+type $>$())), decltype(\+::std\+::declval$<$ T $>$().\+reserve(\+::std\+::declval$<$ typename T\+::extents\+\_\+type $>$())) $>$ $>$ $>$}}
+\item 
+struct \mbox{\hyperlink{structstd_1_1math_1_1concepts_1_1has__resize__func}{has\+\_\+resize\+\_\+func}}
+\item 
+struct \mbox{\hyperlink{structstd_1_1math_1_1concepts_1_1has__resize__func_3_01_t_00_01_1_1std_1_1enable__if__t_3_01_1_1dc5afa8464b3023a030cbe7a8f915db6}{has\+\_\+resize\+\_\+func$<$ T, \+::std\+::enable\+\_\+if\+\_\+t$<$ \+::std\+::is\+\_\+same\+\_\+v$<$ decltype(\+::std\+::declval$<$ T $>$().\+resize(\+::std\+::declval$<$ typename T\+::extents\+\_\+type $>$())), decltype(\+::std\+::declval$<$ T $>$().\+resize(\+::std\+::declval$<$ typename T\+::extents\+\_\+type $>$())) $>$ $>$ $>$}}
+\item 
+struct \mbox{\hyperlink{structstd_1_1math_1_1concepts_1_1has__row__capacity__func}{has\+\_\+row\+\_\+capacity\+\_\+func}}
+\item 
+struct \mbox{\hyperlink{structstd_1_1math_1_1concepts_1_1has__row__capacity__func_3_01_t_00_01_1_1std_1_1enable__if__t_3b47a0c91417821538585b8654fcab578}{has\+\_\+row\+\_\+capacity\+\_\+func$<$ T, \+::std\+::enable\+\_\+if\+\_\+t$<$ \+::std\+::is\+\_\+same\+\_\+v$<$ decltype(\+::std\+::declval$<$ const T $>$().\+row\+\_\+capacity()), typename T\+::size\+\_\+type $>$ $>$ $>$}}
+\item 
+struct \mbox{\hyperlink{structstd_1_1math_1_1concepts_1_1has__row__func}{has\+\_\+row\+\_\+func}}
+\item 
+struct \mbox{\hyperlink{structstd_1_1math_1_1concepts_1_1has__row__func_3_01_t_00_01_1_1std_1_1enable__if__t_3_01_1_1stdb9d5ee7c4946ad3e79cdef532a72faa5}{has\+\_\+row\+\_\+func$<$ T, \+::std\+::enable\+\_\+if\+\_\+t$<$ \+::std\+::is\+\_\+same\+\_\+v$<$ decltype(\+::std\+::declval$<$ const T $>$().\+row(\+::std\+::declval$<$ typename T\+::index\+\_\+type $>$())), typename T\+::row\+\_\+type $>$ $>$ $>$}}
+\item 
+struct \mbox{\hyperlink{structstd_1_1math_1_1concepts_1_1has__row__type}{has\+\_\+row\+\_\+type}}
+\item 
+struct \mbox{\hyperlink{structstd_1_1math_1_1concepts_1_1has__row__type_3_01_t_00_01_1_1std_1_1enable__if__t_3_01_1_1stde9dff93dc85240d6f8cfb1e0d18282db}{has\+\_\+row\+\_\+type$<$ T, \+::std\+::enable\+\_\+if\+\_\+t$<$ \+::std\+::is\+\_\+same\+\_\+v$<$ typename T\+::row\+\_\+type, typename T\+::row\+\_\+type $>$ $>$ $>$}}
+\item 
+struct \mbox{\hyperlink{structstd_1_1math_1_1concepts_1_1has__rows__func}{has\+\_\+rows\+\_\+func}}
+\item 
+struct \mbox{\hyperlink{structstd_1_1math_1_1concepts_1_1has__rows__func_3_01_t_00_01_1_1std_1_1enable__if__t_3_01_1_1sta45be86aec1198e6377f2b69fe390e63}{has\+\_\+rows\+\_\+func$<$ T, \+::std\+::enable\+\_\+if\+\_\+t$<$ \+::std\+::is\+\_\+same\+\_\+v$<$ decltype(\+::std\+::declval$<$ const T $>$().\+rows()), typename T\+::size\+\_\+type $>$ $>$ $>$}}
+\item 
+struct \mbox{\hyperlink{structstd_1_1math_1_1concepts_1_1has__scalar__divide__func}{has\+\_\+scalar\+\_\+divide\+\_\+func}}
+\item 
+struct \mbox{\hyperlink{structstd_1_1math_1_1concepts_1_1has__scalar__divide__func_3_01_t_00_01_s_00_01_1_1std_1_1enable29a2f12ac7811810d52138b598aa53e7}{has\+\_\+scalar\+\_\+divide\+\_\+func$<$ T, S, \+::std\+::enable\+\_\+if\+\_\+t$<$ \+::std\+::is\+\_\+same\+\_\+v$<$ decltype(\+::std\+::declval$<$ const T $>$()/\+::std\+::declval$<$ S $>$()), decltype(\+::std\+::declval$<$ const T $>$()/\+::std\+::declval$<$ S $>$()) $>$ $>$ $>$}}
+\item 
+struct \mbox{\hyperlink{structstd_1_1math_1_1concepts_1_1has__scalar__postmultiply__func}{has\+\_\+scalar\+\_\+postmultiply\+\_\+func}}
+\item 
+struct \mbox{\hyperlink{structstd_1_1math_1_1concepts_1_1has__scalar__postmultiply__func_3_01_t_00_01_s_00_01_1_1std_1_12b45405ce110b222ec9f51d8b5403976}{has\+\_\+scalar\+\_\+postmultiply\+\_\+func$<$ T, S, \+::std\+::enable\+\_\+if\+\_\+t$<$ \+::std\+::is\+\_\+same\+\_\+v$<$ decltype(\+::std\+::declval$<$ const T $>$() $\ast$\+::std\+::declval$<$ S $>$()), decltype(\+::std\+::declval$<$ const T $>$() $\ast$\+::std\+::declval$<$ S $>$()) $>$ $>$ $>$}}
+\item 
+struct \mbox{\hyperlink{structstd_1_1math_1_1concepts_1_1has__scalar__premultiply__func}{has\+\_\+scalar\+\_\+premultiply\+\_\+func}}
+\item 
+struct \mbox{\hyperlink{structstd_1_1math_1_1concepts_1_1has__scalar__premultiply__func_3_01_t_00_01_s_00_01_1_1std_1_1e6cd832d39a1bd0c2bc791cf93d0f7f8b}{has\+\_\+scalar\+\_\+premultiply\+\_\+func$<$ T, S, \+::std\+::enable\+\_\+if\+\_\+t$<$ \+::std\+::is\+\_\+same\+\_\+v$<$ decltype(\+::std\+::declval$<$ S $>$() $\ast$\+::std\+::declval$<$ const T $>$()), decltype(\+::std\+::declval$<$ S $>$() $\ast$\+::std\+::declval$<$ const T $>$()) $>$ $>$ $>$}}
+\item 
+struct \mbox{\hyperlink{structstd_1_1math_1_1concepts_1_1has__set__allocator__func}{has\+\_\+set\+\_\+allocator\+\_\+func}}
+\item 
+struct \mbox{\hyperlink{structstd_1_1math_1_1concepts_1_1has__set__allocator__func_3_01_t_00_01_1_1std_1_1enable__if__t_f45095798906492112f3d96e84777b51}{has\+\_\+set\+\_\+allocator\+\_\+func$<$ T, \+::std\+::enable\+\_\+if\+\_\+t$<$ \+::std\+::is\+\_\+same\+\_\+v$<$ decltype(\+::std\+::declval$<$ T $>$().\+set\+\_\+allocator(\+::std\+::declval$<$ const typename T\+::allocator\+\_\+type \& $>$())), decltype(\+::std\+::declval$<$ T $>$().\+set\+\_\+allocator(\+::std\+::declval$<$ const typename T\+::allocator\+\_\+type \& $>$())) $>$ $>$ $>$}}
+\item 
+struct \mbox{\hyperlink{structstd_1_1math_1_1concepts_1_1has__size__func}{has\+\_\+size\+\_\+func}}
+\item 
+struct \mbox{\hyperlink{structstd_1_1math_1_1concepts_1_1has__size__func_3_01_t_00_01_1_1std_1_1enable__if__t_3_01_1_1st537966052f54fea8c08b5c1ed8f86e20}{has\+\_\+size\+\_\+func$<$ T, \+::std\+::enable\+\_\+if\+\_\+t$<$ \+::std\+::is\+\_\+same\+\_\+v$<$ decltype(\+::std\+::declval$<$ const T $>$().\+size()), typename T\+::extents\+\_\+type $>$ $>$ $>$}}
+\item 
+struct \mbox{\hyperlink{structstd_1_1math_1_1concepts_1_1has__size__type}{has\+\_\+size\+\_\+type}}
+\item 
+struct \mbox{\hyperlink{structstd_1_1math_1_1concepts_1_1has__size__type_3_01_t_00_01_1_1std_1_1enable__if__t_3_01_1_1stbddf62a342c9d84671adca8b9ef31c2b}{has\+\_\+size\+\_\+type$<$ T, \+::std\+::enable\+\_\+if\+\_\+t$<$ \+::std\+::is\+\_\+same\+\_\+v$<$ typename T\+::size\+\_\+type, typename T\+::size\+\_\+type $>$ $>$ $>$}}
+\item 
+struct \mbox{\hyperlink{structstd_1_1math_1_1concepts_1_1has__span__func}{has\+\_\+span\+\_\+func}}
+\item 
+struct \mbox{\hyperlink{structstd_1_1math_1_1concepts_1_1has__span__func_3_01_t_00_01_1_1std_1_1enable__if__t_3_01_1_1stdd48af129657a2444644502a21c8c2e1}{has\+\_\+span\+\_\+func$<$ T, \+::std\+::enable\+\_\+if\+\_\+t$<$ \+::std\+::is\+\_\+same\+\_\+v$<$ decltype(\+::std\+::declval$<$ const T $>$().\+span()), const typename T\+::span\+\_\+type $>$ $>$ $>$}}
+\item 
+struct \mbox{\hyperlink{structstd_1_1math_1_1concepts_1_1has__span__type}{has\+\_\+span\+\_\+type}}
+\item 
+struct \mbox{\hyperlink{structstd_1_1math_1_1concepts_1_1has__span__type_3_01_t_00_01_1_1std_1_1enable__if__t_3_01_1_1std85406073ee089d681f610a62a225037}{has\+\_\+span\+\_\+type$<$ T, \+::std\+::enable\+\_\+if\+\_\+t$<$ \+::std\+::is\+\_\+same\+\_\+v$<$ typename T\+::span\+\_\+type, typename T\+::span\+\_\+type $>$ $>$ $>$}}
+\item 
+struct \mbox{\hyperlink{structstd_1_1math_1_1concepts_1_1has__static__extents}{has\+\_\+static\+\_\+extents}}
+\item 
+struct \mbox{\hyperlink{structstd_1_1math_1_1concepts_1_1has__static__extents_3_01_t_00_01_1_1std_1_1enable__if__t_3_01d3eeb978cb7d02840f562feaabd48d4d4}{has\+\_\+static\+\_\+extents$<$ T, \+::std\+::enable\+\_\+if\+\_\+t$<$ detail\+::extents\+\_\+is\+\_\+static\+\_\+v$<$ typename T\+::extents\+\_\+type $>$ $>$ $>$}}
+\item 
+struct \mbox{\hyperlink{structstd_1_1math_1_1concepts_1_1has__submatrix__func}{has\+\_\+submatrix\+\_\+func}}
+\item 
+struct \mbox{\hyperlink{structstd_1_1math_1_1concepts_1_1has__submatrix__func_3_01_t_00_01_1_1std_1_1enable__if__t_3_01_0e3e3e7c28b59ce75241d038a9c099c1}{has\+\_\+submatrix\+\_\+func$<$ T, \+::std\+::enable\+\_\+if\+\_\+t$<$ \+::std\+::is\+\_\+same\+\_\+v$<$ decltype(\+::std\+::declval$<$ const T $>$().\+submatrix(\+::std\+::declval$<$ typename T\+::tuple\+\_\+type $>$(), \+::std\+::declval$<$ typename T\+::tuple\+\_\+type $>$())), typename T\+::submatrix\+\_\+type $>$ $>$ $>$}}
+\item 
+struct \mbox{\hyperlink{structstd_1_1math_1_1concepts_1_1has__subtract__func}{has\+\_\+subtract\+\_\+func}}
+\item 
+struct \mbox{\hyperlink{structstd_1_1math_1_1concepts_1_1has__subtract__func_3_01_t_00_01_1_1std_1_1enable__if__t_3_01_168407fa5ae63e0c1e9905e1872b3f1c3}{has\+\_\+subtract\+\_\+func$<$ T, \+::std\+::enable\+\_\+if\+\_\+t$<$ \+::std\+::is\+\_\+same\+\_\+v$<$ decltype(\+::std\+::declval$<$ const T $>$() -\/ \+::std\+::declval$<$ const T $>$()), decltype(\+::std\+::declval$<$ const T $>$() -\/ \+::std\+::declval$<$ const T $>$()) $>$ $>$ $>$}}
+\item 
+struct \mbox{\hyperlink{structstd_1_1math_1_1concepts_1_1has__subvector__func}{has\+\_\+subvector\+\_\+func}}
+\item 
+struct \mbox{\hyperlink{structstd_1_1math_1_1concepts_1_1has__subvector__func_3_01_t_00_01_1_1std_1_1enable__if__t_3_01_b4d72ab9f1fad24b05afed3fa6be3d32}{has\+\_\+subvector\+\_\+func$<$ T, \+::std\+::enable\+\_\+if\+\_\+t$<$ \+::std\+::is\+\_\+same\+\_\+v$<$ decltype(\+::std\+::declval$<$ const T $>$().\+subvector(\+::std\+::declval$<$ typename T\+::index\+\_\+type $>$(), \+::std\+::declval$<$ typename T\+::index\+\_\+type $>$())), decltype(\+::std\+::declval$<$ const T $>$().\+subvector(\+::std\+::declval$<$ typename T\+::index\+\_\+type $>$(), \+::std\+::declval$<$ typename T\+::index\+\_\+type $>$())) $>$ $>$ $>$}}
+\item 
+struct \mbox{\hyperlink{structstd_1_1math_1_1concepts_1_1has__subvector__type}{has\+\_\+subvector\+\_\+type}}
+\item 
+struct \mbox{\hyperlink{structstd_1_1math_1_1concepts_1_1has__subvector__type_3_01_t_00_01_1_1std_1_1enable__if__t_3_01_e133acd2537a4a10e6e3a479a5dd94dd}{has\+\_\+subvector\+\_\+type$<$ T, \+::std\+::enable\+\_\+if\+\_\+t$<$ \+::std\+::is\+\_\+same\+\_\+v$<$ typename T\+::subvector\+\_\+type, typename T\+::subvector\+\_\+type $>$ $>$ $>$}}
+\item 
+struct \mbox{\hyperlink{structstd_1_1math_1_1concepts_1_1has__trans__func}{has\+\_\+trans\+\_\+func}}
+\item 
+struct \mbox{\hyperlink{structstd_1_1math_1_1concepts_1_1has__trans__func_3_01_t_00_01_1_1std_1_1enable__if__t_3_01_1_1s7713d560f5c2cecbd19a97290bfc5052}{has\+\_\+trans\+\_\+func$<$ T, \+::std\+::enable\+\_\+if\+\_\+t$<$ \+::std\+::is\+\_\+same\+\_\+v$<$ decltype(trans(\+::std\+::declval$<$ T $>$())), decltype(trans(\+::std\+::declval$<$ T $>$())) $>$ $>$ $>$}}
+\item 
+struct \mbox{\hyperlink{structstd_1_1math_1_1concepts_1_1has__tuple__type}{has\+\_\+tuple\+\_\+type}}
+\item 
+struct \mbox{\hyperlink{structstd_1_1math_1_1concepts_1_1has__tuple__type_3_01_t_00_01_1_1std_1_1enable__if__t_3_01_1_1s724a4ede153d40a276e5dfe03208b5e0}{has\+\_\+tuple\+\_\+type$<$ T, \+::std\+::enable\+\_\+if\+\_\+t$<$ \+::std\+::is\+\_\+same\+\_\+v$<$ typename T\+::tuple\+\_\+type, typename T\+::tuple\+\_\+type $>$ $>$ $>$}}
+\item 
+struct \mbox{\hyperlink{structstd_1_1math_1_1concepts_1_1has__underlying__span__func}{has\+\_\+underlying\+\_\+span\+\_\+func}}
+\item 
+struct \mbox{\hyperlink{structstd_1_1math_1_1concepts_1_1has__underlying__span__func_3_01_t_00_01_1_1std_1_1enable__if__f3d98191115fb64c4b3ef0c3ab23c133}{has\+\_\+underlying\+\_\+span\+\_\+func$<$ T, \+::std\+::enable\+\_\+if\+\_\+t$<$ \+::std\+::is\+\_\+same\+\_\+v$<$ decltype(\+::std\+::declval$<$ T $>$().\+underlying\+\_\+span()), typename T\+::underlying\+\_\+span\+\_\+type $>$ $>$ $>$}}
+\item 
+struct \mbox{\hyperlink{structstd_1_1math_1_1concepts_1_1has__underlying__span__type}{has\+\_\+underlying\+\_\+span\+\_\+type}}
+\item 
+struct \mbox{\hyperlink{structstd_1_1math_1_1concepts_1_1has__underlying__span__type_3_01_t_00_01_1_1std_1_1enable__if__39d700f43a8ddcbe5f1d1976c92ad686}{has\+\_\+underlying\+\_\+span\+\_\+type$<$ T, \+::std\+::enable\+\_\+if\+\_\+t$<$ \+::std\+::is\+\_\+same\+\_\+v$<$ typename T\+::underlying\+\_\+span\+\_\+type, typename T\+::underlying\+\_\+span\+\_\+type $>$ $>$ $>$}}
+\item 
+struct \mbox{\hyperlink{structstd_1_1math_1_1concepts_1_1has__value__type}{has\+\_\+value\+\_\+type}}
+\item 
+struct \mbox{\hyperlink{structstd_1_1math_1_1concepts_1_1has__value__type_3_01_t_00_01_1_1std_1_1enable__if__t_3_01_1_1sf33ada618649be5d21d446aa5049bac5}{has\+\_\+value\+\_\+type$<$ T, \+::std\+::enable\+\_\+if\+\_\+t$<$ \+::std\+::is\+\_\+same\+\_\+v$<$ typename T\+::value\+\_\+type, typename T\+::value\+\_\+type $>$ $>$ $>$}}
+\item 
+struct \mbox{\hyperlink{structstd_1_1math_1_1concepts_1_1has__writable__column__vector__type}{has\+\_\+writable\+\_\+column\+\_\+vector\+\_\+type}}
+\item 
+struct \mbox{\hyperlink{structstd_1_1math_1_1concepts_1_1has__writable__column__vector__type_3_01_t_00_01_1_1std_1_1enab011d08440a43d2b994eb48d6297afde3}{has\+\_\+writable\+\_\+column\+\_\+vector\+\_\+type$<$ T, \+::std\+::enable\+\_\+if\+\_\+t$<$ writable\+\_\+vector\+\_\+data\+\_\+v$<$ typename T\+::column\+\_\+vector\+\_\+type $>$ $>$ $>$}}
+\item 
+struct \mbox{\hyperlink{structstd_1_1math_1_1concepts_1_1has__writable__row__vector__type}{has\+\_\+writable\+\_\+row\+\_\+vector\+\_\+type}}
+\item 
+struct \mbox{\hyperlink{structstd_1_1math_1_1concepts_1_1has__writable__row__vector__type_3_01_t_00_01_1_1std_1_1enable_ce24e3a6f885d6b1182b68e7a91a9023}{has\+\_\+writable\+\_\+row\+\_\+vector\+\_\+type$<$ T, \+::std\+::enable\+\_\+if\+\_\+t$<$ writable\+\_\+vector\+\_\+data\+\_\+v$<$ typename T\+::row\+\_\+vector\+\_\+type $>$ $>$ $>$}}
+\item 
+struct \mbox{\hyperlink{structstd_1_1math_1_1concepts_1_1is__const__tensor}{is\+\_\+const\+\_\+tensor}}
+\item 
+struct \mbox{\hyperlink{structstd_1_1math_1_1concepts_1_1is__const__tensor_3_01_t_00_01_1_1std_1_1enable__if__t_3_01_1_17d4eb7c780ba517dbb9788389840b612}{is\+\_\+const\+\_\+tensor$<$ T, \+::std\+::enable\+\_\+if\+\_\+t$<$ \+::std\+::is\+\_\+const\+\_\+v$<$ \+::std\+::remove\+\_\+reference\+\_\+t$<$ typename T\+::reference $>$ $>$ $>$ $>$}}
+\item 
+struct \mbox{\hyperlink{structstd_1_1math_1_1concepts_1_1is__rank}{is\+\_\+rank}}
+\item 
+struct \mbox{\hyperlink{structstd_1_1math_1_1concepts_1_1matrix}{matrix}}
+\item 
+struct \mbox{\hyperlink{structstd_1_1math_1_1concepts_1_1matrix__data}{matrix\+\_\+data}}
+\item 
+struct \mbox{\hyperlink{structstd_1_1math_1_1concepts_1_1product__exists}{product\+\_\+exists}}
+\item 
+struct \mbox{\hyperlink{structstd_1_1math_1_1concepts_1_1product__exists_3_01_t_00_01_u_00_01_1_1std_1_1enable__if__t_3_c12338c2a4e620a80f2f2e1d428f8b30}{product\+\_\+exists$<$ T, U, \+::std\+::enable\+\_\+if\+\_\+t$<$ is\+\_\+same\+\_\+v$<$ decltype(\+::std\+::declval$<$ T $>$() $\ast$\+::std\+::declval$<$ U $>$()), decltype(\+::std\+::declval$<$ T $>$() $\ast$\+::std\+::declval$<$ U $>$()) $>$ $>$ $>$}}
+\item 
+struct \mbox{\hyperlink{structstd_1_1math_1_1concepts_1_1readable__matrix}{readable\+\_\+matrix}}
+\item 
+struct \mbox{\hyperlink{structstd_1_1math_1_1concepts_1_1readable__matrix__data}{readable\+\_\+matrix\+\_\+data}}
+\item 
+struct \mbox{\hyperlink{structstd_1_1math_1_1concepts_1_1readable__tensor}{readable\+\_\+tensor}}
+\item 
+struct \mbox{\hyperlink{structstd_1_1math_1_1concepts_1_1readable__tensor__data}{readable\+\_\+tensor\+\_\+data}}
+\item 
+struct \mbox{\hyperlink{structstd_1_1math_1_1concepts_1_1readable__vector}{readable\+\_\+vector}}
+\item 
+struct \mbox{\hyperlink{structstd_1_1math_1_1concepts_1_1readable__vector__data}{readable\+\_\+vector\+\_\+data}}
+\item 
+struct \mbox{\hyperlink{structstd_1_1math_1_1concepts_1_1subtraction__exists}{subtraction\+\_\+exists}}
+\item 
+struct \mbox{\hyperlink{structstd_1_1math_1_1concepts_1_1subtraction__exists_3_01_t_00_01_u_00_01_1_1std_1_1enable__if__da25713ef34a37774bde5fe5c7a6e261}{subtraction\+\_\+exists$<$ T, U, \+::std\+::enable\+\_\+if\+\_\+t$<$ is\+\_\+same\+\_\+v$<$ decltype(\+::std\+::declval$<$ T $>$() -\/ \+::std\+::declval$<$ U $>$()), decltype(\+::std\+::declval$<$ T $>$() -\/ \+::std\+::declval$<$ U $>$()) $>$ $>$ $>$}}
+\item 
+struct \mbox{\hyperlink{structstd_1_1math_1_1concepts_1_1tensor}{tensor}}
+\item 
+struct \mbox{\hyperlink{structstd_1_1math_1_1concepts_1_1tensor__data}{tensor\+\_\+data}}
+\item 
+struct \mbox{\hyperlink{structstd_1_1math_1_1concepts_1_1value__type__helper}{value\+\_\+type\+\_\+helper}}
+\item 
+struct \mbox{\hyperlink{structstd_1_1math_1_1concepts_1_1value__type__helper_3_01_t_00_01_1_1std_1_1enable__if__t_3_01had6cdb75df85e6751680ddfbef79fa5f0}{value\+\_\+type\+\_\+helper$<$ T, \+::std\+::enable\+\_\+if\+\_\+t$<$ has\+\_\+value\+\_\+type\+\_\+v$<$ T $>$ $>$ $>$}}
+\item 
+struct \mbox{\hyperlink{structstd_1_1math_1_1concepts_1_1values__are__constructible}{values\+\_\+are\+\_\+constructible}}
+\item 
+struct \mbox{\hyperlink{structstd_1_1math_1_1concepts_1_1values__are__constructible_3_01_t_00_01_u_00_01_1_1std_1_1enableea48aa847d983f0bafc3f13bf3e9400}{values\+\_\+are\+\_\+constructible$<$ T, U, \+::std\+::enable\+\_\+if\+\_\+t$<$ is\+\_\+constructible\+\_\+v$<$ typename T\+::value\+\_\+type, typename U\+::value\+\_\+type $>$ $>$ $>$}}
+\item 
+struct \mbox{\hyperlink{structstd_1_1math_1_1concepts_1_1values__are__nothrow__constructible}{values\+\_\+are\+\_\+nothrow\+\_\+constructible}}
+\item 
+struct \mbox{\hyperlink{structstd_1_1math_1_1concepts_1_1values__are__nothrow__constructible_3_01_t_00_01_u_00_01_1_1stdf686c451de998e27fd23b47c683ac6f1}{values\+\_\+are\+\_\+nothrow\+\_\+constructible$<$ T, U, \+::std\+::enable\+\_\+if\+\_\+t$<$ is\+\_\+nothrow\+\_\+constructible\+\_\+v$<$ typename T\+::value\+\_\+type, typename U\+::value\+\_\+type $>$ $>$ $>$}}
+\item 
+struct \mbox{\hyperlink{structstd_1_1math_1_1concepts_1_1vector}{vector}}
+\item 
+struct \mbox{\hyperlink{structstd_1_1math_1_1concepts_1_1vector__data}{vector\+\_\+data}}
+\item 
+struct \mbox{\hyperlink{structstd_1_1math_1_1concepts_1_1writable__matrix}{writable\+\_\+matrix}}
+\item 
+struct \mbox{\hyperlink{structstd_1_1math_1_1concepts_1_1writable__matrix__data}{writable\+\_\+matrix\+\_\+data}}
+\item 
+struct \mbox{\hyperlink{structstd_1_1math_1_1concepts_1_1writable__tensor}{writable\+\_\+tensor}}
+\item 
+struct \mbox{\hyperlink{structstd_1_1math_1_1concepts_1_1writable__tensor__data}{writable\+\_\+tensor\+\_\+data}}
+\item 
+struct \mbox{\hyperlink{structstd_1_1math_1_1concepts_1_1writable__vector}{writable\+\_\+vector}}
+\item 
+struct \mbox{\hyperlink{structstd_1_1math_1_1concepts_1_1writable__vector__data}{writable\+\_\+vector\+\_\+data}}
 \end{DoxyCompactItemize}
+\doxysubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+{\footnotesize template$<$class T $>$ }\\constexpr bool \mbox{\hyperlink{namespacestd_1_1math_1_1concepts_af385d9d0eb114c01361695e6cc31b672}{has\+\_\+const\+\_\+row\+\_\+type\+\_\+v}} = \mbox{\hyperlink{structstd_1_1math_1_1concepts_1_1has__const__row__type}{has\+\_\+const\+\_\+row\+\_\+type}}$<$T$>$\+::value
+\item 
+{\footnotesize template$<$class T $>$ }\\constexpr bool \mbox{\hyperlink{namespacestd_1_1math_1_1concepts_affa801c815c642389e2aad4b112bec1e}{has\+\_\+const\+\_\+column\+\_\+type\+\_\+v}} = \mbox{\hyperlink{structstd_1_1math_1_1concepts_1_1has__const__column__type}{has\+\_\+const\+\_\+column\+\_\+type}}$<$T$>$\+::value
+\item 
+{\footnotesize template$<$class T $>$ }\\constexpr bool \mbox{\hyperlink{namespacestd_1_1math_1_1concepts_a3080ed948372883f1cd633c96723457b}{has\+\_\+row\+\_\+type\+\_\+v}} = \mbox{\hyperlink{structstd_1_1math_1_1concepts_1_1has__row__type}{has\+\_\+row\+\_\+type}}$<$T$>$\+::value
+\item 
+{\footnotesize template$<$class T $>$ }\\constexpr bool \mbox{\hyperlink{namespacestd_1_1math_1_1concepts_a9471b180840170f49792b36c04638065}{has\+\_\+column\+\_\+type\+\_\+v}} = \mbox{\hyperlink{structstd_1_1math_1_1concepts_1_1has__column__type}{has\+\_\+column\+\_\+type}}$<$T$>$\+::value
+\item 
+{\footnotesize template$<$class T $>$ }\\constexpr bool \mbox{\hyperlink{namespacestd_1_1math_1_1concepts_a0e258aa3a3e0fabfb98a9085bdde9296}{has\+\_\+rows\+\_\+func\+\_\+v}} = \mbox{\hyperlink{structstd_1_1math_1_1concepts_1_1has__rows__func}{has\+\_\+rows\+\_\+func}}$<$T$>$\+::value
+\item 
+{\footnotesize template$<$class T $>$ }\\constexpr bool \mbox{\hyperlink{namespacestd_1_1math_1_1concepts_a7d222ab1758b6afe8571bb6ad3dc421f}{has\+\_\+columns\+\_\+func\+\_\+v}} = \mbox{\hyperlink{structstd_1_1math_1_1concepts_1_1has__columns__func}{has\+\_\+columns\+\_\+func}}$<$T$>$\+::value
+\item 
+{\footnotesize template$<$class T $>$ }\\constexpr bool \mbox{\hyperlink{namespacestd_1_1math_1_1concepts_adc4fe5f927799faf8f8615172ae6b1c3}{has\+\_\+row\+\_\+capacity\+\_\+func\+\_\+v}} = \mbox{\hyperlink{structstd_1_1math_1_1concepts_1_1has__row__capacity__func}{has\+\_\+row\+\_\+capacity\+\_\+func}}$<$T$>$\+::value
+\item 
+{\footnotesize template$<$class T $>$ }\\constexpr bool \mbox{\hyperlink{namespacestd_1_1math_1_1concepts_aed6ca01aa7e051be1773bdee1dbd2905}{has\+\_\+column\+\_\+capacity\+\_\+func\+\_\+v}} = \mbox{\hyperlink{structstd_1_1math_1_1concepts_1_1has__column__capacity__func}{has\+\_\+column\+\_\+capacity\+\_\+func}}$<$T$>$\+::value
+\item 
+{\footnotesize template$<$class T $>$ }\\constexpr bool \mbox{\hyperlink{namespacestd_1_1math_1_1concepts_a35fa549e599a37405305a8a2ca843f64}{has\+\_\+const\+\_\+index\+\_\+paren\+\_\+oper\+\_\+two\+\_\+v}} = \mbox{\hyperlink{structstd_1_1math_1_1concepts_1_1has__const__index__paren__oper__two}{has\+\_\+const\+\_\+index\+\_\+paren\+\_\+oper\+\_\+two}}$<$T$>$\+::value
+\item 
+{\footnotesize template$<$class T $>$ }\\constexpr bool \mbox{\hyperlink{namespacestd_1_1math_1_1concepts_a383017261ebe20168233f3385006f3d4}{has\+\_\+const\+\_\+index\+\_\+bracket\+\_\+oper\+\_\+two\+\_\+v}} = \mbox{\hyperlink{structstd_1_1math_1_1concepts_1_1has__const__index__bracket__oper__two}{has\+\_\+const\+\_\+index\+\_\+bracket\+\_\+oper\+\_\+two}}$<$T$>$\+::value
+\item 
+{\footnotesize template$<$class T $>$ }\\constexpr bool \mbox{\hyperlink{namespacestd_1_1math_1_1concepts_ae476d454fd00b3b3c4cb919739469a6f}{has\+\_\+index\+\_\+paren\+\_\+oper\+\_\+two\+\_\+v}} = \mbox{\hyperlink{structstd_1_1math_1_1concepts_1_1has__index__paren__oper__two}{has\+\_\+index\+\_\+paren\+\_\+oper\+\_\+two}}$<$T$>$\+::value
+\item 
+{\footnotesize template$<$class T $>$ }\\constexpr bool \mbox{\hyperlink{namespacestd_1_1math_1_1concepts_a939d313cf4c67af5bf8971c5bd39e84c}{has\+\_\+index\+\_\+bracket\+\_\+oper\+\_\+two\+\_\+v}} = \mbox{\hyperlink{structstd_1_1math_1_1concepts_1_1has__index__bracket__oper__two}{has\+\_\+index\+\_\+bracket\+\_\+oper\+\_\+two}}$<$T$>$\+::value
+\item 
+{\footnotesize template$<$class T $>$ }\\constexpr bool \mbox{\hyperlink{namespacestd_1_1math_1_1concepts_ac261db6772a748d22943328af46a4d33}{has\+\_\+const\+\_\+row\+\_\+func\+\_\+v}} = \mbox{\hyperlink{structstd_1_1math_1_1concepts_1_1has__const__row__func}{has\+\_\+const\+\_\+row\+\_\+func}}$<$T$>$\+::value
+\item 
+{\footnotesize template$<$class T $>$ }\\constexpr bool \mbox{\hyperlink{namespacestd_1_1math_1_1concepts_a10917c956b27238075313fbcbe17296c}{has\+\_\+row\+\_\+func\+\_\+v}} = \mbox{\hyperlink{structstd_1_1math_1_1concepts_1_1has__row__func}{has\+\_\+row\+\_\+func}}$<$T$>$\+::value
+\item 
+{\footnotesize template$<$class T $>$ }\\constexpr bool \mbox{\hyperlink{namespacestd_1_1math_1_1concepts_a1424a94b567eedceca1ddcf7a6446fdf}{has\+\_\+const\+\_\+column\+\_\+func\+\_\+v}} = \mbox{\hyperlink{structstd_1_1math_1_1concepts_1_1has__const__column__func}{has\+\_\+const\+\_\+column\+\_\+func}}$<$T$>$\+::value
+\item 
+{\footnotesize template$<$class T $>$ }\\constexpr bool \mbox{\hyperlink{namespacestd_1_1math_1_1concepts_aee8947b1a68de71765725cf198abd1f2}{has\+\_\+column\+\_\+func\+\_\+v}} = \mbox{\hyperlink{structstd_1_1math_1_1concepts_1_1has__column__func}{has\+\_\+column\+\_\+func}}$<$T$>$\+::value
+\item 
+{\footnotesize template$<$class T $>$ }\\constexpr bool \mbox{\hyperlink{namespacestd_1_1math_1_1concepts_a10780c1faab38d83436d2e07a7397815}{has\+\_\+const\+\_\+submatrix\+\_\+func\+\_\+v}} = \mbox{\hyperlink{structstd_1_1math_1_1concepts_1_1has__const__submatrix__func}{has\+\_\+const\+\_\+submatrix\+\_\+func}}$<$T$>$\+::value
+\item 
+{\footnotesize template$<$class T $>$ }\\constexpr bool \mbox{\hyperlink{namespacestd_1_1math_1_1concepts_ad4c88510481564dc99b17ec970dc070e}{has\+\_\+submatrix\+\_\+func\+\_\+v}} = \mbox{\hyperlink{structstd_1_1math_1_1concepts_1_1has__submatrix__func}{has\+\_\+submatrix\+\_\+func}}$<$T$>$\+::value
+\item 
+{\footnotesize template$<$class T $>$ }\\constexpr bool \mbox{\hyperlink{namespacestd_1_1math_1_1concepts_af41c69e8778b09b28ed82c2ab88f59c7}{has\+\_\+matrix\+\_\+multi\+\_\+func\+\_\+v}} = \mbox{\hyperlink{structstd_1_1math_1_1concepts_1_1has__matrix__multi__func}{has\+\_\+matrix\+\_\+multi\+\_\+func}}$<$T$>$\+::value
+\item 
+{\footnotesize template$<$class T $>$ }\\constexpr bool \mbox{\hyperlink{namespacestd_1_1math_1_1concepts_af2b69ecaa1a0e18fea8399bcf0176b6c}{has\+\_\+readable\+\_\+row\+\_\+vector\+\_\+type\+\_\+v}} = \mbox{\hyperlink{structstd_1_1math_1_1concepts_1_1has__readable__row__vector__type}{has\+\_\+readable\+\_\+row\+\_\+vector\+\_\+type}}$<$T$>$\+::value
+\item 
+{\footnotesize template$<$class T $>$ }\\constexpr bool \mbox{\hyperlink{namespacestd_1_1math_1_1concepts_a90a72a187a9f02404edfc2ac0670b423}{has\+\_\+readable\+\_\+column\+\_\+vector\+\_\+type\+\_\+v}} = \mbox{\hyperlink{structstd_1_1math_1_1concepts_1_1has__readable__column__vector__type}{has\+\_\+readable\+\_\+column\+\_\+vector\+\_\+type}}$<$T$>$\+::value
+\item 
+{\footnotesize template$<$class T $>$ }\\constexpr bool \mbox{\hyperlink{namespacestd_1_1math_1_1concepts_a427b1c4ced691aa133f76f29d9883133}{has\+\_\+writable\+\_\+row\+\_\+vector\+\_\+type\+\_\+v}} = \mbox{\hyperlink{structstd_1_1math_1_1concepts_1_1has__writable__row__vector__type}{has\+\_\+writable\+\_\+row\+\_\+vector\+\_\+type}}$<$T$>$\+::value
+\item 
+{\footnotesize template$<$class T $>$ }\\constexpr bool \mbox{\hyperlink{namespacestd_1_1math_1_1concepts_af65be84f05f69912291041cde440a635}{has\+\_\+writable\+\_\+column\+\_\+vector\+\_\+type\+\_\+v}} = \mbox{\hyperlink{structstd_1_1math_1_1concepts_1_1has__writable__column__vector__type}{has\+\_\+writable\+\_\+column\+\_\+vector\+\_\+type}}$<$T$>$\+::value
+\item 
+{\footnotesize template$<$class M $>$ }\\constexpr bool \mbox{\hyperlink{namespacestd_1_1math_1_1concepts_a8dcbf43251fd003e3d0d2adb479451e2}{matrix\+\_\+data\+\_\+v}} = \mbox{\hyperlink{structstd_1_1math_1_1concepts_1_1matrix__data}{matrix\+\_\+data}}$<$M$>$\+::value
+\item 
+{\footnotesize template$<$class M $>$ }\\constexpr bool \mbox{\hyperlink{namespacestd_1_1math_1_1concepts_a9b740b99b2cb61f89e284678442c439b}{matrix\+\_\+v}} = \mbox{\hyperlink{structstd_1_1math_1_1concepts_1_1matrix}{matrix}}$<$M$>$\+::value
+\item 
+{\footnotesize template$<$class M $>$ }\\constexpr bool \mbox{\hyperlink{namespacestd_1_1math_1_1concepts_ab2dc418a583c66dfed99aaeebe5ac742}{readable\+\_\+matrix\+\_\+data\+\_\+v}} = \mbox{\hyperlink{structstd_1_1math_1_1concepts_1_1readable__matrix__data}{readable\+\_\+matrix\+\_\+data}}$<$M$>$\+::value
+\item 
+{\footnotesize template$<$class M $>$ }\\constexpr bool \mbox{\hyperlink{namespacestd_1_1math_1_1concepts_aabbdee88338873f1202cb2ad577e9500}{readable\+\_\+matrix\+\_\+v}} = \mbox{\hyperlink{structstd_1_1math_1_1concepts_1_1readable__matrix}{readable\+\_\+matrix}}$<$M$>$\+::value
+\item 
+{\footnotesize template$<$class M $>$ }\\constexpr bool \mbox{\hyperlink{namespacestd_1_1math_1_1concepts_af6627a508815d621f076cd19f67a7249}{writable\+\_\+matrix\+\_\+data\+\_\+v}} = \mbox{\hyperlink{structstd_1_1math_1_1concepts_1_1writable__matrix__data}{writable\+\_\+matrix\+\_\+data}}$<$M$>$\+::value
+\item 
+{\footnotesize template$<$class M $>$ }\\constexpr bool \mbox{\hyperlink{namespacestd_1_1math_1_1concepts_ad150373fc8f84b46aca202dbec814567}{writable\+\_\+matrix\+\_\+v}} = \mbox{\hyperlink{structstd_1_1math_1_1concepts_1_1writable__matrix}{writable\+\_\+matrix}}$<$M$>$\+::value
+\item 
+{\footnotesize template$<$class M $>$ }\\constexpr bool \mbox{\hyperlink{namespacestd_1_1math_1_1concepts_aefa236ebd1ebec874f487fc954e01565}{dynamic\+\_\+matrix\+\_\+data\+\_\+v}} = \mbox{\hyperlink{structstd_1_1math_1_1concepts_1_1dynamic__matrix__data}{dynamic\+\_\+matrix\+\_\+data}}$<$M$>$\+::value
+\item 
+{\footnotesize template$<$class M $>$ }\\constexpr bool \mbox{\hyperlink{namespacestd_1_1math_1_1concepts_af6ec459271160240adb8110c01478e6a}{dynamic\+\_\+matrix\+\_\+v}} = \mbox{\hyperlink{structstd_1_1math_1_1concepts_1_1dynamic__matrix}{dynamic\+\_\+matrix}}$<$M$>$\+::value
+\item 
+{\footnotesize template$<$class M $>$ }\\constexpr bool \mbox{\hyperlink{namespacestd_1_1math_1_1concepts_aeca399132e90356e272d7a157eace480}{fixed\+\_\+size\+\_\+matrix\+\_\+data\+\_\+v}} = \mbox{\hyperlink{structstd_1_1math_1_1concepts_1_1fixed__size__matrix__data}{fixed\+\_\+size\+\_\+matrix\+\_\+data}}$<$M$>$\+::value
+\item 
+{\footnotesize template$<$class M $>$ }\\constexpr bool \mbox{\hyperlink{namespacestd_1_1math_1_1concepts_aadccf05e70185363edeb3c8b51a727bb}{fixed\+\_\+size\+\_\+matrix\+\_\+v}} = \mbox{\hyperlink{structstd_1_1math_1_1concepts_1_1fixed__size__matrix}{fixed\+\_\+size\+\_\+matrix}}$<$M$>$\+::value
+\item 
+{\footnotesize template$<$class From , class To $>$ }\\constexpr bool \mbox{\hyperlink{namespacestd_1_1math_1_1concepts_a4d96299345dc6ef6297afd7a9b1e6187}{matrix\+\_\+may\+\_\+be\+\_\+convertible\+\_\+v}}
+\item 
+{\footnotesize template$<$class From , class To $>$ }\\constexpr bool \mbox{\hyperlink{namespacestd_1_1math_1_1concepts_a0fb41b793ecfb6b34f40ae5e8b41c0be}{view\+\_\+may\+\_\+be\+\_\+convertible\+\_\+to\+\_\+matrix\+\_\+v}}
+\item 
+{\footnotesize template$<$class T $>$ }\\constexpr bool \mbox{\hyperlink{namespacestd_1_1math_1_1concepts_a27e1062e606542885a7ee3b69e5fb384}{has\+\_\+value\+\_\+type\+\_\+v}} = \mbox{\hyperlink{structstd_1_1math_1_1concepts_1_1has__value__type}{has\+\_\+value\+\_\+type}}$<$T$>$\+::value
+\item 
+{\footnotesize template$<$class T $>$ }\\constexpr bool \mbox{\hyperlink{namespacestd_1_1math_1_1concepts_a2d4228df3361d5d4cbf0dcd043fb306a}{has\+\_\+index\+\_\+type\+\_\+v}} = \mbox{\hyperlink{structstd_1_1math_1_1concepts_1_1has__index__type}{has\+\_\+index\+\_\+type}}$<$T$>$\+::value
+\item 
+{\footnotesize template$<$class T $>$ }\\constexpr bool \mbox{\hyperlink{namespacestd_1_1math_1_1concepts_a9738ecfe3701d17e7e20bf5e357a00d6}{has\+\_\+size\+\_\+type\+\_\+v}} = \mbox{\hyperlink{structstd_1_1math_1_1concepts_1_1has__size__type}{has\+\_\+size\+\_\+type}}$<$T$>$\+::value
+\item 
+{\footnotesize template$<$class T $>$ }\\constexpr bool \mbox{\hyperlink{namespacestd_1_1math_1_1concepts_aa54d29db53238c685a7f0c52cc59b4a8}{has\+\_\+extents\+\_\+type\+\_\+v}} = \mbox{\hyperlink{structstd_1_1math_1_1concepts_1_1has__extents__type}{has\+\_\+extents\+\_\+type}}$<$T$>$\+::value
+\item 
+{\footnotesize template$<$class T $>$ }\\constexpr bool \mbox{\hyperlink{namespacestd_1_1math_1_1concepts_a684aa91203cdbe67230538d5d0ccdc82}{has\+\_\+tuple\+\_\+type\+\_\+v}} = \mbox{\hyperlink{structstd_1_1math_1_1concepts_1_1has__tuple__type}{has\+\_\+tuple\+\_\+type}}$<$T$>$\+::value
+\item 
+{\footnotesize template$<$class T $>$ }\\constexpr bool \mbox{\hyperlink{namespacestd_1_1math_1_1concepts_ac0a0605c8ceb804dced9a8e13e3bcd76}{has\+\_\+span\+\_\+type\+\_\+v}} = \mbox{\hyperlink{structstd_1_1math_1_1concepts_1_1has__span__type}{has\+\_\+span\+\_\+type}}$<$T$>$\+::value
+\item 
+{\footnotesize template$<$class T $>$ }\\constexpr bool \mbox{\hyperlink{namespacestd_1_1math_1_1concepts_a264bf9362bf8e45ae4a884b13718a22f}{has\+\_\+reference\+\_\+v}} = \mbox{\hyperlink{structstd_1_1math_1_1concepts_1_1has__reference}{has\+\_\+reference}}$<$T$>$\+::value
+\item 
+{\footnotesize template$<$class T $>$ }\\constexpr bool \mbox{\hyperlink{namespacestd_1_1math_1_1concepts_a15e2e6fd76ed8795039542522794bf0d}{has\+\_\+underlying\+\_\+span\+\_\+type\+\_\+v}} = \mbox{\hyperlink{structstd_1_1math_1_1concepts_1_1has__underlying__span__type}{has\+\_\+underlying\+\_\+span\+\_\+type}}$<$T$>$\+::value
+\item 
+{\footnotesize template$<$class T $>$ }\\constexpr bool \mbox{\hyperlink{namespacestd_1_1math_1_1concepts_a5d76d125189e7646489c2c6558092ab9}{has\+\_\+const\+\_\+underlying\+\_\+span\+\_\+type\+\_\+v}} = \mbox{\hyperlink{structstd_1_1math_1_1concepts_1_1has__const__underlying__span__type}{has\+\_\+const\+\_\+underlying\+\_\+span\+\_\+type}}$<$T$>$\+::value
+\item 
+{\footnotesize template$<$class T $>$ }\\constexpr bool \mbox{\hyperlink{namespacestd_1_1math_1_1concepts_a99d65a0d76311c0878318a8a866238d3}{has\+\_\+allocator\+\_\+type\+\_\+v}} = \mbox{\hyperlink{structstd_1_1math_1_1concepts_1_1has__allocator__type}{has\+\_\+allocator\+\_\+type}}$<$T$>$\+::value
+\item 
+{\footnotesize template$<$class T $>$ }\\constexpr bool \mbox{\hyperlink{namespacestd_1_1math_1_1concepts_a927ad702a03fe91674c40617d118232a}{has\+\_\+size\+\_\+func\+\_\+v}} = \mbox{\hyperlink{structstd_1_1math_1_1concepts_1_1has__size__func}{has\+\_\+size\+\_\+func}}$<$T$>$\+::value
+\item 
+{\footnotesize template$<$class T $>$ }\\constexpr bool \mbox{\hyperlink{namespacestd_1_1math_1_1concepts_abe928a209906964d91624217f5693458}{has\+\_\+capacity\+\_\+func\+\_\+v}} = \mbox{\hyperlink{structstd_1_1math_1_1concepts_1_1has__capacity__func}{has\+\_\+capacity\+\_\+func}}$<$T$>$\+::value
+\item 
+{\footnotesize template$<$class T , class S  = typename value\+\_\+type\+\_\+helper$<$\+T$>$\+::type$>$ }\\constexpr bool \mbox{\hyperlink{namespacestd_1_1math_1_1concepts_ae8c8e31a01380a702597c7d7b81666b4}{has\+\_\+scalar\+\_\+premultiply\+\_\+func\+\_\+v}} = \mbox{\hyperlink{structstd_1_1math_1_1concepts_1_1has__scalar__premultiply__func}{has\+\_\+scalar\+\_\+premultiply\+\_\+func}}$<$T,S$>$\+::value
+\item 
+{\footnotesize template$<$class T , class S  = typename value\+\_\+type\+\_\+helper$<$\+T$>$\+::type$>$ }\\constexpr bool \mbox{\hyperlink{namespacestd_1_1math_1_1concepts_a4be26770c52b44b9559d0893e77742b5}{has\+\_\+scalar\+\_\+postmultiply\+\_\+func\+\_\+v}} = \mbox{\hyperlink{structstd_1_1math_1_1concepts_1_1has__scalar__postmultiply__func}{has\+\_\+scalar\+\_\+postmultiply\+\_\+func}}$<$T,S$>$\+::value
+\item 
+{\footnotesize template$<$class T , class S  = typename value\+\_\+type\+\_\+helper$<$\+T$>$\+::type$>$ }\\constexpr bool \mbox{\hyperlink{namespacestd_1_1math_1_1concepts_aacd1c9b0591f8c8c43a5d83bacddf1cc}{has\+\_\+scalar\+\_\+divide\+\_\+func\+\_\+v}} = \mbox{\hyperlink{structstd_1_1math_1_1concepts_1_1has__scalar__divide__func}{has\+\_\+scalar\+\_\+divide\+\_\+func}}$<$T,S$>$\+::value
+\item 
+{\footnotesize template$<$class T $>$ }\\constexpr bool \mbox{\hyperlink{namespacestd_1_1math_1_1concepts_aaf773af32c7782ada810e5669f6ee878}{has\+\_\+negate\+\_\+func\+\_\+v}} = \mbox{\hyperlink{structstd_1_1math_1_1concepts_1_1has__negate__func}{has\+\_\+negate\+\_\+func}}$<$T$>$\+::value
+\item 
+{\footnotesize template$<$class T $>$ }\\constexpr bool \mbox{\hyperlink{namespacestd_1_1math_1_1concepts_ab81dfb2774082d9bce7ba092874d7e1e}{has\+\_\+add\+\_\+func\+\_\+v}} = \mbox{\hyperlink{structstd_1_1math_1_1concepts_1_1has__add__func}{has\+\_\+add\+\_\+func}}$<$T$>$\+::value
+\item 
+{\footnotesize template$<$class T $>$ }\\constexpr bool \mbox{\hyperlink{namespacestd_1_1math_1_1concepts_afa60b82236284704a543de0cadd15fbe}{has\+\_\+subtract\+\_\+func\+\_\+v}} = \mbox{\hyperlink{structstd_1_1math_1_1concepts_1_1has__subtract__func}{has\+\_\+subtract\+\_\+func}}$<$T$>$\+::value
+\item 
+{\footnotesize template$<$class T $>$ }\\constexpr bool \mbox{\hyperlink{namespacestd_1_1math_1_1concepts_a6ef1dd744f83017fce3a64faaf4c5f23}{has\+\_\+span\+\_\+func\+\_\+v}} = \mbox{\hyperlink{structstd_1_1math_1_1concepts_1_1has__span__func}{has\+\_\+span\+\_\+func}}$<$T$>$\+::value
+\item 
+{\footnotesize template$<$class T $>$ }\\constexpr bool \mbox{\hyperlink{namespacestd_1_1math_1_1concepts_a4bcae03934ea93986befcf36a9145cfc}{has\+\_\+underlying\+\_\+span\+\_\+func\+\_\+v}} = \mbox{\hyperlink{structstd_1_1math_1_1concepts_1_1has__underlying__span__func}{has\+\_\+underlying\+\_\+span\+\_\+func}}$<$T$>$\+::value
+\item 
+{\footnotesize template$<$class T $>$ }\\constexpr bool \mbox{\hyperlink{namespacestd_1_1math_1_1concepts_a42f23714e6f40296481f071e43261365}{has\+\_\+const\+\_\+underlying\+\_\+span\+\_\+func\+\_\+v}} = \mbox{\hyperlink{structstd_1_1math_1_1concepts_1_1has__const__underlying__span__func}{has\+\_\+const\+\_\+underlying\+\_\+span\+\_\+func}}$<$T$>$\+::value
+\item 
+{\footnotesize template$<$class T $>$ }\\constexpr bool \mbox{\hyperlink{namespacestd_1_1math_1_1concepts_aad0643d1d025712a4361613beb1dfdb2}{has\+\_\+get\+\_\+allocator\+\_\+func\+\_\+v}} = \mbox{\hyperlink{structstd_1_1math_1_1concepts_1_1has__get__allocator__func}{has\+\_\+get\+\_\+allocator\+\_\+func}}$<$T$>$\+::value
+\item 
+{\footnotesize template$<$class T $>$ }\\constexpr bool \mbox{\hyperlink{namespacestd_1_1math_1_1concepts_a339eccb0c1a066be8b4f93b9085eb018}{has\+\_\+set\+\_\+allocator\+\_\+func\+\_\+v}} = \mbox{\hyperlink{structstd_1_1math_1_1concepts_1_1has__set__allocator__func}{has\+\_\+set\+\_\+allocator\+\_\+func}}$<$T$>$\+::value
+\item 
+{\footnotesize template$<$class T $>$ }\\constexpr bool \mbox{\hyperlink{namespacestd_1_1math_1_1concepts_a0d33c4803a1322a90592519afb447dba}{has\+\_\+resize\+\_\+func\+\_\+v}} = \mbox{\hyperlink{structstd_1_1math_1_1concepts_1_1has__resize__func}{has\+\_\+resize\+\_\+func}}$<$T$>$\+::value
+\item 
+{\footnotesize template$<$class T $>$ }\\constexpr bool \mbox{\hyperlink{namespacestd_1_1math_1_1concepts_a3fd02b2ad97d4bd854665bd8ba032436}{has\+\_\+reserve\+\_\+func\+\_\+v}} = \mbox{\hyperlink{structstd_1_1math_1_1concepts_1_1has__reserve__func}{has\+\_\+reserve\+\_\+func}}$<$T$>$\+::value
+\item 
+{\footnotesize template$<$class T $>$ }\\constexpr bool \mbox{\hyperlink{namespacestd_1_1math_1_1concepts_a98a9cad5b0e86118ee8a569dedba184a}{constructible\+\_\+from\+\_\+alloc\+\_\+v}} = \mbox{\hyperlink{structstd_1_1math_1_1concepts_1_1constructible__from__alloc}{constructible\+\_\+from\+\_\+alloc}}$<$T$>$\+::value
+\item 
+{\footnotesize template$<$class T $>$ }\\constexpr bool \mbox{\hyperlink{namespacestd_1_1math_1_1concepts_aeedd209816eefbdb2f0229c6c86c5ec1}{constructible\+\_\+from\+\_\+size\+\_\+and\+\_\+alloc\+\_\+v}} = \mbox{\hyperlink{structstd_1_1math_1_1concepts_1_1constructible__from__size__and__alloc}{constructible\+\_\+from\+\_\+size\+\_\+and\+\_\+alloc}}$<$T$>$\+::value
+\item 
+{\footnotesize template$<$class T $>$ }\\constexpr bool \mbox{\hyperlink{namespacestd_1_1math_1_1concepts_ad2749e273758d9b24b072b8be2e9d2b7}{constructible\+\_\+from\+\_\+size\+\_\+cap\+\_\+and\+\_\+alloc\+\_\+v}} = \mbox{\hyperlink{structstd_1_1math_1_1concepts_1_1constructible__from__size__cap__and__alloc}{constructible\+\_\+from\+\_\+size\+\_\+cap\+\_\+and\+\_\+alloc}}$<$T$>$\+::value
+\item 
+{\footnotesize template$<$class T $>$ }\\constexpr bool \mbox{\hyperlink{namespacestd_1_1math_1_1concepts_a11729e1caa6b9f3609d76dacbc4f629a}{has\+\_\+trans\+\_\+func\+\_\+v}} = \mbox{\hyperlink{structstd_1_1math_1_1concepts_1_1has__trans__func}{has\+\_\+trans\+\_\+func}}$<$T$>$\+::value
+\item 
+{\footnotesize template$<$class T $>$ }\\constexpr bool \mbox{\hyperlink{namespacestd_1_1math_1_1concepts_aba46ee825fb52bd5f2485fd9425d7ba8}{has\+\_\+conj\+\_\+func\+\_\+v}} = \mbox{\hyperlink{structstd_1_1math_1_1concepts_1_1has__conj__func}{has\+\_\+conj\+\_\+func}}$<$T$>$\+::value
+\item 
+{\footnotesize template$<$class T , class U $>$ }\\constexpr bool \mbox{\hyperlink{namespacestd_1_1math_1_1concepts_ac0484c13de69006132aa2e5ebbec72a1}{extents\+\_\+may\+\_\+be\+\_\+equal\+\_\+v}} = \mbox{\hyperlink{structstd_1_1math_1_1concepts_1_1extents__may__be__equal}{extents\+\_\+may\+\_\+be\+\_\+equal}}$<$T,U$>$\+::value
+\item 
+{\footnotesize template$<$class T , class U $>$ }\\constexpr bool \mbox{\hyperlink{namespacestd_1_1math_1_1concepts_a695e5e4d7a27e65f882ec97a08ffd681}{extents\+\_\+are\+\_\+equal\+\_\+v}} = \mbox{\hyperlink{structstd_1_1math_1_1concepts_1_1extents__are__equal}{extents\+\_\+are\+\_\+equal}}$<$T,U$>$\+::value
+\item 
+{\footnotesize template$<$class T , class U $>$ }\\constexpr bool \mbox{\hyperlink{namespacestd_1_1math_1_1concepts_a5da14ca689700d2dc7151b4eec6bc453}{values\+\_\+are\+\_\+constructible\+\_\+v}} = \mbox{\hyperlink{structstd_1_1math_1_1concepts_1_1values__are__constructible}{values\+\_\+are\+\_\+constructible}}$<$T,U$>$\+::value
+\item 
+{\footnotesize template$<$class T , class U $>$ }\\constexpr bool \mbox{\hyperlink{namespacestd_1_1math_1_1concepts_a0c4c71d2c11f2dc828ebfb5a0b48e009}{values\+\_\+are\+\_\+nothrow\+\_\+constructible\+\_\+v}} = \mbox{\hyperlink{structstd_1_1math_1_1concepts_1_1values__are__nothrow__constructible}{values\+\_\+are\+\_\+nothrow\+\_\+constructible}}$<$T,U$>$\+::value
+\item 
+{\footnotesize template$<$class T , class U $>$ }\\constexpr bool \mbox{\hyperlink{namespacestd_1_1math_1_1concepts_a71639c015371f955442381c27526b1a0}{addition\+\_\+exists\+\_\+v}} = \mbox{\hyperlink{structstd_1_1math_1_1concepts_1_1addition__exists}{addition\+\_\+exists}}$<$T,U$>$\+::value
+\item 
+{\footnotesize template$<$class T , class U $>$ }\\constexpr bool \mbox{\hyperlink{namespacestd_1_1math_1_1concepts_a3ed769d5ae95c8eca2a805ca64a860e9}{subtraction\+\_\+exists\+\_\+v}} = \mbox{\hyperlink{structstd_1_1math_1_1concepts_1_1subtraction__exists}{subtraction\+\_\+exists}}$<$T,U$>$\+::value
+\item 
+{\footnotesize template$<$class T , class U $>$ }\\constexpr bool \mbox{\hyperlink{namespacestd_1_1math_1_1concepts_a5f1103d1c6b2b4fe582799d1a856f3e0}{product\+\_\+exists\+\_\+v}} = \mbox{\hyperlink{structstd_1_1math_1_1concepts_1_1product__exists}{product\+\_\+exists}}$<$T,U$>$\+::value
+\item 
+{\footnotesize template$<$class T , class U $>$ }\\constexpr bool \mbox{\hyperlink{namespacestd_1_1math_1_1concepts_a103ea0bc290f7898f411f719e610c0a2}{division\+\_\+exists\+\_\+v}} = \mbox{\hyperlink{structstd_1_1math_1_1concepts_1_1division__exists}{division\+\_\+exists}}$<$T,U$>$\+::value
+\item 
+{\footnotesize template$<$class T , auto N$>$ }\\constexpr bool \mbox{\hyperlink{namespacestd_1_1math_1_1concepts_ad4fbadf420eb058bd75323e36fedb200}{is\+\_\+rank\+\_\+v}} = \mbox{\hyperlink{structstd_1_1math_1_1concepts_1_1is__rank}{is\+\_\+rank}}$<$T,N$>$\+::value
+\item 
+{\footnotesize template$<$class T $>$ }\\constexpr bool \mbox{\hyperlink{namespacestd_1_1math_1_1concepts_a0390a08d616aa10d8369a42e3a56f40c}{is\+\_\+const\+\_\+tensor\+\_\+v}} = \mbox{\hyperlink{structstd_1_1math_1_1concepts_1_1is__const__tensor}{is\+\_\+const\+\_\+tensor}}$<$T$>$\+::value
+\item 
+{\footnotesize template$<$class T $>$ }\\constexpr bool \mbox{\hyperlink{namespacestd_1_1math_1_1concepts_a066afbbf4a659bf3b55d45aa4ac30bdc}{has\+\_\+static\+\_\+extents\+\_\+v}} = \mbox{\hyperlink{structstd_1_1math_1_1concepts_1_1has__static__extents}{has\+\_\+static\+\_\+extents}}$<$T$>$\+::value
+\item 
+{\footnotesize template$<$class T $>$ }\\constexpr bool \mbox{\hyperlink{namespacestd_1_1math_1_1concepts_a9d3879e868fe5d72f584d3d172606c92}{has\+\_\+homogeneous\+\_\+tuple\+\_\+type\+\_\+v}} = \mbox{\hyperlink{structstd_1_1math_1_1concepts_1_1has__homogeneous__tuple__type}{has\+\_\+homogeneous\+\_\+tuple\+\_\+type}}$<$T$>$\+::value
+\item 
+{\footnotesize template$<$class T $>$ }\\constexpr bool \mbox{\hyperlink{namespacestd_1_1math_1_1concepts_a6c9e9b6dbc08b9e261d11ed0479bfa2a}{has\+\_\+capatible\+\_\+tuple\+\_\+size\+\_\+v}} = \mbox{\hyperlink{structstd_1_1math_1_1concepts_1_1has__capatible__tuple__size}{has\+\_\+capatible\+\_\+tuple\+\_\+size}}$<$T$>$\+::value
+\item 
+{\footnotesize template$<$class T $>$ }\\constexpr bool \mbox{\hyperlink{namespacestd_1_1math_1_1concepts_a82a3704f71fe04bd9f11299a7df8939f}{tensor\+\_\+data\+\_\+v}} = \mbox{\hyperlink{structstd_1_1math_1_1concepts_1_1tensor__data}{tensor\+\_\+data}}$<$T$>$\+::value
+\item 
+{\footnotesize template$<$class T $>$ }\\constexpr bool \mbox{\hyperlink{namespacestd_1_1math_1_1concepts_a1256d05e82959fe7c468fa65af17b6d2}{tensor\+\_\+v}} = \mbox{\hyperlink{structstd_1_1math_1_1concepts_1_1tensor}{tensor}}$<$T$>$\+::value
+\item 
+{\footnotesize template$<$class T $>$ }\\constexpr bool \mbox{\hyperlink{namespacestd_1_1math_1_1concepts_a89102e1c1df8eb6b35f69fd003c5789f}{readable\+\_\+tensor\+\_\+data\+\_\+v}} = \mbox{\hyperlink{structstd_1_1math_1_1concepts_1_1readable__tensor__data}{readable\+\_\+tensor\+\_\+data}}$<$T$>$\+::value
+\item 
+{\footnotesize template$<$class T $>$ }\\constexpr bool \mbox{\hyperlink{namespacestd_1_1math_1_1concepts_a4094f74dadb30bc6f23bcd6135fc6419}{readable\+\_\+tensor\+\_\+v}} = \mbox{\hyperlink{structstd_1_1math_1_1concepts_1_1readable__tensor}{readable\+\_\+tensor}}$<$T$>$\+::value
+\item 
+{\footnotesize template$<$class T $>$ }\\constexpr bool \mbox{\hyperlink{namespacestd_1_1math_1_1concepts_aac4ad12a015d6a0962e282a2b80b7802}{writable\+\_\+tensor\+\_\+data\+\_\+v}} = \mbox{\hyperlink{structstd_1_1math_1_1concepts_1_1writable__tensor__data}{writable\+\_\+tensor\+\_\+data}}$<$T$>$\+::value
+\item 
+{\footnotesize template$<$class T $>$ }\\constexpr bool \mbox{\hyperlink{namespacestd_1_1math_1_1concepts_a6ad69897a7ef3c0335a0f366c472a282}{writable\+\_\+tensor\+\_\+v}} = \mbox{\hyperlink{structstd_1_1math_1_1concepts_1_1writable__tensor}{writable\+\_\+tensor}}$<$T$>$\+::value
+\item 
+{\footnotesize template$<$class T $>$ }\\constexpr bool \mbox{\hyperlink{namespacestd_1_1math_1_1concepts_ad834e64ea17e9853129048b33c8393b1}{dynamic\+\_\+tensor\+\_\+data\+\_\+v}} = \mbox{\hyperlink{structstd_1_1math_1_1concepts_1_1dynamic__tensor__data}{dynamic\+\_\+tensor\+\_\+data}}$<$T$>$\+::value
+\item 
+{\footnotesize template$<$class T $>$ }\\constexpr bool \mbox{\hyperlink{namespacestd_1_1math_1_1concepts_afd143657f402f5cd8d9f1aae796b62f0}{dynamic\+\_\+tensor\+\_\+v}} = \mbox{\hyperlink{structstd_1_1math_1_1concepts_1_1dynamic__tensor}{dynamic\+\_\+tensor}}$<$T$>$\+::value
+\item 
+{\footnotesize template$<$class T $>$ }\\constexpr bool \mbox{\hyperlink{namespacestd_1_1math_1_1concepts_abc7e9f00b5e3b75046267cce0ac3913e}{fixed\+\_\+size\+\_\+tensor\+\_\+data\+\_\+v}} = \mbox{\hyperlink{structstd_1_1math_1_1concepts_1_1fixed__size__tensor__data}{fixed\+\_\+size\+\_\+tensor\+\_\+data}}$<$T$>$\+::value
+\item 
+{\footnotesize template$<$class T $>$ }\\constexpr bool \mbox{\hyperlink{namespacestd_1_1math_1_1concepts_abc59ae71b1b1fe37a5033fce7bbec771}{fixed\+\_\+size\+\_\+tensor\+\_\+v}} = \mbox{\hyperlink{structstd_1_1math_1_1concepts_1_1fixed__size__tensor}{fixed\+\_\+size\+\_\+tensor}}$<$T$>$\+::value
+\item 
+{\footnotesize template$<$class From , class To $>$ }\\constexpr bool \mbox{\hyperlink{namespacestd_1_1math_1_1concepts_a37d161e63019ad29f5d04f5cc484d5c9}{tensor\+\_\+may\+\_\+be\+\_\+constructible}}
+\item 
+{\footnotesize template$<$class From , class To $>$ }\\constexpr bool \mbox{\hyperlink{namespacestd_1_1math_1_1concepts_ace3f73f1713cef14d221a6a38e4c55fb}{view\+\_\+may\+\_\+be\+\_\+constructible\+\_\+to\+\_\+tensor}}
+\item 
+{\footnotesize template$<$class From , class To $>$ }\\constexpr bool \mbox{\hyperlink{namespacestd_1_1math_1_1concepts_a499642446ead7534ab6a17727219b145}{view\+\_\+is\+\_\+constructible\+\_\+to\+\_\+tensor}}
+\item 
+{\footnotesize template$<$class From , class To $>$ }\\constexpr bool \mbox{\hyperlink{namespacestd_1_1math_1_1concepts_a59af87894438c58999ff10b1d00aa39f}{view\+\_\+is\+\_\+nothrow\+\_\+constructible\+\_\+to\+\_\+tensor}}
+\item 
+{\footnotesize template$<$class T $>$ }\\constexpr bool \mbox{\hyperlink{namespacestd_1_1math_1_1concepts_a77d7d20244a8a62f02d908e0bcc5f795}{has\+\_\+const\+\_\+subvector\+\_\+type\+\_\+v}} = \mbox{\hyperlink{structstd_1_1math_1_1concepts_1_1has__const__subvector__type}{has\+\_\+const\+\_\+subvector\+\_\+type}}$<$T$>$\+::value
+\item 
+{\footnotesize template$<$class T $>$ }\\constexpr bool \mbox{\hyperlink{namespacestd_1_1math_1_1concepts_a219926107d3dc6e7eb26cfb9e5ef33c3}{has\+\_\+subvector\+\_\+type\+\_\+v}} = \mbox{\hyperlink{structstd_1_1math_1_1concepts_1_1has__subvector__type}{has\+\_\+subvector\+\_\+type}}$<$T$>$\+::value
+\item 
+{\footnotesize template$<$class T $>$ }\\constexpr bool \mbox{\hyperlink{namespacestd_1_1math_1_1concepts_a6fed12aaa59073e3c1568b06d433dccd}{has\+\_\+inner\+\_\+prod\+\_\+func\+\_\+v}} = \mbox{\hyperlink{structstd_1_1math_1_1concepts_1_1has__inner__prod__func}{has\+\_\+inner\+\_\+prod\+\_\+func}}$<$T$>$\+::value
+\item 
+{\footnotesize template$<$class T $>$ }\\constexpr bool \mbox{\hyperlink{namespacestd_1_1math_1_1concepts_a48d9b2923433ca629a6a77b78f94da1d}{has\+\_\+outer\+\_\+prod\+\_\+func\+\_\+v}} = \mbox{\hyperlink{structstd_1_1math_1_1concepts_1_1has__outer__prod__func}{has\+\_\+outer\+\_\+prod\+\_\+func}}$<$T$>$\+::value
+\item 
+{\footnotesize template$<$class T $>$ }\\constexpr bool \mbox{\hyperlink{namespacestd_1_1math_1_1concepts_a536a35419c2d0f4d2906e71dd4e95d4d}{has\+\_\+const\+\_\+index\+\_\+paren\+\_\+oper\+\_\+one\+\_\+v}} = \mbox{\hyperlink{structstd_1_1math_1_1concepts_1_1has__const__index__paren__oper__one}{has\+\_\+const\+\_\+index\+\_\+paren\+\_\+oper\+\_\+one}}$<$T$>$\+::value
+\item 
+{\footnotesize template$<$class T $>$ }\\constexpr bool \mbox{\hyperlink{namespacestd_1_1math_1_1concepts_a9b4704e507cedae89eee93dc53c84d8b}{has\+\_\+const\+\_\+index\+\_\+bracket\+\_\+oper\+\_\+one\+\_\+v}} = \mbox{\hyperlink{structstd_1_1math_1_1concepts_1_1has__const__index__bracket__oper__one}{has\+\_\+const\+\_\+index\+\_\+bracket\+\_\+oper\+\_\+one}}$<$T$>$\+::value
+\item 
+{\footnotesize template$<$class T $>$ }\\constexpr bool \mbox{\hyperlink{namespacestd_1_1math_1_1concepts_a9545848821d903797df2ea1476e69b94}{has\+\_\+index\+\_\+paren\+\_\+oper\+\_\+one\+\_\+v}} = \mbox{\hyperlink{structstd_1_1math_1_1concepts_1_1has__index__paren__oper__one}{has\+\_\+index\+\_\+paren\+\_\+oper\+\_\+one}}$<$T$>$\+::value
+\item 
+{\footnotesize template$<$class T $>$ }\\constexpr bool \mbox{\hyperlink{namespacestd_1_1math_1_1concepts_ab74682abf9d4ed7fa87d038dbb3d3391}{has\+\_\+index\+\_\+bracket\+\_\+oper\+\_\+one\+\_\+v}} = \mbox{\hyperlink{structstd_1_1math_1_1concepts_1_1has__index__bracket__oper__one}{has\+\_\+index\+\_\+bracket\+\_\+oper\+\_\+one}}$<$T$>$\+::value
+\item 
+{\footnotesize template$<$class T $>$ }\\constexpr bool \mbox{\hyperlink{namespacestd_1_1math_1_1concepts_a62c762071ae8194c71e312e5f8e62f1f}{has\+\_\+const\+\_\+subvector\+\_\+func\+\_\+v}} = \mbox{\hyperlink{structstd_1_1math_1_1concepts_1_1has__const__subvector__func}{has\+\_\+const\+\_\+subvector\+\_\+func}}$<$T$>$\+::value
+\item 
+{\footnotesize template$<$class T $>$ }\\constexpr bool \mbox{\hyperlink{namespacestd_1_1math_1_1concepts_ac67bf79ed995ea3fb9568e1f661352b9}{has\+\_\+subvector\+\_\+func\+\_\+v}} = \mbox{\hyperlink{structstd_1_1math_1_1concepts_1_1has__subvector__func}{has\+\_\+subvector\+\_\+func}}$<$T$>$\+::value
+\item 
+{\footnotesize template$<$class V $>$ }\\constexpr bool \mbox{\hyperlink{namespacestd_1_1math_1_1concepts_a63e73c015639a1cdea40ebefe8f49052}{vector\+\_\+data\+\_\+v}} = \mbox{\hyperlink{structstd_1_1math_1_1concepts_1_1vector__data}{vector\+\_\+data}}$<$V$>$\+::value
+\item 
+{\footnotesize template$<$class V $>$ }\\constexpr bool \mbox{\hyperlink{namespacestd_1_1math_1_1concepts_a85baea5f7e12f5a5739c459ac7d71e1e}{vector\+\_\+v}} = \mbox{\hyperlink{structstd_1_1math_1_1concepts_1_1vector}{vector}}$<$V$>$\+::value
+\item 
+{\footnotesize template$<$class V $>$ }\\constexpr bool \mbox{\hyperlink{namespacestd_1_1math_1_1concepts_a261217fe961b8f4fd726dab33dcaa008}{readable\+\_\+vector\+\_\+data\+\_\+v}} = \mbox{\hyperlink{structstd_1_1math_1_1concepts_1_1readable__vector__data}{readable\+\_\+vector\+\_\+data}}$<$V$>$\+::value
+\item 
+{\footnotesize template$<$class V $>$ }\\constexpr bool \mbox{\hyperlink{namespacestd_1_1math_1_1concepts_a11fbdb60a09acd78b6b81067613efac6}{readable\+\_\+vector\+\_\+v}} = \mbox{\hyperlink{structstd_1_1math_1_1concepts_1_1readable__vector}{readable\+\_\+vector}}$<$V$>$\+::value
+\item 
+{\footnotesize template$<$class V $>$ }\\constexpr bool \mbox{\hyperlink{namespacestd_1_1math_1_1concepts_a54b76b1492167ae467ff8b1987f9a46e}{writable\+\_\+vector\+\_\+data\+\_\+v}} = \mbox{\hyperlink{structstd_1_1math_1_1concepts_1_1writable__vector__data}{writable\+\_\+vector\+\_\+data}}$<$V$>$\+::value
+\item 
+{\footnotesize template$<$class V $>$ }\\constexpr bool \mbox{\hyperlink{namespacestd_1_1math_1_1concepts_a3c38fbc7832dbe6fa071a2425af4a16d}{writable\+\_\+vector\+\_\+v}} = \mbox{\hyperlink{structstd_1_1math_1_1concepts_1_1writable__vector}{writable\+\_\+vector}}$<$V$>$\+::value
+\item 
+{\footnotesize template$<$class V $>$ }\\constexpr bool \mbox{\hyperlink{namespacestd_1_1math_1_1concepts_a722abfb4d6f983a4fb6b2d41783ee146}{dynamic\+\_\+vector\+\_\+data\+\_\+v}} = \mbox{\hyperlink{structstd_1_1math_1_1concepts_1_1dynamic__vector__data}{dynamic\+\_\+vector\+\_\+data}}$<$V$>$\+::value
+\item 
+{\footnotesize template$<$class V $>$ }\\constexpr bool \mbox{\hyperlink{namespacestd_1_1math_1_1concepts_ad0908ba26c21b81283cb67284fdbb6c5}{dynamic\+\_\+vector\+\_\+v}} = \mbox{\hyperlink{structstd_1_1math_1_1concepts_1_1dynamic__vector}{dynamic\+\_\+vector}}$<$V$>$\+::value
+\item 
+{\footnotesize template$<$class V $>$ }\\constexpr bool \mbox{\hyperlink{namespacestd_1_1math_1_1concepts_a70b6c929590934a937317b2d6493c5ea}{fixed\+\_\+size\+\_\+vector\+\_\+data\+\_\+v}} = \mbox{\hyperlink{structstd_1_1math_1_1concepts_1_1fixed__size__vector__data}{fixed\+\_\+size\+\_\+vector\+\_\+data}}$<$V$>$\+::value
+\item 
+{\footnotesize template$<$class V $>$ }\\constexpr bool \mbox{\hyperlink{namespacestd_1_1math_1_1concepts_aaeca874aba8133eb48bd5bbfbc5f43be}{fixed\+\_\+size\+\_\+vector\+\_\+v}} = \mbox{\hyperlink{structstd_1_1math_1_1concepts_1_1fixed__size__vector}{fixed\+\_\+size\+\_\+vector}}$<$V$>$\+::value
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Variable Documentation}
+\mbox{\Hypertarget{namespacestd_1_1math_1_1concepts_a71639c015371f955442381c27526b1a0}\label{namespacestd_1_1math_1_1concepts_a71639c015371f955442381c27526b1a0}} 
+\index{std::math::concepts@{std::math::concepts}!addition\_exists\_v@{addition\_exists\_v}}
+\index{addition\_exists\_v@{addition\_exists\_v}!std::math::concepts@{std::math::concepts}}
+\doxysubsubsection{\texorpdfstring{addition\_exists\_v}{addition\_exists\_v}}
+{\footnotesize\ttfamily template$<$class T , class U $>$ \\
+constexpr bool std\+::math\+::concepts\+::addition\+\_\+exists\+\_\+v = \mbox{\hyperlink{structstd_1_1math_1_1concepts_1_1addition__exists}{addition\+\_\+exists}}$<$T,U$>$\+::value\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [constexpr]}}
+
+\mbox{\Hypertarget{namespacestd_1_1math_1_1concepts_a98a9cad5b0e86118ee8a569dedba184a}\label{namespacestd_1_1math_1_1concepts_a98a9cad5b0e86118ee8a569dedba184a}} 
+\index{std::math::concepts@{std::math::concepts}!constructible\_from\_alloc\_v@{constructible\_from\_alloc\_v}}
+\index{constructible\_from\_alloc\_v@{constructible\_from\_alloc\_v}!std::math::concepts@{std::math::concepts}}
+\doxysubsubsection{\texorpdfstring{constructible\_from\_alloc\_v}{constructible\_from\_alloc\_v}}
+{\footnotesize\ttfamily template$<$class T $>$ \\
+constexpr bool std\+::math\+::concepts\+::constructible\+\_\+from\+\_\+alloc\+\_\+v = \mbox{\hyperlink{structstd_1_1math_1_1concepts_1_1constructible__from__alloc}{constructible\+\_\+from\+\_\+alloc}}$<$T$>$\+::value\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [constexpr]}}
+
+\mbox{\Hypertarget{namespacestd_1_1math_1_1concepts_aeedd209816eefbdb2f0229c6c86c5ec1}\label{namespacestd_1_1math_1_1concepts_aeedd209816eefbdb2f0229c6c86c5ec1}} 
+\index{std::math::concepts@{std::math::concepts}!constructible\_from\_size\_and\_alloc\_v@{constructible\_from\_size\_and\_alloc\_v}}
+\index{constructible\_from\_size\_and\_alloc\_v@{constructible\_from\_size\_and\_alloc\_v}!std::math::concepts@{std::math::concepts}}
+\doxysubsubsection{\texorpdfstring{constructible\_from\_size\_and\_alloc\_v}{constructible\_from\_size\_and\_alloc\_v}}
+{\footnotesize\ttfamily template$<$class T $>$ \\
+constexpr bool std\+::math\+::concepts\+::constructible\+\_\+from\+\_\+size\+\_\+and\+\_\+alloc\+\_\+v = \mbox{\hyperlink{structstd_1_1math_1_1concepts_1_1constructible__from__size__and__alloc}{constructible\+\_\+from\+\_\+size\+\_\+and\+\_\+alloc}}$<$T$>$\+::value\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [constexpr]}}
+
+\mbox{\Hypertarget{namespacestd_1_1math_1_1concepts_ad2749e273758d9b24b072b8be2e9d2b7}\label{namespacestd_1_1math_1_1concepts_ad2749e273758d9b24b072b8be2e9d2b7}} 
+\index{std::math::concepts@{std::math::concepts}!constructible\_from\_size\_cap\_and\_alloc\_v@{constructible\_from\_size\_cap\_and\_alloc\_v}}
+\index{constructible\_from\_size\_cap\_and\_alloc\_v@{constructible\_from\_size\_cap\_and\_alloc\_v}!std::math::concepts@{std::math::concepts}}
+\doxysubsubsection{\texorpdfstring{constructible\_from\_size\_cap\_and\_alloc\_v}{constructible\_from\_size\_cap\_and\_alloc\_v}}
+{\footnotesize\ttfamily template$<$class T $>$ \\
+constexpr bool std\+::math\+::concepts\+::constructible\+\_\+from\+\_\+size\+\_\+cap\+\_\+and\+\_\+alloc\+\_\+v = \mbox{\hyperlink{structstd_1_1math_1_1concepts_1_1constructible__from__size__cap__and__alloc}{constructible\+\_\+from\+\_\+size\+\_\+cap\+\_\+and\+\_\+alloc}}$<$T$>$\+::value\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [constexpr]}}
+
+\mbox{\Hypertarget{namespacestd_1_1math_1_1concepts_a103ea0bc290f7898f411f719e610c0a2}\label{namespacestd_1_1math_1_1concepts_a103ea0bc290f7898f411f719e610c0a2}} 
+\index{std::math::concepts@{std::math::concepts}!division\_exists\_v@{division\_exists\_v}}
+\index{division\_exists\_v@{division\_exists\_v}!std::math::concepts@{std::math::concepts}}
+\doxysubsubsection{\texorpdfstring{division\_exists\_v}{division\_exists\_v}}
+{\footnotesize\ttfamily template$<$class T , class U $>$ \\
+constexpr bool std\+::math\+::concepts\+::division\+\_\+exists\+\_\+v = \mbox{\hyperlink{structstd_1_1math_1_1concepts_1_1division__exists}{division\+\_\+exists}}$<$T,U$>$\+::value\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [constexpr]}}
+
+\mbox{\Hypertarget{namespacestd_1_1math_1_1concepts_aefa236ebd1ebec874f487fc954e01565}\label{namespacestd_1_1math_1_1concepts_aefa236ebd1ebec874f487fc954e01565}} 
+\index{std::math::concepts@{std::math::concepts}!dynamic\_matrix\_data\_v@{dynamic\_matrix\_data\_v}}
+\index{dynamic\_matrix\_data\_v@{dynamic\_matrix\_data\_v}!std::math::concepts@{std::math::concepts}}
+\doxysubsubsection{\texorpdfstring{dynamic\_matrix\_data\_v}{dynamic\_matrix\_data\_v}}
+{\footnotesize\ttfamily template$<$class M $>$ \\
+constexpr bool std\+::math\+::concepts\+::dynamic\+\_\+matrix\+\_\+data\+\_\+v = \mbox{\hyperlink{structstd_1_1math_1_1concepts_1_1dynamic__matrix__data}{dynamic\+\_\+matrix\+\_\+data}}$<$M$>$\+::value\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [constexpr]}}
+
+\mbox{\Hypertarget{namespacestd_1_1math_1_1concepts_af6ec459271160240adb8110c01478e6a}\label{namespacestd_1_1math_1_1concepts_af6ec459271160240adb8110c01478e6a}} 
+\index{std::math::concepts@{std::math::concepts}!dynamic\_matrix\_v@{dynamic\_matrix\_v}}
+\index{dynamic\_matrix\_v@{dynamic\_matrix\_v}!std::math::concepts@{std::math::concepts}}
+\doxysubsubsection{\texorpdfstring{dynamic\_matrix\_v}{dynamic\_matrix\_v}}
+{\footnotesize\ttfamily template$<$class M $>$ \\
+constexpr bool std\+::math\+::concepts\+::dynamic\+\_\+matrix\+\_\+v = \mbox{\hyperlink{structstd_1_1math_1_1concepts_1_1dynamic__matrix}{dynamic\+\_\+matrix}}$<$M$>$\+::value\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [constexpr]}}
+
+\mbox{\Hypertarget{namespacestd_1_1math_1_1concepts_ad834e64ea17e9853129048b33c8393b1}\label{namespacestd_1_1math_1_1concepts_ad834e64ea17e9853129048b33c8393b1}} 
+\index{std::math::concepts@{std::math::concepts}!dynamic\_tensor\_data\_v@{dynamic\_tensor\_data\_v}}
+\index{dynamic\_tensor\_data\_v@{dynamic\_tensor\_data\_v}!std::math::concepts@{std::math::concepts}}
+\doxysubsubsection{\texorpdfstring{dynamic\_tensor\_data\_v}{dynamic\_tensor\_data\_v}}
+{\footnotesize\ttfamily template$<$class T $>$ \\
+constexpr bool std\+::math\+::concepts\+::dynamic\+\_\+tensor\+\_\+data\+\_\+v = \mbox{\hyperlink{structstd_1_1math_1_1concepts_1_1dynamic__tensor__data}{dynamic\+\_\+tensor\+\_\+data}}$<$T$>$\+::value\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [constexpr]}}
+
+\mbox{\Hypertarget{namespacestd_1_1math_1_1concepts_afd143657f402f5cd8d9f1aae796b62f0}\label{namespacestd_1_1math_1_1concepts_afd143657f402f5cd8d9f1aae796b62f0}} 
+\index{std::math::concepts@{std::math::concepts}!dynamic\_tensor\_v@{dynamic\_tensor\_v}}
+\index{dynamic\_tensor\_v@{dynamic\_tensor\_v}!std::math::concepts@{std::math::concepts}}
+\doxysubsubsection{\texorpdfstring{dynamic\_tensor\_v}{dynamic\_tensor\_v}}
+{\footnotesize\ttfamily template$<$class T $>$ \\
+constexpr bool std\+::math\+::concepts\+::dynamic\+\_\+tensor\+\_\+v = \mbox{\hyperlink{structstd_1_1math_1_1concepts_1_1dynamic__tensor}{dynamic\+\_\+tensor}}$<$T$>$\+::value\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [constexpr]}}
+
+\mbox{\Hypertarget{namespacestd_1_1math_1_1concepts_a722abfb4d6f983a4fb6b2d41783ee146}\label{namespacestd_1_1math_1_1concepts_a722abfb4d6f983a4fb6b2d41783ee146}} 
+\index{std::math::concepts@{std::math::concepts}!dynamic\_vector\_data\_v@{dynamic\_vector\_data\_v}}
+\index{dynamic\_vector\_data\_v@{dynamic\_vector\_data\_v}!std::math::concepts@{std::math::concepts}}
+\doxysubsubsection{\texorpdfstring{dynamic\_vector\_data\_v}{dynamic\_vector\_data\_v}}
+{\footnotesize\ttfamily template$<$class V $>$ \\
+constexpr bool std\+::math\+::concepts\+::dynamic\+\_\+vector\+\_\+data\+\_\+v = \mbox{\hyperlink{structstd_1_1math_1_1concepts_1_1dynamic__vector__data}{dynamic\+\_\+vector\+\_\+data}}$<$V$>$\+::value\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [constexpr]}}
+
+\mbox{\Hypertarget{namespacestd_1_1math_1_1concepts_ad0908ba26c21b81283cb67284fdbb6c5}\label{namespacestd_1_1math_1_1concepts_ad0908ba26c21b81283cb67284fdbb6c5}} 
+\index{std::math::concepts@{std::math::concepts}!dynamic\_vector\_v@{dynamic\_vector\_v}}
+\index{dynamic\_vector\_v@{dynamic\_vector\_v}!std::math::concepts@{std::math::concepts}}
+\doxysubsubsection{\texorpdfstring{dynamic\_vector\_v}{dynamic\_vector\_v}}
+{\footnotesize\ttfamily template$<$class V $>$ \\
+constexpr bool std\+::math\+::concepts\+::dynamic\+\_\+vector\+\_\+v = \mbox{\hyperlink{structstd_1_1math_1_1concepts_1_1dynamic__vector}{dynamic\+\_\+vector}}$<$V$>$\+::value\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [constexpr]}}
+
+\mbox{\Hypertarget{namespacestd_1_1math_1_1concepts_a695e5e4d7a27e65f882ec97a08ffd681}\label{namespacestd_1_1math_1_1concepts_a695e5e4d7a27e65f882ec97a08ffd681}} 
+\index{std::math::concepts@{std::math::concepts}!extents\_are\_equal\_v@{extents\_are\_equal\_v}}
+\index{extents\_are\_equal\_v@{extents\_are\_equal\_v}!std::math::concepts@{std::math::concepts}}
+\doxysubsubsection{\texorpdfstring{extents\_are\_equal\_v}{extents\_are\_equal\_v}}
+{\footnotesize\ttfamily template$<$class T , class U $>$ \\
+constexpr bool std\+::math\+::concepts\+::extents\+\_\+are\+\_\+equal\+\_\+v = \mbox{\hyperlink{structstd_1_1math_1_1concepts_1_1extents__are__equal}{extents\+\_\+are\+\_\+equal}}$<$T,U$>$\+::value\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [constexpr]}}
+
+\mbox{\Hypertarget{namespacestd_1_1math_1_1concepts_ac0484c13de69006132aa2e5ebbec72a1}\label{namespacestd_1_1math_1_1concepts_ac0484c13de69006132aa2e5ebbec72a1}} 
+\index{std::math::concepts@{std::math::concepts}!extents\_may\_be\_equal\_v@{extents\_may\_be\_equal\_v}}
+\index{extents\_may\_be\_equal\_v@{extents\_may\_be\_equal\_v}!std::math::concepts@{std::math::concepts}}
+\doxysubsubsection{\texorpdfstring{extents\_may\_be\_equal\_v}{extents\_may\_be\_equal\_v}}
+{\footnotesize\ttfamily template$<$class T , class U $>$ \\
+constexpr bool std\+::math\+::concepts\+::extents\+\_\+may\+\_\+be\+\_\+equal\+\_\+v = \mbox{\hyperlink{structstd_1_1math_1_1concepts_1_1extents__may__be__equal}{extents\+\_\+may\+\_\+be\+\_\+equal}}$<$T,U$>$\+::value\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [constexpr]}}
+
+\mbox{\Hypertarget{namespacestd_1_1math_1_1concepts_aeca399132e90356e272d7a157eace480}\label{namespacestd_1_1math_1_1concepts_aeca399132e90356e272d7a157eace480}} 
+\index{std::math::concepts@{std::math::concepts}!fixed\_size\_matrix\_data\_v@{fixed\_size\_matrix\_data\_v}}
+\index{fixed\_size\_matrix\_data\_v@{fixed\_size\_matrix\_data\_v}!std::math::concepts@{std::math::concepts}}
+\doxysubsubsection{\texorpdfstring{fixed\_size\_matrix\_data\_v}{fixed\_size\_matrix\_data\_v}}
+{\footnotesize\ttfamily template$<$class M $>$ \\
+constexpr bool std\+::math\+::concepts\+::fixed\+\_\+size\+\_\+matrix\+\_\+data\+\_\+v = \mbox{\hyperlink{structstd_1_1math_1_1concepts_1_1fixed__size__matrix__data}{fixed\+\_\+size\+\_\+matrix\+\_\+data}}$<$M$>$\+::value\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [constexpr]}}
+
+\mbox{\Hypertarget{namespacestd_1_1math_1_1concepts_aadccf05e70185363edeb3c8b51a727bb}\label{namespacestd_1_1math_1_1concepts_aadccf05e70185363edeb3c8b51a727bb}} 
+\index{std::math::concepts@{std::math::concepts}!fixed\_size\_matrix\_v@{fixed\_size\_matrix\_v}}
+\index{fixed\_size\_matrix\_v@{fixed\_size\_matrix\_v}!std::math::concepts@{std::math::concepts}}
+\doxysubsubsection{\texorpdfstring{fixed\_size\_matrix\_v}{fixed\_size\_matrix\_v}}
+{\footnotesize\ttfamily template$<$class M $>$ \\
+constexpr bool std\+::math\+::concepts\+::fixed\+\_\+size\+\_\+matrix\+\_\+v = \mbox{\hyperlink{structstd_1_1math_1_1concepts_1_1fixed__size__matrix}{fixed\+\_\+size\+\_\+matrix}}$<$M$>$\+::value\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [constexpr]}}
+
+\mbox{\Hypertarget{namespacestd_1_1math_1_1concepts_abc7e9f00b5e3b75046267cce0ac3913e}\label{namespacestd_1_1math_1_1concepts_abc7e9f00b5e3b75046267cce0ac3913e}} 
+\index{std::math::concepts@{std::math::concepts}!fixed\_size\_tensor\_data\_v@{fixed\_size\_tensor\_data\_v}}
+\index{fixed\_size\_tensor\_data\_v@{fixed\_size\_tensor\_data\_v}!std::math::concepts@{std::math::concepts}}
+\doxysubsubsection{\texorpdfstring{fixed\_size\_tensor\_data\_v}{fixed\_size\_tensor\_data\_v}}
+{\footnotesize\ttfamily template$<$class T $>$ \\
+constexpr bool std\+::math\+::concepts\+::fixed\+\_\+size\+\_\+tensor\+\_\+data\+\_\+v = \mbox{\hyperlink{structstd_1_1math_1_1concepts_1_1fixed__size__tensor__data}{fixed\+\_\+size\+\_\+tensor\+\_\+data}}$<$T$>$\+::value\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [constexpr]}}
+
+\mbox{\Hypertarget{namespacestd_1_1math_1_1concepts_abc59ae71b1b1fe37a5033fce7bbec771}\label{namespacestd_1_1math_1_1concepts_abc59ae71b1b1fe37a5033fce7bbec771}} 
+\index{std::math::concepts@{std::math::concepts}!fixed\_size\_tensor\_v@{fixed\_size\_tensor\_v}}
+\index{fixed\_size\_tensor\_v@{fixed\_size\_tensor\_v}!std::math::concepts@{std::math::concepts}}
+\doxysubsubsection{\texorpdfstring{fixed\_size\_tensor\_v}{fixed\_size\_tensor\_v}}
+{\footnotesize\ttfamily template$<$class T $>$ \\
+constexpr bool std\+::math\+::concepts\+::fixed\+\_\+size\+\_\+tensor\+\_\+v = \mbox{\hyperlink{structstd_1_1math_1_1concepts_1_1fixed__size__tensor}{fixed\+\_\+size\+\_\+tensor}}$<$T$>$\+::value\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [constexpr]}}
+
+\mbox{\Hypertarget{namespacestd_1_1math_1_1concepts_a70b6c929590934a937317b2d6493c5ea}\label{namespacestd_1_1math_1_1concepts_a70b6c929590934a937317b2d6493c5ea}} 
+\index{std::math::concepts@{std::math::concepts}!fixed\_size\_vector\_data\_v@{fixed\_size\_vector\_data\_v}}
+\index{fixed\_size\_vector\_data\_v@{fixed\_size\_vector\_data\_v}!std::math::concepts@{std::math::concepts}}
+\doxysubsubsection{\texorpdfstring{fixed\_size\_vector\_data\_v}{fixed\_size\_vector\_data\_v}}
+{\footnotesize\ttfamily template$<$class V $>$ \\
+constexpr bool std\+::math\+::concepts\+::fixed\+\_\+size\+\_\+vector\+\_\+data\+\_\+v = \mbox{\hyperlink{structstd_1_1math_1_1concepts_1_1fixed__size__vector__data}{fixed\+\_\+size\+\_\+vector\+\_\+data}}$<$V$>$\+::value\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [constexpr]}}
+
+\mbox{\Hypertarget{namespacestd_1_1math_1_1concepts_aaeca874aba8133eb48bd5bbfbc5f43be}\label{namespacestd_1_1math_1_1concepts_aaeca874aba8133eb48bd5bbfbc5f43be}} 
+\index{std::math::concepts@{std::math::concepts}!fixed\_size\_vector\_v@{fixed\_size\_vector\_v}}
+\index{fixed\_size\_vector\_v@{fixed\_size\_vector\_v}!std::math::concepts@{std::math::concepts}}
+\doxysubsubsection{\texorpdfstring{fixed\_size\_vector\_v}{fixed\_size\_vector\_v}}
+{\footnotesize\ttfamily template$<$class V $>$ \\
+constexpr bool std\+::math\+::concepts\+::fixed\+\_\+size\+\_\+vector\+\_\+v = \mbox{\hyperlink{structstd_1_1math_1_1concepts_1_1fixed__size__vector}{fixed\+\_\+size\+\_\+vector}}$<$V$>$\+::value\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [constexpr]}}
+
+\mbox{\Hypertarget{namespacestd_1_1math_1_1concepts_ab81dfb2774082d9bce7ba092874d7e1e}\label{namespacestd_1_1math_1_1concepts_ab81dfb2774082d9bce7ba092874d7e1e}} 
+\index{std::math::concepts@{std::math::concepts}!has\_add\_func\_v@{has\_add\_func\_v}}
+\index{has\_add\_func\_v@{has\_add\_func\_v}!std::math::concepts@{std::math::concepts}}
+\doxysubsubsection{\texorpdfstring{has\_add\_func\_v}{has\_add\_func\_v}}
+{\footnotesize\ttfamily template$<$class T $>$ \\
+constexpr bool std\+::math\+::concepts\+::has\+\_\+add\+\_\+func\+\_\+v = \mbox{\hyperlink{structstd_1_1math_1_1concepts_1_1has__add__func}{has\+\_\+add\+\_\+func}}$<$T$>$\+::value\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [constexpr]}}
+
+\mbox{\Hypertarget{namespacestd_1_1math_1_1concepts_a99d65a0d76311c0878318a8a866238d3}\label{namespacestd_1_1math_1_1concepts_a99d65a0d76311c0878318a8a866238d3}} 
+\index{std::math::concepts@{std::math::concepts}!has\_allocator\_type\_v@{has\_allocator\_type\_v}}
+\index{has\_allocator\_type\_v@{has\_allocator\_type\_v}!std::math::concepts@{std::math::concepts}}
+\doxysubsubsection{\texorpdfstring{has\_allocator\_type\_v}{has\_allocator\_type\_v}}
+{\footnotesize\ttfamily template$<$class T $>$ \\
+constexpr bool std\+::math\+::concepts\+::has\+\_\+allocator\+\_\+type\+\_\+v = \mbox{\hyperlink{structstd_1_1math_1_1concepts_1_1has__allocator__type}{has\+\_\+allocator\+\_\+type}}$<$T$>$\+::value\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [constexpr]}}
+
+\mbox{\Hypertarget{namespacestd_1_1math_1_1concepts_abe928a209906964d91624217f5693458}\label{namespacestd_1_1math_1_1concepts_abe928a209906964d91624217f5693458}} 
+\index{std::math::concepts@{std::math::concepts}!has\_capacity\_func\_v@{has\_capacity\_func\_v}}
+\index{has\_capacity\_func\_v@{has\_capacity\_func\_v}!std::math::concepts@{std::math::concepts}}
+\doxysubsubsection{\texorpdfstring{has\_capacity\_func\_v}{has\_capacity\_func\_v}}
+{\footnotesize\ttfamily template$<$class T $>$ \\
+constexpr bool std\+::math\+::concepts\+::has\+\_\+capacity\+\_\+func\+\_\+v = \mbox{\hyperlink{structstd_1_1math_1_1concepts_1_1has__capacity__func}{has\+\_\+capacity\+\_\+func}}$<$T$>$\+::value\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [constexpr]}}
+
+\mbox{\Hypertarget{namespacestd_1_1math_1_1concepts_a6c9e9b6dbc08b9e261d11ed0479bfa2a}\label{namespacestd_1_1math_1_1concepts_a6c9e9b6dbc08b9e261d11ed0479bfa2a}} 
+\index{std::math::concepts@{std::math::concepts}!has\_capatible\_tuple\_size\_v@{has\_capatible\_tuple\_size\_v}}
+\index{has\_capatible\_tuple\_size\_v@{has\_capatible\_tuple\_size\_v}!std::math::concepts@{std::math::concepts}}
+\doxysubsubsection{\texorpdfstring{has\_capatible\_tuple\_size\_v}{has\_capatible\_tuple\_size\_v}}
+{\footnotesize\ttfamily template$<$class T $>$ \\
+constexpr bool std\+::math\+::concepts\+::has\+\_\+capatible\+\_\+tuple\+\_\+size\+\_\+v = \mbox{\hyperlink{structstd_1_1math_1_1concepts_1_1has__capatible__tuple__size}{has\+\_\+capatible\+\_\+tuple\+\_\+size}}$<$T$>$\+::value\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [constexpr]}}
+
+\mbox{\Hypertarget{namespacestd_1_1math_1_1concepts_aed6ca01aa7e051be1773bdee1dbd2905}\label{namespacestd_1_1math_1_1concepts_aed6ca01aa7e051be1773bdee1dbd2905}} 
+\index{std::math::concepts@{std::math::concepts}!has\_column\_capacity\_func\_v@{has\_column\_capacity\_func\_v}}
+\index{has\_column\_capacity\_func\_v@{has\_column\_capacity\_func\_v}!std::math::concepts@{std::math::concepts}}
+\doxysubsubsection{\texorpdfstring{has\_column\_capacity\_func\_v}{has\_column\_capacity\_func\_v}}
+{\footnotesize\ttfamily template$<$class T $>$ \\
+constexpr bool std\+::math\+::concepts\+::has\+\_\+column\+\_\+capacity\+\_\+func\+\_\+v = \mbox{\hyperlink{structstd_1_1math_1_1concepts_1_1has__column__capacity__func}{has\+\_\+column\+\_\+capacity\+\_\+func}}$<$T$>$\+::value\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [constexpr]}}
+
+\mbox{\Hypertarget{namespacestd_1_1math_1_1concepts_aee8947b1a68de71765725cf198abd1f2}\label{namespacestd_1_1math_1_1concepts_aee8947b1a68de71765725cf198abd1f2}} 
+\index{std::math::concepts@{std::math::concepts}!has\_column\_func\_v@{has\_column\_func\_v}}
+\index{has\_column\_func\_v@{has\_column\_func\_v}!std::math::concepts@{std::math::concepts}}
+\doxysubsubsection{\texorpdfstring{has\_column\_func\_v}{has\_column\_func\_v}}
+{\footnotesize\ttfamily template$<$class T $>$ \\
+constexpr bool std\+::math\+::concepts\+::has\+\_\+column\+\_\+func\+\_\+v = \mbox{\hyperlink{structstd_1_1math_1_1concepts_1_1has__column__func}{has\+\_\+column\+\_\+func}}$<$T$>$\+::value\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [constexpr]}}
+
+\mbox{\Hypertarget{namespacestd_1_1math_1_1concepts_a9471b180840170f49792b36c04638065}\label{namespacestd_1_1math_1_1concepts_a9471b180840170f49792b36c04638065}} 
+\index{std::math::concepts@{std::math::concepts}!has\_column\_type\_v@{has\_column\_type\_v}}
+\index{has\_column\_type\_v@{has\_column\_type\_v}!std::math::concepts@{std::math::concepts}}
+\doxysubsubsection{\texorpdfstring{has\_column\_type\_v}{has\_column\_type\_v}}
+{\footnotesize\ttfamily template$<$class T $>$ \\
+constexpr bool std\+::math\+::concepts\+::has\+\_\+column\+\_\+type\+\_\+v = \mbox{\hyperlink{structstd_1_1math_1_1concepts_1_1has__column__type}{has\+\_\+column\+\_\+type}}$<$T$>$\+::value\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [constexpr]}}
+
+\mbox{\Hypertarget{namespacestd_1_1math_1_1concepts_a7d222ab1758b6afe8571bb6ad3dc421f}\label{namespacestd_1_1math_1_1concepts_a7d222ab1758b6afe8571bb6ad3dc421f}} 
+\index{std::math::concepts@{std::math::concepts}!has\_columns\_func\_v@{has\_columns\_func\_v}}
+\index{has\_columns\_func\_v@{has\_columns\_func\_v}!std::math::concepts@{std::math::concepts}}
+\doxysubsubsection{\texorpdfstring{has\_columns\_func\_v}{has\_columns\_func\_v}}
+{\footnotesize\ttfamily template$<$class T $>$ \\
+constexpr bool std\+::math\+::concepts\+::has\+\_\+columns\+\_\+func\+\_\+v = \mbox{\hyperlink{structstd_1_1math_1_1concepts_1_1has__columns__func}{has\+\_\+columns\+\_\+func}}$<$T$>$\+::value\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [constexpr]}}
+
+\mbox{\Hypertarget{namespacestd_1_1math_1_1concepts_aba46ee825fb52bd5f2485fd9425d7ba8}\label{namespacestd_1_1math_1_1concepts_aba46ee825fb52bd5f2485fd9425d7ba8}} 
+\index{std::math::concepts@{std::math::concepts}!has\_conj\_func\_v@{has\_conj\_func\_v}}
+\index{has\_conj\_func\_v@{has\_conj\_func\_v}!std::math::concepts@{std::math::concepts}}
+\doxysubsubsection{\texorpdfstring{has\_conj\_func\_v}{has\_conj\_func\_v}}
+{\footnotesize\ttfamily template$<$class T $>$ \\
+constexpr bool std\+::math\+::concepts\+::has\+\_\+conj\+\_\+func\+\_\+v = \mbox{\hyperlink{structstd_1_1math_1_1concepts_1_1has__conj__func}{has\+\_\+conj\+\_\+func}}$<$T$>$\+::value\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [constexpr]}}
+
+\mbox{\Hypertarget{namespacestd_1_1math_1_1concepts_a1424a94b567eedceca1ddcf7a6446fdf}\label{namespacestd_1_1math_1_1concepts_a1424a94b567eedceca1ddcf7a6446fdf}} 
+\index{std::math::concepts@{std::math::concepts}!has\_const\_column\_func\_v@{has\_const\_column\_func\_v}}
+\index{has\_const\_column\_func\_v@{has\_const\_column\_func\_v}!std::math::concepts@{std::math::concepts}}
+\doxysubsubsection{\texorpdfstring{has\_const\_column\_func\_v}{has\_const\_column\_func\_v}}
+{\footnotesize\ttfamily template$<$class T $>$ \\
+constexpr bool std\+::math\+::concepts\+::has\+\_\+const\+\_\+column\+\_\+func\+\_\+v = \mbox{\hyperlink{structstd_1_1math_1_1concepts_1_1has__const__column__func}{has\+\_\+const\+\_\+column\+\_\+func}}$<$T$>$\+::value\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [constexpr]}}
+
+\mbox{\Hypertarget{namespacestd_1_1math_1_1concepts_affa801c815c642389e2aad4b112bec1e}\label{namespacestd_1_1math_1_1concepts_affa801c815c642389e2aad4b112bec1e}} 
+\index{std::math::concepts@{std::math::concepts}!has\_const\_column\_type\_v@{has\_const\_column\_type\_v}}
+\index{has\_const\_column\_type\_v@{has\_const\_column\_type\_v}!std::math::concepts@{std::math::concepts}}
+\doxysubsubsection{\texorpdfstring{has\_const\_column\_type\_v}{has\_const\_column\_type\_v}}
+{\footnotesize\ttfamily template$<$class T $>$ \\
+constexpr bool std\+::math\+::concepts\+::has\+\_\+const\+\_\+column\+\_\+type\+\_\+v = \mbox{\hyperlink{structstd_1_1math_1_1concepts_1_1has__const__column__type}{has\+\_\+const\+\_\+column\+\_\+type}}$<$T$>$\+::value\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [constexpr]}}
+
+\mbox{\Hypertarget{namespacestd_1_1math_1_1concepts_a9b4704e507cedae89eee93dc53c84d8b}\label{namespacestd_1_1math_1_1concepts_a9b4704e507cedae89eee93dc53c84d8b}} 
+\index{std::math::concepts@{std::math::concepts}!has\_const\_index\_bracket\_oper\_one\_v@{has\_const\_index\_bracket\_oper\_one\_v}}
+\index{has\_const\_index\_bracket\_oper\_one\_v@{has\_const\_index\_bracket\_oper\_one\_v}!std::math::concepts@{std::math::concepts}}
+\doxysubsubsection{\texorpdfstring{has\_const\_index\_bracket\_oper\_one\_v}{has\_const\_index\_bracket\_oper\_one\_v}}
+{\footnotesize\ttfamily template$<$class T $>$ \\
+constexpr bool std\+::math\+::concepts\+::has\+\_\+const\+\_\+index\+\_\+bracket\+\_\+oper\+\_\+one\+\_\+v = \mbox{\hyperlink{structstd_1_1math_1_1concepts_1_1has__const__index__bracket__oper__one}{has\+\_\+const\+\_\+index\+\_\+bracket\+\_\+oper\+\_\+one}}$<$T$>$\+::value\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [constexpr]}}
+
+\mbox{\Hypertarget{namespacestd_1_1math_1_1concepts_a383017261ebe20168233f3385006f3d4}\label{namespacestd_1_1math_1_1concepts_a383017261ebe20168233f3385006f3d4}} 
+\index{std::math::concepts@{std::math::concepts}!has\_const\_index\_bracket\_oper\_two\_v@{has\_const\_index\_bracket\_oper\_two\_v}}
+\index{has\_const\_index\_bracket\_oper\_two\_v@{has\_const\_index\_bracket\_oper\_two\_v}!std::math::concepts@{std::math::concepts}}
+\doxysubsubsection{\texorpdfstring{has\_const\_index\_bracket\_oper\_two\_v}{has\_const\_index\_bracket\_oper\_two\_v}}
+{\footnotesize\ttfamily template$<$class T $>$ \\
+constexpr bool std\+::math\+::concepts\+::has\+\_\+const\+\_\+index\+\_\+bracket\+\_\+oper\+\_\+two\+\_\+v = \mbox{\hyperlink{structstd_1_1math_1_1concepts_1_1has__const__index__bracket__oper__two}{has\+\_\+const\+\_\+index\+\_\+bracket\+\_\+oper\+\_\+two}}$<$T$>$\+::value\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [constexpr]}}
+
+\mbox{\Hypertarget{namespacestd_1_1math_1_1concepts_a536a35419c2d0f4d2906e71dd4e95d4d}\label{namespacestd_1_1math_1_1concepts_a536a35419c2d0f4d2906e71dd4e95d4d}} 
+\index{std::math::concepts@{std::math::concepts}!has\_const\_index\_paren\_oper\_one\_v@{has\_const\_index\_paren\_oper\_one\_v}}
+\index{has\_const\_index\_paren\_oper\_one\_v@{has\_const\_index\_paren\_oper\_one\_v}!std::math::concepts@{std::math::concepts}}
+\doxysubsubsection{\texorpdfstring{has\_const\_index\_paren\_oper\_one\_v}{has\_const\_index\_paren\_oper\_one\_v}}
+{\footnotesize\ttfamily template$<$class T $>$ \\
+constexpr bool std\+::math\+::concepts\+::has\+\_\+const\+\_\+index\+\_\+paren\+\_\+oper\+\_\+one\+\_\+v = \mbox{\hyperlink{structstd_1_1math_1_1concepts_1_1has__const__index__paren__oper__one}{has\+\_\+const\+\_\+index\+\_\+paren\+\_\+oper\+\_\+one}}$<$T$>$\+::value\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [constexpr]}}
+
+\mbox{\Hypertarget{namespacestd_1_1math_1_1concepts_a35fa549e599a37405305a8a2ca843f64}\label{namespacestd_1_1math_1_1concepts_a35fa549e599a37405305a8a2ca843f64}} 
+\index{std::math::concepts@{std::math::concepts}!has\_const\_index\_paren\_oper\_two\_v@{has\_const\_index\_paren\_oper\_two\_v}}
+\index{has\_const\_index\_paren\_oper\_two\_v@{has\_const\_index\_paren\_oper\_two\_v}!std::math::concepts@{std::math::concepts}}
+\doxysubsubsection{\texorpdfstring{has\_const\_index\_paren\_oper\_two\_v}{has\_const\_index\_paren\_oper\_two\_v}}
+{\footnotesize\ttfamily template$<$class T $>$ \\
+constexpr bool std\+::math\+::concepts\+::has\+\_\+const\+\_\+index\+\_\+paren\+\_\+oper\+\_\+two\+\_\+v = \mbox{\hyperlink{structstd_1_1math_1_1concepts_1_1has__const__index__paren__oper__two}{has\+\_\+const\+\_\+index\+\_\+paren\+\_\+oper\+\_\+two}}$<$T$>$\+::value\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [constexpr]}}
+
+\mbox{\Hypertarget{namespacestd_1_1math_1_1concepts_ac261db6772a748d22943328af46a4d33}\label{namespacestd_1_1math_1_1concepts_ac261db6772a748d22943328af46a4d33}} 
+\index{std::math::concepts@{std::math::concepts}!has\_const\_row\_func\_v@{has\_const\_row\_func\_v}}
+\index{has\_const\_row\_func\_v@{has\_const\_row\_func\_v}!std::math::concepts@{std::math::concepts}}
+\doxysubsubsection{\texorpdfstring{has\_const\_row\_func\_v}{has\_const\_row\_func\_v}}
+{\footnotesize\ttfamily template$<$class T $>$ \\
+constexpr bool std\+::math\+::concepts\+::has\+\_\+const\+\_\+row\+\_\+func\+\_\+v = \mbox{\hyperlink{structstd_1_1math_1_1concepts_1_1has__const__row__func}{has\+\_\+const\+\_\+row\+\_\+func}}$<$T$>$\+::value\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [constexpr]}}
+
+\mbox{\Hypertarget{namespacestd_1_1math_1_1concepts_af385d9d0eb114c01361695e6cc31b672}\label{namespacestd_1_1math_1_1concepts_af385d9d0eb114c01361695e6cc31b672}} 
+\index{std::math::concepts@{std::math::concepts}!has\_const\_row\_type\_v@{has\_const\_row\_type\_v}}
+\index{has\_const\_row\_type\_v@{has\_const\_row\_type\_v}!std::math::concepts@{std::math::concepts}}
+\doxysubsubsection{\texorpdfstring{has\_const\_row\_type\_v}{has\_const\_row\_type\_v}}
+{\footnotesize\ttfamily template$<$class T $>$ \\
+constexpr bool std\+::math\+::concepts\+::has\+\_\+const\+\_\+row\+\_\+type\+\_\+v = \mbox{\hyperlink{structstd_1_1math_1_1concepts_1_1has__const__row__type}{has\+\_\+const\+\_\+row\+\_\+type}}$<$T$>$\+::value\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [constexpr]}}
+
+\mbox{\Hypertarget{namespacestd_1_1math_1_1concepts_a10780c1faab38d83436d2e07a7397815}\label{namespacestd_1_1math_1_1concepts_a10780c1faab38d83436d2e07a7397815}} 
+\index{std::math::concepts@{std::math::concepts}!has\_const\_submatrix\_func\_v@{has\_const\_submatrix\_func\_v}}
+\index{has\_const\_submatrix\_func\_v@{has\_const\_submatrix\_func\_v}!std::math::concepts@{std::math::concepts}}
+\doxysubsubsection{\texorpdfstring{has\_const\_submatrix\_func\_v}{has\_const\_submatrix\_func\_v}}
+{\footnotesize\ttfamily template$<$class T $>$ \\
+constexpr bool std\+::math\+::concepts\+::has\+\_\+const\+\_\+submatrix\+\_\+func\+\_\+v = \mbox{\hyperlink{structstd_1_1math_1_1concepts_1_1has__const__submatrix__func}{has\+\_\+const\+\_\+submatrix\+\_\+func}}$<$T$>$\+::value\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [constexpr]}}
+
+\mbox{\Hypertarget{namespacestd_1_1math_1_1concepts_a62c762071ae8194c71e312e5f8e62f1f}\label{namespacestd_1_1math_1_1concepts_a62c762071ae8194c71e312e5f8e62f1f}} 
+\index{std::math::concepts@{std::math::concepts}!has\_const\_subvector\_func\_v@{has\_const\_subvector\_func\_v}}
+\index{has\_const\_subvector\_func\_v@{has\_const\_subvector\_func\_v}!std::math::concepts@{std::math::concepts}}
+\doxysubsubsection{\texorpdfstring{has\_const\_subvector\_func\_v}{has\_const\_subvector\_func\_v}}
+{\footnotesize\ttfamily template$<$class T $>$ \\
+constexpr bool std\+::math\+::concepts\+::has\+\_\+const\+\_\+subvector\+\_\+func\+\_\+v = \mbox{\hyperlink{structstd_1_1math_1_1concepts_1_1has__const__subvector__func}{has\+\_\+const\+\_\+subvector\+\_\+func}}$<$T$>$\+::value\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [constexpr]}}
+
+\mbox{\Hypertarget{namespacestd_1_1math_1_1concepts_a77d7d20244a8a62f02d908e0bcc5f795}\label{namespacestd_1_1math_1_1concepts_a77d7d20244a8a62f02d908e0bcc5f795}} 
+\index{std::math::concepts@{std::math::concepts}!has\_const\_subvector\_type\_v@{has\_const\_subvector\_type\_v}}
+\index{has\_const\_subvector\_type\_v@{has\_const\_subvector\_type\_v}!std::math::concepts@{std::math::concepts}}
+\doxysubsubsection{\texorpdfstring{has\_const\_subvector\_type\_v}{has\_const\_subvector\_type\_v}}
+{\footnotesize\ttfamily template$<$class T $>$ \\
+constexpr bool std\+::math\+::concepts\+::has\+\_\+const\+\_\+subvector\+\_\+type\+\_\+v = \mbox{\hyperlink{structstd_1_1math_1_1concepts_1_1has__const__subvector__type}{has\+\_\+const\+\_\+subvector\+\_\+type}}$<$T$>$\+::value\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [constexpr]}}
+
+\mbox{\Hypertarget{namespacestd_1_1math_1_1concepts_a42f23714e6f40296481f071e43261365}\label{namespacestd_1_1math_1_1concepts_a42f23714e6f40296481f071e43261365}} 
+\index{std::math::concepts@{std::math::concepts}!has\_const\_underlying\_span\_func\_v@{has\_const\_underlying\_span\_func\_v}}
+\index{has\_const\_underlying\_span\_func\_v@{has\_const\_underlying\_span\_func\_v}!std::math::concepts@{std::math::concepts}}
+\doxysubsubsection{\texorpdfstring{has\_const\_underlying\_span\_func\_v}{has\_const\_underlying\_span\_func\_v}}
+{\footnotesize\ttfamily template$<$class T $>$ \\
+constexpr bool std\+::math\+::concepts\+::has\+\_\+const\+\_\+underlying\+\_\+span\+\_\+func\+\_\+v = \mbox{\hyperlink{structstd_1_1math_1_1concepts_1_1has__const__underlying__span__func}{has\+\_\+const\+\_\+underlying\+\_\+span\+\_\+func}}$<$T$>$\+::value\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [constexpr]}}
+
+\mbox{\Hypertarget{namespacestd_1_1math_1_1concepts_a5d76d125189e7646489c2c6558092ab9}\label{namespacestd_1_1math_1_1concepts_a5d76d125189e7646489c2c6558092ab9}} 
+\index{std::math::concepts@{std::math::concepts}!has\_const\_underlying\_span\_type\_v@{has\_const\_underlying\_span\_type\_v}}
+\index{has\_const\_underlying\_span\_type\_v@{has\_const\_underlying\_span\_type\_v}!std::math::concepts@{std::math::concepts}}
+\doxysubsubsection{\texorpdfstring{has\_const\_underlying\_span\_type\_v}{has\_const\_underlying\_span\_type\_v}}
+{\footnotesize\ttfamily template$<$class T $>$ \\
+constexpr bool std\+::math\+::concepts\+::has\+\_\+const\+\_\+underlying\+\_\+span\+\_\+type\+\_\+v = \mbox{\hyperlink{structstd_1_1math_1_1concepts_1_1has__const__underlying__span__type}{has\+\_\+const\+\_\+underlying\+\_\+span\+\_\+type}}$<$T$>$\+::value\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [constexpr]}}
+
+\mbox{\Hypertarget{namespacestd_1_1math_1_1concepts_aa54d29db53238c685a7f0c52cc59b4a8}\label{namespacestd_1_1math_1_1concepts_aa54d29db53238c685a7f0c52cc59b4a8}} 
+\index{std::math::concepts@{std::math::concepts}!has\_extents\_type\_v@{has\_extents\_type\_v}}
+\index{has\_extents\_type\_v@{has\_extents\_type\_v}!std::math::concepts@{std::math::concepts}}
+\doxysubsubsection{\texorpdfstring{has\_extents\_type\_v}{has\_extents\_type\_v}}
+{\footnotesize\ttfamily template$<$class T $>$ \\
+constexpr bool std\+::math\+::concepts\+::has\+\_\+extents\+\_\+type\+\_\+v = \mbox{\hyperlink{structstd_1_1math_1_1concepts_1_1has__extents__type}{has\+\_\+extents\+\_\+type}}$<$T$>$\+::value\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [constexpr]}}
+
+\mbox{\Hypertarget{namespacestd_1_1math_1_1concepts_aad0643d1d025712a4361613beb1dfdb2}\label{namespacestd_1_1math_1_1concepts_aad0643d1d025712a4361613beb1dfdb2}} 
+\index{std::math::concepts@{std::math::concepts}!has\_get\_allocator\_func\_v@{has\_get\_allocator\_func\_v}}
+\index{has\_get\_allocator\_func\_v@{has\_get\_allocator\_func\_v}!std::math::concepts@{std::math::concepts}}
+\doxysubsubsection{\texorpdfstring{has\_get\_allocator\_func\_v}{has\_get\_allocator\_func\_v}}
+{\footnotesize\ttfamily template$<$class T $>$ \\
+constexpr bool std\+::math\+::concepts\+::has\+\_\+get\+\_\+allocator\+\_\+func\+\_\+v = \mbox{\hyperlink{structstd_1_1math_1_1concepts_1_1has__get__allocator__func}{has\+\_\+get\+\_\+allocator\+\_\+func}}$<$T$>$\+::value\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [constexpr]}}
+
+\mbox{\Hypertarget{namespacestd_1_1math_1_1concepts_a9d3879e868fe5d72f584d3d172606c92}\label{namespacestd_1_1math_1_1concepts_a9d3879e868fe5d72f584d3d172606c92}} 
+\index{std::math::concepts@{std::math::concepts}!has\_homogeneous\_tuple\_type\_v@{has\_homogeneous\_tuple\_type\_v}}
+\index{has\_homogeneous\_tuple\_type\_v@{has\_homogeneous\_tuple\_type\_v}!std::math::concepts@{std::math::concepts}}
+\doxysubsubsection{\texorpdfstring{has\_homogeneous\_tuple\_type\_v}{has\_homogeneous\_tuple\_type\_v}}
+{\footnotesize\ttfamily template$<$class T $>$ \\
+constexpr bool std\+::math\+::concepts\+::has\+\_\+homogeneous\+\_\+tuple\+\_\+type\+\_\+v = \mbox{\hyperlink{structstd_1_1math_1_1concepts_1_1has__homogeneous__tuple__type}{has\+\_\+homogeneous\+\_\+tuple\+\_\+type}}$<$T$>$\+::value\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [constexpr]}}
+
+\mbox{\Hypertarget{namespacestd_1_1math_1_1concepts_ab74682abf9d4ed7fa87d038dbb3d3391}\label{namespacestd_1_1math_1_1concepts_ab74682abf9d4ed7fa87d038dbb3d3391}} 
+\index{std::math::concepts@{std::math::concepts}!has\_index\_bracket\_oper\_one\_v@{has\_index\_bracket\_oper\_one\_v}}
+\index{has\_index\_bracket\_oper\_one\_v@{has\_index\_bracket\_oper\_one\_v}!std::math::concepts@{std::math::concepts}}
+\doxysubsubsection{\texorpdfstring{has\_index\_bracket\_oper\_one\_v}{has\_index\_bracket\_oper\_one\_v}}
+{\footnotesize\ttfamily template$<$class T $>$ \\
+constexpr bool std\+::math\+::concepts\+::has\+\_\+index\+\_\+bracket\+\_\+oper\+\_\+one\+\_\+v = \mbox{\hyperlink{structstd_1_1math_1_1concepts_1_1has__index__bracket__oper__one}{has\+\_\+index\+\_\+bracket\+\_\+oper\+\_\+one}}$<$T$>$\+::value\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [constexpr]}}
+
+\mbox{\Hypertarget{namespacestd_1_1math_1_1concepts_a939d313cf4c67af5bf8971c5bd39e84c}\label{namespacestd_1_1math_1_1concepts_a939d313cf4c67af5bf8971c5bd39e84c}} 
+\index{std::math::concepts@{std::math::concepts}!has\_index\_bracket\_oper\_two\_v@{has\_index\_bracket\_oper\_two\_v}}
+\index{has\_index\_bracket\_oper\_two\_v@{has\_index\_bracket\_oper\_two\_v}!std::math::concepts@{std::math::concepts}}
+\doxysubsubsection{\texorpdfstring{has\_index\_bracket\_oper\_two\_v}{has\_index\_bracket\_oper\_two\_v}}
+{\footnotesize\ttfamily template$<$class T $>$ \\
+constexpr bool std\+::math\+::concepts\+::has\+\_\+index\+\_\+bracket\+\_\+oper\+\_\+two\+\_\+v = \mbox{\hyperlink{structstd_1_1math_1_1concepts_1_1has__index__bracket__oper__two}{has\+\_\+index\+\_\+bracket\+\_\+oper\+\_\+two}}$<$T$>$\+::value\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [constexpr]}}
+
+\mbox{\Hypertarget{namespacestd_1_1math_1_1concepts_a9545848821d903797df2ea1476e69b94}\label{namespacestd_1_1math_1_1concepts_a9545848821d903797df2ea1476e69b94}} 
+\index{std::math::concepts@{std::math::concepts}!has\_index\_paren\_oper\_one\_v@{has\_index\_paren\_oper\_one\_v}}
+\index{has\_index\_paren\_oper\_one\_v@{has\_index\_paren\_oper\_one\_v}!std::math::concepts@{std::math::concepts}}
+\doxysubsubsection{\texorpdfstring{has\_index\_paren\_oper\_one\_v}{has\_index\_paren\_oper\_one\_v}}
+{\footnotesize\ttfamily template$<$class T $>$ \\
+constexpr bool std\+::math\+::concepts\+::has\+\_\+index\+\_\+paren\+\_\+oper\+\_\+one\+\_\+v = \mbox{\hyperlink{structstd_1_1math_1_1concepts_1_1has__index__paren__oper__one}{has\+\_\+index\+\_\+paren\+\_\+oper\+\_\+one}}$<$T$>$\+::value\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [constexpr]}}
+
+\mbox{\Hypertarget{namespacestd_1_1math_1_1concepts_ae476d454fd00b3b3c4cb919739469a6f}\label{namespacestd_1_1math_1_1concepts_ae476d454fd00b3b3c4cb919739469a6f}} 
+\index{std::math::concepts@{std::math::concepts}!has\_index\_paren\_oper\_two\_v@{has\_index\_paren\_oper\_two\_v}}
+\index{has\_index\_paren\_oper\_two\_v@{has\_index\_paren\_oper\_two\_v}!std::math::concepts@{std::math::concepts}}
+\doxysubsubsection{\texorpdfstring{has\_index\_paren\_oper\_two\_v}{has\_index\_paren\_oper\_two\_v}}
+{\footnotesize\ttfamily template$<$class T $>$ \\
+constexpr bool std\+::math\+::concepts\+::has\+\_\+index\+\_\+paren\+\_\+oper\+\_\+two\+\_\+v = \mbox{\hyperlink{structstd_1_1math_1_1concepts_1_1has__index__paren__oper__two}{has\+\_\+index\+\_\+paren\+\_\+oper\+\_\+two}}$<$T$>$\+::value\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [constexpr]}}
+
+\mbox{\Hypertarget{namespacestd_1_1math_1_1concepts_a2d4228df3361d5d4cbf0dcd043fb306a}\label{namespacestd_1_1math_1_1concepts_a2d4228df3361d5d4cbf0dcd043fb306a}} 
+\index{std::math::concepts@{std::math::concepts}!has\_index\_type\_v@{has\_index\_type\_v}}
+\index{has\_index\_type\_v@{has\_index\_type\_v}!std::math::concepts@{std::math::concepts}}
+\doxysubsubsection{\texorpdfstring{has\_index\_type\_v}{has\_index\_type\_v}}
+{\footnotesize\ttfamily template$<$class T $>$ \\
+constexpr bool std\+::math\+::concepts\+::has\+\_\+index\+\_\+type\+\_\+v = \mbox{\hyperlink{structstd_1_1math_1_1concepts_1_1has__index__type}{has\+\_\+index\+\_\+type}}$<$T$>$\+::value\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [constexpr]}}
+
+\mbox{\Hypertarget{namespacestd_1_1math_1_1concepts_a6fed12aaa59073e3c1568b06d433dccd}\label{namespacestd_1_1math_1_1concepts_a6fed12aaa59073e3c1568b06d433dccd}} 
+\index{std::math::concepts@{std::math::concepts}!has\_inner\_prod\_func\_v@{has\_inner\_prod\_func\_v}}
+\index{has\_inner\_prod\_func\_v@{has\_inner\_prod\_func\_v}!std::math::concepts@{std::math::concepts}}
+\doxysubsubsection{\texorpdfstring{has\_inner\_prod\_func\_v}{has\_inner\_prod\_func\_v}}
+{\footnotesize\ttfamily template$<$class T $>$ \\
+constexpr bool std\+::math\+::concepts\+::has\+\_\+inner\+\_\+prod\+\_\+func\+\_\+v = \mbox{\hyperlink{structstd_1_1math_1_1concepts_1_1has__inner__prod__func}{has\+\_\+inner\+\_\+prod\+\_\+func}}$<$T$>$\+::value\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [constexpr]}}
+
+\mbox{\Hypertarget{namespacestd_1_1math_1_1concepts_af41c69e8778b09b28ed82c2ab88f59c7}\label{namespacestd_1_1math_1_1concepts_af41c69e8778b09b28ed82c2ab88f59c7}} 
+\index{std::math::concepts@{std::math::concepts}!has\_matrix\_multi\_func\_v@{has\_matrix\_multi\_func\_v}}
+\index{has\_matrix\_multi\_func\_v@{has\_matrix\_multi\_func\_v}!std::math::concepts@{std::math::concepts}}
+\doxysubsubsection{\texorpdfstring{has\_matrix\_multi\_func\_v}{has\_matrix\_multi\_func\_v}}
+{\footnotesize\ttfamily template$<$class T $>$ \\
+constexpr bool std\+::math\+::concepts\+::has\+\_\+matrix\+\_\+multi\+\_\+func\+\_\+v = \mbox{\hyperlink{structstd_1_1math_1_1concepts_1_1has__matrix__multi__func}{has\+\_\+matrix\+\_\+multi\+\_\+func}}$<$T$>$\+::value\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [constexpr]}}
+
+\mbox{\Hypertarget{namespacestd_1_1math_1_1concepts_aaf773af32c7782ada810e5669f6ee878}\label{namespacestd_1_1math_1_1concepts_aaf773af32c7782ada810e5669f6ee878}} 
+\index{std::math::concepts@{std::math::concepts}!has\_negate\_func\_v@{has\_negate\_func\_v}}
+\index{has\_negate\_func\_v@{has\_negate\_func\_v}!std::math::concepts@{std::math::concepts}}
+\doxysubsubsection{\texorpdfstring{has\_negate\_func\_v}{has\_negate\_func\_v}}
+{\footnotesize\ttfamily template$<$class T $>$ \\
+constexpr bool std\+::math\+::concepts\+::has\+\_\+negate\+\_\+func\+\_\+v = \mbox{\hyperlink{structstd_1_1math_1_1concepts_1_1has__negate__func}{has\+\_\+negate\+\_\+func}}$<$T$>$\+::value\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [constexpr]}}
+
+\mbox{\Hypertarget{namespacestd_1_1math_1_1concepts_a48d9b2923433ca629a6a77b78f94da1d}\label{namespacestd_1_1math_1_1concepts_a48d9b2923433ca629a6a77b78f94da1d}} 
+\index{std::math::concepts@{std::math::concepts}!has\_outer\_prod\_func\_v@{has\_outer\_prod\_func\_v}}
+\index{has\_outer\_prod\_func\_v@{has\_outer\_prod\_func\_v}!std::math::concepts@{std::math::concepts}}
+\doxysubsubsection{\texorpdfstring{has\_outer\_prod\_func\_v}{has\_outer\_prod\_func\_v}}
+{\footnotesize\ttfamily template$<$class T $>$ \\
+constexpr bool std\+::math\+::concepts\+::has\+\_\+outer\+\_\+prod\+\_\+func\+\_\+v = \mbox{\hyperlink{structstd_1_1math_1_1concepts_1_1has__outer__prod__func}{has\+\_\+outer\+\_\+prod\+\_\+func}}$<$T$>$\+::value\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [constexpr]}}
+
+\mbox{\Hypertarget{namespacestd_1_1math_1_1concepts_a90a72a187a9f02404edfc2ac0670b423}\label{namespacestd_1_1math_1_1concepts_a90a72a187a9f02404edfc2ac0670b423}} 
+\index{std::math::concepts@{std::math::concepts}!has\_readable\_column\_vector\_type\_v@{has\_readable\_column\_vector\_type\_v}}
+\index{has\_readable\_column\_vector\_type\_v@{has\_readable\_column\_vector\_type\_v}!std::math::concepts@{std::math::concepts}}
+\doxysubsubsection{\texorpdfstring{has\_readable\_column\_vector\_type\_v}{has\_readable\_column\_vector\_type\_v}}
+{\footnotesize\ttfamily template$<$class T $>$ \\
+constexpr bool std\+::math\+::concepts\+::has\+\_\+readable\+\_\+column\+\_\+vector\+\_\+type\+\_\+v = \mbox{\hyperlink{structstd_1_1math_1_1concepts_1_1has__readable__column__vector__type}{has\+\_\+readable\+\_\+column\+\_\+vector\+\_\+type}}$<$T$>$\+::value\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [constexpr]}}
+
+\mbox{\Hypertarget{namespacestd_1_1math_1_1concepts_af2b69ecaa1a0e18fea8399bcf0176b6c}\label{namespacestd_1_1math_1_1concepts_af2b69ecaa1a0e18fea8399bcf0176b6c}} 
+\index{std::math::concepts@{std::math::concepts}!has\_readable\_row\_vector\_type\_v@{has\_readable\_row\_vector\_type\_v}}
+\index{has\_readable\_row\_vector\_type\_v@{has\_readable\_row\_vector\_type\_v}!std::math::concepts@{std::math::concepts}}
+\doxysubsubsection{\texorpdfstring{has\_readable\_row\_vector\_type\_v}{has\_readable\_row\_vector\_type\_v}}
+{\footnotesize\ttfamily template$<$class T $>$ \\
+constexpr bool std\+::math\+::concepts\+::has\+\_\+readable\+\_\+row\+\_\+vector\+\_\+type\+\_\+v = \mbox{\hyperlink{structstd_1_1math_1_1concepts_1_1has__readable__row__vector__type}{has\+\_\+readable\+\_\+row\+\_\+vector\+\_\+type}}$<$T$>$\+::value\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [constexpr]}}
+
+\mbox{\Hypertarget{namespacestd_1_1math_1_1concepts_a264bf9362bf8e45ae4a884b13718a22f}\label{namespacestd_1_1math_1_1concepts_a264bf9362bf8e45ae4a884b13718a22f}} 
+\index{std::math::concepts@{std::math::concepts}!has\_reference\_v@{has\_reference\_v}}
+\index{has\_reference\_v@{has\_reference\_v}!std::math::concepts@{std::math::concepts}}
+\doxysubsubsection{\texorpdfstring{has\_reference\_v}{has\_reference\_v}}
+{\footnotesize\ttfamily template$<$class T $>$ \\
+constexpr bool std\+::math\+::concepts\+::has\+\_\+reference\+\_\+v = \mbox{\hyperlink{structstd_1_1math_1_1concepts_1_1has__reference}{has\+\_\+reference}}$<$T$>$\+::value\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [constexpr]}}
+
+\mbox{\Hypertarget{namespacestd_1_1math_1_1concepts_a3fd02b2ad97d4bd854665bd8ba032436}\label{namespacestd_1_1math_1_1concepts_a3fd02b2ad97d4bd854665bd8ba032436}} 
+\index{std::math::concepts@{std::math::concepts}!has\_reserve\_func\_v@{has\_reserve\_func\_v}}
+\index{has\_reserve\_func\_v@{has\_reserve\_func\_v}!std::math::concepts@{std::math::concepts}}
+\doxysubsubsection{\texorpdfstring{has\_reserve\_func\_v}{has\_reserve\_func\_v}}
+{\footnotesize\ttfamily template$<$class T $>$ \\
+constexpr bool std\+::math\+::concepts\+::has\+\_\+reserve\+\_\+func\+\_\+v = \mbox{\hyperlink{structstd_1_1math_1_1concepts_1_1has__reserve__func}{has\+\_\+reserve\+\_\+func}}$<$T$>$\+::value\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [constexpr]}}
+
+\mbox{\Hypertarget{namespacestd_1_1math_1_1concepts_a0d33c4803a1322a90592519afb447dba}\label{namespacestd_1_1math_1_1concepts_a0d33c4803a1322a90592519afb447dba}} 
+\index{std::math::concepts@{std::math::concepts}!has\_resize\_func\_v@{has\_resize\_func\_v}}
+\index{has\_resize\_func\_v@{has\_resize\_func\_v}!std::math::concepts@{std::math::concepts}}
+\doxysubsubsection{\texorpdfstring{has\_resize\_func\_v}{has\_resize\_func\_v}}
+{\footnotesize\ttfamily template$<$class T $>$ \\
+constexpr bool std\+::math\+::concepts\+::has\+\_\+resize\+\_\+func\+\_\+v = \mbox{\hyperlink{structstd_1_1math_1_1concepts_1_1has__resize__func}{has\+\_\+resize\+\_\+func}}$<$T$>$\+::value\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [constexpr]}}
+
+\mbox{\Hypertarget{namespacestd_1_1math_1_1concepts_adc4fe5f927799faf8f8615172ae6b1c3}\label{namespacestd_1_1math_1_1concepts_adc4fe5f927799faf8f8615172ae6b1c3}} 
+\index{std::math::concepts@{std::math::concepts}!has\_row\_capacity\_func\_v@{has\_row\_capacity\_func\_v}}
+\index{has\_row\_capacity\_func\_v@{has\_row\_capacity\_func\_v}!std::math::concepts@{std::math::concepts}}
+\doxysubsubsection{\texorpdfstring{has\_row\_capacity\_func\_v}{has\_row\_capacity\_func\_v}}
+{\footnotesize\ttfamily template$<$class T $>$ \\
+constexpr bool std\+::math\+::concepts\+::has\+\_\+row\+\_\+capacity\+\_\+func\+\_\+v = \mbox{\hyperlink{structstd_1_1math_1_1concepts_1_1has__row__capacity__func}{has\+\_\+row\+\_\+capacity\+\_\+func}}$<$T$>$\+::value\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [constexpr]}}
+
+\mbox{\Hypertarget{namespacestd_1_1math_1_1concepts_a10917c956b27238075313fbcbe17296c}\label{namespacestd_1_1math_1_1concepts_a10917c956b27238075313fbcbe17296c}} 
+\index{std::math::concepts@{std::math::concepts}!has\_row\_func\_v@{has\_row\_func\_v}}
+\index{has\_row\_func\_v@{has\_row\_func\_v}!std::math::concepts@{std::math::concepts}}
+\doxysubsubsection{\texorpdfstring{has\_row\_func\_v}{has\_row\_func\_v}}
+{\footnotesize\ttfamily template$<$class T $>$ \\
+constexpr bool std\+::math\+::concepts\+::has\+\_\+row\+\_\+func\+\_\+v = \mbox{\hyperlink{structstd_1_1math_1_1concepts_1_1has__row__func}{has\+\_\+row\+\_\+func}}$<$T$>$\+::value\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [constexpr]}}
+
+\mbox{\Hypertarget{namespacestd_1_1math_1_1concepts_a3080ed948372883f1cd633c96723457b}\label{namespacestd_1_1math_1_1concepts_a3080ed948372883f1cd633c96723457b}} 
+\index{std::math::concepts@{std::math::concepts}!has\_row\_type\_v@{has\_row\_type\_v}}
+\index{has\_row\_type\_v@{has\_row\_type\_v}!std::math::concepts@{std::math::concepts}}
+\doxysubsubsection{\texorpdfstring{has\_row\_type\_v}{has\_row\_type\_v}}
+{\footnotesize\ttfamily template$<$class T $>$ \\
+constexpr bool std\+::math\+::concepts\+::has\+\_\+row\+\_\+type\+\_\+v = \mbox{\hyperlink{structstd_1_1math_1_1concepts_1_1has__row__type}{has\+\_\+row\+\_\+type}}$<$T$>$\+::value\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [constexpr]}}
+
+\mbox{\Hypertarget{namespacestd_1_1math_1_1concepts_a0e258aa3a3e0fabfb98a9085bdde9296}\label{namespacestd_1_1math_1_1concepts_a0e258aa3a3e0fabfb98a9085bdde9296}} 
+\index{std::math::concepts@{std::math::concepts}!has\_rows\_func\_v@{has\_rows\_func\_v}}
+\index{has\_rows\_func\_v@{has\_rows\_func\_v}!std::math::concepts@{std::math::concepts}}
+\doxysubsubsection{\texorpdfstring{has\_rows\_func\_v}{has\_rows\_func\_v}}
+{\footnotesize\ttfamily template$<$class T $>$ \\
+constexpr bool std\+::math\+::concepts\+::has\+\_\+rows\+\_\+func\+\_\+v = \mbox{\hyperlink{structstd_1_1math_1_1concepts_1_1has__rows__func}{has\+\_\+rows\+\_\+func}}$<$T$>$\+::value\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [constexpr]}}
+
+\mbox{\Hypertarget{namespacestd_1_1math_1_1concepts_aacd1c9b0591f8c8c43a5d83bacddf1cc}\label{namespacestd_1_1math_1_1concepts_aacd1c9b0591f8c8c43a5d83bacddf1cc}} 
+\index{std::math::concepts@{std::math::concepts}!has\_scalar\_divide\_func\_v@{has\_scalar\_divide\_func\_v}}
+\index{has\_scalar\_divide\_func\_v@{has\_scalar\_divide\_func\_v}!std::math::concepts@{std::math::concepts}}
+\doxysubsubsection{\texorpdfstring{has\_scalar\_divide\_func\_v}{has\_scalar\_divide\_func\_v}}
+{\footnotesize\ttfamily template$<$class T , class S  = typename value\+\_\+type\+\_\+helper$<$\+T$>$\+::type$>$ \\
+constexpr bool std\+::math\+::concepts\+::has\+\_\+scalar\+\_\+divide\+\_\+func\+\_\+v = \mbox{\hyperlink{structstd_1_1math_1_1concepts_1_1has__scalar__divide__func}{has\+\_\+scalar\+\_\+divide\+\_\+func}}$<$T,S$>$\+::value\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [constexpr]}}
+
+\mbox{\Hypertarget{namespacestd_1_1math_1_1concepts_a4be26770c52b44b9559d0893e77742b5}\label{namespacestd_1_1math_1_1concepts_a4be26770c52b44b9559d0893e77742b5}} 
+\index{std::math::concepts@{std::math::concepts}!has\_scalar\_postmultiply\_func\_v@{has\_scalar\_postmultiply\_func\_v}}
+\index{has\_scalar\_postmultiply\_func\_v@{has\_scalar\_postmultiply\_func\_v}!std::math::concepts@{std::math::concepts}}
+\doxysubsubsection{\texorpdfstring{has\_scalar\_postmultiply\_func\_v}{has\_scalar\_postmultiply\_func\_v}}
+{\footnotesize\ttfamily template$<$class T , class S  = typename value\+\_\+type\+\_\+helper$<$\+T$>$\+::type$>$ \\
+constexpr bool std\+::math\+::concepts\+::has\+\_\+scalar\+\_\+postmultiply\+\_\+func\+\_\+v = \mbox{\hyperlink{structstd_1_1math_1_1concepts_1_1has__scalar__postmultiply__func}{has\+\_\+scalar\+\_\+postmultiply\+\_\+func}}$<$T,S$>$\+::value\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [constexpr]}}
+
+\mbox{\Hypertarget{namespacestd_1_1math_1_1concepts_ae8c8e31a01380a702597c7d7b81666b4}\label{namespacestd_1_1math_1_1concepts_ae8c8e31a01380a702597c7d7b81666b4}} 
+\index{std::math::concepts@{std::math::concepts}!has\_scalar\_premultiply\_func\_v@{has\_scalar\_premultiply\_func\_v}}
+\index{has\_scalar\_premultiply\_func\_v@{has\_scalar\_premultiply\_func\_v}!std::math::concepts@{std::math::concepts}}
+\doxysubsubsection{\texorpdfstring{has\_scalar\_premultiply\_func\_v}{has\_scalar\_premultiply\_func\_v}}
+{\footnotesize\ttfamily template$<$class T , class S  = typename value\+\_\+type\+\_\+helper$<$\+T$>$\+::type$>$ \\
+constexpr bool std\+::math\+::concepts\+::has\+\_\+scalar\+\_\+premultiply\+\_\+func\+\_\+v = \mbox{\hyperlink{structstd_1_1math_1_1concepts_1_1has__scalar__premultiply__func}{has\+\_\+scalar\+\_\+premultiply\+\_\+func}}$<$T,S$>$\+::value\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [constexpr]}}
+
+\mbox{\Hypertarget{namespacestd_1_1math_1_1concepts_a339eccb0c1a066be8b4f93b9085eb018}\label{namespacestd_1_1math_1_1concepts_a339eccb0c1a066be8b4f93b9085eb018}} 
+\index{std::math::concepts@{std::math::concepts}!has\_set\_allocator\_func\_v@{has\_set\_allocator\_func\_v}}
+\index{has\_set\_allocator\_func\_v@{has\_set\_allocator\_func\_v}!std::math::concepts@{std::math::concepts}}
+\doxysubsubsection{\texorpdfstring{has\_set\_allocator\_func\_v}{has\_set\_allocator\_func\_v}}
+{\footnotesize\ttfamily template$<$class T $>$ \\
+constexpr bool std\+::math\+::concepts\+::has\+\_\+set\+\_\+allocator\+\_\+func\+\_\+v = \mbox{\hyperlink{structstd_1_1math_1_1concepts_1_1has__set__allocator__func}{has\+\_\+set\+\_\+allocator\+\_\+func}}$<$T$>$\+::value\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [constexpr]}}
+
+\mbox{\Hypertarget{namespacestd_1_1math_1_1concepts_a927ad702a03fe91674c40617d118232a}\label{namespacestd_1_1math_1_1concepts_a927ad702a03fe91674c40617d118232a}} 
+\index{std::math::concepts@{std::math::concepts}!has\_size\_func\_v@{has\_size\_func\_v}}
+\index{has\_size\_func\_v@{has\_size\_func\_v}!std::math::concepts@{std::math::concepts}}
+\doxysubsubsection{\texorpdfstring{has\_size\_func\_v}{has\_size\_func\_v}}
+{\footnotesize\ttfamily template$<$class T $>$ \\
+constexpr bool std\+::math\+::concepts\+::has\+\_\+size\+\_\+func\+\_\+v = \mbox{\hyperlink{structstd_1_1math_1_1concepts_1_1has__size__func}{has\+\_\+size\+\_\+func}}$<$T$>$\+::value\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [constexpr]}}
+
+\mbox{\Hypertarget{namespacestd_1_1math_1_1concepts_a9738ecfe3701d17e7e20bf5e357a00d6}\label{namespacestd_1_1math_1_1concepts_a9738ecfe3701d17e7e20bf5e357a00d6}} 
+\index{std::math::concepts@{std::math::concepts}!has\_size\_type\_v@{has\_size\_type\_v}}
+\index{has\_size\_type\_v@{has\_size\_type\_v}!std::math::concepts@{std::math::concepts}}
+\doxysubsubsection{\texorpdfstring{has\_size\_type\_v}{has\_size\_type\_v}}
+{\footnotesize\ttfamily template$<$class T $>$ \\
+constexpr bool std\+::math\+::concepts\+::has\+\_\+size\+\_\+type\+\_\+v = \mbox{\hyperlink{structstd_1_1math_1_1concepts_1_1has__size__type}{has\+\_\+size\+\_\+type}}$<$T$>$\+::value\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [constexpr]}}
+
+\mbox{\Hypertarget{namespacestd_1_1math_1_1concepts_a6ef1dd744f83017fce3a64faaf4c5f23}\label{namespacestd_1_1math_1_1concepts_a6ef1dd744f83017fce3a64faaf4c5f23}} 
+\index{std::math::concepts@{std::math::concepts}!has\_span\_func\_v@{has\_span\_func\_v}}
+\index{has\_span\_func\_v@{has\_span\_func\_v}!std::math::concepts@{std::math::concepts}}
+\doxysubsubsection{\texorpdfstring{has\_span\_func\_v}{has\_span\_func\_v}}
+{\footnotesize\ttfamily template$<$class T $>$ \\
+constexpr bool std\+::math\+::concepts\+::has\+\_\+span\+\_\+func\+\_\+v = \mbox{\hyperlink{structstd_1_1math_1_1concepts_1_1has__span__func}{has\+\_\+span\+\_\+func}}$<$T$>$\+::value\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [constexpr]}}
+
+\mbox{\Hypertarget{namespacestd_1_1math_1_1concepts_ac0a0605c8ceb804dced9a8e13e3bcd76}\label{namespacestd_1_1math_1_1concepts_ac0a0605c8ceb804dced9a8e13e3bcd76}} 
+\index{std::math::concepts@{std::math::concepts}!has\_span\_type\_v@{has\_span\_type\_v}}
+\index{has\_span\_type\_v@{has\_span\_type\_v}!std::math::concepts@{std::math::concepts}}
+\doxysubsubsection{\texorpdfstring{has\_span\_type\_v}{has\_span\_type\_v}}
+{\footnotesize\ttfamily template$<$class T $>$ \\
+constexpr bool std\+::math\+::concepts\+::has\+\_\+span\+\_\+type\+\_\+v = \mbox{\hyperlink{structstd_1_1math_1_1concepts_1_1has__span__type}{has\+\_\+span\+\_\+type}}$<$T$>$\+::value\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [constexpr]}}
+
+\mbox{\Hypertarget{namespacestd_1_1math_1_1concepts_a066afbbf4a659bf3b55d45aa4ac30bdc}\label{namespacestd_1_1math_1_1concepts_a066afbbf4a659bf3b55d45aa4ac30bdc}} 
+\index{std::math::concepts@{std::math::concepts}!has\_static\_extents\_v@{has\_static\_extents\_v}}
+\index{has\_static\_extents\_v@{has\_static\_extents\_v}!std::math::concepts@{std::math::concepts}}
+\doxysubsubsection{\texorpdfstring{has\_static\_extents\_v}{has\_static\_extents\_v}}
+{\footnotesize\ttfamily template$<$class T $>$ \\
+constexpr bool std\+::math\+::concepts\+::has\+\_\+static\+\_\+extents\+\_\+v = \mbox{\hyperlink{structstd_1_1math_1_1concepts_1_1has__static__extents}{has\+\_\+static\+\_\+extents}}$<$T$>$\+::value\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [constexpr]}}
+
+\mbox{\Hypertarget{namespacestd_1_1math_1_1concepts_ad4c88510481564dc99b17ec970dc070e}\label{namespacestd_1_1math_1_1concepts_ad4c88510481564dc99b17ec970dc070e}} 
+\index{std::math::concepts@{std::math::concepts}!has\_submatrix\_func\_v@{has\_submatrix\_func\_v}}
+\index{has\_submatrix\_func\_v@{has\_submatrix\_func\_v}!std::math::concepts@{std::math::concepts}}
+\doxysubsubsection{\texorpdfstring{has\_submatrix\_func\_v}{has\_submatrix\_func\_v}}
+{\footnotesize\ttfamily template$<$class T $>$ \\
+constexpr bool std\+::math\+::concepts\+::has\+\_\+submatrix\+\_\+func\+\_\+v = \mbox{\hyperlink{structstd_1_1math_1_1concepts_1_1has__submatrix__func}{has\+\_\+submatrix\+\_\+func}}$<$T$>$\+::value\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [constexpr]}}
+
+\mbox{\Hypertarget{namespacestd_1_1math_1_1concepts_afa60b82236284704a543de0cadd15fbe}\label{namespacestd_1_1math_1_1concepts_afa60b82236284704a543de0cadd15fbe}} 
+\index{std::math::concepts@{std::math::concepts}!has\_subtract\_func\_v@{has\_subtract\_func\_v}}
+\index{has\_subtract\_func\_v@{has\_subtract\_func\_v}!std::math::concepts@{std::math::concepts}}
+\doxysubsubsection{\texorpdfstring{has\_subtract\_func\_v}{has\_subtract\_func\_v}}
+{\footnotesize\ttfamily template$<$class T $>$ \\
+constexpr bool std\+::math\+::concepts\+::has\+\_\+subtract\+\_\+func\+\_\+v = \mbox{\hyperlink{structstd_1_1math_1_1concepts_1_1has__subtract__func}{has\+\_\+subtract\+\_\+func}}$<$T$>$\+::value\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [constexpr]}}
+
+\mbox{\Hypertarget{namespacestd_1_1math_1_1concepts_ac67bf79ed995ea3fb9568e1f661352b9}\label{namespacestd_1_1math_1_1concepts_ac67bf79ed995ea3fb9568e1f661352b9}} 
+\index{std::math::concepts@{std::math::concepts}!has\_subvector\_func\_v@{has\_subvector\_func\_v}}
+\index{has\_subvector\_func\_v@{has\_subvector\_func\_v}!std::math::concepts@{std::math::concepts}}
+\doxysubsubsection{\texorpdfstring{has\_subvector\_func\_v}{has\_subvector\_func\_v}}
+{\footnotesize\ttfamily template$<$class T $>$ \\
+constexpr bool std\+::math\+::concepts\+::has\+\_\+subvector\+\_\+func\+\_\+v = \mbox{\hyperlink{structstd_1_1math_1_1concepts_1_1has__subvector__func}{has\+\_\+subvector\+\_\+func}}$<$T$>$\+::value\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [constexpr]}}
+
+\mbox{\Hypertarget{namespacestd_1_1math_1_1concepts_a219926107d3dc6e7eb26cfb9e5ef33c3}\label{namespacestd_1_1math_1_1concepts_a219926107d3dc6e7eb26cfb9e5ef33c3}} 
+\index{std::math::concepts@{std::math::concepts}!has\_subvector\_type\_v@{has\_subvector\_type\_v}}
+\index{has\_subvector\_type\_v@{has\_subvector\_type\_v}!std::math::concepts@{std::math::concepts}}
+\doxysubsubsection{\texorpdfstring{has\_subvector\_type\_v}{has\_subvector\_type\_v}}
+{\footnotesize\ttfamily template$<$class T $>$ \\
+constexpr bool std\+::math\+::concepts\+::has\+\_\+subvector\+\_\+type\+\_\+v = \mbox{\hyperlink{structstd_1_1math_1_1concepts_1_1has__subvector__type}{has\+\_\+subvector\+\_\+type}}$<$T$>$\+::value\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [constexpr]}}
+
+\mbox{\Hypertarget{namespacestd_1_1math_1_1concepts_a11729e1caa6b9f3609d76dacbc4f629a}\label{namespacestd_1_1math_1_1concepts_a11729e1caa6b9f3609d76dacbc4f629a}} 
+\index{std::math::concepts@{std::math::concepts}!has\_trans\_func\_v@{has\_trans\_func\_v}}
+\index{has\_trans\_func\_v@{has\_trans\_func\_v}!std::math::concepts@{std::math::concepts}}
+\doxysubsubsection{\texorpdfstring{has\_trans\_func\_v}{has\_trans\_func\_v}}
+{\footnotesize\ttfamily template$<$class T $>$ \\
+constexpr bool std\+::math\+::concepts\+::has\+\_\+trans\+\_\+func\+\_\+v = \mbox{\hyperlink{structstd_1_1math_1_1concepts_1_1has__trans__func}{has\+\_\+trans\+\_\+func}}$<$T$>$\+::value\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [constexpr]}}
+
+\mbox{\Hypertarget{namespacestd_1_1math_1_1concepts_a684aa91203cdbe67230538d5d0ccdc82}\label{namespacestd_1_1math_1_1concepts_a684aa91203cdbe67230538d5d0ccdc82}} 
+\index{std::math::concepts@{std::math::concepts}!has\_tuple\_type\_v@{has\_tuple\_type\_v}}
+\index{has\_tuple\_type\_v@{has\_tuple\_type\_v}!std::math::concepts@{std::math::concepts}}
+\doxysubsubsection{\texorpdfstring{has\_tuple\_type\_v}{has\_tuple\_type\_v}}
+{\footnotesize\ttfamily template$<$class T $>$ \\
+constexpr bool std\+::math\+::concepts\+::has\+\_\+tuple\+\_\+type\+\_\+v = \mbox{\hyperlink{structstd_1_1math_1_1concepts_1_1has__tuple__type}{has\+\_\+tuple\+\_\+type}}$<$T$>$\+::value\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [constexpr]}}
+
+\mbox{\Hypertarget{namespacestd_1_1math_1_1concepts_a4bcae03934ea93986befcf36a9145cfc}\label{namespacestd_1_1math_1_1concepts_a4bcae03934ea93986befcf36a9145cfc}} 
+\index{std::math::concepts@{std::math::concepts}!has\_underlying\_span\_func\_v@{has\_underlying\_span\_func\_v}}
+\index{has\_underlying\_span\_func\_v@{has\_underlying\_span\_func\_v}!std::math::concepts@{std::math::concepts}}
+\doxysubsubsection{\texorpdfstring{has\_underlying\_span\_func\_v}{has\_underlying\_span\_func\_v}}
+{\footnotesize\ttfamily template$<$class T $>$ \\
+constexpr bool std\+::math\+::concepts\+::has\+\_\+underlying\+\_\+span\+\_\+func\+\_\+v = \mbox{\hyperlink{structstd_1_1math_1_1concepts_1_1has__underlying__span__func}{has\+\_\+underlying\+\_\+span\+\_\+func}}$<$T$>$\+::value\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [constexpr]}}
+
+\mbox{\Hypertarget{namespacestd_1_1math_1_1concepts_a15e2e6fd76ed8795039542522794bf0d}\label{namespacestd_1_1math_1_1concepts_a15e2e6fd76ed8795039542522794bf0d}} 
+\index{std::math::concepts@{std::math::concepts}!has\_underlying\_span\_type\_v@{has\_underlying\_span\_type\_v}}
+\index{has\_underlying\_span\_type\_v@{has\_underlying\_span\_type\_v}!std::math::concepts@{std::math::concepts}}
+\doxysubsubsection{\texorpdfstring{has\_underlying\_span\_type\_v}{has\_underlying\_span\_type\_v}}
+{\footnotesize\ttfamily template$<$class T $>$ \\
+constexpr bool std\+::math\+::concepts\+::has\+\_\+underlying\+\_\+span\+\_\+type\+\_\+v = \mbox{\hyperlink{structstd_1_1math_1_1concepts_1_1has__underlying__span__type}{has\+\_\+underlying\+\_\+span\+\_\+type}}$<$T$>$\+::value\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [constexpr]}}
+
+\mbox{\Hypertarget{namespacestd_1_1math_1_1concepts_a27e1062e606542885a7ee3b69e5fb384}\label{namespacestd_1_1math_1_1concepts_a27e1062e606542885a7ee3b69e5fb384}} 
+\index{std::math::concepts@{std::math::concepts}!has\_value\_type\_v@{has\_value\_type\_v}}
+\index{has\_value\_type\_v@{has\_value\_type\_v}!std::math::concepts@{std::math::concepts}}
+\doxysubsubsection{\texorpdfstring{has\_value\_type\_v}{has\_value\_type\_v}}
+{\footnotesize\ttfamily template$<$class T $>$ \\
+constexpr bool std\+::math\+::concepts\+::has\+\_\+value\+\_\+type\+\_\+v = \mbox{\hyperlink{structstd_1_1math_1_1concepts_1_1has__value__type}{has\+\_\+value\+\_\+type}}$<$T$>$\+::value\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [constexpr]}}
+
+\mbox{\Hypertarget{namespacestd_1_1math_1_1concepts_af65be84f05f69912291041cde440a635}\label{namespacestd_1_1math_1_1concepts_af65be84f05f69912291041cde440a635}} 
+\index{std::math::concepts@{std::math::concepts}!has\_writable\_column\_vector\_type\_v@{has\_writable\_column\_vector\_type\_v}}
+\index{has\_writable\_column\_vector\_type\_v@{has\_writable\_column\_vector\_type\_v}!std::math::concepts@{std::math::concepts}}
+\doxysubsubsection{\texorpdfstring{has\_writable\_column\_vector\_type\_v}{has\_writable\_column\_vector\_type\_v}}
+{\footnotesize\ttfamily template$<$class T $>$ \\
+constexpr bool std\+::math\+::concepts\+::has\+\_\+writable\+\_\+column\+\_\+vector\+\_\+type\+\_\+v = \mbox{\hyperlink{structstd_1_1math_1_1concepts_1_1has__writable__column__vector__type}{has\+\_\+writable\+\_\+column\+\_\+vector\+\_\+type}}$<$T$>$\+::value\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [constexpr]}}
+
+\mbox{\Hypertarget{namespacestd_1_1math_1_1concepts_a427b1c4ced691aa133f76f29d9883133}\label{namespacestd_1_1math_1_1concepts_a427b1c4ced691aa133f76f29d9883133}} 
+\index{std::math::concepts@{std::math::concepts}!has\_writable\_row\_vector\_type\_v@{has\_writable\_row\_vector\_type\_v}}
+\index{has\_writable\_row\_vector\_type\_v@{has\_writable\_row\_vector\_type\_v}!std::math::concepts@{std::math::concepts}}
+\doxysubsubsection{\texorpdfstring{has\_writable\_row\_vector\_type\_v}{has\_writable\_row\_vector\_type\_v}}
+{\footnotesize\ttfamily template$<$class T $>$ \\
+constexpr bool std\+::math\+::concepts\+::has\+\_\+writable\+\_\+row\+\_\+vector\+\_\+type\+\_\+v = \mbox{\hyperlink{structstd_1_1math_1_1concepts_1_1has__writable__row__vector__type}{has\+\_\+writable\+\_\+row\+\_\+vector\+\_\+type}}$<$T$>$\+::value\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [constexpr]}}
+
+\mbox{\Hypertarget{namespacestd_1_1math_1_1concepts_a0390a08d616aa10d8369a42e3a56f40c}\label{namespacestd_1_1math_1_1concepts_a0390a08d616aa10d8369a42e3a56f40c}} 
+\index{std::math::concepts@{std::math::concepts}!is\_const\_tensor\_v@{is\_const\_tensor\_v}}
+\index{is\_const\_tensor\_v@{is\_const\_tensor\_v}!std::math::concepts@{std::math::concepts}}
+\doxysubsubsection{\texorpdfstring{is\_const\_tensor\_v}{is\_const\_tensor\_v}}
+{\footnotesize\ttfamily template$<$class T $>$ \\
+constexpr bool std\+::math\+::concepts\+::is\+\_\+const\+\_\+tensor\+\_\+v = \mbox{\hyperlink{structstd_1_1math_1_1concepts_1_1is__const__tensor}{is\+\_\+const\+\_\+tensor}}$<$T$>$\+::value\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [constexpr]}}
+
+\mbox{\Hypertarget{namespacestd_1_1math_1_1concepts_ad4fbadf420eb058bd75323e36fedb200}\label{namespacestd_1_1math_1_1concepts_ad4fbadf420eb058bd75323e36fedb200}} 
+\index{std::math::concepts@{std::math::concepts}!is\_rank\_v@{is\_rank\_v}}
+\index{is\_rank\_v@{is\_rank\_v}!std::math::concepts@{std::math::concepts}}
+\doxysubsubsection{\texorpdfstring{is\_rank\_v}{is\_rank\_v}}
+{\footnotesize\ttfamily template$<$class T , auto N$>$ \\
+constexpr bool std\+::math\+::concepts\+::is\+\_\+rank\+\_\+v = \mbox{\hyperlink{structstd_1_1math_1_1concepts_1_1is__rank}{is\+\_\+rank}}$<$T,N$>$\+::value\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [constexpr]}}
+
+\mbox{\Hypertarget{namespacestd_1_1math_1_1concepts_a8dcbf43251fd003e3d0d2adb479451e2}\label{namespacestd_1_1math_1_1concepts_a8dcbf43251fd003e3d0d2adb479451e2}} 
+\index{std::math::concepts@{std::math::concepts}!matrix\_data\_v@{matrix\_data\_v}}
+\index{matrix\_data\_v@{matrix\_data\_v}!std::math::concepts@{std::math::concepts}}
+\doxysubsubsection{\texorpdfstring{matrix\_data\_v}{matrix\_data\_v}}
+{\footnotesize\ttfamily template$<$class M $>$ \\
+constexpr bool std\+::math\+::concepts\+::matrix\+\_\+data\+\_\+v = \mbox{\hyperlink{structstd_1_1math_1_1concepts_1_1matrix__data}{matrix\+\_\+data}}$<$M$>$\+::value\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [constexpr]}}
+
+\mbox{\Hypertarget{namespacestd_1_1math_1_1concepts_a4d96299345dc6ef6297afd7a9b1e6187}\label{namespacestd_1_1math_1_1concepts_a4d96299345dc6ef6297afd7a9b1e6187}} 
+\index{std::math::concepts@{std::math::concepts}!matrix\_may\_be\_convertible\_v@{matrix\_may\_be\_convertible\_v}}
+\index{matrix\_may\_be\_convertible\_v@{matrix\_may\_be\_convertible\_v}!std::math::concepts@{std::math::concepts}}
+\doxysubsubsection{\texorpdfstring{matrix\_may\_be\_convertible\_v}{matrix\_may\_be\_convertible\_v}}
+{\footnotesize\ttfamily template$<$class From , class To $>$ \\
+constexpr bool std\+::math\+::concepts\+::matrix\+\_\+may\+\_\+be\+\_\+convertible\+\_\+v\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [constexpr]}}
+
+{\bfseries Initial value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{=}
+\DoxyCodeLine{\ \ matrix\_v<From>\ \&\&\ matrix\_v<To>\ \&\&}
+\DoxyCodeLine{\ \ (\ ::std::is\_convertible\_v<\ typename\ From::value\_type,\ typename\ To::value\_type\ >\ )\ \&\&}
+\DoxyCodeLine{\ \ (\ (\ From::extents\_type::static\_extent(0)\ ==\ To::extents\_type::static\_extent(0)\ )\ ||}
+\DoxyCodeLine{\ \ \ \ (\ From::extents\_type::static\_extent(0)\ ==\ ::std::experimental::dynamic\_extent\ )\ ||}
+\DoxyCodeLine{\ \ \ \ (\ To::extents\_type::static\_extent(0)\ ==\ ::std::experimental::dynamic\_extent\ )\ )\ \&\&}
+\DoxyCodeLine{\ \ (\ (\ From::extents\_type::static\_extent(1)\ ==\ To::extents\_type::static\_extent(1)\ )\ ||}
+\DoxyCodeLine{\ \ \ \ (\ From::extents\_type::static\_extent(1)\ ==\ ::std::experimental::dynamic\_extent\ )\ ||}
+\DoxyCodeLine{\ \ \ \ (\ To::extents\_type::static\_extent(1)\ ==\ ::std::experimental::dynamic\_extent\ )\ )}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{namespacestd_1_1math_1_1concepts_a9b740b99b2cb61f89e284678442c439b}\label{namespacestd_1_1math_1_1concepts_a9b740b99b2cb61f89e284678442c439b}} 
+\index{std::math::concepts@{std::math::concepts}!matrix\_v@{matrix\_v}}
+\index{matrix\_v@{matrix\_v}!std::math::concepts@{std::math::concepts}}
+\doxysubsubsection{\texorpdfstring{matrix\_v}{matrix\_v}}
+{\footnotesize\ttfamily template$<$class M $>$ \\
+constexpr bool std\+::math\+::concepts\+::matrix\+\_\+v = \mbox{\hyperlink{structstd_1_1math_1_1concepts_1_1matrix}{matrix}}$<$M$>$\+::value\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [constexpr]}}
+
+\mbox{\Hypertarget{namespacestd_1_1math_1_1concepts_a5f1103d1c6b2b4fe582799d1a856f3e0}\label{namespacestd_1_1math_1_1concepts_a5f1103d1c6b2b4fe582799d1a856f3e0}} 
+\index{std::math::concepts@{std::math::concepts}!product\_exists\_v@{product\_exists\_v}}
+\index{product\_exists\_v@{product\_exists\_v}!std::math::concepts@{std::math::concepts}}
+\doxysubsubsection{\texorpdfstring{product\_exists\_v}{product\_exists\_v}}
+{\footnotesize\ttfamily template$<$class T , class U $>$ \\
+constexpr bool std\+::math\+::concepts\+::product\+\_\+exists\+\_\+v = \mbox{\hyperlink{structstd_1_1math_1_1concepts_1_1product__exists}{product\+\_\+exists}}$<$T,U$>$\+::value\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [constexpr]}}
+
+\mbox{\Hypertarget{namespacestd_1_1math_1_1concepts_ab2dc418a583c66dfed99aaeebe5ac742}\label{namespacestd_1_1math_1_1concepts_ab2dc418a583c66dfed99aaeebe5ac742}} 
+\index{std::math::concepts@{std::math::concepts}!readable\_matrix\_data\_v@{readable\_matrix\_data\_v}}
+\index{readable\_matrix\_data\_v@{readable\_matrix\_data\_v}!std::math::concepts@{std::math::concepts}}
+\doxysubsubsection{\texorpdfstring{readable\_matrix\_data\_v}{readable\_matrix\_data\_v}}
+{\footnotesize\ttfamily template$<$class M $>$ \\
+constexpr bool std\+::math\+::concepts\+::readable\+\_\+matrix\+\_\+data\+\_\+v = \mbox{\hyperlink{structstd_1_1math_1_1concepts_1_1readable__matrix__data}{readable\+\_\+matrix\+\_\+data}}$<$M$>$\+::value\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [constexpr]}}
+
+\mbox{\Hypertarget{namespacestd_1_1math_1_1concepts_aabbdee88338873f1202cb2ad577e9500}\label{namespacestd_1_1math_1_1concepts_aabbdee88338873f1202cb2ad577e9500}} 
+\index{std::math::concepts@{std::math::concepts}!readable\_matrix\_v@{readable\_matrix\_v}}
+\index{readable\_matrix\_v@{readable\_matrix\_v}!std::math::concepts@{std::math::concepts}}
+\doxysubsubsection{\texorpdfstring{readable\_matrix\_v}{readable\_matrix\_v}}
+{\footnotesize\ttfamily template$<$class M $>$ \\
+constexpr bool std\+::math\+::concepts\+::readable\+\_\+matrix\+\_\+v = \mbox{\hyperlink{structstd_1_1math_1_1concepts_1_1readable__matrix}{readable\+\_\+matrix}}$<$M$>$\+::value\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [constexpr]}}
+
+\mbox{\Hypertarget{namespacestd_1_1math_1_1concepts_a89102e1c1df8eb6b35f69fd003c5789f}\label{namespacestd_1_1math_1_1concepts_a89102e1c1df8eb6b35f69fd003c5789f}} 
+\index{std::math::concepts@{std::math::concepts}!readable\_tensor\_data\_v@{readable\_tensor\_data\_v}}
+\index{readable\_tensor\_data\_v@{readable\_tensor\_data\_v}!std::math::concepts@{std::math::concepts}}
+\doxysubsubsection{\texorpdfstring{readable\_tensor\_data\_v}{readable\_tensor\_data\_v}}
+{\footnotesize\ttfamily template$<$class T $>$ \\
+constexpr bool std\+::math\+::concepts\+::readable\+\_\+tensor\+\_\+data\+\_\+v = \mbox{\hyperlink{structstd_1_1math_1_1concepts_1_1readable__tensor__data}{readable\+\_\+tensor\+\_\+data}}$<$T$>$\+::value\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [constexpr]}}
+
+\mbox{\Hypertarget{namespacestd_1_1math_1_1concepts_a4094f74dadb30bc6f23bcd6135fc6419}\label{namespacestd_1_1math_1_1concepts_a4094f74dadb30bc6f23bcd6135fc6419}} 
+\index{std::math::concepts@{std::math::concepts}!readable\_tensor\_v@{readable\_tensor\_v}}
+\index{readable\_tensor\_v@{readable\_tensor\_v}!std::math::concepts@{std::math::concepts}}
+\doxysubsubsection{\texorpdfstring{readable\_tensor\_v}{readable\_tensor\_v}}
+{\footnotesize\ttfamily template$<$class T $>$ \\
+constexpr bool std\+::math\+::concepts\+::readable\+\_\+tensor\+\_\+v = \mbox{\hyperlink{structstd_1_1math_1_1concepts_1_1readable__tensor}{readable\+\_\+tensor}}$<$T$>$\+::value\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [constexpr]}}
+
+\mbox{\Hypertarget{namespacestd_1_1math_1_1concepts_a261217fe961b8f4fd726dab33dcaa008}\label{namespacestd_1_1math_1_1concepts_a261217fe961b8f4fd726dab33dcaa008}} 
+\index{std::math::concepts@{std::math::concepts}!readable\_vector\_data\_v@{readable\_vector\_data\_v}}
+\index{readable\_vector\_data\_v@{readable\_vector\_data\_v}!std::math::concepts@{std::math::concepts}}
+\doxysubsubsection{\texorpdfstring{readable\_vector\_data\_v}{readable\_vector\_data\_v}}
+{\footnotesize\ttfamily template$<$class V $>$ \\
+constexpr bool std\+::math\+::concepts\+::readable\+\_\+vector\+\_\+data\+\_\+v = \mbox{\hyperlink{structstd_1_1math_1_1concepts_1_1readable__vector__data}{readable\+\_\+vector\+\_\+data}}$<$V$>$\+::value\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [constexpr]}}
+
+\mbox{\Hypertarget{namespacestd_1_1math_1_1concepts_a11fbdb60a09acd78b6b81067613efac6}\label{namespacestd_1_1math_1_1concepts_a11fbdb60a09acd78b6b81067613efac6}} 
+\index{std::math::concepts@{std::math::concepts}!readable\_vector\_v@{readable\_vector\_v}}
+\index{readable\_vector\_v@{readable\_vector\_v}!std::math::concepts@{std::math::concepts}}
+\doxysubsubsection{\texorpdfstring{readable\_vector\_v}{readable\_vector\_v}}
+{\footnotesize\ttfamily template$<$class V $>$ \\
+constexpr bool std\+::math\+::concepts\+::readable\+\_\+vector\+\_\+v = \mbox{\hyperlink{structstd_1_1math_1_1concepts_1_1readable__vector}{readable\+\_\+vector}}$<$V$>$\+::value\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [constexpr]}}
+
+\mbox{\Hypertarget{namespacestd_1_1math_1_1concepts_a3ed769d5ae95c8eca2a805ca64a860e9}\label{namespacestd_1_1math_1_1concepts_a3ed769d5ae95c8eca2a805ca64a860e9}} 
+\index{std::math::concepts@{std::math::concepts}!subtraction\_exists\_v@{subtraction\_exists\_v}}
+\index{subtraction\_exists\_v@{subtraction\_exists\_v}!std::math::concepts@{std::math::concepts}}
+\doxysubsubsection{\texorpdfstring{subtraction\_exists\_v}{subtraction\_exists\_v}}
+{\footnotesize\ttfamily template$<$class T , class U $>$ \\
+constexpr bool std\+::math\+::concepts\+::subtraction\+\_\+exists\+\_\+v = \mbox{\hyperlink{structstd_1_1math_1_1concepts_1_1subtraction__exists}{subtraction\+\_\+exists}}$<$T,U$>$\+::value\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [constexpr]}}
+
+\mbox{\Hypertarget{namespacestd_1_1math_1_1concepts_a82a3704f71fe04bd9f11299a7df8939f}\label{namespacestd_1_1math_1_1concepts_a82a3704f71fe04bd9f11299a7df8939f}} 
+\index{std::math::concepts@{std::math::concepts}!tensor\_data\_v@{tensor\_data\_v}}
+\index{tensor\_data\_v@{tensor\_data\_v}!std::math::concepts@{std::math::concepts}}
+\doxysubsubsection{\texorpdfstring{tensor\_data\_v}{tensor\_data\_v}}
+{\footnotesize\ttfamily template$<$class T $>$ \\
+constexpr bool std\+::math\+::concepts\+::tensor\+\_\+data\+\_\+v = \mbox{\hyperlink{structstd_1_1math_1_1concepts_1_1tensor__data}{tensor\+\_\+data}}$<$T$>$\+::value\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [constexpr]}}
+
+\mbox{\Hypertarget{namespacestd_1_1math_1_1concepts_a37d161e63019ad29f5d04f5cc484d5c9}\label{namespacestd_1_1math_1_1concepts_a37d161e63019ad29f5d04f5cc484d5c9}} 
+\index{std::math::concepts@{std::math::concepts}!tensor\_may\_be\_constructible@{tensor\_may\_be\_constructible}}
+\index{tensor\_may\_be\_constructible@{tensor\_may\_be\_constructible}!std::math::concepts@{std::math::concepts}}
+\doxysubsubsection{\texorpdfstring{tensor\_may\_be\_constructible}{tensor\_may\_be\_constructible}}
+{\footnotesize\ttfamily template$<$class From , class To $>$ \\
+constexpr bool std\+::math\+::concepts\+::tensor\+\_\+may\+\_\+be\+\_\+constructible\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [constexpr]}}
+
+{\bfseries Initial value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{=}
+\DoxyCodeLine{tensor\_v<From>\ \&\&\ tensor\_v<To>\ \&\&}
+\DoxyCodeLine{values\_are\_constructible\_v<From,To>\ \&\&}
+\DoxyCodeLine{extents\_may\_be\_equal\_v<From,To>}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{namespacestd_1_1math_1_1concepts_a1256d05e82959fe7c468fa65af17b6d2}\label{namespacestd_1_1math_1_1concepts_a1256d05e82959fe7c468fa65af17b6d2}} 
+\index{std::math::concepts@{std::math::concepts}!tensor\_v@{tensor\_v}}
+\index{tensor\_v@{tensor\_v}!std::math::concepts@{std::math::concepts}}
+\doxysubsubsection{\texorpdfstring{tensor\_v}{tensor\_v}}
+{\footnotesize\ttfamily template$<$class T $>$ \\
+constexpr bool std\+::math\+::concepts\+::tensor\+\_\+v = \mbox{\hyperlink{structstd_1_1math_1_1concepts_1_1tensor}{tensor}}$<$T$>$\+::value\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [constexpr]}}
+
+\mbox{\Hypertarget{namespacestd_1_1math_1_1concepts_a5da14ca689700d2dc7151b4eec6bc453}\label{namespacestd_1_1math_1_1concepts_a5da14ca689700d2dc7151b4eec6bc453}} 
+\index{std::math::concepts@{std::math::concepts}!values\_are\_constructible\_v@{values\_are\_constructible\_v}}
+\index{values\_are\_constructible\_v@{values\_are\_constructible\_v}!std::math::concepts@{std::math::concepts}}
+\doxysubsubsection{\texorpdfstring{values\_are\_constructible\_v}{values\_are\_constructible\_v}}
+{\footnotesize\ttfamily template$<$class T , class U $>$ \\
+constexpr bool std\+::math\+::concepts\+::values\+\_\+are\+\_\+constructible\+\_\+v = \mbox{\hyperlink{structstd_1_1math_1_1concepts_1_1values__are__constructible}{values\+\_\+are\+\_\+constructible}}$<$T,U$>$\+::value\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [constexpr]}}
+
+\mbox{\Hypertarget{namespacestd_1_1math_1_1concepts_a0c4c71d2c11f2dc828ebfb5a0b48e009}\label{namespacestd_1_1math_1_1concepts_a0c4c71d2c11f2dc828ebfb5a0b48e009}} 
+\index{std::math::concepts@{std::math::concepts}!values\_are\_nothrow\_constructible\_v@{values\_are\_nothrow\_constructible\_v}}
+\index{values\_are\_nothrow\_constructible\_v@{values\_are\_nothrow\_constructible\_v}!std::math::concepts@{std::math::concepts}}
+\doxysubsubsection{\texorpdfstring{values\_are\_nothrow\_constructible\_v}{values\_are\_nothrow\_constructible\_v}}
+{\footnotesize\ttfamily template$<$class T , class U $>$ \\
+constexpr bool std\+::math\+::concepts\+::values\+\_\+are\+\_\+nothrow\+\_\+constructible\+\_\+v = \mbox{\hyperlink{structstd_1_1math_1_1concepts_1_1values__are__nothrow__constructible}{values\+\_\+are\+\_\+nothrow\+\_\+constructible}}$<$T,U$>$\+::value\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [constexpr]}}
+
+\mbox{\Hypertarget{namespacestd_1_1math_1_1concepts_a63e73c015639a1cdea40ebefe8f49052}\label{namespacestd_1_1math_1_1concepts_a63e73c015639a1cdea40ebefe8f49052}} 
+\index{std::math::concepts@{std::math::concepts}!vector\_data\_v@{vector\_data\_v}}
+\index{vector\_data\_v@{vector\_data\_v}!std::math::concepts@{std::math::concepts}}
+\doxysubsubsection{\texorpdfstring{vector\_data\_v}{vector\_data\_v}}
+{\footnotesize\ttfamily template$<$class V $>$ \\
+constexpr bool std\+::math\+::concepts\+::vector\+\_\+data\+\_\+v = \mbox{\hyperlink{structstd_1_1math_1_1concepts_1_1vector__data}{vector\+\_\+data}}$<$V$>$\+::value\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [constexpr]}}
+
+\mbox{\Hypertarget{namespacestd_1_1math_1_1concepts_a85baea5f7e12f5a5739c459ac7d71e1e}\label{namespacestd_1_1math_1_1concepts_a85baea5f7e12f5a5739c459ac7d71e1e}} 
+\index{std::math::concepts@{std::math::concepts}!vector\_v@{vector\_v}}
+\index{vector\_v@{vector\_v}!std::math::concepts@{std::math::concepts}}
+\doxysubsubsection{\texorpdfstring{vector\_v}{vector\_v}}
+{\footnotesize\ttfamily template$<$class V $>$ \\
+constexpr bool std\+::math\+::concepts\+::vector\+\_\+v = \mbox{\hyperlink{structstd_1_1math_1_1concepts_1_1vector}{vector}}$<$V$>$\+::value\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [constexpr]}}
+
+\mbox{\Hypertarget{namespacestd_1_1math_1_1concepts_a499642446ead7534ab6a17727219b145}\label{namespacestd_1_1math_1_1concepts_a499642446ead7534ab6a17727219b145}} 
+\index{std::math::concepts@{std::math::concepts}!view\_is\_constructible\_to\_tensor@{view\_is\_constructible\_to\_tensor}}
+\index{view\_is\_constructible\_to\_tensor@{view\_is\_constructible\_to\_tensor}!std::math::concepts@{std::math::concepts}}
+\doxysubsubsection{\texorpdfstring{view\_is\_constructible\_to\_tensor}{view\_is\_constructible\_to\_tensor}}
+{\footnotesize\ttfamily template$<$class From , class To $>$ \\
+constexpr bool std\+::math\+::concepts\+::view\+\_\+is\+\_\+constructible\+\_\+to\+\_\+tensor\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [constexpr]}}
+
+{\bfseries Initial value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{=}
+\DoxyCodeLine{detail::is\_mdspan\_v<From>\ \&\&\ tensor\_v<To>\ \&\&}
+\DoxyCodeLine{values\_are\_constructible\_v<From,To>\ \&\&}
+\DoxyCodeLine{extents\_are\_equal\_v<From,To>}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{namespacestd_1_1math_1_1concepts_a59af87894438c58999ff10b1d00aa39f}\label{namespacestd_1_1math_1_1concepts_a59af87894438c58999ff10b1d00aa39f}} 
+\index{std::math::concepts@{std::math::concepts}!view\_is\_nothrow\_constructible\_to\_tensor@{view\_is\_nothrow\_constructible\_to\_tensor}}
+\index{view\_is\_nothrow\_constructible\_to\_tensor@{view\_is\_nothrow\_constructible\_to\_tensor}!std::math::concepts@{std::math::concepts}}
+\doxysubsubsection{\texorpdfstring{view\_is\_nothrow\_constructible\_to\_tensor}{view\_is\_nothrow\_constructible\_to\_tensor}}
+{\footnotesize\ttfamily template$<$class From , class To $>$ \\
+constexpr bool std\+::math\+::concepts\+::view\+\_\+is\+\_\+nothrow\+\_\+constructible\+\_\+to\+\_\+tensor\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [constexpr]}}
+
+{\bfseries Initial value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{=}
+\DoxyCodeLine{detail::is\_mdspan\_v<From>\ \&\&\ tensor\_v<To>\ \&\&}
+\DoxyCodeLine{values\_are\_nothrow\_constructible\_v<From,To>\ \&\&}
+\DoxyCodeLine{extents\_are\_equal\_v<\ From,\ To\ >}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{namespacestd_1_1math_1_1concepts_ace3f73f1713cef14d221a6a38e4c55fb}\label{namespacestd_1_1math_1_1concepts_ace3f73f1713cef14d221a6a38e4c55fb}} 
+\index{std::math::concepts@{std::math::concepts}!view\_may\_be\_constructible\_to\_tensor@{view\_may\_be\_constructible\_to\_tensor}}
+\index{view\_may\_be\_constructible\_to\_tensor@{view\_may\_be\_constructible\_to\_tensor}!std::math::concepts@{std::math::concepts}}
+\doxysubsubsection{\texorpdfstring{view\_may\_be\_constructible\_to\_tensor}{view\_may\_be\_constructible\_to\_tensor}}
+{\footnotesize\ttfamily template$<$class From , class To $>$ \\
+constexpr bool std\+::math\+::concepts\+::view\+\_\+may\+\_\+be\+\_\+constructible\+\_\+to\+\_\+tensor\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [constexpr]}}
+
+{\bfseries Initial value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{=}
+\DoxyCodeLine{detail::is\_mdspan\_v<From>\ \&\&\ tensor\_v<To>\ \&\&}
+\DoxyCodeLine{values\_are\_constructible\_v<From,To>\ \&\&}
+\DoxyCodeLine{extents\_may\_be\_equal\_v<From,To>}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{namespacestd_1_1math_1_1concepts_a0fb41b793ecfb6b34f40ae5e8b41c0be}\label{namespacestd_1_1math_1_1concepts_a0fb41b793ecfb6b34f40ae5e8b41c0be}} 
+\index{std::math::concepts@{std::math::concepts}!view\_may\_be\_convertible\_to\_matrix\_v@{view\_may\_be\_convertible\_to\_matrix\_v}}
+\index{view\_may\_be\_convertible\_to\_matrix\_v@{view\_may\_be\_convertible\_to\_matrix\_v}!std::math::concepts@{std::math::concepts}}
+\doxysubsubsection{\texorpdfstring{view\_may\_be\_convertible\_to\_matrix\_v}{view\_may\_be\_convertible\_to\_matrix\_v}}
+{\footnotesize\ttfamily template$<$class From , class To $>$ \\
+constexpr bool std\+::math\+::concepts\+::view\+\_\+may\+\_\+be\+\_\+convertible\+\_\+to\+\_\+matrix\+\_\+v\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [constexpr]}}
+
+{\bfseries Initial value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{=}
+\DoxyCodeLine{\ \ detail::is\_mdspan\_v<From>\ \&\&\ matrix\_v<To>\ \&\&}
+\DoxyCodeLine{\ \ (\ From::rank()\ ==\ 2\ )\ \&\&}
+\DoxyCodeLine{\ \ matrix\_v<To>\ \&\&}
+\DoxyCodeLine{\ \ (\ ::std::is\_convertible\_v<typename\ From::value\_type,typename\ To::value\_type>\ )\ \&\&}
+\DoxyCodeLine{\ \ (\ (\ From::extents\_type::static\_extent(0)\ ==\ To::extents\_type::static\_extent(0)\ )\ ||}
+\DoxyCodeLine{\ \ \ \ (\ From::extents\_type::static\_extent(0)\ ==\ ::std::experimental::dynamic\_extent\ )\ ||}
+\DoxyCodeLine{\ \ \ \ (\ To::extents\_type::static\_extent(0)\ ==\ ::std::experimental::dynamic\_extent\ )\ )\ \&\&}
+\DoxyCodeLine{\ \ (\ (\ From::extents\_type::static\_extent(1)\ ==\ To::extents\_type::static\_extent(1)\ )\ ||}
+\DoxyCodeLine{\ \ \ \ (\ From::extents\_type::static\_extent(1)\ ==\ ::std::experimental::dynamic\_extent\ )\ ||}
+\DoxyCodeLine{\ \ \ \ (\ To::extents\_type::static\_extent(1)\ ==\ ::std::experimental::dynamic\_extent\ )\ )}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{namespacestd_1_1math_1_1concepts_af6627a508815d621f076cd19f67a7249}\label{namespacestd_1_1math_1_1concepts_af6627a508815d621f076cd19f67a7249}} 
+\index{std::math::concepts@{std::math::concepts}!writable\_matrix\_data\_v@{writable\_matrix\_data\_v}}
+\index{writable\_matrix\_data\_v@{writable\_matrix\_data\_v}!std::math::concepts@{std::math::concepts}}
+\doxysubsubsection{\texorpdfstring{writable\_matrix\_data\_v}{writable\_matrix\_data\_v}}
+{\footnotesize\ttfamily template$<$class M $>$ \\
+constexpr bool std\+::math\+::concepts\+::writable\+\_\+matrix\+\_\+data\+\_\+v = \mbox{\hyperlink{structstd_1_1math_1_1concepts_1_1writable__matrix__data}{writable\+\_\+matrix\+\_\+data}}$<$M$>$\+::value\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [constexpr]}}
+
+\mbox{\Hypertarget{namespacestd_1_1math_1_1concepts_ad150373fc8f84b46aca202dbec814567}\label{namespacestd_1_1math_1_1concepts_ad150373fc8f84b46aca202dbec814567}} 
+\index{std::math::concepts@{std::math::concepts}!writable\_matrix\_v@{writable\_matrix\_v}}
+\index{writable\_matrix\_v@{writable\_matrix\_v}!std::math::concepts@{std::math::concepts}}
+\doxysubsubsection{\texorpdfstring{writable\_matrix\_v}{writable\_matrix\_v}}
+{\footnotesize\ttfamily template$<$class M $>$ \\
+constexpr bool std\+::math\+::concepts\+::writable\+\_\+matrix\+\_\+v = \mbox{\hyperlink{structstd_1_1math_1_1concepts_1_1writable__matrix}{writable\+\_\+matrix}}$<$M$>$\+::value\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [constexpr]}}
+
+\mbox{\Hypertarget{namespacestd_1_1math_1_1concepts_aac4ad12a015d6a0962e282a2b80b7802}\label{namespacestd_1_1math_1_1concepts_aac4ad12a015d6a0962e282a2b80b7802}} 
+\index{std::math::concepts@{std::math::concepts}!writable\_tensor\_data\_v@{writable\_tensor\_data\_v}}
+\index{writable\_tensor\_data\_v@{writable\_tensor\_data\_v}!std::math::concepts@{std::math::concepts}}
+\doxysubsubsection{\texorpdfstring{writable\_tensor\_data\_v}{writable\_tensor\_data\_v}}
+{\footnotesize\ttfamily template$<$class T $>$ \\
+constexpr bool std\+::math\+::concepts\+::writable\+\_\+tensor\+\_\+data\+\_\+v = \mbox{\hyperlink{structstd_1_1math_1_1concepts_1_1writable__tensor__data}{writable\+\_\+tensor\+\_\+data}}$<$T$>$\+::value\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [constexpr]}}
+
+\mbox{\Hypertarget{namespacestd_1_1math_1_1concepts_a6ad69897a7ef3c0335a0f366c472a282}\label{namespacestd_1_1math_1_1concepts_a6ad69897a7ef3c0335a0f366c472a282}} 
+\index{std::math::concepts@{std::math::concepts}!writable\_tensor\_v@{writable\_tensor\_v}}
+\index{writable\_tensor\_v@{writable\_tensor\_v}!std::math::concepts@{std::math::concepts}}
+\doxysubsubsection{\texorpdfstring{writable\_tensor\_v}{writable\_tensor\_v}}
+{\footnotesize\ttfamily template$<$class T $>$ \\
+constexpr bool std\+::math\+::concepts\+::writable\+\_\+tensor\+\_\+v = \mbox{\hyperlink{structstd_1_1math_1_1concepts_1_1writable__tensor}{writable\+\_\+tensor}}$<$T$>$\+::value\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [constexpr]}}
+
+\mbox{\Hypertarget{namespacestd_1_1math_1_1concepts_a54b76b1492167ae467ff8b1987f9a46e}\label{namespacestd_1_1math_1_1concepts_a54b76b1492167ae467ff8b1987f9a46e}} 
+\index{std::math::concepts@{std::math::concepts}!writable\_vector\_data\_v@{writable\_vector\_data\_v}}
+\index{writable\_vector\_data\_v@{writable\_vector\_data\_v}!std::math::concepts@{std::math::concepts}}
+\doxysubsubsection{\texorpdfstring{writable\_vector\_data\_v}{writable\_vector\_data\_v}}
+{\footnotesize\ttfamily template$<$class V $>$ \\
+constexpr bool std\+::math\+::concepts\+::writable\+\_\+vector\+\_\+data\+\_\+v = \mbox{\hyperlink{structstd_1_1math_1_1concepts_1_1writable__vector__data}{writable\+\_\+vector\+\_\+data}}$<$V$>$\+::value\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [constexpr]}}
+
+\mbox{\Hypertarget{namespacestd_1_1math_1_1concepts_a3c38fbc7832dbe6fa071a2425af4a16d}\label{namespacestd_1_1math_1_1concepts_a3c38fbc7832dbe6fa071a2425af4a16d}} 
+\index{std::math::concepts@{std::math::concepts}!writable\_vector\_v@{writable\_vector\_v}}
+\index{writable\_vector\_v@{writable\_vector\_v}!std::math::concepts@{std::math::concepts}}
+\doxysubsubsection{\texorpdfstring{writable\_vector\_v}{writable\_vector\_v}}
+{\footnotesize\ttfamily template$<$class V $>$ \\
+constexpr bool std\+::math\+::concepts\+::writable\+\_\+vector\+\_\+v = \mbox{\hyperlink{structstd_1_1math_1_1concepts_1_1writable__vector}{writable\+\_\+vector}}$<$V$>$\+::value\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [constexpr]}}
+
