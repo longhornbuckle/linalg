@@ -6,7 +6,7 @@ namespace
   TEST( DR_TENSOR, DEFAULT_CONSTRUCTOR_AND_DESTRUCTOR )
   {
     // Default construction
-    std::math::dr_tensor<double,2> dyn_tensor;
+    [[maybe_unused]] std::math::dr_tensor<double,2> dyn_tensor;
     // Destructor will be called when unit test ends and the dr tensor exits scope
   }
 
@@ -1049,7 +1049,7 @@ namespace
   TEST( FS_TENSOR, DEFAULT_CONSTRUCTOR_AND_DESTRUCTOR )
   {
     // Default construction
-    std::math::fs_tensor<double,std::experimental::layout_right,std::experimental::default_accessor<double>,2,2,2> fs_tensor;
+    [[maybe_unused]] std::math::fs_tensor<double,std::experimental::layout_right,std::experimental::default_accessor<double>,2,2,2> fs_tensor;
     // Destructor will be called when unit test ends and the fs tensor exits scope
   }
 

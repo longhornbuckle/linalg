@@ -6,7 +6,7 @@ namespace
   TEST( DR_MATRIX, DEFAULT_CONSTRUCTOR_AND_DESTRUCTOR )
   {
     // Default construction
-    std::math::dr_matrix<double> dyn_matrix;
+    [[maybe_unused]] std::math::dr_matrix<double> dyn_matrix;
     // Destructor will be called when unit test ends and the dr matrix exits scope
   }
 
@@ -896,7 +896,7 @@ namespace
   TEST( FS_MATRIX, DEFAULT_CONSTRUCTOR_AND_DESTRUCTOR )
   {
     // Default construction
-    std::math::fs_matrix<double,2,2> fs_matrix;
+    [[maybe_unused]] std::math::fs_matrix<double,2,2> fs_matrix;
     // Destructor will be called when unit test ends and the fs matrix exits scope
   }
 
@@ -2308,7 +2308,7 @@ namespace
     // Get submatrix
     auto submatrix = fs_matrix.submatrix( std::tuple(1,0), std::tuple(3,2) );
     // Compute product
-    auto vector_prod =  submatrix * vector_prod;
+    auto vector_prod =  submatrix * subvector;
 
     EXPECT_EQ( ( std::math::detail::access( vector_prod, 0 ) ), 6.0 );
     EXPECT_EQ( ( std::math::detail::access( vector_prod, 1 ) ), 8.0 );

@@ -6,7 +6,7 @@ namespace
   TEST( DR_VECTOR, DEFAULT_CONSTRUCTOR_AND_DESTRUCTOR )
   {
     // Default construction
-    std::math::dr_vector<double> dyn_vector;
+    [[maybe_unused]] std::math::dr_vector<double> dyn_vector;
     // Destructor will be called when unit test ends and the dr vector exits scope
   }
 
@@ -780,7 +780,7 @@ namespace
   TEST( FS_VECTOR, DEFAULT_CONSTRUCTOR_AND_DESTRUCTOR )
   {
     // Default construction
-    std::math::fs_vector<double,2> fs_vector;
+    [[maybe_unused]] std::math::fs_vector<double,2> fs_vector;
     // Destructor will be called when unit test ends and the fs vector exits scope
   }
 
@@ -1696,7 +1696,7 @@ namespace
     }
     auto subvector = fs_vector.subvector( 1, 5 );
     // Subtract the subvector with itself
-    static_cast<void>( subvector -= subvector );
+    static_cast<void>( subvector -= fs_vector.subvector( 1, 5 ) );
 
     EXPECT_EQ( ( std::math::detail::access( subvector, 0 ) ), 0 );
     EXPECT_EQ( ( std::math::detail::access( subvector, 1 ) ), 0 );
@@ -1865,7 +1865,7 @@ namespace
     // Get submatrix
     auto submatrix = fs_matrix.submatrix( std::tuple(1,0), std::tuple(3,2) );
     // Compute product
-    auto vector_prod =  submatrix * vector_prod;
+    auto vector_prod =  submatrix * subvector;
 
     EXPECT_EQ( ( std::math::detail::access( vector_prod, 0 ) ), 6.0 );
     EXPECT_EQ( ( std::math::detail::access( vector_prod, 1 ) ), 8.0 );
