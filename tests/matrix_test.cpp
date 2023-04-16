@@ -1901,7 +1901,7 @@ namespace
       }
     }
     auto submatrix  = fs_matrix.submatrix( std::tuple(2,5), std::tuple(0,3) );
-    auto submatrix2 = submatrix.subvector( std::tuple(1,3), std::tuple(1,2) );
+    auto submatrix2 = submatrix.submatrix( std::tuple(1,3), std::tuple(1,2) );
     for ( auto i : { 0, 1 } )
     {
       for ( auto j : { 0 } )

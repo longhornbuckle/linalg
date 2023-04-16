@@ -253,8 +253,8 @@ subvector( SliceArgs ... args )
   requires ( decltype( ::std::experimental::submdspan( this->underlying_span(), args ... ) )::rank() == 1 )
 #endif
 {
-  using subspan_type = decltype( experimental::submdspan( this->underlying_span(), args ... ) );
-  return vector_view<subspan_type>( experimental::submdspan( this->underlying_span(), args ... ) );
+  using subspan_type = decltype( ::std::experimental::submdspan( this->underlying_span(), args ... ) );
+  return vector_view<subspan_type>( ::std::experimental::submdspan( this->underlying_span(), args ... ) );
 }
 
 #ifdef LINALG_ENABLE_CONCEPTS
