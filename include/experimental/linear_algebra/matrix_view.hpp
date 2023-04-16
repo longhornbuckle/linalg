@@ -61,10 +61,6 @@ class matrix_view : public tensor_view<MDS>
     using span_type                  = typename base_type::span_type;
     /// @brief Type returned by mutable index access
     using reference                  = typename base_type::reference;
-    /// @brief mutable view of a submatrix
-    using submatrix_type             = matrix_view<decltype( detail::submdspan( ::std::declval<underlying_span_type>(), ::std::declval<tuple_type>(), ::std::declval<tuple_type>() ) ) >;
-    /// @brief const view of a submatrix
-    using const_submatrix_type       = matrix_view<decltype( detail::submdspan( ::std::declval<const_underlying_span_type>(), ::std::declval<tuple_type>(), ::std::declval<tuple_type>() ) ) >;
     /// @brief mutable view of a column vector
     using column_type                = vector_view<decltype( ::std::experimental::submdspan( ::std::declval<underlying_span_type>(), ::std::declval<::std::experimental::full_extent_t>(), ::std::declval<index_type>() ) )>;
     /// @brief const view of a column vector
@@ -128,7 +124,8 @@ class matrix_view : public tensor_view<MDS>
     #if LINALG_USE_PAREN_OPERATOR
     using base_type::operator(); // Brings into scope const and mutable
     #endif
-    using base_type::at;         // Brings into scope const and mutable
+    using base_type::subvector;  // Brings into scope const and mutable
+    using base_type::submatrix;  // Brings into scope const and mutable
     
     /// @brief Returns a const view of the specified column
     /// @param j column
@@ -138,12 +135,6 @@ class matrix_view : public tensor_view<MDS>
     /// @param i row
     /// @returns const view of row
     [[nodiscard]] constexpr const_row_type row( index_type i ) const;
-    /// @brief Returns a const view of the specified submatrix
-    /// @param start (row,column) start of submatrix
-    /// @param end (row,column) end of submatrix
-    /// @returns const view of the specified submatrix
-    [[nodiscard]] constexpr const_submatrix_type submatrix( tuple_type start,
-                                                            tuple_type end ) const;
 
     //- Mutable views
     
@@ -166,20 +157,6 @@ class matrix_view : public tensor_view<MDS>
     template < typename Elem = element_type, typename = ::std::enable_if_t< !::std::is_const_v<Elem> > >
     #endif
     [[nodiscard]] constexpr row_type row( index_type i )
-    #ifdef LINALG_ENABLE_CONCEPTS
-      requires ( !::std::is_const_v<element_type> );
-    #else
-      ;
-    #endif
-    /// @brief Returns a mutable view of the specified submatrix
-    /// @param start (row,column) start of submatrix
-    /// @param end (row,column) end of submatrix
-    /// @returns mutable view of the specified submatrix
-    #ifndef LINALG_ENABLE_CONCEPTS
-    template < typename Elem, typename = ::std::enable_if_t< !::std::is_const_v<Elem> > >
-    #endif
-    [[nodiscard]] constexpr submatrix_type submatrix( tuple_type start,
-                                                      tuple_type end )
     #ifdef LINALG_ENABLE_CONCEPTS
       requires ( !::std::is_const_v<element_type> );
     #else
@@ -304,19 +281,6 @@ row( index_type i ) const
   return const_row_type { ::std::experimental::submdspan( this->underlying_span(), i, ::std::experimental::full_extent ) };
 }
 
-#ifdef LINALG_ENABLE_CONCEPTS
-template < class MDS > requires ( detail::is_mdspan_v<MDS> && ( MDS::extents_type::rank() == 2 ) && MDS::is_always_unique() )
-[[nodiscard]] constexpr typename matrix_view<MDS>::const_submatrix_type matrix_view<MDS>::
-#else
-template < class MDS, typename Dummy >
-[[nodiscard]] constexpr typename matrix_view<MDS,Dummy>::const_submatrix_type matrix_view<MDS,Dummy>::
-#endif
-submatrix( tuple_type start,
-           tuple_type end ) const
-{
-  return const_submatrix_type { detail::submdspan( this->underlying_span(), start, end ) };
-}
-
 //- Mutable views
 
 #ifdef LINALG_ENABLE_CONCEPTS
@@ -349,23 +313,6 @@ row( index_type i )
 #endif
 {
   return row_type { ::std::experimental::submdspan( this->underlying_span(), i, ::std::experimental::full_extent ) };
-}
-
-#ifdef LINALG_ENABLE_CONCEPTS
-template < class MDS > requires ( detail::is_mdspan_v<MDS> && ( MDS::extents_type::rank() == 2 ) && MDS::is_always_unique() )
-[[nodiscard]] constexpr typename matrix_view<MDS>::submatrix_type matrix_view<MDS>::
-#else
-template < class MDS, typename Dummy >
-template < typename Elem, typename >
-[[nodiscard]] constexpr typename matrix_view<MDS,Dummy>::submatrix_type matrix_view<MDS,Dummy>::
-#endif
-submatrix( tuple_type start,
-           tuple_type end )
-#ifdef LINALG_ENABLE_CONCEPTS
-  requires ( !::std::is_const_v<typename matrix_view<MDS>::element_type> )
-#endif
-{
-  return submatrix_type { detail::submdspan( this->underlying_span(), start, end ) };
 }
 
 }       //- math namespace

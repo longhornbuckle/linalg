@@ -200,10 +200,6 @@ class fs_tensor
     #if LINALG_USE_PAREN_OPERATOR
     [[nodiscard]] constexpr value_type operator()( decltype(Ds) ... indices ) const noexcept;
     #endif
-    /// @brief Returns the value at (indices...) with index bounds checking
-    /// @param indices set indices representing a node in the tensor
-    /// @returns value at row i, column j, depth k, etc.
-    [[nodiscard]] constexpr value_type at( decltype(Ds) ... indices ) const;
     /// @brief Returns a const vector view
     /// @tparam ...SliceArgs argument types used to get a const vector view
     /// @param ...args aguments to get a const vector view
@@ -244,10 +240,6 @@ class fs_tensor
     #if LINALG_USE_PAREN_OPERATOR
     [[nodiscard]] constexpr reference operator()( decltype(Ds) ... indices ) noexcept;
     #endif
-    /// @brief Returns a mutable value at (indices...) with index bounds checking
-    /// @param indices set indices representing a node in the tensor
-    /// @returns mutable value at row i, column j, depth k, etc.
-    [[nodiscard]] constexpr reference at( decltype(Ds) ... indices );
     /// @brief Returns a vector view
     /// @tparam ...SliceArgs argument types used to get a vector view
     /// @param ...args aguments to get a vector view
@@ -465,16 +457,6 @@ template < class T, class L, class A, ::std::size_t ... Ds >
 #ifdef LINALG_ENABLE_CONCEPTS
   requires ( ( Ds >= 0 ) && ... )
 #endif
-[[nodiscard]] constexpr typename fs_tensor<T,L,A,Ds...>::value_type
-fs_tensor<T,L,A,Ds...>::at( decltype(Ds) ... indices ) const
-{
-  return detail::access( this->underlying_span(), indices ... );
-}
-
-template < class T, class L, class A, ::std::size_t ... Ds >
-#ifdef LINALG_ENABLE_CONCEPTS
-  requires ( ( Ds >= 0 ) && ... )
-#endif
 template < class ... SliceArgs >
 [[nodiscard]] constexpr auto fs_tensor<T,L,A,Ds...>::subvector( SliceArgs ... args ) const
 #ifdef LINALG_ENABLE_CONCEPTS
@@ -535,16 +517,6 @@ fs_tensor<T,L,A,Ds...>::operator()( decltype(Ds) ... indices ) noexcept
   return this->underlying_span()( indices ... );
 }
 #endif
-
-template < class T, class L, class A, ::std::size_t ... Ds >
-#ifdef LINALG_ENABLE_CONCEPTS
-  requires ( ( Ds >= 0 ) && ... )
-#endif
-[[nodiscard]] constexpr typename fs_tensor<T,L,A,Ds...>::reference
-fs_tensor<T,L,A,Ds...>::at( decltype(Ds) ... indices )
-{
-  return detail::access( this->underlying_span(), indices ... );
-}
 
 template < class T, class L, class A, ::std::size_t ... Ds >
 #ifdef LINALG_ENABLE_CONCEPTS

@@ -74,10 +74,6 @@ class fs_matrix : public fs_tensor<T,L,A,R,C>
     using row_type                   = vector_view<decltype( ::std::experimental::submdspan( ::std::declval<underlying_span_type>(), ::std::declval<index_type>(), ::std::declval<::std::experimental::full_extent_t>() ) )>;
     /// @brief const view of a row vector
     using const_row_type             = vector_view<decltype( ::std::experimental::submdspan( ::std::declval<const_underlying_span_type>(), ::std::declval<index_type>(), ::std::declval<::std::experimental::full_extent_t>() ) )>;
-    /// @brief mutable view of a submatrix
-    using submatrix_type             = matrix_view<decltype( detail::submdspan( ::std::declval<underlying_span_type>(), ::std::declval<tuple_type>(), ::std::declval<tuple_type>() ) )>;
-    /// @brief const view of a submatrix
-    using const_submatrix_type       = matrix_view<decltype( detail::submdspan( ::std::declval<const_underlying_span_type>(), ::std::declval<tuple_type>(), ::std::declval<tuple_type>() ) )>;
     
     //- Rebind
 
@@ -206,7 +202,8 @@ class fs_matrix : public fs_tensor<T,L,A,R,C>
     #if LINALG_USE_PAREN_OPERATOR
     using base_type::operator(); // Brings into scope const and mutable
     #endif
-    using base_type::at;         // Brings into scope const and mutable
+    using base_type::subvector;  // Brings into scope const and mutable
+    using base_type::submatrix;  // Brings into scope const and mutable
 
     /// @brief Returns a const view of the specified column
     /// @param j column
@@ -216,13 +213,7 @@ class fs_matrix : public fs_tensor<T,L,A,R,C>
     /// @param i row
     /// @returns const view of row
     [[nodiscard]] constexpr const_row_type row( index_type i ) const;
-    /// @brief Returns a const view of the specified submatrix
-    /// @param start (row,column) start of submatrix
-    /// @param end (row,column) end of submatrix
-    /// @returns const view of the specified submatrix
-    [[nodiscard]] constexpr const_submatrix_type submatrix( tuple_type start,
-                                                            tuple_type end ) const;
-
+    
     //- Mutable views
 
     /// @brief Returns a mutable view of the specified column
@@ -233,13 +224,7 @@ class fs_matrix : public fs_tensor<T,L,A,R,C>
     /// @param i row
     /// @returns mutable view of row
     [[nodiscard]] constexpr row_type row( index_type i );
-    /// @brief Returns a mutable view of the specified submatrix
-    /// @param start (row,column) start of submatrix
-    /// @param end (row,column) end of submatrix
-    /// @returns mutable view of the specified submatrix
-    [[nodiscard]] constexpr submatrix_type submatrix( tuple_type start,
-                                                      tuple_type end );
-
+    
     //- Data access
 
     using base_type::span;
@@ -420,19 +405,6 @@ row( index_type i ) const
   return const_row_type { ::std::experimental::submdspan( this->underlying_span(), i, ::std::experimental::full_extent ) };
 }
 
-#ifdef LINALG_ENABLE_CONCEPTS
-template < class T, ::std::size_t R, ::std::size_t C, class L, class A > requires ( ( R >= 0 ) && ( C >= 0 ) )
-[[nodiscard]] constexpr typename fs_matrix<T,R,C,L,A>::const_submatrix_type fs_matrix<T,R,C,L,A>::
-#else
-template < class T, ::std::size_t R, ::std::size_t C, class L, class A, typename Dummy >
-[[nodiscard]] constexpr typename fs_matrix<T,R,C,L,A,Dummy>::const_submatrix_type fs_matrix<T,R,C,L,A,Dummy>::
-#endif
-submatrix( tuple_type start,
-           tuple_type end ) const
-{
-  return const_submatrix_type { detail::submdspan( this->underlying_span(), start, end ) };
-}
-
 //- Mutable views
 
 #ifdef LINALG_ENABLE_CONCEPTS
@@ -457,19 +429,6 @@ template < class T, ::std::size_t R, ::std::size_t C, class L, class A, typename
 row( index_type i )
 {
   return row_type { ::std::experimental::submdspan( this->underlying_span(), i, ::std::experimental::full_extent ) };
-}
-
-#ifdef LINALG_ENABLE_CONCEPTS
-template < class T, ::std::size_t R, ::std::size_t C, class L, class A > requires ( ( R >= 0 ) && ( C >= 0 ) )
-[[nodiscard]] constexpr typename fs_matrix<T,R,C,L,A>::submatrix_type fs_matrix<T,R,C,L,A>::
-#else
-template < class T, ::std::size_t R, ::std::size_t C, class L, class A, typename Dummy >
-[[nodiscard]] constexpr typename fs_matrix<T,R,C,L,A,Dummy>::submatrix_type fs_matrix<T,R,C,L,A,Dummy>::
-#endif
-submatrix( tuple_type start,
-           tuple_type end )
-{
-  return submatrix_type { detail::submdspan( this->underlying_span(), start, end ) };
 }
 
 }       //- math namespace

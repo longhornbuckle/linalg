@@ -124,7 +124,7 @@ Critical Questions
 - Which feels more natural?
   - submatrix( { start row, start column }, { end row, end column } )
   - submatrix( { start row, end row }, { start column, end column } )
-  - I implemented the former; however, I may be biased from previous experience. The latter is similar to the interface used by subtensor( SliceArgs ... ) which essentially forwards to submdspan( ... ).
+  - The latter is similar to the interface used by subtensor( SliceArgs ... ) which essentially forwards to submdspan( ... ).
 
 - Is a partially fixed size partially dynamic tensor useful? I felt like it would be complicated to implement and potentially confusing to use. There is some benefit if they are used in such a way that the final product size is now known at compile time; however, much of that benefit is negated by implementing expression types.
 

@@ -82,12 +82,10 @@ requires( const M& m, typename M::index_type index )                            
 } &&
 readable_vector_data<typename M::const_column_type> &&
 requires( const M&               m,
-          typename M::tuple_type start,
-          typename M::tuple_type end )                                               // G)
+          typename M::tuple_type rows,
+          typename M::tuple_type cols )                                              // G)
 {
-  typename M::const_submatrix_type;
-  { m.submatrix(start,end) }          -> ::std::same_as<typename M::const_submatrix_type>;
-  { m.submatrix(start,end) }          -> matrix;
+  { m.submatrix(rows,cols) }          -> matrix;
 };
 
 // Readable matrix must be a readable matrix data
@@ -128,12 +126,10 @@ requires( M& m, typename M::index_type index )                                 /
 } &&
 writable_vector_data<typename M::column_type> &&
 requires( M& m,
-          tuple<typename M::index_type,typename M::index_type> start,
-          tuple<typename M::index_type,typename M::index_type> end )           // F)
+          tuple<typename M::index_type,typename M::index_type> rows,
+          tuple<typename M::index_type,typename M::index_type> cols )          // F)
 {
-  typename M::submatrix_type;
-  { m.submatrix(start,end) }          -> ::std::same_as<typename M::submatrix_type>;
-  { m.submatrix(start,end) }          -> matrix;
+  { m.submatrix(rows,cols) }          -> matrix;
 };
 
 // Writable matrix must be a writable matrix data
@@ -222,11 +218,6 @@ template < class T, class = void > struct has_const_column_type : public ::std::
 template < class T > struct has_const_column_type< T, ::std::enable_if_t< ::std::is_same_v< typename T::const_column_type, typename T::const_column_type > > > : public ::std::true_type { };
 template < class T > inline constexpr bool has_const_column_type_v = has_const_column_type<T>::value;
 
-// Test if T has alias const_submatrix_type
-template < class T, class = void > struct has_const_submatrix_type : public ::std::false_type { };
-template < class T > struct has_const_submatrix_type< T, ::std::enable_if_t< ::std::is_same_v< typename T::const_submatrix_type, typename T::const_submatrix_type > > > : public ::std::true_type { };
-template < class T > inline constexpr bool has_const_submatrix_type_v = has_const_submatrix_type<T>::value;
-
 // Test if T has alias row_type
 template < class T, class = void > struct has_row_type : public ::std::false_type { };
 template < class T > struct has_row_type< T, ::std::enable_if_t< ::std::is_same_v< typename T::row_type, typename T::row_type > > > : public ::std::true_type { };
@@ -236,11 +227,6 @@ template < class T > inline constexpr bool has_row_type_v = has_row_type<T>::val
 template < class T, class = void > struct has_column_type : public ::std::false_type { };
 template < class T > struct has_column_type< T, ::std::enable_if_t< ::std::is_same_v< typename T::column_type, typename T::column_type > > > : public ::std::true_type { };
 template < class T > inline constexpr bool has_column_type_v = has_column_type<T>::value;
-
-// Test if T has alias submatrix_type
-template < class T, class = void > struct has_submatrix_type : public ::std::false_type { };
-template < class T > struct has_submatrix_type< T, ::std::enable_if_t< ::std::is_same_v< typename T::submatrix_type, typename T::submatrix_type > > > : public ::std::true_type { };
-template < class T > inline constexpr bool has_submatrix_type_v = has_submatrix_type<T>::value;
 
 //- Test for functions
 
@@ -371,7 +357,6 @@ template < class M > struct readable_matrix_data : public ::std::conditional_t<
   has_readable_column_vector_type_v<M> &&
   has_const_column_type_v<M> &&
   has_const_column_func_v<M> &&
-  has_const_submatrix_type_v<M> &&
   has_const_submatrix_func_v<M>, ::std::true_type, ::std::false_type > { };
 template < class M > inline constexpr bool readable_matrix_data_v = readable_matrix_data<M>::value;
 
@@ -392,7 +377,6 @@ template < class M > struct writable_matrix_data : public ::std::conditional_t<
   has_writable_column_vector_type_v<M> &&
   has_column_type_v<M> &&
   has_column_func_v<M> &&
-  has_submatrix_type_v<M> &&
   has_submatrix_func_v<M>, ::std::true_type, ::std::false_type > { };
 template < class M > inline constexpr bool writable_matrix_data_v = writable_matrix_data<M>::value;
 

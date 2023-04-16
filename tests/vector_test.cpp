@@ -1867,7 +1867,7 @@ namespace
       }
     }
     // Get submatrix
-    auto submatrix = fs_matrix.submatrix( std::tuple(1,0), std::tuple(3,2) );
+    auto submatrix = fs_matrix.submatrix( std::tuple(1,3), std::tuple(0,2) );
     // Compute product
     auto vector_prod = subvector * submatrix;
 
@@ -1898,7 +1898,7 @@ namespace
       }
     }
     // Get submatrix
-    auto submatrix = fs_matrix.submatrix( std::tuple(1,0), std::tuple(3,2) );
+    auto submatrix = fs_matrix.submatrix( std::tuple(1,3), std::tuple(0,2) );
     // Compute product
     auto vector_prod =  submatrix * subvector;
 

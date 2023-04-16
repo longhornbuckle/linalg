@@ -69,10 +69,6 @@ class dr_matrix : public dr_tensor<T,2,Alloc,L,Access>
     using row_type                   = vector_view<decltype( ::std::experimental::submdspan( ::std::declval<underlying_span_type>(), ::std::declval<index_type>(), ::std::declval<::std::experimental::full_extent_t>() ) )>;
     /// @brief const view of a row vector
     using const_row_type             = vector_view<decltype( ::std::experimental::submdspan( ::std::declval<const_underlying_span_type>(), ::std::declval<index_type>(), ::std::declval<::std::experimental::full_extent_t>() ) )>;
-    /// @brief mutable view of a submatrix
-    using submatrix_type             = matrix_view<decltype( detail::submdspan( ::std::declval<underlying_span_type>(), ::std::declval<tuple_type>(), ::std::declval<tuple_type>() ) )>;
-    /// @brief const view of a submatrix
-    using const_submatrix_type       = matrix_view<decltype( detail::submdspan( ::std::declval<const_underlying_span_type>(), ::std::declval<tuple_type>(), ::std::declval<tuple_type>() ) )>;
     
     //- Rebind
 
@@ -311,7 +307,8 @@ class dr_matrix : public dr_tensor<T,2,Alloc,L,Access>
     #if LINALG_USE_PAREN_OPERATOR
     using base_type::operator(); // Brings into scope const and mutable
     #endif
-    using base_type::at;         // Brings into scope const and mutable
+    using base_type::subvector;  // Brings into scope const and mutable
+    using base_type::submatrix;  // Brings into scope const and mutable
 
     /// @brief Returns a const view of the specified column
     /// @param j column
@@ -321,12 +318,6 @@ class dr_matrix : public dr_tensor<T,2,Alloc,L,Access>
     /// @param i row
     /// @returns const view of row
     [[nodiscard]] constexpr const_row_type row( index_type i ) const;
-    /// @brief Returns a const view of the specified submatrix
-    /// @param start (row,column) start of submatrix
-    /// @param end (row,column) end of submatrix
-    /// @returns const view of the specified submatrix
-    [[nodiscard]] constexpr const_submatrix_type submatrix( tuple_type start,
-                                                            tuple_type end ) const;
 
     //- Mutable views
 
@@ -338,12 +329,6 @@ class dr_matrix : public dr_tensor<T,2,Alloc,L,Access>
     /// @param i row
     /// @returns mutable view of row
     [[nodiscard]] constexpr row_type row( index_type i );
-    /// @brief Returns a mutable view of the specified submatrix
-    /// @param start (row,column) start of submatrix
-    /// @param end (row,column) end of submatrix
-    /// @returns mutable view of the specified submatrix
-    [[nodiscard]] constexpr submatrix_type submatrix( tuple_type start,
-                                                      tuple_type end );
 
     //- Data access
 
@@ -600,14 +585,6 @@ dr_matrix<T,Alloc,L,Access>::row( index_type i ) const
   return const_row_type { ::std::experimental::submdspan( this->underlying_span(), i, ::std::experimental::full_extent ) };
 }
 
-template < class T, class Alloc, class L, class Access >
-[[nodiscard]] constexpr typename dr_matrix<T,Alloc,L,Access>::const_submatrix_type
-dr_matrix<T,Alloc,L,Access>::submatrix( tuple_type start,
-                                        tuple_type end ) const
-{
-  return const_submatrix_type { detail::submdspan( this->underlying_span(), start, end ) };
-}
-
 //- Mutable views
 
 template < class T, class Alloc, class L, class Access >
@@ -622,14 +599,6 @@ template < class T, class Alloc, class L, class Access >
 dr_matrix<T,Alloc,L,Access>::row( index_type i )
 {
   return row_type { ::std::experimental::submdspan( this->underlying_span(), i, ::std::experimental::full_extent ) };
-}
-
-template < class T, class Alloc, class L, class Access >
-[[nodiscard]] constexpr typename dr_matrix<T,Alloc,L,Access>::submatrix_type
-dr_matrix<T,Alloc,L,Access>::submatrix( tuple_type start,
-                                        tuple_type end )
-{
-  return submatrix_type { detail::submdspan( this->underlying_span(), start, end ) };
 }
 
 }       //- math namespace

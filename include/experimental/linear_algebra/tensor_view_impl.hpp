@@ -113,23 +113,6 @@ operator()( IndexType ... indices ) const noexcept
 
 #ifdef LINALG_ENABLE_CONCEPTS
 template < class MDS > requires ( detail::is_mdspan_v<MDS> && MDS::is_always_unique() )
-template < class ... IndexType >
-[[nodiscard]] constexpr typename tensor_view<MDS>::value_type tensor_view<MDS>::
-#else
-template < class MDS, typename Dummy >
-template < class ... IndexType >
-[[nodiscard]] constexpr typename tensor_view<MDS,Dummy>::value_type tensor_view<MDS,Dummy>::
-#endif
-at( IndexType ... indices ) const
-#ifdef LINALG_ENABLE_CONCEPTS
-  requires ( sizeof...(IndexType) == tensor_view<MDS>::extents_type::rank() ) && ( ::std::is_convertible_v<IndexType,typename tensor_view<MDS>::index_type> && ... )
-#endif
-{
-  return detail::access( this->underlying_span(), indices ... );
-}
-
-#ifdef LINALG_ENABLE_CONCEPTS
-template < class MDS > requires ( detail::is_mdspan_v<MDS> && MDS::is_always_unique() )
 template < class ... SliceArgs >
 [[nodiscard]] constexpr auto tensor_view<MDS>::
 #else
@@ -220,24 +203,6 @@ operator()( IndexType ... indices ) noexcept
   return ::std::forward<reference>( this->underlying_span()( indices ... ) );
 }
 #endif
-
-#ifdef LINALG_ENABLE_CONCEPTS
-template < class MDS > requires ( detail::is_mdspan_v<MDS> && MDS::is_always_unique() )
-template < class ... IndexType >
-[[nodiscard]] constexpr typename tensor_view<MDS>::reference tensor_view<MDS>::
-#else
-template < class MDS, typename Dummy >
-template < class ... IndexType >
-[[nodiscard]] constexpr typename tensor_view<MDS,Dummy>::reference tensor_view<MDS,Dummy>::
-#endif
-at( IndexType ... indices )
-#ifdef LINALG_ENABLE_CONCEPTS
-  requires ( sizeof...(IndexType) == tensor_view<MDS>::extents_type::rank() ) && ( ::std::is_convertible_v<IndexType,typename tensor_view<MDS>::index_type> && ... ) &&
-           ( !::std::is_const_v<typename tensor_view<MDS>::element_type> )
-#endif
-{
-  return ::std::forward<reference>( detail::access( this->underlying_span(), indices ... ) );
-}
 
 #ifdef LINALG_ENABLE_CONCEPTS
 template < class MDS > requires ( detail::is_mdspan_v<MDS> && MDS::is_always_unique() )

@@ -389,16 +389,6 @@ class dr_tensor
       ;
     #endif
     #endif
-    /// @brief Returns the value at (indices...) with index bounds checking
-    /// @param indices set indices representing a node in the tensor
-    /// @returns value at row i, column j, depth k, etc.
-    template < class ... IndexType >
-    [[nodiscard]] constexpr value_type at( IndexType ... indices ) const
-    #ifdef LINALG_ENABLE_CONCEPTS
-      requires ( sizeof...(IndexType) == R ) && ( ::std::is_convertible_v<IndexType,index_type> && ... );
-    #else
-      ;
-    #endif
     /// @brief Returns a const vector view
     /// @tparam ...SliceArgs argument types used to get a const vector view
     /// @param ...args aguments to get a const vector view
@@ -450,16 +440,6 @@ class dr_tensor
     #else
       ;
     #endif
-    #endif
-    /// @brief Returns a mutable value at (indices...) with index bounds checking
-    /// @param indices set indices representing a node in the tensor
-    /// @returns mutable value at row i, column j, depth k, etc.
-    template < class ... IndexType >
-    [[nodiscard]] constexpr reference at( IndexType ... indices )
-    #ifdef LINALG_ENABLE_CONCEPTS
-      requires ( sizeof...(IndexType) == R ) && ( ::std::is_convertible_v<IndexType,index_type> && ... );
-    #else
-      ;
     #endif
     /// @brief Returns a vector view
     /// @tparam ...SliceArgs argument types used to get a vector view
