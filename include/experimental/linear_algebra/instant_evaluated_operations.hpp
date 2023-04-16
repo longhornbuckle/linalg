@@ -793,7 +793,7 @@ class transpose_matrix
     { using type = dr_matrix< typename U::value_type,
                               ::std::allocator< typename U::value_type >,
                               default_layout,
-                              typename detail::rebind_accessor_t<typename MDS::accessor_type,typename U::value_type> >; };
+                              typename detail::rebind_accessor_t<typename U::accessor_type,typename U::value_type> >; };
     #ifdef LINALG_ENABLE_CONCEPTS
     template < concepts::fixed_size_tensor_data U >
     struct Result_matrix
@@ -805,7 +805,7 @@ class transpose_matrix
                               U().rows(),
                               U().columns(),
                               default_layout,
-                              typename detail::rebind_accessor_t<typename MDS::accessor_type,typename U::value_type> >; };
+                              typename detail::rebind_accessor_t<typename U::accessor_type,typename U::value_type> >; };
     #ifdef LINALG_ENABLE_CONCEPTS
     template < concepts::dynamic_tensor_data U >
     struct Result_matrix
@@ -944,7 +944,7 @@ class conjugate_matrix
     { using type = dr_matrix< result_element_type,
                               ::std::allocator< result_element_type >,
                               default_layout,
-                              typename detail::rebind_accessor_t<typename MDS::accessor_type,result_element_type> >; };
+                              typename detail::rebind_accessor_t<typename U::accessor_type,result_element_type> >; };
     #ifdef LINALG_ENABLE_CONCEPTS
     template < concepts::fixed_size_tensor_data U >
     struct Result_matrix
@@ -956,7 +956,7 @@ class conjugate_matrix
                               U().rows(),
                               U().columns(),
                               default_layout,
-                              typename detail::rebind_accessor_t<typename MDS::accessor_type,result_element_type> >; };
+                              typename detail::rebind_accessor_t<typename U::accessor_type,result_element_type> >; };
     #ifdef LINALG_ENABLE_CONCEPTS
     template < concepts::dynamic_tensor_data U >
     struct Result_matrix
@@ -967,7 +967,7 @@ class conjugate_matrix
     { using type = dr_matrix< result_element_type,
                               ::std::allocator< result_element_type >,
                               typename U::layout_type,
-                              typename detail::rebind_accessor_t<typename MDS::accessor_type,result_element_type> >; };
+                              typename detail::rebind_accessor_t<typename U::accessor_type,result_element_type> >; };
     using result_matrix_type = typename Result_matrix< matrix_type >::type;
     // Gets necessary arguments for construction
     // If matrix type is fixed size, then the lambda expression is the only argument needed
@@ -1071,7 +1071,7 @@ class conjugate_vector
     { using type = dr_vector< result_element_type,
                               ::std::allocator< result_element_type >,
                               default_layout,
-                              typename detail::rebind_accessor_t<typename MDS::accessor_type,result_element_type> >; };
+                              typename detail::rebind_accessor_t<typename U::accessor_type,result_element_type> >; };
     #ifdef LINALG_ENABLE_CONCEPTS
     template < concepts::fixed_size_tensor_data U >
     struct Result_vector
