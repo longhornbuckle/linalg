@@ -804,7 +804,7 @@ class transpose_matrix
     { using type = fs_matrix< typename U::value_type,
                               U().columns(),
                               U().rows(),
-                              typename U::layout_type,
+                              detail::rebind_layout_t< U::layout_type, ::std::experimental::extents< typename U::index_type, U().columns(), U().rows() > >,
                               typename detail::rebind_accessor_t<typename U::accessor_type,typename U::value_type> >; };
     #ifdef LINALG_ENABLE_CONCEPTS
     template < concepts::dynamic_matrix_data U >
@@ -980,7 +980,7 @@ class conjugate_matrix
     { using type = fs_matrix< result_element_type,
                               U().columns(),
                               U().rows(),
-                              typename U::layout_type,
+                              detail::rebind_layout_t< U::layout_type, ::std::experimental::extents< typename U::index_type, U().columns(), U().rows() > >,
                               typename detail::rebind_accessor_t<typename U::accessor_type,result_element_type> >; };
     #ifdef LINALG_ENABLE_CONCEPTS
     template < concepts::dynamic_matrix_data U >
@@ -1280,6 +1280,37 @@ class vector_matrix_product
     {
       return ::std::allocator<result_value_type>();
     }
+    // Defines the result layout type
+    #ifdef LINALG_ENABLE_CONCEPTS
+    template < class Vec, class Mat >
+     requires ( !( concepts::fixed_size_matrix_data<Mat> || concepts::fixed_size_vector_data<Vec> || concepts::dynamic_matrix_data<Mat> || concepts::dynamic_vector_data<Vec> ) )
+    #else
+    template < class Vec, class Mat, size_t Dim typename = void >
+    #endif
+    struct Result_layout
+    {
+      using type = default_layout;
+    };
+    #ifdef LINALG_ENABLE_CONCEPTS
+    template < class Vec, class Mat > requires ( concepts::fixed_size_vector_data<Vec> || concepts::dynamic_vector_data<Vec> )
+    struct Result_layout
+    #else
+    template < class Vec, class Mat, size_t Dim >
+    struct Result_layout< Vec, Mat, ::std::enable_if_t< concepts::fixed_size_vector_data_v<Vec> || concepts::dynamic_vector_data_v<Vec> > >
+    #endif
+    { using type = detail::rebind_layout_t<typename vector_type::layout_type,
+                                           ::std::experimental::extents<typename matrix_type::size_type,
+                                                                        matrix_type::extents_type::static_extent(Dim)> >; };
+    #ifdef LINALG_ENABLE_CONCEPTS
+    template < class Vec, class Mat > requires ( ( concepts::fixed_size_matrix_data<Mat> || concepts::dynamic_matrix_data<Mat> ) && !( concepts::fixed_size_vector_data<Vec> || concepts::dynamic_vector_data<Vec> ) )
+    struct Result_layout
+    #else
+    template < class Vec, class Mat, size_t Dim >
+    struct Result_layout< Vec, Mat, ::std::enable_if_t< ( concepts::fixed_size_matrix_data_v<Mat> || concepts::dynamic_matrix_data_v<Mat> ) && !( concepts::fixed_size_vector_data_v<Vec> || concepts::dynamic_vector_data_v<Vec> ) > >
+    #endif
+    { using type = detail::rebind_layout_t<typename matrix_type::layout_type,
+                                           ::std::experimental::extents<typename matrix_type::size_type,
+                                                                        matrix_type::extents_type::static_extent(Dim)> >; };
     // Aliases
     using result_value_type       = ::std::decay_t< decltype( declval<typename vector_type::value_type>() * declval<typename matrix_type::value_type>() ) >;
     using pre_result_vector_type  = ::std::conditional_t< 
@@ -1290,15 +1321,11 @@ class vector_matrix_product
                                                           #endif
                                                           fs_vector< result_value_type,
                                                                      matrix_type::extents_type::static_extent(1),
-                                                                     detail::rebind_layout_t<typename vector_type::layout_type,
-                                                                                             ::std::experimental::extents<typename vector_type::size_type,
-                                                                                                                          matrix_type::extents_type::static_extent(1)> >,
+                                                                     typename Result_layout<vector_type,matrix_type,1>::type,
                                                                      detail::rebind_accessor_t<typename vector_type::accessor_type,result_value_type> >,
                                                           dr_vector< result_value_type,
                                                                      typename ::std::allocator_traits< ::std::decay_t< decltype( get_allocator( declval<matrix_type>() ) ) > >::template rebind_alloc<result_value_type>,
-                                                                     detail::rebind_layout_t<typename vector_type::layout_type,
-                                                                                             ::std::experimental::extents<typename matrix_type::size_type,
-                                                                                                                          matrix_type::extents_type::static_extent(1)> >,
+                                                                     typename Result_layout<vector_type,matrix_type,1>::type,
                                                                      detail::rebind_accessor_t<typename vector_type::accessor_type,result_value_type> > >;
     using post_result_vector_type = ::std::conditional_t< 
                                                           #ifdef LINALG_ENABLE_CONCEPTS
@@ -1308,16 +1335,12 @@ class vector_matrix_product
                                                           #endif
                                                           fs_vector< result_value_type,
                                                                      matrix_type::extents_type::static_extent(0),
-                                                                     detail::rebind_layout_t<typename vector_type::layout_type,
-                                                                                             ::std::experimental::extents<typename matrix_type::size_type,
-                                                                                                                          matrix_type::extents_type::static_extent(0) > >,
+                                                                     typename Result_layout<vector_type,matrix_type,0>::type,
                                                                      detail::rebind_accessor_t<typename vector_type::accessor_type,result_value_type> >,
                                                           dr_vector< result_value_type,
                                                                      typename ::std::allocator_traits< decay_t< decltype( get_allocator( declval<matrix_type>() ) ) > >::template rebind_alloc<result_value_type>,
-                                                                     detail::rebind_layout_t<typename vector_type::layout_type,
-                                                                                             ::std::experimental::extents<typename matrix_type::size_type,
-                                                                                                                          matrix_type::extents_type::static_extent(0)> >,
-                                                                      detail::rebind_accessor_t<typename vector_type::accessor_type,result_value_type> > >;
+                                                                     typename Result_layout<vector_type,matrix_type,0>::type,
+                                                                     detail::rebind_accessor_t<typename vector_type::accessor_type,result_value_type> > >;
     // Gets necessary arguments for construction
     // If vector type is fixed size, then the lambda expression is the only argument needed
     #ifdef LINALG_ENABLE_CONCEPTS

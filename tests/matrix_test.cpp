@@ -2252,4 +2252,66 @@ namespace
     EXPECT_EQ( ( std::math::detail::access( submatrix, 2, 2 ) ), ( std::math::detail::access( fs_matrix, 4, 4 ) ) );
   }
 
+  TEST( MATRIX_VIEW, VECTOR_PREMULTIPLY )
+  {
+    using fs_vector_type = std::math::fs_vector<double,5>;
+    // Default construct
+    fs_vector_type fs_vector;
+    for ( auto i : { 0, 1, 2, 3, 4 } )
+    {
+      std::math::detail::access( fs_vector, i ) = i;
+    }
+    // Get subvector
+    auto subvector = fs_vector.subvector( 1, 3 );
+
+    using fs_matrix_type = std::math::fs_matrix<double,5,5>;
+    // Default construct
+    fs_matrix_type fs_matrix;
+    for ( auto i : { 0, 1, 2, 3, 4 } )
+    {
+      for ( auto j : { 0, 1, 2, 3, 4 } )
+      {
+        std::math::detail::access( fs_matrix, i, j ) = i + j;
+      }
+    }
+    // Get submatrix
+    auto submatrix = fs_matrix.submatrix( std::tuple(1,0), std::tuple(3,2) );
+    // Compute product
+    auto vector_prod = subvector * submatrix;
+
+    EXPECT_EQ( ( std::math::detail::access( vector_prod, 0 ) ), 6.0 );
+    EXPECT_EQ( ( std::math::detail::access( vector_prod, 1 ) ), 8.0 );
+  }
+
+  TEST( MATRIX_VIEW, VECTOR_POSTMULTIPLY )
+  {
+    using fs_vector_type = std::math::fs_vector<double,5>;
+    // Default construct
+    fs_vector_type fs_vector;
+    for ( auto i : { 0, 1, 2, 3, 4 } )
+    {
+      std::math::detail::access( fs_vector, i ) = i;
+    }
+    // Get subvector
+    auto subvector = fs_vector.subvector( 1, 3 );
+
+    using fs_matrix_type = std::math::fs_matrix<double,5,5>;
+    // Default construct
+    fs_matrix_type fs_matrix;
+    for ( auto i : { 0, 1, 2, 3, 4 } )
+    {
+      for ( auto j : { 0, 1, 2, 3, 4 } )
+      {
+        std::math::detail::access( fs_matrix, i, j ) = i + j;
+      }
+    }
+    // Get submatrix
+    auto submatrix = fs_matrix.submatrix( std::tuple(1,0), std::tuple(3,2) );
+    // Compute product
+    auto vector_prod =  submatrix * vector_prod;
+
+    EXPECT_EQ( ( std::math::detail::access( vector_prod, 0 ) ), 6.0 );
+    EXPECT_EQ( ( std::math::detail::access( vector_prod, 1 ) ), 8.0 );
+  }
+
 }
