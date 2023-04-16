@@ -1509,8 +1509,8 @@ namespace
   {
     using fs_vector_type = std::math::fs_vector<double,5>;
     // Default construct
-    fs_vector_type fs_vector = []( auto, auto ) { return 0.0; };
-    auto subvector = fs_vector.subvector( std::tuple(0,2) );
+    fs_vector_type fs_vector = []( auto ) { return 0.0; };
+    auto subvector = fs_vector.subvector( 0, 2 );
     EXPECT_TRUE( ( subvector.size().extent(0) == 2 ) );
     EXPECT_TRUE( ( subvector.capacity().extent(0) == 2 ) );
   }
@@ -1527,8 +1527,8 @@ namespace
       val = 2 * val;
     }
     const fs_vector_type& const_fs_vector( fs_vector );
-    auto subvector = const_fs_vector.subvector( std::tuple(1,5) );
-    auto subvector2 = ( (const decltype(subvector)&)( subvector ) ).subvector( std::tuple(1,3), 0 );
+    auto subvector = const_fs_vector.subvector( 1, 5 );
+    auto subvector2 = ( (const decltype(subvector)&)( subvector ) ).subvector( 1, 3 );
     
     EXPECT_EQ( ( std::math::detail::access( subvector2, 0 ) ), ( std::math::detail::access( fs_vector, 2 ) ) );
     EXPECT_EQ( ( std::math::detail::access( subvector2, 1 ) ), ( std::math::detail::access( fs_vector, 3 ) ) );
@@ -1545,8 +1545,8 @@ namespace
       std::math::detail::access( fs_vector, i ) = val;
       val = 2 * val;
     }
-    auto subvector = fs_vector.subvector( std::tuple(1,5) );
-    auto subvector2 = subvector.subvector( std::tuple(1,3) );
+    auto subvector = fs_vector.subvector( 1, 5 );
+    auto subvector2 = subvector.subvector( 1, 3 );
     for ( auto i : { 0, 1 } )
     {
       std::math::detail::access( subvector2, i ) = val;
@@ -1568,7 +1568,7 @@ namespace
       std::math::detail::access( fs_vector, i ) = val;
       val = 2 * val;
     }
-    auto subvector = fs_vector.subvector( std::tuple(1,5) );
+    auto subvector = fs_vector.subvector( 1, 5 );
     // Negate subvector
     auto negate_subvector = -subvector;
 
@@ -1589,7 +1589,7 @@ namespace
       std::math::detail::access( fs_vector, i ) = val;
       val = 2 * val;
     }
-    auto subvector = fs_vector.subvector( std::tuple(1,5) );
+    auto subvector = fs_vector.subvector( 1, 5 );
     // Add the subtensor with itself
     auto subvector_sum = subvector + subvector;
 
@@ -1610,7 +1610,7 @@ namespace
       std::math::detail::access( fs_vector, i ) = val;
       val = 2 * val;
     }
-    auto subvector = fs_vector.subvector( std::tuple(1,5) );
+    auto subvector = fs_vector.subvector( 1, 5 );
     // Add the subvector with itself
     static_cast<void>( subvector += subvector );
 
@@ -1631,7 +1631,7 @@ namespace
       std::math::detail::access( fs_vector, i ) = val;
       val = 2 * val;
     }
-    auto subvector = fs_vector.subvector( std::tuple(1,5) );
+    auto subvector = fs_vector.subvector( 1, 5 );
     // Subtract the subvector with itself
     auto subvector_diff = subvector - subvector;
 
@@ -1652,7 +1652,7 @@ namespace
       std::math::detail::access( fs_vector, i ) = val;
       val = 2 * val;
     }
-    auto subvector = fs_vector.subvector( std::tuple(1,5) );
+    auto subvector = fs_vector.subvector( 1, 5 );
     // Subtract the subvector with itself
     static_cast<void>( subvector -= subvector );
 
@@ -1673,7 +1673,7 @@ namespace
       std::math::detail::access( fs_vector, i ) = val;
       val = 2 * val;
     }
-    auto subvector = fs_vector.subvector( std::tuple(1,5) );
+    auto subvector = fs_vector.subvector( 1, 5 );
     // Multiply the subvector with a constant
     auto subvector_prod = 2.0 * subvector;
 
@@ -1694,7 +1694,7 @@ namespace
       std::math::detail::access( fs_vector, i ) = val;
       val = 2 * val;
     }
-    auto subvector = fs_vector.subvector( std::tuple(1,5) );
+    auto subvector = fs_vector.subvector( 1, 5 );
     // Multiply the subvector with a constant
     auto subvector_prod = subvector * 2.0;
 
@@ -1715,7 +1715,7 @@ namespace
       std::math::detail::access( fs_vector, i ) = val;
       val = 2 * val;
     }
-    auto subvector = fs_vector.subvector( std::tuple(1,5) );
+    auto subvector = fs_vector.subvector( 1, 5 );
     // MUltipl the subvector with a constant
     static_cast<void>( subvector *= 2.0 );
 
@@ -1736,7 +1736,7 @@ namespace
       std::math::detail::access( fs_vector, i ) = val;
       val = 2 * val;
     }
-    auto subvector = fs_vector.subvector( std::tuple(1,5) );
+    auto subvector = fs_vector.subvector( 1, 5 );
     // Divide the subvector with a constant
     auto subvector_divide = subvector / 2.0;
 
@@ -1757,7 +1757,7 @@ namespace
       std::math::detail::access( fs_vector, i ) = val;
       val = 2 * val;
     }
-    auto subvector = fs_vector.subvector( std::tuple(1,5) );
+    auto subvector = fs_vector.subvector( 1, 5 );
     // Divide the subvector with a constant
     static_cast<void>( subvector /= 2.0 );
 
