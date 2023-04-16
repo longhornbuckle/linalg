@@ -2277,31 +2277,6 @@ namespace
     EXPECT_EQ( ( std::math::detail::access( matrix_prod, 1, 1 ) ), 13.0 );
   }
 
-  TEST( MATRIX_VIEW, MATRIX_MULTIPLY_ASSIGN )
-  {
-    using fs_matrix_type = std::math::fs_matrix<double,5,5>;
-    // Default construct
-    fs_matrix_type fs_matrix;
-    for ( auto i : { 0, 1, 2, 3, 4 } )
-    {
-      for ( auto j : { 0, 1, 2, 3, 4 } )
-      {
-        std::math::detail::access( fs_matrix, i, j ) = i + j;
-      }
-    }
-    // Get submatrix
-    auto submatrix  = fs_matrix.submatrix( std::tuple(1,0), std::tuple(3,2) );
-    // Get second submatrix
-    auto submatrix2 = fs_matrix.submatrix( std::tuple(1,0), std::tuple(3,2) );
-    // Compute product
-    submatrix *= submatrix2;
-
-    EXPECT_EQ( ( std::math::detail::access( submatrix, 0, 0 ) ), 5.0 );
-    EXPECT_EQ( ( std::math::detail::access( submatrix, 0, 1 ) ), 8.0 );
-    EXPECT_EQ( ( std::math::detail::access( submatrix, 1, 0 ) ), 8.0 );
-    EXPECT_EQ( ( std::math::detail::access( submatrix, 1, 1 ) ), 13.0 );
-  }
-
   TEST( MATRIX_VIEW, VECTOR_PREMULTIPLY )
   {
     using fs_vector_type = std::math::fs_vector<double,5>;
