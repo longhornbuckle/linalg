@@ -337,7 +337,7 @@ template < class T > inline constexpr bool has_underlying_span_func_v = has_unde
 
 // Test for const underlying span function
 template < class T, class = void > struct has_const_underlying_span_func : public ::std::false_type { };
-template < class T > struct has_const_underlying_span_func< T, ::std::enable_if_t< ::std::is_same_v< decltype( ::std::declval<const T>().const_underlying_span() ), typename T::underlying_span_type > > > : public ::std::true_type { };
+template < class T > struct has_const_underlying_span_func< T, ::std::enable_if_t< ::std::is_same_v< decltype( ::std::declval<const T>().underlying_span() ), typename T::underlying_span_type > > > : public ::std::true_type { };
 template < class T > inline constexpr bool has_const_underlying_span_func_v = has_const_underlying_span_func<T>::value;
 
 // Test for get_allocator function

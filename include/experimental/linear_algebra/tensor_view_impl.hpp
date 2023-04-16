@@ -301,7 +301,7 @@ template < class MDS, typename Dummy >
 #endif
 span() const noexcept
 {
-  return this->const_underlying_span();
+  return this->underlying_span();
 }
 
 #ifdef LINALG_ENABLE_CONCEPTS
