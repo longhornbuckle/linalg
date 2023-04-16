@@ -957,9 +957,9 @@ class conjugate_matrix
     using matrix_type         = M;
   private:
     // Aliases
-    using result_element_type = ::std::conditional_t< detail::is_complex_v<typename matrix_type::element_type>,
+    using result_element_type = ::std::conditional_t< detail::is_complex_v< ::std::decay_t< typename matrix_type::element_type> >,
                                                       decltype( ::std::conj( ::std::declval<typename matrix_type::element_type>() ) ),
-                                                      typename matrix_type::element_type >;
+                                                      ::std::remove_cv_t< typename matrix_type::element_type > >;
     #ifdef LINALG_ENABLE_CONCEPTS
     template < class U > requires ( !( concepts::fixed_size_matrix_data<U> || concepts::dynamic_matrix_data<U> ) )
     #else
@@ -1109,9 +1109,9 @@ class conjugate_vector
     using vector_type         = V;
   private:
     // Aliases
-    using result_element_type = ::std::conditional_t< detail::is_complex_v<typename vector_type::element_type>,
+    using result_element_type = ::std::conditional_t< detail::is_complex_v< ::std::decay_t< typename vector_type::element_type> >,
                                                       decltype( ::std::conj( ::std::declval<typename vector_type::element_type>() ) ),
-                                                      typename vector_type::element_type >;
+                                                      ::std::remove_cv_t< typename vector_type::element_type > >;
     #ifdef LINALG_ENABLE_CONCEPTS
     template < class U > requires ( !( concepts::fixed_size_vector_data<U> || concepts::dynamic_vector_data<U> ) )
     #else
