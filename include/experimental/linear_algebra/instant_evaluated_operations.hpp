@@ -838,7 +838,7 @@ class transpose_matrix
       requires ( !concepts::dynamic_matrix_data< matrix_type > )
     #endif
     {
-      return ::std::allocator<typename U::element_type>();
+      return ::std::allocator< ::std::remove_cv_t<typename U::element_type> >();
     }
     // Gets necessary arguments for constrution
     // If matrix type is fixed size, then the lambda expression is the only argument needed
