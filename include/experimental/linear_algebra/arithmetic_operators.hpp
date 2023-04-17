@@ -12,6 +12,8 @@
 
 namespace std
 {
+namespace experimental
+{
 namespace math
 {
 
@@ -391,5 +393,6 @@ operator *= ( M1& m1, const M2& m2 )
 }
 
 }       //- math namespace
+}       //- experimental namespace
 }       //- std namespace
 #endif  //- LINEAR_ALGEBRA_ARITHMETIC_OPERATORS_HPP

@@ -12,6 +12,8 @@
 
 namespace std
 {
+namespace experimental
+{
 namespace math
 {
 
@@ -1506,5 +1508,6 @@ template < class T, size_t R, class Alloc, class L , class Access >
 }
 
 }       //- math namespace
+}       //- experimental namespace
 }       //- std namespace
 #endif  //- LINEAR_ALGEBRA_DYNAMIC_TENSOR_ENGINE_HPP

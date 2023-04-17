@@ -5,6 +5,8 @@
 
 namespace std
 {
+namespace experimental
+{
 namespace math
 {
 namespace concepts
@@ -261,6 +263,7 @@ template < class V > inline constexpr bool fixed_size_vector_v = fixed_size_vect
 
 }       //- concepts namespace
 }       //- math namespace
+}       //- experimental namespace
 }       //- std namespace
 
 #endif  //- LINEAR_ALGEBRA_VECTOR_CONCEPTS_HPP

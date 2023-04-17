@@ -12,6 +12,8 @@
 
 namespace std
 {
+namespace experimental
+{
 namespace math
 {
 namespace instant_evaluated_operations
@@ -2075,5 +2077,6 @@ class outer_product
 
 }       //- instant_evaluated_operations
 }       //- math namespace
+}       //- experimental namespace
 }       //- std namespace
 #endif  //- LINEAR_ALGEBRA_OPERATION_TRAITS_HPP_DEFINED

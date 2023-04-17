@@ -12,6 +12,8 @@
 
 namespace std
 {
+namespace experimental
+{
 namespace math
 {
 
@@ -602,5 +604,6 @@ dr_matrix<T,Alloc,L,Access>::row( index_type i )
 }
 
 }       //- math namespace
+}       //- experimental namespace
 }       //- std namespace
 #endif  //- LINEAR_ALGEBRA_FIXED_SIZE_MATRIX_HPP
