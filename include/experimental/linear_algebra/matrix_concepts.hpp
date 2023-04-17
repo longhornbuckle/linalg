@@ -5,6 +5,8 @@
 
 namespace std
 {
+namespace experimental
+{
 namespace math
 {
 namespace concepts
@@ -453,6 +455,7 @@ inline constexpr bool view_may_be_convertible_to_matrix_v =
 
 }       //- concepts namespace
 }       //- math namespace
+}       //- experimental namespace
 }       //- std namespace
 
 #endif  //- LINEAR_ALGEBRA_MATRIX_CONCEPTS_HPP_DEFINED

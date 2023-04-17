@@ -11,6 +11,8 @@
 
 namespace std
 {
+namespace experimental
+{
 namespace math
 {
 
@@ -107,5 +109,6 @@ template < class MDS
 class vector_view;
 
 }       //- math namespace
+}       //- experimental namespace
 }       //- std namespace
 #endif  //- LINEAR_ALGEBRA_FORWARD_DECLARATIONS_HPP

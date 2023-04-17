@@ -21,12 +21,12 @@ install( TARGETS linalg EXPORT linalgTargets
 
 install( EXPORT linalgTargets
     FILE linalgTargets.cmake
-    NAMESPACE std::math::
+    NAMESPACE std::experimental::math::
     DESTINATION ${CMAKE_INSTALL_LIBDIR}/cmake/linalg
 )
 
 export( TARGETS linalg
-    NAMESPACE std::math::
+    NAMESPACE std::experimental::math::
     FILE linalgTargets.cmake
 )
 

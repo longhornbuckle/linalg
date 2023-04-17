@@ -12,6 +12,8 @@
 
 namespace std
 {
+namespace experimental
+{
 namespace math
 {
 
@@ -230,5 +232,6 @@ class tensor_view
 };
 
 }       //- math namespace
+}       //- experimental namespace
 }       //- std namespace
 #endif  //- LINEAR_ALGEBRA_FIXED_SIZE_MATRIX_ENGINE_HPP

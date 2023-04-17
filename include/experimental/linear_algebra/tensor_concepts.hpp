@@ -5,6 +5,8 @@
 
 namespace std
 {
+namespace experimental
+{
 namespace math
 {
 namespace concepts
@@ -587,6 +589,7 @@ extents_are_equal_v< From, To >;
 
 }       //- concepts namespace
 }       //- math namespace
+}       //- experimental namespace
 }       //- std namespace
 
 #endif  //- LINEAR_ALGEBRA_TENSOR_CONCEPTS_HPP
