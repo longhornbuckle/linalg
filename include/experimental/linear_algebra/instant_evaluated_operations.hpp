@@ -51,9 +51,9 @@ using default_dynamic_t = typename default_dynamic<T,V>::type;
 
 /// @brief Defines negation operation on a tensor
 #ifdef LINALG_ENABLE_CONCEPTS
-template < concepts::tensor_data T >
+template < concepts::tensor_data T > requires ( T::underlying_span_type::is_always_unique() )
 #else
-template < class T, typename = ::std::enable_if_t< concepts::tensor_data_v<T> > >
+template < class T, typename = ::std::enable_if_t< concepts::tensor_data_v<T> && T::underlying_span_type::is_always_unique() > >
 #endif
 class negation
 {
@@ -156,9 +156,9 @@ class negation
 /// @tparam T1 first in pair of tensors to be added
 /// @tparam T2 second in pair of tensors to be added
 #ifdef LINALG_ENABLE_CONCEPTS
-template < concepts::tensor_data T1, concepts::tensor_data T2 >
+template < concepts::tensor_data T1, concepts::tensor_data T2 > requires (  T1::underlying_span_type::is_always_unique() && T2::underlying_span_type::is_always_unique() )
 #else
-template < class T1, class T2, typename = ::std::enable_if_t< concepts::tensor_data_v<T1> && concepts::tensor_data_v<T2> > >
+template < class T1, class T2, typename = ::std::enable_if_t< concepts::tensor_data_v<T1> && concepts::tensor_data_v<T2> && T1::underlying_span_type::is_always_unique() && T2::underlying_span_type::is_always_unique() > >
 #endif
 class addition
 {
@@ -321,9 +321,9 @@ class addition
 /// @tparam T1 first in pair of tensors to be added
 /// @tparam T2 second in pair of tensors to be added
 #ifdef LINALG_ENABLE_CONCEPTS
-template < concepts::tensor_data T1, concepts::tensor_data T2 >
+template < concepts::tensor_data T1, concepts::tensor_data T2 > requires ( T1::underlying_span_type::is_always_unique() && T2::underlying_span_type::is_always_unique() )
 #else
-template < class T1, class T2, typename = ::std::enable_if_t< concepts::tensor_data_v<T1> && concepts::tensor_data_v<T2> > >
+template < class T1, class T2, typename = ::std::enable_if_t< concepts::tensor_data_v<T1> && concepts::tensor_data_v<T2> && T1::underlying_span_type::is_always_unique() && T2::underlying_span_type::is_always_unique() > >
 #endif
 class subtraction
 {
@@ -486,9 +486,9 @@ class subtraction
 /// @tparam S scalar
 /// @tparam T tensor
 #ifdef LINALG_ENABLE_CONCEPTS
-template < class S, concepts::tensor_data T >
+template < class S, concepts::tensor_data T > requires ( T::underlying_span_type::is_always_unique() )
 #else
-template < class S, class T, typename = ::std::enable_if_t< concepts::tensor_data_v<T> > >
+template < class S, class T, typename = ::std::enable_if_t< concepts::tensor_data_v<T> && T::underlying_span_type::is_always_unique() > >
 #endif
 class scalar_product
 {
@@ -641,9 +641,9 @@ class scalar_product
 /// @tparam S scalar
 /// @tparam T tensor
 #ifdef LINALG_ENABLE_CONCEPTS
-template < concepts::tensor_data T, class S >
+template < concepts::tensor_data T, class S > requires ( T::underlying_span_type::is_always_unique() )
 #else
-template < class T, class S, typename = ::std::enable_if_t< concepts::tensor_data_v<T> > >
+template < class T, class S, typename = ::std::enable_if_t< concepts::tensor_data_v<T> && T::underlying_span_type::is_always_unique() > >
 #endif
 struct scalar_division
 {
@@ -773,9 +773,9 @@ struct scalar_division
 /// @brief Defines transpose operation on a matrix
 /// @tparam M matrix
 #ifdef LINALG_ENABLE_CONCEPTS
-template < concepts::matrix_data M >
+template < concepts::matrix_data M > requires ( M::underlying_span_type::is_always_unique() )
 #else
-template < class M, typename = ::std::enable_if_t< concepts::matrix_data_v<M> > >
+template < class M, typename = ::std::enable_if_t< concepts::matrix_data_v<M> && M::underlying_span_type::is_always_unique() > >
 #endif
 class transpose_matrix
 {
@@ -919,9 +919,9 @@ class transpose_matrix
 /// @brief Defines transpose operation on a vector
 /// @tparam V vector
 #ifdef LINALG_ENABLE_CONCEPTS
-template < concepts::vector_data V >
+template < concepts::vector_data V > requires ( V::underlying_span_type::is_always_unique() )
 #else
-template < class V, typename = ::std::enable_if_t< concepts::vector_data_v<V> > >
+template < class V, typename = ::std::enable_if_t< concepts::vector_data_v<V> && V::underlying_span_type::is_always_unique() > >
 #endif
 class transpose_vector
 {
@@ -946,9 +946,9 @@ class transpose_vector
 /// @brief Defines conjugate transpose operation on a matrix
 /// @tparam M matrix
 #ifdef LINALG_ENABLE_CONCEPTS
-template < concepts::matrix_data M >
+template < concepts::matrix_data M > requires ( M::underlying_span_type::is_always_unique() )
 #else
-template < class M, typename = ::std::enable_if_t< concepts::matrix_data_v<M> > >
+template < class M, typename = ::std::enable_if_t< concepts::matrix_data_v<M> && M::underlying_span_type::is_always_unique() > >
 #endif
 class conjugate_matrix
 {
@@ -1098,9 +1098,9 @@ class conjugate_matrix
 /// @brief Defines conjugate transpose operation on a vector
 /// @tparam V vector
 #ifdef LINALG_ENABLE_CONCEPTS
-template < concepts::vector_data V >
+template < concepts::vector_data V > requires ( V::underlying_span_type::is_always_unique() )
 #else
-template < class V, typename = ::std::enable_if_t< concepts::vector_data_v<V> > >
+template < class V, typename = ::std::enable_if_t< concepts::vector_data_v<V> && V::underlying_span_type::is_always_unique() > >
 #endif
 class conjugate_vector
 {
@@ -1243,9 +1243,9 @@ class conjugate_vector
 /// @tparam V vector
 /// @tparam M matrix
 #ifdef LINALG_ENABLE_CONCEPTS
-template < concepts::vector_data V, concepts::matrix_data M >
+template < concepts::vector_data V, concepts::matrix_data M > requires ( V::underlying_span_type::is_always_unique() && M::underlying_span_type::is_always_unique() )
 #else
-template < class V, class M, typename = ::std::enable_if_t< concepts::vector_data_v<V> && concepts::matrix_data_v<M> > >
+template < class V, class M, typename = ::std::enable_if_t< concepts::vector_data_v<V> && concepts::matrix_data_v<M> && V::underlying_span_type::is_always_unique() && M::underlying_span_type::is_always_unique() > >
 #endif
 class vector_matrix_product
 {
@@ -1596,9 +1596,9 @@ class vector_matrix_product
 /// @tparam M1 matrix
 /// @tparam M2 matrix
 #ifdef LINALG_ENABLE_CONCEPTS
-template < concepts::matrix_data M1, concepts::matrix_data M2 >
+template < concepts::matrix_data M1, concepts::matrix_data M2 > requires ( M1::underlying_span_type::is_always_unique() && M2::underlying_span_type::is_always_unique() )
 #else
-template < class M1, class M2, typename = ::std::enable_if_t< concepts::matrix_data_v<M1> && concepts::matrix_data_v<M2> > >
+template < class M1, class M2, typename = ::std::enable_if_t< concepts::matrix_data_v<M1> && concepts::matrix_data_v<M2> && M1::underlying_span_type::is_always_unique() && M2::underlying_span_type::is_always_unique() > >
 #endif
 class matrix_matrix_product
 {
@@ -1839,9 +1839,9 @@ class matrix_matrix_product
 /// @tparam V1 vector
 /// @tparam V2 vector
 #ifdef LINALG_ENABLE_CONCEPTS
-template < concepts::vector_data V1, concepts::vector_data V2 >
+template < concepts::vector_data V1, concepts::vector_data V2 > requires ( V1::underlying_span_type::is_always_unique() && V2::underlying_span_type::is_always_unique() )
 #else
-template < class V1, class V2, typename = ::std::enable_if_t< concepts::vector_data_v< V2 > > >
+template < class V1, class V2, typename = ::std::enable_if_t< concepts::vector_data_v< V2 > && V1::underlying_span_type::is_always_unique() && V2::underlying_span_type::is_always_unique() > >
 #endif
 class inner_product
 {
@@ -1894,9 +1894,9 @@ class inner_product
 /// @tparam V1 vector
 /// @tparam V2 vector
 #ifdef LINALG_ENABLE_CONCEPTS
-template < concepts::vector_data V1, concepts::vector_data V2 >
+template < concepts::vector_data V1, concepts::vector_data V2 > requires ( V1::underlying_span_type::is_always_unique() && V2::underlying_span_type::is_always_unique() )
 #else
-template < class V1, class V2, typename = ::std::enable_if_t< concepts::vector_data_v<V1> && concepts::vector_data_v<V2> > >
+template < class V1, class V2, typename = ::std::enable_if_t< concepts::vector_data_v<V1> && concepts::vector_data_v<V2> && V1::underlying_span_type::is_always_unique() && V2::underlying_span_type::is_always_unique() > >
 #endif
 class outer_product
 {
