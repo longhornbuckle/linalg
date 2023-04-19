@@ -1,11 +1,12 @@
 //==================================================================================================
-//  File:       mdspan_improvements.hpp
+//  File:       rank_one_extents_specialization.hpp
 //
-//  Summary:    Defines improvements to mdspan
+//  Summary:    Defines a specialization for a rank 1 extents. Allows for implicit conversions to
+//              and from integer types.
 //==================================================================================================
 //
-#ifndef MDSPAN_IMPROVEMENTS_HPP
-#define MDSPAN_IMPROVEMENTS_HPP
+#ifndef MDSPAN_EXTENSIONS_RANK_ONE_EXTENTS_SPECIALIZATIONS_HPP
+#define MDSPAN_EXTENSIONS_RANK_ONE_EXTENTS_SPECIALIZATIONS_HPP
 
 //- Disable some unnecessary compiler warnings coming from mdspan.
 //
@@ -224,4 +225,4 @@ public:
     #pragma warning(pop)
 #endif
 
-#endif  //- MDSPAN_IMPROVEMENTS_HPP
+#endif  //- MDSPAN_EXTENSIONS_RANK_ONE_EXTENTS_SPECIALIZATIONS_HPP

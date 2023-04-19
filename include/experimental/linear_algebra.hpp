@@ -36,7 +36,7 @@
 #endif
 
 #include <experimental/mdspan>
-#include <experimental/mdspan_improvements.hpp>
+#include <experimental/mdspan_extensions/rank_one_extents_specialization.hpp>
 using ::std::experimental::dynamic_extent;
 
 //- Restore the compiler's diagnostic state.
@@ -69,7 +69,7 @@ using ::std::experimental::dynamic_extent;
 #include "linear_algebra/fixed_size_vector.hpp"
 #include "linear_algebra/dynamic_vector.hpp"
 #include "linear_algebra/instant_evaluated_operations.hpp"
-namespace std::experimental::math::operations { using namespace std::experimental::math::instant_evaluated_operations; }
+namespace ::std::experimental::math::operations { using namespace ::std::experimental::math::instant_evaluated_operations; }
 #include "linear_algebra/arithmetic_operators.hpp"
 
 #endif  //- LINEAR_ALGEBRA_HPP
