@@ -36,7 +36,7 @@
 #endif
 
 #include <experimental/mdspan>
-#include <experimental/mdspan_improvements.hpp>
+#include <experimental/mdspan_extensions/rank_one_extents_specialization.hpp>
 using ::std::experimental::dynamic_extent;
 
 //- Restore the compiler's diagnostic state.
